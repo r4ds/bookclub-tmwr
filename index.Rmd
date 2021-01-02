@@ -1,0 +1,29 @@
+--- 
+title: "Tidy Modeling with R Book Club"
+author: "The R4DS Online Learning Community"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "This is the product of the R4DS Online Learning Community's Tidy Modeling with R Book Club."
+---
+
+# Welcome {-}
+
+Put welcome stuff here. But first make sure this will work.
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(
+  c(
+    .packages(), 
+    'bookdown', 
+    'knitr', 
+    'rmarkdown',
+    'tidymodels'
+  ), 
+  'packages.bib'
+)
+```
