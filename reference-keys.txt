@@ -1,0 +1,6 @@
+software-for-modeling
+slide
+another-slide
+a-tidyverse-primer
+slide-1
+another-slide-1
