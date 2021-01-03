@@ -19,6 +19,11 @@ jobs:
           "bookdown",
           "tidymodels"
           ))'
+        run: Rscript -e 'install.packages(c(
+          "tidyverse",
+          "remotes"
+          ))'
+        run: Rscript -e 'remotes::install_github("hadley/emo")'
       - name: Render Book
         run: Rscript -e 'bookdown::render_book("index.Rmd")'
       - uses: actions/upload-artifact@v1
