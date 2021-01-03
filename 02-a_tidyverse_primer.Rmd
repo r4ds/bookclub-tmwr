@@ -1,4 +1,4 @@
-# Software for modeling
+# A tidyverse primer
 
 *Learning objectives:*
 

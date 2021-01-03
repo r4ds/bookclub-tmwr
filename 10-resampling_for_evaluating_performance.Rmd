@@ -1,4 +1,4 @@
-# Software for modeling
+# Resampling for evaluating performance
 
 *Learning objectives:*
 

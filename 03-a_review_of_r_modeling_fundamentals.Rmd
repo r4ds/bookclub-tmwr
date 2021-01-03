@@ -1,4 +1,4 @@
-# Software for modeling
+# A review of R modeling fundamentals
 
 *Learning objectives:*
 
