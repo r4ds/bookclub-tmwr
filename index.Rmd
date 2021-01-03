@@ -12,7 +12,9 @@ description: "This is the product of the R4DS Online Learning Community's Tidy M
 
 # Welcome {-}
 
-Put welcome stuff here. But first make sure this will work.
+This is a companion for the book [Tidy Modeling with R](https://www.tmwr.org/) by Max Kuhn and Julia Silge.
+
+This website is being developed by the [R4DS Online Learning Community](https://rfordatasci.com). Follow along, and [join the community](https://r4ds.io/join) to participate.
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
