@@ -19,10 +19,12 @@ jobs:
           "bookdown",
           "tidymodels"
           ))'
+      - name: Install more packages
         run: Rscript -e 'install.packages(c(
           "tidyverse",
           "remotes"
           ))'
+      - name: Install github packages
         run: Rscript -e 'remotes::install_github("hadley/emo")'
       - name: Render Book
         run: Rscript -e 'bookdown::render_book("index.Rmd")'
