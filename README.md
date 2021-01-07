@@ -13,7 +13,7 @@ If you would like to present, please add your name next to a chapter using the [
 *Cohort 1: (starts 2021-01-05) - Tuesdays, 8:00pm EST/EDT*
 
 - 2021-01-05: Chapter 1: Software for modeling: Jon Harmon
-- 2021-01-12: Chapter 2: A tidyverse primer
+- **2021-01-12: Chapter 2: A tidyverse primer: Jonathan Trattner**
 - 2021-01-19: Chapter 3: A review of R modeling fundamentals
 - 2021-01-26: Chapter 4: The Ames housing data
 - 2021-02-02: Chapter 5: Spending our data
