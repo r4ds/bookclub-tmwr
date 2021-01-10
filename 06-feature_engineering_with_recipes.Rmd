@@ -1,6 +1,6 @@
 # Feature engineering with recipes
 
-*Learning objectives:*
+**Learning objectives:**
 
 - Jon will prefill these.
 

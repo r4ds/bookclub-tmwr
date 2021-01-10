@@ -1,6 +1,6 @@
 # Spending our data
 
-*Learning objectives:*
+**Learning objectives:**
 
 - Jon will prefill these.
 

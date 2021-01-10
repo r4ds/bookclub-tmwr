@@ -1,6 +1,6 @@
 # Model tuning and the dangers of overfitting
 
-*Learning objectives:*
+**Learning objectives:**
 
 - Jon will prefill these.
 

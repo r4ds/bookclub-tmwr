@@ -1,8 +1,14 @@
 # A tidyverse primer
 
-*Learning objectives:*
+**Learning objectives:**
 
-- Jon will prefill these.
+- List the **`tidyverse` design principles.**
+- Explain what it means for the `tidyverse` to be **designed for humans.**
+- Describe how **reusing existing data structures** can make functions easier to work with.
+- Explain what it means for a set of functions to be **designed for the pipe.**
+- Explain what it means for function to be **designed for functional programming.**
+- List some **differences between a `tibble` and a base `data.frame`.**
+- Recognize how to **use the `tidyverse` to read and wrangle data.**
 
 ## Slide 1 Title
 

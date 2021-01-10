@@ -1,6 +1,6 @@
 # Comparing models with resampling
 
-*Learning objectives:*
+**Learning objectives:**
 
 - Jon will prefill these.
 
