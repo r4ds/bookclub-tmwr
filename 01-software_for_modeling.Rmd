@@ -1,15 +1,65 @@
 # Software for modeling
 
-*Learning objectives:*
+**Learning objectives:**
 
-- Learning
-- Objectives
-- Here
+- Recognize the principles around which the `{tidymodels}` packages were designed.
+- Classify models as *descriptive, inferential,* and/or *predictive.*
+- Define *descriptive model.*
+- Define *inferential model.*
+- Define *predictive model.*
+- Differentiate between *supervised* and *unsupervised* models.
+- Differentiate between *regression* and *classification* models.
+- Differentiate between *quantitative* and *qualitative* data.
+- Understand the roles that data can have in an analysis.
+- Apply the *data science process.*
+- Recognize the *phases of modeling.*
 
-## Slide
+## The pit of success
 
-This is a slide, sort of.
+`{tidymodels}` aims to help us fall into the Pit of Success:
 
-## Another slide
+> The Pit of Success: in stark contrast to a summit, a peak, or a journey across a desert to find victory through many trials and surprises, we want our customers to simply fall into winning practices by using our platform and frameworks.
 
-And so is this.
+- **Avoid confusion:** Software should facilitate proper usage.
+- **Avoid mistakes:** Software should make it easy for users to do the right thing.
+
+## Types of models
+
+- **Descriptive models:** Describe or illustrate characteristics of data.
+- **Inferential models:** Make some statement of truth regarding a predefined conjecture or idea.
+  - Usually delayed feedback between inference and actual result.
+- **Predictive models:** Produce the most accurate possible prediction for new data. *Estimation* ("How much?") rather than *inference* ("Will it?").
+  - **Mechanistic models** are derived using first principles to produce a model equation that is dependent on assumptions.
+  - **Empirically driven models** have more vague assumptions, and are derived directly from the data.
+
+## Terminology
+
+- **Unsupervised models** learn patterns, clusters, etc, but lack an outcome variable.
+  - Examples: PCA, clustering, autoencoders.
+- **Supervised models** have an outcome variable.
+  - Examples: linear regression, neural networks.
+  - **Regression:** numeric outcome
+  - **Classification:** ordered or unordered qualitative values.
+- **Quantitative** data: numbers.
+- **Qualitative** (nominal) data: non-numbers.
+- Data can have different roles in analyses:
+  - **Outcomes** (labels, endpoints, dependent variables): the value being predicted in supervised models.
+  - **Predictors** (independent variables): the variables used to predict the outcome.
+
+## The data analysis process
+
+![The data science process (from R for Data Science by Wickham and Grolemund.](https://www.tmwr.org/premade/data-science-model.svg) 
+
+
+## The modeling process
+
+![The modeling process.](https://www.tmwr.org/premade/modeling-process.svg)
+
+- **Exploratory data analysis:** Explore the data to see what they might tell you.
+  - Don't underestimate the time you'll need for **cleaning the data**. It's the step that the 'verse is named after!
+  - Take time to **understand the data**.
+  - Develop **clear expectations** of the goal of your model and how performance will be judged (Chapter 9).
+- **Feature engineering:** Create specific model terms. Covered in Chapter 6.
+- **Model tuning and selection:** Generate a variety of models and compare performance.
+- **Model evaluation:** Use EDA-like analyses to choose the best model for your situation.
+

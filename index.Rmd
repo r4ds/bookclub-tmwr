@@ -13,7 +13,20 @@ description: "This is the product of the R4DS Online Learning Community's Tidy M
 
 # Welcome {-}
 
-Put welcome stuff here. But first make sure this will work.
+This is a companion for the book [Tidy Modeling with R](https://www.tmwr.org/) by Max Kuhn and Julia Silge.
+This companion is available at [r4ds.io/tmwr](https://r4ds.io/tmwr).
+
+This website is being developed by the [R4DS Online Learning Community](https://rfordatasci.com). Follow along, and [join the community](https://r4ds.io/join) to participate.
+
+This companion follows the [R4DS Online Learning Community Code of Conduct](https://r4ds.io/conduct).
+
+## Book club meetings {-}
+
+- Each week, a volunteer will present a chapter from the book.
+  - **This is the best way to learn the material.**
+- Presentations will usually consist of a review of the material, a discussion, and/or a demonstration of the principles presented in that chapter.
+- More information about how to present is available in the [github repo](https://github.com/r4ds/bookclub-tmwr).
+- Presentations will be recorded, and will be available on the [R4DS Online Learning Community YouTube Channel](https://r4ds.io/youtube).
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
