@@ -1,6 +1,6 @@
 # A model workflow
 
-*Learning objectives:*
+**Learning objectives:**
 
 - Jon will prefill these.
 

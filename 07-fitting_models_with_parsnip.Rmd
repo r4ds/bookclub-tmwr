@@ -1,6 +1,6 @@
 # Fitting models with parsnip
 
-*Learning objectives:*
+**Learning objectives:**
 
 - Jon will prefill these.
 

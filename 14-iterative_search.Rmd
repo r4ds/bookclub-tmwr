@@ -1,6 +1,6 @@
 # Iterative search
 
-*Learning objectives:*
+**Learning objectives:**
 
 - Jon will prefill these.
 

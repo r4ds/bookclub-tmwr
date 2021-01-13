@@ -1,6 +1,6 @@
 # The Ames housing data
 
-*Learning objectives:*
+**Learning objectives:**
 
 - Jon will prefill these.
 

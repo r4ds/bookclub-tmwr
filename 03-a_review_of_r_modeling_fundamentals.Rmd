@@ -1,6 +1,6 @@
 # A review of R modeling fundamentals
 
-*Learning objectives:*
+**Learning objectives:**
 
 - Jon will prefill these.
 

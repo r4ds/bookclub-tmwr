@@ -1,6 +1,6 @@
 # Judging model effectiveness
 
-*Learning objectives:*
+**Learning objectives:**
 
 - Jon will prefill these.
 

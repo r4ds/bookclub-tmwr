@@ -2,17 +2,17 @@
 
 **Learning objectives:**
 
-- Recognize the principles around which the `{tidymodels}` packages were designed.
-- Classify models as *descriptive, inferential,* and/or *predictive.*
-- Define *descriptive model.*
-- Define *inferential model.*
-- Define *predictive model.*
-- Differentiate between *supervised* and *unsupervised* models.
-- Differentiate between *regression* and *classification* models.
-- Differentiate between *quantitative* and *qualitative* data.
-- Understand the roles that data can have in an analysis.
-- Apply the *data science process.*
-- Recognize the *phases of modeling.*
+- **Recognize the principles** around which the `{tidymodels}` packages were designed.
+- Classify models as **descriptive, inferential,** and/or **predictive.**
+- Define **descriptive model.**
+- Define **inferential model.**
+- Define **predictive model.**
+- Differentiate between **supervised** and **unsupervised** models.
+- Differentiate between **regression** and **classification** models.
+- Differentiate between **quantitative** and **qualitative** data.
+- Understand the **roles that data can have** in an analysis.
+- Apply the **data science process.**
+- Recognize the **phases of modeling.**
 
 ## The pit of success
 
