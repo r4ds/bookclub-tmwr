@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8.2 Slide 2 Title | Tidy Modeling with R Book Club</title>
+  <title>2.2 Design for Humans | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8.2 Slide 2 Title | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="2.2 Design for Humans | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8.2 Slide 2 Title | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="2.2 Design for Humans | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="slide-1-title-5.html"/>
-<link rel="next" href="judging-model-effectiveness.html"/>
+<link rel="prev" href="tidyverse-design-principles.html"/>
+<link rel="next" href="reusing-existing-data-structures.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -229,19 +229,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="slide-2-title-5" class="section level2">
-<h2><span class="header-section-number">8.2</span> Slide 2 Title</h2>
-<p>Put the content of your second slide here.</p>
-
+<div id="design-for-humans" class="section level2">
+<h2><span class="header-section-number">2.2</span> Design for Humans</h2>
+<blockquote>
+<p>“Programs must be written for people to read, and only incidentally for machines to execute.”</p>
+<p>- Hal Abelson</p>
+</blockquote>
+<p>The <code>tidyverse</code> offers packages that are easily readable and understood by humans. It enables them to more easily achieve their programming goals.</p>
+<p>Consider the <code>mtcars</code> dataset, which comprises fuel consumption and 10 aspects of autombile design and performance from 1973-1974. Previewing the first six rows of the data, we see:</p>
+<pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+<p>If we wanted to arrange these in ascending order based on the <code>mpg</code> and <code>gear</code> variables, how could we do this?</p>
+<hr />
+<p>The function <code>arrange()</code>, in the <code>dplyr</code> package of the <code>tidyverse</code>, takes a data frame and column names as such:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="design-for-humans.html#cb2-1"></a><span class="kw">arrange</span>(<span class="dt">.data =</span> mtcars, gear, mpg)</span></code></pre></div>
+<hr />
+<p><code>arrange()</code>, and other tidyverse functions, use <strong>names that are descriptive and explicit.</strong> For general methods, there is a <strong>focus on verbs,</strong> as seen with the functions <code>pivot_longer()</code> and <code>pivot_wider()</code> in the <code>tidyr</code> package.</p>
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="slide-1-title-5.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="judging-model-effectiveness.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="tidyverse-design-principles.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="reusing-existing-data-structures.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -272,7 +288,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/08-a_model_workflow.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/02-a_tidyverse_primer.Rmd",
 "text": "Edit"
 },
 "history": {

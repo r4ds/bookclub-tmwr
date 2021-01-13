@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8.2 Slide 2 Title | Tidy Modeling with R Book Club</title>
+  <title>2.4 Designed for the pipe | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8.2 Slide 2 Title | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="2.4 Designed for the pipe | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8.2 Slide 2 Title | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="2.4 Designed for the pipe | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="slide-1-title-5.html"/>
-<link rel="next" href="judging-model-effectiveness.html"/>
+<link rel="prev" href="reusing-existing-data-structures.html"/>
+<link rel="next" href="designed-for-functional-programming.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -229,19 +229,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="slide-2-title-5" class="section level2">
-<h2><span class="header-section-number">8.2</span> Slide 2 Title</h2>
-<p>Put the content of your second slide here.</p>
-
+<div id="designed-for-the-pipe" class="section level2">
+<h2><span class="header-section-number">2.4</span> Designed for the pipe</h2>
+<p>The pipe operator, <code>%&gt;%</code>, comes from the <a href="https://magrittr.tidyverse.org"><code>magrittr</code></a> package by <a href="http://stefanbache.dk">Stefan Milton Bache</a>, and is used to chain together a sequence of R functions. More specifically, <strong>the pipe operator uses the value of the object on the left-hand side of the operator as the first argument on the operator’s right-hand side.</strong></p>
+<p>The pipe allows for highly readable code. Consider wanting to sort the <code>mtcars</code> dataset by the number of gears (<code>gear</code>) and then select the first ten rows. How would you do that?</p>
+<hr />
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="designed-for-the-pipe.html#cb7-1"></a>cars_arranged &lt;-<span class="st"> </span><span class="kw">arrange</span>(mtcars, gear)</span>
+<span id="cb7-2"><a href="designed-for-the-pipe.html#cb7-2"></a>cars_selected &lt;-<span class="st"> </span><span class="kw">slice</span>(cars_arranged, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span>
+<span id="cb7-3"><a href="designed-for-the-pipe.html#cb7-3"></a></span>
+<span id="cb7-4"><a href="designed-for-the-pipe.html#cb7-4"></a><span class="co"># more compactly</span></span>
+<span id="cb7-5"><a href="designed-for-the-pipe.html#cb7-5"></a>cars_selected &lt;-<span class="st"> </span><span class="kw">slice</span>(<span class="kw">arrange</span>(mtcars, gear), <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span></code></pre></div>
+<p>Using the pipe to substitute the left-hand side of the operator with the first argument on the right-hand side, we can get the same result as follows:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="designed-for-the-pipe.html#cb8-1"></a>cars_selected &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span></span>
+<span id="cb8-2"><a href="designed-for-the-pipe.html#cb8-2"></a><span class="st">  </span><span class="kw">arrange</span>(gear) <span class="op">%&gt;%</span></span>
+<span id="cb8-3"><a href="designed-for-the-pipe.html#cb8-3"></a><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span></code></pre></div>
+<hr />
+<p>This approach with the pipe works because all the functions <strong>return the same data structure (a tibble/data frame) which is the first argument of the next function.</strong></p>
+<p><strong>Whenever possible, create functions that can be incorporated into a pipeline of operations.</strong></p>
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="slide-1-title-5.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="judging-model-effectiveness.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="reusing-existing-data-structures.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="designed-for-functional-programming.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -272,7 +284,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/08-a_model_workflow.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/02-a_tidyverse_primer.Rmd",
 "text": "Edit"
 },
 "history": {

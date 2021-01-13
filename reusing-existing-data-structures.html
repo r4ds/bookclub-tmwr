@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8.2 Slide 2 Title | Tidy Modeling with R Book Club</title>
+  <title>2.3 Reusing existing data structures | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8.2 Slide 2 Title | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="2.3 Reusing existing data structures | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8.2 Slide 2 Title | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="2.3 Reusing existing data structures | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="slide-1-title-5.html"/>
-<link rel="next" href="judging-model-effectiveness.html"/>
+<link rel="prev" href="design-for-humans.html"/>
+<link rel="next" href="designed-for-the-pipe.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -229,19 +229,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="slide-2-title-5" class="section level2">
-<h2><span class="header-section-number">8.2</span> Slide 2 Title</h2>
-<p>Put the content of your second slide here.</p>
-
+<div id="reusing-existing-data-structures" class="section level2">
+<h2><span class="header-section-number">2.3</span> Reusing existing data structures</h2>
+<blockquote>
+<p>“You don’t have to reinvent the wheel, just attach it to a new wagon.”</p>
+<p>- Mark McCormack</p>
+</blockquote>
+<p>There are many different data types in R, such as matrices, lists, and data frames.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> A typical function would take in data of some form, conduct an operation, and return the result.</p>
+<p><code>tidyverse</code> functions most often operate on data structures called tibbles.</p>
+<ul>
+<li><p>Traditional data frames can represent different data types in each column, and multiple values in each row.</p></li>
+<li><p>Tibbles are a special data frame that have additional properties helpful for data analysis.</p>
+<ul>
+<li>Example: list-columns</li>
+</ul></li>
+</ul>
+<hr />
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="reusing-existing-data-structures.html#cb3-1"></a>boot_samp &lt;-<span class="st"> </span>rsample<span class="op">::</span><span class="kw">bootstraps</span>(mtcars, <span class="dt">times =</span> <span class="dv">3</span>)</span>
+<span id="cb3-2"><a href="reusing-existing-data-structures.html#cb3-2"></a>boot_samp</span></code></pre></div>
+<pre><code>## # Bootstrap sampling 
+## [90m# A tibble: 3 x 2[39m
+##   splits          id        
+##   [3m[90m&lt;list&gt;[39m[23m          [3m[90m&lt;chr&gt;[39m[23m     
+## [90m1[39m [90m&lt;split [32/13]&gt;[39m Bootstrap1
+## [90m2[39m [90m&lt;split [32/12]&gt;[39m Bootstrap2
+## [90m3[39m [90m&lt;split [32/12]&gt;[39m Bootstrap3</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="reusing-existing-data-structures.html#cb5-1"></a><span class="kw">class</span>(boot_samp)</span></code></pre></div>
+<pre><code>## [1] &quot;bootstraps&quot; &quot;rset&quot;       &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+<hr />
+<p>The above example shows how to create bootstrap resamples of the data frame mtcars. It returns a tibble with a <code>splits</code> column that defines the resampled data sets.</p>
+<p>This function <strong>inherits data frame and tibble methods so other functions that operate on those data structures can be used.</strong></p>
 </div>
-<!-- </div> -->
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>For a more detailed discussion, see Hadley Wickham’s <a href="https://adv-r.hadley.nz/vectors-chap.html"><em>Advanced R</em></a><a href="reusing-existing-data-structures.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="slide-1-title-5.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="judging-model-effectiveness.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="design-for-humans.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="designed-for-the-pipe.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -272,7 +303,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/08-a_model_workflow.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/02-a_tidyverse_primer.Rmd",
 "text": "Edit"
 },
 "history": {
