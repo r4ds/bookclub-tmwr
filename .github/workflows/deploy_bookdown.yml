@@ -19,7 +19,8 @@ jobs:
           "bookdown",
           "tidymodels",
           "tidyverse",
-          "remotes"
+          "remotes",
+          "rsamples"
           ))'
       - name: Install github packages
         run: Rscript -e 'remotes::install_github("hadley/emo")'
