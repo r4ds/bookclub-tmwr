@@ -7,6 +7,7 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
+github-repo: r4ds/bookclub-tmwr
 description: "This is the product of the R4DS Online Learning Community's Tidy Modeling with R Book Club."
 ---
 

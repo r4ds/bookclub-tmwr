@@ -11,4 +11,7 @@ bookdown::gitbook:
     edit:
       link: https://github.com/r4ds/bookclub-tmwr/edit/main/%s
       text: "Edit"
-    sharing: no
+    sharing:
+      github: yes
+      facebook: no
+      twitter: no

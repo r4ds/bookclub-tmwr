@@ -1,19 +1,245 @@
+```{r setup tidyverse primer, include = FALSE}
+# Not positive if the book will compile without this, so I'm including it just
+# to be safe.
+library(tidyverse)
+```
+
 # A tidyverse primer
 
 **Learning objectives:**
 
-- List the **`tidyverse` design principles.**
-- Explain what it means for the `tidyverse` to be **designed for humans.**
-- Describe how **reusing existing data structures** can make functions easier to work with.
-- Explain what it means for a set of functions to be **designed for the pipe.**
-- Explain what it means for function to be **designed for functional programming.**
-- List some **differences between a `tibble` and a base `data.frame`.**
-- Recognize how to **use the `tidyverse` to read and wrangle data.**
+-   List the [**`tidyverse` design principles.**](#tidyverse-design-principles)
+-   Explain what it means for the [`tidyverse` to be **designed for humans.**](#design-for-humans)
+-   Describe how [**reusing existing data structures** can make functions easier to work with.](#reusing-existing-data-structures)
+-   Explain what it means for a set of functions to be [**designed for the pipe.**](#designed-for-the-pipe)
+-   Explain what it means for function to be [**designed for functional programming.**](#designed-for-functional-programming)
+-   List some [**differences between a `tibble` and a base `data.frame`.**](#tibbles-vs.-data-frames)
+-   Recognize how to [**use the `tidyverse` to read and wrangle data.**](#how-to-read-and-wrangle-data)
 
-## Slide 1 Title
+## Tidyverse design Principles {#tidyverse-design-principles}
 
-Put the content of your slide here.
+The `tidyverse` has [four core design principles](https://design.tidyverse.org/unifying-principles.html):
 
-## Slide 2 Title
+1.  **Human centered:** Designed to promote human usability.
+2.  **Consistent:** Learning how to use one function or package is as similar as another.
+3.  **Composable:** Easily breakdown data challenges into smaller components with exploratory tools to find the best solution.
+4.  **Inclusive:** Fostering a community of like-minded users (e.g. \#*rstats*)
 
-Put the content of your second slide here.
+## Design for Humans {#design-for-humans}
+
+> "Programs must be written for people to read, and only incidentally for machines to execute."
+>
+> \- Hal Abelson
+
+The `tidyverse` offers packages that are easily readable and understood by humans. It enables them to more easily achieve their programming goals.
+
+Consider the `mtcars` dataset, which comprises fuel consumption and 10 aspects of autombile design and performance from 1973-1974. Previewing the first six rows of the data, we see:
+
+```{r, echo = FALSE}
+head(mtcars)
+```
+
+If we wanted to arrange these in ascending order based on the `mpg` and `gear` variables, how could we do this?
+
+------------------------------------------------------------------------
+
+The function `arrange()`, in the `dplyr` package of the `tidyverse`, takes a data frame and column names as such:
+
+```{r, eval = FALSE}
+arrange(.data = mtcars, gear, mpg)
+```
+
+------------------------------------------------------------------------
+
+`arrange()`, and other tidyverse functions, use **names that are descriptive and explicit.** For general methods, there is a **focus on verbs,** as seen with the functions `pivot_longer()` and `pivot_wider()` in the `tidyr` package.
+
+## Reusing existing data structures {#reusing-existing-data-structures}
+
+> "You don't have to reinvent the wheel, just attach it to a new wagon."
+>
+> \- Mark McCormack
+
+There are many different data types in R, such as matrices, lists, and data frames.[^a_tidyverse_primer-1] A typical function would take in data of some form, conduct an operation, and return the result.
+
+[^a_tidyverse_primer-1]: For a more detailed discussion, see Hadley Wickham's [*Advanced R*](https://adv-r.hadley.nz/vectors-chap.html)
+
+`tidyverse` functions most often operate on data structures called tibbles.
+
+-   Traditional data frames can represent different data types in each column, and multiple values in each row.
+
+-   Tibbles are a special data frame that have additional properties helpful for data analysis.
+
+    -   Example: list-columns
+
+------------------------------------------------------------------------
+
+```{r tidyverse-resample}
+boot_samp <- rsample::bootstraps(mtcars, times = 3)
+boot_samp
+class(boot_samp)
+```
+
+------------------------------------------------------------------------
+
+The above example shows how to create bootstrap resamples of the data frame mtcars. It returns a tibble with a `splits` column that defines the resampled data sets.
+
+This function **inherits data frame and tibble methods so other functions that operate on those data structures can be used.**
+
+## Designed for the pipe {#designed-for-the-pipe}
+
+The pipe operator, `%>%`, comes from the [`magrittr`](https://magrittr.tidyverse.org) package by [Stefan Milton Bache](http://stefanbache.dk), and is used to chain together a sequence of R functions. More specifically, **the pipe operator uses the value of the object on the left-hand side of the operator as the first argument on the operator's right-hand side.**
+
+The pipe allows for highly readable code. Consider wanting to sort the `mtcars` dataset by the number of gears (`gear`) and then select the first ten rows. How would you do that?
+
+------------------------------------------------------------------------
+
+```{r no pipe arrange slice}
+cars_arranged <- arrange(mtcars, gear)
+cars_selected <- slice(cars_arranged, 1:10)
+
+# more compactly
+cars_selected <- slice(arrange(mtcars, gear), 1:10)
+```
+
+Using the pipe to substitute the left-hand side of the operator with the first argument on the right-hand side, we can get the same result as follows:
+
+```{r pipe arrange slice}
+cars_selected <- mtcars %>%
+  arrange(gear) %>%
+  slice(1:10)
+```
+
+------------------------------------------------------------------------
+
+This approach with the pipe works because all the functions **return the same data structure (a tibble/data frame) which is the first argument of the next function.**
+
+**Whenever possible, create functions that can be incorporated into a pipeline of operations.**
+
+## Designed for Functional Programming {#designed-for-functional-programming}
+
+Functional Programming is an approach to replace iterative (i.e. for) loops. Consider the case where you may want two times the square root of the `mpg` for each car in `mtcars`. You could do this with a for loop as follows:
+
+```{r for loop sqrt }
+n <- nrow(mtcars)
+roots <- rep(NA_real_, n)
+for (car in 1:n) {
+  roots[car] <- 2 * sqrt(mtcars$mpg[car])
+}
+```
+
+You could also write a function to do the computations. In functional programming, it's important that the function **does not have any side effects and the output only depends on the inputs.** For example, the function `my_sqrt()` takes in a car's mpg and a weight by which to multiply the square root.
+
+```{r my-sqrt}
+
+my_sqrt <- function(mpg, weight) {
+  weight * sqrt(mpg)
+}
+
+```
+
+Using the [`purrr`](http://purrr.tidyverse.org/) package, we can forgo the for loop and use the `map()` family of functions which use the basic syntax of `map(vector, function)`. Below, we are applying the `my_sqrt()` function, with a weight of 2, to the first three elements of `mtcars$mpg`. User supplied functions can be declared by prefacing it with `~` (pronounced "twiddle").
+
+-   By default, `map()` returns a list.
+
+    -   If you know the class of a function's output, you can use special suffixes. A character output, for example, would used by `map_chr()`, a double by `map_dbl()`, and a logical by `map_lgl()`.
+
+```{r map sqrt}
+map(
+  .x = head(mtcars$mpg, 3),
+  ~ my_sqrt(
+    mpg = .x,
+    weight = 2
+  )
+)
+```
+
+-   `map()` functions can be used with 2 inputs, by specifying `map2()`
+
+    -   Requires arguments `.x` and `.y`
+
+```{r map2 sqrt}
+map2(
+  .x = head(mtcars$mpg, 3),
+  .y = c(1,2,3),
+  ~ my_sqrt(
+    mpg = .x,
+    weight = .y
+  )
+)
+```
+
+## Tibbles vs. Data Frames {#tibbles-vs.-data-frames}
+
+A `tibble` is a special type of data frame with some additional properties. Specifically:
+
+-   **Tibbles work with column names that are not syntactically valid variable names**.
+
+```{r tibble syntax}
+data.frame(`this does not work` = 1:2,
+           oops = 3:4)
+
+tibble(`this does work, though` = 1:2,
+       `woohoo!` = 3:4)
+```
+
+-   **Tibbles prevent partial matching of arguments** to avoid accidental errors
+
+```{r accidental matching tibble}
+df <- data.frame(partial = 1:5)
+tbbl <- tibble(partial = 1:5)
+
+df$part
+
+tbbl$part
+```
+
+-   **Tibbles prevent dimension dropping**, so subsetting data into a single column will never return a vector.
+
+```{r subsetting vector conversion}
+df[, "partial"]
+
+tbbl[, "partial"]
+```
+
+-   **Tibbles allow for list-columns**, which can be a powerful tool when working with the `purrr` package.
+
+```{r tibble list columns}
+
+template_list <- list(a = 1, b = 2, c = 3, d = 4, e = 5)
+
+data.frame(col = 1:5, list_col = template_list)
+
+tibble(col = 1:5, list_col = template_list)
+
+```
+
+## How to read and wrangle data {#how-to-read-and-wrangle-data}
+
+The following example shows how to use the `tidyverse` to read in data (with the `readr` package) and easily manipulate it (using the `dplyr` and `lubridate` packages). We will walk through these steps during our meeting.
+
+```{r read wrangle data, message = FALSE}
+library(tidyverse)
+library(lubridate)
+
+url <- "http://bit.ly/raw-train-data-csv"
+
+all_stations <- 
+  # Step 1: Read in the data.
+  readr::read_csv(url) %>% 
+  # Step 2: filter columns and rename stationname
+  dplyr::select(station = stationname, date, rides) %>% 
+  # Step 3: Convert the character date field to a date encoding.
+  # Also, put the data in units of 1K rides
+  dplyr::mutate(date = lubridate::mdy(date), rides = rides / 1000) %>% 
+  # Step 4: Summarize the multiple records using the maximum.
+  dplyr::group_by(date, station) %>% 
+  dplyr::summarize(rides = max(rides), .groups = "drop")
+```
+
+```{r preview all stations}
+head(all_stations, 10)
+```
+
+> "This pipeline of operations illustrates why the tidyverse is popular. A series of data manipulations is used that have simple and easy to understand user interfaces; the series is bundled together in a streamlined and readable way. The focus is on how the user interacts with the software. This approach enables more people to learn R and achieve their analysis goals, and adopting these same principles for modeling in R has the same benefits."
+>
+> \- Max Kuhn and Julia Silge in *Tidy Modeling with R*
