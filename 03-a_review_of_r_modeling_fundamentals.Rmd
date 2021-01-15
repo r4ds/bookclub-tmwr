@@ -2,7 +2,15 @@
 
 **Learning objectives:**
 
-- Jon will prefill these.
+- Specify model terms using the **R formula syntax.**
+- List **conveniences for modeling** that are supported by the R formula syntax.
+- Use `anova()` to **compare** models.
+- Use `summary()` to **inspect** a model.
+- Use `predict()` to **generate new predictions** from a model.
+- List the **three purposes** that the R model formula serves.
+- Recognize how the **design for humans** rubric is applied to `{tidymodels}` packages.
+- Use `broom::tidy()` to **standardize the structure** of R objects.
+- Use the `{tidyverse}` along with base modeling functions like `lm()` to **produce multiple models at once.**
 
 ## Slide 1 Title
 
