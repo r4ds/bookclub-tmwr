@@ -1,21 +1,355 @@
+```{r setup, include=F, echo=F}
+knitr::opts_chunk$set(
+  # collapse = TRUE
+  warning = FALSE,
+  message = FALSE
+)
+library(details)
+```
+
 # A review of R modeling fundamentals
 
 **Learning objectives:**
 
-- Specify model terms using the **R formula syntax.**
-- List **conveniences for modeling** that are supported by the R formula syntax.
-- Use `anova()` to **compare** models.
-- Use `summary()` to **inspect** a model.
-- Use `predict()` to **generate new predictions** from a model.
-- List the **three purposes** that the R model formula serves.
-- Recognize how the **design for humans** rubric is applied to `{tidymodels}` packages.
-- Use `broom::tidy()` to **standardize the structure** of R objects.
-- Use the `{tidyverse}` along with base modeling functions like `lm()` to **produce multiple models at once.**
+-   Specify model terms using the [**R formula syntax.**](#r-formula-syntax)
+-   List **conveniences for modeling** that are supported by the R formula syntax.
+-   Use `anova()` to **compare** models.
+-   Use `summary()` to **inspect** a model.
+-   Use `predict()` to **generate new predictions** from a model.
+-   List the **three purposes** that the R model formula serves.
+-   Recognize how the **design for humans** rubric is applied to `{tidymodels}` packages.
+-   Use `broom::tidy()` to **standardize the structure** of R objects.
+-   Use the `{tidyverse}` along with base modeling functions like `lm()` to **produce multiple models at once.**
 
-## Slide 1 Title
+## R formula syntax {#r-formula-syntax}
 
-Put the content of your slide here.
+We'll use the `trees` data set provided in `{modeldata}` (loaded with `{tidymodels}`) for demonstration purposes. Tree girth (in inches), height (in feet), and volume (in cubic feet) are provided.
 
-## Slide 2 Title
+```{r }
+library(tidyverse)
+library(tidymodels)
+theme_set(theme_minimal(base_size = 14))
+```
 
-Put the content of your second slide here.
+```{r }
+data(trees)
+
+trees <- as_tibble(trees)
+trees
+```
+
+Note that there is an analytical way to calculate tree volume from measures of diameter and height.
+
+![](images/tree-girth-height-volume.jpg)
+
+![](images/tree-girth-height-volume-formula.svg)
+
+We observe that `Girth` is strongly correlated with `Volume`
+
+```{r eval=F, echo=F, include=F}
+trees %>% 
+  mutate(across(Girth, list(`2` = ~.x^2))) %>% 
+  corrr::correlate()
+```
+
+```{r }
+trees %>% 
+  corrr::correlate()
+```
+
+Overall, the relationship between `Girth` and `Volume` seems like it could be linear.
+
+```{r }
+trees %>% 
+  ggplot(aes(x = Girth, y = Volume)) + 
+  geom_point(aes(size = Height)) + 
+  geom_smooth(method = 'lm')
+```
+
+------------------------------------------------------------------------
+
+We can fit a linear regression model to predict `Volume` as a function of the other two features, using the formula syntax to save us from some typing.
+
+```{r }
+reg_fit <- lm(Volume ~ ., data = trees)
+reg_fit
+```
+
+Interaction terms are easy to generate.
+
+```{r }
+inter_fit <- lm(Volume ~ Girth*Height, data = trees)
+inter_fit
+```
+
+Same goes for polynomial terms.
+
+```{r }
+poly_fit <- lm(Volume ~ Girth + I(Girth^2) + Height, data = trees)
+poly_fit
+```
+
+Excluding columns is intuitive.
+
+```{r }
+no_height_fit <- lm(Volume ~ . - Height, data = trees)
+no_height_fit
+```
+
+The intercept term can be removed conveniently.
+
+```{r }
+no_intercept_fit <- lm(Volume ~ . + 0, data = trees)
+no_intercept_fit
+```
+
+------------------------------------------------------------------------
+
+To illustrate another convenience provided by formulas, let's add a categorical column.
+
+```{r }
+trees2 <- trees
+set.seed(42)
+trees2$group = sample(toupper(letters[1:4]), size = nrow(trees2), replace = TRUE)
+trees2
+```
+
+Encoding the categories as separate features is done auto-magically with the formula syntax.
+
+```{r }
+dummy_fit <- lm(Volume ~ ., data = trees2)
+dummy_fit
+```
+
+Under the hood, this is done by `model.matrix()`.
+
+```{r }
+model.matrix(Volume ~ ., data = trees2) %>% head()
+```
+
+### Recap
+
+Purposes of R model formula:
+
+-   The formula defines the columns that are used by the model.
+
+-   The standard R machinery uses the formula to encode the columns into an appropriate format.
+
+-   The roles of the columns are defined by the formula.
+
+## Inspecting and developing models
+
+Being the sound analysts that we are, we should check if the assumptions of linear regression are violated. The `plot()` generic function method has a specific method for `lm` objects that generates various diagnostic plots.
+
+```{r }
+par(mfrow = c(1, 2))
+plot(reg_fit, which = c(1, 2))
+```
+
+```{r, echo=F, include=F}
+par(mfrow = c(1, 1))
+```
+
+The second plot does not show any strong violation of the normality assumption. However, the first plot shows a violation of th linearity assumption (that there is a linear relationship between the response variable and the predictors)! Otherwise, the smooth red line would be like a straight horizontal line at y=0.
+
+Note that there is a `{ggplot2}` way to generate the same plots.
+
+```{r }
+library(ggfortify)
+
+autoplot(reg_fit, which = c(1, 2))
+```
+
+------------------------------------------------------------------------
+
+<details>
+
+<summary>
+
+But what about the coefficients?
+
+</summary>
+
+![](images/princess-bride-p-values.png)
+
+</details>
+
+</details>
+
+```{r }
+summary(reg_fit)
+```
+
+Use `{broom}` for a tidy version.
+
+```{r }
+library(broom)
+
+reg_fit %>% tidy()
+reg_fit %>% glance() %>% glimpse()
+```
+
+------------------------------------------------------------------------
+
+<details>
+
+<summary>
+
+`{purrr}` and `{dplyr}` can help you scale up your modeling process.
+
+</summary>
+
+![](images/nicholas-cage-scale.png)
+
+</details>
+
+We can compare all of the models we made before.
+
+```{r }
+list(
+  'reg' = reg_fit,
+  'inter' = inter_fit,
+  'poly' = poly_fit,
+  'no_height' = no_height_fit,
+  'no_intercept' = no_intercept_fit
+) %>% 
+  map_dfr(glance, .id = 'id') %>% 
+  select(id, adj.r.squared) %>% 
+  arrange(desc(adj.r.squared))
+```
+
+We observe that the polynomial fit is the best.
+
+We can create models for each `group` in `trees2`.
+
+```{r }
+reg_fits <-
+  trees2 %>%
+  group_nest(group) %>% 
+  mutate(
+    fit = map(data, ~ lm(formula(Volume ~ .), data = .x)),
+    tidied = map(fit, tidy),
+    glanced = map(fit, glance),
+    augmented = map(fit, augment)
+  )
+
+.select_unnest <- function(data, ...) {
+  data %>% 
+    select(...) %>% 
+    unnest(...)
+}
+
+reg_fits %>% .select_unnest(tidied)
+reg_fits %>% .select_unnest(glanced)
+reg_fits %>% .select_unnest(augmented)
+```
+
+## More of `{base}` and `{stats}`
+
+R's `{base}` and `{stats}` libraries have lots of functions that help perform statistical analysis without any barrier to entry. For example, `anova()` can be used to compare two regression models.
+
+```{r }
+anova(reg_fit, poly_fit)
+```
+
+We observe that the second order term for `Girth` does indeed provide significant explanatory power to the model. (Formally, we reject the null hypothesis that the second order term for `Girth` is zero.)
+
+<details>
+
+<summary>
+
+What is ANOVA?
+
+</summary>
+
+![](images/regression-all-the-same.jpg)
+
+</details>
+
+```{r echo=F, include=F, eval=F}
+ff <- y ~ x
+mods <- setNames(as.list(1:4), paste0("lm", 1:4))
+for(i in 1:4) {
+  ff[2:3] <- lapply(paste0(c("y","x"), i), as.name)
+  mods[[i]] <- lmi <- lm(ff, data = anscombe)
+}
+
+op <- par(mfrow = c(2, 2), mar = 0.1+c(4,4,1,1), oma =  c(0, 0, 2, 0))
+for(i in 1:4) {
+  ff[2:3] <- lapply(paste0(c("y","x"), i), as.name)
+  plot(ff, data = anscombe, col = "red", pch = 21, cex = 1.2, xlim = c(3, 19), ylim = c(3, 13))
+  abline(mods[[i]], col = "blue")
+}
+mtext("Anscombe's 4 Regression data sets", outer = TRUE, cex = 1.5)
+par(op)
+```
+
+------------------------------------------------------------------------
+
+Use base R statistical function when someone tries to test your statistics knowledge.
+
+> Question: If $U_1$ and $U_2$ are i.i.d. $Unif(0,1)$ random variables, what is the distribution of $U_1 + U_2$?
+
+```{r hw03-q13}
+set.seed(42)
+n <- 10000
+u_1 <- runif(n)
+u_2 <- runif(n)
+.hist <- function(x, ...) {
+  hist(x, probability = TRUE,...)
+  lines(density(x), col = "blue", lwd = 2, ...)
+}
+
+layout(matrix(c(1,2,3,3), 2, 2, byrow = TRUE))
+.hist(u_1)
+.hist(u_2)
+.hist(u_1 + u_2)
+```
+
+> Answer: Evidently it's triangular.
+
+------------------------------------------------------------------------
+
+There are probably lots of functions that you didn't know you even needed.
+
+```{r echo=F, include=F}
+# If the whole book is knitted, `df` might be assigned in a previous chapter, throwing off the following example error.
+rm('df')
+```
+
+```{r error=T}
+add_column <- function(data) {
+  # Whoops! `df` should be `data`
+  df %>% mutate(dummy = 1)
+}
+
+trees %>% add_column()
+```
+
+`df()` is the density function for the F distribution with `df1` and `df2` degrees of freedom
+
+```{r }
+df
+```
+
+## Why Tidy Principles and `{tidymodels}`?
+
+[The `{tidyverse}` has four guiding principles](https://design.tidyverse.org/unifying-principles.html#human-centered) which `{tidymodels}` shares.
+
+-   It is **human centered**, i.e. the `{tidyverse}` is designed specifically to support the activities of a human data analyst.
+
+    -   Functions use sensible defaults, or use no defaults in cases where the user must make a choice (e.g. a file path).
+    -   `{recipes}` and `{parnsip}` enable data frames to be used every where in the modeling process. Data frames are often more convenient than working with function or other objects needed for a package-specific model fitting funciton.
+
+-   It is **consistent**, so that what you learn about one function or package can be applied to another, and the number of special cases that you need to remember is as small as possible.
+
+    -   Object orientated programming (mainly S3) for functions such as `predict()`.
+    -   `broom::tidy()` output
+
+-   It is **composable**, allowing you to solve complex problems by breaking them down into small pieces, supporting a rapid cycle of exploratory iteration to find the best solution.
+
+    -   `{recipes}`, `{parsnip}`, `{tune}`, `{dials}`, etc are separate packages used in a tidy machine learning development workflow.
+
+-   It is **inclusive**, because the tidyverse is not just the collection of packages, but it is also the community of people who use them.
+
+    -   Although the `{tidyverse}` and `{tidymodels}` are opinionated in their design, the developers are receptive to public feedback.
