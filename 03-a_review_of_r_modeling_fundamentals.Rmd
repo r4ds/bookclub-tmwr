@@ -11,7 +11,7 @@ library(details)
 
 **Learning objectives:**
 
--   Specify model terms using the [**R formula syntax.**](#r-formula-syntax)
+-   Specify model terms using the **R formula syntax.**
 -   List **conveniences for modeling** that are supported by the R formula syntax.
 -   Use `anova()` to **compare** models.
 -   Use `summary()` to **inspect** a model.
@@ -23,7 +23,8 @@ library(details)
 
 ## R formula syntax {#r-formula-syntax}
 
-We'll use the `trees` data set provided in `{modeldata}` (loaded with `{tidymodels}`) for demonstration purposes. Tree girth (in inches), height (in feet), and volume (in cubic feet) are provided.
+We'll use the `trees` data set provided in `{modeldata}` (loaded with `{tidymodels}`) for demonstration purposes. Tree girth (in inches), height (in feet), and volume (in cubic feet) are provided. (Girth is somewhat like a measure of diameter.)
+
 
 ```{r }
 library(tidyverse)
@@ -57,13 +58,12 @@ trees %>%
   corrr::correlate()
 ```
 
-Overall, the relationship between `Girth` and `Volume` seems like it could be linear.
+Shame on you `r emo::ji('wink')` if you didn't guess I would make a scatter plot given a data set with two variables.
 
 ```{r }
 trees %>% 
-  ggplot(aes(x = Girth, y = Volume)) + 
-  geom_point(aes(size = Height)) + 
-  geom_smooth(method = 'lm')
+  ggplot(aes(x = Girth, y = Height)) + 
+  geom_point(aes(size = Volume))
 ```
 
 ------------------------------------------------------------------------
@@ -75,10 +75,26 @@ reg_fit <- lm(Volume ~ ., data = trees)
 reg_fit
 ```
 
+<details>
+
+<summary>How would you write this without the formula syntax?</summary>
+
+![](images/drake-bling-formula.png)
+
+</details>
+
+------------------------------------------------------------------------
+
+If we want to get fancy with our pipes (`%>%`), then we should wrap our formula with `formula()`
+
+```{r }
+trees %>% lm(formula(Volume ~ .), data = .)
+```
+
 Interaction terms are easy to generate.
 
 ```{r }
-inter_fit <- lm(Volume ~ Girth*Height, data = trees)
+inter_fit <- lm(Volume ~ Girth * Height, data = trees)
 inter_fit
 ```
 
@@ -124,7 +140,7 @@ dummy_fit
 Under the hood, this is done by `model.matrix()`.
 
 ```{r }
-model.matrix(Volume ~ ., data = trees2) %>% head()
+model.matrix(Volume ~ ., data = trees2) %>% head(10)
 ```
 
 ### Recap
@@ -139,7 +155,7 @@ Purposes of R model formula:
 
 ## Inspecting and developing models
 
-Being the sound analysts that we are, we should check if the assumptions of linear regression are violated. The `plot()` generic function method has a specific method for `lm` objects that generates various diagnostic plots.
+Being the sound analysts that we are, we should check if the assumptions of linear regression are violated. The `plot()` generic function has a specific method for `lm` objects that generates various diagnostic plots.
 
 ```{r }
 par(mfrow = c(1, 2))
@@ -150,7 +166,7 @@ plot(reg_fit, which = c(1, 2))
 par(mfrow = c(1, 1))
 ```
 
-The second plot does not show any strong violation of the normality assumption. However, the first plot shows a violation of th linearity assumption (that there is a linear relationship between the response variable and the predictors)! Otherwise, the smooth red line would be like a straight horizontal line at y=0.
+The second plot does not show any strong violation of the normality assumption. However, the first plot shows a violation of the linearity assumption (that there is a linear relationship between the response variable and the predictors). If the assumption were satisfied, the smooth red line would be like a straight horizontal line at y=0.
 
 Note that there is a `{ggplot2}` way to generate the same plots.
 
@@ -164,11 +180,7 @@ autoplot(reg_fit, which = c(1, 2))
 
 <details>
 
-<summary>
-
-But what about the coefficients?
-
-</summary>
+<summary>But what about the coefficients?</summary>
 
 ![](images/princess-bride-p-values.png)
 
@@ -193,11 +205,7 @@ reg_fit %>% glance() %>% glimpse()
 
 <details>
 
-<summary>
-
-`{purrr}` and `{dplyr}` can help you scale up your modeling process.
-
-</summary>
+<summary>`{purrr}` and `{dplyr}` can help you scale up your modeling process.</summary>
 
 ![](images/nicholas-cage-scale.png)
 
@@ -235,7 +243,7 @@ reg_fits <-
 
 .select_unnest <- function(data, ...) {
   data %>% 
-    select(...) %>% 
+    select(group, ...) %>% 
     unnest(...)
 }
 
@@ -246,7 +254,7 @@ reg_fits %>% .select_unnest(augmented)
 
 ## More of `{base}` and `{stats}`
 
-R's `{base}` and `{stats}` libraries have lots of functions that help perform statistical analysis without any barrier to entry. For example, `anova()` can be used to compare two regression models.
+R's `{base}` and `{stats}` libraries have lots of built-in functions that help perform statistical analysis. For example, `anova()` can be used to compare two regression models quickly.
 
 ```{r }
 anova(reg_fit, poly_fit)
@@ -256,11 +264,7 @@ We observe that the second order term for `Girth` does indeed provide significan
 
 <details>
 
-<summary>
-
-What is ANOVA?
-
-</summary>
+<summary>What is ANOVA?</summary>
 
 ![](images/regression-all-the-same.jpg)
 
@@ -339,16 +343,16 @@ df
 -   It is **human centered**, i.e. the `{tidyverse}` is designed specifically to support the activities of a human data analyst.
 
     -   Functions use sensible defaults, or use no defaults in cases where the user must make a choice (e.g. a file path).
-    -   `{recipes}` and `{parnsip}` enable data frames to be used every where in the modeling process. Data frames are often more convenient than working with function or other objects needed for a package-specific model fitting funciton.
+    -   `{recipes}` and `{parnsip}` enable data frames to be used every where in the modeling process. Data frames are often more convenient than working with matrices/vectors.
 
 -   It is **consistent**, so that what you learn about one function or package can be applied to another, and the number of special cases that you need to remember is as small as possible.
 
-    -   Object orientated programming (mainly S3) for functions such as `predict()`.
-    -   `broom::tidy()` output
+    -   Object orientated programming (mainly S3) for functions such as `predict()` provide a consistent interface to the user.
+    -   `broom::tidy()` output is in a consistent format (data frame). List outputs provided by package-specific functions vary.
 
 -   It is **composable**, allowing you to solve complex problems by breaking them down into small pieces, supporting a rapid cycle of exploratory iteration to find the best solution.
 
-    -   `{recipes}`, `{parsnip}`, `{tune}`, `{dials}`, etc are separate packages used in a tidy machine learning development workflow.
+    -   `{recipes}`, `{parsnip}`, `{tune}`, `{dials}`, etc are separate packages used in a tidy machine learning development workflow. It may seem inconvenient to have so many packages to perform specific tasks, but such a paradigm is helpful for decomposing the whole model design process, often making problems feel more manageable.
 
 -   It is **inclusive**, because the tidyverse is not just the collection of packages, but it is also the community of people who use them.
 
