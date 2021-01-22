@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>14.2 Slide 2 Title | Tidy Modeling with R Book Club</title>
+  <title>3.1 R formula syntax | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="14.2 Slide 2 Title | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="3.1 R formula syntax | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="14.2 Slide 2 Title | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="3.1 R formula syntax | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="slide-1-title-11.html"/>
-<link rel="next" href="review-of-chapters-10-14.html"/>
+<link rel="prev" href="a-review-of-r-modeling-fundamentals.html"/>
+<link rel="next" href="inspecting-and-developing-models.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -233,19 +233,172 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="slide-2-title-11" class="section level2">
-<h2><span class="header-section-number">14.2</span> Slide 2 Title</h2>
-<p>Put the content of your second slide here.</p>
-
+<div id="r-formula-syntax" class="section level2">
+<h2><span class="header-section-number">3.1</span> R formula syntax</h2>
+<p>We’ll use the <code>trees</code> data set provided in <code>{modeldata}</code> (loaded with <code>{tidymodels}</code>) for demonstration purposes. Tree girth (in inches), height (in feet), and volume (in cubic feet) are provided. (Girth is somewhat like a measure of diameter.)</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="r-formula-syntax.html#cb35-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb35-2"><a href="r-formula-syntax.html#cb35-2"></a><span class="kw">library</span>(tidymodels)</span>
+<span id="cb35-3"><a href="r-formula-syntax.html#cb35-3"></a><span class="kw">theme_set</span>(<span class="kw">theme_minimal</span>(<span class="dt">base_size =</span> <span class="dv">14</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="r-formula-syntax.html#cb36-1"></a><span class="kw">data</span>(trees)</span>
+<span id="cb36-2"><a href="r-formula-syntax.html#cb36-2"></a></span>
+<span id="cb36-3"><a href="r-formula-syntax.html#cb36-3"></a>trees &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(trees)</span>
+<span id="cb36-4"><a href="r-formula-syntax.html#cb36-4"></a>trees</span></code></pre></div>
+<pre><code>## [90m# A tibble: 31 x 3[39m
+##    Girth Height Volume
+##    [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m
+## [90m 1[39m   8.3     70   10.3
+## [90m 2[39m   8.6     65   10.3
+## [90m 3[39m   8.8     63   10.2
+## [90m 4[39m  10.5     72   16.4
+## [90m 5[39m  10.7     81   18.8
+## [90m 6[39m  10.8     83   19.7
+## [90m 7[39m  11       66   15.6
+## [90m 8[39m  11       75   18.2
+## [90m 9[39m  11.1     80   22.6
+## [90m10[39m  11.2     75   19.9
+## [90m# … with 21 more rows[39m</code></pre>
+<p>Note that there is an analytical way to calculate tree volume from measures of diameter and height.</p>
+<p><img src="images/tree-girth-height-volume.jpg" /></p>
+<p><img src="images/tree-girth-height-volume-formula.svg" /></p>
+<p>We observe that <code>Girth</code> is strongly correlated with <code>Volume</code></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="r-formula-syntax.html#cb38-1"></a>trees <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb38-2"><a href="r-formula-syntax.html#cb38-2"></a><span class="st">  </span>corrr<span class="op">::</span><span class="kw">correlate</span>()</span></code></pre></div>
+<pre><code>## [90m# A tibble: 3 x 4[39m
+##   term    Girth Height Volume
+##   [3m[90m&lt;chr&gt;[39m[23m   [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m
+## [90m1[39m Girth  [31mNA[39m      0.519  0.967
+## [90m2[39m Height  0.519 [31mNA[39m      0.598
+## [90m3[39m Volume  0.967  0.598 [31mNA[39m</code></pre>
+<p>Shame on you 😉 if you didn’t guess I would make a scatter plot given a data set with two variables.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="r-formula-syntax.html#cb40-1"></a>trees <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb40-2"><a href="r-formula-syntax.html#cb40-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Girth, <span class="dt">y =</span> Height)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb40-3"><a href="r-formula-syntax.html#cb40-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">size =</span> Volume))</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<hr />
+<p>We can fit a linear regression model to predict <code>Volume</code> as a function of the other two features, using the formula syntax to save us from some typing.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="r-formula-syntax.html#cb41-1"></a>reg_fit &lt;-<span class="st"> </span><span class="kw">lm</span>(Volume <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> trees)</span>
+<span id="cb41-2"><a href="r-formula-syntax.html#cb41-2"></a>reg_fit</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Volume ~ ., data = trees)
+## 
+## Coefficients:
+## (Intercept)        Girth       Height  
+##    -57.9877       4.7082       0.3393</code></pre>
+<details>
+<p><summary>How would you write this without the formula syntax?</summary></p>
+<p><img src="images/drake-bling-formula.png" /></p>
+</details>
+<hr />
+<p>If we want to get fancy with our pipes (<code>%&gt;%</code>), then we should wrap our formula with <code>formula()</code></p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="r-formula-syntax.html#cb43-1"></a>trees <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">lm</span>(<span class="kw">formula</span>(Volume <span class="op">~</span><span class="st"> </span>.), <span class="dt">data =</span> .)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = formula(Volume ~ .), data = .)
+## 
+## Coefficients:
+## (Intercept)        Girth       Height  
+##    -57.9877       4.7082       0.3393</code></pre>
+<p>Interaction terms are easy to generate.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="r-formula-syntax.html#cb45-1"></a>inter_fit &lt;-<span class="st"> </span><span class="kw">lm</span>(Volume <span class="op">~</span><span class="st"> </span>Girth <span class="op">*</span><span class="st"> </span>Height, <span class="dt">data =</span> trees)</span>
+<span id="cb45-2"><a href="r-formula-syntax.html#cb45-2"></a>inter_fit</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Volume ~ Girth * Height, data = trees)
+## 
+## Coefficients:
+##  (Intercept)         Girth        Height  Girth:Height  
+##      69.3963       -5.8558       -1.2971        0.1347</code></pre>
+<p>Same goes for polynomial terms.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="r-formula-syntax.html#cb47-1"></a>poly_fit &lt;-<span class="st"> </span><span class="kw">lm</span>(Volume <span class="op">~</span><span class="st"> </span>Girth <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(Girth<span class="op">^</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span>Height, <span class="dt">data =</span> trees)</span>
+<span id="cb47-2"><a href="r-formula-syntax.html#cb47-2"></a>poly_fit</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Volume ~ Girth + I(Girth^2) + Height, data = trees)
+## 
+## Coefficients:
+## (Intercept)        Girth   I(Girth^2)       Height  
+##     -9.9204      -2.8851       0.2686       0.3764</code></pre>
+<p>Excluding columns is intuitive.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="r-formula-syntax.html#cb49-1"></a>no_height_fit &lt;-<span class="st"> </span><span class="kw">lm</span>(Volume <span class="op">~</span><span class="st"> </span>. <span class="op">-</span><span class="st"> </span>Height, <span class="dt">data =</span> trees)</span>
+<span id="cb49-2"><a href="r-formula-syntax.html#cb49-2"></a>no_height_fit</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Volume ~ . - Height, data = trees)
+## 
+## Coefficients:
+## (Intercept)        Girth  
+##     -36.943        5.066</code></pre>
+<p>The intercept term can be removed conveniently.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="r-formula-syntax.html#cb51-1"></a>no_intercept_fit &lt;-<span class="st"> </span><span class="kw">lm</span>(Volume <span class="op">~</span><span class="st"> </span>. <span class="op">+</span><span class="st"> </span><span class="dv">0</span>, <span class="dt">data =</span> trees)</span>
+<span id="cb51-2"><a href="r-formula-syntax.html#cb51-2"></a>no_intercept_fit</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Volume ~ . + 0, data = trees)
+## 
+## Coefficients:
+##   Girth   Height  
+##  5.0440  -0.4773</code></pre>
+<hr />
+<p>To illustrate another convenience provided by formulas, let’s add a categorical column.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="r-formula-syntax.html#cb53-1"></a>trees2 &lt;-<span class="st"> </span>trees</span>
+<span id="cb53-2"><a href="r-formula-syntax.html#cb53-2"></a><span class="kw">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb53-3"><a href="r-formula-syntax.html#cb53-3"></a>trees2<span class="op">$</span>group =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">toupper</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]), <span class="dt">size =</span> <span class="kw">nrow</span>(trees2), <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb53-4"><a href="r-formula-syntax.html#cb53-4"></a>trees2</span></code></pre></div>
+<pre><code>## [90m# A tibble: 31 x 4[39m
+##    Girth Height Volume group
+##    [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m
+## [90m 1[39m   8.3     70   10.3 A    
+## [90m 2[39m   8.6     65   10.3 A    
+## [90m 3[39m   8.8     63   10.2 A    
+## [90m 4[39m  10.5     72   16.4 A    
+## [90m 5[39m  10.7     81   18.8 B    
+## [90m 6[39m  10.8     83   19.7 D    
+## [90m 7[39m  11       66   15.6 B    
+## [90m 8[39m  11       75   18.2 B    
+## [90m 9[39m  11.1     80   22.6 A    
+## [90m10[39m  11.2     75   19.9 D    
+## [90m# … with 21 more rows[39m</code></pre>
+<p>Encoding the categories as separate features is done auto-magically with the formula syntax.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="r-formula-syntax.html#cb55-1"></a>dummy_fit &lt;-<span class="st"> </span><span class="kw">lm</span>(Volume <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> trees2)</span>
+<span id="cb55-2"><a href="r-formula-syntax.html#cb55-2"></a>dummy_fit</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Volume ~ ., data = trees2)
+## 
+## Coefficients:
+## (Intercept)        Girth       Height       groupB       groupC       groupD  
+##    -55.2921       4.6932       0.3093      -1.8367      -0.0497       0.6462</code></pre>
+<p>Under the hood, this is done by <code>model.matrix()</code>.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="r-formula-syntax.html#cb57-1"></a><span class="kw">model.matrix</span>(Volume <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> trees2) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##    (Intercept) Girth Height groupB groupC groupD
+## 1            1   8.3     70      0      0      0
+## 2            1   8.6     65      0      0      0
+## 3            1   8.8     63      0      0      0
+## 4            1  10.5     72      0      0      0
+## 5            1  10.7     81      1      0      0
+## 6            1  10.8     83      0      0      1
+## 7            1  11.0     66      1      0      0
+## 8            1  11.0     75      1      0      0
+## 9            1  11.1     80      0      0      0
+## 10           1  11.2     75      0      0      1</code></pre>
+<div id="recap" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Recap</h3>
+<p>Purposes of R model formula:</p>
+<ul>
+<li><p>The formula defines the columns that are used by the model.</p></li>
+<li><p>The standard R machinery uses the formula to encode the columns into an appropriate format.</p></li>
+<li><p>The roles of the columns are defined by the formula.</p></li>
+</ul>
 </div>
-<!-- </div> -->
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="slide-1-title-11.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="review-of-chapters-10-14.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="a-review-of-r-modeling-fundamentals.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="inspecting-and-developing-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -276,7 +429,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/14-iterative_search.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/03-a_review_of_r_modeling_fundamentals.Rmd",
 "text": "Edit"
 },
 "history": {

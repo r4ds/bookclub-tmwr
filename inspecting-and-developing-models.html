@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>14.2 Slide 2 Title | Tidy Modeling with R Book Club</title>
+  <title>3.2 Inspecting and developing models | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="14.2 Slide 2 Title | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="3.2 Inspecting and developing models | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="14.2 Slide 2 Title | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="3.2 Inspecting and developing models | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="slide-1-title-11.html"/>
-<link rel="next" href="review-of-chapters-10-14.html"/>
+<link rel="prev" href="r-formula-syntax.html"/>
+<link rel="next" href="more-of-base-and-stats.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -233,19 +233,159 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="slide-2-title-11" class="section level2">
-<h2><span class="header-section-number">14.2</span> Slide 2 Title</h2>
-<p>Put the content of your second slide here.</p>
-
+<div id="inspecting-and-developing-models" class="section level2">
+<h2><span class="header-section-number">3.2</span> Inspecting and developing models</h2>
+<p>Being the sound analysts that we are, we should check if the assumptions of linear regression are violated. The <code>plot()</code> generic function has a specific method for <code>lm</code> objects that generates various diagnostic plots.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="inspecting-and-developing-models.html#cb59-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb59-2"><a href="inspecting-and-developing-models.html#cb59-2"></a><span class="kw">plot</span>(reg_fit, <span class="dt">which =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>The second plot does not show any strong violation of the normality assumption. However, the first plot shows a violation of the linearity assumption (that there is a linear relationship between the response variable and the predictors). If the assumption were satisfied, the smooth red line would be like a straight horizontal line at y=0.</p>
+<p>Note that there is a <code>{ggplot2}</code> way to generate the same plots.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="inspecting-and-developing-models.html#cb60-1"></a><span class="kw">library</span>(ggfortify)</span>
+<span id="cb60-2"><a href="inspecting-and-developing-models.html#cb60-2"></a></span>
+<span id="cb60-3"><a href="inspecting-and-developing-models.html#cb60-3"></a><span class="kw">autoplot</span>(reg_fit, <span class="dt">which =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<hr />
+<details>
+<p><summary>But what about the coefficients?</summary></p>
+<p><img src="images/princess-bride-p-values.png" /></p>
+</details>
+</details>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="inspecting-and-developing-models.html#cb61-1"></a><span class="kw">summary</span>(reg_fit)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Volume ~ ., data = trees)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6.4065 -2.6493 -0.2876  2.2003  8.4847 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -57.9877     8.6382  -6.713 2.75e-07 ***
+## Girth         4.7082     0.2643  17.816  &lt; 2e-16 ***
+## Height        0.3393     0.1302   2.607   0.0145 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.882 on 28 degrees of freedom
+## Multiple R-squared:  0.948,  Adjusted R-squared:  0.9442 
+## F-statistic:   255 on 2 and 28 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Use <code>{broom}</code> for a tidy version.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="inspecting-and-developing-models.html#cb63-1"></a><span class="kw">library</span>(broom)</span>
+<span id="cb63-2"><a href="inspecting-and-developing-models.html#cb63-2"></a></span>
+<span id="cb63-3"><a href="inspecting-and-developing-models.html#cb63-3"></a>reg_fit <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tidy</span>()</span></code></pre></div>
+<pre><code>## [90m# A tibble: 3 x 5[39m
+##   term        estimate std.error statistic  p.value
+##   [3m[90m&lt;chr&gt;[39m[23m          [3m[90m&lt;dbl&gt;[39m[23m     [3m[90m&lt;dbl&gt;[39m[23m     [3m[90m&lt;dbl&gt;[39m[23m    [3m[90m&lt;dbl&gt;[39m[23m
+## [90m1[39m (Intercept)  -[31m58[39m[31m.[39m[31m0[39m       8.64      -[31m6[39m[31m.[39m[31m71[39m 2.75[90me[39m[31m- 7[39m
+## [90m2[39m Girth          4.71      0.264     17.8  8.22[90me[39m[31m-17[39m
+## [90m3[39m Height         0.339     0.130      2.61 1.45[90me[39m[31m- 2[39m</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="inspecting-and-developing-models.html#cb65-1"></a>reg_fit <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">glance</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">glimpse</span>()</span></code></pre></div>
+<pre><code>## Rows: 1
+## Columns: 12
+## $ r.squared     [3m[90m&lt;dbl&gt;[39m[23m 0.94795
+## $ adj.r.squared [3m[90m&lt;dbl&gt;[39m[23m 0.9442322
+## $ sigma         [3m[90m&lt;dbl&gt;[39m[23m 3.881832
+## $ statistic     [3m[90m&lt;dbl&gt;[39m[23m 254.9723
+## $ p.value       [3m[90m&lt;dbl&gt;[39m[23m 1.071238e-18
+## $ df            [3m[90m&lt;dbl&gt;[39m[23m 2
+## $ logLik        [3m[90m&lt;dbl&gt;[39m[23m -84.45499
+## $ AIC           [3m[90m&lt;dbl&gt;[39m[23m 176.91
+## $ BIC           [3m[90m&lt;dbl&gt;[39m[23m 182.6459
+## $ deviance      [3m[90m&lt;dbl&gt;[39m[23m 421.9214
+## $ df.residual   [3m[90m&lt;int&gt;[39m[23m 28
+## $ nobs          [3m[90m&lt;int&gt;[39m[23m 31</code></pre>
+<hr />
+<details>
+<p><summary><code>{purrr}</code> and <code>{dplyr}</code> can help you scale up your modeling process.</summary></p>
+<p><img src="images/nicholas-cage-scale.png" /></p>
+</details>
+<p>We can compare all of the models we made before.</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="inspecting-and-developing-models.html#cb67-1"></a><span class="kw">list</span>(</span>
+<span id="cb67-2"><a href="inspecting-and-developing-models.html#cb67-2"></a>  <span class="st">&#39;reg&#39;</span> =<span class="st"> </span>reg_fit,</span>
+<span id="cb67-3"><a href="inspecting-and-developing-models.html#cb67-3"></a>  <span class="st">&#39;inter&#39;</span> =<span class="st"> </span>inter_fit,</span>
+<span id="cb67-4"><a href="inspecting-and-developing-models.html#cb67-4"></a>  <span class="st">&#39;poly&#39;</span> =<span class="st"> </span>poly_fit,</span>
+<span id="cb67-5"><a href="inspecting-and-developing-models.html#cb67-5"></a>  <span class="st">&#39;no_height&#39;</span> =<span class="st"> </span>no_height_fit,</span>
+<span id="cb67-6"><a href="inspecting-and-developing-models.html#cb67-6"></a>  <span class="st">&#39;no_intercept&#39;</span> =<span class="st"> </span>no_intercept_fit</span>
+<span id="cb67-7"><a href="inspecting-and-developing-models.html#cb67-7"></a>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb67-8"><a href="inspecting-and-developing-models.html#cb67-8"></a><span class="st">  </span><span class="kw">map_dfr</span>(glance, <span class="dt">.id =</span> <span class="st">&#39;id&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb67-9"><a href="inspecting-and-developing-models.html#cb67-9"></a><span class="st">  </span><span class="kw">select</span>(id, adj.r.squared) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb67-10"><a href="inspecting-and-developing-models.html#cb67-10"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(adj.r.squared))</span></code></pre></div>
+<pre><code>## [90m# A tibble: 5 x 2[39m
+##   id           adj.r.squared
+##   [3m[90m&lt;chr&gt;[39m[23m                [3m[90m&lt;dbl&gt;[39m[23m
+## [90m1[39m poly                 0.975
+## [90m2[39m inter                0.973
+## [90m3[39m no_intercept         0.968
+## [90m4[39m reg                  0.944
+## [90m5[39m no_height            0.933</code></pre>
+<p>We observe that the polynomial fit is the best.</p>
+<p>We can create models for each <code>group</code> in <code>trees2</code>.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="inspecting-and-developing-models.html#cb69-1"></a>reg_fits &lt;-</span>
+<span id="cb69-2"><a href="inspecting-and-developing-models.html#cb69-2"></a><span class="st">  </span>trees2 <span class="op">%&gt;%</span></span>
+<span id="cb69-3"><a href="inspecting-and-developing-models.html#cb69-3"></a><span class="st">  </span><span class="kw">group_nest</span>(group) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb69-4"><a href="inspecting-and-developing-models.html#cb69-4"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb69-5"><a href="inspecting-and-developing-models.html#cb69-5"></a>    <span class="dt">fit =</span> <span class="kw">map</span>(data, <span class="op">~</span><span class="st"> </span><span class="kw">lm</span>(<span class="kw">formula</span>(Volume <span class="op">~</span><span class="st"> </span>.), <span class="dt">data =</span> .x)),</span>
+<span id="cb69-6"><a href="inspecting-and-developing-models.html#cb69-6"></a>    <span class="dt">tidied =</span> <span class="kw">map</span>(fit, tidy),</span>
+<span id="cb69-7"><a href="inspecting-and-developing-models.html#cb69-7"></a>    <span class="dt">glanced =</span> <span class="kw">map</span>(fit, glance),</span>
+<span id="cb69-8"><a href="inspecting-and-developing-models.html#cb69-8"></a>    <span class="dt">augmented =</span> <span class="kw">map</span>(fit, augment)</span>
+<span id="cb69-9"><a href="inspecting-and-developing-models.html#cb69-9"></a>  )</span>
+<span id="cb69-10"><a href="inspecting-and-developing-models.html#cb69-10"></a></span>
+<span id="cb69-11"><a href="inspecting-and-developing-models.html#cb69-11"></a>.select_unnest &lt;-<span class="st"> </span><span class="cf">function</span>(data, ...) {</span>
+<span id="cb69-12"><a href="inspecting-and-developing-models.html#cb69-12"></a>  data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb69-13"><a href="inspecting-and-developing-models.html#cb69-13"></a><span class="st">    </span><span class="kw">select</span>(group, ...) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb69-14"><a href="inspecting-and-developing-models.html#cb69-14"></a><span class="st">    </span><span class="kw">unnest</span>(...)</span>
+<span id="cb69-15"><a href="inspecting-and-developing-models.html#cb69-15"></a>}</span>
+<span id="cb69-16"><a href="inspecting-and-developing-models.html#cb69-16"></a></span>
+<span id="cb69-17"><a href="inspecting-and-developing-models.html#cb69-17"></a>reg_fits <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">.select_unnest</span>(tidied)</span></code></pre></div>
+<pre><code>## [90m# A tibble: 12 x 6[39m
+##    group term        estimate std.error statistic    p.value
+##    [3m[90m&lt;chr&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m          [3m[90m&lt;dbl&gt;[39m[23m     [3m[90m&lt;dbl&gt;[39m[23m     [3m[90m&lt;dbl&gt;[39m[23m      [3m[90m&lt;dbl&gt;[39m[23m
+## [90m 1[39m A     (Intercept) -[31m44[39m[31m.[39m[31m6[39m       17.5      -[31m2[39m[31m.[39m[31m55[39m  0.031[4m2[24m    
+## [90m 2[39m A     Girth         4.21       0.477     8.83  0.000[4m0[24m[4m0[24m[4m9[24m98
+## [90m 3[39m A     Height        0.250      0.294     0.849 0.418     
+## [90m 4[39m B     (Intercept) -[31m66[39m[31m.[39m[31m1[39m       13.9      -[31m4[39m[31m.[39m[31m74[39m  0.017[4m8[24m    
+## [90m 5[39m B     Girth         4.16       0.704     5.91  0.009[4m6[24m[4m9[24m   
+## [90m 6[39m B     Height        0.520      0.123     4.24  0.024[4m0[24m    
+## [90m 7[39m C     (Intercept) -[31m86[39m[31m.[39m[31m4[39m       90.5      -[31m0[39m[31m.[39m[31m954[39m 0.410     
+## [90m 8[39m C     Girth         4.83       0.747     6.47  0.007[4m4[24m[4m8[24m   
+## [90m 9[39m C     Height        0.680      1.20      0.567 0.611     
+## [90m10[39m D     (Intercept) -[31m46[39m[31m.[39m[31m3[39m       14.8      -[31m3[39m[31m.[39m[31m14[39m  0.034[4m9[24m    
+## [90m11[39m D     Girth         6.03       0.372    16.2   0.000[4m0[24m[4m8[24m[4m5[24m2 
+## [90m12[39m D     Height       -[31m0[39m[31m.[39m[31m0[39m[31m26[4m8[24m[39m     0.214    -[31m0[39m[31m.[39m[31m125[39m 0.906</code></pre>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="inspecting-and-developing-models.html#cb71-1"></a>reg_fits <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">.select_unnest</span>(glanced)</span></code></pre></div>
+<pre><code>## [90m# A tibble: 4 x 13[39m
+##   group r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
+##   [3m[90m&lt;chr&gt;[39m[23m     [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m     [3m[90m&lt;dbl&gt;[39m[23m   [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m
+## [90m1[39m A         0.960         0.951  3.81     107.  5.27[90me[39m[31m-7[39m     2  -[31m31[39m[31m.[39m[31m3[39m  70.7  72.6
+## [90m2[39m B         0.935         0.891  2.20      21.5 1.66[90me[39m[31m-2[39m     2  -[31m11[39m[31m.[39m[31m2[39m  30.3  29.5
+## [90m3[39m C         0.946         0.910  4.06      26.2 1.26[90me[39m[31m-2[39m     2  -[31m14[39m[31m.[39m[31m8[39m  37.7  36.8
+## [90m4[39m D         0.990         0.985  2.80     194.  1.04[90me[39m[31m-4[39m     2  -[31m15[39m[31m.[39m[31m2[39m  38.4  38.2
+## [90m# … with 3 more variables: deviance [3m[90m&lt;dbl&gt;[90m[23m, df.residual [3m[90m&lt;int&gt;[90m[23m, nobs [3m[90m&lt;int&gt;[90m[23m[39m</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="inspecting-and-developing-models.html#cb73-1"></a>reg_fits <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">.select_unnest</span>(augmented)</span></code></pre></div>
+<pre><code>## [90m# A tibble: 31 x 10[39m
+##    group Volume Girth Height .fitted .resid .std.resid   .hat .sigma .cooksd
+##    [3m[90m&lt;chr&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m   [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m      [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m   [3m[90m&lt;dbl&gt;[39m[23m
+## [90m 1[39m A       10.3   8.3     70    7.81  2.49       0.758 0.252    3.91 0.064[4m5[24m 
+## [90m 2[39m A       10.3   8.6     65    7.82  2.48       0.769 0.283    3.90 0.078[4m0[24m 
+## [90m 3[39m A       10.2   8.8     63    8.17  2.03       0.687 0.395    3.93 0.103  
+## [90m 4[39m A       16.4  10.5     72   17.6  -[31m1[39m[31m.[39m[31m18[39m      -[31m0[39m[31m.[39m[31m332[39m 0.134    4.01 0.005[4m6[24m[4m6[24m
+## [90m 5[39m A       22.6  11.1     80   22.1   0.500      0.192 0.534    4.03 0.014[4m2[24m 
+## [90m 6[39m A       19.1  12       75   24.6  -[31m5[39m[31m.[39m[31m54[39m      -[31m1[39m[31m.[39m[31m56[39m  0.123    3.45 0.113  
+## [90m 7[39m A       22.2  12.9     74   28.2  -[31m5[39m[31m.[39m[31m99[39m      -[31m1[39m[31m.[39m[31m64[39m  0.083[4m7[24m   3.38 0.082[4m3[24m 
+## [90m 8[39m A       36.3  14.5     74   34.9   1.37       0.383 0.116    4.00 0.006[4m4[24m[4m3[24m
+## [90m 9[39m A       38.3  16       72   40.8  -[31m2[39m[31m.[39m[31m45[39m      -[31m0[39m[31m.[39m[31m787[39m 0.330    3.90 0.101  
+## [90m10[39m A       55.7  17.5     82   49.6   6.13       1.87  0.255    3.16 0.397  
+## [90m# … with 21 more rows[39m</code></pre>
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="slide-1-title-11.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="review-of-chapters-10-14.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="r-formula-syntax.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="more-of-base-and-stats.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -276,7 +416,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/14-iterative_search.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/03-a_review_of_r_modeling_fundamentals.Rmd",
 "text": "Edit"
 },
 "history": {
