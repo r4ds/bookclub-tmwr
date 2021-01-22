@@ -2,7 +2,8 @@
 
 **Learning objectives:**
 
-- Jon will prefill these.
+- Explain when it makes sense to **log-transform data.**
+- Explain why **exploratory data analysis** is an essential component of any modeling project.
 
 ## Slide 1 Title
 
