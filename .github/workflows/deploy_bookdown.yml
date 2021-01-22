@@ -20,7 +20,9 @@ jobs:
           "tidymodels",
           "tidyverse",
           "remotes",
-          "rsamples"
+          "rsamples",
+          "details",
+          "ggfortify"
           ))'
       - name: Install github packages
         run: Rscript -e 'remotes::install_github("hadley/emo")'
