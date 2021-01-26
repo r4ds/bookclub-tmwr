@@ -1,0 +1,22 @@
+Package: tmwr
+Title: Tidy Modeling with R Book Club
+Version: 0.0.1.9000
+Authors@R: c(
+  person("R4DS Online Learning Community", role = c("aut", "cre", "cph"))
+  )
+URL: https://r4ds.github.io/bookclub-tmwr, https://github.com/r4ds/bookclub-tmwr
+Depends: 
+    R (>= 3.1.0)
+Imports: 
+    bookdown,
+    corrr,
+    details,
+    emo,
+    ggfortify,
+    remotes,
+    rmarkdown,
+    rsamples,
+    tidymodels,
+    tidyverse
+Remotes: 
+    hadley/emo
