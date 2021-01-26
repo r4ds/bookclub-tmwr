@@ -15,7 +15,7 @@ Imports:
     ggfortify,
     remotes,
     rmarkdown,
-    rsamples,
+    rsample,
     tidymodels,
     tidyverse
 Remotes: 
