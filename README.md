@@ -39,7 +39,7 @@ To present, follow these instructions:
 3. Create a New Project in RStudio using your fork.
 4. Create a New Branch in your fork for your work.
 5. Edit the appropriate chapter file. Use `##` to indicate new slides (new sections).
-6. If you use any packages that are not already in the `Install CRAN packages` or `Install github packages` sections of `.github/workflows/deploy_bookdown.yml`, add them to the appropriate section of that file.
+6. If you use any packages that are not already in the `DESCRIPTION`, add them. You can use `usethis::use_package("myCoolPackage")` to add them quickly!
 7. Commit your changes.
 8. Push your changes to your branch.
 9. Open a Pull Request (PR) to let us know that your slides are ready.
