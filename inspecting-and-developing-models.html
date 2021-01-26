@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-01-25" />
+<meta name="date" content="2021-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -238,13 +238,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Being the sound analysts that we are, we should check if the assumptions of linear regression are violated. The <code>plot()</code> generic function has a specific method for <code>lm</code> objects that generates various diagnostic plots.</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="inspecting-and-developing-models.html#cb59-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
 <span id="cb59-2"><a href="inspecting-and-developing-models.html#cb59-2"></a><span class="kw">plot</span>(reg_fit, <span class="dt">which =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span></code></pre></div>
-<p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>The second plot does not show any strong violation of the normality assumption. However, the first plot shows a violation of the linearity assumption (that there is a linear relationship between the response variable and the predictors). If the assumption were satisfied, the smooth red line would be like a straight horizontal line at y=0.</p>
 <p>Note that there is a <code>{ggplot2}</code> way to generate the same plots.</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="inspecting-and-developing-models.html#cb60-1"></a><span class="kw">library</span>(ggfortify)</span>
 <span id="cb60-2"><a href="inspecting-and-developing-models.html#cb60-2"></a></span>
 <span id="cb60-3"><a href="inspecting-and-developing-models.html#cb60-3"></a><span class="kw">autoplot</span>(reg_fit, <span class="dt">which =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span></code></pre></div>
-<p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <hr />
 <details>
 <p><summary>But what about the coefficients?</summary></p>
