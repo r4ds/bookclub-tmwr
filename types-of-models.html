@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-01-26" />
+<meta name="date" content="2021-02-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -239,14 +239,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Descriptive models:</strong> Describe or illustrate characteristics of data.</li>
 <li><strong>Inferential models:</strong> Make some statement of truth regarding a predefined conjecture or idea.
 <ul>
+<li>Inferential techniques typically produce some type of probabilistic output, such as a p-value, confidence interval, or posterior probability.</li>
 <li>Usually delayed feedback between inference and actual result.</li>
 </ul></li>
 <li><strong>Predictive models:</strong> Produce the most accurate possible prediction for new data. <em>Estimation</em> (“How much?”) rather than <em>inference</em> (“Will it?”).
 <ul>
-<li><strong>Mechanistic models</strong> are derived using first principles to produce a model equation that is dependent on assumptions.</li>
-<li><strong>Empirically driven models</strong> have more vague assumptions, and are derived directly from the data.</li>
+<li><strong>Mechanistic models</strong> are derived using first principles to produce a model equation that is dependent on assumptions.
+<ul>
+<li>Depend on the assumptions that define their model equations.</li>
+<li>Unlike inferential models, it is easy to make data-driven statements about how well the model performs based on how well it predicts the existing data</li>
+</ul></li>
+<li><strong>Empirically driven models</strong> have more vague assumptions, and are derived directly from the data.
+<ul>
+<li>No theoretical or probabilistic assumptions are made about the equations or the variables</li>
+<li>The primary method of evaluating the appropriateness of the model is to assess its accuracy using existing data</li>
+</ul></li>
 </ul></li>
 </ul>
+<p><sub>1. Broader discussions of these distinctions can be found in Breiman (<a href="https://www.tmwr.org/software-modeling.html#ref-breiman2001">2001b</a>) and Shmueli (<a href="https://www.tmwr.org/software-modeling.html#ref-shmueli2010">2010</a>)</sub></p>
 </div>
             </section>
 

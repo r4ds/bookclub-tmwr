@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-01-26" />
+<meta name="date" content="2021-02-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -365,18 +365,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [90m# … with 3 more variables: deviance [3m[90m&lt;dbl&gt;[90m[23m, df.residual [3m[90m&lt;int&gt;[90m[23m, nobs [3m[90m&lt;int&gt;[90m[23m[39m</code></pre>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="inspecting-and-developing-models.html#cb73-1"></a>reg_fits <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">.select_unnest</span>(augmented)</span></code></pre></div>
 <pre><code>## [90m# A tibble: 31 x 10[39m
-##    group Volume Girth Height .fitted .resid .std.resid   .hat .sigma .cooksd
-##    [3m[90m&lt;chr&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m   [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m      [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m   [3m[90m&lt;dbl&gt;[39m[23m
-## [90m 1[39m A       10.3   8.3     70    7.81  2.49       0.758 0.252    3.91 0.064[4m5[24m 
-## [90m 2[39m A       10.3   8.6     65    7.82  2.48       0.769 0.283    3.90 0.078[4m0[24m 
-## [90m 3[39m A       10.2   8.8     63    8.17  2.03       0.687 0.395    3.93 0.103  
-## [90m 4[39m A       16.4  10.5     72   17.6  -[31m1[39m[31m.[39m[31m18[39m      -[31m0[39m[31m.[39m[31m332[39m 0.134    4.01 0.005[4m6[24m[4m6[24m
-## [90m 5[39m A       22.6  11.1     80   22.1   0.500      0.192 0.534    4.03 0.014[4m2[24m 
-## [90m 6[39m A       19.1  12       75   24.6  -[31m5[39m[31m.[39m[31m54[39m      -[31m1[39m[31m.[39m[31m56[39m  0.123    3.45 0.113  
-## [90m 7[39m A       22.2  12.9     74   28.2  -[31m5[39m[31m.[39m[31m99[39m      -[31m1[39m[31m.[39m[31m64[39m  0.083[4m7[24m   3.38 0.082[4m3[24m 
-## [90m 8[39m A       36.3  14.5     74   34.9   1.37       0.383 0.116    4.00 0.006[4m4[24m[4m3[24m
-## [90m 9[39m A       38.3  16       72   40.8  -[31m2[39m[31m.[39m[31m45[39m      -[31m0[39m[31m.[39m[31m787[39m 0.330    3.90 0.101  
-## [90m10[39m A       55.7  17.5     82   49.6   6.13       1.87  0.255    3.16 0.397  
+##    group Volume Girth Height .fitted .resid   .hat .sigma .cooksd .std.resid
+##    [3m[90m&lt;chr&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m   [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m   [3m[90m&lt;dbl&gt;[39m[23m      [3m[90m&lt;dbl&gt;[39m[23m
+## [90m 1[39m A       10.3   8.3     70    7.81  2.49  0.252    3.91 0.064[4m5[24m       0.758
+## [90m 2[39m A       10.3   8.6     65    7.82  2.48  0.283    3.90 0.078[4m0[24m       0.769
+## [90m 3[39m A       10.2   8.8     63    8.17  2.03  0.395    3.93 0.103        0.687
+## [90m 4[39m A       16.4  10.5     72   17.6  -[31m1[39m[31m.[39m[31m18[39m  0.134    4.01 0.005[4m6[24m[4m6[24m     -[31m0[39m[31m.[39m[31m332[39m
+## [90m 5[39m A       22.6  11.1     80   22.1   0.500 0.534    4.03 0.014[4m2[24m       0.192
+## [90m 6[39m A       19.1  12       75   24.6  -[31m5[39m[31m.[39m[31m54[39m  0.123    3.45 0.113       -[31m1[39m[31m.[39m[31m56[39m 
+## [90m 7[39m A       22.2  12.9     74   28.2  -[31m5[39m[31m.[39m[31m99[39m  0.083[4m7[24m   3.38 0.082[4m3[24m      -[31m1[39m[31m.[39m[31m64[39m 
+## [90m 8[39m A       36.3  14.5     74   34.9   1.37  0.116    4.00 0.006[4m4[24m[4m3[24m      0.383
+## [90m 9[39m A       38.3  16       72   40.8  -[31m2[39m[31m.[39m[31m45[39m  0.330    3.90 0.101       -[31m0[39m[31m.[39m[31m787[39m
+## [90m10[39m A       55.7  17.5     82   49.6   6.13  0.255    3.16 0.397        1.87 
 ## [90m# … with 21 more rows[39m</code></pre>
 </div>
             </section>
