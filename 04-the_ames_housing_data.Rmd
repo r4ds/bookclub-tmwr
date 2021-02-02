@@ -2,13 +2,14 @@
 
 **Learning objectives:**
 
-- Explain when it makes sense to **log-transform data.**
 - Explain why **exploratory data analysis** is an essential component of any modeling project.
+- Recognize the **Ames housing data** - variables, context, and past cleaning.
+- Explain when it makes sense to **log-transform data.**
 
-## Slide 1 Title
+## Pittsburgh: a parallel real world example
 
-Put the content of your slide here.
+[Conor Tompkins](https://twitter.com/conor_tompkins) presented a fantastic overview of home sale price modelling by taking us through his recent project on Pittsburgh home sale price modelling, including discussions about his **exploratory data analysis**, motivations behind **log-transforming** sale data, and thoughts about **inflation-adjusting** historical sale prices. 
 
-## Slide 2 Title
+Code Repository here: https://github.com/conorotompkins/model_allegheny_house_sales
 
-Put the content of your second slide here.
+Shiny app: https://conorotompkins.shinyapps.io/house_sale_estimator/
