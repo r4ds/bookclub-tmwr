@@ -8,13 +8,17 @@
 
 ## Pittsburgh: a parallel real world example
 
-![Cohort 1 video recording](https://youtu.be/rdRj64rrLsM)
-
 [Conor Tompkins](https://twitter.com/conor_tompkins) presented a fantastic overview of home sale price modeling by taking us through his recent project on Pittsburgh home sale price modeling, including discussions about his **exploratory data analysis**, motivations behind **log-transforming** sale data, and thoughts about **inflation-adjusting** historical sale prices. 
+
+You can check out the discussion and presentation in the Cohort 1 meeting video for this week!
 
 Code Repository here: https://github.com/conorotompkins/model_allegheny_house_sales
 
 Shiny app: https://conorotompkins.shinyapps.io/house_sale_estimator/
+
+## Meeting Videos
+
+![Cohort 1 video recording](https://youtu.be/rdRj64rrLsM)
 
 <details>
   <summary> Cohort 1 Zoom chat logs </summary>
