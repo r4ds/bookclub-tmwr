@@ -2,7 +2,12 @@
 
 **Learning objectives:**
 
-- Jon will prefill these.
+- Use {rsample} to **split data into training and testing sets.**
+- Identify cases where **stratified sampling** is useful.
+- Understand the **difference** between `rsample::initial_time_split()` and `rsample::initial_split()`.
+- Understand the **trade-offs** between too little training data and too list testing data.
+- Define a **validation set** of data.
+- Explain why data should be split at the **independent experimental unit** level.
 
 ## Slide 1 Title
 
