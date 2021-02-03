@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.3 More of {base} and {stats} | Tidy Modeling with R Book Club</title>
+  <title>2.8 Meeting Videos | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.3 More of {base} and {stats} | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="2.8 Meeting Videos | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.3 More of {base} and {stats} | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="2.8 Meeting Videos | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="inspecting-and-developing-models.html"/>
-<link rel="next" href="why-tidy-principles-and-tidymodels.html"/>
+<link rel="prev" href="how-to-read-and-wrangle-data.html"/>
+<link rel="next" href="a-review-of-r-modeling-fundamentals.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -251,73 +251,172 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="more-of-base-and-stats" class="section level2">
-<h2><span class="header-section-number">3.3</span> More of <code>{base}</code> and <code>{stats}</code></h2>
-<p>R’s <code>{base}</code> and <code>{stats}</code> libraries have lots of built-in functions that help perform statistical analysis. For example, <code>anova()</code> can be used to compare two regression models quickly.</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="more-of-base-and-stats.html#cb76-1"></a><span class="kw">anova</span>(reg_fit, poly_fit)</span></code></pre></div>
-<pre><code>## Analysis of Variance Table
-## 
-## Model 1: Volume ~ Girth + Height
-## Model 2: Volume ~ Girth + I(Girth^2) + Height
-##   Res.Df    RSS Df Sum of Sq      F   Pr(&gt;F)    
-## 1     28 421.92                                 
-## 2     27 186.01  1    235.91 34.243 3.13e-06 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>We observe that the second order term for <code>Girth</code> does indeed provide significant explanatory power to the model. (Formally, we reject the null hypothesis that the second order term for <code>Girth</code> is zero.)</p>
+<div id="meeting-videos-1" class="section level2">
+<h2><span class="header-section-number">2.8</span> Meeting Videos</h2>
+<div id="cohort-1-1" class="section level3">
+<h3><span class="header-section-number">2.8.1</span> Cohort 1</h3>
+<p><img src="https://youtu.be/M7xmKrXuyDQ" /></p>
 <details>
-<p><summary>What is ANOVA?</summary></p>
-<p><img src="images/regression-all-the-same.jpg" /></p>
-</details>
-<hr />
-<p>Use base R statistical function when someone tries to test your statistics knowledge.</p>
-<blockquote>
-<p>Question: If <span class="math inline">\(U_1\)</span> and <span class="math inline">\(U_2\)</span> are i.i.d. <span class="math inline">\(Unif(0,1)\)</span> random variables, what is the distribution of <span class="math inline">\(U_1 + U_2\)</span>?</p>
-</blockquote>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="more-of-base-and-stats.html#cb78-1"></a><span class="kw">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb78-2"><a href="more-of-base-and-stats.html#cb78-2"></a>n &lt;-<span class="st"> </span><span class="dv">10000</span></span>
-<span id="cb78-3"><a href="more-of-base-and-stats.html#cb78-3"></a>u_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">runif</span>(n)</span>
-<span id="cb78-4"><a href="more-of-base-and-stats.html#cb78-4"></a>u_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">runif</span>(n)</span>
-<span id="cb78-5"><a href="more-of-base-and-stats.html#cb78-5"></a>.hist &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) {</span>
-<span id="cb78-6"><a href="more-of-base-and-stats.html#cb78-6"></a>  <span class="kw">hist</span>(x, <span class="dt">probability =</span> <span class="ot">TRUE</span>,...)</span>
-<span id="cb78-7"><a href="more-of-base-and-stats.html#cb78-7"></a>  <span class="kw">lines</span>(<span class="kw">density</span>(x), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>, ...)</span>
-<span id="cb78-8"><a href="more-of-base-and-stats.html#cb78-8"></a>}</span>
-<span id="cb78-9"><a href="more-of-base-and-stats.html#cb78-9"></a></span>
-<span id="cb78-10"><a href="more-of-base-and-stats.html#cb78-10"></a><span class="kw">layout</span>(<span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>), <span class="dv">2</span>, <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>))</span>
-<span id="cb78-11"><a href="more-of-base-and-stats.html#cb78-11"></a><span class="kw">.hist</span>(u_<span class="dv">1</span>)</span>
-<span id="cb78-12"><a href="more-of-base-and-stats.html#cb78-12"></a><span class="kw">.hist</span>(u_<span class="dv">2</span>)</span>
-<span id="cb78-13"><a href="more-of-base-and-stats.html#cb78-13"></a><span class="kw">.hist</span>(u_<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>u_<span class="dv">2</span>)</span></code></pre></div>
-<p><img src="bookclub-tmwr_files/figure-html/hw03-q13-1.png" width="672" /></p>
-<blockquote>
-<p>Answer: Evidently it’s triangular.</p>
-</blockquote>
-<hr />
-<p>There are probably lots of functions that you didn’t know you even needed.</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="more-of-base-and-stats.html#cb79-1"></a>add_column &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</span>
-<span id="cb79-2"><a href="more-of-base-and-stats.html#cb79-2"></a>  <span class="co"># Whoops! `df` should be `data`</span></span>
-<span id="cb79-3"><a href="more-of-base-and-stats.html#cb79-3"></a>  df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dummy =</span> <span class="dv">1</span>)</span>
-<span id="cb79-4"><a href="more-of-base-and-stats.html#cb79-4"></a>}</span>
-<span id="cb79-5"><a href="more-of-base-and-stats.html#cb79-5"></a></span>
-<span id="cb79-6"><a href="more-of-base-and-stats.html#cb79-6"></a>trees <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_column</span>()</span></code></pre></div>
-<pre><code>## Error in UseMethod(&quot;mutate&quot;): no applicable method for &#39;mutate&#39; applied to an object of class &quot;function&quot;</code></pre>
-<p><code>df()</code> is the density function for the F distribution with <code>df1</code> and <code>df2</code> degrees of freedom</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="more-of-base-and-stats.html#cb81-1"></a>df</span></code></pre></div>
-<pre><code>## function (x, df1, df2, ncp, log = FALSE) 
-## {
-##     if (missing(ncp)) 
-##         .Call(C_df, x, df1, df2, log)
-##     else .Call(C_dnf, x, df1, df2, ncp, log)
-## }
-## &lt;bytecode: 0x7f8372090860&gt;
-## &lt;environment: namespace:stats&gt;</code></pre>
+<p><summary> Meeting chat log </summary></p>
+<pre><code>00:07:43    Daniel Chen:    hi Jon. hi everyone. first time here :)
+00:08:03    Jon Harmon (jonthegeek):    Welcome!
+00:09:27    KakShA Ekam DallasSK:   the gang is here..except for tyler
+00:09:31    KakShA Ekam DallasSK:   and his kid
+00:10:01    David Severski: The 4 seasons of hex bin stickers. LOL
+00:10:11    Tan Ho: MiniTyler doesn&#39;t need help with the tidyverse
+00:10:44    KakShA Ekam DallasSK:   that&#39;s right..he just wanted to learn bangbang
+00:11:11    Tan Ho: hey, there&#39;s Tyler!
+00:11:23    pavitra:    yay!!
+00:12:36    Daniel Chen:    i feel like more people have cameras on and respond here than any other zoom meeting i&#39;ve been in all year...
+00:12:50    Tony ElHabr:    haha I second that
+00:13:03    Tan Ho: we&#39;re all frens here :)
+00:17:25    Tony ElHabr:    i will not hate on using mtcars i will not hate on using mtcars i will not hate on using mtcars
+00:17:30    Tan Ho: Ooh! A use case for the &lt;details&gt; block
+00:17:41    Tan Ho: shush, no dataset snobbery
+00:17:54    Darya Vanichkina:   Yup, details is so helpful for easily hiding stuff in Rmd
+00:18:06    Jon Harmon (jonthegeek):    Ooooh, good call on details, let&#39;s make it clear how to do that in the instructions! (I&#39;m still partly here).
+00:18:25    Yoni Sidi:  Shameless plug {details} https://github.com/yonicd/details
+00:18:48    Tan Ho: ohhh dang
+00:18:53    Tan Ho: installing now, I use that all the time
+00:19:24    mayagans:   Ooooooh it makes a collapsible div?? That is sick nasty!
+00:19:29    pavitra:    wow, details is very cool
+00:19:34    David Severski: Funny, I was just exposed to details in GH issues earlier today. :)
+00:20:03    Yoni Sidi:  Seamless integration to rmd with it’s own knitter chunk engine…ok I’m done plugging
+00:20:15    Vasant M:   Ah yes details! That’s why I recall your name @yoni Sidi
+00:20:31    Tony ElHabr:    lol i have also been having this weird data frame print out issue
+00:20:55    Darya Vanichkina:   I wonder why…
+00:21:27    Tan Ho: must be new tibble package related issue
+00:22:17    Yoni Sidi:  What print problem?
+00:22:22    Daniel Chen:    fyi: not all things that work on tibbles will work on data.frame
+00:22:36    Tony ElHabr:    things like &quot;[90m&quot; get printed out instead of &quot;#&quot;
+00:22:53    Gabriela Palomo:    and viceversa data.frame -&gt; tibbles
+00:22:55    Tan Ho: https://r4ds.github.io/bookclub-tmwr/reusing-existing-data-structures.html
+00:23:39    Tony ElHabr:    jonathan brought the jokes tonight
+00:23:42    Tony ElHabr:    always love that
+00:23:47    Jon Harmon (jonthegeek):    Thinking of %&gt;% as &quot;and then&quot; is very useful. Learning to read code in a way that makes sense is super super helpful!
+00:24:24    Yoni Sidi:  Ironically Tony You can look at the print method for data.frames in details to see how I got around it
+00:24:38    Tony ElHabr:    hmm will do Yoni
+00:25:08    Tyler Grant Smith:  for small loops and especially if youve preallocated the for loop is probably faster
+00:25:10    Daniel Chen:    to fix the &quot;[90m&quot; stuff you need to put:
+options(crayon.enabled = FALSE)
+either in your renvion or on the top of the knited file
+at the
+00:25:25    Yoni Sidi:  :+1:
+00:25:36    Tony ElHabr:    thx y&#39;all. will try that out!
+00:26:03    Darya Vanichkina:   To evaluate the speed you can use microbenchmark::microbenchmark(&lt;code here&gt;) - I tend to use it when picking from stackoverflow
+00:26:23    Tan Ho: ope TIL that&#39;s called a twiddle
+00:26:28    Vasant M:   i thought ~ is tilde
+00:26:34    Jon Harmon (jonthegeek):    bench::mark is another option (by Jim Hester)
+00:26:38    Tan Ho: today-I-learned
+00:27:03    Daniel Chen:    yes it&#39;s an annononyoms fuunction
+00:27:05    Vasant M:   Statistician here and I call it tilde
+00:27:07    Tan Ho: I always called it a lambda
+00:27:09    Daniel Chen:    the twittle is a shortcut for the lambda
+00:27:27    Tan Ho: Hadley renames things outta nowhere for no reason
+00:27:28    Tan Ho: grah
+00:27:32    Jon Harmon (jonthegeek):    Good to hear that, Vasant! But it isn&#39;t just Hadley!
+00:27:34    Tan Ho: insert pooh meme
+00:27:49    mayagans:   And twittle is writing a model in twitter
+00:27:51    Vasant M:   Ya! I think it’s the atlantic/pacific divide
+00:28:01    Tony ElHabr:    zoom really missed the boat by not allowing images to be embedded in chat
+00:28:08    Darya Vanichkina:   .x is also hidden from the global environment (i.e. it exists but is not visible in the environment, from memory (?)
+00:28:11    Jon Harmon (jonthegeek):    https://hsm.stackexchange.com/questions/7999/why-do-mathematicians-call-twiddle#:~:text=Tilde%20is%20from%20Spanish%20tildar,pretty%20apt%20name%20for%20it.
+00:28:30    mayagans:   Im still trying to find the JB quote about loops
+00:28:32    Tyler Grant Smith:  i prefer giving arguments in the ... to map when possible rather than making a partial lambda.  opinions?
+00:28:33    Yoni Sidi:  Wait … isn’t ~ $/sim$?
+00:28:59    Darya Vanichkina:   Tyler, can you give an example?
+00:29:05    Tan Ho: &gt; JB quote about loops
+someone has to write a for loop, but it doesn&#39;t have to be you!
+00:29:13    mayagans:   Lol yes thank you tan so good
+00:29:20    Tony ElHabr:    yea tyler. ellipses as the default, and partial only minimally
+00:29:57    Tan Ho: yeah, where possible I write map, map-args, function, static args, but not always possible with argument order
+00:30:04    Tyler Grant Smith:  so for the given example.  map(1:5, my_sqrt, weight = 2)
+00:30:25    Tan Ho: tbh Tyler started it
+00:32:15    Kevin Kent: Yeah I like the … static arg style too.
+00:32:54    Darya Vanichkina:   And if we have more than one arg would it be (ex_ weight = 2, height = 3, randomarg = 4)?
+00:33:03    Daniel Chen:    to tyler, re ... : the ... works, but you can&#39;t map a vector of values with it (can&#39;t do: map(1:5, my_sqrt, weight = 11:15) ). that&#39;s what map2 and pmap are for.
+00:33:16    Tan Ho: LIVE CODE
+00:33:18    Tan Ho: YAY
+00:33:26    Joe Sydlowski:  The correct window setup too!
+00:33:29    Tony ElHabr:    insert environment pane comment
+00:33:32    Tan Ho: BOOO
+00:33:40    Tan Ho: BOOOOOOOOO
+00:33:41    Tyler Grant Smith:  yep daniel
+00:34:05    Tyler Grant Smith:  and Darya, yes
+00:34:09    David Severski: Source goes on the right. Console on left. Change my mind. ;P
+00:34:17    Tan Ho: oh nooooo
+00:34:18    mayagans:   Thats chaos
+00:34:25    atoumi: this is absolutely the correct layout
+00:34:30    mayagans:   ^^^
+00:34:32    Tan Ho: where&#39;s daryn I need backup
+00:34:34    Darya Vanichkina:   @atoumi I agree
+00:34:36    mayagans:   Queen has spoken
+00:34:37    Kevin Kent: haha. My eyes would get crossed with source on the right
+00:34:40    Tyler Grant Smith:  that hurts my brain to think about
+00:34:40    Daniel Chen:    i have to say it&#39;s the &quot;wrong env pane setup&quot; when you&#39;re teaching (new learners) becuase students ask &quot;mine don&#39;t look like that&quot;. unless you take out time from the lesson to show them how to customize it
+00:34:57    Darya Vanichkina:   @Daniel I actually do that at the start of every workshop
+00:35:13    David Severski: Now it’s time for the RMarkdown notebook output to console/in-line debate.  :D
+00:35:26    Darya Vanichkina:   Because that allows me to stick EVERYTHING into the bottom right pane, and have source take up the entire left of the screen
+00:35:28    Tan Ho: i assume we don&#39;t need to have a lightmode darkmode fight?
+00:35:39    Tony ElHabr:    i think we are all on the dark side, right?
+00:35:43    atoumi: Output to console and darkmode because we care about our eyes
+00:35:44    Scott Nestler:  That might be something we all agree on.
+00:35:46    Tony ElHabr:    RIGHT Y&#39;ALL?
+00:35:47    Darya Vanichkina:   Also, I think it’s a discussion, not a fight …
+00:35:59    Tan Ho: shush
+00:36:00    David Severski: For teaching, Studio Cloud or a dockerized version is my goto setup.
+00:36:08    Tan Ho: we don&#39;t pull punches with dark mode
+00:36:50    David Severski: Yay! Rsthemes!
+00:36:53    mayagans:   Blindeddd by the lightttt
+00:37:07    Darya Vanichkina:   I’m Carpentries-trained/based, so I still tend to want people to walk away with something they can work with on their own data later
+00:37:11    Darya Vanichkina:   Although it does take time
+00:37:21    Tony ElHabr:    makes sense Darya
+00:37:40    Daniel Chen:    i run into horizontal space issues when i make the font bigger when i have to teach, but that usually ends up being workshop dependent.
+00:37:43    Joe Sydlowski:  I never noticed that before!
+00:38:25    Darya Vanichkina:   Surprisingly, I recently had a horrific workshop (geospatial python with DL, via zoom - install issues every session), and the post-workshop survey learners STILL said they wanted us to fix installs (instead of a docker-based VM solution)
+00:38:43    Darya Vanichkina:   [I am still setting up a viable docker/VM for next year]
+00:39:11    Daniel Chen:    for python, can  you use a binder instance for workshops?
+00:39:27    Darya Vanichkina:   I needed GPUs
+00:39:33    Daniel Chen:    :(
+00:40:00    Daniel Chen:    conda environment.yml files aren&#39;t able to install the binaries?
+00:40:28    Connor Krenzer: Could you use the map() function on this dataset?
+00:40:29    mayagans:   Your python talk is gonna get you booted from this chat (lol jk xoxo)
+00:40:32    David Severski: I kinda hate the warning messages the new dplyr spits out about groups (yes, I know they’re configurable).
+00:40:34    Jordan Krogmann:    Great job!
+00:40:37    Tony ElHabr:    discussion of python install issues in an R meeting? how fitting
+00:40:54    Yoni Sidi:  Great job Jonathan!
+00:40:54    Tan Ho: i threw the option into my rprofile once and have never had problems again
+00:41:02    Darya Vanichkina:   @mayagans/@Tony I think it’s more a teaching issue
+00:41:08    Darya Vanichkina:   And I definitely use/teach both
+00:41:10    Tony ElHabr:    yeah, global Rprofile option ftw
+00:41:19    Tony ElHabr:    don&#39;t get me wrong, i love python too
+00:41:26    Tony ElHabr:    i just like to joke haha
+00:41:28    David Severski: I do to, but I use a lot of renv these days, so I’m always going into environments where my rprofile isn’t active
+00:45:14    Vasant M:   Especially when you apply a lot of different functions (models) , being explicit is better
+00:45:19    Tan Ho: https://imgur.com/WdcWnKz
+00:45:54    Connor Krenzer: Is there a reason why you would use map() instead of vapply()?
+00:46:52    Daniel Chen:    vapply lets you specify the output types and how many elements in each list element.
+map only returns a list.
+00:47:28    Daniel Chen:    that&#39;s map vs map_*
+map will return a list
+00:48:25    David Severski: And the easy path to parallelization with `furrr` is so nice.
+00:49:01    Darya Vanichkina:   @David agreed
+00:49:56    Yoni Sidi:  https://github.com/hrbrmstr/freebase
+00:51:02    David Severski: He really called it freebase? :P
+00:51:06    Darya Vanichkina:   Thanks, everyone!
+00:51:08    David Severski: Bye!
+</code></pre>
+
 </div>
+</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="inspecting-and-developing-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="why-tidy-principles-and-tidymodels.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="how-to-read-and-wrangle-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="a-review-of-r-modeling-fundamentals.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -348,7 +447,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/03-a_review_of_r_modeling_fundamentals.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/02-a_tidyverse_primer.Rmd",
 "text": "Edit"
 },
 "history": {

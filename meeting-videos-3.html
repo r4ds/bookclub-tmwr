@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.3 More of {base} and {stats} | Tidy Modeling with R Book Club</title>
+  <title>4.2 Meeting Videos | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.3 More of {base} and {stats} | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="4.2 Meeting Videos | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.3 More of {base} and {stats} | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="4.2 Meeting Videos | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="inspecting-and-developing-models.html"/>
-<link rel="next" href="why-tidy-principles-and-tidymodels.html"/>
+<link rel="prev" href="pittsburgh-a-parallel-real-world-example.html"/>
+<link rel="next" href="spending-our-data.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -251,73 +251,153 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="more-of-base-and-stats" class="section level2">
-<h2><span class="header-section-number">3.3</span> More of <code>{base}</code> and <code>{stats}</code></h2>
-<p>R’s <code>{base}</code> and <code>{stats}</code> libraries have lots of built-in functions that help perform statistical analysis. For example, <code>anova()</code> can be used to compare two regression models quickly.</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="more-of-base-and-stats.html#cb76-1"></a><span class="kw">anova</span>(reg_fit, poly_fit)</span></code></pre></div>
-<pre><code>## Analysis of Variance Table
-## 
-## Model 1: Volume ~ Girth + Height
-## Model 2: Volume ~ Girth + I(Girth^2) + Height
-##   Res.Df    RSS Df Sum of Sq      F   Pr(&gt;F)    
-## 1     28 421.92                                 
-## 2     27 186.01  1    235.91 34.243 3.13e-06 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>We observe that the second order term for <code>Girth</code> does indeed provide significant explanatory power to the model. (Formally, we reject the null hypothesis that the second order term for <code>Girth</code> is zero.)</p>
-<details>
-<p><summary>What is ANOVA?</summary></p>
-<p><img src="images/regression-all-the-same.jpg" /></p>
-</details>
-<hr />
-<p>Use base R statistical function when someone tries to test your statistics knowledge.</p>
-<blockquote>
-<p>Question: If <span class="math inline">\(U_1\)</span> and <span class="math inline">\(U_2\)</span> are i.i.d. <span class="math inline">\(Unif(0,1)\)</span> random variables, what is the distribution of <span class="math inline">\(U_1 + U_2\)</span>?</p>
-</blockquote>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="more-of-base-and-stats.html#cb78-1"></a><span class="kw">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb78-2"><a href="more-of-base-and-stats.html#cb78-2"></a>n &lt;-<span class="st"> </span><span class="dv">10000</span></span>
-<span id="cb78-3"><a href="more-of-base-and-stats.html#cb78-3"></a>u_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">runif</span>(n)</span>
-<span id="cb78-4"><a href="more-of-base-and-stats.html#cb78-4"></a>u_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">runif</span>(n)</span>
-<span id="cb78-5"><a href="more-of-base-and-stats.html#cb78-5"></a>.hist &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) {</span>
-<span id="cb78-6"><a href="more-of-base-and-stats.html#cb78-6"></a>  <span class="kw">hist</span>(x, <span class="dt">probability =</span> <span class="ot">TRUE</span>,...)</span>
-<span id="cb78-7"><a href="more-of-base-and-stats.html#cb78-7"></a>  <span class="kw">lines</span>(<span class="kw">density</span>(x), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>, ...)</span>
-<span id="cb78-8"><a href="more-of-base-and-stats.html#cb78-8"></a>}</span>
-<span id="cb78-9"><a href="more-of-base-and-stats.html#cb78-9"></a></span>
-<span id="cb78-10"><a href="more-of-base-and-stats.html#cb78-10"></a><span class="kw">layout</span>(<span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>), <span class="dv">2</span>, <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>))</span>
-<span id="cb78-11"><a href="more-of-base-and-stats.html#cb78-11"></a><span class="kw">.hist</span>(u_<span class="dv">1</span>)</span>
-<span id="cb78-12"><a href="more-of-base-and-stats.html#cb78-12"></a><span class="kw">.hist</span>(u_<span class="dv">2</span>)</span>
-<span id="cb78-13"><a href="more-of-base-and-stats.html#cb78-13"></a><span class="kw">.hist</span>(u_<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>u_<span class="dv">2</span>)</span></code></pre></div>
-<p><img src="bookclub-tmwr_files/figure-html/hw03-q13-1.png" width="672" /></p>
-<blockquote>
-<p>Answer: Evidently it’s triangular.</p>
-</blockquote>
-<hr />
-<p>There are probably lots of functions that you didn’t know you even needed.</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="more-of-base-and-stats.html#cb79-1"></a>add_column &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</span>
-<span id="cb79-2"><a href="more-of-base-and-stats.html#cb79-2"></a>  <span class="co"># Whoops! `df` should be `data`</span></span>
-<span id="cb79-3"><a href="more-of-base-and-stats.html#cb79-3"></a>  df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dummy =</span> <span class="dv">1</span>)</span>
-<span id="cb79-4"><a href="more-of-base-and-stats.html#cb79-4"></a>}</span>
-<span id="cb79-5"><a href="more-of-base-and-stats.html#cb79-5"></a></span>
-<span id="cb79-6"><a href="more-of-base-and-stats.html#cb79-6"></a>trees <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_column</span>()</span></code></pre></div>
-<pre><code>## Error in UseMethod(&quot;mutate&quot;): no applicable method for &#39;mutate&#39; applied to an object of class &quot;function&quot;</code></pre>
-<p><code>df()</code> is the density function for the F distribution with <code>df1</code> and <code>df2</code> degrees of freedom</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="more-of-base-and-stats.html#cb81-1"></a>df</span></code></pre></div>
-<pre><code>## function (x, df1, df2, ncp, log = FALSE) 
-## {
-##     if (missing(ncp)) 
-##         .Call(C_df, x, df1, df2, log)
-##     else .Call(C_dnf, x, df1, df2, ncp, log)
-## }
-## &lt;bytecode: 0x7f8372090860&gt;
-## &lt;environment: namespace:stats&gt;</code></pre>
+<div id="meeting-videos-3" class="section level2">
+<h2><span class="header-section-number">4.2</span> Meeting Videos</h2>
+<div class="figure">
+<img src="https://youtu.be/rdRj64rrLsM" alt="" />
+<p class="caption">Cohort 1 video recording</p>
 </div>
+<details>
+<p><summary> Cohort 1 Zoom chat logs </summary></p>
+<pre><code>00:11:41    Tyler Grant Smith:  does jon sound far away
+00:11:44    Jonathan Trattner:  yes
+00:11:58    Yoni Sidi:  Austin is far away
+00:12:04    Tan Ho: very!
+00:12:23    Conor Tompkins: https://conorotompkins.shinyapps.io/house_sale_estimator/
+00:12:26    Jon Harmon (jonthegeek):    I ran out of USB slots temporarily so I&#39;m using my crappy microphone for a bit.
+00:26:41    Yoni Sidi:  what were the original motivations on cleaning the data, was it preset task driven or strictly data driven? 
+00:27:59    Tan Ho: oops sorry :P
+00:28:35    Juan Guillermo: Hi everyone
+00:28:42    Jon Harmon (jonthegeek):    Welcome, Juan!
+00:28:57    Juan Guillermo: thanks!
+00:28:59    Darya Vanichkina:   With school districts vs council districts, how does that work? I.e. can school districts span counties, and does it make sense to adjust house price based on whether or not the house is in a good school district? [not US-based, so not 100% sure how it works on the ground]
+00:29:46    Jon Harmon (jonthegeek):    I don&#39;t know about Pittsburgh, but school districts &amp; council districts are completely unrelated in Austin.
+00:29:46    Jonathan Trattner:  Did you save and document each of those iterations in the data cleaning set? Or were you just going through it looking for what you wanted?
+00:30:06    Tan Ho: YAY JON
+00:30:12    Jonathan Trattner:  Congrats!!
+00:30:38    Jon Harmon (jonthegeek):    Thanks, it&#39;s exciting!
+00:37:56    Tony ElHabr:    Conor, did you think about including additional data sets, such as Zillow&#39;s forecasts?
+00:38:04    Asmae Toumi:    skimr is awesome, it can generate all sorts of summaries. you can also pipe it after a group_by
+00:38:19    Darya Vanichkina:   It also works on the command line!
+00:38:32    Darya Vanichkina:   Which is really impressive when working on cloud/HPC
+00:39:12    David Severski: Zillow is pretty tight fisted about scraping their estimates.
+00:39:28    pavitra:    is esquisse comparable with skimr? 
+00:40:30    pavitra:    cool.. thanks!
+00:40:43    Kevin Kent: Ohh esquisse is sketch in French. That makes sense
+00:41:05    Jon Harmon (jonthegeek):    And now French speakers can laugh at me, Pavitra, AND Yoni&#39;s pronunciation!
+00:41:44    pavitra:    well, I pronounced it like a total desi - &quot;eskqueeeeez&quot;..you cannot top that, Jon!
+00:42:11    Asmae Toumi:    Really happy I tuned it tonight, didn’t know of priceR package to inflation adjust prices. Ive been doing it manually lol
+00:42:24    Jon Harmon (jonthegeek):    yeah, that&#39;s great even on its own for sure!
+00:42:45    Jon Harmon (jonthegeek):    He said GitHub so we need to make him give us the URL so we can put it in the book.
+00:42:48    Tan Ho: I&#39;ve been making use of CANSIM to access stats Canada data on stuff, i&#39;m sure there&#39;s something comparable
+00:43:03    pavitra:    does this dataset include demographics also? 
+00:43:06    Tan Ho: https://github.com/stevecondylios/priceR
+00:43:27    Joe Sydlowski:  I feel like I put a lot of blind trust in packages like that. How much do you validate the functions when you find a new package?
+00:43:31    Jon Harmon (jonthegeek):    @pavitra I don&#39;t think this one did.
+00:43:42    Asmae Toumi:    Speaking of hockey bruins currently kicking Pittsburgh’s ass right now
+00:43:55    Tan Ho: boston home prices kicking everyone&#39;s ass rn
+00:44:00    Asmae Toumi:    lmaooooo
+00:44:07    Yoni Sidi:  def check the code and the level of unit testing
+00:44:39    Tyler Grant Smith:  wouldnt neighborhod effect vary qith year of sale....gentrification etc
+00:44:42    Jonathan Trattner:  It is on CRAN for whatever that’s worth
+00:44:49    Yoni Sidi:  that&#39;s not worth much
+00:44:54    Tan Ho: He&#39;s also in the R4DS slack channel
+00:44:58    Yoni Sidi:  on CRAN means they passed cmd check 
+00:45:05    Jonathan Trattner:  Well yeah
+00:45:09    Jonathan Trattner:  But it also has some nice tests
+00:45:12    Tony ElHabr:    yoni is going to need to interview him before he approves of the package
+00:45:15    David Severski: A little basic looking. https://github.com/stevecondylios/priceR/blob/master/R/adjust_for_inflation.R#L298-L321
+00:45:22    Jonathan Trattner:  Using api for world bank
+00:46:08    David Severski: I tend to use indices direct from FRED for a lot of my own inflation conversion work.
+00:46:31    Jon Harmon (jonthegeek):    Yeah, it definitely depends how important exact numbers are to you.
+00:46:50    Kevin Kent: I guess inflation would be a feature you’d have to forecast out if you wanted to get predictions for the future? But still noodling on that.
+00:47:07    Tyler Grant Smith:  it definitely is
+00:47:29    Jon Harmon (jonthegeek):    It looks like that package allowed for future inflation.
+00:47:41    Jon Harmon (jonthegeek):    (Conor commented out that part, but it showed in his code)
+00:48:53    Kevin Kent: Oh nice. I feel like I run into that a lot in forecasting contexts - needing to be careful about the features and how uncertain they are in the future.
+00:49:41    Scott Nestler:  An aside since we have some sports fans in the group. Pine-Richland is where Phil Jurkovic, the former ND backup QB (who&#39;s now the starter at BC) is from.
+00:49:54    Asmae Toumi:    nice
+00:52:29    Tyler Grant Smith:  id definitely consider esp since a lot of pricing is done as $/sqft
+00:52:38    David Severski: I wonder if lot sizes would discretize cleanly. Lot sizes tend to bin, right?
+00:52:44    Tyler Grant Smith:  did you engineer something like that
+00:52:58    Jarad Jones:    To go along with Jon’s question about log transforming…..how would you all decide to do that or not?
+00:53:38    Scott Nestler:  How did you collapse factor variables?  With fct_lump_n() or something else?
+00:53:46    David Severski: Jarad - Plotting out the distributions is something I try to do consistently, then look to transforms to get close-er to a normal distribution.
+00:54:18    Tyler Grant Smith:  not just log transform but box cox transforms more generally
+00:54:22    Kevin Kent: I’d say it also depends on the assumptions of the model, and if they require normally distributed features.
+00:54:22    Darya Vanichkina:   Yes, like David - eyeball it :(
+00:54:34    Tony ElHabr:    yup. non negative is big use case
+00:54:38    Asmae Toumi:    In the words of the iconic Andrew German, “Log transform, kids. And don’t listen to people who tell you otherwise.”
+00:54:45    Darya Vanichkina:   Box Cox or Yeo Johnson
+00:54:46    Asmae Toumi:    link:https://statmodeling.stat.columbia.edu/2019/08/21/you-should-usually-log-transform-your-positive-data/
+00:54:56    Tyler Grant Smith:  i would talk but i have lots of loud kids around me
+00:55:05    David Severski: “And trust me about the sunscreen…” ;)
+00:55:33    Asmae Toumi:    Don’t forget the two finger rule for sunscreen also
+00:55:37    Darya Vanichkina:   Kevin, I think that because we could be comparing models which do/do not require normally distributed residuals I’d transform (and then compare)
+00:55:42    Arjun Paudel:   anytime you have a big tail
+00:55:55    Tony ElHabr:    also, if you&#39;re combining two predictions, I think log-transformed has good theoretical properties
+00:56:13    Kevin Kent: Yeah that makes sense
+00:56:47    Jarad Jones:    That’s helpful, thanks!
+00:56:52    Scott Nestler:  That student was trying to maximize their leverage.
+00:57:05    Jon Harmon (jonthegeek):    They left and came back to the assignment but it&#39;s sometimes hard to see that.
+00:57:13    Darya Vanichkina:   It doesn’t - but you’re usually comparing the performance of the two
+00:57:18    Darya Vanichkina:   Right?
+00:57:43    Tony ElHabr:    yeah, I don&#39;t think it really needs it. but never hurts to try multiple methods
+00:57:52    Tony ElHabr:    tyler is the truth teller
+00:58:00    Tony ElHabr:    he got the kids to calm down for long enough
+00:58:27    Tyler Grant Smith:  yes that is one reason to do it
+00:58:34    Tyler Grant Smith:  theyre in the bath now
+00:58:39    pavitra:    for scientific assays, the dilutions are so large in range, I absolutely need to log-transform the data to make any sense of it
+00:58:46    Jon Harmon (jonthegeek):    ^^^
+00:59:00    Tony ElHabr:    also, you look smarter if you log transform
+00:59:04    Darya Vanichkina:   LOL
+00:59:07    Tony ElHabr:    your audience will think you know what you&#39;re doing
+00:59:10    shamsuddeen:    lol
+00:59:16    Kevin Kent: Lol fantastic
+00:59:33    pavitra:    john murdoch
+00:59:33    Darya Vanichkina:   I loved the RStudio conf talk where the FT journalist pros/cons of it
+00:59:47    Darya Vanichkina:   Yes, there are also “normal people”…
+01:00:23    Tyler Grant Smith:  lognormal people
+01:01:35    Scott Nestler:  1 Full and 7 Half ???
+01:02:13    Jonathan Trattner:  Maybe they’re complementary halves?
+01:02:13    Tyler Grant Smith:  shower in the bedroom but i cant be bothered to go to another room for #2
+01:03:39    Tan Ho: doesn&#39;t your house have a three-urinal men&#39;s washroom separate from a three-stall women&#39;s washroom?
+01:03:40    Darya Vanichkina:   If possible, please, I’d love some documentation for all of the .R scripts on GitHub to make your thought process/prototyping clearer….
+01:03:43    Asmae Toumi:    Is this on GitHub? I have a small aesthetic suggestion for the leaflet map so that the labels are on top of the color
+01:04:15    Jon Harmon (jonthegeek):    I believe it is and we&#39;ll make him share it in the channel/in the bookdown :)
+01:04:17    Darya Vanichkina:   I think it’s here? https://github.com/conorotompkins/model_allegheny_house_sales
+01:04:28    Tan Ho: Yup, that&#39;s the one
+01:04:43    Asmae Toumi:    thanks
+01:05:00    Darya Vanichkina:   Sorry, need to run - thank you, everyone!
+01:05:13    pavitra:    has connor already developed any models on this data?
+01:05:13    Jon Harmon (jonthegeek):    See ya Darya!
+01:05:26    Tan Ho: https://github.com/conorotompkins/model_allegheny_house_sales/tree/main/scripts/model @pavitra
+01:05:28    Jon Harmon (jonthegeek):    @pavitra: Yup! he predicts the price based on those settings.
+01:05:47    pavitra:    oh boy! neat
+01:06:33    David Severski: Gotta run now. Thanks for the talk and the conversation!
+01:07:30    Jon Harmon (jonthegeek):    A numeric value between 0 and 1 or an integer greater or equal to one. If it&#39;s less than one then factor levels whose rate of occurrence in the training set are below threshold will be &quot;othered&quot;. If it&#39;s greater or equal to one then it&#39;s treated as a frequency and factor levels that occur less then threshold times will be &quot;othered&quot;.
+01:09:13    Jon Harmon (jonthegeek):    A logical. Should the step be skipped when the recipe is baked by bake.recipe()? While all operations are baked when prep.recipe() is run, some operations may not be able to be conducted on new data (e.g. processing the outcome variable(s)). Care should be taken when using skip = TRUE as it may affect the computations for subsequent operations
+01:11:30    Jim Gruman: thankyou Conor
+01:11:40    Kevin Kent: Nice job! Was helpful to talk through code and the concepts represented in it.
+01:11:44    Tan Ho: thank you! that was awesome!
+01:11:48    Jonathan Leslie:    Thanks, Conor!
+01:11:51    caroline:   Thank you Conor
+01:11:52    Joe Sydlowski:  Thanks Conor!
+01:11:56    Laurens Put:    Thank you
+01:11:59    Asmae Toumi:    Conor that was awesome. I hope it ends up on tidytuesday
+01:12:00    Jarad Jones:    Nice job Conor, the whole end product is pretty impressive for a first shiny app!
+01:12:00    pavitra:    thanks a lot, Connor..i think you finished the purpose of the book</code></pre>
+</details>
+
+</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="inspecting-and-developing-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="why-tidy-principles-and-tidymodels.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="pittsburgh-a-parallel-real-world-example.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="spending-our-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -348,7 +428,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/03-a_review_of_r_modeling_fundamentals.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/04-the_ames_housing_data.Rmd",
 "text": "Edit"
 },
 "history": {

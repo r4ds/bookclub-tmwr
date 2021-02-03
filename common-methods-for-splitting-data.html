@@ -144,6 +144,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3" data-path="terminology.html"><a href="terminology.html"><i class="fa fa-check"></i><b>1.3</b> Terminology</a></li>
 <li class="chapter" data-level="1.4" data-path="the-data-analysis-process.html"><a href="the-data-analysis-process.html"><i class="fa fa-check"></i><b>1.4</b> The data analysis process</a></li>
 <li class="chapter" data-level="1.5" data-path="the-modeling-process.html"><a href="the-modeling-process.html"><i class="fa fa-check"></i><b>1.5</b> The modeling process</a></li>
+<li class="chapter" data-level="1.6" data-path="meeting-videos.html"><a href="meeting-videos.html"><i class="fa fa-check"></i><b>1.6</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="meeting-videos.html"><a href="meeting-videos.html#cohort-1"><i class="fa fa-check"></i><b>1.6.1</b> Cohort 1</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="a-tidyverse-primer.html"><a href="a-tidyverse-primer.html"><i class="fa fa-check"></i><b>2</b> A tidyverse primer</a><ul>
 <li class="chapter" data-level="2.1" data-path="tidyverse-design-principles.html"><a href="tidyverse-design-principles.html"><i class="fa fa-check"></i><b>2.1</b> Tidyverse design Principles</a></li>
@@ -153,6 +156,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="designed-for-functional-programming.html"><a href="designed-for-functional-programming.html"><i class="fa fa-check"></i><b>2.5</b> Designed for Functional Programming</a></li>
 <li class="chapter" data-level="2.6" data-path="tibbles-vs-data-frames.html"><a href="tibbles-vs-data-frames.html"><i class="fa fa-check"></i><b>2.6</b> Tibbles vs. Data Frames</a></li>
 <li class="chapter" data-level="2.7" data-path="how-to-read-and-wrangle-data.html"><a href="how-to-read-and-wrangle-data.html"><i class="fa fa-check"></i><b>2.7</b> How to read and wrangle data</a></li>
+<li class="chapter" data-level="2.8" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html"><i class="fa fa-check"></i><b>2.8</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="2.8.1" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-1-1"><i class="fa fa-check"></i><b>2.8.1</b> Cohort 1</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="a-review-of-r-modeling-fundamentals.html"><a href="a-review-of-r-modeling-fundamentals.html"><i class="fa fa-check"></i><b>3</b> A review of R modeling fundamentals</a><ul>
 <li class="chapter" data-level="3.1" data-path="r-formula-syntax.html"><a href="r-formula-syntax.html"><i class="fa fa-check"></i><b>3.1</b> R formula syntax</a><ul>
@@ -161,9 +167,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="inspecting-and-developing-models.html"><a href="inspecting-and-developing-models.html"><i class="fa fa-check"></i><b>3.2</b> Inspecting and developing models</a></li>
 <li class="chapter" data-level="3.3" data-path="more-of-base-and-stats.html"><a href="more-of-base-and-stats.html"><i class="fa fa-check"></i><b>3.3</b> More of <code>{base}</code> and <code>{stats}</code></a></li>
 <li class="chapter" data-level="3.4" data-path="why-tidy-principles-and-tidymodels.html"><a href="why-tidy-principles-and-tidymodels.html"><i class="fa fa-check"></i><b>3.4</b> Why Tidy Principles and <code>{tidymodels}</code>?</a></li>
+<li class="chapter" data-level="3.5" data-path="meeting-videos-2.html"><a href="meeting-videos-2.html"><i class="fa fa-check"></i><b>3.5</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="meeting-videos-2.html"><a href="meeting-videos-2.html#cohort-1-2"><i class="fa fa-check"></i><b>3.5.1</b> Cohort 1</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="the-ames-housing-data.html"><a href="the-ames-housing-data.html"><i class="fa fa-check"></i><b>4</b> The Ames housing data</a><ul>
 <li class="chapter" data-level="4.1" data-path="pittsburgh-a-parallel-real-world-example.html"><a href="pittsburgh-a-parallel-real-world-example.html"><i class="fa fa-check"></i><b>4.1</b> Pittsburgh: a parallel real world example</a></li>
+<li class="chapter" data-level="4.2" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html"><i class="fa fa-check"></i><b>4.2</b> Meeting Videos</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="spending-our-data.html"><a href="spending-our-data.html"><i class="fa fa-check"></i><b>5</b> Spending our data</a><ul>
 <li class="chapter" data-level="5.1" data-path="spending-our-data-1.html"><a href="spending-our-data-1.html"><i class="fa fa-check"></i><b>5.1</b> Spending our data</a></li>
@@ -245,16 +255,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.2</span> Common methods for splitting data</h2>
 <p>Choosing how to conduct the split of the data into training and test sets may not be a trivial task. It depends on the data and the purpose.</p>
 <p>The most common type of sampling is known as random sampling and it is done readily in R using the <a href="https://rsample.tidymodels.org">rsample</a> package with the <code>initial_split()</code>function. For the <a href="https://www.tmwr.org/ames.html">Ames housing dataset</a>, the call would be:</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="common-methods-for-splitting-data.html#cb83-1"></a><span class="kw">library</span>(tidymodels)</span>
-<span id="cb83-2"><a href="common-methods-for-splitting-data.html#cb83-2"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb83-3"><a href="common-methods-for-splitting-data.html#cb83-3"></a><span class="kw">data</span>(ames)</span>
-<span id="cb83-4"><a href="common-methods-for-splitting-data.html#cb83-4"></a>ames_split &lt;-<span class="st"> </span><span class="kw">initial_split</span>(ames, <span class="dt">prob =</span> <span class="fl">0.80</span>)</span>
-<span id="cb83-5"><a href="common-methods-for-splitting-data.html#cb83-5"></a>ames_split</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="common-methods-for-splitting-data.html#cb84-1"></a><span class="kw">library</span>(tidymodels)</span>
+<span id="cb84-2"><a href="common-methods-for-splitting-data.html#cb84-2"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb84-3"><a href="common-methods-for-splitting-data.html#cb84-3"></a><span class="kw">data</span>(ames)</span>
+<span id="cb84-4"><a href="common-methods-for-splitting-data.html#cb84-4"></a>ames_split &lt;-<span class="st"> </span><span class="kw">initial_split</span>(ames, <span class="dt">prob =</span> <span class="fl">0.80</span>)</span>
+<span id="cb84-5"><a href="common-methods-for-splitting-data.html#cb84-5"></a>ames_split</span></code></pre></div>
 <pre><code>## &lt;Analysis/Assess/Total&gt;
 ## &lt;2198/732/2930&gt;</code></pre>
 <p>The object <code>ames_split</code> is an <code>rsplit</code> object. To get the training and test results you can call on <code>training()</code> and <code>test()</code>:</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="common-methods-for-splitting-data.html#cb85-1"></a>ames_train &lt;-<span class="st"> </span><span class="kw">training</span>(ames_split)</span>
-<span id="cb85-2"><a href="common-methods-for-splitting-data.html#cb85-2"></a>ames_test  &lt;-<span class="st"> </span><span class="kw">testing</span>(ames_split)</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="common-methods-for-splitting-data.html#cb86-1"></a>ames_train &lt;-<span class="st"> </span><span class="kw">training</span>(ames_split)</span>
+<span id="cb86-2"><a href="common-methods-for-splitting-data.html#cb86-2"></a>ames_test  &lt;-<span class="st"> </span><span class="kw">testing</span>(ames_split)</span></code></pre></div>
 </div>
             </section>
 
