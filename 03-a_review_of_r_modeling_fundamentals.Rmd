@@ -362,5 +362,91 @@ df
 
 ### Cohort 1
 
-![](https://youtu.be/Je7RoEIR54g)
+`r knitr::include_url("https://www.youtube.com/embed/Je7RoEIR54g")`
+
+<details>
+  <summary> Meeting chat log </summary>
   
+  ```
+00:06:11	Jonathan Trattner:	I second that
+00:08:03	Tan Ho:	Time to find and send memez
+00:09:11	Tan Ho:	You all have seen Hadley cat vibing, right?
+00:09:18	Jon Harmon (jonthegeek):	https://www.vivino.com/mcpherson-cellars-la-herencia/w/2270344?ref=nav-search&cart_item_source=text-search
+00:10:00	Jon Harmon (jonthegeek):	https://twitter.com/RCoderWeb/status/1351282600086810634
+00:10:18	David Severski:	Any chance you could get a bit closer to your mic, Tony? Audio is a bit poor on my end.
+00:10:43	Jon Harmon (jonthegeek):	I muted the one that was crackling, I think.
+00:10:50	Maya Gans:	Friendly reminder to please mute :)
+00:10:54	Maya Gans:	Oh you beat me thanks
+00:13:16	Jon Harmon (jonthegeek):	New base pipe makes this all... weird. But they have a way to do it now, at least!
+00:13:53	Jon Harmon (jonthegeek):	trees |> my_data => lm(Volume ~ ., data = my_data)
+00:13:55	Jordan Krogmann:	I haven't played around with the base pipe yet
+00:14:17	Tan Ho:	=> ???
+00:14:24	Jordan Krogmann:	that is going to take some re-learning
+00:14:27	David Severski:	Is there a comprehensive guide to R’s formula syntax? Always found learning I(), + , *, etc. kind of scattered through bits of documentation.
+00:14:28	Jon Harmon (jonthegeek):	Kinda a lambda function... thing.
+00:14:31	Jordan Krogmann:	"=>"?
+00:14:53	Maya Gans:	I thought `I` was “asis” - is it different inside the context of lm?
+00:14:56	Jon Harmon (jonthegeek):	But don't get hung up on that 'cuz it's still in development, RStudio will make it clear when it's time :)
+00:15:36	Jon Harmon (jonthegeek):	@David: Hmm, I haven't seen a formula cheat sheet, but there HAS to be one out there...
+00:17:35	Tyler Grant Smith:	https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf page 57
+00:18:12	Yoni Sidi:	There is a  Belgian flavored cheatsheet, but not going to share anything from said site
+00:19:20	Jon Harmon (jonthegeek):	Yeahhhh, no thanks! The Paradis book has a good guide in there, it'd be nice to pull that out... so let's do that in the notes for this chapter!
+00:20:45	David Severski:	Shout out to gglm for better lm plots with ggplot! http://graysonwhite.com/gglm/
+00:21:02	luifrancgom:	Also ggplot2::geom_qq(): https://ggplot2.tidyverse.org/reference/geom_qq.html
+00:21:24	Tan Ho:	Belgian...flavoured...
+00:21:37	Tan Ho:	ohhhhh
+00:21:39	Jon Harmon (jonthegeek):	Reference to a litigious website.
+00:21:43	Tan Ho:	I was thinking of waffles
+00:21:58	tim:	Now I'm thinking about waffles
+00:22:15	Yoni Sidi:	+1 on waffles
+00:22:30	Jon Harmon (jonthegeek):	https://github.com/hrbrmstr/waffle
+00:22:39	David Severski:	Gotta be a minority here but pancakes > waffles. ;)
+00:22:55	Jon Harmon (jonthegeek):	My wife's pancakes > waffles.
+00:23:07	Tan Ho:	crepes?
+00:23:10	Maya Gans:	Insert {stacks} pun
+00:23:20	Yoni Sidi:	blinches>pancakes
+00:24:32	Conor Tompkins:	What is the difference between modeling each subgroup separately vs. adding the subgroup as a term in a model that contains all the subgroups?
+00:24:32	Yoni Sidi:	Side note, you can pass arguments to the broom arguments on the res of the function in map
+00:24:41	Yoni Sidi:	*rhs
+00:27:30	Andrew G. Farina:	I think the biggest difference is robustness. modeling each subgroup lets you know how well the model fits that subgroup. Adding in a variable (subgroup) will tell you how much variance is accounted for by the subgroup. Does that make sense?
+00:28:05	DX:	Hi I am new to the book club. Where can we find this book?
+00:28:24	Ben Gramza:	https://www.tmwr.org/base-r.html
+00:28:28	DX:	Thanks
+00:28:31	Scott Nestler:	I used to get confused about 'anova' and 'aov' but they are very different.  'aov' fits a model (by calling lm) whereas 'anova' is a generic function that analyzes a fitted model (or models).
+00:28:36	Joe Sydlowski:	One reason I've used subgroups instead of a categorical variable is when I want to do feature selection with the subgroups. If you use a categorical variable than each level is confined to the same predictors
+00:29:00	Maya Gans:	Thats a super useful distinction @Scott !
+00:31:03	Conor Tompkins:	Andrew, Joe, thanks. I think I see what the benefit is.
+00:31:51	Jon Harmon (jonthegeek):	If someone wants to pipe up and summarize what Andrew and Joe explained, that'd be great :D
+00:32:22	luifrancgom:	jajajaja
+00:32:40	Jon Harmon (jonthegeek):	btw data is also a function, so... be careful :)
+00:33:08	Yoni Sidi:	Last week me can confirm
+00:33:15	Maya Gans:	I love using single letters and t always gets me too
+00:33:18	Scott Nestler:	Many years ago, a common way to estimate a standard normal distribution was to sum 12 Uniform(0,1) distributions and then subtract 6.
+00:33:19	luifrancgom:	interesting from utils (data)
+00:33:23	Jon Harmon (jonthegeek):	For following along: r4ds.io/tmwr is this study guide... thing... that we're making
+00:34:09	Jon Harmon (jonthegeek):	And I use extremely specific variable names. RStudio autocomplete means you only have to type the full thing once, and then people know what you mean.
+00:34:48	Tan Ho:	trying to grok joe's comments for my non-statsy self: fitting one model with a categorical variable means you have one coefficient for each feature and the difference between categories is explained by the coefficient for the category. Fitting one model for each level of the categorical variable means you get different coefficients for a feature based on the subgroup of data
+00:35:31	Yoni Sidi:	It also depends if you incl the intercept
+00:36:23	Yoni Sidi:	w and wo it changes the meaning of the coefficients
+00:36:48	Conor Tompkins:	Sounds like subgrouping lets you turn non-tree models into a model with more tree-ish logic
+00:38:02	Andrew G. Farina:	I think that is a good way to think about it. If you had multiple models and were comparing fit. A linear model may fit one group better then the others, while a poly model may fit another group better.
+00:38:12	luifrancgom:	Thank you Tony
+00:38:13	Jordan Krogmann:	nice work!
+00:38:16	Andrew G. Farina:	Tony that was great
+00:38:17	Scott Nestler:	I learned a new term from reading this chapter. In the Advanced R book, we talked about R being "lazy," but didn't know what the opposite of that was.  Apparently, the word is "eager."
+00:38:40	Maya Gans:	Thanks Tony!!!
+00:38:40	darynr:	Good job, Tony
+00:38:48	Tan Ho:	YAY TONY
+00:38:50	Jonathan Trattner:	thanks Tony!
+00:39:01	Jonathan Leslie:	Thanks, Tony!
+00:39:01	Jim Gruman:	thank you Tony
+00:39:03	Conor Tompkins:	Thanks Tony!
+00:39:14	caroline:	Thank you Tony
+00:43:12	Tan Ho:	"There are houses" /fin
+00:43:40	Scott Nestler:	There are actually a bunch of Ames housing data set memes out there.
+00:44:21	Jonathan Trattner:	https://gallery.shinyapps.io/ames-explorer/
+00:44:44	Jonathan Trattner:	doesn't map stuff though
+00:44:54	Jonathan Trattner:	so leaflet is still an option!
+00:45:32	David Severski:	Gotta run here. Thanks everyone!
+00:45:59	Jordan Krogmann:	Thanks jon and tony later!
+```
