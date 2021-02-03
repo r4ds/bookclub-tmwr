@@ -22,4 +22,5 @@ Imports:
     tidyverse,
     tweetrmd
 Remotes: 
-    hadley/emo
+    hadley/emo,
+    gadenbuie/tweetrmd
