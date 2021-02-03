@@ -15,14 +15,14 @@ If you would like to present, please add your name next to a chapter using the [
 - 2021-01-05: Chapter 1: Software for modeling: Jon Harmon
 - 2021-01-12: Chapter 2: A tidyverse primer: Jonathan Trattner
 - 2021-01-19: Chapter 3: A review of R modeling fundamentals: Tony ElHabr
-- **2021-01-26: Chapter 4: The Ames housing data: Tan Ho**
+- 2021-01-26: Chapter 4: The Ames housing data: Tan Ho
 - 2021-02-02: Chapter 5: Spending our data: Asmae Toumi
-- 2021-02-09: Chapter 6: Feature engineering with recipes: Pavitra Chakravarty
+- **2021-02-09: Chapter 6: Feature engineering with recipes: Pavitra Chakravarty**
 - 2021-02-16: Chapter 7: Fitting models with parsnip
 - 2021-02-23: Chapter 8: A model workflow
 - 2021-03-02: Chapter 9: Judging model effectiveness
 - 2021-03-09: Review: Chapters 4-9
-- 2021-03-16: Chapter 10: Resampling for evaluating performance
+- 2021-03-16: Chapter 10: Resampling for evaluating performance: Asmae Toumi
 - 2021-03-23: Chapter 11: Comparing models with resampling
 - 2021-03-30: Chapter 12: Modeling tuning and the dangers of overfitting
 - 2021-04-06: Chapter 13: Grid search
