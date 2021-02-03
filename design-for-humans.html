@@ -173,7 +173,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="the-ames-housing-data.html"><a href="the-ames-housing-data.html"><i class="fa fa-check"></i><b>4</b> The Ames housing data</a><ul>
 <li class="chapter" data-level="4.1" data-path="pittsburgh-a-parallel-real-world-example.html"><a href="pittsburgh-a-parallel-real-world-example.html"><i class="fa fa-check"></i><b>4.1</b> Pittsburgh: a parallel real world example</a></li>
-<li class="chapter" data-level="4.2" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html"><i class="fa fa-check"></i><b>4.2</b> Meeting Videos</a></li>
+<li class="chapter" data-level="4.2" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html"><i class="fa fa-check"></i><b>4.2</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-1-3"><i class="fa fa-check"></i><b>4.2.1</b> Cohort 1</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="spending-our-data.html"><a href="spending-our-data.html"><i class="fa fa-check"></i><b>5</b> Spending our data</a><ul>
 <li class="chapter" data-level="5.1" data-path="spending-our-data-1.html"><a href="spending-our-data-1.html"><i class="fa fa-check"></i><b>5.1</b> Spending our data</a></li>
@@ -269,7 +271,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>If we wanted to arrange these in ascending order based on the <code>mpg</code> and <code>gear</code> variables, how could we do this?</p>
 <hr />
 <p>The function <code>arrange()</code>, in the <code>dplyr</code> package of the <code>tidyverse</code>, takes a data frame and column names as such:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="design-for-humans.html#cb2-1"></a><span class="kw">arrange</span>(<span class="dt">.data =</span> mtcars, gear, mpg)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="design-for-humans.html#cb3-1"></a><span class="kw">arrange</span>(<span class="dt">.data =</span> mtcars, gear, mpg)</span></code></pre></div>
 <hr />
 <p><code>arrange()</code>, and other tidyverse functions, use <strong>names that are descriptive and explicit.</strong> For general methods, there is a <strong>focus on verbs,</strong> as seen with the functions <code>pivot_longer()</code> and <code>pivot_wider()</code> in the <code>tidyr</code> package.</p>
 </div>

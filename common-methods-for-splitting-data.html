@@ -173,7 +173,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="the-ames-housing-data.html"><a href="the-ames-housing-data.html"><i class="fa fa-check"></i><b>4</b> The Ames housing data</a><ul>
 <li class="chapter" data-level="4.1" data-path="pittsburgh-a-parallel-real-world-example.html"><a href="pittsburgh-a-parallel-real-world-example.html"><i class="fa fa-check"></i><b>4.1</b> Pittsburgh: a parallel real world example</a></li>
-<li class="chapter" data-level="4.2" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html"><i class="fa fa-check"></i><b>4.2</b> Meeting Videos</a></li>
+<li class="chapter" data-level="4.2" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html"><i class="fa fa-check"></i><b>4.2</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-1-3"><i class="fa fa-check"></i><b>4.2.1</b> Cohort 1</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="spending-our-data.html"><a href="spending-our-data.html"><i class="fa fa-check"></i><b>5</b> Spending our data</a><ul>
 <li class="chapter" data-level="5.1" data-path="spending-our-data-1.html"><a href="spending-our-data-1.html"><i class="fa fa-check"></i><b>5.1</b> Spending our data</a></li>
@@ -255,16 +257,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.2</span> Common methods for splitting data</h2>
 <p>Choosing how to conduct the split of the data into training and test sets may not be a trivial task. It depends on the data and the purpose.</p>
 <p>The most common type of sampling is known as random sampling and it is done readily in R using the <a href="https://rsample.tidymodels.org">rsample</a> package with the <code>initial_split()</code>function. For the <a href="https://www.tmwr.org/ames.html">Ames housing dataset</a>, the call would be:</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="common-methods-for-splitting-data.html#cb84-1"></a><span class="kw">library</span>(tidymodels)</span>
-<span id="cb84-2"><a href="common-methods-for-splitting-data.html#cb84-2"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb84-3"><a href="common-methods-for-splitting-data.html#cb84-3"></a><span class="kw">data</span>(ames)</span>
-<span id="cb84-4"><a href="common-methods-for-splitting-data.html#cb84-4"></a>ames_split &lt;-<span class="st"> </span><span class="kw">initial_split</span>(ames, <span class="dt">prob =</span> <span class="fl">0.80</span>)</span>
-<span id="cb84-5"><a href="common-methods-for-splitting-data.html#cb84-5"></a>ames_split</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="common-methods-for-splitting-data.html#cb86-1"></a><span class="kw">library</span>(tidymodels)</span>
+<span id="cb86-2"><a href="common-methods-for-splitting-data.html#cb86-2"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb86-3"><a href="common-methods-for-splitting-data.html#cb86-3"></a><span class="kw">data</span>(ames)</span>
+<span id="cb86-4"><a href="common-methods-for-splitting-data.html#cb86-4"></a>ames_split &lt;-<span class="st"> </span><span class="kw">initial_split</span>(ames, <span class="dt">prob =</span> <span class="fl">0.80</span>)</span>
+<span id="cb86-5"><a href="common-methods-for-splitting-data.html#cb86-5"></a>ames_split</span></code></pre></div>
 <pre><code>## &lt;Analysis/Assess/Total&gt;
 ## &lt;2198/732/2930&gt;</code></pre>
 <p>The object <code>ames_split</code> is an <code>rsplit</code> object. To get the training and test results you can call on <code>training()</code> and <code>test()</code>:</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="common-methods-for-splitting-data.html#cb86-1"></a>ames_train &lt;-<span class="st"> </span><span class="kw">training</span>(ames_split)</span>
-<span id="cb86-2"><a href="common-methods-for-splitting-data.html#cb86-2"></a>ames_test  &lt;-<span class="st"> </span><span class="kw">testing</span>(ames_split)</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="common-methods-for-splitting-data.html#cb88-1"></a>ames_train &lt;-<span class="st"> </span><span class="kw">training</span>(ames_split)</span>
+<span id="cb88-2"><a href="common-methods-for-splitting-data.html#cb88-2"></a>ames_test  &lt;-<span class="st"> </span><span class="kw">testing</span>(ames_split)</span></code></pre></div>
 </div>
             </section>
 
