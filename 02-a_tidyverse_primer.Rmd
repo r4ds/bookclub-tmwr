@@ -248,7 +248,8 @@ head(all_stations, 10)
 ## Meeting Videos
 
 ### Cohort 1
-![](https://youtu.be/M7xmKrXuyDQ)
+
+`r knitr::include_url("https://www.youtube.com/embed/M7xmKrXuyDQ")`
 
 <details>
     <summary> Meeting chat log </summary>

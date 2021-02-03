@@ -86,4 +86,109 @@
 
 ### Cohort 1
 
-![](https://youtu.be/jrBiEppKt_0)
+`r knitr::include_url("https://www.youtube.com/embed/jrBiEppKt_0")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+  ```
+00:10:57	Andrew G. Farina:	Sorry guys, I have a sleeping baby in the room, so I am stuck with only chat tonight. Looking forward to the discussion though.
+00:11:10	mayagans:	Hi baby!!!
+00:11:31	mayagans:	(Hi everyone else too — Im also in a loud house right now super stoked for this!)
+00:11:38	Jim Gruman:	Hello everyone
+00:11:39	Tony ElHabr:	the chat is where all of the fun happens anyways!
+00:11:59	Tan Ho:	Obviously!
+00:12:01	Scott Nestler:	It's been way too long since I've seen many of you.  Hope everyone is doing well.  I'm excited for this.
+00:12:04	Jeremy:	Yep, I’ve got a puppy who believes she’s an attack dog going crazy so I’ll probably mute for a while
+00:12:36	Tyler Grant Smith:	on kid bath duty for the start of this
+00:15:16	Yoni Sidi:	It’s a gitbook!
+00:15:37	Tan Ho:	It's a book about a book
+00:15:40	Tan Ho:	classic Jon
+00:15:46	Joe Sydlowski:	Metabook
+00:15:54	Scott Nestler:	Very meta.
+00:16:03	Tony ElHabr:	presentation + book seems like it is prime for a package
+00:16:17	Tony ElHabr:	counting on jon to jump on that idea
+00:26:44	shamsuddeen:	The utility of a model hinges on its ability to be reductive. What is the meaning of this from the book?
+00:28:03	Tony ElHabr:	I think that means "a model should be interpretable"
+00:28:28	Tony ElHabr:	yeah, "simpler" is a better word
+00:28:41	Yoni Sidi:	Sparse model means less overfitting
+00:28:41	shamsuddeen:	sure
+00:29:15	Gabriela Palomo:	Perhaps it may also mean that a model uses a bunch of data and simplifies it in an equation or model? 
+00:29:29	Jacob Miller:	As someone who is an intermediate user of caret, how useful would it be to switch completely over to tidymodels and not revert back to caret? Or are there benefits to using both consistently?
+00:29:56	Gabriela Palomo:	So in a way it's simpler to understand as well vs seeing all the raw data
+00:30:09	Tony ElHabr:	i feel you have much more "low-level" control with tidymodels
+00:30:36	Scott Nestler:	I had a similar question to Jacob's, but with regard to mle & mle3.
+00:31:01	Tan Ho:	Caret is broader but tidymodels is deeper (see yesterday's xkcd :P)
+00:31:10	Arjun’s iPhone:	you can mix tidymodels and caret.... preprocess using tidymodels and feed it to caret
+00:32:12	Scott Nestler:	TYPO ALERT.  I meant mlr and mlr3.
+00:32:18	Asmae Toumi:	Agreed with David. For example, weighted RMSE stuff is only on caret (for now) and there’s a GitHub issue reply by max basically saying its too hard to add to tidy models right now. Either way tidy models seems the way to go to not be behind in say, 2 years, when its well developed
+00:32:20	Conor Tompkins:	My understanding is that caret is deprecated. It still works, but tidymodels is where its at now. Like dplyr in 2015. Not 100% coverage compared to base R or data.table, but heading in the right direction fast.
+00:32:25	Maria:	Yes, usemodels is great!
+00:32:38	Conor Tompkins:	Yeah not officially depreacted
+00:34:30	mayagans:	My only comment is that I love how many people are here!!!! I can only imagine the range of domain expertise in this “room” - I HATE ice breakers but do people want to throw in the chat what domain they want to write models in/why they’re reading this book? Im a pharma person but Im also obsessed with music analytics :) I look forward to seeing how presenters apply their chapters!
+00:34:43	Connor Krenzer:	The book says in the Empirically driven models section: "No theoretical or probabilistic assumptions are made about the sales numbers or the variables that are used to define similarity. In fact, the primary method of evaluating the appropriateness of the model is to assess its accuracy using existing data. If the structure of this type of model was a good choice, the predictions would be close to the actual values."
+
+How does the significance of the model's variables play into the above? Let's take linear regression for example. Does this mean we are only supposed to care about R-square instead of p-values?
+00:34:51	Yoni Sidi:	https://github.com/topepo/workflowsets
+00:35:41	Asmae Toumi:	Sure Maya, great idea, my domain is healthcare/medtech and for fun, sports analytics!
+00:36:44	Jordan Krogmann:	Live and die by the pun :)
+00:37:04	Kevin Kent:	@Maya - I originally learned ML stuff in sklearn but do 80% of my work in R, so I’d like to move that all over to tidy models. I work in healthcare technology, in the devops area
+00:37:26	Tony ElHabr:	good question Connor. i think it depends on your intention. for an inferential model, the variables and p values matter more, but that's not to say that your model's R2 is "allowed" to be really bad. for a predictive model, it would all be about maximizing R2
+00:37:38	Yoni Sidi:	Modeling and simulation in pharma
+00:37:59	Conor Tompkins:	I don’t use modeling professionally, would like to get there. I use R to avoid using Excel. Very interested in sports data and civic hacking
+00:38:12	Scott Nestler:	I guide many students in capstone projects building models in all kinds of domains.  Much of my own work is in sports analytics, either for fun or with some of our teams here on campus.
+00:38:24	Tony ElHabr:	electricity markets. sports for fun
+00:38:36	Jonathan Trattner:	Undergrad studying computational neuroscience!
+00:38:43	Jonathan Trattner:	I can volunteer for the tidyverse primer!
+00:38:45	Jim Gruman:	Im in industry/agriculture - marketing/geospatial/IoT events/survival
+00:38:46	Maria:	I also in healthcare/research 
+00:38:58	Tyler Grant Smith:	im a predictive modeling actuary working in p&c insurance
+00:39:02	Vasant M:	@Connor Krenzer yes, the less you use p-values as a metric to assess models the better. R-square is one metric, but not always the most reliable one to use. For instance r-square doesn’t mean anything for non-linear models. I would rather depend on model accuracy to guide model building
+00:39:05	Jonathan Trattner:	Sounds good (:
+00:39:08	Tan Ho:	I work in homebuilding, so finance-ish data - and work on fantasy football data as well
+00:39:13	Stephen - Computer - No Mic:	Degree in Health Data Analytics - currently working on an automated trading algorithm (which is built with tidymodels)
+00:39:29	Aashish Cheruvu:	I’m a student and I’m interesting in healthcare analytics and tech
+00:39:38	Miles Ott (he/him/his):	Hi everyone! Excited to be here :)I am a stats/data science prof at Smith College and my work/research stuff is in social network analysis and sampling applied to public health
+00:39:43	Vasant M:	I am Bioinformatician - Work in Biomedical research, currently doing Lipidomics in Sleep Mediccine
+00:39:51	shamsuddeen:	Student interested in natural language processing
+00:39:55	Andrew G. Farina:	I am a grad candidate currently, trying to build a solid base in modeling to use in the future.
+00:39:56	Stephen - Computer - No Mic:	I have been using R to run a text messaging campaign for the Senate run-offs in Georgia recently
+00:40:13	Tim Moloney:	I work in environmental consulting, do a lot of geospatial and/or statistics analyses with R
+00:40:19	Adrienne St Clair:	Hi all, I'm a botanist and work in plant conservation in public parks. I am a nascent data nerd and want to learn all I can about data analysis. 
+00:40:21	Conor Tompkins:	I am currently using tidymodels to build a model to predict house sale prices in Pittsburgh
+00:40:34	Jonathan Leslie:	I work in data science consulting...I work with businesses/government agencies to design data science projects.
+00:40:43	Vasant M:	@Stephen that’s very cool.
+00:40:45	ErickKnackstedt:	Business intelligence developer in the mental health/mindfulness space, no real modeling experience really excited to learn tidymodels
+00:40:53	Andrew G (he/him):	I work in App Analytics. Will be starting a new gig in app/game analytics soon. Historically modeling on the job has been few and far between so I’m looking forward to understanding best practices, workflow, etc…
+00:41:23	Ben Gramza:	Hi I'm Ben, I just graduated with a stats degree (and thus am unemployed and without a domain). I've done some work with COVID survey data and redistricting/gerrymandering in the past. I also keep up with the sports analytics scene in my free time. 
+00:41:53	Giovani Ferreira:	Tech Team Leader here, data hobbyist, usually very interested in NLP and Topic Modelling, decided to use this bookclub to level my modelling skills
+00:42:25	Jacob Miller:	Senior studying stats, done actuarial consulting internships, and planning on grad school in stats. Sports analytics is the hobby/passion
+00:43:01	mayagans:	Aaaahhh so many cool domains!! Everyone is a bad ass wow - I selfishly hope everyone talks ties in the content with their passions and maybe Ill even know something about #SPORTS by the time we’re done LOL
+00:44:00	Stephen - Computer - No Mic:	Thanks @ Vasant !
+00:44:21	Conor Tompkins:	Deployment seems very domain specific
+00:44:38	Conor Tompkins:	Tech stack = domain
+00:45:57	David Severski:	Oh, do I have thoughts on cloudy… ;P
+00:46:04	David Severski:	S/cloudy/cloudyr/
+00:46:32	Jordan Krogmann:	https://github.com/wlandau/targets
+00:46:39	tim:	To get some more background in machine learning, in addition to learning tidymodels, any suggestions for books? I was thinking Applied Predictive Modeling - but keep changing my mind and need something to stick to. I guess it uses caret too? So that might be useful.
+00:47:36	mayagans:	……Is Yoni in an aquarium of pizzas?
+00:48:07	Tan Ho:	asking the important questions :D
+00:48:16	Scott Nestler:	Responding to Tim's question … I'm currently working my way through Machine Learning with R, the tidyverse, and mlr (Rhys).
+00:48:25	Vasant M:	@Tim Statistical Learning  PDF link http://www.ime.unicamp.br/~dias/Intoduction%20to%20Statistical%20Learning.pdf
+00:48:34	Connor Krenzer:	@tim I hear Introduction to Statistical Learning is a classic
+00:49:06	Vasant M:	@Tim if you like a course https://www.edx.org/course/statistical-learning
+00:49:15	Tony ElHabr:	i'm just glad we won't have to nag people to volunteer to do presentations since we have so many participants lol
+00:49:21	ErickKnackstedt:	https://dtkaplan.github.io/SM2-bookdown/preface-to-this-electronic-version.html
+00:49:38	tim:	Thanks, this is awesome! Now I just need to pick something and stick with it, haha
+00:49:38	ErickKnackstedt:	That book is legit 
+00:49:59	Jonathan Leslie:	@Tim I second the recommendation for Introduction to Statistical Learning. It’s a great overview of different modelling approaches and how to interpret model outputs.
+00:50:18	Miles Ott (he/him/his):	nice to meet you all!
+00:50:19	David Severski:	Have a great one, everyone!
+00:50:24	Jordan Krogmann:	thanks take it ea y
+00:50:28	Yoni Sidi:	Bye and thanks for all the fish
+00:50:29	Tan Ho:	Cheers gang!
+00:50:32	Aashish Cheruvu:	Bye everyone and thank you
+00:50:33	mayagans:	Thanks Jon!!
+00:50:36	Maria:	Cheers!
+00:51:03	Arjun’s iPhone:	p
+```

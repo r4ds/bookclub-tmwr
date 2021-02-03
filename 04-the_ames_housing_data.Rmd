@@ -18,10 +18,12 @@ Shiny app: https://conorotompkins.shinyapps.io/house_sale_estimator/
 
 ## Meeting Videos
 
-![Cohort 1 video recording](https://youtu.be/rdRj64rrLsM)
+### Cohort 1
+
+`r knitr::include_url("https://www.youtube.com/embed/rdRj64rrLsM")`
 
 <details>
-  <summary> Cohort 1 Zoom chat logs </summary>
+  <summary> Meeting chat log </summary>
   
   ```
 00:11:41    Tyler Grant Smith:  does jon sound far away
