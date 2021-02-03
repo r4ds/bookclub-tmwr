@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.4 Designed for the pipe | Tidy Modeling with R Book Club</title>
+  <title>5.3 Class imbalance | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.4 Designed for the pipe | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="5.3 Class imbalance | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.4 Designed for the pipe | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="5.3 Class imbalance | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="reusing-existing-data-structures.html"/>
-<link rel="next" href="designed-for-functional-programming.html"/>
+<link rel="prev" href="common-methods-for-splitting-data.html"/>
+<link rel="next" href="continuous-outcome-data.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -241,31 +241,342 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="designed-for-the-pipe" class="section level2">
-<h2><span class="header-section-number">2.4</span> Designed for the pipe</h2>
-<p>The pipe operator, <code>%&gt;%</code>, comes from the <a href="https://magrittr.tidyverse.org"><code>magrittr</code></a> package by <a href="http://stefanbache.dk">Stefan Milton Bache</a>, and is used to chain together a sequence of R functions. More specifically, <strong>the pipe operator uses the value of the object on the left-hand side of the operator as the first argument on the operator’s right-hand side.</strong></p>
-<p>The pipe allows for highly readable code. Consider wanting to sort the <code>mtcars</code> dataset by the number of gears (<code>gear</code>) and then select the first ten rows. How would you do that?</p>
-<hr />
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="designed-for-the-pipe.html#cb7-1"></a>cars_arranged &lt;-<span class="st"> </span><span class="kw">arrange</span>(mtcars, gear)</span>
-<span id="cb7-2"><a href="designed-for-the-pipe.html#cb7-2"></a>cars_selected &lt;-<span class="st"> </span><span class="kw">slice</span>(cars_arranged, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span>
-<span id="cb7-3"><a href="designed-for-the-pipe.html#cb7-3"></a></span>
-<span id="cb7-4"><a href="designed-for-the-pipe.html#cb7-4"></a><span class="co"># more compactly</span></span>
-<span id="cb7-5"><a href="designed-for-the-pipe.html#cb7-5"></a>cars_selected &lt;-<span class="st"> </span><span class="kw">slice</span>(<span class="kw">arrange</span>(mtcars, gear), <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span></code></pre></div>
-<p>Using the pipe to substitute the left-hand side of the operator with the first argument on the right-hand side, we can get the same result as follows:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="designed-for-the-pipe.html#cb8-1"></a>cars_selected &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span></span>
-<span id="cb8-2"><a href="designed-for-the-pipe.html#cb8-2"></a><span class="st">  </span><span class="kw">arrange</span>(gear) <span class="op">%&gt;%</span></span>
-<span id="cb8-3"><a href="designed-for-the-pipe.html#cb8-3"></a><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span></code></pre></div>
-<hr />
-<p>This approach with the pipe works because all the functions <strong>return the same data structure (a tibble/data frame) which is the first argument of the next function.</strong></p>
-<p><strong>Whenever possible, create functions that can be incorporated into a pipeline of operations.</strong></p>
+<div id="class-imbalance" class="section level2">
+<h2><span class="header-section-number">5.3</span> Class imbalance</h2>
+<p>In many instances, random splitting is not suitable. This includes datasets that contain <em>class imbalance</em>, meaning one class is dominated by another. Class imbalance is important to detect and take into consideration in data splitting. Performing random splitting on a dataset with severe class imbalance may cause the model to perform badly at validation. You want to avoid allocating the minority class disproportionately into the training or test set. The point is to have the same distribution across the training and test sets. Class imbalance can occur in differing degrees:</p>
+<p><img src="images/class_imbalance.png" /></p>
+<p>Splitting methods suited for datasets containing class imbalance should be considered. Let’s consider a #Tidytuesday dataset on <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-09-22/readme.md">Himalayan expedition members</a>, which Julia Silge recently explored <a href="https://juliasilge.com/blog/himalayan-climbing/">here</a> using <strong>{tidymodels}</strong>.</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="class-imbalance.html#cb86-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb86-2"><a href="class-imbalance.html#cb86-2"></a><span class="kw">library</span>(skimr)</span>
+<span id="cb86-3"><a href="class-imbalance.html#cb86-3"></a>members &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-09-22/members.csv&quot;</span>) </span>
+<span id="cb86-4"><a href="class-imbalance.html#cb86-4"></a></span>
+<span id="cb86-5"><a href="class-imbalance.html#cb86-5"></a><span class="kw">skim</span>(members)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-31">Table 5.1: </span>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">members</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">76519</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">21</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">character</td>
+<td align="left">10</td>
+</tr>
+<tr class="odd">
+<td align="left">logical</td>
+<td align="left">6</td>
+</tr>
+<tr class="even">
+<td align="left">numeric</td>
+<td align="left">5</td>
+</tr>
+<tr class="odd">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: character</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">empty</th>
+<th align="right">n_unique</th>
+<th align="right">whitespace</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">expedition_id</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">9</td>
+<td align="right">9</td>
+<td align="right">0</td>
+<td align="right">10350</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">member_id</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">12</td>
+<td align="right">12</td>
+<td align="right">0</td>
+<td align="right">76518</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">peak_id</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">391</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">peak_name</td>
+<td align="right">15</td>
+<td align="right">1.00</td>
+<td align="right">4</td>
+<td align="right">25</td>
+<td align="right">0</td>
+<td align="right">390</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">season</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">6</td>
+<td align="right">7</td>
+<td align="right">0</td>
+<td align="right">5</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">sex</td>
+<td align="right">2</td>
+<td align="right">1.00</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">citizenship</td>
+<td align="right">10</td>
+<td align="right">1.00</td>
+<td align="right">2</td>
+<td align="right">23</td>
+<td align="right">0</td>
+<td align="right">212</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">expedition_role</td>
+<td align="right">21</td>
+<td align="right">1.00</td>
+<td align="right">4</td>
+<td align="right">25</td>
+<td align="right">0</td>
+<td align="right">524</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">death_cause</td>
+<td align="right">75413</td>
+<td align="right">0.01</td>
+<td align="right">3</td>
+<td align="right">27</td>
+<td align="right">0</td>
+<td align="right">12</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">injury_type</td>
+<td align="right">74807</td>
+<td align="right">0.02</td>
+<td align="right">3</td>
+<td align="right">27</td>
+<td align="right">0</td>
+<td align="right">11</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: logical</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="left">count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">hired</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.21</td>
+<td align="left">FAL: 60788, TRU: 15731</td>
+</tr>
+<tr class="even">
+<td align="left">success</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.38</td>
+<td align="left">FAL: 47320, TRU: 29199</td>
+</tr>
+<tr class="odd">
+<td align="left">solo</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.00</td>
+<td align="left">FAL: 76398, TRU: 121</td>
+</tr>
+<tr class="even">
+<td align="left">oxygen_used</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.24</td>
+<td align="left">FAL: 58286, TRU: 18233</td>
+</tr>
+<tr class="odd">
+<td align="left">died</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.01</td>
+<td align="left">FAL: 75413, TRU: 1106</td>
+</tr>
+<tr class="even">
+<td align="left">injured</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.02</td>
+<td align="left">FAL: 74806, TRU: 1713</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">year</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">2000.36</td>
+<td align="right">14.78</td>
+<td align="right">1905</td>
+<td align="right">1991</td>
+<td align="right">2004</td>
+<td align="right">2012</td>
+<td align="right">2019</td>
+<td align="left">▁▁▁▃▇</td>
+</tr>
+<tr class="even">
+<td align="left">age</td>
+<td align="right">3497</td>
+<td align="right">0.95</td>
+<td align="right">37.33</td>
+<td align="right">10.40</td>
+<td align="right">7</td>
+<td align="right">29</td>
+<td align="right">36</td>
+<td align="right">44</td>
+<td align="right">85</td>
+<td align="left">▁▇▅▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">highpoint_metres</td>
+<td align="right">21833</td>
+<td align="right">0.71</td>
+<td align="right">7470.68</td>
+<td align="right">1040.06</td>
+<td align="right">3800</td>
+<td align="right">6700</td>
+<td align="right">7400</td>
+<td align="right">8400</td>
+<td align="right">8850</td>
+<td align="left">▁▁▆▃▇</td>
+</tr>
+<tr class="even">
+<td align="left">death_height_metres</td>
+<td align="right">75451</td>
+<td align="right">0.01</td>
+<td align="right">6592.85</td>
+<td align="right">1308.19</td>
+<td align="right">400</td>
+<td align="right">5800</td>
+<td align="right">6600</td>
+<td align="right">7550</td>
+<td align="right">8830</td>
+<td align="left">▁▁▂▇▆</td>
+</tr>
+<tr class="odd">
+<td align="left">injury_height_metres</td>
+<td align="right">75510</td>
+<td align="right">0.01</td>
+<td align="right">7049.91</td>
+<td align="right">1214.24</td>
+<td align="right">400</td>
+<td align="right">6200</td>
+<td align="right">7100</td>
+<td align="right">8000</td>
+<td align="right">8880</td>
+<td align="left">▁▁▂▇▇</td>
+</tr>
+</tbody>
+</table>
+<p>Let’s say we were interested in predicting the likelihood of survival or death for an expedition member. It would be a good idea to check for class imbalance:</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="class-imbalance.html#cb87-1"></a><span class="kw">library</span>(janitor)</span>
+<span id="cb87-2"><a href="class-imbalance.html#cb87-2"></a></span>
+<span id="cb87-3"><a href="class-imbalance.html#cb87-3"></a>members <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb87-4"><a href="class-imbalance.html#cb87-4"></a><span class="st">  </span><span class="kw">tabyl</span>(died) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb87-5"><a href="class-imbalance.html#cb87-5"></a><span class="st">  </span><span class="kw">adorn_totals</span>(<span class="st">&quot;row&quot;</span>)</span></code></pre></div>
+<pre><code>##   died     n    percent
+##  FALSE 75413 0.98554607
+##   TRUE  1106 0.01445393
+##  Total 76519 1.00000000</code></pre>
+<p>We can see that nearly 99% of people survive their expedition. This dataset would be ripe for a sampling technique adept at handling such extreme class imbalance. This technique is called <em>stratified sampling</em>, in which “the training/test split is conducted separately within each class and then these subsamples are combined into the overall training and test set”. Operationally, this is done by using the <code>strata</code> argument inside <code>initial_split()</code>:</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="class-imbalance.html#cb89-1"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb89-2"><a href="class-imbalance.html#cb89-2"></a>members_split &lt;-<span class="st"> </span><span class="kw">initial_split</span>(members, <span class="dt">prob =</span> <span class="fl">0.80</span>, <span class="dt">strata =</span> died)</span>
+<span id="cb89-3"><a href="class-imbalance.html#cb89-3"></a>members_train &lt;-<span class="st"> </span><span class="kw">training</span>(members_split)</span>
+<span id="cb89-4"><a href="class-imbalance.html#cb89-4"></a>members_test &lt;-<span class="st"> </span><span class="kw">testing</span>(members_split)</span></code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="reusing-existing-data-structures.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="designed-for-functional-programming.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="common-methods-for-splitting-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="continuous-outcome-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -296,7 +607,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/02-a_tidyverse_primer.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/05-spending_our_data.Rmd",
 "text": "Edit"
 },
 "history": {

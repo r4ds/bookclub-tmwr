@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.4 Designed for the pipe | Tidy Modeling with R Book Club</title>
+  <title>5.1 Spending our data | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.4 Designed for the pipe | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="5.1 Spending our data | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.4 Designed for the pipe | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="5.1 Spending our data | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="reusing-existing-data-structures.html"/>
-<link rel="next" href="designed-for-functional-programming.html"/>
+<link rel="prev" href="spending-our-data.html"/>
+<link rel="next" href="common-methods-for-splitting-data.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -241,31 +241,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="designed-for-the-pipe" class="section level2">
-<h2><span class="header-section-number">2.4</span> Designed for the pipe</h2>
-<p>The pipe operator, <code>%&gt;%</code>, comes from the <a href="https://magrittr.tidyverse.org"><code>magrittr</code></a> package by <a href="http://stefanbache.dk">Stefan Milton Bache</a>, and is used to chain together a sequence of R functions. More specifically, <strong>the pipe operator uses the value of the object on the left-hand side of the operator as the first argument on the operator’s right-hand side.</strong></p>
-<p>The pipe allows for highly readable code. Consider wanting to sort the <code>mtcars</code> dataset by the number of gears (<code>gear</code>) and then select the first ten rows. How would you do that?</p>
-<hr />
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="designed-for-the-pipe.html#cb7-1"></a>cars_arranged &lt;-<span class="st"> </span><span class="kw">arrange</span>(mtcars, gear)</span>
-<span id="cb7-2"><a href="designed-for-the-pipe.html#cb7-2"></a>cars_selected &lt;-<span class="st"> </span><span class="kw">slice</span>(cars_arranged, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span>
-<span id="cb7-3"><a href="designed-for-the-pipe.html#cb7-3"></a></span>
-<span id="cb7-4"><a href="designed-for-the-pipe.html#cb7-4"></a><span class="co"># more compactly</span></span>
-<span id="cb7-5"><a href="designed-for-the-pipe.html#cb7-5"></a>cars_selected &lt;-<span class="st"> </span><span class="kw">slice</span>(<span class="kw">arrange</span>(mtcars, gear), <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span></code></pre></div>
-<p>Using the pipe to substitute the left-hand side of the operator with the first argument on the right-hand side, we can get the same result as follows:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="designed-for-the-pipe.html#cb8-1"></a>cars_selected &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span></span>
-<span id="cb8-2"><a href="designed-for-the-pipe.html#cb8-2"></a><span class="st">  </span><span class="kw">arrange</span>(gear) <span class="op">%&gt;%</span></span>
-<span id="cb8-3"><a href="designed-for-the-pipe.html#cb8-3"></a><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span></code></pre></div>
-<hr />
-<p>This approach with the pipe works because all the functions <strong>return the same data structure (a tibble/data frame) which is the first argument of the next function.</strong></p>
-<p><strong>Whenever possible, create functions that can be incorporated into a pipeline of operations.</strong></p>
+<div id="spending-our-data-1" class="section level2">
+<h2><span class="header-section-number">5.1</span> Spending our data</h2>
+<p>The task of creating a useful model can be daunting. Thankfully, one can do so step-by-step. It can be helpful to sketch out your path, as Chanin Nantasenamat has done so:</p>
+<p><img src="images/step_by_step_ml.jpg" /></p>
+<p>We’re going to zoom into the data splitting part. As the diagram shows, it is one of the earliest considerations in a model building workflow. The <strong>training set</strong> is the data that the model(s) learns from. It’s usually the majority of the data (~ 80-70% of the data), and you’ll be spending the bulk of your time working on fitting models to it.</p>
+<p>The <strong>test set</strong> is the data set aside for unbiased model validation once a candidate model(s) has been chosen. Unlike the training set, the test set is only looked at once.</p>
+<p>Why is it important to think about data splitting? You could do everything right, from cleaning the data, collecting features and picking a great model, but get bad results when you test the model on data it hasn’t seen before. If you’re in this predicament, the data splitting you’ve employed may be worth further investigation.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="reusing-existing-data-structures.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="designed-for-functional-programming.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="spending-our-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="common-methods-for-splitting-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -296,7 +286,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/02-a_tidyverse_primer.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/05-spending_our_data.Rmd",
 "text": "Edit"
 },
 "history": {
