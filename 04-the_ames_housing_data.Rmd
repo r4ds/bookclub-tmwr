@@ -2,13 +2,150 @@
 
 **Learning objectives:**
 
-- Explain when it makes sense to **log-transform data.**
 - Explain why **exploratory data analysis** is an essential component of any modeling project.
+- Recognize the **Ames housing data** - variables, context, and past cleaning.
+- Explain when it makes sense to **log-transform data.**
 
-## Slide 1 Title
+## Pittsburgh: a parallel real world example
 
-Put the content of your slide here.
+[Conor Tompkins](https://twitter.com/conor_tompkins) presented a fantastic overview of home sale price modeling by taking us through his recent project on Pittsburgh home sale price modeling, including discussions about his **exploratory data analysis**, motivations behind **log-transforming** sale data, and thoughts about **inflation-adjusting** historical sale prices. 
 
-## Slide 2 Title
+Code Repository here: https://github.com/conorotompkins/model_allegheny_house_sales
 
-Put the content of your second slide here.
+Shiny app: https://conorotompkins.shinyapps.io/house_sale_estimator/
+
+<details>
+  <summary> Cohort 1 Zoom chat logs </summary>
+  
+  ```
+00:11:41    Tyler Grant Smith:  does jon sound far away
+00:11:44    Jonathan Trattner:  yes
+00:11:58    Yoni Sidi:  Austin is far away
+00:12:04    Tan Ho: very!
+00:12:23    Conor Tompkins: https://conorotompkins.shinyapps.io/house_sale_estimator/
+00:12:26    Jon Harmon (jonthegeek):    I ran out of USB slots temporarily so I'm using my crappy microphone for a bit.
+00:26:41    Yoni Sidi:  what were the original motivations on cleaning the data, was it preset task driven or strictly data driven? 
+00:27:59    Tan Ho: oops sorry :P
+00:28:35    Juan Guillermo: Hi everyone
+00:28:42    Jon Harmon (jonthegeek):    Welcome, Juan!
+00:28:57    Juan Guillermo: thanks!
+00:28:59    Darya Vanichkina:   With school districts vs council districts, how does that work? I.e. can school districts span counties, and does it make sense to adjust house price based on whether or not the house is in a good school district? [not US-based, so not 100% sure how it works on the ground]
+00:29:46    Jon Harmon (jonthegeek):    I don't know about Pittsburgh, but school districts & council districts are completely unrelated in Austin.
+00:29:46    Jonathan Trattner:  Did you save and document each of those iterations in the data cleaning set? Or were you just going through it looking for what you wanted?
+00:30:06    Tan Ho: YAY JON
+00:30:12    Jonathan Trattner:  Congrats!!
+00:30:38    Jon Harmon (jonthegeek):    Thanks, it's exciting!
+00:37:56    Tony ElHabr:    Conor, did you think about including additional data sets, such as Zillow's forecasts?
+00:38:04    Asmae Toumi:    skimr is awesome, it can generate all sorts of summaries. you can also pipe it after a group_by
+00:38:19    Darya Vanichkina:   It also works on the command line!
+00:38:32    Darya Vanichkina:   Which is really impressive when working on cloud/HPC
+00:39:12    David Severski: Zillow is pretty tight fisted about scraping their estimates.
+00:39:28    pavitra:    is esquisse comparable with skimr? 
+00:40:30    pavitra:    cool.. thanks!
+00:40:43    Kevin Kent: Ohh esquisse is sketch in French. That makes sense
+00:41:05    Jon Harmon (jonthegeek):    And now French speakers can laugh at me, Pavitra, AND Yoni's pronunciation!
+00:41:44    pavitra:    well, I pronounced it like a total desi - "eskqueeeeez"..you cannot top that, Jon!
+00:42:11    Asmae Toumi:    Really happy I tuned it tonight, didn’t know of priceR package to inflation adjust prices. Ive been doing it manually lol
+00:42:24    Jon Harmon (jonthegeek):    yeah, that's great even on its own for sure!
+00:42:45    Jon Harmon (jonthegeek):    He said GitHub so we need to make him give us the URL so we can put it in the book.
+00:42:48    Tan Ho: I've been making use of CANSIM to access stats Canada data on stuff, i'm sure there's something comparable
+00:43:03    pavitra:    does this dataset include demographics also? 
+00:43:06    Tan Ho: https://github.com/stevecondylios/priceR
+00:43:27    Joe Sydlowski:  I feel like I put a lot of blind trust in packages like that. How much do you validate the functions when you find a new package?
+00:43:31    Jon Harmon (jonthegeek):    @pavitra I don't think this one did.
+00:43:42    Asmae Toumi:    Speaking of hockey bruins currently kicking Pittsburgh’s ass right now
+00:43:55    Tan Ho: boston home prices kicking everyone's ass rn
+00:44:00    Asmae Toumi:    lmaooooo
+00:44:07    Yoni Sidi:  def check the code and the level of unit testing
+00:44:39    Tyler Grant Smith:  wouldnt neighborhod effect vary qith year of sale....gentrification etc
+00:44:42    Jonathan Trattner:  It is on CRAN for whatever that’s worth
+00:44:49    Yoni Sidi:  that's not worth much
+00:44:54    Tan Ho: He's also in the R4DS slack channel
+00:44:58    Yoni Sidi:  on CRAN means they passed cmd check 
+00:45:05    Jonathan Trattner:  Well yeah
+00:45:09    Jonathan Trattner:  But it also has some nice tests
+00:45:12    Tony ElHabr:    yoni is going to need to interview him before he approves of the package
+00:45:15    David Severski: A little basic looking. https://github.com/stevecondylios/priceR/blob/master/R/adjust_for_inflation.R#L298-L321
+00:45:22    Jonathan Trattner:  Using api for world bank
+00:46:08    David Severski: I tend to use indices direct from FRED for a lot of my own inflation conversion work.
+00:46:31    Jon Harmon (jonthegeek):    Yeah, it definitely depends how important exact numbers are to you.
+00:46:50    Kevin Kent: I guess inflation would be a feature you’d have to forecast out if you wanted to get predictions for the future? But still noodling on that.
+00:47:07    Tyler Grant Smith:  it definitely is
+00:47:29    Jon Harmon (jonthegeek):    It looks like that package allowed for future inflation.
+00:47:41    Jon Harmon (jonthegeek):    (Conor commented out that part, but it showed in his code)
+00:48:53    Kevin Kent: Oh nice. I feel like I run into that a lot in forecasting contexts - needing to be careful about the features and how uncertain they are in the future.
+00:49:41    Scott Nestler:  An aside since we have some sports fans in the group. Pine-Richland is where Phil Jurkovic, the former ND backup QB (who's now the starter at BC) is from.
+00:49:54    Asmae Toumi:    nice
+00:52:29    Tyler Grant Smith:  id definitely consider esp since a lot of pricing is done as $/sqft
+00:52:38    David Severski: I wonder if lot sizes would discretize cleanly. Lot sizes tend to bin, right?
+00:52:44    Tyler Grant Smith:  did you engineer something like that
+00:52:58    Jarad Jones:    To go along with Jon’s question about log transforming…..how would you all decide to do that or not?
+00:53:38    Scott Nestler:  How did you collapse factor variables?  With fct_lump_n() or something else?
+00:53:46    David Severski: Jarad - Plotting out the distributions is something I try to do consistently, then look to transforms to get close-er to a normal distribution.
+00:54:18    Tyler Grant Smith:  not just log transform but box cox transforms more generally
+00:54:22    Kevin Kent: I’d say it also depends on the assumptions of the model, and if they require normally distributed features.
+00:54:22    Darya Vanichkina:   Yes, like David - eyeball it :(
+00:54:34    Tony ElHabr:    yup. non negative is big use case
+00:54:38    Asmae Toumi:    In the words of the iconic Andrew German, “Log transform, kids. And don’t listen to people who tell you otherwise.”
+00:54:45    Darya Vanichkina:   Box Cox or Yeo Johnson
+00:54:46    Asmae Toumi:    link:https://statmodeling.stat.columbia.edu/2019/08/21/you-should-usually-log-transform-your-positive-data/
+00:54:56    Tyler Grant Smith:  i would talk but i have lots of loud kids around me
+00:55:05    David Severski: “And trust me about the sunscreen…” ;)
+00:55:33    Asmae Toumi:    Don’t forget the two finger rule for sunscreen also
+00:55:37    Darya Vanichkina:   Kevin, I think that because we could be comparing models which do/do not require normally distributed residuals I’d transform (and then compare)
+00:55:42    Arjun Paudel:   anytime you have a big tail
+00:55:55    Tony ElHabr:    also, if you're combining two predictions, I think log-transformed has good theoretical properties
+00:56:13    Kevin Kent: Yeah that makes sense
+00:56:47    Jarad Jones:    That’s helpful, thanks!
+00:56:52    Scott Nestler:  That student was trying to maximize their leverage.
+00:57:05    Jon Harmon (jonthegeek):    They left and came back to the assignment but it's sometimes hard to see that.
+00:57:13    Darya Vanichkina:   It doesn’t - but you’re usually comparing the performance of the two
+00:57:18    Darya Vanichkina:   Right?
+00:57:43    Tony ElHabr:    yeah, I don't think it really needs it. but never hurts to try multiple methods
+00:57:52    Tony ElHabr:    tyler is the truth teller
+00:58:00    Tony ElHabr:    he got the kids to calm down for long enough
+00:58:27    Tyler Grant Smith:  yes that is one reason to do it
+00:58:34    Tyler Grant Smith:  theyre in the bath now
+00:58:39    pavitra:    for scientific assays, the dilutions are so large in range, I absolutely need to log-transform the data to make any sense of it
+00:58:46    Jon Harmon (jonthegeek):    ^^^
+00:59:00    Tony ElHabr:    also, you look smarter if you log transform
+00:59:04    Darya Vanichkina:   LOL
+00:59:07    Tony ElHabr:    your audience will think you know what you're doing
+00:59:10    shamsuddeen:    lol
+00:59:16    Kevin Kent: Lol fantastic
+00:59:33    pavitra:    john murdoch
+00:59:33    Darya Vanichkina:   I loved the RStudio conf talk where the FT journalist pros/cons of it
+00:59:47    Darya Vanichkina:   Yes, there are also “normal people”…
+01:00:23    Tyler Grant Smith:  lognormal people
+01:01:35    Scott Nestler:  1 Full and 7 Half ???
+01:02:13    Jonathan Trattner:  Maybe they’re complementary halves?
+01:02:13    Tyler Grant Smith:  shower in the bedroom but i cant be bothered to go to another room for #2
+01:03:39    Tan Ho: doesn't your house have a three-urinal men's washroom separate from a three-stall women's washroom?
+01:03:40    Darya Vanichkina:   If possible, please, I’d love some documentation for all of the .R scripts on GitHub to make your thought process/prototyping clearer….
+01:03:43    Asmae Toumi:    Is this on GitHub? I have a small aesthetic suggestion for the leaflet map so that the labels are on top of the color
+01:04:15    Jon Harmon (jonthegeek):    I believe it is and we'll make him share it in the channel/in the bookdown :)
+01:04:17    Darya Vanichkina:   I think it’s here? https://github.com/conorotompkins/model_allegheny_house_sales
+01:04:28    Tan Ho: Yup, that's the one
+01:04:43    Asmae Toumi:    thanks
+01:05:00    Darya Vanichkina:   Sorry, need to run - thank you, everyone!
+01:05:13    pavitra:    has connor already developed any models on this data?
+01:05:13    Jon Harmon (jonthegeek):    See ya Darya!
+01:05:26    Tan Ho: https://github.com/conorotompkins/model_allegheny_house_sales/tree/main/scripts/model @pavitra
+01:05:28    Jon Harmon (jonthegeek):    @pavitra: Yup! he predicts the price based on those settings.
+01:05:47    pavitra:    oh boy! neat
+01:06:33    David Severski: Gotta run now. Thanks for the talk and the conversation!
+01:07:30    Jon Harmon (jonthegeek):    A numeric value between 0 and 1 or an integer greater or equal to one. If it's less than one then factor levels whose rate of occurrence in the training set are below threshold will be "othered". If it's greater or equal to one then it's treated as a frequency and factor levels that occur less then threshold times will be "othered".
+01:09:13    Jon Harmon (jonthegeek):    A logical. Should the step be skipped when the recipe is baked by bake.recipe()? While all operations are baked when prep.recipe() is run, some operations may not be able to be conducted on new data (e.g. processing the outcome variable(s)). Care should be taken when using skip = TRUE as it may affect the computations for subsequent operations
+01:11:30    Jim Gruman: thankyou Conor
+01:11:40    Kevin Kent: Nice job! Was helpful to talk through code and the concepts represented in it.
+01:11:44    Tan Ho: thank you! that was awesome!
+01:11:48    Jonathan Leslie:    Thanks, Conor!
+01:11:51    caroline:   Thank you Conor
+01:11:52    Joe Sydlowski:  Thanks Conor!
+01:11:56    Laurens Put:    Thank you
+01:11:59    Asmae Toumi:    Conor that was awesome. I hope it ends up on tidytuesday
+01:12:00    Jarad Jones:    Nice job Conor, the whole end product is pretty impressive for a first shiny app!
+01:12:00    pavitra:    thanks a lot, Connor..i think you finished the purpose of the book
+```
+
+</details>

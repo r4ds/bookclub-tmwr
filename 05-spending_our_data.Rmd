@@ -3,11 +3,11 @@
 **Learning objectives:**
 
 - Use {rsample} to **split data into training and testing sets.**
- - Identify cases where **stratified sampling** is useful.
- - Understand the **difference** between `rsample::initial_time_split()` and `rsample::initial_split()`.
- - Understand the **trade-offs** between too little training data and too list testing data.
- - Define a **validation set** of data.
- - Explain why data should be split at the **independent experimental unit** level.
+- Identify cases where **stratified sampling** is useful.
+- Understand the **difference** between `rsample::initial_time_split()` and `rsample::initial_split()`.
+- Understand the **trade-offs** between too little training data and too little testing data.
+- Define a **validation set** of data.
+- Explain why data should be split at the **independent experimental unit** level.
 
 ## Spending our data 
 
@@ -124,7 +124,6 @@ include_tweet("https://twitter.com/asmae_toumi/status/1356024351720689669?s=20")
 ```
 
 
-
 ![](images/provocative_8020.jpg)
 
 
@@ -143,7 +142,7 @@ Data splitting is an important part of a modeling workflow as it impacts model v
 
 We will learn more about how to remedy certain issues such as class imbalance, bias and overfitting in Chapter 10. 
  
-## References
+### References
 
 - Tidy modeling with R by Max Kuhn and Julia Silge: https://www.tmwr.org/splitting.html
 - Feature Engineering and Selection: A Practical Approach for Predictive Models by Max Kuhn and Kjell Johnson: https://bookdown.org/max/FES/
