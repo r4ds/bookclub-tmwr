@@ -66,13 +66,9 @@
 3. Develop clear expectations of the goal of your model and how performance will be judged ([Chapter 9](https://www.tmwr.org/performance.html))
     - "What is/are the *performance metrics or realistic goal/s* of what can be achieved?"
 
-
-
 <div style="text-align:center;">
 ![The data science process (from R for Data Science by Wickham and Grolemund.](https://www.tmwr.org/premade/data-science-model.svg)
 </div>
-
-
 
 ## The modeling process
 
@@ -86,3 +82,8 @@
   - Some models require **hyperparameter tuning**
 - **Model evaluation:** Use EDA-like analyses and compare model performance metrics to choose the best model for your situation.
 
+## Meeting Videos
+
+### Cohort 1
+
+![](https://youtu.be/jrBiEppKt_0)

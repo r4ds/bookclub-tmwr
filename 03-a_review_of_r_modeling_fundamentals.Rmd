@@ -357,3 +357,10 @@ df
 -   It is **inclusive**, because the tidyverse is not just the collection of packages, but it is also the community of people who use them.
 
     -   Although the `{tidyverse}` and `{tidymodels}` are opinionated in their design, the developers are receptive to public feedback.
+
+## Meeting Videos
+
+### Cohort 1
+
+![](https://youtu.be/Je7RoEIR54g)
+  
