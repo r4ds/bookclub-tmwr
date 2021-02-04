@@ -9,8 +9,13 @@
 - List some **advantages of using a recipe** for feature engineering.
 - Describe **what happens when a recipe is prepared** with `recipes::prep()`.
 - Use `recipes::bake()` to **process a dataset.**
+- Recognize how to use `recipes::step_unknown()`, `recipes::step_novel()`, `recipes::step_other()` to **prepare factor variables.**
+- Explain how `recipes::step_dummy()` **encodes qualitative data in a numeric format.**
+- Recognize techniques for dealing with large numbers of categories, such as feature hashing or encoding using the {embed} package (as described in [this talk by Alan Feder at rstudio::global(2021)](https://rstudio.com/resources/rstudioglobal-2021/categorical-embeddings-new-ways-to-simplify-complex-data/)).
+- Recognize methods for **encoding ordered factors.**
 
-(Still working on LOs, all those are just through section 6.2!)
+
+(Still working on LOs, all those are just through section 6.4!)
 
 ## Slide 1 Title
 
