@@ -2,7 +2,15 @@
 
 **Learning objectives:**
 
-- Jon will prefill these.
+- Define **feature engineering.**
+- List **reasons** that feature engineering might be **beneficial.**
+- Use the {recipes} package to **create a simple feature engineering recipe.**
+- Use selectors from the {recipes} package to **apply transformations to specific types of columns.**
+- List some **advantages of using a recipe** for feature engineering.
+- Describe **what happens when a recipe is prepared** with `recipes::prep()`.
+- Use `recipes::bake()` to **process a dataset.**
+
+(Still working on LOs, all those are just through section 6.2!)
 
 ## Slide 1 Title
 
