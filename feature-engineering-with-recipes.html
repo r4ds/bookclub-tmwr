@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-02-03" />
+<meta name="date" content="2021-02-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -257,7 +257,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 6</span> Feature engineering with recipes</h1>
 <p><strong>Learning objectives:</strong></p>
 <ul>
-<li>Jon will prefill these.</li>
+<li>Define <strong>feature engineering.</strong></li>
+<li>List <strong>reasons</strong> that feature engineering might be <strong>beneficial.</strong></li>
+<li>Use the {recipes} package to <strong>create a simple feature engineering recipe.</strong></li>
+<li>Use selectors from the {recipes} package to <strong>apply transformations to specific types of columns.</strong></li>
+<li>List some <strong>advantages of using a recipe</strong> for feature engineering.</li>
+<li>Describe <strong>what happens when a recipe is prepared</strong> with <code>recipes::prep()</code>.</li>
+<li>Use <code>recipes::bake()</code> to <strong>process a dataset.</strong></li>
+<li>Recognize how to use <code>recipes::step_unknown()</code>, <code>recipes::step_novel()</code>, <code>recipes::step_other()</code> to <strong>prepare factor variables.</strong></li>
+<li>Explain how <code>recipes::step_dummy()</code> <strong>encodes qualitative data in a numeric format.</strong></li>
+<li>Recognize techniques for dealing with large numbers of categories, such as feature hashing or encoding using the {embed} package (as described in <a href="https://rstudio.com/resources/rstudioglobal-2021/categorical-embeddings-new-ways-to-simplify-complex-data/">this talk by Alan Feder at rstudio::global(2021)</a>).</li>
+<li>Recognize methods for <strong>encoding ordered factors.</strong></li>
+<li>Use <code>recipes::step_interact()</code> to add <strong>interaction terms</strong> to a recipe.</li>
+<li>Understand why <strong>some steps might only be applicable to training data.</strong></li>
+<li>Recognize the <strong>functions from <code>{recipes}</code> and <code>{themis}</code></strong> that are <strong>only applied to training data</strong> by default.</li>
+<li>Recognize that <code>{recipes}</code> includes functions for <strong>creating spline terms,</strong> such as <code>step_ns()</code>.</li>
+<li>Recognize that <code>{recipes}</code> includes functions for <strong>feature extraction,</strong> such as <code>step_pca()</code>.</li>
+<li>Use <code>themis::step_downsample()</code> to <strong>downsample</strong> data.</li>
+<li>Recognize other <strong>row-sampling steps</strong> from the <code>{recipes}</code> package.</li>
+<li>Use <code>recipes::step_mutate()</code> and <code>recipes::step_mutate_at()</code> for general <code>{dplyr}</code>-like transformations.</li>
+<li>Recall that the <code>{textrecipes}</code> package exists for <strong>text-specific feature-engineering steps.</strong></li>
+<li>Understand that the functions of the <code>{recipes}</code> package <strong>use training data</strong> for all preprocessing and feature engineering steps to prevent leakage.</li>
+<li>Use <code>{recipes}</code> to <strong>prepare data for traditional modeling functions.</strong></li>
+<li>Use <code>tidy()</code> to <strong>examine a recipe</strong> and its steps.</li>
+<li>Refer to columns with <strong>roles</strong> other than <code>"predictor"</code> or <code>"outcome"</code>.</li>
 </ul>
 </div>
             </section>
