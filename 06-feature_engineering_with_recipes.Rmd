@@ -2,7 +2,30 @@
 
 **Learning objectives:**
 
-- Jon will prefill these.
+- Define **feature engineering.**
+- List **reasons** that feature engineering might be **beneficial.**
+- Use the {recipes} package to **create a simple feature engineering recipe.**
+- Use selectors from the {recipes} package to **apply transformations to specific types of columns.**
+- List some **advantages of using a recipe** for feature engineering.
+- Describe **what happens when a recipe is prepared** with `recipes::prep()`.
+- Use `recipes::bake()` to **process a dataset.**
+- Recognize how to use `recipes::step_unknown()`, `recipes::step_novel()`, `recipes::step_other()` to **prepare factor variables.**
+- Explain how `recipes::step_dummy()` **encodes qualitative data in a numeric format.**
+- Recognize techniques for dealing with large numbers of categories, such as feature hashing or encoding using the {embed} package (as described in [this talk by Alan Feder at rstudio::global(2021)](https://rstudio.com/resources/rstudioglobal-2021/categorical-embeddings-new-ways-to-simplify-complex-data/)).
+- Recognize methods for **encoding ordered factors.**
+- Use `recipes::step_interact()` to add **interaction terms** to a recipe.
+- Understand why **some steps might only be applicable to training data.**
+- Recognize the **functions from `{recipes}` and `{themis}`** that are **only applied to training data** by default.
+- Recognize that `{recipes}` includes functions for **creating spline terms,** such as `step_ns()`.
+- Recognize that `{recipes}` includes functions for **feature extraction,** such as `step_pca()`.
+- Use `themis::step_downsample()` to **downsample** data.
+- Recognize other **row-sampling steps** from the `{recipes}` package.
+- Use `recipes::step_mutate()` and `recipes::step_mutate_at()` for general `{dplyr}`-like transformations.
+- Recall that the `{textrecipes}` package exists for **text-specific feature-engineering steps.**
+- Understand that the functions of the `{recipes}` package **use training data** for all preprocessing and feature engineering steps to prevent leakage.
+- Use `{recipes}` to **prepare data for traditional modeling functions.**
+- Use `tidy()` to **examine a recipe** and its steps.
+- Refer to columns with **roles** other than `"predictor"` or `"outcome"`.
 
 ## Slide 1 Title
 
