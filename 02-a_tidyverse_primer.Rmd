@@ -25,11 +25,22 @@ The `tidyverse` has [four core design principles](https://design.tidyverse.org/u
 3.  **Composable:** Easily breakdown data challenges into smaller components with exploratory tools to find the best solution.
 4.  **Inclusive:** Fostering a community of like-minded users (e.g. \#*rstats*)
 
-## Design for Humans {#design-for-humans}
+## Design for Humans - Overview 
 
 > "Programs must be written for people to read, and only incidentally for machines to execute."
 >
 > \- Hal Abelson
+
+![Design Thinking](images/designthinking_illustration_final2-02.png)
+Credit: [Nielson Norman Group](https://www.nngroup.com/articles/design-thinking/)
+
+**Motivation** - [Avoiding Norman Doors](https://design.tidyverse.org/unifying-principles.html)
+
+What are the equivalent of Norman Doors in programming?
+
+`r knitr::include_url("https://www.youtube.com/embed/yY96hTb8WgI")`
+
+## Design for Humans and the Tidyverse {#design-for-humans}
 
 The `tidyverse` offers packages that are easily readable and understood by humans. It enables them to more easily achieve their programming goals.
 
@@ -244,6 +255,17 @@ head(all_stations, 10)
 >
 > \- Max Kuhn and Julia Silge in *Tidy Modeling with R*
 
+## Further Reading
+
+- [Design of Everyday Things - Don Norman](https://www.amazon.com/Design-Everyday-Things-Revised-Expanded/dp/0465050654) 
+- [Tidyverse Design Principles - The Tidyverse Team](https://design.tidyverse.org/)
+- [Visualization Analysis and Design](https://www.amazon.com/Visualization-Analysis-Design-AK-Peters/dp/1466508914)  - A really great primer on visualization design from a human-centered perspective. Draws on research in cognitive science and presents a high-level framework for designing visualizations to support decision making.
+
+From [Tidyverse Design Principles Chapter 2](https://design.tidyverse.org/unifying-principles.html):
+
+- [The Unix philsophy](https://homepage.cs.uri.edu/~thenry/resources/unix_art/ch01s06.html)
+- [The Zen of Python](https://www.python.org/dev/peps/pep-0020/)
+- [Design Principles Behind Smalltalk](https://refs.devinmcgloin.com/smalltalk/Design-Principles-Behind-Smalltalk.pdf)
 
 ## Meeting Videos
 
