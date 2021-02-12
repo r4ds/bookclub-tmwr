@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5.2 Common methods for splitting data | Tidy Modeling with R Book Club</title>
+  <title>2.9 Further Reading | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5.2 Common methods for splitting data | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="2.9 Further Reading | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5.2 Common methods for splitting data | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="2.9 Further Reading | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="spending-our-data-1.html"/>
-<link rel="next" href="class-imbalance.html"/>
+<link rel="prev" href="how-to-read-and-wrangle-data.html"/>
+<link rel="next" href="meeting-videos-1.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -255,28 +255,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="common-methods-for-splitting-data" class="section level2">
-<h2><span class="header-section-number">5.2</span> Common methods for splitting data</h2>
-<p>Choosing how to conduct the split of the data into training and test sets may not be a trivial task. It depends on the data and the purpose.</p>
-<p>The most common type of sampling is known as random sampling and it is done readily in R using the <a href="https://rsample.tidymodels.org">rsample</a> package with the <code>initial_split()</code>function. For the <a href="https://www.tmwr.org/ames.html">Ames housing dataset</a>, the call would be:</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="common-methods-for-splitting-data.html#cb86-1"></a><span class="kw">library</span>(tidymodels)</span>
-<span id="cb86-2"><a href="common-methods-for-splitting-data.html#cb86-2"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb86-3"><a href="common-methods-for-splitting-data.html#cb86-3"></a><span class="kw">data</span>(ames)</span>
-<span id="cb86-4"><a href="common-methods-for-splitting-data.html#cb86-4"></a>ames_split &lt;-<span class="st"> </span><span class="kw">initial_split</span>(ames, <span class="dt">prob =</span> <span class="fl">0.80</span>)</span>
-<span id="cb86-5"><a href="common-methods-for-splitting-data.html#cb86-5"></a>ames_split</span></code></pre></div>
-<pre><code>## &lt;Analysis/Assess/Total&gt;
-## &lt;2198/732/2930&gt;</code></pre>
-<p>The object <code>ames_split</code> is an <code>rsplit</code> object. To get the training and test results you can call on <code>training()</code> and <code>test()</code>:</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="common-methods-for-splitting-data.html#cb88-1"></a>ames_train &lt;-<span class="st"> </span><span class="kw">training</span>(ames_split)</span>
-<span id="cb88-2"><a href="common-methods-for-splitting-data.html#cb88-2"></a>ames_test  &lt;-<span class="st"> </span><span class="kw">testing</span>(ames_split)</span></code></pre></div>
+<div id="further-reading" class="section level2">
+<h2><span class="header-section-number">2.9</span> Further Reading</h2>
+<ul>
+<li><a href="https://www.amazon.com/Design-Everyday-Things-Revised-Expanded/dp/0465050654">Design of Everyday Things - Don Norman</a></li>
+<li><a href="https://design.tidyverse.org/">Tidyverse Design Principles - The Tidyverse Team</a></li>
+<li><a href="https://www.amazon.com/Visualization-Analysis-Design-AK-Peters/dp/1466508914">Visualization Analysis and Design</a> - A really great primer on visualization design from a human-centered perspective. Draws on research in cognitive science and presents a high-level framework for designing visualizations to support decision making.</li>
+</ul>
+<p>From <a href="https://design.tidyverse.org/unifying-principles.html">Tidyverse Design Principles Chapter 2</a>:</p>
+<ul>
+<li><a href="https://homepage.cs.uri.edu/~thenry/resources/unix_art/ch01s06.html">The Unix philsophy</a></li>
+<li><a href="https://www.python.org/dev/peps/pep-0020/">The Zen of Python</a></li>
+<li><a href="https://refs.devinmcgloin.com/smalltalk/Design-Principles-Behind-Smalltalk.pdf">Design Principles Behind Smalltalk</a></li>
+</ul>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="spending-our-data-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="class-imbalance.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="how-to-read-and-wrangle-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="meeting-videos-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -307,7 +306,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/05-spending_our_data.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/02-a_tidyverse_primer.Rmd",
 "text": "Edit"
 },
 "history": {

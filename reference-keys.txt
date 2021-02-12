@@ -9,12 +9,14 @@ meeting-videos
 cohort-1
 a-tidyverse-primer
 tidyverse-design-principles
+design-for-humans---overview
 design-for-humans
 reusing-existing-data-structures
 designed-for-the-pipe
 designed-for-functional-programming
 tibbles-vs.-data-frames
 how-to-read-and-wrangle-data
+further-reading
 meeting-videos-1
 cohort-1-1
 a-review-of-r-modeling-fundamentals
