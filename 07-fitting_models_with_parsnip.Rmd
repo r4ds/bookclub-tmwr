@@ -3,9 +3,12 @@
 **Learning objectives:**
 
 - Identify ways in which **model interfaces can differ.**
-- List the **steps to specify a model** in `{parsnip}`.
+- **Specify a model** in `{parsnip}`.
 - **Fit a model** with `parsnip::fit()` and `parsnip::fit_xy()`.
 - Describe how `{parsnip}` **generalizes model arguments.**
+- Use `broom::tidy()` to **convert model objects to a tidy structure.**
+- Use `dplyr::bind_cols()` and the `predict()` methods from `{parsnip}` to **make tidy predictions. **
+- **Find interfaces to other models** in `{parsnip}`-adjacent packages. 
 
 ## Slide 1 Title
 
