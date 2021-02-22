@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-02-15" />
+<meta name="date" content="2021-02-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -265,32 +265,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb38-2"><a href="r-formula-syntax.html#cb38-2"></a></span>
 <span id="cb38-3"><a href="r-formula-syntax.html#cb38-3"></a>trees &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(trees)</span>
 <span id="cb38-4"><a href="r-formula-syntax.html#cb38-4"></a>trees</span></code></pre></div>
-<pre><code>## [90m# A tibble: 31 x 3[39m
+<pre><code>## # A tibble: 31 x 3
 ##    Girth Height Volume
-##    [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m
-## [90m 1[39m   8.3     70   10.3
-## [90m 2[39m   8.6     65   10.3
-## [90m 3[39m   8.8     63   10.2
-## [90m 4[39m  10.5     72   16.4
-## [90m 5[39m  10.7     81   18.8
-## [90m 6[39m  10.8     83   19.7
-## [90m 7[39m  11       66   15.6
-## [90m 8[39m  11       75   18.2
-## [90m 9[39m  11.1     80   22.6
-## [90m10[39m  11.2     75   19.9
-## [90m# … with 21 more rows[39m</code></pre>
+##    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1   8.3     70   10.3
+##  2   8.6     65   10.3
+##  3   8.8     63   10.2
+##  4  10.5     72   16.4
+##  5  10.7     81   18.8
+##  6  10.8     83   19.7
+##  7  11       66   15.6
+##  8  11       75   18.2
+##  9  11.1     80   22.6
+## 10  11.2     75   19.9
+## # … with 21 more rows</code></pre>
 <p>Note that there is an analytical way to calculate tree volume from measures of diameter and height.</p>
 <p><img src="images/tree-girth-height-volume.jpg" /></p>
 <p><img src="images/tree-girth-height-volume-formula.svg" /></p>
 <p>We observe that <code>Girth</code> is strongly correlated with <code>Volume</code></p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="r-formula-syntax.html#cb40-1"></a>trees <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb40-2"><a href="r-formula-syntax.html#cb40-2"></a><span class="st">  </span>corrr<span class="op">::</span><span class="kw">correlate</span>()</span></code></pre></div>
-<pre><code>## [90m# A tibble: 3 x 4[39m
+<pre><code>## # A tibble: 3 x 4
 ##   term    Girth Height Volume
-##   [3m[90m&lt;chr&gt;[39m[23m   [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m
-## [90m1[39m Girth  [31mNA[39m      0.519  0.967
-## [90m2[39m Height  0.519 [31mNA[39m      0.598
-## [90m3[39m Volume  0.967  0.598 [31mNA[39m</code></pre>
+##   &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Girth  NA      0.519  0.967
+## 2 Height  0.519 NA      0.598
+## 3 Volume  0.967  0.598 NA</code></pre>
 <p>Shame on you 😉 if you didn’t guess I would make a scatter plot given a data set with two variables.</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="r-formula-syntax.html#cb42-1"></a>trees <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb42-2"><a href="r-formula-syntax.html#cb42-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Girth, <span class="dt">y =</span> Height)) <span class="op">+</span><span class="st"> </span></span>
@@ -367,20 +367,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb55-2"><a href="r-formula-syntax.html#cb55-2"></a><span class="kw">set.seed</span>(<span class="dv">42</span>)</span>
 <span id="cb55-3"><a href="r-formula-syntax.html#cb55-3"></a>trees2<span class="op">$</span>group =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">toupper</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]), <span class="dt">size =</span> <span class="kw">nrow</span>(trees2), <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb55-4"><a href="r-formula-syntax.html#cb55-4"></a>trees2</span></code></pre></div>
-<pre><code>## [90m# A tibble: 31 x 4[39m
+<pre><code>## # A tibble: 31 x 4
 ##    Girth Height Volume group
-##    [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m
-## [90m 1[39m   8.3     70   10.3 A    
-## [90m 2[39m   8.6     65   10.3 A    
-## [90m 3[39m   8.8     63   10.2 A    
-## [90m 4[39m  10.5     72   16.4 A    
-## [90m 5[39m  10.7     81   18.8 B    
-## [90m 6[39m  10.8     83   19.7 D    
-## [90m 7[39m  11       66   15.6 B    
-## [90m 8[39m  11       75   18.2 B    
-## [90m 9[39m  11.1     80   22.6 A    
-## [90m10[39m  11.2     75   19.9 D    
-## [90m# … with 21 more rows[39m</code></pre>
+##    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;
+##  1   8.3     70   10.3 A    
+##  2   8.6     65   10.3 A    
+##  3   8.8     63   10.2 A    
+##  4  10.5     72   16.4 A    
+##  5  10.7     81   18.8 B    
+##  6  10.8     83   19.7 D    
+##  7  11       66   15.6 B    
+##  8  11       75   18.2 B    
+##  9  11.1     80   22.6 A    
+## 10  11.2     75   19.9 D    
+## # … with 21 more rows</code></pre>
 <p>Encoding the categories as separate features is done auto-magically with the formula syntax.</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="r-formula-syntax.html#cb57-1"></a>dummy_fit &lt;-<span class="st"> </span><span class="kw">lm</span>(Volume <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> trees2)</span>
 <span id="cb57-2"><a href="r-formula-syntax.html#cb57-2"></a>dummy_fit</span></code></pre></div>

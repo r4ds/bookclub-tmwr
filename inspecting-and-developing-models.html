@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-02-15" />
+<meta name="date" content="2021-02-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -297,27 +297,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="inspecting-and-developing-models.html#cb65-1"></a><span class="kw">library</span>(broom)</span>
 <span id="cb65-2"><a href="inspecting-and-developing-models.html#cb65-2"></a></span>
 <span id="cb65-3"><a href="inspecting-and-developing-models.html#cb65-3"></a>reg_fit <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tidy</span>()</span></code></pre></div>
-<pre><code>## [90m# A tibble: 3 x 5[39m
+<pre><code>## # A tibble: 3 x 5
 ##   term        estimate std.error statistic  p.value
-##   [3m[90m&lt;chr&gt;[39m[23m          [3m[90m&lt;dbl&gt;[39m[23m     [3m[90m&lt;dbl&gt;[39m[23m     [3m[90m&lt;dbl&gt;[39m[23m    [3m[90m&lt;dbl&gt;[39m[23m
-## [90m1[39m (Intercept)  -[31m58[39m[31m.[39m[31m0[39m       8.64      -[31m6[39m[31m.[39m[31m71[39m 2.75[90me[39m[31m- 7[39m
-## [90m2[39m Girth          4.71      0.264     17.8  8.22[90me[39m[31m-17[39m
-## [90m3[39m Height         0.339     0.130      2.61 1.45[90me[39m[31m- 2[39m</code></pre>
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)  -58.0       8.64      -6.71 2.75e- 7
+## 2 Girth          4.71      0.264     17.8  8.22e-17
+## 3 Height         0.339     0.130      2.61 1.45e- 2</code></pre>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="inspecting-and-developing-models.html#cb67-1"></a>reg_fit <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">glance</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">glimpse</span>()</span></code></pre></div>
 <pre><code>## Rows: 1
 ## Columns: 12
-## $ r.squared     [3m[90m&lt;dbl&gt;[39m[23m 0.94795
-## $ adj.r.squared [3m[90m&lt;dbl&gt;[39m[23m 0.9442322
-## $ sigma         [3m[90m&lt;dbl&gt;[39m[23m 3.881832
-## $ statistic     [3m[90m&lt;dbl&gt;[39m[23m 254.9723
-## $ p.value       [3m[90m&lt;dbl&gt;[39m[23m 1.071238e-18
-## $ df            [3m[90m&lt;dbl&gt;[39m[23m 2
-## $ logLik        [3m[90m&lt;dbl&gt;[39m[23m -84.45499
-## $ AIC           [3m[90m&lt;dbl&gt;[39m[23m 176.91
-## $ BIC           [3m[90m&lt;dbl&gt;[39m[23m 182.6459
-## $ deviance      [3m[90m&lt;dbl&gt;[39m[23m 421.9214
-## $ df.residual   [3m[90m&lt;int&gt;[39m[23m 28
-## $ nobs          [3m[90m&lt;int&gt;[39m[23m 31</code></pre>
+## $ r.squared     &lt;dbl&gt; 0.94795
+## $ adj.r.squared &lt;dbl&gt; 0.9442322
+## $ sigma         &lt;dbl&gt; 3.881832
+## $ statistic     &lt;dbl&gt; 254.9723
+## $ p.value       &lt;dbl&gt; 1.071238e-18
+## $ df            &lt;dbl&gt; 2
+## $ logLik        &lt;dbl&gt; -84.45499
+## $ AIC           &lt;dbl&gt; 176.91
+## $ BIC           &lt;dbl&gt; 182.6459
+## $ deviance      &lt;dbl&gt; 421.9214
+## $ df.residual   &lt;int&gt; 28
+## $ nobs          &lt;int&gt; 31</code></pre>
 <hr />
 <details>
 <p><summary><code>{purrr}</code> and <code>{dplyr}</code> can help you scale up your modeling process.</summary></p>
@@ -334,14 +334,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb69-8"><a href="inspecting-and-developing-models.html#cb69-8"></a><span class="st">  </span><span class="kw">map_dfr</span>(glance, <span class="dt">.id =</span> <span class="st">&#39;id&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb69-9"><a href="inspecting-and-developing-models.html#cb69-9"></a><span class="st">  </span><span class="kw">select</span>(id, adj.r.squared) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb69-10"><a href="inspecting-and-developing-models.html#cb69-10"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(adj.r.squared))</span></code></pre></div>
-<pre><code>## [90m# A tibble: 5 x 2[39m
+<pre><code>## # A tibble: 5 x 2
 ##   id           adj.r.squared
-##   [3m[90m&lt;chr&gt;[39m[23m                [3m[90m&lt;dbl&gt;[39m[23m
-## [90m1[39m poly                 0.975
-## [90m2[39m inter                0.973
-## [90m3[39m no_intercept         0.968
-## [90m4[39m reg                  0.944
-## [90m5[39m no_height            0.933</code></pre>
+##   &lt;chr&gt;                &lt;dbl&gt;
+## 1 poly                 0.975
+## 2 inter                0.973
+## 3 no_intercept         0.968
+## 4 reg                  0.944
+## 5 no_height            0.933</code></pre>
 <p>We observe that the polynomial fit is the best.</p>
 <p>We can create models for each <code>group</code> in <code>trees2</code>.</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="inspecting-and-developing-models.html#cb71-1"></a>reg_fits &lt;-</span>
@@ -361,45 +361,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb71-15"><a href="inspecting-and-developing-models.html#cb71-15"></a>}</span>
 <span id="cb71-16"><a href="inspecting-and-developing-models.html#cb71-16"></a></span>
 <span id="cb71-17"><a href="inspecting-and-developing-models.html#cb71-17"></a>reg_fits <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">.select_unnest</span>(tidied)</span></code></pre></div>
-<pre><code>## [90m# A tibble: 12 x 6[39m
+<pre><code>## # A tibble: 12 x 6
 ##    group term        estimate std.error statistic    p.value
-##    [3m[90m&lt;chr&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m          [3m[90m&lt;dbl&gt;[39m[23m     [3m[90m&lt;dbl&gt;[39m[23m     [3m[90m&lt;dbl&gt;[39m[23m      [3m[90m&lt;dbl&gt;[39m[23m
-## [90m 1[39m A     (Intercept) -[31m44[39m[31m.[39m[31m6[39m       17.5      -[31m2[39m[31m.[39m[31m55[39m  0.031[4m2[24m    
-## [90m 2[39m A     Girth         4.21       0.477     8.83  0.000[4m0[24m[4m0[24m[4m9[24m98
-## [90m 3[39m A     Height        0.250      0.294     0.849 0.418     
-## [90m 4[39m B     (Intercept) -[31m66[39m[31m.[39m[31m1[39m       13.9      -[31m4[39m[31m.[39m[31m74[39m  0.017[4m8[24m    
-## [90m 5[39m B     Girth         4.16       0.704     5.91  0.009[4m6[24m[4m9[24m   
-## [90m 6[39m B     Height        0.520      0.123     4.24  0.024[4m0[24m    
-## [90m 7[39m C     (Intercept) -[31m86[39m[31m.[39m[31m4[39m       90.5      -[31m0[39m[31m.[39m[31m954[39m 0.410     
-## [90m 8[39m C     Girth         4.83       0.747     6.47  0.007[4m4[24m[4m8[24m   
-## [90m 9[39m C     Height        0.680      1.20      0.567 0.611     
-## [90m10[39m D     (Intercept) -[31m46[39m[31m.[39m[31m3[39m       14.8      -[31m3[39m[31m.[39m[31m14[39m  0.034[4m9[24m    
-## [90m11[39m D     Girth         6.03       0.372    16.2   0.000[4m0[24m[4m8[24m[4m5[24m2 
-## [90m12[39m D     Height       -[31m0[39m[31m.[39m[31m0[39m[31m26[4m8[24m[39m     0.214    -[31m0[39m[31m.[39m[31m125[39m 0.906</code></pre>
+##    &lt;chr&gt; &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+##  1 A     (Intercept) -44.6       17.5      -2.55  0.0312    
+##  2 A     Girth         4.21       0.477     8.83  0.00000998
+##  3 A     Height        0.250      0.294     0.849 0.418     
+##  4 B     (Intercept) -66.1       13.9      -4.74  0.0178    
+##  5 B     Girth         4.16       0.704     5.91  0.00969   
+##  6 B     Height        0.520      0.123     4.24  0.0240    
+##  7 C     (Intercept) -86.4       90.5      -0.954 0.410     
+##  8 C     Girth         4.83       0.747     6.47  0.00748   
+##  9 C     Height        0.680      1.20      0.567 0.611     
+## 10 D     (Intercept) -46.3       14.8      -3.14  0.0349    
+## 11 D     Girth         6.03       0.372    16.2   0.0000852 
+## 12 D     Height       -0.0268     0.214    -0.125 0.906</code></pre>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="inspecting-and-developing-models.html#cb73-1"></a>reg_fits <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">.select_unnest</span>(glanced)</span></code></pre></div>
-<pre><code>## [90m# A tibble: 4 x 13[39m
+<pre><code>## # A tibble: 4 x 13
 ##   group r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
-##   [3m[90m&lt;chr&gt;[39m[23m     [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m     [3m[90m&lt;dbl&gt;[39m[23m   [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m
-## [90m1[39m A         0.960         0.951  3.81     107.  5.27[90me[39m[31m-7[39m     2  -[31m31[39m[31m.[39m[31m3[39m  70.7  72.6
-## [90m2[39m B         0.935         0.891  2.20      21.5 1.66[90me[39m[31m-2[39m     2  -[31m11[39m[31m.[39m[31m2[39m  30.3  29.5
-## [90m3[39m C         0.946         0.910  4.06      26.2 1.26[90me[39m[31m-2[39m     2  -[31m14[39m[31m.[39m[31m8[39m  37.7  36.8
-## [90m4[39m D         0.990         0.985  2.80     194.  1.04[90me[39m[31m-4[39m     2  -[31m15[39m[31m.[39m[31m2[39m  38.4  38.2
-## [90m# … with 3 more variables: deviance [3m[90m&lt;dbl&gt;[90m[23m, df.residual [3m[90m&lt;int&gt;[90m[23m, nobs [3m[90m&lt;int&gt;[90m[23m[39m</code></pre>
+##   &lt;chr&gt;     &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 A         0.960         0.951  3.81     107.  5.27e-7     2  -31.3  70.7  72.6
+## 2 B         0.935         0.891  2.20      21.5 1.66e-2     2  -11.2  30.3  29.5
+## 3 C         0.946         0.910  4.06      26.2 1.26e-2     2  -14.8  37.7  36.8
+## 4 D         0.990         0.985  2.80     194.  1.04e-4     2  -15.2  38.4  38.2
+## # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 <div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="inspecting-and-developing-models.html#cb75-1"></a>reg_fits <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">.select_unnest</span>(augmented)</span></code></pre></div>
-<pre><code>## [90m# A tibble: 31 x 10[39m
+<pre><code>## # A tibble: 31 x 10
 ##    group Volume Girth Height .fitted .resid   .hat .sigma .cooksd .std.resid
-##    [3m[90m&lt;chr&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m   [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m   [3m[90m&lt;dbl&gt;[39m[23m      [3m[90m&lt;dbl&gt;[39m[23m
-## [90m 1[39m A       10.3   8.3     70    7.81  2.49  0.252    3.91 0.064[4m5[24m       0.758
-## [90m 2[39m A       10.3   8.6     65    7.82  2.48  0.283    3.90 0.078[4m0[24m       0.769
-## [90m 3[39m A       10.2   8.8     63    8.17  2.03  0.395    3.93 0.103        0.687
-## [90m 4[39m A       16.4  10.5     72   17.6  -[31m1[39m[31m.[39m[31m18[39m  0.134    4.01 0.005[4m6[24m[4m6[24m     -[31m0[39m[31m.[39m[31m332[39m
-## [90m 5[39m A       22.6  11.1     80   22.1   0.500 0.534    4.03 0.014[4m2[24m       0.192
-## [90m 6[39m A       19.1  12       75   24.6  -[31m5[39m[31m.[39m[31m54[39m  0.123    3.45 0.113       -[31m1[39m[31m.[39m[31m56[39m 
-## [90m 7[39m A       22.2  12.9     74   28.2  -[31m5[39m[31m.[39m[31m99[39m  0.083[4m7[24m   3.38 0.082[4m3[24m      -[31m1[39m[31m.[39m[31m64[39m 
-## [90m 8[39m A       36.3  14.5     74   34.9   1.37  0.116    4.00 0.006[4m4[24m[4m3[24m      0.383
-## [90m 9[39m A       38.3  16       72   40.8  -[31m2[39m[31m.[39m[31m45[39m  0.330    3.90 0.101       -[31m0[39m[31m.[39m[31m787[39m
-## [90m10[39m A       55.7  17.5     82   49.6   6.13  0.255    3.16 0.397        1.87 
-## [90m# … with 21 more rows[39m</code></pre>
+##    &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
+##  1 A       10.3   8.3     70    7.81  2.49  0.252    3.91 0.0645       0.758
+##  2 A       10.3   8.6     65    7.82  2.48  0.283    3.90 0.0780       0.769
+##  3 A       10.2   8.8     63    8.17  2.03  0.395    3.93 0.103        0.687
+##  4 A       16.4  10.5     72   17.6  -1.18  0.134    4.01 0.00566     -0.332
+##  5 A       22.6  11.1     80   22.1   0.500 0.534    4.03 0.0142       0.192
+##  6 A       19.1  12       75   24.6  -5.54  0.123    3.45 0.113       -1.56 
+##  7 A       22.2  12.9     74   28.2  -5.99  0.0837   3.38 0.0823      -1.64 
+##  8 A       36.3  14.5     74   34.9   1.37  0.116    4.00 0.00643      0.383
+##  9 A       38.3  16       72   40.8  -2.45  0.330    3.90 0.101       -0.787
+## 10 A       55.7  17.5     82   49.6   6.13  0.255    3.16 0.397        1.87 
+## # … with 21 more rows</code></pre>
 </div>
             </section>
 
