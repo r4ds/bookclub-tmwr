@@ -85,7 +85,13 @@ reg_fit
 
 ------------------------------------------------------------------------
 
-If we want to get fancy with our pipes (`%>%`), then we should wrap our formula with `formula()`
+If we want to get fancy with our pipes (`%>%`), then we should wrap our formula with `formula()`.
+
+This due to the way `.` is interpreted by (`%>%`). The (`%>%`) passes the object on the left-hand side (lhs) to the first argument of a function call on the right-hand side (rhs).   
+
+> Often you will want lhs to the rhs call at another position than the first. For this purpose you can use the dot (.) as placeholder. For example, y %>% f(x, .) is equivalent to f(x, y) and z %>% f(x, y, arg = .) is equivalent to f(x, y, arg = z). - [magrittr/pipe](https://magrittr.tidyverse.org/reference/pipe.html)
+
+This would be confusing since within `lm()`, the `.` is interpreted as "all variables aside from the outcome". This is why we explicitly call `formula()`. This allows us to pass the data object (`trees`) with the pipe to the `data` argument, below, not to the actual formula.
 
 ```{r }
 trees %>% lm(formula(Volume ~ .), data = .)
@@ -98,11 +104,20 @@ inter_fit <- lm(Volume ~ Girth * Height, data = trees)
 inter_fit
 ```
 
-Same goes for polynomial terms.
+Same goes for polynomial terms. The use of the identity function, `I()`, allows us to apply literal math to the predictors.
 
 ```{r }
 poly_fit <- lm(Volume ~ Girth + I(Girth^2) + Height, data = trees)
-poly_fit
+poly_fit 
+```
+
+```{r }
+poly_fit3 <- lm(Volume ~ (.)^2, data = trees)
+poly_fit3
+# There are only two predictors in this model so this produces the same results as 
+# inter_fit but if there were 3 there would be three individual 
+# effects and the combination of those effects as interaction depending on if the third 
+# variable is continuous or categorical
 ```
 
 Excluding columns is intuitive.
@@ -112,7 +127,7 @@ no_height_fit <- lm(Volume ~ . - Height, data = trees)
 no_height_fit
 ```
 
-The intercept term can be removed conveniently.
+The intercept term can be removed conveniently. *This is just for illustrative purposes only. Removing the intercept is rarely done. In this particular case, it may make sense as it is impossible for a tree to have negative volume*
 
 ```{r }
 no_intercept_fit <- lm(Volume ~ . + 0, data = trees)
@@ -143,6 +158,13 @@ Under the hood, this is done by `model.matrix()`.
 model.matrix(Volume ~ ., data = trees2) %>% head(10)
 ```
 
+To visualize the inclusion of a polynomial:
+
+```{r }
+dummy_fit3 <- lm(Volume ~ (.)^3, data = trees2)
+dummy_fit3
+```
+
 ### Recap
 
 Purposes of R model formula:
@@ -156,6 +178,14 @@ Purposes of R model formula:
 ## Inspecting and developing models
 
 Being the sound analysts that we are, we should check if the assumptions of linear regression are violated. The `plot()` generic function has a specific method for `lm` objects that generates various diagnostic plots.
+
+A short recap of the 4 main diagnostic plots produced by `plot()` of a model object.  
+
+- *Residuals vs Fitted* - to see if residuals have non-linear patterns. Good sign if you see equally spread residuals around a horizontal line without distinct patterns  
+- *normal Q-Q* plot to see if both sets of residuals are identical, if the line is straight then sets come from normal distributions  
+- *Scale Location* plot to see if residuals are spread evenly along ranges of predictors  
+  - good to check for assumptions of homoscedasticity (equal variance)  
+- *Residual vs Leverage* plot helps to identify an influential cases (cases that don't get along with the trend of the majority). these are identified by where residuals are located off the Cook's distance line.
 
 ```{r }
 par(mfrow = c(1, 2))
@@ -236,9 +266,13 @@ reg_fits <-
   group_nest(group) %>% 
   mutate(
     fit = map(data, ~ lm(formula(Volume ~ .), data = .x)),
-    tidied = map(fit, tidy),
+    # converts model object's coefficients to a dataframe
+    tidied = map(fit, tidy), 
+    # row summary of a model
     glanced = map(fit, glance),
-    augmented = map(fit, augment)
+    # returns a tibble of additional metrics like Cooks distance, lower and upper bounds 
+    # of fitted values, standard errors of fitted values
+    augmented = map(fit, augment) 
   )
 
 .select_unnest <- function(data, ...) {
@@ -292,7 +326,7 @@ par(op)
 
 Use base R statistical function when someone tries to test your statistics knowledge.
 
-> Question: If $U_1$ and $U_2$ are i.i.d. $Unif(0,1)$ random variables, what is the distribution of $U_1 + U_2$?
+> Question: If $U_1$ and $U_2$ are i.i.d. (independent and identically distributed) $Unif(0,1)$ random variables, what is the distribution of $U_1 + U_2$?
 
 ```{r hw03-q13}
 set.seed(42)
