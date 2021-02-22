@@ -58,7 +58,7 @@ trees %>%
   corrr::correlate()
 ```
 
-Shame on you 😉 if you didn't guess I would make a scatter plot given a data set with two variables.
+Shame on you `r emo::ji('wink')` if you didn't guess I would make a scatter plot given a data set with two variables.
 
 ```{r }
 trees %>% 
@@ -85,7 +85,13 @@ reg_fit
 
 ------------------------------------------------------------------------
 
-If we want to get fancy with our pipes (`%>%`), then we should wrap our formula with `formula()`
+If we want to get fancy with our pipes (`%>%`), then we should wrap our formula with `formula()`.
+
+This due to the way `.` is interpreted by (`%>%`). The (`%>%`) passes the object on the left-hand side (lhs) to the first argument of a function call on the right-hand side (rhs).   
+
+> Often you will want lhs to the rhs call at another position than the first. For this purpose you can use the dot (.) as placeholder. For example, y %>% f(x, .) is equivalent to f(x, y) and z %>% f(x, y, arg = .) is equivalent to f(x, y, arg = z). - [magrittr/pipe](https://magrittr.tidyverse.org/reference/pipe.html)
+
+This would be confusing since within `lm()`, the `.` is interpreted as "all variables aside from the outcome". This is why we explicitly call `formula()`. This allows us to pass the data object (`trees`) with the pipe to the `data` argument, below, not to the actual formula.
 
 ```{r }
 trees %>% lm(formula(Volume ~ .), data = .)
@@ -108,7 +114,10 @@ poly_fit
 ```{r }
 poly_fit3 <- lm(Volume ~ (.)^2, data = trees)
 poly_fit3
-#There are only two predictors in this model so this produces the same results as inter_fit but if there were 3 there would be three individual effects and the combination of those effects as interaction depending on if the third variable is continuous or categorical
+# There are only two predictors in this model so this produces the same results as 
+# inter_fit but if there were 3 there would be three individual 
+# effects and the combination of those effects as interaction depending on if the third 
+# variable is continuous or categorical
 ```
 
 Excluding columns is intuitive.
@@ -118,7 +127,7 @@ no_height_fit <- lm(Volume ~ . - Height, data = trees)
 no_height_fit
 ```
 
-The intercept term can be removed conveniently.
+The intercept term can be removed conveniently. *This is just for illustrative purposes only. Removing the intercept is rarely done. In this particular case, it may make sense as it is impossible for a tree to have negative volume*
 
 ```{r }
 no_intercept_fit <- lm(Volume ~ . + 0, data = trees)
@@ -256,10 +265,14 @@ reg_fits <-
   trees2 %>%
   group_nest(group) %>% 
   mutate(
-    fit = map(data, ~ lm(Volume ~ ., data = .x)),
-    tidied = map(fit, tidy), #converts model object's coefficients to a dataframe
-    glanced = map(fit, glance), #row summary of a model
-    augmented = map(fit, augment) #returns a tibble of additional metrics like Cooks distance, lower and upper bounds of fitted values, standard errors of fitted values
+    fit = map(data, ~ lm(formula(Volume ~ .), data = .x)),
+    # converts model object's coefficients to a dataframe
+    tidied = map(fit, tidy), 
+    # row summary of a model
+    glanced = map(fit, glance),
+    # returns a tibble of additional metrics like Cooks distance, lower and upper bounds 
+    # of fitted values, standard errors of fitted values
+    augmented = map(fit, augment) 
   )
 
 .select_unnest <- function(data, ...) {
