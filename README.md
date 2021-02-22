@@ -37,11 +37,12 @@ To present, follow these instructions:
 1. [Setup Github Locally](https://www.youtube.com/watch?v=hNUNPkoledI)
 2. Fork this repository.
 3. Create a New Project in RStudio using your fork.
-4. Create a New Branch in your fork for your work.
-5. Edit the appropriate chapter file. Use `##` to indicate new slides (new sections).
-6. If you use any packages that are not already in the `DESCRIPTION`, add them. You can use `usethis::use_package("myCoolPackage")` to add them quickly!
-7. Commit your changes.
-8. Push your changes to your branch.
-9. Open a Pull Request (PR) to let us know that your slides are ready.
+4. Install dependencies for this book with `devtools::install_dev_deps()` (technically optional but it's nice to be able to rebuild the full book).
+5. Create a New Branch in your fork for your work.
+6. Edit the appropriate chapter file. Use `##` to indicate new slides (new sections).
+7. If you use any packages that are not already in the `DESCRIPTION`, add them. You can use `usethis::use_package("myCoolPackage")` to add them quickly!
+8. Commit your changes.
+9. Push your changes to your branch.
+10. Open a Pull Request (PR) to let us know that your slides are ready.
 
 When your PR is checked into the main branch, the bookdown site will rebuild, adding your slides to [this site](https://r4ds.github.io/bookclub-tmwr/).
