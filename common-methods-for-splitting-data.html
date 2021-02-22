@@ -259,16 +259,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.2</span> Common methods for splitting data</h2>
 <p>Choosing how to conduct the split of the data into training and test sets may not be a trivial task. It depends on the data and the purpose.</p>
 <p>The most common type of sampling is known as random sampling and it is done readily in R using the <a href="https://rsample.tidymodels.org">rsample</a> package with the <code>initial_split()</code>function. For the <a href="https://www.tmwr.org/ames.html">Ames housing dataset</a>, the call would be:</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="common-methods-for-splitting-data.html#cb86-1"></a><span class="kw">library</span>(tidymodels)</span>
-<span id="cb86-2"><a href="common-methods-for-splitting-data.html#cb86-2"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb86-3"><a href="common-methods-for-splitting-data.html#cb86-3"></a><span class="kw">data</span>(ames)</span>
-<span id="cb86-4"><a href="common-methods-for-splitting-data.html#cb86-4"></a>ames_split &lt;-<span class="st"> </span><span class="kw">initial_split</span>(ames, <span class="dt">prob =</span> <span class="fl">0.80</span>)</span>
-<span id="cb86-5"><a href="common-methods-for-splitting-data.html#cb86-5"></a>ames_split</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="common-methods-for-splitting-data.html#cb91-1"></a><span class="kw">library</span>(tidymodels)</span>
+<span id="cb91-2"><a href="common-methods-for-splitting-data.html#cb91-2"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb91-3"><a href="common-methods-for-splitting-data.html#cb91-3"></a><span class="kw">data</span>(ames)</span>
+<span id="cb91-4"><a href="common-methods-for-splitting-data.html#cb91-4"></a>ames_split &lt;-<span class="st"> </span><span class="kw">initial_split</span>(ames, <span class="dt">prob =</span> <span class="fl">0.80</span>)</span>
+<span id="cb91-5"><a href="common-methods-for-splitting-data.html#cb91-5"></a>ames_split</span></code></pre></div>
 <pre><code>## &lt;Analysis/Assess/Total&gt;
 ## &lt;2198/732/2930&gt;</code></pre>
 <p>The object <code>ames_split</code> is an <code>rsplit</code> object. To get the training and test results you can call on <code>training()</code> and <code>test()</code>:</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="common-methods-for-splitting-data.html#cb88-1"></a>ames_train &lt;-<span class="st"> </span><span class="kw">training</span>(ames_split)</span>
-<span id="cb88-2"><a href="common-methods-for-splitting-data.html#cb88-2"></a>ames_test  &lt;-<span class="st"> </span><span class="kw">testing</span>(ames_split)</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="common-methods-for-splitting-data.html#cb93-1"></a>ames_train &lt;-<span class="st"> </span><span class="kw">training</span>(ames_split)</span>
+<span id="cb93-2"><a href="common-methods-for-splitting-data.html#cb93-2"></a>ames_test  &lt;-<span class="st"> </span><span class="kw">testing</span>(ames_split)</span></code></pre></div>
 </div>
             </section>
 
