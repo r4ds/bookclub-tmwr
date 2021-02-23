@@ -2,7 +2,22 @@
 
 **Learning objectives:**
 
-- Jon will prefill these.
+- Explain why a **model workflow** includes preprocessing, fitting, and post-processing.
+  - Describe parts of the modeling process that **occur before the model is fit.**
+  - Describe parts of the modeling process that **occur after the model is fit.**
+- Use the `{workflows}` package to **create a simple workflow.**
+  - **Add a model** to a workflow.
+  - **Add a formula** to a workflow.
+  - **Fit** a workflow.
+  - Use a workflow to **predict new data.**
+  - **Update** a workflow.
+- Use `{recipes}` with `{workflows}`.
+  - **Add a recipe** to a workflow.
+  - Use `workflows::pull_*()` to **extract objects from fitted workflows.**
+- Describe how a workflow that uses a formula decides how to pre-process data.
+  - Describe how workflows **using tree-based models** pre-process factor predictors.
+  - **Add a special formula** to a workflow with the `formula` argument to `workflows::add_model()`.
+- Describe workflow steps that are **not yet included** in `{tidmodels}`.
 
 ## Slide 1 Title
 
