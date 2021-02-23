@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-02-22" />
+<meta name="date" content="2021-02-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -259,7 +259,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 8</span> A model workflow</h1>
 <p><strong>Learning objectives:</strong></p>
 <ul>
-<li>Jon will prefill these.</li>
+<li>Explain why a <strong>model workflow</strong> includes preprocessing, fitting, and post-processing.
+<ul>
+<li>Describe parts of the modeling process that <strong>occur before the model is fit.</strong></li>
+<li>Describe parts of the modeling process that <strong>occur after the model is fit.</strong></li>
+</ul></li>
+<li>Use the <code>{workflows}</code> package to <strong>create a simple workflow.</strong>
+<ul>
+<li><strong>Add a model</strong> to a workflow.</li>
+<li><strong>Add a formula</strong> to a workflow.</li>
+<li><strong>Fit</strong> a workflow.</li>
+<li>Use a workflow to <strong>predict new data.</strong></li>
+<li><strong>Update</strong> a workflow.</li>
+</ul></li>
+<li>Use <code>{recipes}</code> with <code>{workflows}</code>.
+<ul>
+<li><strong>Add a recipe</strong> to a workflow.</li>
+<li>Use <code>workflows::pull_*()</code> to <strong>extract objects from fitted workflows.</strong></li>
+</ul></li>
+<li>Describe how a workflow that uses a formula decides how to pre-process data.
+<ul>
+<li>Describe how workflows <strong>using tree-based models</strong> pre-process factor predictors.</li>
+<li><strong>Add a special formula</strong> to a workflow with the <code>formula</code> argument to <code>workflows::add_model()</code>.</li>
+</ul></li>
+<li>Describe workflow steps that are <strong>not yet included</strong> in <code>{tidmodels}</code>.</li>
 </ul>
 </div>
             </section>
