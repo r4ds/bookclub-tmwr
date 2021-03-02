@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>9.1 Slide 1 Title | Tidy Modeling with R Book Club</title>
+  <title>7.2 Use Model results | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="9.1 Slide 1 Title | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="7.2 Use Model results | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="9.1 Slide 1 Title | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="7.2 Use Model results | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="judging-model-effectiveness.html"/>
-<link rel="next" href="slide-2-title-2.html"/>
+<link rel="prev" href="create-a-model.html"/>
+<link rel="next" href="make-predictions.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -263,17 +263,110 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="slide-1-title-2" class="section level2">
-<h2><span class="header-section-number">9.1</span> Slide 1 Title</h2>
-<p>Put the content of your slide here.</p>
+<div id="use-model-results" class="section level2">
+<h2><span class="header-section-number">7.2</span> Use Model results</h2>
+<p>Now that we have a fitted model we will need to pull some summary information from it we will use two extremely <em>fun</em> functions from the <code>{broom}</code> package to help us out (<code>tidy()</code> &amp; <code>glance()</code>).</p>
+<ul>
+<li><code>tidy()</code> - Has a bunch of versatility, but for our context it can take our model object and return our model coefficients into a nice tibble.</li>
+</ul>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="use-model-results.html#cb112-1"></a>broom<span class="op">::</span><span class="kw">tidy</span>(lm_form_fit) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb112-2"><a href="use-model-results.html#cb112-2"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">term</th>
+<th align="right">estimate</th>
+<th align="right">std.error</th>
+<th align="right">statistic</th>
+<th align="right">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="right">-316.367858</td>
+<td align="right">14.8916990</td>
+<td align="right">-21.24458</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Longitude</td>
+<td align="right">-2.083107</td>
+<td align="right">0.1333845</td>
+<td align="right">-15.61731</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Latitude</td>
+<td align="right">3.009920</td>
+<td align="right">0.1849469</td>
+<td align="right">16.27451</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<ul>
+<li><code>glance()</code> - allows us in this context to convert our model’s summary statistics into a <code>tibble</code></li>
+</ul>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="use-model-results.html#cb113-1"></a>broom<span class="op">::</span><span class="kw">glance</span>(lm_form_fit) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb113-2"><a href="use-model-results.html#cb113-2"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<table>
+<colgroup>
+<col width="9%" />
+<col width="12%" />
+<col width="9%" />
+<col width="9%" />
+<col width="7%" />
+<col width="2%" />
+<col width="8%" />
+<col width="9%" />
+<col width="9%" />
+<col width="8%" />
+<col width="10%" />
+<col width="4%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">r.squared</th>
+<th align="right">adj.r.squared</th>
+<th align="right">sigma</th>
+<th align="right">statistic</th>
+<th align="right">p.value</th>
+<th align="right">df</th>
+<th align="right">logLik</th>
+<th align="right">AIC</th>
+<th align="right">BIC</th>
+<th align="right">deviance</th>
+<th align="right">df.residual</th>
+<th align="right">nobs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">0.1840148</td>
+<td align="right">0.1832717</td>
+<td align="right">0.1595196</td>
+<td align="right">247.6127</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">917.7136</td>
+<td align="right">-1827.427</td>
+<td align="right">-1804.644</td>
+<td align="right">55.88055</td>
+<td align="right">2196</td>
+<td align="right">2199</td>
+</tr>
+</tbody>
+</table>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="judging-model-effectiveness.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="slide-2-title-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="create-a-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="make-predictions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -304,7 +397,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/09-judging_model_effectiveness.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/07-fitting_models_with_parsnip.Rmd",
 "text": "Edit"
 },
 "history": {

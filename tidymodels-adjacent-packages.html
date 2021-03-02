@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>9.1 Slide 1 Title | Tidy Modeling with R Book Club</title>
+  <title>7.4 {tidymodels}-Adjacent Packages | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="9.1 Slide 1 Title | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="7.4 {tidymodels}-Adjacent Packages | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="9.1 Slide 1 Title | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="7.4 {tidymodels}-Adjacent Packages | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="judging-model-effectiveness.html"/>
-<link rel="next" href="slide-2-title-2.html"/>
+<link rel="prev" href="make-predictions.html"/>
+<link rel="next" href="summary-1.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -263,17 +263,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="slide-1-title-2" class="section level2">
-<h2><span class="header-section-number">9.1</span> Slide 1 Title</h2>
-<p>Put the content of your slide here.</p>
+<div id="tidymodels-adjacent-packages" class="section level2">
+<h2><span class="header-section-number">7.4</span> {tidymodels}-Adjacent Packages</h2>
+<ul>
+<li>Opinions can be shared, other modeling packages can use the same opinion to replicate a workflow. The <code>{discrim}</code><a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> package adds a new set of mathematical models to our arsenal of tools.
+<ul>
+<li><code>discrim_flexible()</code> <code>%&gt;%</code> - Mathematical Model or if we are using my terrible analogy the car body
+<ul>
+<li><code>set_engine("earth")</code> - The package we want to approximate our discriminat analysis</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="tidymodels-adjacent-packages.html#cb116-1"></a><span class="co"># devtools::install_github(&quot;tidymodels/discrim&quot;) # to install</span></span>
+<span id="cb116-2"><a href="tidymodels-adjacent-packages.html#cb116-2"></a><span class="co"># load package</span></span>
+<span id="cb116-3"><a href="tidymodels-adjacent-packages.html#cb116-3"></a><span class="kw">library</span>(discrim)</span>
+<span id="cb116-4"><a href="tidymodels-adjacent-packages.html#cb116-4"></a></span>
+<span id="cb116-5"><a href="tidymodels-adjacent-packages.html#cb116-5"></a><span class="co"># create dummy data</span></span>
+<span id="cb116-6"><a href="tidymodels-adjacent-packages.html#cb116-6"></a>parabolic_grid &lt;-</span>
+<span id="cb116-7"><a href="tidymodels-adjacent-packages.html#cb116-7"></a><span class="st">  </span><span class="kw">expand.grid</span>(<span class="dt">X1 =</span> <span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dt">length =</span> <span class="dv">100</span>),</span>
+<span id="cb116-8"><a href="tidymodels-adjacent-packages.html#cb116-8"></a>              <span class="dt">X2 =</span> <span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dt">length =</span> <span class="dv">100</span>))</span>
+<span id="cb116-9"><a href="tidymodels-adjacent-packages.html#cb116-9"></a></span>
+<span id="cb116-10"><a href="tidymodels-adjacent-packages.html#cb116-10"></a><span class="co"># fit model from discrim</span></span>
+<span id="cb116-11"><a href="tidymodels-adjacent-packages.html#cb116-11"></a>fda_mod &lt;-</span>
+<span id="cb116-12"><a href="tidymodels-adjacent-packages.html#cb116-12"></a><span class="st">  </span><span class="kw">discrim_flexible</span>(<span class="dt">num_terms =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb116-13"><a href="tidymodels-adjacent-packages.html#cb116-13"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;earth&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb116-14"><a href="tidymodels-adjacent-packages.html#cb116-14"></a><span class="st">  </span><span class="kw">fit</span>(class <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> parabolic)</span>
+<span id="cb116-15"><a href="tidymodels-adjacent-packages.html#cb116-15"></a></span>
+<span id="cb116-16"><a href="tidymodels-adjacent-packages.html#cb116-16"></a><span class="co"># assigning predictions to data frame</span></span>
+<span id="cb116-17"><a href="tidymodels-adjacent-packages.html#cb116-17"></a>parabolic_grid<span class="op">$</span>fda &lt;-</span>
+<span id="cb116-18"><a href="tidymodels-adjacent-packages.html#cb116-18"></a><span class="st">  </span><span class="kw">predict</span>(fda_mod, parabolic_grid, <span class="dt">type =</span> <span class="st">&quot;prob&quot;</span>)<span class="op">$</span>.pred_Class1</span>
+<span id="cb116-19"><a href="tidymodels-adjacent-packages.html#cb116-19"></a></span>
+<span id="cb116-20"><a href="tidymodels-adjacent-packages.html#cb116-20"></a><span class="co"># plotting prediction</span></span>
+<span id="cb116-21"><a href="tidymodels-adjacent-packages.html#cb116-21"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb116-22"><a href="tidymodels-adjacent-packages.html#cb116-22"></a><span class="kw">ggplot</span>(parabolic, <span class="kw">aes</span>(<span class="dt">x =</span> X1, <span class="dt">y =</span> X2)) <span class="op">+</span></span>
+<span id="cb116-23"><a href="tidymodels-adjacent-packages.html#cb116-23"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">col =</span> class), <span class="dt">alpha =</span> <span class="fl">.5</span>) <span class="op">+</span></span>
+<span id="cb116-24"><a href="tidymodels-adjacent-packages.html#cb116-24"></a><span class="st">  </span><span class="kw">geom_contour</span>(<span class="dt">data =</span> parabolic_grid, <span class="kw">aes</span>(<span class="dt">z =</span> fda), <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">breaks =</span> <span class="fl">.5</span>) <span class="op">+</span></span>
+<span id="cb116-25"><a href="tidymodels-adjacent-packages.html#cb116-25"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb116-26"><a href="tidymodels-adjacent-packages.html#cb116-26"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;top&quot;</span>) <span class="op">+</span></span>
+<span id="cb116-27"><a href="tidymodels-adjacent-packages.html#cb116-27"></a><span class="st">  </span><span class="kw">coord_equal</span>()</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/adjacent-packages-1.png" width="672" /></p>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="2">
+<li id="fn2"><p>Discrim Package <a href="https://github.com/tidymodels/discrim">Link</a><a href="tidymodels-adjacent-packages.html#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="judging-model-effectiveness.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="slide-2-title-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="make-predictions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="summary-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -304,7 +346,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/09-judging_model_effectiveness.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/07-fitting_models_with_parsnip.Rmd",
 "text": "Edit"
 },
 "history": {
