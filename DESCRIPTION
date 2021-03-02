@@ -8,6 +8,7 @@ URL: https://r4ds.github.io/bookclub-tmwr, https://github.com/r4ds/bookclub-tmwr
 Depends: 
     R (>= 3.1.0)
 Imports: 
+    AmesHousing,
     bookdown,
     corrr,
     discrim,
