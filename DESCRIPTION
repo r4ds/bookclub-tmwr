@@ -24,4 +24,5 @@ Imports:
     tweetrmd
 Remotes: 
     hadley/emo,
-    gadenbuie/tweetrmd
+    gadenbuie/tweetrmd,
+    tidymodels/discrim
