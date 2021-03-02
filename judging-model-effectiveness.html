@@ -267,7 +267,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 9</span> Judging model effectiveness</h1>
 <p><strong>Learning objectives:</strong></p>
 <ul>
-<li>Jon will prefill these.</li>
+<li>Explain why <strong>measures of model fit</strong> to actual data <strong>are important</strong> even for purely inferential models.</li>
+<li>Use <code>{yardstick}</code> to compute regression metrics.
+<ul>
+<li>Recognize <code>{yardstick}</code> function output.</li>
+<li>Create a metric set with <code>yardstick::metric_set()</code>.</li>
+</ul></li>
+<li>Use <code>{yardstick}</code> to compute binary classification metrics.
+<ul>
+<li>Describe the common arguments for <code>{yardstick}</code> classification metrics.</li>
+<li>Visualize a binary classification model fit using <code>{yardstick}</code> and <code>{ggplot2}</code>.</li>
+</ul></li>
+<li>Use <code>{yardstick}</code> to compute multi-class classification metrics.
+<ul>
+<li>Extend an explicitly binary metric such as <code>sensitivity()</code> to multiple classes using <code>{yardstick}</code>.</li>
+</ul></li>
+<li>Combine <code>{yardstick}</code> metrics with <code>dplyr::group_by()</code>.
+<ul>
+<li>Visualize a model fit for different groups using <code>{yardstick}</code>, <code>{dplyr}</code>, and <code>{ggplot2}</code></li>
+</ul></li>
 </ul>
 </div>
             </section>
