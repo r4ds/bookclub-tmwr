@@ -2,7 +2,17 @@
 
 **Learning objectives:**
 
-- Jon will prefill these.
+- Explain why **measures of model fit** to actual data **are important** even for purely inferential models.
+- Use `{yardstick}` to compute regression metrics.
+  - Recognize `{yardstick}` function output.
+  - Create a metric set with `yardstick::metric_set()`.
+- Use `{yardstick}` to compute binary classification metrics.
+  - Describe the common arguments for `{yardstick}` classification metrics.
+  - Visualize a binary classification model fit using `{yardstick}` and `{ggplot2}`.
+- Use `{yardstick}` to compute multi-class classification metrics.
+  - Extend an explicitly binary metric such as `sensitivity()` to multiple classes using `{yardstick}`.
+- Combine `{yardstick}` metrics with `dplyr::group_by()`.
+  - Visualize a model fit for different groups using `{yardstick}`, `{dplyr}`, and `{ggplot2}`
 
 ## Slide 1 Title
 
