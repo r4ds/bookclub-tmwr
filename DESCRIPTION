@@ -11,10 +11,13 @@ Imports:
     AmesHousing,
     bookdown,
     corrr,
+    discrim,
     details,
+    earth,
     emo,
     ggfortify,
     janitor,
+    mda,
     remotes,
     rmarkdown,
     rsample,
@@ -24,4 +27,5 @@ Imports:
     tweetrmd
 Remotes: 
     hadley/emo,
-    gadenbuie/tweetrmd
+    gadenbuie/tweetrmd,
+    tidymodels/discrim
