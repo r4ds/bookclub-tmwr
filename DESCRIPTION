@@ -7,15 +7,26 @@ Authors@R: c(
 URL: https://r4ds.github.io/bookclub-tmwr, https://github.com/r4ds/bookclub-tmwr
 Depends:
     R (>= 3.1.0)
+<<<<<<< HEAD
 Imports:
+=======
+Imports: 
+    AmesHousing,
+>>>>>>> bcdc94f6c4a75440992b5f8c6801ac9d6383632d
     bookdown,
     corrr,
+    discrim,
     details,
+    earth,
     emo,
     ggfortify,
     glmnet,
     janitor,
+<<<<<<< HEAD
     ranger,
+=======
+    mda,
+>>>>>>> bcdc94f6c4a75440992b5f8c6801ac9d6383632d
     remotes,
     rmarkdown,
     rsample,
@@ -25,4 +36,5 @@ Imports:
     tweetrmd
 Remotes:
     hadley/emo,
-    gadenbuie/tweetrmd
+    gadenbuie/tweetrmd,
+    tidymodels/discrim
