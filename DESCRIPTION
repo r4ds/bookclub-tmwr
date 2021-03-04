@@ -5,15 +5,17 @@ Authors@R: c(
   person("R4DS Online Learning Community", role = c("aut", "cre", "cph"))
   )
 URL: https://r4ds.github.io/bookclub-tmwr, https://github.com/r4ds/bookclub-tmwr
-Depends: 
+Depends:
     R (>= 3.1.0)
-Imports: 
+Imports:
     bookdown,
     corrr,
     details,
     emo,
     ggfortify,
+    glmnet,
     janitor,
+    ranger,
     remotes,
     rmarkdown,
     rsample,
@@ -21,6 +23,6 @@ Imports:
     tidymodels,
     tidyverse,
     tweetrmd
-Remotes: 
+Remotes:
     hadley/emo,
     gadenbuie/tweetrmd
