@@ -146,7 +146,7 @@ ames_spec_binary <-
   set_engine("ranger")
 
 #Create workflow
-ames_workflow <- 
+ames_workflow_binary <- 
   workflow() %>%
   add_recipe(ames_recipe_binary) %>%
   add_model(ames_spec_binary)
