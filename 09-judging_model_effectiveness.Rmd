@@ -14,10 +14,211 @@
 - Combine `{yardstick}` metrics with `dplyr::group_by()`.
   - Visualize a model fit for different groups using `{yardstick}`, `{dplyr}`, and `{ggplot2}`
 
-## Slide 1 Title
+## Measures of Model Fit
+- Empirical Validation: a quantitative approach for estimating effectiveness
+- Focused on how close our predictions come to the observed data
+- Optimization of statistical characteristics of the model does not imply that the model fits the data well
+- Choice of which metrics to examine can be critical
 
-Put the content of your slide here.
+![](images/performance-reg-metrics-1.png)
 
-## Slide 2 Title
+## Disclaimers
+- These examples are to demonstrate metric evaluation not good data science!
+- Explore the full set of metrics available through `{yardstick}`
+- Talk through use cases for different metrics
 
-Put the content of your second slide here.
+![](images/horse-meme-examples.png)
+
+## Regression Metrics
+
+Load in the Data
+```{r message=FALSE}
+library(tidymodels)
+library(glmnet)
+library(ranger)
+set.seed(1123)
+data(ames)
+
+setwd(here::here())
+
+ames <- ames %>%
+  mutate(
+    under_budget = as.factor(if_else(Sale_Price<=160000,1,0)),
+    Sale_Price = log10(Sale_Price))
+
+```
+
+
+```{r, warning=FALSE, message=FALSE, fig.height=20}
+#Cross-fold validation
+ames_folds <- vfold_cv(ames, v = 5)
+
+#Create Recipe
+ames_recipe <- 
+  recipe(formula = Sale_Price ~ Gr_Liv_Area + Full_Bath + Half_Bath + Lot_Area + Neighborhood + Overall_Cond,
+         data = ames) %>%
+  step_dummy(all_nominal())
+
+#Set the model and hyperparameters
+ames_spec <- 
+  linear_reg(penalty = tune(), mixture = tune()) %>% 
+  set_mode("regression") %>% 
+  set_engine("glmnet")
+
+#Create workflow
+ames_workflow <- 
+  workflow() %>%
+  add_recipe(ames_recipe) %>%
+  add_model(ames_spec)
+
+#Create metric set of all regression metrics
+ames_tune <-
+  tune_grid(
+    ames_workflow,
+    metrics =
+      metric_set(rmse, rsq, rsq_trad, mae, mpe, mape, smape, mase, ccc, rpiq, rpd, huber_loss, huber_loss_pseudo, iic),
+    resamples = ames_folds,
+    grid = grid_latin_hypercube(penalty(), mixture(), size = 8)
+  )
+
+#Pick the best model for each metric and pull out the predictions
+best_models <- 
+  tibble(
+    metric_name = c('rmse', 'rsq', 'rsq_trad', 'mae', 'mpe', 'mape', 'smape', 'mase',
+                    'ccc','rpiq', 'rpd', 'huber_loss', 'huber_loss_pseudo', 'iic')) %>% 
+  mutate(metric_best = map(metric_name, ~select_best(ames_tune, .x)),
+         wf_best = map(metric_best, ~finalize_workflow(ames_workflow, .x)),
+         fit_best = map(wf_best, ~fit(.x, data = ames)),
+         df_pred = map(fit_best, ~ames %>% bind_cols(predict(.x, new_data = ames)) %>% select(Sale_Price, .pred))) %>%
+  select(-c(wf_best, fit_best)) %>% 
+  unnest(cols = c(metric_name, metric_best, df_pred))
+
+#Plot!
+best_models %>% 
+  mutate(metric_desc = factor(
+    metric_name, 
+    levels = c('rmse', 'rsq', 'rsq_trad', 'mae', 'mpe', 'mape', 'smape', 'mase',
+               'ccc','rpiq', 'rpd', 'huber_loss', 'huber_loss_pseudo', 'iic'),
+    labels = c('rmse\nwhen you cannot afford\n to have a big error', 
+               'rsq\nwhen you want a measure\n of consistency/correlation\n and not accuracy', 
+               'rsq_trad\n r-sq not constrained\n between 0 and 1',
+               'mae\nwhen large errors are not\n exponentially\n worse than small errors', 
+               'mpe\nwhen you want an easy way\n to calculate accuracy', 
+               'mape\nwhen you want to use mpe\n with a better\n representation of error', 
+               'smape\nwhen you want to use\n mape expressed as a %', 
+               'mase\nwhen you need a scale\n independent metric\n for time-series data',
+               'ccc\nwhen you want to measure\n the distance from \nperferct linearity',
+               'rpiq\nwhen you need a different\n measue of consistency/correlation\n and not accuracy', 
+               'rpd\nwhen you need a different\n measue of consistency/correlation\n and not accuracy', 
+               'huber_loss\nwhen you need a loss\n function less sensitive to outliers', 
+               'huber_loss_pseudo\nwhen you need\n a smoothed version of huber_loss', 
+               'iic\nwhen you need an\n alternative to the traditional\n correlation coefficient'))) %>% 
+  ggplot(aes(x = Sale_Price, y = .pred)) + 
+  geom_abline(lty = 2) + 
+  geom_point(alpha = 0.5) + 
+  labs(y = "Predicted Sale Price (log10)", x = "Sale Price (log10)") +
+  coord_obs_pred() +
+  facet_wrap(~metric_desc, ncol = 2) +
+  theme_minimal() +
+  theme(panel.spacing = unit(2, "lines"),
+        strip.text.x = element_text(size = 8))
+  
+
+best_models %>% select(metric_name, penalty, mixture) %>% distinct() %>% view()
+
+```
+
+## Binary Classification Metrics
+
+```{r}
+#Cross-fold validation
+ames_folds_binary <- vfold_cv(ames, v = 5)
+
+#Create Recipe
+ames_recipe_binary <- 
+  recipe(formula = under_budget ~ Gr_Liv_Area + Full_Bath + Half_Bath + Lot_Area + Neighborhood + Overall_Cond,
+         data = ames)
+
+#Set the model and hyperparameters
+ames_spec_binary <- 
+    rand_forest(mtry = tune(), trees = tune(), min_n = tune()) %>% 
+  set_mode("classification") %>% 
+  set_engine("ranger")
+
+#Create workflow
+ames_workflow_binary <- 
+  workflow() %>%
+  add_recipe(ames_recipe_binary) %>%
+  add_model(ames_spec_binary)
+
+#Create metric set of all binary metrics
+ames_tune_binary <-
+  tune_grid(
+    ames_workflow_binary,
+    metrics =
+      metric_set(sens,spec,recall,precision,mcc,j_index,f_meas,accuracy,
+                 kap,ppv,npv,bal_accuracy,detection_prevalence),
+    resamples = ames_folds_binary,
+    grid = grid_regular(
+      mtry(range = c(2, 6)),
+      min_n(range = c(2, 20)),
+      trees(range = c(10,100)),
+      levels = 10
+    )
+  )
+
+#Pick the best model for each metric and pull out the predictions
+best_models_binary <- 
+  tibble(
+    metric_name = c('recall','sens','spec', 'precision','mcc','j_index','f_meas','accuracy',
+                    'kap','ppv','npv','bal_accuracy','detection_prevalence')) %>% 
+  mutate(metric_best = map(metric_name, ~select_best(ames_tune_binary, .x)),
+         wf_best = map(metric_best, ~finalize_workflow(ames_workflow_binary, .x)),
+         fit_best = map(wf_best, ~fit(.x, data = ames)),
+         df_pred = map(fit_best, ~ames %>% bind_cols(predict(.x, new_data = ames)) %>% select(under_budget, .pred_class))) %>%
+  select(-c(wf_best, fit_best)) %>% 
+  unnest(cols = c(metric_name, metric_best, df_pred))
+
+# Plot!
+best_models_binary %>%
+  mutate(metric_desc = factor(
+    metric_name, 
+    levels = c('recall','sens','spec', 'precision','mcc','j_index','f_meas','accuracy',
+               'kap','ppv','npv','bal_accuracy','detection_prevalence'),
+    labels = c('recall\nhow many observations out \nof all positive observations \nhave we classified as positive',
+               'sens\nhow many observations out \nof all positive observations \nhave we classified as positive',
+               'spec\nhow many observations out \nof all negative observations \nhave we classified as negative', 
+               'precision\nhow many observations \npredicted as positive are \nin fact positive',
+               'mcc\ncorrelation between \npredicted classes and ground truth',
+               'j_index\nbalance between \nsensitivity and specificity',
+               'f_meas\nbalance between \nprecision and recall',
+               'accuracy\nhow many observations,\n both positive and negative,\n were correctly classified',
+               'kap\nhow much better is your model\n over the random classifier\n that predicts based on class frequencies',
+               'ppv\nhow many observations\n predicted as positive\n are in fact positive',
+               'npv\nhow many predictions\n out of all negative\n predictions were correct',
+               'bal_accuracy\nbalance between\n sensitivity and specificity',
+               'detection_prevalence\nhow many positive\n predictions were correct of\n all the predictions'))) %>% 
+  group_by(metric_desc, under_budget, .pred_class) %>% 
+  summarise(bin_count = n()) %>% 
+  ungroup() %>% 
+  ggplot(aes(x = under_budget, y = .pred_class, fill = bin_count, label = bin_count)) +
+  scale_fill_binned() +
+  geom_tile() +
+  geom_label() +
+  coord_fixed() +
+  facet_wrap(~metric_desc, ncol = 2) +
+  theme_minimal() +
+  theme(panel.spacing = unit(2, "lines"),
+        strip.text.x = element_text(size = 8))
+  
+```
+
+## References
+
+[Regression Classification Metrics](https://www.h2o.ai/blog/regression-metrics-guide/)
+
+[Binary Classification Metrics](https://towardsdatascience.com/the-ultimate-guide-to-binary-classification-metrics-c25c3627dd0a)
+
+[Tidymodels Function Reference](https://yardstick.tidymodels.org/reference/index.html)
+
+[Custom Metrics](https://yardstick.tidymodels.org/articles/custom-metrics.html)
