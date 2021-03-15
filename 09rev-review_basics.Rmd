@@ -1,13 +1,103 @@
 # Review of chapters 4-9 {-}
 
-**Learning objectives:**
+For this week, Cohort 1 met with the authors, Max Kuhn and Julia Silge!
 
-- Jon will prefill these.
+## Meeting Videos
 
-## Slide 1 Title
+### Cohort 1
 
-Put the content of your slide here.
+`r knitr::include_url("https://www.youtube.com/embed/xygnYlku-w4")`
 
-## Slide 2 Title
+<details>
+  <summary> Meeting chat log </summary>
+  
+  ```
+00:04:25	Janita Botha:	I am gatcrashing, if that's oke?
+00:04:56	Jim Gruman:	Welcome Janita
+00:05:45	Jon Harmon (jonthegeek):	Everyone is welcome!
+00:05:54	Tan Ho:	R song when
+00:07:26	Conor Tompkins:	We can’t risk not recording this one
+00:14:21	Jon Harmon (jonthegeek):	When you do a 5-fold CV on say a dataset of 100 elements (80 for testing and 20 for the estimation for each fold), do you create 5 sets of 20 elements and then just randomize the way you create the resampling CV datasets?
+00:17:05	Conor Tompkins:	Out of sample can mean different things for continuous vs. categorical variables
+00:17:53	Julia Silge:	https://applicable.tidymodels.org/
+00:19:56	Jordan Krogmann:	stats::filter
+00:19:59	Jordan Krogmann:	for time series
+00:20:53	Emil Hansen:	check_range() might also be nice to check for range of new observations https://recipes.tidymodels.org/reference/check_range.html
+00:21:42	Tony ElHabr:	I thought we were about to get a max v Julia fight
+00:21:47	Tony ElHabr:	get your popcorn ready
+00:26:34	Tyler Grant Smith:	you might use transformed forms of the original set of predictors
+00:27:00	arjun paudel:	you could use portion of original predictors and pca components
+00:30:07	Daniel Chen (he/him):	that sounds like the python 2 -> 3 transision xD
+00:30:25	Jordan Krogmann:	tidypredict??
+00:32:06	Conor Tompkins:	shinyapps.io works for basic stuff
+00:33:06	Jordan Krogmann:	@julia/max how do  you handle the pipeline aspect of feature transformations in a sql database
+00:33:25	Tony ElHabr:	maybe use GitHub actions?
+00:33:35	Asmae Toumi:	I will blog the hell out of my process when the time comes (soon!)
+00:33:39	Jordan Krogmann:	it is an extreme pain to do some transformations as a sql f unction for new data
+00:33:41	Conor Tompkins:	Max what is your dog’s name?
+00:35:26	Asmae Toumi:	shaaaaaade
+00:35:45	Jonathan Leslie:	We use AWS to host shiny apps inside ECS (elastic container service?). Happy to discuss with anyone off-line if you’re curious.
+00:35:52	Asmae Toumi:	Bye Julia!!!! Thank you!!!!
+00:35:56	Conor Tompkins:	Thanks!
+00:35:58	Daniel Chen (he/him):	bye Julia!
+00:35:59	rahul bahadur:	Thanks Julia
+00:35:59	Jonathan Trattner:	Thank you!!
+00:36:08	Jordan Krogmann:	lator tator
+00:36:13	pavitra:	thanks Julia!
+00:36:19	Tyler Grant Smith:	42!
+00:36:21	Daniel Chen (he/him):	42!
+00:36:25	Tan Ho:	It's not 42
+00:36:25	Daniel Chen (he/him):	:D
+00:36:29	Tony ElHabr:	6669
+00:36:31	Daniel Chen (he/him):	4242
+00:36:41	Tan Ho:	834 I think?
+00:36:45	Emil Hansen:	I would not trust 2020!
+00:37:05	Max Kuhn:	https://twitter.com/TechRonic9876/status/1247743194038546432
+00:37:40	Tan Ho:	lolol I was in the area code
+00:38:02	Jordan Krogmann:	birth year
+00:38:05	Jordan Krogmann:	everytime
+00:38:40	Tyler Grant Smith:	but what do you seed your random seed generator with...
+00:39:00	Jordan Krogmann:	birth year number... inception
+00:39:07	Conor Tompkins:	@max what is the simplest feature engineering step that has given you the most performance gain?
+00:39:43	Tan Ho:	^ bonus points for something aside from "log transform everything"
+00:40:31	Jordan Krogmann:	https://datachef.co/
+00:41:20	pavitra:	normalize
+00:41:47	Tyler Grant Smith:	preprocess
+00:41:49	Emil Hansen:	My mental model is:
+recipe() -> define
+prep() -> estimate
+bake() -> apply
+00:42:58	Joe Sydlowski:	Are the MARS models the only models with feature selection in tidymodels today? Do you have any concerns with using the feature selection in MARS when resampling?
+00:43:15	pavitra:	once I discovered workflow I was delighted to not mess with bake and prep
+00:43:48	Jon Harmon (jonthegeek):	Can you talk about the design process of metric sets as functionals, e.g. ames_metrics <- metric_set(rmse, rsq, mae), then calling ames_metrics(...)? The idea of using functionals is interesting, but what are the actual practical advantages?
+00:47:05	Tony ElHabr:	it is quite elegant
+00:49:26	Jon Harmon (jonthegeek):	https://github.com/tidymodels/workflows/issues
+00:53:19	Tyler Grant Smith:	I like both modeltime and fable...
+00:54:13	Jon Harmon (jonthegeek):	Three questions really. Firstly what package system do you think works better for time series in a tidymodels workflow for time series, Modeltime, fable, or other? Second question, this is possibly just my experience, but I often feel time series is poorly taught/documented by comparison (excluding FPP) to other techniques. I was wondering how you might think this could be improved upon, and how tidy models system may contribute to better understanding and comparison? A third question (cheeky sorry) a lot of time-series focuses on model fit, however, sometime we want to investigate potential uplifts based on the presence or absence of features across multiple future forecasts. In which case causal inference can be a useful option, is this something we would be able to do in tidy models?
+00:57:13	arjun paudel:	is there ever a reason to normalize dummy variables?
+00:57:37	Conor Tompkins:	Kenneth can you mute
+00:58:20	Tan Ho:	there was a mars question
+00:58:30	Tan Ho:	> Are the MARS models the only models with feature selection in tidymodels today? Do you have any concerns with using the feature selection in MARS when resampling?
 
-Put the content of your second slide here.
+- Joe
+00:59:06	Jordan Krogmann:	I think workflows is the future
+00:59:07	Tyler Grant Smith:	is there a way to do mean (target) encoding in recipes?
+01:00:35	Conor Tompkins:	Is that like putting tune() inside a step_?
+01:00:59	Jordan Krogmann:	anything on deployment @#max
+01:02:33	arjun paudel:	I saw "workflowsets" mentioned in tidyAPM repo...is it making to CRAN anytime soon?
+01:02:37	Tyler Grant Smith:	@conor no, it wouldn't really be tuned. It is learned from the data
+01:03:21	Tyler Grant Smith:	:thumbsup:
+01:04:22	Tyler Grant Smith:	does workflowsets process in parallel?
+01:05:36	Jordan Krogmann:	thanks max!
+01:05:37	Jim Gruman:	Thank You!!!
+01:05:39	Conor Tompkins:	Thanks max!
+01:05:40	Joe Sydlowski:	Thanks Max!
+01:05:41	Jonathan Trattner:	Thank you so much!!
+01:05:43	rahul bahadur:	Thanks Max
+01:05:47	Tan Ho:	Thank you :D
+01:05:50	Asmae Toumi:	Thanks max!!!!!!!!!!!!!!
+01:05:51	pavitra:	this was amazing! thanks max and Julia!
+01:05:55	Jonathan Leslie:	Thanks, Max
+01:05:56	arjun paudel:	Thank you!!
+01:05:56	Andy Farina:	Thank you!
+  ```

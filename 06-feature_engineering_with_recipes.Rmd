@@ -27,10 +27,108 @@
 - Use `tidy()` to **examine a recipe** and its steps.
 - Refer to columns with **roles** other than `"predictor"` or `"outcome"`.
 
-## Slide 1 Title
+## Meeting Videos
 
-Put the content of your slide here.
+### Cohort 1
 
-## Slide 2 Title
+`r knitr::include_url("https://www.youtube.com/embed/KmLKhIBrQPk")`
 
-Put the content of your second slide here.
+<details>
+  <summary> Meeting chat log </summary>
+  
+  ```
+00:06:28	Tyler Grant Smith:	getting kind of scruffy jon
+00:07:22	Jim Gruman:	{purr}
+00:07:37	Jim Gruman:	{purrr}
+00:18:31	Tony ElHabr:	is this thing on?
+00:18:39	Jonathan Trattner:	The chat?
+00:18:43	Jon Harmon (jonthegeek):	I know, it's so quiet over here!
+00:19:05	Tony ElHabr:	quiet chat is making me nervous
+00:19:27	Jonathan Trattner:	I’ll make some noise
+00:19:38	Jonathan Trattner:	🔈
+00:20:06	Tyler Grant Smith:	it would be good (in the bookdown) to have a comparison of stratified vs non-stratified sampling for this example.  with a comparison of the distributions
+00:20:07	Tony ElHabr:	ugh I read chapter 7
+00:21:38	Asmae Toumi:	Wait what does all_nominal do, missed it
+00:21:51	Jon Harmon (jonthegeek):	Selects all columns that... what she's saying :D
+00:21:54	Asmae Toumi:	Oh ok nvmd
+00:22:30	yonis:	We basically we to make to create a design matrix for the regression
+00:22:40	Joe Sydlowski:	For clarity to Jon's answer it won't include numeric vars, right?
+00:22:52	Tony ElHabr:	right
+00:23:06	Jon Harmon (jonthegeek):	all_numeric() is its counterpart
+00:23:59	Conor Tompkins:	step_dummy() drops the reference level, I think
+00:24:46	yonis:	That is tricky. the reference level isn’t lined up with how base r is defined so you need to be careful with that
+00:25:47	yonis:	I ran a logistic regression and got into all kinds of trouble with how recipe was defining the ref level
+00:27:11	arjun paudel:	does it not set the reference level based on order of factor levels? that was my understanding
+00:27:29	arjun paudel:	if you want a specific level as you reference, you reorder your factor
+00:27:49	Conor Tompkins:	That is my understanding as well Arjun
+00:29:17	Conor Tompkins:	I use step_relevel to set the reference level
+00:30:15	yonis:	https://recipes.tidymodels.org/reference/step_relevel.html
+00:30:20	Tyler Grant Smith:	why are the counts almost monotonic, but not monotonic?
+00:31:42	Conor Tompkins:	This is a great table to show this
+00:35:44	Scott Nestler:	I don't follow the mention of one-hot encoding in the book. Why would you use that instead of binary encoding like was just shown here.
+00:36:37	Asmae Toumi:	I say Tilda, is that right?
+00:38:01	Tony ElHabr:	one-hot: like removing the intercept term in your regression with a univariate categorical variable. so you get coefficients for each term
+00:38:16	Conor Tompkins:	The winner of the big data bowl determines the pronunciation, I think
+00:38:27	Asmae Toumi:	Lmaooooooo
+00:38:32	Tan Ho:	asmae v tony, fightttt
+00:38:53	Joe Sydlowski:	The benefit of one hot encoding is that you don't need to know (or explain) what the reference variable is when interpreting the coefficients. Not ever model can use one hot encoding though
+00:39:04	Scott Nestler:	@ Tony: But wouldn't that create the linear dependency problem as is discussed in the text?
+00:39:35	Scott Nestler:	Thanks, Joe.  Got it.  That makes sense.
+00:40:26	Tony ElHabr:	i think you're right about that Scott. or maybe my analogy was just bad
+00:41:06	Conor Tompkins:	Are there best practices for determining the appropriate reference level? I typically use the most common level
+00:42:39	Scott Nestler:	ICA is my favorite type of feature extraction to use.  Makes use of higher-level moments than PCA, resulting in components that are truly statistically independent, not just uncorrelated.
+00:43:04	arjun paudel:	@Conor, what level you want as reference is entirely based on context of the problem, I don't think one standard way of determining the reference level would make sense
+00:43:37	Asmae Toumi:	conor I pick mine in a way that makes interpretation easier for ppl who digest the findings
+00:44:05	Scott Nestler:	Agree with Arjun and Asmae; it depends on the variable and ease of interpretation.
+00:44:16	Tony ElHabr:	any kind of thought put into reference level is probably better than alphabetical imo
+00:44:55	Tony ElHabr:	Scott, do you have a good reference on ICA?
+00:45:57	Jordan Krogmann:	Has anyone had to create the "bake" function in sql?  Let me tell you it's less than fun for new records hitting your model...
+00:46:12	Scott Nestler:	Book by Hyvarinen, Karhunen, Oja is one standard.  Book by Stone is more approachable.  I have a presentation on it that I developed too.  Happy to share.
+00:46:25	Daniel Chen:	how is the recipie object implemented? is it a dataframe with an attribute table that defines whether or not a variable is a predictor or response?
+00:47:22	Jon Harmon (jonthegeek):	There's a tibble in there, but it has a lot going on. I... can't remember details, it's been a bit since I dug into it.
+00:48:47	Daniel Chen:	s3 objects are just lists with an attr defined, right?
+00:50:16	Jon Harmon (jonthegeek):	They're not necessarily lists.
+00:50:33	Tony ElHabr:	attributes are the magic to S3
+00:50:48	Tony ElHabr:	but right, not necessarily lists
+00:50:49	Tan Ho:	deep, dark magic
+00:50:52	Jon Harmon (jonthegeek):	If I remember right, recipes are lots o' attributes.
+00:50:56	Tyler Grant Smith:	sounds like someone wants to write dbrecipes
+00:51:04	Tony ElHabr:	sounds like ETL
+00:51:15	Asmae Toumi:	dbrecipes omg
+00:51:46	Conor Tompkins:	Luv 2 engineer data
+00:51:53	Tan Ho:	"do all the work for you" eh
+00:52:35	arjun paudel:	hahaa
+00:52:56	arjun paudel:	i meant you don't have to prep or bake it yourself
+00:53:13	Jordan Krogmann:	lol, I guess I was looking for a reason to lose sleep @tyler
+00:53:28	Tony ElHabr:	step_drop_table in dbrecipes could be disastrous
+00:54:46	Conor Tompkins:	step_rm_rf
+00:54:49	Tony ElHabr:	tidymodels before workflows was an experience
+00:55:14	Tan Ho:	it's superseded by bake NULL
+00:55:49	Tony ElHabr:	every time i typed juice() i felt disgusting
+00:56:00	Asmae Toumi:	lmfao
+00:56:29	Conor Tompkins:	Workflow feels like the %>% for tidymodels
+00:58:17	Asmae Toumi:	hahahahahahah
+00:58:36	Tyler Grant Smith:	no congrats for tan
+00:58:39	Tony ElHabr:	thanks y'all
+00:59:03	Jordan Krogmann:	Thanks pavitra!
+00:59:06	Jordan Krogmann:	great job
+00:59:10	Daniel Chen:	my prelims are next week xDDD
+00:59:14	Asmae Toumi:	I made parsnip puree this weekend it was sooooooooooo good, so much better than mashed potatoes
+00:59:24	Tony ElHabr:	tony, tan, tyler, t-rex
+00:59:26	Tony ElHabr:	all the same
+00:59:47	Asmae Toumi:	Jordan should go since he’s gonna be busy soon writing dbrecipes
+01:00:48	Asmae Toumi:	YESSSSSSSSSSSSSSSSS
+01:00:54	Asmae Toumi:	My impact!!!!!
+01:01:15	Jordan Krogmann:	lol thanks a lot Asmae!
+01:01:45	Tony ElHabr:	thanks so much Pavitra!
+01:01:50	Tony ElHabr:	great presentation
+01:01:54	Jonathan Trattner:	Great job Pavitra!
+01:02:00	Conor Tompkins:	Thanks Pavitra!
+01:02:00	Andrew G. Farina:	Thank you Pavitra, that was a busy chapter!
+01:02:09	Jonathan Trattner:	I’ll deff be asking about prep and bake again (:
+01:03:11	Scott Nestler:	I'm surprised that "mise en place" didn't make an appearance in this chapter.
+01:03:12	Jonathan Trattner:	I’ll play with it a little bit but thanks!
+01:04:48	Daniel Chen:	it'll be less weird when we get to workflow
+01:05:09	Jonathan Trattner:	Thank you!
+01:06:40	Jordan Krogmann:	Thanks gonna drop guys, it's been great!
+```
