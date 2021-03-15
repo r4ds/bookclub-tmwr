@@ -19,10 +19,79 @@
   - **Add a special formula** to a workflow with the `formula` argument to `workflows::add_model()`.
 - Describe workflow steps that are **not yet included** in `{tidmodels}`.
 
-## Slide 1 Title
+## Meeting Videos
 
-Put the content of your slide here.
+### Cohort 1
 
-## Slide 2 Title
+`r knitr::include_url("https://www.youtube.com/embed/0vgcdWw3k6E")`
 
-Put the content of your second slide here.
+<details>
+  <summary> Meeting chat log </summary>
+  
+  ```
+00:13:53	Tyler Grant Smith:	i used skimr today on a dataset with 77 million rows and 200 columns...it took a while
+00:14:14	Tan Ho:	The official R soundtrack https://www.youtube.com/watch?v=-9BzWBufH1s
+00:14:19	Tyler Grant Smith:	that would have been smart...oh well
+00:14:35	Ben Gramza:	https://www.kaggle.com/yamaerenay/spotify-dataset-19212020-160k-tracks
+00:16:21	Tony ElHabr:	i'm blind
+00:16:31	Asmae Toumi:	pAIN
+00:16:42	Jordan Krogmann:	the humanity
+00:16:54	Scott Nestler:	I just turned off my Vitamin D sunlamp.
+00:17:01	Jordan Krogmann:	coobalt
+00:17:03	Jordan Krogmann:	= love
+00:17:14	Tony ElHabr:	bad programmers use light mode so they can see their bugs
+00:17:15	Tyler Grant Smith:	thanks
+00:17:16	Jim Gruman:	monokai
+00:17:31	Tan Ho:	correct pane layout tho
+00:17:34	Tan Ho:	much appreciate
+00:17:37	Asmae Toumi:	Absolutely not
+00:17:48	Jim Gruman:	console, upper right...
+00:21:20	Jon Harmon (jonthegeek):	Is there actually no chat, or does zoom just not show it to me when I'm late?
+00:21:28	Tony ElHabr:	it doesn't show
+00:21:29	Tan Ho:	you don't see it if you're late
+00:21:40	Jordan Krogmann:	yeah there were some comments up top
+00:21:53	Jon Harmon (jonthegeek):	Ok. That's funny, since I can see the full log after the meeting.
+00:26:25	Tony ElHabr:	steps like step_meanimpute will only do work on the training data, so you avoid data leakage
+00:26:31	Jordan Krogmann:	+1
+00:29:57	Asmae Toumi:	I do it with insurance costs a lot because I don’t want to throw out the information in claims with 0$
+00:30:58	Asmae Toumi:	My internet is bad but I do use an offset
+00:31:30	Jim Gruman:	step_YeoJohnson and step_BoxCox would be better choices
+00:32:11	Tyler Grant Smith:	^
+00:32:37	Tony ElHabr:	are they always better tho?
+00:35:38	Tyler Grant Smith:	well yeo johnson is a generalization og log1p
+00:36:22	Tony ElHabr:	ah right. google verifies this is true
+00:36:39	Pavitra Chakravarty:	thanks Jon
+00:36:41	Tyler Grant Smith:	sure?
+00:36:46	Tyler Grant Smith:	no idea me neither
+00:42:31	Jordan Krogmann:	tidy is black magic
+00:43:40	Tony ElHabr:	how do we feel about super long function names like `pull_workflow_prepped_recipe()`
+00:44:39	Jordan Krogmann:	%<>% update_formula() would overwrite it
+00:45:28	Conor Tompkins:	Long specific functions are better than “bake” and “juice” IMO
+00:45:58	Tony ElHabr:	yeah i agree
+00:46:15	Scott Nestler:	Back to the log(0) issue.  Transformations like log(x+c) where c is a positive constant "start value" can work--and can be indicated even when no value of x is zero--but sometimes they destroy linear relationships.
+00:46:26	Scott Nestler:	Here's the other method I recall seeing (in Hosmer, Lemeshow, & Sturdivant's Logistic Regression book):   A good solution is to create two variables. One of them equals log(x) when x is nonzero and otherwise is anything; it's convenient to let it default to zero. The other, let's call it zx, is an indicator of whether x is zero: it equals 1 when x=0 and is 0 otherwise.
+00:47:31	Scott Nestler:	These terms contribute a sum βlog(x)+β0zx to the estimate. When x>0, zx=0 so the second term drops out leaving just βlog(x). When x=0, "log(x)" has been set to zero while zx=1, leaving just the value β0. Thus, β0 estimates the effect when x=0 and otherwise β is the coefficient of log(x).
+00:47:57	Scott Nestler:	Found a reference to it here:  https://stats.stackexchange.com/questions/4831/regression-transforming-variables
+00:54:16	Asmae Toumi:	Resampling is my chapter *cracks knuckles*
+00:54:28	Asmae Toumi:	nooooope
+00:54:39	Scott Nestler:	rf_fit_rs <- 
+  rf_wf %>% 
+  fit_resamples(folds)
+00:55:26	Conor Tompkins:	Right Scott, that will contain the results of the fit
+00:55:49	Conor Tompkins:	If you keep the .pred, that is
+00:56:20	Jordan Krogmann:	Asmae, time to voluntell someone!
+00:56:32	Asmae Toumi:	Let me play the music of my people
+00:56:37	Asmae Toumi:	I nominateeeeeeeeeeeeeeee
+00:56:40	Tan Ho:	JOE
+00:56:41	Asmae Toumi:	JOE
+00:56:45	Asmae Toumi:	WE DID IT JOE
+00:56:52	Jordan Krogmann:	lol
+00:57:10	Asmae Toumi:	https://www.youtube.com/watch?v=dP6_pYYWAT8
+00:57:11	Asmae Toumi:	This is the song
+00:57:50	Asmae Toumi:	asorry
+00:57:51	Asmae Toumi:	https://www.youtube.com/watch?v=-9BzWBufH1s
+00:57:52	Jon Harmon (jonthegeek):	https://www.youtube.com/watch?v=-9BzWBufH1s
+00:57:53	Asmae Toumi:	THIS IS IT
+00:58:52	Jordan Krogmann:	Thanks!
+00:59:04	Asmae Toumi:	Goodnight gang
+```

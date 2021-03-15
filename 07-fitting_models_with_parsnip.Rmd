@@ -326,7 +326,28 @@ ggplot(parabolic, aes(x = X1, y = X2)) +
   - tibble in, tibble out
   - same number of observations returned for `predict()`
 
- 
+## Meeting Videos
 
+### Cohort 1
 
+`r knitr::include_url("https://www.youtube.com/embed/97VLayRdu-A")`
 
+<details>
+  <summary> Meeting chat log </summary>
+  
+  ```
+00:15:40	Tan Ho:	YESSS
+00:15:58	Tan Ho:	(@ the drake meme)
+00:21:51	Tyler Grant Smith:	space advantage
+00:23:32	Asmae :	what's that
+00:24:28	Jim Gruman:	http://www.feat.engineering/categorical-trees.html on dummies or no-dummies with trees
+00:24:37	Tony ElHabr:	amazing meme
+00:24:48	Tony ElHabr:	I am physically applauding
+00:25:03	Scott Nestler:	Some additional discussion regarding fit_xy() at tidyverse.org/blog/2019/04/parsnip-internals, related to possible range of mtry variables when you don't know number of predictors before recipe is prepped.
+00:25:56	Scott Nestler:	Is there a typo in the book after tables toward end of 7.1 where it talks about common argument names?  It mentions num_n but I think they meant min_n.  What do others think?  Or is num_n actually used?
+00:26:30	Conor Tompkins:	Scott I think Jon made a PR to fix that typo
+00:26:53	Scott Nestler:	Thx.  I hadn't checked yet.  Just caught it in a quick read right before we started.
+00:31:15	Scott Nestler:	There are actually 30 different model types and engines at https://www.tidymodels.org/find/parsnip/ that work with parsnip.
+00:43:55	Tony ElHabr:	yay volunteers
+00:44:48	Andy Farina:	Thanks Jordan, excellent presentation
+```
