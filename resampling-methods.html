@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>9.2 Disclaimers | Tidy Modeling with R Book Club</title>
+  <title>10.3 Resampling methods | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="9.2 Disclaimers | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="10.3 Resampling methods | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="9.2 Disclaimers | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="10.3 Resampling methods | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="measures-of-model-fit.html"/>
-<link rel="next" href="regression-metrics.html"/>
+<link rel="prev" href="resubstitution-approach.html"/>
+<link rel="next" href="estimating-performance.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -287,22 +287,205 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="disclaimers" class="section level2">
-<h2><span class="header-section-number">9.2</span> Disclaimers</h2>
+<div id="resampling-methods" class="section level2">
+<h2><span class="header-section-number">10.3</span> Resampling methods</h2>
+<p>This diagram from the <em>Hands-on machine learning in R</em> from Boehmke &amp;
+Greenwell illustrates how resampling fits into the general modeling
+workflow:</p>
+<p><img src="images/process-resampling.png" /></p>
+<p>We can see that in resampling:</p>
+<p>- happens <strong>after</strong> the data split into training and test sets</p>
+<p>- some data is used for analyzing (analysis set), and some for
+evaluation (evaluation or assessment set, we’ll use assessment set from
+now on)</p>
+<p>- this is an iterative as it can be repeated many times - it only
+applies to the training data</p>
+<p>Effectively,</p>
+<p>- the model is fit with the analysis set</p>
+<p>- the model is evaluated with the evaluation set</p>
+<p>The overall, final performance evaluation for the model is the average
+of the performance metrics of the <em>n</em> evaluation sets.</p>
+<p>The way in which these analysis and evaluation sets are created define
+what the resampling techniques are specifically. We’ll go through the
+common ones:</p>
 <ul>
-<li>These examples are to demonstrate metric evaluation not good data science!</li>
-<li>Explore the full set of metrics available through <code>{yardstick}</code></li>
-<li>Talk through use cases for different metrics</li>
+<li><p>cross-validation</p></li>
+<li><p>repeated cross-validation</p></li>
+<li><p>leave-one-out cross-validation</p></li>
+<li><p>monte-carlo cross-validation</p></li>
 </ul>
-<p><img src="images/horse-meme-examples.png" /></p>
+<div id="cross-validation" class="section level3">
+<h3><span class="header-section-number">10.3.1</span> Cross-validation</h3>
+<p>Cross-validation is one of the most popular resampling techniques. There
+are several flavors</p>
+<div id="v-fold-cross-validation" class="section level4">
+<h4><span class="header-section-number">10.3.1.1</span> V-fold cross-validation</h4>
+<p>V-fold cross-validation involves the random splitting of the training
+data into approximately equal-sized “folds”. The diagram below
+illustrates v-fold cross validation with v set to 3 folds.</p>
+<p><img src="images/v-fold.svg" /> We can see that the training data points have
+been randomly assigned to roughly equal-sized folds (in this case,
+exactly equal) and that the assessment set for each fold is 2/3 of the
+training data. Max and Julia note that while 3-fold CV is good to use
+for illustrative purposed, it is not good in practice - in practice,
+rather 5- or 10- fold CV is preferred.</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="resampling-methods.html#cb136-1"></a><span class="kw">set.seed</span>(<span class="dv">55</span>)</span>
+<span id="cb136-2"><a href="resampling-methods.html#cb136-2"></a>ames_folds &lt;-<span class="st"> </span><span class="kw">vfold_cv</span>(ames_train, <span class="dt">v =</span> <span class="dv">10</span>)</span>
+<span id="cb136-3"><a href="resampling-methods.html#cb136-3"></a>ames_folds</span></code></pre></div>
+<pre><code>## #  10-fold cross-validation 
+## # A tibble: 10 x 2
+##    splits             id    
+##    &lt;list&gt;             &lt;chr&gt; 
+##  1 &lt;split [2111/235]&gt; Fold01
+##  2 &lt;split [2111/235]&gt; Fold02
+##  3 &lt;split [2111/235]&gt; Fold03
+##  4 &lt;split [2111/235]&gt; Fold04
+##  5 &lt;split [2111/235]&gt; Fold05
+##  6 &lt;split [2111/235]&gt; Fold06
+##  7 &lt;split [2112/234]&gt; Fold07
+##  8 &lt;split [2112/234]&gt; Fold08
+##  9 &lt;split [2112/234]&gt; Fold09
+## 10 &lt;split [2112/234]&gt; Fold10</code></pre>
+<p>The output contains info on how the training data was split: ~2000 are
+in the analysis set, and ~220 are in the assessment set. You can
+recuperate these sets by calling <code>analysis()</code> or <code>assessment()</code>.</p>
+<p>In chapter 5, we introduced the idea of stratified sampling, which is
+almost always useful but particularly in cases with class imbalance. You
+can perform V-fold CV with stratified samplying by using the <code>strata</code>
+argument in the <code>vfold_cv()</code> call.</p>
+</div>
+<div id="repeated-cross-validation" class="section level4">
+<h4><span class="header-section-number">10.3.1.2</span> Repeated cross validation</h4>
+<p>V-fold CV introduced above may produce noisy estimates. A technique that
+averages over more than <em>V</em> statistics may be more appropriate to reduce
+the noise. This technique is repeated cross-validation, where we create
+<em>R</em> repeats of V-fold CV. Instead of averaging over V statistics, we are
+now averaging over <em>V x R</em> statistics:</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="resampling-methods.html#cb138-1"></a><span class="kw">vfold_cv</span>(ames_train, <span class="dt">v =</span> <span class="dv">10</span>, <span class="dt">repeats =</span> <span class="dv">5</span>) </span></code></pre></div>
+<pre><code>## #  10-fold cross-validation repeated 5 times 
+## # A tibble: 50 x 3
+##    splits             id      id2   
+##    &lt;list&gt;             &lt;chr&gt;   &lt;chr&gt; 
+##  1 &lt;split [2111/235]&gt; Repeat1 Fold01
+##  2 &lt;split [2111/235]&gt; Repeat1 Fold02
+##  3 &lt;split [2111/235]&gt; Repeat1 Fold03
+##  4 &lt;split [2111/235]&gt; Repeat1 Fold04
+##  5 &lt;split [2111/235]&gt; Repeat1 Fold05
+##  6 &lt;split [2111/235]&gt; Repeat1 Fold06
+##  7 &lt;split [2112/234]&gt; Repeat1 Fold07
+##  8 &lt;split [2112/234]&gt; Repeat1 Fold08
+##  9 &lt;split [2112/234]&gt; Repeat1 Fold09
+## 10 &lt;split [2112/234]&gt; Repeat1 Fold10
+## # … with 40 more rows</code></pre>
+</div>
+<div id="leave-one-out-cross-validation" class="section level4">
+<h4><span class="header-section-number">10.3.1.3</span> Leave-one-out cross validation</h4>
+<p>M &amp; J say it sucks, so I’m skipping this lol.</p>
+</div>
+<div id="monte-carlo-cross-validation-mccv" class="section level4">
+<h4><span class="header-section-number">10.3.1.4</span> Monte Carlo cross validation (MCCV)</h4>
+<p>It’s like V-fold CV in the sense that training data is allocated to the
+assessment set with some fixed proportion. The difference is the
+resampling objects generated by MCCV are not mutually exclusive as the
+same data points can appear in the assessment set multiple times.</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="resampling-methods.html#cb140-1"></a><span class="kw">mc_cv</span>(ames_train, <span class="dt">prop =</span> <span class="dv">9</span><span class="op">/</span><span class="dv">10</span>, <span class="dt">times =</span> <span class="dv">20</span>)</span></code></pre></div>
+<pre><code>## # Monte Carlo cross-validation (0.9/0.1) with 20 resamples  
+## # A tibble: 20 x 2
+##    splits             id        
+##    &lt;list&gt;             &lt;chr&gt;     
+##  1 &lt;split [2112/234]&gt; Resample01
+##  2 &lt;split [2112/234]&gt; Resample02
+##  3 &lt;split [2112/234]&gt; Resample03
+##  4 &lt;split [2112/234]&gt; Resample04
+##  5 &lt;split [2112/234]&gt; Resample05
+##  6 &lt;split [2112/234]&gt; Resample06
+##  7 &lt;split [2112/234]&gt; Resample07
+##  8 &lt;split [2112/234]&gt; Resample08
+##  9 &lt;split [2112/234]&gt; Resample09
+## 10 &lt;split [2112/234]&gt; Resample10
+## 11 &lt;split [2112/234]&gt; Resample11
+## 12 &lt;split [2112/234]&gt; Resample12
+## 13 &lt;split [2112/234]&gt; Resample13
+## 14 &lt;split [2112/234]&gt; Resample14
+## 15 &lt;split [2112/234]&gt; Resample15
+## 16 &lt;split [2112/234]&gt; Resample16
+## 17 &lt;split [2112/234]&gt; Resample17
+## 18 &lt;split [2112/234]&gt; Resample18
+## 19 &lt;split [2112/234]&gt; Resample19
+## 20 &lt;split [2112/234]&gt; Resample20</code></pre>
+</div>
+</div>
+<div id="validation-sets" class="section level3">
+<h3><span class="header-section-number">10.3.2</span> Validation sets</h3>
+<p>Another way you can assess the performance of your candidate model(s) -
+before moving forward to the test set - is to use a validation set. This
+might be an attractive option if you have big data. As the diagram below
+shows, the validation set is independent of the training data.</p>
+<p><img src="images/validation-set.svg" /></p>
+<p>You can create your validation set by calling on <code>validation_split()</code>
+and setting the proportion desired. There is also a <code>strata</code> argument to
+conduct stratified sampling.</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="resampling-methods.html#cb142-1"></a><span class="kw">set.seed</span>(<span class="dv">12</span>)</span>
+<span id="cb142-2"><a href="resampling-methods.html#cb142-2"></a>val_set &lt;-<span class="st"> </span><span class="kw">validation_split</span>(ames_train, <span class="dt">prop =</span> <span class="dv">3</span><span class="op">/</span><span class="dv">4</span>)</span>
+<span id="cb142-3"><a href="resampling-methods.html#cb142-3"></a>val_set</span></code></pre></div>
+<pre><code>## # Validation Set Split (0.75/0.25)  
+## # A tibble: 1 x 2
+##   splits             id        
+##   &lt;list&gt;             &lt;chr&gt;     
+## 1 &lt;split [1760/586]&gt; validation</code></pre>
+</div>
+<div id="boostrapping" class="section level3">
+<h3><span class="header-section-number">10.3.3</span> Boostrapping</h3>
+<p>Bootstrapping can be used to estimate model performance. It’s good to be
+aware that while it does produce lower variance compared to other
+resampling methods, it has “significant pessimistic bias”. It also works
+differently than other resampling methods. In the diagram below, we can
+see that the analysis set is always equal to the size of the whole
+training set, and we can also see that the same points can be selected
+multiple times. The assessment sets contain the data points that were
+not previously included in the analysis sets. Furthermore, these
+assessment sets are not of the same size, as we’re about to see when we
+call <code>bootstraps()</code>.</p>
+<p><img src="images/bootstrapping-resampling.png" /> Operationally, performing
+bootstrap resampling involves specifying the number of bootstrap samples
+via the <code>times</code> argument. There is also a <code>strata</code> argument for
+conducting stratified sampling.</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="resampling-methods.html#cb144-1"></a><span class="kw">bootstraps</span>(ames_train, <span class="dt">times =</span> <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## # Bootstrap sampling 
+## # A tibble: 5 x 2
+##   splits             id        
+##   &lt;list&gt;             &lt;chr&gt;     
+## 1 &lt;split [2346/863]&gt; Bootstrap1
+## 2 &lt;split [2346/862]&gt; Bootstrap2
+## 3 &lt;split [2346/897]&gt; Bootstrap3
+## 4 &lt;split [2346/863]&gt; Bootstrap4
+## 5 &lt;split [2346/881]&gt; Bootstrap5</code></pre>
+</div>
+<div id="rolling-forecasting-origin-resampling" class="section level3">
+<h3><span class="header-section-number">10.3.4</span> Rolling forecasting origin resampling</h3>
+<p>Resampling with time series data needs a special setup as random
+sampling can ignore important trends such as seasonality. Rolling
+forecast resampling involves specifying the size of the analysis and
+assessment sets, and each iteration after the first one skips by a set
+number as the diagram illustrates below (with a skip of 1 as an
+example):</p>
+<p><img src="images/rolling-resampling.svg" /></p>
+<p>This time series resampling is done with <code>rolling_origin</code>. You can
+specify the number of samples to be used for analysis with <code>initial</code>,
+the number of samples used for each assessment resample with <code>assess</code>,
+and <code>cumulative</code> set to true if you want the analysis resample to grow
+beyong the size specified with <code>initial</code>. Additional arguments include
+the <code>skip</code> and <code>lag</code>.</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="resampling-methods.html#cb146-1"></a><span class="kw">rolling_origin</span>(data, <span class="dt">initial =</span> <span class="dv">5</span>, <span class="dt">assess =</span> <span class="dv">1</span>, <span class="dt">cumulative =</span> <span class="ot">TRUE</span>, <span class="dt">skip =</span> <span class="dv">0</span>, <span class="dt">lag =</span> <span class="dv">0</span>)</span></code></pre></div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="measures-of-model-fit.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="regression-metrics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="resubstitution-approach.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="estimating-performance.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -333,7 +516,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/09-judging_model_effectiveness.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/10-resampling_for_evaluating_performance.Rmd",
 "text": "Edit"
 },
 "history": {

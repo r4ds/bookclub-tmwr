@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>14.3 Slide 1 Title | Tidy Modeling with R Book Club</title>
+  <title>10.2 Resubstitution approach | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="14.3 Slide 1 Title | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="10.2 Resubstitution approach | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="14.3 Slide 1 Title | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="10.2 Resubstitution approach | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -24,15 +24,15 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-03-15" />
+<meta name="date" content="2021-03-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="review-of-chapters-10-14.html"/>
-<link rel="next" href="slide-2-title-5.html"/>
+<link rel="prev" href="why.html"/>
+<link rel="next" href="resampling-methods.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -235,28 +235,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="resampling-for-evaluating-performance.html"><a href="resampling-for-evaluating-performance.html"><i class="fa fa-check"></i><b>10</b> Resampling for evaluating performance</a><ul>
-<li class="chapter" data-level="10.1" data-path="slide-1-title.html"><a href="slide-1-title.html"><i class="fa fa-check"></i><b>10.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="10.2" data-path="slide-2-title.html"><a href="slide-2-title.html"><i class="fa fa-check"></i><b>10.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="10.1" data-path="why.html"><a href="why.html"><i class="fa fa-check"></i><b>10.1</b> Why?</a></li>
+<li class="chapter" data-level="10.2" data-path="resubstitution-approach.html"><a href="resubstitution-approach.html"><i class="fa fa-check"></i><b>10.2</b> Resubstitution approach</a></li>
+<li class="chapter" data-level="10.3" data-path="resampling-methods.html"><a href="resampling-methods.html"><i class="fa fa-check"></i><b>10.3</b> Resampling methods</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="resampling-methods.html"><a href="resampling-methods.html#cross-validation"><i class="fa fa-check"></i><b>10.3.1</b> Cross-validation</a></li>
+<li class="chapter" data-level="10.3.2" data-path="resampling-methods.html"><a href="resampling-methods.html#validation-sets"><i class="fa fa-check"></i><b>10.3.2</b> Validation sets</a></li>
+<li class="chapter" data-level="10.3.3" data-path="resampling-methods.html"><a href="resampling-methods.html#boostrapping"><i class="fa fa-check"></i><b>10.3.3</b> Boostrapping</a></li>
+<li class="chapter" data-level="10.3.4" data-path="resampling-methods.html"><a href="resampling-methods.html#rolling-forecasting-origin-resampling"><i class="fa fa-check"></i><b>10.3.4</b> Rolling forecasting origin resampling</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="estimating-performance.html"><a href="estimating-performance.html"><i class="fa fa-check"></i><b>10.4</b> Estimating performance</a></li>
+<li class="chapter" data-level="10.5" data-path="parallel-processing.html"><a href="parallel-processing.html"><i class="fa fa-check"></i><b>10.5</b> Parallel processing</a></li>
+<li class="chapter" data-level="10.6" data-path="saving-the-resampled-objects.html"><a href="saving-the-resampled-objects.html"><i class="fa fa-check"></i><b>10.6</b> Saving the resampled objects</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="comparing-models-with-resampling.html"><a href="comparing-models-with-resampling.html"><i class="fa fa-check"></i><b>11</b> Comparing models with resampling</a><ul>
-<li class="chapter" data-level="11.1" data-path="slide-1-title-1.html"><a href="slide-1-title-1.html"><i class="fa fa-check"></i><b>11.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="11.2" data-path="slide-2-title-1.html"><a href="slide-2-title-1.html"><i class="fa fa-check"></i><b>11.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="11.1" data-path="slide-1-title.html"><a href="slide-1-title.html"><i class="fa fa-check"></i><b>11.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="11.2" data-path="slide-2-title.html"><a href="slide-2-title.html"><i class="fa fa-check"></i><b>11.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="model-tuning-and-the-dangers-of-overfitting.html"><a href="model-tuning-and-the-dangers-of-overfitting.html"><i class="fa fa-check"></i><b>12</b> Model tuning and the dangers of overfitting</a><ul>
-<li class="chapter" data-level="12.1" data-path="slide-1-title-2.html"><a href="slide-1-title-2.html"><i class="fa fa-check"></i><b>12.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="12.2" data-path="slide-2-title-2.html"><a href="slide-2-title-2.html"><i class="fa fa-check"></i><b>12.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="12.1" data-path="slide-1-title-1.html"><a href="slide-1-title-1.html"><i class="fa fa-check"></i><b>12.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="12.2" data-path="slide-2-title-1.html"><a href="slide-2-title-1.html"><i class="fa fa-check"></i><b>12.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="grid-search.html"><a href="grid-search.html"><i class="fa fa-check"></i><b>13</b> Grid search</a><ul>
-<li class="chapter" data-level="13.1" data-path="slide-1-title-3.html"><a href="slide-1-title-3.html"><i class="fa fa-check"></i><b>13.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="13.2" data-path="slide-2-title-3.html"><a href="slide-2-title-3.html"><i class="fa fa-check"></i><b>13.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="13.1" data-path="slide-1-title-2.html"><a href="slide-1-title-2.html"><i class="fa fa-check"></i><b>13.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="13.2" data-path="slide-2-title-2.html"><a href="slide-2-title-2.html"><i class="fa fa-check"></i><b>13.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="iterative-search.html"><a href="iterative-search.html"><i class="fa fa-check"></i><b>14</b> Iterative search</a><ul>
-<li class="chapter" data-level="14.1" data-path="slide-1-title-4.html"><a href="slide-1-title-4.html"><i class="fa fa-check"></i><b>14.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="14.2" data-path="slide-2-title-4.html"><a href="slide-2-title-4.html"><i class="fa fa-check"></i><b>14.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="14.1" data-path="slide-1-title-3.html"><a href="slide-1-title-3.html"><i class="fa fa-check"></i><b>14.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="14.2" data-path="slide-2-title-3.html"><a href="slide-2-title-3.html"><i class="fa fa-check"></i><b>14.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="review-of-chapters-10-14.html"><a href="review-of-chapters-10-14.html"><i class="fa fa-check"></i>Review of chapters 10-14</a><ul>
-<li class="chapter" data-level="14.3" data-path="slide-1-title-5.html"><a href="slide-1-title-5.html"><i class="fa fa-check"></i><b>14.3</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="14.4" data-path="slide-2-title-5.html"><a href="slide-2-title-5.html"><i class="fa fa-check"></i><b>14.4</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="14.3" data-path="slide-1-title-4.html"><a href="slide-1-title-4.html"><i class="fa fa-check"></i><b>14.3</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="14.4" data-path="slide-2-title-4.html"><a href="slide-2-title-4.html"><i class="fa fa-check"></i><b>14.4</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -278,17 +287,121 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="slide-1-title-5" class="section level2">
-<h2><span class="header-section-number">14.3</span> Slide 1 Title</h2>
-<p>Put the content of your slide here.</p>
+<div id="resubstitution-approach" class="section level2">
+<h2><span class="header-section-number">10.2</span> Resubstitution approach</h2>
+<p>In chapter 8, we fit a linear model to the training set. This is
+candidate model #1.</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="resubstitution-approach.html#cb127-1"></a><span class="kw">library</span>(tidymodels)</span>
+<span id="cb127-2"><a href="resubstitution-approach.html#cb127-2"></a><span class="kw">data</span>(ames)</span>
+<span id="cb127-3"><a href="resubstitution-approach.html#cb127-3"></a></span>
+<span id="cb127-4"><a href="resubstitution-approach.html#cb127-4"></a>ames &lt;-<span class="st"> </span><span class="kw">mutate</span>(ames, <span class="dt">Sale_Price =</span> <span class="kw">log10</span>(Sale_Price))</span>
+<span id="cb127-5"><a href="resubstitution-approach.html#cb127-5"></a></span>
+<span id="cb127-6"><a href="resubstitution-approach.html#cb127-6"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb127-7"><a href="resubstitution-approach.html#cb127-7"></a>ames_split &lt;-<span class="st"> </span><span class="kw">initial_split</span>(ames, <span class="dt">prop =</span> <span class="fl">0.80</span>, <span class="dt">strata =</span> Sale_Price)</span>
+<span id="cb127-8"><a href="resubstitution-approach.html#cb127-8"></a>ames_train &lt;-<span class="st"> </span><span class="kw">training</span>(ames_split)</span>
+<span id="cb127-9"><a href="resubstitution-approach.html#cb127-9"></a>ames_test  &lt;-<span class="st">  </span><span class="kw">testing</span>(ames_split)</span>
+<span id="cb127-10"><a href="resubstitution-approach.html#cb127-10"></a></span>
+<span id="cb127-11"><a href="resubstitution-approach.html#cb127-11"></a>ames_rec &lt;-<span class="st"> </span></span>
+<span id="cb127-12"><a href="resubstitution-approach.html#cb127-12"></a><span class="st">  </span><span class="kw">recipe</span>(Sale_Price <span class="op">~</span><span class="st"> </span>Neighborhood <span class="op">+</span><span class="st"> </span>Gr_Liv_Area <span class="op">+</span><span class="st"> </span>Year_Built <span class="op">+</span><span class="st"> </span>Bldg_Type <span class="op">+</span><span class="st"> </span></span>
+<span id="cb127-13"><a href="resubstitution-approach.html#cb127-13"></a><span class="st">           </span>Latitude <span class="op">+</span><span class="st"> </span>Longitude, <span class="dt">data =</span> ames_train) <span class="op">%&gt;%</span></span>
+<span id="cb127-14"><a href="resubstitution-approach.html#cb127-14"></a><span class="st">  </span><span class="kw">step_log</span>(Gr_Liv_Area, <span class="dt">base =</span> <span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb127-15"><a href="resubstitution-approach.html#cb127-15"></a><span class="st">  </span><span class="kw">step_other</span>(Neighborhood, <span class="dt">threshold =</span> <span class="fl">0.01</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb127-16"><a href="resubstitution-approach.html#cb127-16"></a><span class="st">  </span><span class="kw">step_dummy</span>(<span class="kw">all_nominal</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb127-17"><a href="resubstitution-approach.html#cb127-17"></a><span class="st">  </span><span class="kw">step_interact</span>( <span class="op">~</span><span class="st"> </span>Gr_Liv_Area<span class="op">:</span><span class="kw">starts_with</span>(<span class="st">&quot;Bldg_Type_&quot;</span>) ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb127-18"><a href="resubstitution-approach.html#cb127-18"></a><span class="st">  </span><span class="kw">step_ns</span>(Latitude, Longitude, <span class="dt">deg_free =</span> <span class="dv">20</span>)</span>
+<span id="cb127-19"><a href="resubstitution-approach.html#cb127-19"></a></span>
+<span id="cb127-20"><a href="resubstitution-approach.html#cb127-20"></a>lm_model &lt;-<span class="st"> </span><span class="kw">linear_reg</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">set_engine</span>(<span class="st">&quot;lm&quot;</span>)</span>
+<span id="cb127-21"><a href="resubstitution-approach.html#cb127-21"></a></span>
+<span id="cb127-22"><a href="resubstitution-approach.html#cb127-22"></a>lm_wflow &lt;-<span class="st"> </span></span>
+<span id="cb127-23"><a href="resubstitution-approach.html#cb127-23"></a><span class="st">  </span><span class="kw">workflow</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb127-24"><a href="resubstitution-approach.html#cb127-24"></a><span class="st">  </span><span class="kw">add_model</span>(lm_model) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb127-25"><a href="resubstitution-approach.html#cb127-25"></a><span class="st">  </span><span class="kw">add_recipe</span>(ames_rec)</span>
+<span id="cb127-26"><a href="resubstitution-approach.html#cb127-26"></a></span>
+<span id="cb127-27"><a href="resubstitution-approach.html#cb127-27"></a>lm_fit &lt;-<span class="st"> </span><span class="kw">fit</span>(lm_wflow, ames_train)</span></code></pre></div>
+<p>We can fit a random forest model the training data, and this random
+forest model will be candidate #2.</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="resubstitution-approach.html#cb128-1"></a>rf_model &lt;-<span class="st"> </span></span>
+<span id="cb128-2"><a href="resubstitution-approach.html#cb128-2"></a><span class="st">  </span><span class="kw">rand_forest</span>(<span class="dt">trees =</span> <span class="dv">1000</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb128-3"><a href="resubstitution-approach.html#cb128-3"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;ranger&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb128-4"><a href="resubstitution-approach.html#cb128-4"></a><span class="st">  </span><span class="kw">set_mode</span>(<span class="st">&quot;regression&quot;</span>)</span>
+<span id="cb128-5"><a href="resubstitution-approach.html#cb128-5"></a></span>
+<span id="cb128-6"><a href="resubstitution-approach.html#cb128-6"></a>rf_wflow &lt;-<span class="st"> </span></span>
+<span id="cb128-7"><a href="resubstitution-approach.html#cb128-7"></a><span class="st">  </span><span class="kw">workflow</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb128-8"><a href="resubstitution-approach.html#cb128-8"></a><span class="st">  </span><span class="kw">add_formula</span>(</span>
+<span id="cb128-9"><a href="resubstitution-approach.html#cb128-9"></a>    Sale_Price <span class="op">~</span><span class="st"> </span>Neighborhood <span class="op">+</span><span class="st"> </span>Gr_Liv_Area <span class="op">+</span><span class="st"> </span>Year_Built <span class="op">+</span><span class="st"> </span>Bldg_Type <span class="op">+</span><span class="st"> </span></span>
+<span id="cb128-10"><a href="resubstitution-approach.html#cb128-10"></a><span class="st">      </span>Latitude <span class="op">+</span><span class="st"> </span>Longitude) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb128-11"><a href="resubstitution-approach.html#cb128-11"></a><span class="st">  </span><span class="kw">add_model</span>(rf_model) </span>
+<span id="cb128-12"><a href="resubstitution-approach.html#cb128-12"></a></span>
+<span id="cb128-13"><a href="resubstitution-approach.html#cb128-13"></a>rf_fit &lt;-<span class="st"> </span>rf_wflow <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">fit</span>(<span class="dt">data =</span> ames_train)</span></code></pre></div>
+<p>We can compare the performance of these two candidate models by</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="resubstitution-approach.html#cb129-1"></a>estimate_perf &lt;-<span class="st"> </span><span class="cf">function</span>(model, dat) {</span>
+<span id="cb129-2"><a href="resubstitution-approach.html#cb129-2"></a>  <span class="co"># Capture the names of the objects used</span></span>
+<span id="cb129-3"><a href="resubstitution-approach.html#cb129-3"></a>  cl &lt;-<span class="st"> </span><span class="kw">match.call</span>()</span>
+<span id="cb129-4"><a href="resubstitution-approach.html#cb129-4"></a>  obj_name &lt;-<span class="st"> </span><span class="kw">as.character</span>(cl<span class="op">$</span>model)</span>
+<span id="cb129-5"><a href="resubstitution-approach.html#cb129-5"></a>  data_name &lt;-<span class="st"> </span><span class="kw">as.character</span>(cl<span class="op">$</span>dat)</span>
+<span id="cb129-6"><a href="resubstitution-approach.html#cb129-6"></a>  data_name &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;ames_&quot;</span>, <span class="st">&quot;&quot;</span>, data_name)</span>
+<span id="cb129-7"><a href="resubstitution-approach.html#cb129-7"></a>  </span>
+<span id="cb129-8"><a href="resubstitution-approach.html#cb129-8"></a>  <span class="co"># Estimate these metrics:</span></span>
+<span id="cb129-9"><a href="resubstitution-approach.html#cb129-9"></a>  reg_metrics &lt;-<span class="st"> </span><span class="kw">metric_set</span>(rmse, rsq)</span>
+<span id="cb129-10"><a href="resubstitution-approach.html#cb129-10"></a>  </span>
+<span id="cb129-11"><a href="resubstitution-approach.html#cb129-11"></a>  model <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb129-12"><a href="resubstitution-approach.html#cb129-12"></a><span class="st">    </span><span class="kw">predict</span>(dat) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb129-13"><a href="resubstitution-approach.html#cb129-13"></a><span class="st">    </span><span class="kw">bind_cols</span>(dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Sale_Price)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb129-14"><a href="resubstitution-approach.html#cb129-14"></a><span class="st">    </span><span class="kw">reg_metrics</span>(Sale_Price, .pred) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb129-15"><a href="resubstitution-approach.html#cb129-15"></a><span class="st">    </span><span class="kw">select</span>(<span class="op">-</span>.estimator) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb129-16"><a href="resubstitution-approach.html#cb129-16"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">object =</span> obj_name, <span class="dt">data =</span> data_name)</span>
+<span id="cb129-17"><a href="resubstitution-approach.html#cb129-17"></a>}</span></code></pre></div>
+<p>Resubstitution errors for the linear model:</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="resubstitution-approach.html#cb130-1"></a><span class="kw">estimate_perf</span>(lm_fit, ames_train)</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 4
+##   .metric .estimate object data 
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;
+## 1 rmse       0.0765 lm_fit train
+## 2 rsq        0.813  lm_fit train</code></pre>
+<p>Resubstitution errors for the random forest model:</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="resubstitution-approach.html#cb132-1"></a><span class="kw">estimate_perf</span>(rf_fit, ames_train)</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 4
+##   .metric .estimate object data 
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;
+## 1 rmse       0.0361 rf_fit train
+## 2 rsq        0.962  rf_fit train</code></pre>
+<p>We can see that the random forest model performs significantly better
+(2+ times as better). We can choose the random forest model as our only
+candidate model. We can test its performance on the test set:</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="resubstitution-approach.html#cb134-1"></a><span class="kw">estimate_perf</span>(rf_fit, ames_test)</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 4
+##   .metric .estimate object data 
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;
+## 1 rmse       0.0694 rf_fit test 
+## 2 rsq        0.848  rf_fit test</code></pre>
+<p>The random forest model, which previously performed well on the training
+set, is significantly worse on the test set. Just out of curiosity, we
+can see how the linear model performs on the test set:</p>
+<p>It’s interesting that the linear model performs similarly (bad) for the
+training and test sets, while the random forest did not. This is because
+linear models are considered <em>high bias</em> models and random forest models
+are <em>low bias</em>:</p>
+<blockquote>
+In this context, bias is the difference between the true data pattern
+and the types<br />
+of patterns that the model can emulate. Many black-box machine
+learning models have low bias. Other models (such as linear/logistic
+regression, discriminant analysis, and others) are not as adaptable
+and are considered high-bias models.
+<footer>
+— Max Kuhn and Julia Silge
+</footer>
+</blockquote>
+<p>Re-predicting the training set is bad for performance evaluation. We
+need to use resampling methods.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="review-of-chapters-10-14.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="slide-2-title-5.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="why.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="resampling-methods.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -319,7 +432,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/14rev-review_tools.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/10-resampling_for_evaluating_performance.Rmd",
 "text": "Edit"
 },
 "history": {

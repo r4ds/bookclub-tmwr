@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>9.2 Disclaimers | Tidy Modeling with R Book Club</title>
+  <title>10.4 Estimating performance | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="9.2 Disclaimers | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="10.4 Estimating performance | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="9.2 Disclaimers | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="10.4 Estimating performance | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="measures-of-model-fit.html"/>
-<link rel="next" href="regression-metrics.html"/>
+<link rel="prev" href="resampling-methods.html"/>
+<link rel="next" href="parallel-processing.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -287,22 +287,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="disclaimers" class="section level2">
-<h2><span class="header-section-number">9.2</span> Disclaimers</h2>
-<ul>
-<li>These examples are to demonstrate metric evaluation not good data science!</li>
-<li>Explore the full set of metrics available through <code>{yardstick}</code></li>
-<li>Talk through use cases for different metrics</li>
-</ul>
-<p><img src="images/horse-meme-examples.png" /></p>
+<div id="estimating-performance" class="section level2">
+<h2><span class="header-section-number">10.4</span> Estimating performance</h2>
+<p>To recap, the resampling methods above estimate overall model
+performance using the predictions from the assessment sets. The
+<strong>{tune}</strong> package (included in tidymodels package) contains a function
+called <code>fit_resamples</code> (which is akin to <code>fit()</code>) that computes a set of
+performance metrics across resamples (or just one, as is the case with a
+validation set). The call requires either a parsnip model specification
+or a <code>workflows::workflow</code>, and <code>rset</code> object (as created with
+<code>rsample::vfold_cv</code> for example). You can also specify the performance
+metrics you want with the <code>metrics</code> argument or stick with the defaults.
+The <code>control</code> argument can be used to view/retain/save outputs if
+further tuning is desired. Your call might look like:</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="estimating-performance.html#cb147-1"></a>rf_res &lt;-</span>
+<span id="cb147-2"><a href="estimating-performance.html#cb147-2"></a><span class="st">  </span>rf_wflow <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb147-3"><a href="estimating-performance.html#cb147-3"></a><span class="st">  </span><span class="kw">fit_resamples</span>(<span class="dt">resamples =</span> ames_folds, <span class="dt">control =</span> keep_pred)</span></code></pre></div>
+<p>The output (not viewed here because it’s thicc) can be manipulated in a
+number of ways to view just what you need. You can for example run
+<code>tune::collect_metrics(rf_res)</code> to see just the performance metrics.</p>
+<p>For more on how the outputs can be used for diagnostics and further
+model evaluation refer to section 10.3 in the book.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="measures-of-model-fit.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="regression-metrics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="resampling-methods.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="parallel-processing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -333,7 +346,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/09-judging_model_effectiveness.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/10-resampling_for_evaluating_performance.Rmd",
 "text": "Edit"
 },
 "history": {
