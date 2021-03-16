@@ -149,3 +149,101 @@ We will learn more about how to remedy certain issues such as class imbalance, b
 - Handle class imbalance in #TidyTuesday climbing expedition data with tidymodels: https://juliasilge.com/blog/himalayan-climbing/
 - Data preparation and feature engineering for machine learning: https://developers.google.com/machine-learning/data-prep/construct/sampling-splitting/imbalanced-data
 - How to Build a Machine Learning Model by Chanin Nantasenamat: https://towardsdatascience.com/how-to-build-a-machine-learning-model-439ab8fb3fb1
+
+## Meeting Videos
+
+### Cohort 1
+
+`r knitr::include_url("https://www.youtube.com/embed/Bbv-Ev8E4DE")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+  ```
+00:09:24	Jon Harmon (jonthegeek):	Oops typo! Tan shouldn't have accepted that!
+00:10:05	Tan Ho:	umm
+00:10:18	Tyler Grant Smith:	I never take notes, but if I did, I wish I would take them like this
+00:10:24	Jon Harmon (jonthegeek):	Certainly can't be MY fault for TYPING it.
+00:10:32	Tan Ho:	what typo are we talking about?
+00:10:36	Tony ElHabr:	you don't need docs if you got diagrams like this
+00:10:43	Jon Harmon (jonthegeek):	"too list training data"
+00:10:55	Tan Ho:	also...is "data spending" a hadleyism?
+00:10:57	Tyler Grant Smith:	I also object to this order
+00:11:11	Jonathan Trattner:	@Jon My professor always gets mad at R for doing what she tells it to instead of what she wants it to do
+00:11:12	Jon Harmon (jonthegeek):	I think it's a Maxim. And I like it.
+00:11:17	Tyler Grant Smith:	preprocessing needs to be done after the split
+00:11:31	Tyler Grant Smith:	some of it does anyway...
+00:11:40	Jonathan Trattner:	Does PCA Tyler?
+00:11:58	Tyler Grant Smith:	yes, I would say so
+00:12:35	Jonathan Trattner:	👍🏼
+00:12:47	Jon Harmon (jonthegeek):	We'll talk about processing in the next chapter :)
+00:12:56	Tony ElHabr:	pre-processing is done after the splitting in the normal tidy workflow. I guess the diagram was just "wrong"?
+00:13:38	Jon Harmon (jonthegeek):	It can make sense to do the processing before splitting if you don't have a nice system like recipes to make sure they're processed the same.
+00:14:07	Tyler Grant Smith:	it can make sense to be wrong too :)
+00:14:15	Jonathan Trattner:	Also if you can reduce the dimensionality of it before hand, would it not make sense to do that first and split the simpler data?
+00:14:29	Jon Harmon (jonthegeek):	The idea is you should treat your test data the same as you'd treat new data.
+00:14:54	Jon Harmon (jonthegeek):	If you do it before the split, you might do something that's hard to do or might include it in an ~average, etc, and thus leak into the training data.
+00:15:12	Jonathan Trattner:	That makes sense, thanks!
+00:15:16	Jarad Jones:	Class imbalance, perfect! I was hoping to go over how to decide between upsampling or downsampling
+00:15:39	Jon Harmon (jonthegeek):	We won't do much there yet, he goes into it more in 10 I think.
+00:15:59	Jon Harmon (jonthegeek):	But feel free to ask Asmae about it!
+00:16:12	Jarad Jones:	Haha, shoot, will have to wait a bit then
+00:17:02	Tyler Grant Smith:	question for later:  for what types models is upsampling/downsampling suggested/necessary?  I find in xgboost, for example, that I rarely need to do it.  or at least that it doesn't make the model results any better
+00:18:09	Maya Gans:	+1 this question ^^^
+00:18:13	Conor Tompkins:	Tabyl is such a useful function
+00:18:29	Tyler Grant Smith:	janitor as a whole is fantastic
+00:18:45	Jordan Krogmann:	janitor::clean_names() mvp
+00:18:56	Jonathan Trattner:	Huge facts ^^
+00:18:58	Tyler Grant Smith:	^
+00:19:03	Jon Harmon (jonthegeek):	Correction: He briefly mentions upsampling in the next chapter.
+00:19:09	arjun paudel:	is it prob or prop? I thought the argument for initial_split was prop
+00:19:25	Scott Nestler:	Yes!  We recently did a "Blue Collar Data Wrangling" class with coverage of janitor and plumber.
+00:19:29	Tony ElHabr:	the upsampling/downsampling question is a good one. I think frameworks that use boosting/bagging may not need it, but it's always worth testing
+00:20:07	Tony ElHabr:	the downside is not using stratification
+00:20:36	Tan Ho:	always log, always stratify
+00:20:37	Tan Ho:	got it
+00:22:14	Tan Ho:	*looks around nervously*
+00:22:51	Jordan Krogmann:	I mean youre not going to not log
+00:23:12	Jordan Krogmann:	*waiting for the number of counter articles*
+00:24:00	Jon Harmon (jonthegeek):	Woot, I have a PR accepted in this book now (for a minor typo at the end of this chapter) :)
+00:24:01	Tyler Grant Smith:	I gotta imagine that stratified sampling and random sampling converge as n->inf
+00:24:23	Tony ElHabr:	law of large numbers
+00:24:25	Tyler Grant Smith:	and it happens probably pretty quickly
+00:24:43	Jon Harmon (jonthegeek):	Yeah, I guess a downside would be if you stratify so much that it doesn't make sense and causes rsample to complain.
+00:25:12	Jon Harmon (jonthegeek):	There's a minor change starting next chapter, not yet merged: https://github.com/tidymodels/TMwR/pull/106/files
+00:27:55	Tyler Grant Smith:	i frequently work with data like this
+00:28:18	Conor Tompkins:	It would be interesting to have a table of model types and how they react to things like missingness, class imbalance, one-hot encoding etc. so you can choose the appropriate model for the specific weirdness of your data.
+00:28:36	Tony ElHabr:	so at what point do you use longitudinal model over something else
+00:29:31	Jordan Krogmann:	student re-enrollment cycle... how does the last term impact future terms
+00:31:14	Tony ElHabr:	memes in the wild
+00:31:17	Tony ElHabr:	i'm here for it
+00:31:20	Jon Harmon (jonthegeek):	Yup! And there's a whole thing about the fact that each question a student answers technically influences the next one, even if they don't get feedback.
+00:32:57	Scott Nestler:	I recall learning (many years ago) about using 3 sets -- Training, Test, and Validation.  Training to train/build models, Validation to assess the performance of different (types of) models on data not used to train them, and then Test to fine-tune model parameters once you have picked one.  The splits were usually something like 70/15/15 or 80/10/10.  This didn't seem to be discussed in this chapter.  Any idea why?
+00:33:37	Jon Harmon (jonthegeek):	We'll talk about validation later, I think. There's a minute of it. Gonna talk about this out loud in a sec...
+00:34:43	Tyler Grant Smith:	5.3 What about a validation set?
+00:35:49	Tony ElHabr:	If you do cross-validation, the CV eval metric is effectively your validation
+00:35:50	Jonathan Trattner:	What about cross-validation on the training set? Is that different than what we’re discussing now?
+00:35:53	Tony ElHabr:	and your training
+00:36:10	Tyler Grant Smith:	ya...split first train-validate and test   and then split train-validate into train and validate
+00:36:42	Jarad Jones:	I think cross-validation is used during model training on the training set
+00:37:08	Ben Gramza:	I actually watched a "deep-learning" lecture on this today. The guy said that a validation set is used to select your parameters/hyperparameters, then you test your tuned model on the test set. 
+00:40:11	Tony ElHabr:	validation makes more sense when you're comparing multiple model frameworks too. the best one on the validation set is what is ultimately used for the test set
+00:41:45	Jordan Krogmann:	i think it comes into play when you are hyperparameter tuning for a single model
+00:44:21	Ben Gramza:	yeah, for example if you are using a K-nearest neighbor model, you use the validation set on your models with K=1, 2, 3, … . You select the best performing K from the validation set, then test that on the test set. 
+00:46:22	Joe Sydlowski:	Good question!
+00:46:28	Jordan Krogmann:	i do it on all of it
+00:46:45	Jordan Krogmann:	annnnnnnnnnd i am probably in the wrong lol
+00:50:20	Jordan Krogmann:	yuup otherwise you will cause leakage
+00:57:41	Tyler Grant Smith:	i suppose I need to add inviolate to my day-to-day vernacular
+00:58:52	Jon Harmon (jonthegeek):	I'm noticing myself say that over and over and I don't know why!
+00:59:50	Tony ElHabr:	i had to google that
+01:05:17	Conor Tompkins:	Great job asmae!
+01:05:22	Jonathan Trattner:	^^^
+01:05:28	Tony ElHabr:	Pavitra getting ready for recipes
+01:05:37	Jordan Krogmann:	great job!
+01:05:42	Joe Sydlowski:	Thanks Asmae!
+01:05:46	Andy Farina:	That was great Asmae, thank you!
+01:05:47	Pavitra Chakravarty:	🤣🤣🤣🤣
+01:05:56	caroline:	Thank you Asmae :)
+01:05:59	Pavitra Chakravarty:	great presentation Asmae
+```

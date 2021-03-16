@@ -6,35 +6,22 @@ editor_options:
 
 # Resampling for evaluating performance
 
--   Recognize why **naive performance estimates can often fail.**
+**Learning objectives:**
 
-    -   Explain the difference between **low bias models** and **high
-        bias models.**
-
--   Use **resampling** to **divide a training set** into an **analysis
-    set** and an **assessment set.**
-
-    -   Use **cross-validation** to resample a training set.
-    -   Compare **repeated cross-validation, leave-one-out
-        cross-validation,** and ***Monte Carlo*** **cross-validation.**
-    -   **Divide** a "not testing" set into a **single training set**
-        and a **single validation set.**
-    -   Use **bootstrap resampling** to **divide a training set** into
-        an **analysis set** and an **assessment set.**
-    -   Use **rolling forecast origin resampling** to **divide a
-        training set** into an **analysis set** and an **assessment
-        set.**
-
--   Use resampling to estimate model performance.
-
-    -   Use `tune::fit_resamples()` to fit multiple models for a
-        resampled dataset.
-    -   Use `tune::collect_metrics()` to measure model performance.
-    -   Use `tune::collect_predictions()` to analyze model predictions.
-
--   Use parallel processing to speed up resample fitting.
-
--   Save model objects created during resampling.
+- Recognize why **naive performance estimates can often fail.**
+  - Explain the difference between **low bias models** and **high bias models.**
+- Use **resampling** to **divide a training set** into an **analysis set** and an **assessment set.**
+  - Use **cross-validation** to resample a training set.
+  - Compare **repeated cross-validation, leave-one-out cross-validation,** and ***Monte Carlo* cross-validation.**
+  - **Divide** a "not testing" set into a **single training set** and a **single validation set.**
+  - Use **bootstrap resampling** to **divide a training set** into an **analysis set** and an **assessment set.**
+  - Use **rolling forecast origin resampling** to **divide a training set** into an **analysis set** and an **assessment set.**
+- Use resampling to estimate model performance.
+  - Use `tune::fit_resamples()` to fit multiple models for a resampled dataset.
+  - Use `tune::collect_metrics()` to measure model performance.
+  - Use `tune::collect_predictions()` to analyze model predictions.
+- Use parallel processing to speed up resample fitting.
+- Save model objects created during resampling.
 
 ## Why?
 
