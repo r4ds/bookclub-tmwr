@@ -27,6 +27,7 @@ Imports:
     skimr,
     tidymodels,
     tidyverse,
+    tufte,
     tweetrmd
 Remotes:
     hadley/emo,
