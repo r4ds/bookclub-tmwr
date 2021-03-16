@@ -31,7 +31,7 @@ The most common type of sampling is known as random sampling and it is done read
 library(tidymodels)
 set.seed(123)
 data(ames)
-ames_split <- initial_split(ames, prob = 0.80)
+ames_split <- initial_split(ames, prop = 0.80)
 ames_split
 ```
 
@@ -71,7 +71,7 @@ We can see that nearly 99% of people survive their expedition. This dataset woul
 
 ```{r}
 set.seed(123)
-members_split <- initial_split(members, prob = 0.80, strata = died)
+members_split <- initial_split(members, prop = 0.80, strata = died)
 members_train <- training(members_split)
 members_test <- testing(members_split)
 ```
@@ -82,7 +82,7 @@ For continuous outcome data (e.g. costs), a stratified random sampling approach 
 
 ```{r}
 set.seed(123)
-ames_split <- initial_split(ames, prob = 0.80, strata = Sale_Price)
+ames_split <- initial_split(ames, prop = 0.80, strata = Sale_Price)
 ames_train <- training(ames_split)
 ames_test  <- testing(ames_split)
 ```
