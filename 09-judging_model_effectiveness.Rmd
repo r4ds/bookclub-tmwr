@@ -32,14 +32,12 @@
 ## Regression Metrics
 
 Load in the Data
-```{r message=FALSE}
+```{r load-ames}
 library(tidymodels)
 library(glmnet)
 library(ranger)
 set.seed(1123)
 data(ames)
-
-setwd(here::here())
 
 ames <- ames %>%
   mutate(
@@ -48,8 +46,7 @@ ames <- ames %>%
 
 ```
 
-
-```{r, warning=FALSE, message=FALSE, fig.height=20}
+```{r best-models-setup, eval=FALSE}
 #Cross-fold validation
 ames_folds <- vfold_cv(ames, v = 5)
 
@@ -122,15 +119,22 @@ best_models %>%
   theme_minimal() +
   theme(panel.spacing = unit(2, "lines"),
         strip.text.x = element_text(size = 8))
-  
+```
 
-best_models %>% select(metric_name, penalty, mixture) %>% distinct() %>% view()
+![](images/09-best_models.png)
+```{r best-models-load, include=FALSE}
+best_models <- readRDS(here::here("data", "09-best_models.rds"))
+```
 
+```{r best-models}
+best_models %>% select(metric_name, penalty, mixture) %>% distinct()
 ```
 
 ## Binary Classification Metrics
 
-```{r}
+Note: This code might take several minutes (or longer) to run.
+
+```{r binary-classification-setup, eval=FALSE}
 #Cross-fold validation
 ames_folds_binary <- vfold_cv(ames, v = 5)
 
@@ -180,7 +184,7 @@ best_models_binary <-
   unnest(cols = c(metric_name, metric_best, df_pred))
 
 # Plot!
-best_models_binary %>%
+best_models_binary_plot <- best_models_binary %>%
   mutate(metric_desc = factor(
     metric_name, 
     levels = c('recall','sens','spec', 'precision','mcc','j_index','f_meas','accuracy',
@@ -210,8 +214,9 @@ best_models_binary %>%
   theme_minimal() +
   theme(panel.spacing = unit(2, "lines"),
         strip.text.x = element_text(size = 8))
-  
 ```
+
+![](images/09-best_models_binary.png)
 
 ## References
 
