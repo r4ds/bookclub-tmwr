@@ -184,7 +184,7 @@ best_models_binary <-
   unnest(cols = c(metric_name, metric_best, df_pred))
 
 # Plot!
-best_models_binary_plot <- best_models_binary %>%
+best_models_binary %>%
   mutate(metric_desc = factor(
     metric_name, 
     levels = c('recall','sens','spec', 'precision','mcc','j_index','f_meas','accuracy',
