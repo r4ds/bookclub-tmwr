@@ -20,10 +20,10 @@ If you would like to present, please add your name next to a chapter using the [
 - 2021-02-09: Chapter 6: Feature engineering with recipes: Pavitra Chakravarty
 - 2021-02-16: Chapter 7: Fitting models with parsnip: Jordan Krogmann
 - 2021-02-23: Chapter 8: A model workflow: Ben Gramza
-- **2021-03-02: Chapter 9: Judging model effectiveness: Joe Sydlowski**
-- 2021-03-09: Q&A with author Max Kuhn: Chapters 1-9
+- 2021-03-02: Chapter 9: Judging model effectiveness: Joe Sydlowski
+- 2021-03-09: Q&A with authors Max Kuhn & Julia Silge: Chapters 1-9
 - 2021-03-16: Chapter 10: Resampling for evaluating performance: Asmae Toumi
-- 2021-03-23: Chapter 11: Comparing models with resampling
+- **2021-03-23: Chapter 11: Comparing models with resampling: Jon Harmon**
 - 2021-03-30: Chapter 12: Modeling tuning and the dangers of overfitting
 - 2021-04-06: Chapter 13: Grid search
 - 2021-04-13: Chapter 14: Iterative search
