@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-03-17" />
+<meta name="date" content="2021-03-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -296,12 +296,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb121-4"><a href="regression-metrics.html#cb121-4"></a><span class="kw">set.seed</span>(<span class="dv">1123</span>)</span>
 <span id="cb121-5"><a href="regression-metrics.html#cb121-5"></a><span class="kw">data</span>(ames)</span>
 <span id="cb121-6"><a href="regression-metrics.html#cb121-6"></a></span>
-<span id="cb121-7"><a href="regression-metrics.html#cb121-7"></a><span class="kw">setwd</span>(here<span class="op">::</span><span class="kw">here</span>())</span>
-<span id="cb121-8"><a href="regression-metrics.html#cb121-8"></a></span>
-<span id="cb121-9"><a href="regression-metrics.html#cb121-9"></a>ames &lt;-<span class="st"> </span>ames <span class="op">%&gt;%</span></span>
-<span id="cb121-10"><a href="regression-metrics.html#cb121-10"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb121-11"><a href="regression-metrics.html#cb121-11"></a>    <span class="dt">under_budget =</span> <span class="kw">as.factor</span>(<span class="kw">if_else</span>(Sale_Price<span class="op">&lt;=</span><span class="dv">160000</span>,<span class="dv">1</span>,<span class="dv">0</span>)),</span>
-<span id="cb121-12"><a href="regression-metrics.html#cb121-12"></a>    <span class="dt">Sale_Price =</span> <span class="kw">log10</span>(Sale_Price))</span></code></pre></div>
+<span id="cb121-7"><a href="regression-metrics.html#cb121-7"></a>ames &lt;-<span class="st"> </span>ames <span class="op">%&gt;%</span></span>
+<span id="cb121-8"><a href="regression-metrics.html#cb121-8"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb121-9"><a href="regression-metrics.html#cb121-9"></a>    <span class="dt">under_budget =</span> <span class="kw">as.factor</span>(<span class="kw">if_else</span>(Sale_Price<span class="op">&lt;=</span><span class="dv">160000</span>,<span class="dv">1</span>,<span class="dv">0</span>)),</span>
+<span id="cb121-10"><a href="regression-metrics.html#cb121-10"></a>    <span class="dt">Sale_Price =</span> <span class="kw">log10</span>(Sale_Price))</span></code></pre></div>
 <div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="regression-metrics.html#cb122-1"></a><span class="co">#Cross-fold validation</span></span>
 <span id="cb122-2"><a href="regression-metrics.html#cb122-2"></a>ames_folds &lt;-<span class="st"> </span><span class="kw">vfold_cv</span>(ames, <span class="dt">v =</span> <span class="dv">5</span>)</span>
 <span id="cb122-3"><a href="regression-metrics.html#cb122-3"></a></span>
@@ -374,8 +372,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb122-70"><a href="regression-metrics.html#cb122-70"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
 <span id="cb122-71"><a href="regression-metrics.html#cb122-71"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.spacing =</span> <span class="kw">unit</span>(<span class="dv">2</span>, <span class="st">&quot;lines&quot;</span>),</span>
 <span id="cb122-72"><a href="regression-metrics.html#cb122-72"></a>        <span class="dt">strip.text.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">8</span>))</span></code></pre></div>
-<p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="regression-metrics.html#cb123-1"></a>best_models <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(metric_name, penalty, mixture) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">distinct</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">view</span>()</span></code></pre></div>
+<p><img src="images/09-best_models.png" /></p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="regression-metrics.html#cb123-1"></a>best_models <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(metric_name, penalty, mixture) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">distinct</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 14 x 3
+##    metric_name        penalty mixture
+##    &lt;chr&gt;                &lt;dbl&gt;   &lt;dbl&gt;
+##  1 rmse              1.74e- 6   0.887
+##  2 rsq               6.71e-10   0.112
+##  3 rsq_trad          1.74e- 6   0.887
+##  4 mae               1.74e- 6   0.887
+##  5 mpe               1.66e- 1   0.163
+##  6 mape              1.74e- 6   0.887
+##  7 smape             1.74e- 6   0.887
+##  8 mase              1.74e- 6   0.887
+##  9 ccc               6.71e-10   0.112
+## 10 rpiq              6.71e-10   0.112
+## 11 rpd               6.71e-10   0.112
+## 12 huber_loss        1.74e- 6   0.887
+## 13 huber_loss_pseudo 1.74e- 6   0.887
+## 14 iic               3.81e- 4   0.552</code></pre>
 </div>
             </section>
 

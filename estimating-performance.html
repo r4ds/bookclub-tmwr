@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-03-17" />
+<meta name="date" content="2021-03-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -300,9 +300,9 @@ or a <code>workflows::workflow</code>, and <code>rset</code> object (as created 
 metrics you want with the <code>metrics</code> argument or stick with the defaults.
 The <code>control</code> argument can be used to view/retain/save outputs if
 further tuning is desired. Your call might look like:</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="estimating-performance.html#cb147-1"></a>rf_res &lt;-</span>
-<span id="cb147-2"><a href="estimating-performance.html#cb147-2"></a><span class="st">  </span>rf_wflow <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb147-3"><a href="estimating-performance.html#cb147-3"></a><span class="st">  </span><span class="kw">fit_resamples</span>(<span class="dt">resamples =</span> ames_folds, <span class="dt">control =</span> keep_pred)</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="estimating-performance.html#cb148-1"></a>rf_res &lt;-</span>
+<span id="cb148-2"><a href="estimating-performance.html#cb148-2"></a><span class="st">  </span>rf_wflow <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb148-3"><a href="estimating-performance.html#cb148-3"></a><span class="st">  </span><span class="kw">fit_resamples</span>(<span class="dt">resamples =</span> ames_folds, <span class="dt">control =</span> keep_pred)</span></code></pre></div>
 <p>The output (not viewed here because it’s thicc) can be manipulated in a
 number of ways to view just what you need. You can for example run
 <code>tune::collect_metrics(rf_res)</code> to see just the performance metrics.</p>
