@@ -424,6 +424,49 @@ map will return a list
 00:51:02    David Severski: He really called it freebase? :P
 00:51:06    Darya Vanichkina:   Thanks, everyone!
 00:51:08    David Severski: Bye!
-
 ```
+</details>
 
+### Cohort 2
+
+`r knitr::include_url("https://www.youtube.com/embed/Rb3JNuL7KC4")`
+
+<details>
+    <summary> Meeting chat log </summary>
+   
+```
+00:08:44	Carmen Santana:	Hello, my connection is terrible
+00:08:47	Carmen Santana:	but Ana told me that she need to work today and will join next week
+00:09:12	Stephen Holsenbeck:	ok ✅ thanks for letting us know!
+00:22:45	Layla Bouzoubaa:	Can you send the url of this thread?
+00:23:01	Layla Bouzoubaa:	I’m going to use this for teaching :D
+00:23:38	Kevin Kent:	https://twitter.com/andrewheiss/status/1359583543509348356?s=20
+00:23:45	Layla Bouzoubaa:	Thank you!!
+00:26:59	shamsuddeen:	arrange(.data = mtcars, gear, mpg), why do we have .? before data
+00:28:59	Stephen Holsenbeck:	that's just how the argument is specified in arrange. R allows periods in object names, so you can have an object named simply . if you wanted
+objects named with a preceding period are considered "hidden". they won't show up in the environment inspector but they are actually present in the environment and be called from the console
+00:32:57	Luke Shaw:	In reality do you try to always use the namespace "::" syntax when calling functions? I sometimes do, but often don't...
+00:33:38	Stephen Holsenbeck:	I do
+00:33:53	Carmen Santana:	I only use it when I know I have  functions with the same name in different packages
+00:34:16	Roberto Villegas-Diaz:	I personally like to use `::`, as I build packages for my research group and some verbs (function names) are very similar to others
+00:34:21	August:	yes, I think its good practice. Practicularly if you are using a lot of packages 
+00:34:40	Amélie Gourdon-Kanhukamwe:	I tend to if I know this is code I will share, so that helps the collaborator / reader to know which of the many libraries I have loaded, it is coming from.
+00:36:07	Roberto Villegas-Diaz:	I use this line a lot `%>%` <- magrittr::`%>%` 😅
+00:36:19	Stephen Holsenbeck:	🙂 same
+00:41:13	Roberto Villegas-Diaz:	Thanks for the tip on snippets! 🎉
+00:42:51	Stephen Holsenbeck:	✅
+00:48:52	Layla Bouzoubaa:	booo
+00:53:24	Amélie Gourdon-Kanhukamwe:	That sounds about right.
+00:59:50	shamsuddeen:	arrange(.data = x, .by_group = )
+01:07:04	shamsuddeen:	dplyr::select(station = stationname, date, rides) , do you prefer this approach or use library(packagename) ?
+01:09:21	August:	I've got to go, hope you all enjoy the rest of your Sundays :D 
+01:09:43	Stephen Holsenbeck:	likewise August! happy v day!
+01:10:52	Layla Bouzoubaa:	Bye everyone!! Need to hop off, happy valentines! <3
+01:11:08	Stephen Holsenbeck:	bye, happy Valentine's to you too!
+01:12:23	Roberto Villegas-Diaz:	Thanks for presenting Kevin! Stay safe everyone!
+01:12:29	Amélie Gourdon-Kanhukamwe:	Yes, thank you!
+01:12:35	Carmen Santana:	Thanks Kevin!
+01:12:40	shamsuddeen:	Thanks Kevin !!
+01:12:51	shamsuddeen:	See you
+```
+</details>

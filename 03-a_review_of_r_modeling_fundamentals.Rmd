@@ -484,3 +484,60 @@ df
 00:45:32	David Severski:	Gotta run here. Thanks everyone!
 00:45:59	Jordan Krogmann:	Thanks jon and tony later!
 ```
+</details>
+
+### Cohort 2
+
+`r knitr::include_url("https://www.youtube.com/embed/gqhvjvFxwlo")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+  ```
+00:08:16	Kevin Kent:	Welcome Carlo! Where are you living now?
+00:08:29	Carlo Medina:	im based in nyc currently
+00:08:44	Kevin Kent:	Nice! I grew up there. Currently in Boston
+00:26:54	Kevin Kent:	Yeah I was thinking along the lines of August’s explanation as well. I bet it captures the formula expression in the context of the data environment.
+00:27:16	Kevin Kent:	Like a quosure
+00:27:38	August:	You know we're just reading that chapter xD
+00:27:47	Kevin Kent:	:) advr you mean?
+00:28:39	August:	yep, Monday class. Its getting cognitively complex. 
+00:28:57	Kevin Kent:	Sweet! I had to diagram that out to make any sense of it
+00:29:46	Kevin Kent:	Not sure if this is 100% accurate, but if you all  could improve on it that would be awesome. Helped me think through it https://docs.google.com/drawings/d/1cSQreGTUabMhRy9Vx2hYGJdJTdVRqTzOUtaJJvvb3mw/edit?usp=sharing
+00:32:02	Stephen Holsenbeck:	looks right
+00:38:42	Luke Shaw:	reminds me of Simpsons paradox
+00:41:23	August:	This blog explains interactions pretty well: https://statisticsbyjim.com/regression/interaction-effects/
+00:41:32	Carmen:	thanks!
+00:41:39	Amélie Gourdon-Kanhukamwe (she/they):	Page 27 of the this pre-print, my collaborator has reported an interaction as Kevin suggests: https://psyarxiv.com/ajv4q/
+00:44:36	Stephen Holsenbeck:	💡 thank you!
+00:44:46	Stephen Holsenbeck:	thanks August!
+00:53:10	Kevin Kent:	That groupB, c etc binary coding is a good example of one hot encoding
+00:53:31	Kevin Kent:	(From our discussion last week)
+00:53:56	Kevin Kent:	N - 1 binary variables for n levels in the factor
+00:54:18	Stephen Holsenbeck:	Yes! 👆
+00:55:50	Carlo Medina:	might be a little late on the interaction stuff and why we have negative betas for girth and height:
+
+one way to think about regression is Kevin's point is to have other variables fixed. thus given the regression result of V=69-5.85G =1.2H + 0.13GH (1)
+
+to do this, we can do differentiation with respect to a variable:  say dV/dH to check how change in H affects change in V. 
+
+when we derive eqn (1) we get dV/dH=-1.2+0.13G this implies that H's effect on Volume is "dependent" on the value of the girth you are currently at. (e.g. if you have a girth of 10 vs a girth of 20, a unit increase in height translates to 0.1 volume per length and  1.4 volume per length, respectively 
+
+given that our starting girth is 8.3, the dV/dH should be positive even if we have a -1.2 fixed term. sorry might be a little too long, but i hope that helps. :)
+00:57:54	Stephen Holsenbeck:	That does! a good refresher on differentiation and a reminder that it underlies the mathematics of regression
+01:00:08	Kevin Kent:	Broom is an incredible package
+01:05:39	Carlo Medina:	is group_nest syntactic sugar for group_by() %>% nest() ? :O #TIL
+01:09:01	Kevin Kent:	I think that’s right Carlo. I have never used it - I find the tibble of tibbles approach interesting but I usually split into a list for this type of thing.. But I think this could make it easier to run multiple models and retain original metadata
+01:09:24	Kevin Kent:	I want to try it this way and see if it makes the workflow cleaner
+01:11:10	Kevin Kent:	I often lose the name of the group when I map across a list of dfs and then do other transformations to each output.
+01:16:12	Luke Shaw:	The .hist function was a good example of what shamsuddeen found last time - it would have been bad to call it "hist" as it would have conflicted with the function that already existed
+01:16:36	Kevin Kent:	Ah ah. That’s an awesome connection. Thanks Luke
+01:17:06	Kevin Kent:	I think I usually call things like “my_hist” or something like that. This seems more professional or something haha
+01:17:26	Shamsuddeen:	Yah, luke. Thats good connection
+01:19:38	Amélie Gourdon-Kanhukamwe (she/they):	This may answer: https://stackoverflow.com/questions/802050/what-is-opinionated-software
+01:19:50	Stephen Holsenbeck:	👆
+01:20:22	Shamsuddeen:	Oh nice
+01:21:06	Kevin Kent:	Yeah, I think its largely about, as august mentioned, clear and comprehensive set of design standards that are “enforced” in each of the packages in the tidyverse
+01:21:45	Kevin Kent:	And those standards emanate from a philosophy about how programs should be designed. Basically agreeing with august
+```
+</details>

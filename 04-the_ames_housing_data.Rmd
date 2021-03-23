@@ -155,5 +155,44 @@ Shiny app: https://conorotompkins.shinyapps.io/house_sale_estimator/
 01:12:00    Jarad Jones:    Nice job Conor, the whole end product is pretty impressive for a first shiny app!
 01:12:00    pavitra:    thanks a lot, Connor..i think you finished the purpose of the book
 ```
+</details>
 
+### Cohort 2
+
+`r knitr::include_url("https://www.youtube.com/embed/HD5c51e4QeM")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+  ```
+00:07:46	Janita Botha:	I am new here! My name is Janita (she/they) and I am a PhD student in sensory science. Not a programmer but need Tidy models to work for me... I've caught up with the YouTube videos of the other cohorts
+00:08:15	Janita Botha:	Also, I am based it New Zealand. It is 7AM on a Monday morning here
+00:08:24	Roberto Villegas-Diaz:	Welcome!
+00:08:33	Stephen Holsenbeck:	wow!
+00:09:05	shamsuddeen:	Welcome Janita, you are welcome.
+00:09:15	August:	Hi Janita, Welcome to the best cohort :D
+00:18:53	Luke Shaw:	In answer to the question on differences between the Ames data sets, I think it's explained here:
+00:18:57	Luke Shaw:	https://github.com/topepo/AmesHousing/blob/master/R/make_ames.R
+00:20:46	August:	I really love dlookr for exploratory data analysis: https://github.com/choonghyunryu/dlookr and skimr for initial views of data structures https://cran.r-project.org/web/packages/skimr/vignettes/skimr.html.  
+00:21:35	Kevin Kent:	Thanks august. I’ve never heard of dlookr
+00:23:52	shamsuddeen:	a logarithmic transform may also stabilize the variance in a way that makes inference more legitimate.
+00:24:36	Janita Botha:	As far as I understand it also reduces the impact of outliers on modelling
+00:29:29	rahul bahadur:	Yes, One assumption of linear regression is that variance is constant. If this is not met, a log transform might help in keeping the variance constant.
+00:34:33	Kevin Kent:	This is the code for the book https://github.com/tidymodels/TMwR
+00:35:59	shamsuddeen:	pathological distributions
+00:36:41	Kevin Kent:	“The Cauchy distribution is often used in statistics as the canonical example of a "pathological" distribution since both its expected value and its variance are undefined”
+00:37:02	Kevin Kent:	https://en.wikipedia.org/wiki/Cauchy_distribution
+00:37:34	Kevin Kent:	https://en.wikipedia.org/wiki/Pathological_(mathematics)
+00:41:15	Kevin Kent:	https://statisticsbyjim.com/regression/multicollinearity-in-regression-analysis/
+00:46:01	Janita Botha:	Yes! "Getting used to it" is such a good way of saying it
+00:46:43	shamsuddeen:	Yes, that’s right
+00:50:58	Kevin Kent:	Principal component analysis (PCA) would be one approach to reduce correlated predictors to a smaller group of predictors
+00:51:19	Carlo M:	specifically for multicollinearity: the easiest mental model I have is to take it to the 'extreme' case. Suppose you have y ~ x1 + x2, and you have x1 and x2 perfectly correlated, e.g. x2 = 2*x1 (x2 is perfectly calculable with that relationship). then, it's possible to just do the following y ~ x1 + (2*x1) => y~3x1. That is, one can just do y ~ x1 (via model parsimony)
+00:52:15	Carlo M:	you're welcome :)
+00:57:32	Janita Botha:	All good
+00:57:35	Janita Botha:	:)
+00:57:42	shamsuddeen:	Thank you all
+00:57:59	rahul bahadur:	Thanks
+00:58:43	Janita Botha:	Thanks....
+```
 </details>

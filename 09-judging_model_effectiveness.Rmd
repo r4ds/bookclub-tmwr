@@ -258,3 +258,4 @@ best_models_binary %>%
 01:02:21	Scott Nestler:	The weighted macro computes them independently, but weights them by number of observations, rather than equally.  Usually better than regular macro when there are class imbalances.
 01:06:47	Andy Farina:	Excellent Joe, thank you!
 ```
+</details>
