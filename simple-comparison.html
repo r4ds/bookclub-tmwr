@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>9.4 Binary Classification Metrics | Tidy Modeling with R Book Club</title>
+  <title>11.5 Simple Comparison | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="9.4 Binary Classification Metrics | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="11.5 Simple Comparison | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="9.4 Binary Classification Metrics | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="11.5 Simple Comparison | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="regression-metrics.html"/>
-<link rel="next" href="references-1.html"/>
+<link rel="prev" href="practical-effect-size.html"/>
+<link rel="next" href="bayesian-methods.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -299,97 +299,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="binary-classification-metrics" class="section level2">
-<h2><span class="header-section-number">9.4</span> Binary Classification Metrics</h2>
-<p>Note: This code might take several minutes (or longer) to run.</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="binary-classification-metrics.html#cb130-1"></a><span class="co">#Cross-fold validation</span></span>
-<span id="cb130-2"><a href="binary-classification-metrics.html#cb130-2"></a>ames_folds_binary &lt;-<span class="st"> </span><span class="kw">vfold_cv</span>(ames, <span class="dt">v =</span> <span class="dv">5</span>)</span>
-<span id="cb130-3"><a href="binary-classification-metrics.html#cb130-3"></a></span>
-<span id="cb130-4"><a href="binary-classification-metrics.html#cb130-4"></a><span class="co">#Create Recipe</span></span>
-<span id="cb130-5"><a href="binary-classification-metrics.html#cb130-5"></a>ames_recipe_binary &lt;-<span class="st"> </span></span>
-<span id="cb130-6"><a href="binary-classification-metrics.html#cb130-6"></a><span class="st">  </span><span class="kw">recipe</span>(<span class="dt">formula =</span> under_budget <span class="op">~</span><span class="st"> </span>Gr_Liv_Area <span class="op">+</span><span class="st"> </span>Full_Bath <span class="op">+</span><span class="st"> </span>Half_Bath <span class="op">+</span><span class="st"> </span>Lot_Area <span class="op">+</span><span class="st"> </span>Neighborhood <span class="op">+</span><span class="st"> </span>Overall_Cond,</span>
-<span id="cb130-7"><a href="binary-classification-metrics.html#cb130-7"></a>         <span class="dt">data =</span> ames)</span>
-<span id="cb130-8"><a href="binary-classification-metrics.html#cb130-8"></a></span>
-<span id="cb130-9"><a href="binary-classification-metrics.html#cb130-9"></a><span class="co">#Set the model and hyperparameters</span></span>
-<span id="cb130-10"><a href="binary-classification-metrics.html#cb130-10"></a>ames_spec_binary &lt;-<span class="st"> </span></span>
-<span id="cb130-11"><a href="binary-classification-metrics.html#cb130-11"></a><span class="st">    </span><span class="kw">rand_forest</span>(<span class="dt">mtry =</span> <span class="kw">tune</span>(), <span class="dt">trees =</span> <span class="kw">tune</span>(), <span class="dt">min_n =</span> <span class="kw">tune</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb130-12"><a href="binary-classification-metrics.html#cb130-12"></a><span class="st">  </span><span class="kw">set_mode</span>(<span class="st">&quot;classification&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb130-13"><a href="binary-classification-metrics.html#cb130-13"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;ranger&quot;</span>)</span>
-<span id="cb130-14"><a href="binary-classification-metrics.html#cb130-14"></a></span>
-<span id="cb130-15"><a href="binary-classification-metrics.html#cb130-15"></a><span class="co">#Create workflow</span></span>
-<span id="cb130-16"><a href="binary-classification-metrics.html#cb130-16"></a>ames_workflow_binary &lt;-<span class="st"> </span></span>
-<span id="cb130-17"><a href="binary-classification-metrics.html#cb130-17"></a><span class="st">  </span><span class="kw">workflow</span>() <span class="op">%&gt;%</span></span>
-<span id="cb130-18"><a href="binary-classification-metrics.html#cb130-18"></a><span class="st">  </span><span class="kw">add_recipe</span>(ames_recipe_binary) <span class="op">%&gt;%</span></span>
-<span id="cb130-19"><a href="binary-classification-metrics.html#cb130-19"></a><span class="st">  </span><span class="kw">add_model</span>(ames_spec_binary)</span>
-<span id="cb130-20"><a href="binary-classification-metrics.html#cb130-20"></a></span>
-<span id="cb130-21"><a href="binary-classification-metrics.html#cb130-21"></a><span class="co">#Create metric set of all binary metrics</span></span>
-<span id="cb130-22"><a href="binary-classification-metrics.html#cb130-22"></a>ames_tune_binary &lt;-</span>
-<span id="cb130-23"><a href="binary-classification-metrics.html#cb130-23"></a><span class="st">  </span><span class="kw">tune_grid</span>(</span>
-<span id="cb130-24"><a href="binary-classification-metrics.html#cb130-24"></a>    ames_workflow_binary,</span>
-<span id="cb130-25"><a href="binary-classification-metrics.html#cb130-25"></a>    <span class="dt">metrics =</span></span>
-<span id="cb130-26"><a href="binary-classification-metrics.html#cb130-26"></a>      <span class="kw">metric_set</span>(sens,spec,recall,precision,mcc,j_index,f_meas,accuracy,</span>
-<span id="cb130-27"><a href="binary-classification-metrics.html#cb130-27"></a>                 kap,ppv,npv,bal_accuracy,detection_prevalence),</span>
-<span id="cb130-28"><a href="binary-classification-metrics.html#cb130-28"></a>    <span class="dt">resamples =</span> ames_folds_binary,</span>
-<span id="cb130-29"><a href="binary-classification-metrics.html#cb130-29"></a>    <span class="dt">grid =</span> <span class="kw">grid_regular</span>(</span>
-<span id="cb130-30"><a href="binary-classification-metrics.html#cb130-30"></a>      <span class="kw">mtry</span>(<span class="dt">range =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">6</span>)),</span>
-<span id="cb130-31"><a href="binary-classification-metrics.html#cb130-31"></a>      <span class="kw">min_n</span>(<span class="dt">range =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">20</span>)),</span>
-<span id="cb130-32"><a href="binary-classification-metrics.html#cb130-32"></a>      <span class="kw">trees</span>(<span class="dt">range =</span> <span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">100</span>)),</span>
-<span id="cb130-33"><a href="binary-classification-metrics.html#cb130-33"></a>      <span class="dt">levels =</span> <span class="dv">10</span></span>
-<span id="cb130-34"><a href="binary-classification-metrics.html#cb130-34"></a>    )</span>
-<span id="cb130-35"><a href="binary-classification-metrics.html#cb130-35"></a>  )</span>
-<span id="cb130-36"><a href="binary-classification-metrics.html#cb130-36"></a></span>
-<span id="cb130-37"><a href="binary-classification-metrics.html#cb130-37"></a><span class="co">#Pick the best model for each metric and pull out the predictions</span></span>
-<span id="cb130-38"><a href="binary-classification-metrics.html#cb130-38"></a>best_models_binary &lt;-<span class="st"> </span></span>
-<span id="cb130-39"><a href="binary-classification-metrics.html#cb130-39"></a><span class="st">  </span><span class="kw">tibble</span>(</span>
-<span id="cb130-40"><a href="binary-classification-metrics.html#cb130-40"></a>    <span class="dt">metric_name =</span> <span class="kw">c</span>(<span class="st">&#39;recall&#39;</span>,<span class="st">&#39;sens&#39;</span>,<span class="st">&#39;spec&#39;</span>, <span class="st">&#39;precision&#39;</span>,<span class="st">&#39;mcc&#39;</span>,<span class="st">&#39;j_index&#39;</span>,<span class="st">&#39;f_meas&#39;</span>,<span class="st">&#39;accuracy&#39;</span>,</span>
-<span id="cb130-41"><a href="binary-classification-metrics.html#cb130-41"></a>                    <span class="st">&#39;kap&#39;</span>,<span class="st">&#39;ppv&#39;</span>,<span class="st">&#39;npv&#39;</span>,<span class="st">&#39;bal_accuracy&#39;</span>,<span class="st">&#39;detection_prevalence&#39;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb130-42"><a href="binary-classification-metrics.html#cb130-42"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">metric_best =</span> <span class="kw">map</span>(metric_name, <span class="op">~</span><span class="kw">select_best</span>(ames_tune_binary, .x)),</span>
-<span id="cb130-43"><a href="binary-classification-metrics.html#cb130-43"></a>         <span class="dt">wf_best =</span> <span class="kw">map</span>(metric_best, <span class="op">~</span><span class="kw">finalize_workflow</span>(ames_workflow_binary, .x)),</span>
-<span id="cb130-44"><a href="binary-classification-metrics.html#cb130-44"></a>         <span class="dt">fit_best =</span> <span class="kw">map</span>(wf_best, <span class="op">~</span><span class="kw">fit</span>(.x, <span class="dt">data =</span> ames)),</span>
-<span id="cb130-45"><a href="binary-classification-metrics.html#cb130-45"></a>         <span class="dt">df_pred =</span> <span class="kw">map</span>(fit_best, <span class="op">~</span>ames <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">bind_cols</span>(<span class="kw">predict</span>(.x, <span class="dt">new_data =</span> ames)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(under_budget, .pred_class))) <span class="op">%&gt;%</span></span>
-<span id="cb130-46"><a href="binary-classification-metrics.html#cb130-46"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">c</span>(wf_best, fit_best)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb130-47"><a href="binary-classification-metrics.html#cb130-47"></a><span class="st">  </span><span class="kw">unnest</span>(<span class="dt">cols =</span> <span class="kw">c</span>(metric_name, metric_best, df_pred))</span>
-<span id="cb130-48"><a href="binary-classification-metrics.html#cb130-48"></a></span>
-<span id="cb130-49"><a href="binary-classification-metrics.html#cb130-49"></a><span class="co"># Plot!</span></span>
-<span id="cb130-50"><a href="binary-classification-metrics.html#cb130-50"></a>best_models_binary <span class="op">%&gt;%</span></span>
-<span id="cb130-51"><a href="binary-classification-metrics.html#cb130-51"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">metric_desc =</span> <span class="kw">factor</span>(</span>
-<span id="cb130-52"><a href="binary-classification-metrics.html#cb130-52"></a>    metric_name, </span>
-<span id="cb130-53"><a href="binary-classification-metrics.html#cb130-53"></a>    <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&#39;recall&#39;</span>,<span class="st">&#39;sens&#39;</span>,<span class="st">&#39;spec&#39;</span>, <span class="st">&#39;precision&#39;</span>,<span class="st">&#39;mcc&#39;</span>,<span class="st">&#39;j_index&#39;</span>,<span class="st">&#39;f_meas&#39;</span>,<span class="st">&#39;accuracy&#39;</span>,</span>
-<span id="cb130-54"><a href="binary-classification-metrics.html#cb130-54"></a>               <span class="st">&#39;kap&#39;</span>,<span class="st">&#39;ppv&#39;</span>,<span class="st">&#39;npv&#39;</span>,<span class="st">&#39;bal_accuracy&#39;</span>,<span class="st">&#39;detection_prevalence&#39;</span>),</span>
-<span id="cb130-55"><a href="binary-classification-metrics.html#cb130-55"></a>    <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&#39;recall</span><span class="ch">\n</span><span class="st">how many observations out </span><span class="ch">\n</span><span class="st">of all positive observations </span><span class="ch">\n</span><span class="st">have we classified as positive&#39;</span>,</span>
-<span id="cb130-56"><a href="binary-classification-metrics.html#cb130-56"></a>               <span class="st">&#39;sens</span><span class="ch">\n</span><span class="st">how many observations out </span><span class="ch">\n</span><span class="st">of all positive observations </span><span class="ch">\n</span><span class="st">have we classified as positive&#39;</span>,</span>
-<span id="cb130-57"><a href="binary-classification-metrics.html#cb130-57"></a>               <span class="st">&#39;spec</span><span class="ch">\n</span><span class="st">how many observations out </span><span class="ch">\n</span><span class="st">of all negative observations </span><span class="ch">\n</span><span class="st">have we classified as negative&#39;</span>, </span>
-<span id="cb130-58"><a href="binary-classification-metrics.html#cb130-58"></a>               <span class="st">&#39;precision</span><span class="ch">\n</span><span class="st">how many observations </span><span class="ch">\n</span><span class="st">predicted as positive are </span><span class="ch">\n</span><span class="st">in fact positive&#39;</span>,</span>
-<span id="cb130-59"><a href="binary-classification-metrics.html#cb130-59"></a>               <span class="st">&#39;mcc</span><span class="ch">\n</span><span class="st">correlation between </span><span class="ch">\n</span><span class="st">predicted classes and ground truth&#39;</span>,</span>
-<span id="cb130-60"><a href="binary-classification-metrics.html#cb130-60"></a>               <span class="st">&#39;j_index</span><span class="ch">\n</span><span class="st">balance between </span><span class="ch">\n</span><span class="st">sensitivity and specificity&#39;</span>,</span>
-<span id="cb130-61"><a href="binary-classification-metrics.html#cb130-61"></a>               <span class="st">&#39;f_meas</span><span class="ch">\n</span><span class="st">balance between </span><span class="ch">\n</span><span class="st">precision and recall&#39;</span>,</span>
-<span id="cb130-62"><a href="binary-classification-metrics.html#cb130-62"></a>               <span class="st">&#39;accuracy</span><span class="ch">\n</span><span class="st">how many observations,</span><span class="ch">\n</span><span class="st"> both positive and negative,</span><span class="ch">\n</span><span class="st"> were correctly classified&#39;</span>,</span>
-<span id="cb130-63"><a href="binary-classification-metrics.html#cb130-63"></a>               <span class="st">&#39;kap</span><span class="ch">\n</span><span class="st">how much better is your model</span><span class="ch">\n</span><span class="st"> over the random classifier</span><span class="ch">\n</span><span class="st"> that predicts based on class frequencies&#39;</span>,</span>
-<span id="cb130-64"><a href="binary-classification-metrics.html#cb130-64"></a>               <span class="st">&#39;ppv</span><span class="ch">\n</span><span class="st">how many observations</span><span class="ch">\n</span><span class="st"> predicted as positive</span><span class="ch">\n</span><span class="st"> are in fact positive&#39;</span>,</span>
-<span id="cb130-65"><a href="binary-classification-metrics.html#cb130-65"></a>               <span class="st">&#39;npv</span><span class="ch">\n</span><span class="st">how many predictions</span><span class="ch">\n</span><span class="st"> out of all negative</span><span class="ch">\n</span><span class="st"> predictions were correct&#39;</span>,</span>
-<span id="cb130-66"><a href="binary-classification-metrics.html#cb130-66"></a>               <span class="st">&#39;bal_accuracy</span><span class="ch">\n</span><span class="st">balance between</span><span class="ch">\n</span><span class="st"> sensitivity and specificity&#39;</span>,</span>
-<span id="cb130-67"><a href="binary-classification-metrics.html#cb130-67"></a>               <span class="st">&#39;detection_prevalence</span><span class="ch">\n</span><span class="st">how many positive</span><span class="ch">\n</span><span class="st"> predictions were correct of</span><span class="ch">\n</span><span class="st"> all the predictions&#39;</span>))) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb130-68"><a href="binary-classification-metrics.html#cb130-68"></a><span class="st">  </span><span class="kw">group_by</span>(metric_desc, under_budget, .pred_class) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb130-69"><a href="binary-classification-metrics.html#cb130-69"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">bin_count =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb130-70"><a href="binary-classification-metrics.html#cb130-70"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb130-71"><a href="binary-classification-metrics.html#cb130-71"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> under_budget, <span class="dt">y =</span> .pred_class, <span class="dt">fill =</span> bin_count, <span class="dt">label =</span> bin_count)) <span class="op">+</span></span>
-<span id="cb130-72"><a href="binary-classification-metrics.html#cb130-72"></a><span class="st">  </span><span class="kw">scale_fill_binned</span>() <span class="op">+</span></span>
-<span id="cb130-73"><a href="binary-classification-metrics.html#cb130-73"></a><span class="st">  </span><span class="kw">geom_tile</span>() <span class="op">+</span></span>
-<span id="cb130-74"><a href="binary-classification-metrics.html#cb130-74"></a><span class="st">  </span><span class="kw">geom_label</span>() <span class="op">+</span></span>
-<span id="cb130-75"><a href="binary-classification-metrics.html#cb130-75"></a><span class="st">  </span><span class="kw">coord_fixed</span>() <span class="op">+</span></span>
-<span id="cb130-76"><a href="binary-classification-metrics.html#cb130-76"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>metric_desc, <span class="dt">ncol =</span> <span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb130-77"><a href="binary-classification-metrics.html#cb130-77"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
-<span id="cb130-78"><a href="binary-classification-metrics.html#cb130-78"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.spacing =</span> <span class="kw">unit</span>(<span class="dv">2</span>, <span class="st">&quot;lines&quot;</span>),</span>
-<span id="cb130-79"><a href="binary-classification-metrics.html#cb130-79"></a>        <span class="dt">strip.text.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">8</span>))</span></code></pre></div>
-<p><img src="images/09-best_models_binary.png" /></p>
+<div id="simple-comparison" class="section level2">
+<h2><span class="header-section-number">11.5</span> Simple Comparison</h2>
+<p>Use difference to cancel out the resample-to-resample effect.</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="simple-comparison.html#cb157-1"></a>compare_lm &lt;-<span class="st"> </span>rsq_estimates <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb157-2"><a href="simple-comparison.html#cb157-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">difference =</span> <span class="st">`</span><span class="dt">with splines</span><span class="st">`</span> <span class="op">-</span><span class="st"> `</span><span class="dt">no splines</span><span class="st">`</span>)</span>
+<span id="cb157-3"><a href="simple-comparison.html#cb157-3"></a></span>
+<span id="cb157-4"><a href="simple-comparison.html#cb157-4"></a><span class="kw">lm</span>(difference <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> compare_lm) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb157-5"><a href="simple-comparison.html#cb157-5"></a><span class="st">  </span><span class="kw">tidy</span>(<span class="dt">conf.int =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb157-6"><a href="simple-comparison.html#cb157-6"></a><span class="st">  </span><span class="kw">select</span>(estimate, p.value, <span class="kw">starts_with</span>(<span class="st">&quot;conf&quot;</span>))</span></code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="regression-metrics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="practical-effect-size.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bayesian-methods.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -420,7 +346,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/09-judging_model_effectiveness.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/11-comparing_models_with_resampling.Rmd",
 "text": "Edit"
 },
 "history": {
