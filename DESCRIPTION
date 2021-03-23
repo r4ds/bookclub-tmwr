@@ -28,8 +28,12 @@ Imports:
     tidymodels,
     tidyverse,
     tufte,
-    tweetrmd
-Remotes:
+    tweetrmd,
+    tidyposterior,
+    rstanarm,
+    workflowsets (>= 0.0.1.9000)
+Remotes: 
     hadley/emo,
     gadenbuie/tweetrmd,
-    tidymodels/discrim
+    tidymodels/discrim,
+    tidymodels/workflowsets
