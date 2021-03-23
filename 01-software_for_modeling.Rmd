@@ -192,3 +192,35 @@ How does the significance of the model's variables play into the above? Let's ta
 00:50:36	Maria:	Cheers!
 00:51:03	Arjun’s iPhone:	p
 ```
+</details>
+
+### Cohort 2
+
+`r knitr::include_url("https://www.youtube.com/embed/nHZu-as7O7w")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+  ```
+00:06:50	Stephen Holsenbeck:	https://docs.google.com/spreadsheets/d/1vD4LG4_nhsxSAxXiBi42iKIvZXQtNxgB5C_PUkIZ0wo/edit#gid=0
+00:08:48	Amélie Gourdon-Kanhukamwe:	Questions (if forgotten): name (pronunciation), location, fun fact about yourself, why are you here?
+00:21:23	Carmen Santana:	when the pandemic is over you should come to Portugal, great wine here!!
+00:21:50	Kevin Kent:	There was a wine ratings tidytuesday a while ago  https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-05-28
+00:21:50	shamsuddeen:	Hahhaha, yes. Specially Porto wine -:)
+00:22:30	Layla Bouzoubaa:	Yes to portugal
+00:22:37	Layla Bouzoubaa:	Thanks, Kevin!
+00:26:36	Stephen Holsenbeck:	https://github.com/r4ds/bookclub-tmwr
+00:28:15	Amélie Gourdon-Kanhukamwe:	I love Portugal too, but other fun fact: I am non-wine drinking French.
+00:28:49	Layla Bouzoubaa:	😱
+01:02:53	Kevin Kent:	I really like fast ai’s chapter on ethics - https://github.com/fastai/fastbook/blob/master/03_ethics.ipynb (free by the way)
+01:03:14	Carmen Santana:	thanx
+01:03:44	Layla Bouzoubaa:	Thank you, kevin
+01:04:14	Layla Bouzoubaa:	Yes, let’s add it to google doc
+01:07:34	Amélie Gourdon-Kanhukamwe:	Possibly after FE too?
+01:08:45	Layla Bouzoubaa:	After
+01:08:48	Layla Bouzoubaa:	Agree with auust
+01:08:51	Kevin Kent:	After is ok with me
+01:11:03	Layla Bouzoubaa:	There was also rstudio conf from last year from googlebrain for ethics to predict lending
+01:14:55	shamsuddeen:	Cheers guys
+```
+</details>

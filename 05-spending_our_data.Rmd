@@ -247,3 +247,57 @@ We will learn more about how to remedy certain issues such as class imbalance, b
 01:05:56	caroline:	Thank you Asmae :)
 01:05:59	Pavitra Chakravarty:	great presentation Asmae
 ```
+</details>
+
+### Cohort 2
+
+`r knitr::include_url("https://www.youtube.com/embed/GnNMkKxidl4")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+  ```
+00:07:17	Janita Botha:	Sorry I'm late... Been slow booting up...
+00:08:46	Amélie Gourdon-Kanhukamwe (she/they):	https://supervised-ml-course.netlify.app/
+00:08:58	shamsuddeen:	Thank you
+00:09:07	Stephen Holsenbeck:	thanks!
+00:22:06	Janita Botha:	Just a side warren... I find the focus on testing vs training data in tidymodels very frustrating since the field that I am in focusses more on inferential statistics because we tend to have relatively small sample sizes for the large amount of variance we encounter
+00:22:52	Janita Botha:	In other words in my field my data is ususally better "spent" as traininig data...
+00:38:09	Louis Carlo Medina:	Thanks Rahul! yeah, I think I conflated oversampling with strata. I think I remember the strata now, where you actually sample within groups as opposed to the group as a whole.
+00:38:29	shamsuddeen:	Yes, !
+00:41:00	rahul bahadur:	No worries.
+00:42:26	Mikhael Manurung:	It should be random regardless whether strata is specified or not
+00:43:00	rahul bahadur:	For stratified random sampling, the strata are created first and then random samples are taken from it
+00:43:31	shamsuddeen:	Why don’t we stratified all the time?
+00:44:14	rahul bahadur:	it is not needed when the data is balanced. However, you can
+00:44:16	shamsuddeen:	The book says: “There is very little downside to using stratified sampling. “
+00:44:40	shamsuddeen:	Ah, I see.  Stratified is for imbalance data
+00:44:52	shamsuddeen:	Thanks raul.
+00:45:01	Stephen Holsenbeck:	stratification should basically be the default
+00:45:06	shamsuddeen:	*rahul
+00:45:36	Stephen Holsenbeck:	If you go completely random, your classes in the test set may not match the category distributions in the dataset
+00:45:45	August:	https://otexts.com/fpp2/accuracy.html
+00:45:48	Stephen Holsenbeck:	same with the training set
+00:46:02	August:	this is a good diagram for time series cross validation
+00:46:34	August:	Training test at top of section
+00:46:46	Janita Botha:	@Amelie that is a really good question - you should add that to the questions for Julia and Max
+00:47:11	Louis Carlo Medina:	^+1. Hyndman et al's texts for timeseries stuff are really good
+00:47:43	rahul bahadur:	Yes, Hyndman has good timeseries
+00:49:43	shamsuddeen:	From the book.
+00:49:44	shamsuddeen:	Too much data in the training set lowers the quality of the performance estimates.
+00:49:52	shamsuddeen:	too much data in the test set handicaps the model’s ability to find appropriate parameter estimates.
+00:50:14	shamsuddeen:	What is difference between performance estimates and parameter estimates.?
+00:51:26	Janita Botha:	https://otexts.com/fpp3/
+00:51:35	rahul bahadur:	Parameter estimates, in case of regression for example, would be the beta estimates
+00:51:38	Amélie Gourdon-Kanhukamwe (she/they):	Performance estimates = grossly statistics assessing the quality of the model, such as MSE, percentage correct, area under the curve
+00:51:45	rahul bahadur:	Performance estimates = MSE
+00:51:47	Amélie Gourdon-Kanhukamwe (she/they):	And yes, as Rahul
+00:52:08	Janita Botha:	I shared the link above
+00:52:13	Kevin Kent:	Modeltime - https://cran.r-project.org/web/packages/modeltime/vignettes/getting-started-with-modeltime.html
+00:52:32	Amélie Gourdon-Kanhukamwe (she/they):	Thanks Janitha
+00:55:56	Kevin Kent:	https://physionet.org/
+00:59:34	Amélie Gourdon-Kanhukamwe (she/they):	https://cran.r-project.org/web/packages/anomalize/vignettes/anomalize_quick_start_guide.html
+00:59:38	August:	https://cran.r-project.org/web/packages/anomalize/anomalize.pdf
+00:59:58	August:	https://cran.r-project.org/web/packages/anomalize/vignettes/anomalize_methods.html
+```
+</details>
