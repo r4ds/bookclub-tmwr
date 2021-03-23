@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>12.2 Slide 2 Title | Tidy Modeling with R Book Club</title>
+  <title>10.7 Meeting Videos | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="12.2 Slide 2 Title | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="10.7 Meeting Videos | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="12.2 Slide 2 Title | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="10.7 Meeting Videos | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="slide-1-title-1.html"/>
-<link rel="next" href="grid-search.html"/>
+<link rel="prev" href="saving-the-resampled-objects.html"/>
+<link rel="next" href="comparing-models-with-resampling.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -295,10 +295,57 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="slide-2-title-1" class="section level2">
-<h2><span class="header-section-number">12.2</span> Slide 2 Title</h2>
-<p>Put the content of your second slide here.</p>
+<div id="meeting-videos-10" class="section level2">
+<h2><span class="header-section-number">10.7</span> Meeting Videos</h2>
+<div id="cohort-1-10" class="section level3">
+<h3><span class="header-section-number">10.7.1</span> Cohort 1</h3>
+<iframe src="https://www.youtube.com/embed/Zj1wPdglYIA" width="100%" height="400px">
+</iframe>
+<details>
+<p><summary> Meeting chat log </summary></p>
+<pre><code>00:10:27    pavitra:    hahaha..look at Jon resampling his wine 
+00:10:38    Jonathan Trattner:  HAH
+00:10:44    pavitra:    1-fold CV
+00:11:16    pavitra:    that&#39;s bad..jon&#39;s test and train sets are the same
+00:11:36    pavitra:    HAHAHA...
+00:12:05    pavitra:    Let me grab my IPA. Tan, get your Milk stout
+00:12:30    Tan Ho: bahaha bottoms up!
+00:13:23    Tan Ho: *awkward eyes meme*
+00:13:30    pavitra:    lmao
+00:30:59    Tyler Grant Smith:  i feel like this deserves experimental support to compare 50 fold cv vs 5fold x10
+00:34:35    pavitra:    gotcha…
+00:42:34    pavitra:    is this bootstrapping with replacement?
+00:43:42    Jon Harmon (jonthegeek):    63.2% 36.8%
+00:43:54    pavitra:    2 SDs
+00:44:34    Conor Tompkins: @max why is it those numbers
+00:45:24    Tan Ho: (or just doubleclick the function lol)
+00:45:42    Jonathan Trattner:  Both of those are GAME changers
+00:45:43    Tyler Grant Smith:  ive lost the ink on my f2 key i use it so much
+00:45:46    Jonathan Trattner:  wowowow
+00:45:49    Tan Ho: er, wait, ctrl-click?
+00:45:51    pavitra:    yeah - I just discovered &quot;go to function definition&quot; in the code menu myself
+00:46:31    Jonathan Trattner:  Productivity boost 🤯
+00:46:42    Tan Ho: it&#39;s a trap! - admiral ackbar
+00:46:52    Tan Ho: (you can end up digging too deep)
+00:47:16    pavitra:    tyler is an expert at time series
+00:54:03    Tyler Grant Smith:  this seems to be contrary to how hyndman defines it
+00:58:01    pavitra:    isn&#39;t there a way to dynamically tune your hyperparameters such that it can do it for the defined range and you can see the performance using the control?
+00:59:14    Jim Gruman: time series resampling at the tidymodels web site covers `sliding_window()` `sliding_index()` and `sliding_period()` functions. Maybe the book 10.2.4 rolling forecasting could be a little more clear about all three methods
+00:59:31    Tyler Grant Smith:  reading the documentation for rolling_origin i think that graphic represents cumulative=FALSE not TRUE.  This agrees with the books code
+01:06:24    Jon Harmon (jonthegeek):    lm_res$.extracts[[1]][[1]]
+01:07:34    Tyler Grant Smith:  may not be tidy but thats code im used to!
+01:09:44    Jonathan Trattner:  Go, Jon, go!
+01:10:44    Jim Gruman: thank you Jon!!!!!
+01:10:52    Tyler Grant Smith:  step_interact( ~ Gr_Liv_Area:starts_with(&quot;Bldg_Type_&quot;))     neat i didnt know you could do that
+01:12:29    Tyler Grant Smith:  my models are all organic non-gmo
+01:17:36    Joe Sydlowski:  For Conor&#39;s question: http://uc-r.github.io/mars
+01:17:47    Jonathan Trattner:  Thanks, Jon! Have a great night, everyone!
+01:18:14    Joe Sydlowski:  There&#39;s a plot with model selection for the autoplot in MARs that shows the metrics 
+01:18:19    pavitra:    thanks Jon
+01:18:19    Conor Tompkins: Thanks Jon!</code></pre>
+</details>
 
+</div>
 </div>
 <!-- </div> -->
             </section>
@@ -306,8 +353,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="slide-1-title-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="grid-search.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="saving-the-resampled-objects.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="comparing-models-with-resampling.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -338,7 +385,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/12-model_tuning_and_the_dangers_of_overfitting.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/10-resampling_for_evaluating_performance.Rmd",
 "text": "Edit"
 },
 "history": {
