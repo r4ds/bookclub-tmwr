@@ -2,12 +2,105 @@
 
 **Learning objectives:**
 
-- Jon will prefill these.
+- Calculate **performance statistics** for **multiple models.**
+  - Recognize that **within-resample correlation** can impact model comparison.
+  - Define **practical effect size.**
+- **Compare models** using **differences** in metrics.
+- Use {tidyposterior} to compare models using Bayesian methods.
 
-## Slide 1 Title
+## Calculate performance statistics
 
-Put the content of your slide here.
+```{r metric-calculation, eval = FALSE}
+my_cool_model_rsq <- my_cool_model %>% 
+  collect_metrics(summarize = FALSE) %>% 
+  filter(.metric == "rsq") %>% 
+  select(id, my_cool_model = .estimate)
 
-## Slide 2 Title
+## Repeat that for more models, then:
+rsq_estimates <- my_cool_model_rsq %>% 
+  inner_join(my_other_model_rsq) %>% 
+  inner_join(my_other_other_model_rsq)
+```
 
-Put the content of your second slide here.
+## Calculate performance statistics: {workflowsets}
+
+We'll take a closer look at this, but workflowsets makes this stuff way cleaner!
+
+```{r metric-calculation-workflowsets, eval = FALSE}
+lm_models <- workflowsets::workflow_set(
+  preproc = list(
+    basic = basic_recipe,
+    interact = interaction_recipe,
+    splines = spline_recipe
+  ),
+  models = list(lm = lm_model),
+  cross = FALSE
+) %>% 
+  workflowsets::workflow_map(
+    fn = "fit_resamples", 
+    # Options to `workflow_map()`: 
+    seed = 1101, verbose = TRUE,
+    # Options to `fit_resamples()`: 
+    resamples = ames_folds, control = keep_pred
+  )
+
+collect_metrics(lm_models) %>% 
+  filter(.metric == "rsq")
+```
+
+## Within-resample correlation
+
+- **Within-resample correlation:** some folds are easier to predict than others
+
+![Comparison of R^2 between models](images/compare-rsq-plot-1.svg)
+
+> "If the resample-to-resample effect was not real, there would not be any parallel lines."
+> - Max Kuhn & Julia Silge
+
+*ie,* the lines don't cross **that** much, so there's an effect.
+
+## Practical effect size
+
+- It's a good idea to think about how big of a difference matters to you.
+- Maybe a change will be statistically significant, but is it worth the trouble of deploying a new model?
+
+## Simple Comparison
+
+Use difference to cancel out the resample-to-resample effect.
+
+```{r compare-lm, eval = FALSE}
+compare_lm <- rsq_estimates %>% 
+  mutate(difference = `with splines` - `no splines`)
+
+lm(difference ~ 1, data = compare_lm) %>% 
+  tidy(conf.int = TRUE) %>% 
+  select(estimate, p.value, starts_with("conf"))
+```
+
+## Bayesian methods
+
+```{r full-bayesian-process, eval = FALSE}
+library(tidyposterior)
+library(rstanarm)
+
+rqs_diff <- ames_folds %>% 
+  bind_cols(rsq_estimates %>% arrange(id) %>% select(-id)) %>% 
+  perf_mod(
+    prior_intercept = student_t(df = 1),
+    chains = 4,
+    iter = 5000,
+    seed = 2
+  ) %>% 
+  contrast_models(
+    list_1 = "with splines",
+    list_2 = "no splines",
+    seed = 36
+  )
+
+summary(rqs_diff, size = 0.02) %>% # 0.02 is our practical effect size.
+  select(contrast, starts_with("pract"))
+#> # A tibble: 1 x 4
+#>   contrast                   pract_neg pract_equiv pract_pos
+#>   <chr>                          <dbl>       <dbl>     <dbl>
+#> 1 with splines vs no splines         0       0.989    0.0113
+```
