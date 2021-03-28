@@ -27,6 +27,14 @@
 - **Avoid confusion:** Software should facilitate proper usage.
 - **Avoid mistakes:** Software should make it easy for users to do the right thing.
 
+Examples of creating a pit of success (discussed in more details later)
+
+-   internal consistency
+
+-   sensible defaults
+
+-   fail with meaningful error messages rather than silently producing incorrect results
+
 ## Types of models
 
 - **Descriptive models:** Describe or illustrate characteristics of data.
@@ -45,42 +53,64 @@
 
 ## Terminology
 
-- **Unsupervised models** are used to understand relationships between variables or sets of variables without an explicit relationship between variables and an outcome.
-  - Examples: PCA, clustering, autoencoders.
-- **Supervised models** have an outcome variable.
-  - Examples: linear regression, neural networks.
-  - **Regression:** numeric outcome
-  - **Classification:** ordered or unordered qualitative values.
-- **Quantitative** data: numbers.
-- **Qualitative** (nominal) data: non-numbers.
-- Data can have different roles in analyses:
-  - **Outcomes** (labels, endpoints, dependent variables): the value being predicted in supervised models.
-  - **Predictors** (independent variables): the variables used to predict the outcome.
+-   **Unsupervised models** are used to understand relationships between variables or sets of variables without an explicit relationship between variables and an outcome.
+
+    -   Examples: PCA, clustering, autoencoders.
+
+-   **Supervised models** have an outcome variable.
+
+    -   Examples: linear regression, decision trees, neural networks.
+    -   **Regression:** numeric outcome
+    -   **Classification:** ordered or unordered qualitative values.
+
+-   **Quantitative** data: numbers.
+
+-   **Qualitative** (nominal) data: non-numbers.
+
+    -   *Qualitative data still might be coded as numbers, e.g. one-hot encoding*
+
+-   Data can have different roles in analyses:
+
+    -   **Outcomes** (labels, endpoints, dependent variables): the value being predicted in supervised models.
+    -   **Predictors** (independent variables): the variables used to predict the outcome.
+    -   Identifiers
+
+Choosing a model type will depend on the type of question we want to answer / problem to solve and on the available data, among other things.
 
 ## The data analysis process
 
-1. Cleaning the data: investigate the data to make sure that they are applicable to the project goals, accurate, and appropriate
-2. Understanding the data: often referred to as exploratory data analysis (EDA). EDA brings to light how the different variables are related to one another, their distributions, typical ranges, and other attributes. 
-    - “How did I come by *these* data?”
-    - "Is the data *relevant*?"
-3. Develop clear expectations of the goal of your model and how performance will be judged ([Chapter 9](https://www.tmwr.org/performance.html))
-    - "What is/are the *performance metrics or realistic goal/s* of what can be achieved?"
+1.  Cleaning the data: investigate the data to make sure that they are applicable to the project goals, accurate, and appropriate
 
-<div style="text-align:center;">
+2.  Understanding the data: often referred to as exploratory data analysis (EDA). EDA brings to light how the different variables are related to one another, their distributions, typical ranges, and other attributes.
+
+    -   "How did I come by *these* data?"
+    -   "Is the data *relevant*?"
+
+3.  Develop clear expectations of the goal of your model and how performance will be judged ([Chapter 9](https://www.tmwr.org/performance.html))
+
+    -   "What is/are the *performance metrics or realistic goal/s* of what can be achieved?"
+
+::: {style="text-align:center;"}
 ![The data science process (from R for Data Science by Wickham and Grolemund.](https://www.tmwr.org/premade/data-science-model.svg)
-</div>
+:::
 
 ## The modeling process
 
-<div style="text-align:center;">
+::: {style="text-align:center;"}
 ![The modeling process.](https://www.tmwr.org/premade/modeling-process.svg)
-</div>
+:::
 
-- **Exploratory data analysis:** Explore the data to see what they might tell you. (See previous)
-- **Feature engineering:** Create specific model terms that make it easier to accurately model the observed data. Covered in [Chapter 6](https://www.tmwr.org/recipes.html#recipes).
-- **Model tuning and selection:** Generate a variety of models and compare performance.
-  - Some models require **hyperparameter tuning**
-- **Model evaluation:** Use EDA-like analyses and compare model performance metrics to choose the best model for your situation.
+-   **Exploratory data analysis:** Explore the data to see what they might tell you. (See previous)
+
+-   **Feature engineering:** Create specific model terms that make it easier to accurately model the observed data. Covered in [Chapter 6](https://www.tmwr.org/recipes.html#recipes).
+
+-   **Model tuning and selection:** Generate a variety of models and compare performance.
+
+    -   Some models require **hyperparameter tuning**
+
+-   **Model evaluation:** Use EDA-like analyses and compare model performance metrics to choose the best model for your situation.
+
+The final model may be used for a conclusion and/or produce predictions on new data.
 
 ## Meeting Videos
 
