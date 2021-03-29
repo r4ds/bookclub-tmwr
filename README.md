@@ -36,7 +36,7 @@ If you would like to present, please add your name next to a chapter using the [
 - 2021-03-29: Chapter 1: Software for modeling: Ildiko Czeller
 - 2021-04-05: Chapter 2: A tidyverse primer: TBD
 - 2021-04-12: Chapter 3: A review of R modeling fundamentals: TBD
-- 2021-04-19: Chapter 4: The Ames housing data: TBD
+- 2021-04-19: Chapter 4: The Ames housing data: Jiwan Heo
 
 <details>
   <summary> Future Meetings </summary>
