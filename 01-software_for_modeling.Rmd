@@ -59,7 +59,7 @@ Examples of creating a pit of success (discussed in more details later)
     -   **Classification:** ordered or unordered qualitative values.
 -   **Quantitative** data: numbers.
 -   **Qualitative** (nominal) data: non-numbers.
-    -   *Qualitative data still might be coded as numbers, e.g. one-hot encoding a.k.a dummy variable encoding*
+    -   *Qualitative data still might be coded as numbers, e.g. one-hot encoding or dummy variable encoding*
 -   Data can have different roles in analyses:
     -   **Outcomes** (labels, endpoints, dependent variables): the value being predicted in supervised models.
     -   **Predictors** (independent variables): the variables used to predict the outcome.
