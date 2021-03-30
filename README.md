@@ -42,7 +42,7 @@ If you would like to present, please add your name next to a chapter using the [
   <summary> Future Meetings </summary>
 
 - 2021-04-26: Chapter 5: Spending our data
-- 2021-05-03: Chapter 6: Feature engineering with recipes
+- 2021-05-03: Chapter 6: Feature engineering with recipes: Chris Martin
 - 2021-0?-??: Chapter 7: Fitting models with parsnip
 - 2021-0?-??: Chapter 8: A model workflow
 - 2021-0?-??: Chapter 9: Judging model effectiveness
