@@ -2,7 +2,16 @@
 
 **Learning objectives:**
 
-- Jon will prefill these.
+- Recognize examples of **tuning parameters.**
+  - Recognize hyperparameters for **machine learning models.**
+  - Recognize tuning parameters for **preprocessing techniques.**
+  - Recognize structural parameters for **classical statistical models.**
+  - Recognize examples of **parameters** that **should *not* be tuned.**
+- Explain how **different metrics** can lead to **different decisions** about the choice of tuning parameter values.
+- Explain how **poor parameter estimates** can lead to **overfitting** of training data.
+- Recognize **strategies for optimizing tuning parameters.**
+  - Compare and contrast **grid search** and **iterative search.**
+- Use `tune::tune()` and the `{dials}` package to **optimize tuning parameters.**
 
 ## Slide 1 Title
 
