@@ -31,7 +31,9 @@ Imports:
     tweetrmd,
     tidyposterior,
     rstanarm,
-    workflowsets (>= 0.0.1.9000)
+    workflowsets (>= 0.0.1.9000),
+    patchwork,
+    kableExtra
 Remotes: 
     hadley/emo,
     gadenbuie/tweetrmd,

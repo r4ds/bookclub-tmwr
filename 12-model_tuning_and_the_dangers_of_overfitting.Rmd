@@ -1,5 +1,9 @@
 # Model tuning and the dangers of overfitting
 
+```{r setup12, echo = FALSE, include = FALSE}
+library(patchwork)
+```
+
 **Learning objectives:**
 
 - Recognize examples of **tuning parameters.**
@@ -13,10 +17,288 @@
   - Compare and contrast **grid search** and **iterative search.**
 - Use `tune::tune()` and the `{dials}` package to **optimize tuning parameters.**
 
-## Slide 1 Title
+## What is a Tuning Parameter?
 
-Put the content of your slide here.
+An unknown structural or other kind of value that has significant impact on the model but *cannot be directly estimated from these data*
 
-## Slide 2 Title
+### Examples
 
-Put the content of your second slide here.
+- Machine Learning (hyperparameters)
+  - Boosting: number of boosting iterations
+  - ANN: number of hidden units and type of activation function
+  - Modern Gradient Descent: Learning rates, momentus, and iterations
+  - Random Forest: number of predictors, number of trees, number of data points
+
+- Preprocessing (tuning parameters)
+  - PCA: number of extracted components
+  - Imputation (uses KNN): number of neighbors
+
+- Statistical Models (structural parameters)
+  - Binary Regression (logistic regression): probit, logit link
+  - Longitudinal Models: correlation and covariance structure of the data
+
+## When not to tune
+
+- Prior distribution (Bayesian analysis)
+- Number of Trees (Random Forest and Bagging) 
+  - Does not need tuning--instead focus on stability
+
+## Decisions, Decisions...
+
+```{r dataset, echo = TRUE}
+data(ames, package = "modeldata")
+ames <- ames %>% mutate(Sale_Price = log10(Sale_Price)) 
+
+set.seed(63)
+ames_split <- initial_split(ames, prop = 0.80, strata = Central_Air)
+ames_train <- training(ames_split)
+ames_test <- testing(ames_split)
+
+set.seed(63)
+rs <- vfold_cv(ames_train, repeats = 10)
+```
+
+```{r, echo = FALSE}
+ames_train %>% 
+  ggplot() +
+  aes(x = Year_Remod_Add, y = Sale_Price, color = Central_Air) +
+  geom_point() +
+  labs(title = "Central Air According to Sale Price and Remodel Year", subtitle = "Using ames_train dataset")
+```
+
+## What Metric Should We Use?
+
+Which link function should we use...does it matter?
+
+- logistic regression using a logit
+- probit
+- complementary log-log
+
+```{r, warning  = FALSE, echo = FALSE}
+llhood <- function(...) {
+  logistic_reg() %>% 
+    set_engine("glm", ...) %>% 
+    fit(Central_Air ~ Sale_Price + Year_Remod_Add, data = ames_train) %>% 
+    glance() %>% 
+    select(logLik)
+}
+
+bind_rows(
+  llhood(),
+  llhood(family = binomial(link = "probit")),
+  llhood(family = binomial(link = "cloglog"))
+) %>% 
+  mutate(link = c("logit", "probit", "c-log-log"))  %>% 
+  arrange(desc(logLik)) %>% 
+  kableExtra::kbl(caption = "Likelihood Statistics") %>%
+  kableExtra::kable_classic(full_width = F, html_font = "Cambria")
+```
+
+```{r, echo = FALSE}
+lloss <- function(...) {
+  perf_meas <- metric_set(roc_auc, mn_log_loss)
+    
+  logistic_reg() %>% 
+    set_engine("glm", ...) %>% 
+    fit_resamples(Central_Air ~ Sale_Price + Year_Remod_Add, rs, metrics = perf_meas) %>% 
+    collect_metrics(summarize = FALSE) %>%
+    select(id, id2, .metric, .estimate)
+}
+```
+
+```{r eval=FALSE, include=FALSE, echo = FALSE}
+resampled_res <- 
+  bind_rows(
+    lloss()                                    %>% mutate(model = "logitistic"),
+    lloss(family = binomial(link = "probit"))  %>% mutate(model = "probit"),
+    lloss(family = binomial(link = "cloglog")) %>% mutate(model = "c-log-log")     
+  ) %>%
+  # Convert log-loss to log-likelihood:
+  mutate(.estimate = ifelse(.metric == "mn_log_loss", -.estimate, .estimate)) %>% 
+  group_by(model, .metric) %>% 
+  summarize(
+    mean = mean(.estimate, na.rm = TRUE),
+    std_err = sd(.estimate, na.rm = TRUE) / sum(!is.na(.estimate)), 
+    .groups = "drop"
+  )
+
+saveRDS(resampled_res, file = here::here("data", "12-resample_results.rds"))
+```
+
+```{r, echo = FALSE}
+resampled_res <- readRDS(file = here::here("data", "12-resample_results.rds"))
+```
+
+If we just look at the log-likelihood statistic, the logistic link function appears to be statistically (significantly) better than the probit and complementary log-log link functions.
+
+However, if we use the area under the ROC curve, we see that there is no significant difference between the three link functions. When we plot the three link functions, we also see that they are not substantially different in predicting whether a house has central air.
+
+```{r, echo = FALSE}
+logistic <- glm(Central_Air ~ Sale_Price + Year_Remod_Add, data = ames_test, family = binomial)
+logistic_slope <- coef(logistic)[3]/(-coef(logistic)[2])
+logistic_intercept <- coef(logistic)[1]/(-coef(logistic)[2]) 
+probit <- glm(Central_Air ~ Sale_Price + Year_Remod_Add, data = ames_test, family = binomial(link = "probit"))
+probit_slope <- coef(probit)[3]/(-coef(probit)[2])
+probit_intercept <- coef(probit)[1]/(-coef(probit)[2]) 
+cloglog <- glm(Central_Air ~ Sale_Price + Year_Remod_Add, data = ames_test, family = binomial(link = "cloglog"))
+cloglog_slope <- coef(cloglog)[3]/(-coef(cloglog)[2])
+cloglog_intercept <- coef(cloglog)[1]/(-coef(cloglog)[2]) 
+```
+
+```{r echo = FALSE}
+p1 <- resampled_res %>% 
+  filter(.metric == "mn_log_loss") %>% 
+  ggplot(aes(x = mean, y = model)) + 
+  geom_point() + 
+  geom_errorbar(aes(xmin = mean - 1.96 * std_err, xmax = mean + 1.96 * std_err),
+                width = .1) + 
+  labs(y = NULL, x = "log-likelihood")
+
+p2 <- resampled_res %>% 
+  filter(.metric == "roc_auc") %>% 
+  ggplot(aes(x = mean, y = model)) + 
+  geom_point() + 
+  geom_errorbar(aes(xmin = mean - 1.96 * std_err, xmax = mean + 1.96 * std_err),
+                width = .1) + 
+  labs(y = NULL, x = "Area Under the ROC Curve")
+
+p3 <- ames_test %>% 
+  ggplot() +
+  aes(x = Year_Remod_Add, y = Sale_Price, color = Central_Air) +
+  geom_point() +
+  geom_abline(slope = logistic_slope, intercept = logistic_intercept) +
+  geom_abline(slope = probit_slope, intercept = probit_intercept, linetype = 2) +
+  geom_abline(slope = cloglog_slope, intercept = cloglog_intercept, linetype = 3)
+
+(p1 + p2) / p3
+```
+
+## Can we make our model *too* good?
+
+**Overfitting** is always a concern as we start to tune hyperparameters.
+
+tip from the book: `Using out of sample data is the solution for detecting when a model is overemphasizing the training set`
+
+![graphs depicting what overfitting looks like](images/overfitting.png)
+
+Image Credit (https://therbootcamp.github.io/ML_2019Oct/_sessions/Recap/Recap.html#8)
+
+## Tuning Parameter Optimization Strategies
+
+- Grid Search (Space Filled Grid)
+
+![Grid Search Graphic](images/grid_search-hyperparameter.png)
+
+- Random Search (Global Search)
+
+![Random Search Graphic](images/random_search-hyperparameter.png)
+
+- Iterative Search (Global Search)
+
+![Iterative Search Graphic](images/bayesian_optimization-hyperparameter.png)
+
+image credits: (https://en.wikipedia.org/wiki/Hyperparameter_optimization)
+
+## Tuning Parameters in tidymodels `{dials}`
+
+Parsnip Model Specifications
+
+- Main Arguments (rand_forest)
+- engine-specific (ranger)
+
+Good starting points (tidymodels website):
+
+- [reference docs](https://www.tidymodels.org/find/parsnip/#models)
+- [searchable table](https://www.tidymodels.org/find/parsnip/#model-args) 
+
+## Let's try an example:
+
+See if we can predict the home sale price in our ames dataset 
+
+1. Start with a recipe
+```{r, echo= TRUE}
+ames_recipe <- recipe(Sale_Price ~ Neighborhood + Gr_Liv_Area + Year_Remod_Add + Bldg_Type, 
+                      data = ames_train)
+```
+
+## Build our random forest model:
+
+random forest model
+```{r, echo = TRUE}
+rf_spec <- rand_forest() %>% 
+  set_engine("ranger") %>% 
+  set_mode("regression") 
+```
+
+Main Arguments `args()`:
+```{r, echo = TRUE}
+args(rand_forest)
+```
+
+engine specific arguments: 
+```{r}
+?ranger::ranger()
+```
+
+## Add tuning parameters:
+
+We can add main arguments (mtry, min_n) and engine specific arguments (regularization.factor)
+```{r, echo = TRUE}
+rf_spec_tuned <- rand_forest(mtry = tune(), trees = 2000, min_n = tune()) %>% 
+  set_engine("ranger", regularization.factor = tune("reg")) %>% 
+  set_mode("regression") 
+```
+
+`tune()` returns an expression. This tags the parameters for optimization within the tidymodels framework
+
+```{r, echo = TRUE}
+parameters(rf_spec_tuned)
+```
+
+The notation `nparam[+]` indicates a complete numeric parameter, `nparam[?]` indicates a missing value that needs to be addressed.
+
+## Updating tuning parameters:
+
+To see what we need to update/ finalize, we can call the function in the `{dials}` package
+```{r, echo = TRUE}
+mtry()
+```
+
+We can also use the `{dials}` package to see the tuning range
+```{r, echo = TRUE}
+min_n()
+```
+
+To update/finalize or adjust the hyperparameters we can use the `update()` function to update in-place:
+
+```{r, echo = TRUE}
+parameters(rf_spec_tuned) %>% 
+  update(mtry = mtry(c(1, 4)))
+```
+
+We see that mtry is now a complete numeric parameter
+
+## Finalizing tuning parameters:
+
+The update function may not be useful if a recipe is attached to a workflow that adjusts the number of columns. Instead of `update()` we can use the `finalize()` function.
+
+```{r, echo = TRUE}
+updated_params <- workflow() %>% 
+  add_model(rf_spec_tuned) %>% 
+  add_recipe(ames_recipe) %>% 
+  parameters() %>% 
+  finalize(ames_train)
+
+updated_params
+```
+
+With the `finalize()` function, mtry was completed based on the number of predictors in the training dataset
+
+```{r, echo = TRUE}
+updated_params %>% pull_dials_object("mtry")
+```
+
+## What is next?
+
+The parameter object we just explored knows the range of the parameters. the `{dials}` package contains a number of `grid_*()` functions that takes the parameter object as input to produce different types of grids. Chapter 13 will explore this further.
+
