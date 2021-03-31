@@ -1,8 +1,6 @@
 # Model tuning and the dangers of overfitting
 
 ```{r setup12, echo = FALSE, include = FALSE}
-library(tidyverse)
-library(tidymodels)
 library(patchwork)
 ```
 
