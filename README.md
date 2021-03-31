@@ -27,7 +27,8 @@ If you would like to present, please add your name next to a chapter using the [
 - 2021-03-30: Chapter 12: Modeling tuning and the dangers of overfitting: Andrew Farina
 - **2021-04-06: Chapter 13: Grid search: Jim Gruman**
 - 2021-04-13: Chapter 14: Iterative search
-- 2021-04-20: Review: Chapters 10-14
+- 2021-04-20: Chapter 15: Screening many models: Tan Ho
+- 2021-04-27: Review: Chapters 10-15
 
 
 *Cohort 3: - Mondays, 11:00am CDT - facilitated by Ildiko Czeller*
