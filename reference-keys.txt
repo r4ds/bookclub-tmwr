@@ -9,6 +9,7 @@ the-modeling-process
 meeting-videos
 cohort-1
 cohort-2
+cohort-3
 a-tidyverse-primer
 tidyverse-design-principles
 design-for-humans---overview
@@ -52,6 +53,9 @@ cohort-2-4
 feature-engineering-with-recipes
 meeting-videos-5
 cohort-1-5
+cohort-2-5
+meeting-videos-6
+cohort-2-6
 fitting-models-with-parsnip
 create-a-model
 different-model-interfaces
@@ -62,10 +66,10 @@ use-model-results
 make-predictions
 tidymodels-adjacent-packages
 summary-1
-meeting-videos-6
+meeting-videos-7
 cohort-1-6
 a-model-workflow
-meeting-videos-7
+meeting-videos-8
 cohort-1-7
 judging-model-effectiveness
 measures-of-model-fit
@@ -73,9 +77,9 @@ disclaimers
 regression-metrics
 binary-classification-metrics
 references-1
-meeting-videos-8
-cohort-1-8
 meeting-videos-9
+cohort-1-8
+meeting-videos-10
 cohort-1-9
 resampling-for-evaluating-performance
 why
@@ -92,7 +96,7 @@ rolling-forecasting-origin-resampling
 estimating-performance
 parallel-processing
 saving-the-resampled-objects
-meeting-videos-10
+meeting-videos-11
 cohort-1-10
 comparing-models-with-resampling
 calculate-performance-statistics
@@ -101,6 +105,8 @@ within-resample-correlation
 practical-effect-size
 simple-comparison
 bayesian-methods
+meeting-videos-12
+cohort-1-11
 model-tuning-and-the-dangers-of-overfitting
 what-is-a-tuning-parameter
 examples
@@ -116,6 +122,8 @@ add-tuning-parameters
 updating-tuning-parameters
 finalizing-tuning-parameters
 what-is-next
+meeting-videos-13
+cohort-1-12
 grid-search
 slide-1-title
 slide-2-title

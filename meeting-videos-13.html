@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>9.3 Regression Metrics | Tidy Modeling with R Book Club</title>
+  <title>12.14 Meeting Videos | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="9.3 Regression Metrics | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="12.14 Meeting Videos | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="9.3 Regression Metrics | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="12.14 Meeting Videos | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="disclaimers.html"/>
-<link rel="next" href="binary-classification-metrics.html"/>
+<link rel="prev" href="what-is-next.html"/>
+<link rel="next" href="grid-search.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -327,118 +327,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="regression-metrics" class="section level2">
-<h2><span class="header-section-number">9.3</span> Regression Metrics</h2>
-<p>Load in the Data</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="regression-metrics.html#cb129-1"></a><span class="kw">library</span>(tidymodels)</span>
-<span id="cb129-2"><a href="regression-metrics.html#cb129-2"></a><span class="kw">library</span>(glmnet)</span>
-<span id="cb129-3"><a href="regression-metrics.html#cb129-3"></a><span class="kw">library</span>(ranger)</span>
-<span id="cb129-4"><a href="regression-metrics.html#cb129-4"></a><span class="kw">set.seed</span>(<span class="dv">1123</span>)</span>
-<span id="cb129-5"><a href="regression-metrics.html#cb129-5"></a><span class="kw">data</span>(ames)</span>
-<span id="cb129-6"><a href="regression-metrics.html#cb129-6"></a></span>
-<span id="cb129-7"><a href="regression-metrics.html#cb129-7"></a>ames &lt;-<span class="st"> </span>ames <span class="op">%&gt;%</span></span>
-<span id="cb129-8"><a href="regression-metrics.html#cb129-8"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb129-9"><a href="regression-metrics.html#cb129-9"></a>    <span class="dt">under_budget =</span> <span class="kw">as.factor</span>(<span class="kw">if_else</span>(Sale_Price<span class="op">&lt;=</span><span class="dv">160000</span>,<span class="dv">1</span>,<span class="dv">0</span>)),</span>
-<span id="cb129-10"><a href="regression-metrics.html#cb129-10"></a>    <span class="dt">Sale_Price =</span> <span class="kw">log10</span>(Sale_Price))</span></code></pre></div>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="regression-metrics.html#cb130-1"></a><span class="co">#Cross-fold validation</span></span>
-<span id="cb130-2"><a href="regression-metrics.html#cb130-2"></a>ames_folds &lt;-<span class="st"> </span><span class="kw">vfold_cv</span>(ames, <span class="dt">v =</span> <span class="dv">5</span>)</span>
-<span id="cb130-3"><a href="regression-metrics.html#cb130-3"></a></span>
-<span id="cb130-4"><a href="regression-metrics.html#cb130-4"></a><span class="co">#Create Recipe</span></span>
-<span id="cb130-5"><a href="regression-metrics.html#cb130-5"></a>ames_recipe &lt;-<span class="st"> </span></span>
-<span id="cb130-6"><a href="regression-metrics.html#cb130-6"></a><span class="st">  </span><span class="kw">recipe</span>(<span class="dt">formula =</span> Sale_Price <span class="op">~</span><span class="st"> </span>Gr_Liv_Area <span class="op">+</span><span class="st"> </span>Full_Bath <span class="op">+</span><span class="st"> </span>Half_Bath <span class="op">+</span><span class="st"> </span>Lot_Area <span class="op">+</span><span class="st"> </span>Neighborhood <span class="op">+</span><span class="st"> </span>Overall_Cond,</span>
-<span id="cb130-7"><a href="regression-metrics.html#cb130-7"></a>         <span class="dt">data =</span> ames) <span class="op">%&gt;%</span></span>
-<span id="cb130-8"><a href="regression-metrics.html#cb130-8"></a><span class="st">  </span><span class="kw">step_dummy</span>(<span class="kw">all_nominal</span>())</span>
-<span id="cb130-9"><a href="regression-metrics.html#cb130-9"></a></span>
-<span id="cb130-10"><a href="regression-metrics.html#cb130-10"></a><span class="co">#Set the model and hyperparameters</span></span>
-<span id="cb130-11"><a href="regression-metrics.html#cb130-11"></a>ames_spec &lt;-<span class="st"> </span></span>
-<span id="cb130-12"><a href="regression-metrics.html#cb130-12"></a><span class="st">  </span><span class="kw">linear_reg</span>(<span class="dt">penalty =</span> <span class="kw">tune</span>(), <span class="dt">mixture =</span> <span class="kw">tune</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb130-13"><a href="regression-metrics.html#cb130-13"></a><span class="st">  </span><span class="kw">set_mode</span>(<span class="st">&quot;regression&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb130-14"><a href="regression-metrics.html#cb130-14"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;glmnet&quot;</span>)</span>
-<span id="cb130-15"><a href="regression-metrics.html#cb130-15"></a></span>
-<span id="cb130-16"><a href="regression-metrics.html#cb130-16"></a><span class="co">#Create workflow</span></span>
-<span id="cb130-17"><a href="regression-metrics.html#cb130-17"></a>ames_workflow &lt;-<span class="st"> </span></span>
-<span id="cb130-18"><a href="regression-metrics.html#cb130-18"></a><span class="st">  </span><span class="kw">workflow</span>() <span class="op">%&gt;%</span></span>
-<span id="cb130-19"><a href="regression-metrics.html#cb130-19"></a><span class="st">  </span><span class="kw">add_recipe</span>(ames_recipe) <span class="op">%&gt;%</span></span>
-<span id="cb130-20"><a href="regression-metrics.html#cb130-20"></a><span class="st">  </span><span class="kw">add_model</span>(ames_spec)</span>
-<span id="cb130-21"><a href="regression-metrics.html#cb130-21"></a></span>
-<span id="cb130-22"><a href="regression-metrics.html#cb130-22"></a><span class="co">#Create metric set of all regression metrics</span></span>
-<span id="cb130-23"><a href="regression-metrics.html#cb130-23"></a>ames_tune &lt;-</span>
-<span id="cb130-24"><a href="regression-metrics.html#cb130-24"></a><span class="st">  </span><span class="kw">tune_grid</span>(</span>
-<span id="cb130-25"><a href="regression-metrics.html#cb130-25"></a>    ames_workflow,</span>
-<span id="cb130-26"><a href="regression-metrics.html#cb130-26"></a>    <span class="dt">metrics =</span></span>
-<span id="cb130-27"><a href="regression-metrics.html#cb130-27"></a>      <span class="kw">metric_set</span>(rmse, rsq, rsq_trad, mae, mpe, mape, smape, mase, ccc, rpiq, rpd, huber_loss, huber_loss_pseudo, iic),</span>
-<span id="cb130-28"><a href="regression-metrics.html#cb130-28"></a>    <span class="dt">resamples =</span> ames_folds,</span>
-<span id="cb130-29"><a href="regression-metrics.html#cb130-29"></a>    <span class="dt">grid =</span> <span class="kw">grid_latin_hypercube</span>(<span class="kw">penalty</span>(), <span class="kw">mixture</span>(), <span class="dt">size =</span> <span class="dv">8</span>)</span>
-<span id="cb130-30"><a href="regression-metrics.html#cb130-30"></a>  )</span>
-<span id="cb130-31"><a href="regression-metrics.html#cb130-31"></a></span>
-<span id="cb130-32"><a href="regression-metrics.html#cb130-32"></a><span class="co">#Pick the best model for each metric and pull out the predictions</span></span>
-<span id="cb130-33"><a href="regression-metrics.html#cb130-33"></a>best_models &lt;-<span class="st"> </span></span>
-<span id="cb130-34"><a href="regression-metrics.html#cb130-34"></a><span class="st">  </span><span class="kw">tibble</span>(</span>
-<span id="cb130-35"><a href="regression-metrics.html#cb130-35"></a>    <span class="dt">metric_name =</span> <span class="kw">c</span>(<span class="st">&#39;rmse&#39;</span>, <span class="st">&#39;rsq&#39;</span>, <span class="st">&#39;rsq_trad&#39;</span>, <span class="st">&#39;mae&#39;</span>, <span class="st">&#39;mpe&#39;</span>, <span class="st">&#39;mape&#39;</span>, <span class="st">&#39;smape&#39;</span>, <span class="st">&#39;mase&#39;</span>,</span>
-<span id="cb130-36"><a href="regression-metrics.html#cb130-36"></a>                    <span class="st">&#39;ccc&#39;</span>,<span class="st">&#39;rpiq&#39;</span>, <span class="st">&#39;rpd&#39;</span>, <span class="st">&#39;huber_loss&#39;</span>, <span class="st">&#39;huber_loss_pseudo&#39;</span>, <span class="st">&#39;iic&#39;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb130-37"><a href="regression-metrics.html#cb130-37"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">metric_best =</span> <span class="kw">map</span>(metric_name, <span class="op">~</span><span class="kw">select_best</span>(ames_tune, .x)),</span>
-<span id="cb130-38"><a href="regression-metrics.html#cb130-38"></a>         <span class="dt">wf_best =</span> <span class="kw">map</span>(metric_best, <span class="op">~</span><span class="kw">finalize_workflow</span>(ames_workflow, .x)),</span>
-<span id="cb130-39"><a href="regression-metrics.html#cb130-39"></a>         <span class="dt">fit_best =</span> <span class="kw">map</span>(wf_best, <span class="op">~</span><span class="kw">fit</span>(.x, <span class="dt">data =</span> ames)),</span>
-<span id="cb130-40"><a href="regression-metrics.html#cb130-40"></a>         <span class="dt">df_pred =</span> <span class="kw">map</span>(fit_best, <span class="op">~</span>ames <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">bind_cols</span>(<span class="kw">predict</span>(.x, <span class="dt">new_data =</span> ames)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Sale_Price, .pred))) <span class="op">%&gt;%</span></span>
-<span id="cb130-41"><a href="regression-metrics.html#cb130-41"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">c</span>(wf_best, fit_best)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb130-42"><a href="regression-metrics.html#cb130-42"></a><span class="st">  </span><span class="kw">unnest</span>(<span class="dt">cols =</span> <span class="kw">c</span>(metric_name, metric_best, df_pred))</span>
-<span id="cb130-43"><a href="regression-metrics.html#cb130-43"></a></span>
-<span id="cb130-44"><a href="regression-metrics.html#cb130-44"></a><span class="co">#Plot!</span></span>
-<span id="cb130-45"><a href="regression-metrics.html#cb130-45"></a>best_models <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb130-46"><a href="regression-metrics.html#cb130-46"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">metric_desc =</span> <span class="kw">factor</span>(</span>
-<span id="cb130-47"><a href="regression-metrics.html#cb130-47"></a>    metric_name, </span>
-<span id="cb130-48"><a href="regression-metrics.html#cb130-48"></a>    <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&#39;rmse&#39;</span>, <span class="st">&#39;rsq&#39;</span>, <span class="st">&#39;rsq_trad&#39;</span>, <span class="st">&#39;mae&#39;</span>, <span class="st">&#39;mpe&#39;</span>, <span class="st">&#39;mape&#39;</span>, <span class="st">&#39;smape&#39;</span>, <span class="st">&#39;mase&#39;</span>,</span>
-<span id="cb130-49"><a href="regression-metrics.html#cb130-49"></a>               <span class="st">&#39;ccc&#39;</span>,<span class="st">&#39;rpiq&#39;</span>, <span class="st">&#39;rpd&#39;</span>, <span class="st">&#39;huber_loss&#39;</span>, <span class="st">&#39;huber_loss_pseudo&#39;</span>, <span class="st">&#39;iic&#39;</span>),</span>
-<span id="cb130-50"><a href="regression-metrics.html#cb130-50"></a>    <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&#39;rmse</span><span class="ch">\n</span><span class="st">when you cannot afford</span><span class="ch">\n</span><span class="st"> to have a big error&#39;</span>, </span>
-<span id="cb130-51"><a href="regression-metrics.html#cb130-51"></a>               <span class="st">&#39;rsq</span><span class="ch">\n</span><span class="st">when you want a measure</span><span class="ch">\n</span><span class="st"> of consistency/correlation</span><span class="ch">\n</span><span class="st"> and not accuracy&#39;</span>, </span>
-<span id="cb130-52"><a href="regression-metrics.html#cb130-52"></a>               <span class="st">&#39;rsq_trad</span><span class="ch">\n</span><span class="st"> r-sq not constrained</span><span class="ch">\n</span><span class="st"> between 0 and 1&#39;</span>,</span>
-<span id="cb130-53"><a href="regression-metrics.html#cb130-53"></a>               <span class="st">&#39;mae</span><span class="ch">\n</span><span class="st">when large errors are not</span><span class="ch">\n</span><span class="st"> exponentially</span><span class="ch">\n</span><span class="st"> worse than small errors&#39;</span>, </span>
-<span id="cb130-54"><a href="regression-metrics.html#cb130-54"></a>               <span class="st">&#39;mpe</span><span class="ch">\n</span><span class="st">when you want an easy way</span><span class="ch">\n</span><span class="st"> to calculate accuracy&#39;</span>, </span>
-<span id="cb130-55"><a href="regression-metrics.html#cb130-55"></a>               <span class="st">&#39;mape</span><span class="ch">\n</span><span class="st">when you want to use mpe</span><span class="ch">\n</span><span class="st"> with a better</span><span class="ch">\n</span><span class="st"> representation of error&#39;</span>, </span>
-<span id="cb130-56"><a href="regression-metrics.html#cb130-56"></a>               <span class="st">&#39;smape</span><span class="ch">\n</span><span class="st">when you want to use</span><span class="ch">\n</span><span class="st"> mape expressed as a %&#39;</span>, </span>
-<span id="cb130-57"><a href="regression-metrics.html#cb130-57"></a>               <span class="st">&#39;mase</span><span class="ch">\n</span><span class="st">when you need a scale</span><span class="ch">\n</span><span class="st"> independent metric</span><span class="ch">\n</span><span class="st"> for time-series data&#39;</span>,</span>
-<span id="cb130-58"><a href="regression-metrics.html#cb130-58"></a>               <span class="st">&#39;ccc</span><span class="ch">\n</span><span class="st">when you want to measure</span><span class="ch">\n</span><span class="st"> the distance from </span><span class="ch">\n</span><span class="st">perferct linearity&#39;</span>,</span>
-<span id="cb130-59"><a href="regression-metrics.html#cb130-59"></a>               <span class="st">&#39;rpiq</span><span class="ch">\n</span><span class="st">when you need a different</span><span class="ch">\n</span><span class="st"> measue of consistency/correlation</span><span class="ch">\n</span><span class="st"> and not accuracy&#39;</span>, </span>
-<span id="cb130-60"><a href="regression-metrics.html#cb130-60"></a>               <span class="st">&#39;rpd</span><span class="ch">\n</span><span class="st">when you need a different</span><span class="ch">\n</span><span class="st"> measue of consistency/correlation</span><span class="ch">\n</span><span class="st"> and not accuracy&#39;</span>, </span>
-<span id="cb130-61"><a href="regression-metrics.html#cb130-61"></a>               <span class="st">&#39;huber_loss</span><span class="ch">\n</span><span class="st">when you need a loss</span><span class="ch">\n</span><span class="st"> function less sensitive to outliers&#39;</span>, </span>
-<span id="cb130-62"><a href="regression-metrics.html#cb130-62"></a>               <span class="st">&#39;huber_loss_pseudo</span><span class="ch">\n</span><span class="st">when you need</span><span class="ch">\n</span><span class="st"> a smoothed version of huber_loss&#39;</span>, </span>
-<span id="cb130-63"><a href="regression-metrics.html#cb130-63"></a>               <span class="st">&#39;iic</span><span class="ch">\n</span><span class="st">when you need an</span><span class="ch">\n</span><span class="st"> alternative to the traditional</span><span class="ch">\n</span><span class="st"> correlation coefficient&#39;</span>))) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb130-64"><a href="regression-metrics.html#cb130-64"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Sale_Price, <span class="dt">y =</span> .pred)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb130-65"><a href="regression-metrics.html#cb130-65"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">lty =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb130-66"><a href="regression-metrics.html#cb130-66"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb130-67"><a href="regression-metrics.html#cb130-67"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Predicted Sale Price (log10)&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Sale Price (log10)&quot;</span>) <span class="op">+</span></span>
-<span id="cb130-68"><a href="regression-metrics.html#cb130-68"></a><span class="st">  </span><span class="kw">coord_obs_pred</span>() <span class="op">+</span></span>
-<span id="cb130-69"><a href="regression-metrics.html#cb130-69"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>metric_desc, <span class="dt">ncol =</span> <span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb130-70"><a href="regression-metrics.html#cb130-70"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
-<span id="cb130-71"><a href="regression-metrics.html#cb130-71"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.spacing =</span> <span class="kw">unit</span>(<span class="dv">2</span>, <span class="st">&quot;lines&quot;</span>),</span>
-<span id="cb130-72"><a href="regression-metrics.html#cb130-72"></a>        <span class="dt">strip.text.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">8</span>))</span></code></pre></div>
-<p><img src="images/09-best_models.png" /></p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="regression-metrics.html#cb131-1"></a>best_models <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(metric_name, penalty, mixture) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">distinct</span>()</span></code></pre></div>
-<pre><code>## # A tibble: 14 x 3
-##    metric_name        penalty mixture
-##    &lt;chr&gt;                &lt;dbl&gt;   &lt;dbl&gt;
-##  1 rmse              1.74e- 6   0.887
-##  2 rsq               6.71e-10   0.112
-##  3 rsq_trad          1.74e- 6   0.887
-##  4 mae               1.74e- 6   0.887
-##  5 mpe               1.66e- 1   0.163
-##  6 mape              1.74e- 6   0.887
-##  7 smape             1.74e- 6   0.887
-##  8 mase              1.74e- 6   0.887
-##  9 ccc               6.71e-10   0.112
-## 10 rpiq              6.71e-10   0.112
-## 11 rpd               6.71e-10   0.112
-## 12 huber_loss        1.74e- 6   0.887
-## 13 huber_loss_pseudo 1.74e- 6   0.887
-## 14 iic               3.81e- 4   0.552</code></pre>
+<div id="meeting-videos-13" class="section level2">
+<h2><span class="header-section-number">12.14</span> Meeting Videos</h2>
+<div id="cohort-1-12" class="section level3">
+<h3><span class="header-section-number">12.14.1</span> Cohort 1</h3>
+<iframe src="https://www.youtube.com/embed/EarVQUj4XbQ" width="100%" height="400px">
+</iframe>
+<details>
+<p><summary> Meeting chat log </summary></p>
+<pre><code>00:11:27    Jon Harmon (jonthegeek):    usethis::use_package(&quot;patchwork&quot;)
+00:23:12    Jon Harmon (jonthegeek):    @jim Which chapter are you going to present: 13? 14? 15? 😊
+00:27:52    Jim Gruman: :) sure, 13 sounds good
+00:29:42    Jon Harmon (jonthegeek):    Woot!
+00:29:57    Jordan Krogmann:    1, 1000, 5000 is the correct answer
+00:31:11    Jon Harmon (jonthegeek):    Ok, Jim! You&#39;re PRed into the README, no take-backsies!
+00:33:44    Tan Ho: fixed sorry
+00:35:29    Tony ElHabr:    i&#39;m sorry but are these python generated graphs?
+00:35:33    Tony ElHabr:    unforgiveable
+00:36:06    Tan Ho: gg
+00:36:12    Tan Ho: i&#39;m out
+00:36:54    Jon Harmon (jonthegeek):    Ok, after Jim everyone who&#39;s here will have gone at least once! Except wait Tan never actually went did he?????
+00:37:45    Tony ElHabr:    CALL HIM OUT
+00:38:03    Jon Harmon (jonthegeek):    TAN WHAT CHAPTER ARE YOU PRESENTING??? 14, right?
+00:39:01    Tan Ho: *awkwardly looking around after going MIA from the book club since chapter 9*
+00:39:43    Tony ElHabr:    as long as tan gives us a killer review at the end of this all, then i&#39;ll give him a pass
+00:40:03    Jon Harmon (jonthegeek):    Fair! Tan *is* the master of the review week!
+00:40:21    Jon Harmon (jonthegeek):    I pinged Max on the Slack to see if we should do a review after 14, or after 15, or later, or what.
+00:40:55    Tony ElHabr:    how can we do a proper review if we never stop learning?
+00:41:14    Tan Ho: I might  be more apt to do 15, I think?
+00:41:23    Jon Harmon (jonthegeek):    Yeah, this one is tricky &#39;cuz I&#39;m not sure when it ends 🙃
+00:41:53    Tony ElHabr:    tan picks chapter 15 so he can have 3 weeks to prep :P
+00:42:02    Tan Ho: two weeks to catch up and one week to prep!
+00:42:21    Tan Ho: okay I lied twenty days to catch up and one day to prep, let&#39;s be honest
+00:42:46    Tony ElHabr:    21 days to catch up cuz you&#39;re going to live code
+00:42:51    Tan Ho: fair!
+00:42:56    Tan Ho: that part don&#39;t scare me
+00:54:23    Jordan Krogmann:    Thanks andy!
+00:54:23    Tan Ho: if 16 isn&#39;t written by the time I present we can probably just review lol</code></pre>
+</details>
+
 </div>
+</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="disclaimers.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="binary-classification-metrics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="what-is-next.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="grid-search.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -469,7 +406,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/09-judging_model_effectiveness.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/12-model_tuning_and_the_dangers_of_overfitting.Rmd",
 "text": "Edit"
 },
 "history": {
