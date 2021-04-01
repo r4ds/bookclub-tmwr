@@ -133,3 +133,112 @@
 01:06:40	Jordan Krogmann:	Thanks gonna drop guys, it's been great!
 ```
 </details>
+
+### Cohort 2
+
+`r knitr::include_url("https://www.youtube.com/embed/72A9yfMSCq0")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+  ```
+00:18:37	Kevin Kent:	I found out the other day that you can group tabs in chrome
+00:18:51	shamsuddeen:	yes
+00:18:57	Stephen Holsenbeck:	yes! such a great new feature, I love it
+00:18:59	Luke Shaw:	Yes Kevin! I'm a big fan
+00:19:10	shamsuddeen:	Now, feature comes in today in Chrome
+00:19:12	Kevin Kent:	https://blog.google/products/chrome/manage-tabs-with-google-chrome/
+00:19:37	Amélie Gourdon-Kanhukamwe (she/they):	Ah, me too just last week, which means I feel even less bad running dozens at a time!
+00:20:21	shamsuddeen:	All tab, are automatically group in dropdown. Only available in Chrome Beta. - :)
+00:20:30	shamsuddeen:	Released this feature today
+00:20:53	Layla Bouzoubaa:	👀
+00:30:20	Layla Bouzoubaa:	https://recipes.tidymodels.org/reference/step_YeoJohnson.html
+00:32:00	Amélie Gourdon-Kanhukamwe (she/they):	Discretization is reducing numerical variables into ordinal ones, with equal width or equal frequency of bins. My understanding is equal width is preferred.
+00:33:38	Amélie Gourdon-Kanhukamwe (she/they):	And that would be because some techniques don't cope would be fully continuous variables, for example Naïve Bayes (as per my understanding after learning machine learning with Weka).
+00:34:16	Luke Shaw:	interesting, thanks :)
+00:34:18	Stephen - Computer - No Mic:	Interesting, thank you Amelie
+00:39:13	Luke Shaw:	I love janitor::clean_names() for fixing that kind of thing
+00:39:57	Luke Shaw:	hmmmm there must be a way I agree!
+00:40:45	Stephen - Computer - No Mic:	mutate(data, col = gsub("\\+", col, "p"))
+00:41:11	Stephen - Computer - No Mic:	or mutate(data, col = stringr::str_replace(col, "\\+", "p"))
+00:42:01	Amélie Gourdon-Kanhukamwe (she/they):	Actually, I retract the part about Naïve Bayes *needing* discretization, sorry. Can't name with certainty a classifier that needs discretizing specifically for now, but it is believed to help performance (it didn't much on my only project playing with ML).
+00:42:04	Kevin Kent:	One gotcha I’ve come across with making dummy variables or one-hot encoding is that the test set has levels of a dummified variable that the train set didn’t have. Argument for having or other methods I think
+00:42:20	Kevin Kent:	*sometimes has
+00:43:13	Kevin Kent:	**hashing or other methods
+00:43:32	Amélie Gourdon-Kanhukamwe (she/they):	But see eg: https://link.springer.com/content/pdf/10.1007/s10994-008-5083-5.pdf
+00:52:38	Amélie Gourdon-Kanhukamwe (she/they):	What if you do this Layla? simple_ames$var_info
+00:52:57	Stephen - Computer - No Mic:	Hey shamsuddeen,
+
+I didn't get any issue using the pipe:
+recipe(Sale_Price ~ Neighborhood + Gr_Liv_Area + Year_Built + Bldg_Type,
+       data = ames_train) %>%
+  step_log(Gr_Liv_Area, base = 10) %>% 
+  step_dummy(all_nominal()) %>% 
+  prep(training = ames_train)
+00:53:00	Amélie Gourdon-Kanhukamwe (she/they):	Only if you want to see the list of var?
+00:53:22	Stephen - Computer - No Mic:	The prep function takes the recipe as it's first argument
+00:53:38	Stephen - Computer - No Mic:	So piping it in to the first argument (as is default with a piple) works fine
+00:55:07	shamsuddeen:	Ok, thank you for looking at this. Below is an example that does not works.
+00:55:12	shamsuddeen:	simple_ames <- ames_train %>% 
+  recipe(Sale_Price ~ Neighborhood + Gr_Liv_Area + Year_Built + Bldg_Type) %>%
+  step_log(Gr_Liv_Area, base = 10) %>% 
+  step_dummy(all_nominal())
+00:55:19	shamsuddeen:	The above works
+00:55:35	Stephen - Computer - No Mic:	Yes
+00:55:41	shamsuddeen:	The one below does not works
+00:55:42	shamsuddeen:	simple_ames <- ames_train %>% 
+            prep(simple_ames)
+00:56:19	Stephen - Computer - No Mic:	Yeah, simple_ames has not been created yet
+00:56:27	Stephen - Computer - No Mic:	You're assigned it in the step
+00:56:32	Stephen - Computer - No Mic:	So it can't be used in the step
+00:56:40	Stephen - Computer - No Mic:	You've*
+00:57:19	Stephen - Computer - No Mic:	The variable simple_ames must exist in the environment by assignment before it can be used in code
+00:57:48	shamsuddeen:	But I call them in series
+00:57:53	shamsuddeen:	Like below
+00:57:58	shamsuddeen:	simple_ames <- ames_train %>% 
+  recipe(Sale_Price ~ Neighborhood + Gr_Liv_Area + Year_Built + Bldg_Type) %>%
+  step_log(Gr_Liv_Area, base = 10) %>% 
+  step_dummy(all_nominal())
+00:58:03	shamsuddeen:	simple_ames <- ames_train %>% 
+            prep(simple_ames)
+00:58:10	Stephen - Computer - No Mic:	Ok
+00:58:20	Stephen - Computer - No Mic:	So you're passing in simple_ames as the recipe for prep
+00:58:21	shamsuddeen:	The Ames has been created in the first place
+00:58:26	Stephen - Computer - No Mic:	So to make that work:
+00:58:53	Stephen - Computer - No Mic:	simple_ames <- ames_train %>% 
+            {prep(simple_ames, training = .)}
+00:59:08	Stephen - Computer - No Mic:	The ames_train data has to be the second argument
+00:59:22	Stephen - Computer - No Mic:	So you have to use the brackets and the . to pipe it into that second spot
+00:59:29	shamsuddeen:	Yay…it works
+00:59:39	shamsuddeen:	Thanks
+01:00:10	shamsuddeen:	But, why in recipe we use not this format?
+01:00:33	Stephen - Computer - No Mic:	It's just the order of arguments, one moment I'll see if I can find an article on it
+01:01:49	Luke Shaw:	Harking back to a previous Q by Layla on name_repair error for the values in a column, I think the function janitor::make_clean_names(col) should do it - cleans the values of the column inputted
+01:02:10	shamsuddeen:	Yea, janitor can do that
+01:02:27	Stephen - Computer - No Mic:	shamsuddeen:
+https://magrittr.tidyverse.org/#the-argument-placeholder
+01:02:33	shamsuddeen:	Today session is full of questions -:)
+01:02:49	Stephen - Computer - No Mic:	And this: 
+https://thatdatatho.com/tutorial-about-magrittrs-pipe-operator-and-placeholders/
+01:03:22	Kevin Kent:	This fits with my mental model but not what we saw in august’s session https://stackoverflow.com/questions/62189885/what-is-the-difference-among-prep-bake-juice-in-the-r-package-recipes
+01:08:14	Stephen - Computer - No Mic:	This is really helpful 👆
+01:08:41	shamsuddeen:	Yes,  it makes much much sense
+01:09:45	Kevin Kent:	People often forgot about the role of domain expertise in feature engineering. I’ve found that it helps prediction a lot and you come up with features that you or an algorithm would have never considered.
+01:10:03	Layla Bouzoubaa:	Thanks, Luke!!
+01:10:12	Kevin Kent:	Especially when you have a large number of possible data sets and features
+01:11:04	Stephen - Computer - No Mic:	Definitely
+01:13:09	Luke Shaw:	Would step_other cope better with the gotcha Kevin mentioned before? Of a value in test not seen in train
+01:13:24	Janita Botha:	Yes we can keep gping!
+01:14:05	Kevin Kent:	I think as long as the new level isn’t in the top n in the test set @luke
+01:15:15	Kevin Kent:	The model I was using just outputted it as a warning but I think the consequence is that it kind of ignored that new level, which isn’t ideal
+01:15:39	Luke Shaw:	Ah yeah that makes sense, thanks :) In that scenario I guess it a fairly big problem that something common in test data was never seen in train
+01:16:14	Kevin Kent:	yeah. and particularly challenging with categorical data…but I think embeddings might be the best way to address that for categorical data
+01:19:25	Luke Shaw:	Thanks August! :)
+01:19:38	shamsuddeen:	Thanks August
+01:20:02	Kevin Kent:	Thanks! Great discussion and presentatio
+01:20:05	Kevin Kent:	*presentation
+01:22:54	Janita Botha:	Lol
+01:22:59	Janita Botha:	We call iy autumn
+01:23:00	Layla Bouzoubaa:	Thanks everyone!
+```
+</details>

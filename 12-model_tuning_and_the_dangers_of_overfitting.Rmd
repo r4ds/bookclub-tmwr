@@ -236,7 +236,7 @@ args(rand_forest)
 ```
 
 engine specific arguments: 
-```{r}
+```{r, eval = FALSE}
 ?ranger::ranger()
 ```
 
@@ -302,3 +302,44 @@ updated_params %>% pull_dials_object("mtry")
 
 The parameter object we just explored knows the range of the parameters. the `{dials}` package contains a number of `grid_*()` functions that takes the parameter object as input to produce different types of grids. Chapter 13 will explore this further.
 
+## Meeting Videos
+
+### Cohort 1
+
+`r knitr::include_url("https://www.youtube.com/embed/EarVQUj4XbQ")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+  ```
+00:11:27	Jon Harmon (jonthegeek):	usethis::use_package("patchwork")
+00:23:12	Jon Harmon (jonthegeek):	@jim Which chapter are you going to present: 13? 14? 15? 😊
+00:27:52	Jim Gruman:	:) sure, 13 sounds good
+00:29:42	Jon Harmon (jonthegeek):	Woot!
+00:29:57	Jordan Krogmann:	1, 1000, 5000 is the correct answer
+00:31:11	Jon Harmon (jonthegeek):	Ok, Jim! You're PRed into the README, no take-backsies!
+00:33:44	Tan Ho:	fixed sorry
+00:35:29	Tony ElHabr:	i'm sorry but are these python generated graphs?
+00:35:33	Tony ElHabr:	unforgiveable
+00:36:06	Tan Ho:	gg
+00:36:12	Tan Ho:	i'm out
+00:36:54	Jon Harmon (jonthegeek):	Ok, after Jim everyone who's here will have gone at least once! Except wait Tan never actually went did he?????
+00:37:45	Tony ElHabr:	CALL HIM OUT
+00:38:03	Jon Harmon (jonthegeek):	TAN WHAT CHAPTER ARE YOU PRESENTING??? 14, right?
+00:39:01	Tan Ho:	*awkwardly looking around after going MIA from the book club since chapter 9*
+00:39:43	Tony ElHabr:	as long as tan gives us a killer review at the end of this all, then i'll give him a pass
+00:40:03	Jon Harmon (jonthegeek):	Fair! Tan *is* the master of the review week!
+00:40:21	Jon Harmon (jonthegeek):	I pinged Max on the Slack to see if we should do a review after 14, or after 15, or later, or what.
+00:40:55	Tony ElHabr:	how can we do a proper review if we never stop learning?
+00:41:14	Tan Ho:	I might  be more apt to do 15, I think?
+00:41:23	Jon Harmon (jonthegeek):	Yeah, this one is tricky 'cuz I'm not sure when it ends 🙃
+00:41:53	Tony ElHabr:	tan picks chapter 15 so he can have 3 weeks to prep :P
+00:42:02	Tan Ho:	two weeks to catch up and one week to prep!
+00:42:21	Tan Ho:	okay I lied twenty days to catch up and one day to prep, let's be honest
+00:42:46	Tony ElHabr:	21 days to catch up cuz you're going to live code
+00:42:51	Tan Ho:	fair!
+00:42:56	Tan Ho:	that part don't scare me
+00:54:23	Jordan Krogmann:	Thanks andy!
+00:54:23	Tan Ho:	if 16 isn't written by the time I present we can probably just review lol
+```
+</details>
