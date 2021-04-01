@@ -236,3 +236,31 @@ How does the significance of the model's variables play into the above? Let's ta
 01:14:55	shamsuddeen:	Cheers guys
 ```
 </details>
+
+### Cohort 3
+
+`r knitr::include_url("https://www.youtube.com/embed/h8aGFPVj3C8")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+  ```
+00:13:08	Morgan Grovenburg:	Daniel I love your Blue's Clues background!
+00:13:34	Daniel Chen:	( : #steve
+00:13:56	Morgan Grovenburg:	I miss Steve!
+00:17:58	priyanka gagneja:	nice
+00:36:34	Daniel Chen:	e.g., mechanistic model is maybe how gasses are absorbed in our cells at depth (in scuba diving) -- buhlmann decompression algorithm: https://en.wikipedia.org/wiki/B%C3%BChlmann_decompression_algorithm
+00:37:00	Daniel Chen:	^ not sure, but that was the first thing that came to mind about something that is purely based on physical properties
+00:39:13	Chris Martin:	Similarly - mechanistic models made me think of models (may be systems of differential equations ...) of the chemical reactions taking place in the Earth's atmosphere.
+00:41:01	Daniel Chen:	for those who do not know "one-hot encoding" is the engineering/computer science term for "dummy variables" in statistics -- that took me a long time to realize
+00:41:36	Morgan Grovenburg:	Thank you Daniel! I had no idea!
+00:42:10	priyanka gagneja:	I need to run early today . See you all later
+00:43:24	Chris Martin:	Thanks, yes a new term to me too!
+00:46:53	Daniel Chen:	one-hot encoding is what they use in sci-kit learn in python. it confused the heck out of me when I was trying to learn how to fit models there
+00:57:33	Morgan Grovenburg:	I got to go. Thanks Ildiko!
+00:59:22	Daniel Chen:	https://github.com/r4ds/bookclub-tmwr
+01:00:32	Daniel Chen:	i can do next week
+01:00:40	Ildiko Czeller:	https://github.com/r4ds/bookclub-tmwr/blob/main/README.md
+01:02:58	Daniel Chen:	see/talk to everyone on slack :)
+```
+</details>

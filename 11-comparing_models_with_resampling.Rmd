@@ -104,3 +104,24 @@ summary(rqs_diff, size = 0.02) %>% # 0.02 is our practical effect size.
 #>   <chr>                          <dbl>       <dbl>     <dbl>
 #> 1 with splines vs no splines         0       0.989    0.0113
 ```
+
+## Meeting Videos
+
+### Cohort 1
+
+`r knitr::include_url("https://www.youtube.com/embed/2A1QIp6IFYE")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+  ```
+00:14:48	Tony ElHabr:	seed = 1101
+00:14:52	Tony ElHabr:	what a hipster
+00:15:11	pavitra:	I see a subliminal binary message
+00:17:41	Tony ElHabr:	1101 -> D in hex
+00:18:08	pavitra:	D for dark magicks
+00:39:59	Jonathan Leslie:	I’m heading off. Thanks, Jon…really nice presentation!
+00:45:54	Jim Gruman:	thank you Jon!!!
+00:47:45	Andy Farina:	Thank you Jon, great presentation and addition of workflow sets
+```
+</details>

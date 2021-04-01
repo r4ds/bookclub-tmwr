@@ -1,0 +1,68 @@
+# AI Ethics {-}
+
+Cohort 2 had a discussion of AI Ethics at this point in the club.
+
+## Meeting Videos
+
+### Cohort 2
+
+`r knitr::include_url("https://www.youtube.com/embed/DDCpyJ_ibic")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+  ```
+00:04:27	Luke Shaw:	Hey all :) My internet is a bit unstable so will be off-video
+00:17:45	Amélie Gourdon-Kanhukamwe:	If you have not seen it, Coded Bias is now available to stream, at least in the US, possibly in the UK too: https://www.codedbias.com/ (feaures Joy Buolamwini and many others, Klein too - Data Feminism).
+00:18:45	Stephen Holsenbeck:	🌟🙏 awesome! thank you for the recommendation!
+00:20:34	Amélie Gourdon-Kanhukamwe:	That paper for example found exactly what Kevin is describing, classifying on gender although it was not in the data, because of underlying relationships: https://arxiv.org/abs/2004.07173
+00:21:10	rahul bahadur:	To add to @Kevin's point Apple Card's algo had the problem of providing lower credit limits to women. In their defense they didn't include 'sex' in their model. But, the effects were latent in other variables.
+00:21:40	Amélie Gourdon-Kanhukamwe:	👆🏻
+00:23:24	Layla Bouzoubaa:	🤘🏼
+00:32:27	Amélie Gourdon-Kanhukamwe:	Thanks Shamsuddeen, Timnit Gebru is someone I enjoy the critical and ethical perspective of, so that looks great!
+00:33:37	Kevin Kent:	Should Layla or Luke share next?
+00:33:53	Layla Bouzoubaa:	Oh sorry, I just went ahead
+00:33:59	Layla Bouzoubaa:	Luke did I just cut you lol
+00:34:02	Kevin Kent:	Haha oh that’s what I thought would happen
+00:34:09	Amélie Gourdon-Kanhukamwe:	Left is a euphemism Shamsuddeen :-)
+00:34:29	Layla Bouzoubaa:	:)
+00:34:30	Kevin Kent:	No worries, cool. Thanks! Just didn’t want to take up the whole time
+00:34:30	Luke Shaw:	You didn't cut me out :)
+00:35:03	Kevin Kent:	brb
+00:36:28	Kevin Kent:	back
+00:39:29	shamsuddeen:	can we synthetic data to closed any representation bias?
+00:39:57	Amélie Gourdon-Kanhukamwe:	No worries
+00:40:09	Amélie Gourdon-Kanhukamwe:	* Ignore above
+00:40:35	Kevin Kent:	I thought this was a such a cool histogram
+00:40:54	Kevin Kent:	Images in the binned bars
+00:49:09	Kevin Kent:	I loved this simulation - one thing I was thinking of too is that there are long-term costs to biased algorithms and aren’t just about immediate costs and revenue. Like if the company is perceived as being discriminatory, people might boycott the products.
+00:49:36	Luke Shaw:	yeah this is cool
+00:50:57	Amélie Gourdon-Kanhukamwe (she/they):	I was reading on decolonizing STEM education today, and incidentally found this which is relevant for today's discussion, although I only managed to skim it: https://www.nature.com/articles/d41586-020-00274-3 It does resonate with some of the points in Layla's notes (eg, counterfactuals)
+00:51:43	Kevin Kent:	Thanks for sharing!
+00:52:03	Amélie Gourdon-Kanhukamwe (she/they):	I llike that it has specific steps.
+00:52:11	Kevin Kent:	I’ve also been meaning to read the for the longest time https://www.amazon.com/Weapons-Math-Destruction-Increases-Inequality/dp/0553418815
+00:52:56	Amélie Gourdon-Kanhukamwe (she/they):	And "Algorithms of oppression" too (also need to find time for it
+00:54:14	Amélie Gourdon-Kanhukamwe (she/they):	https://nyupress.org/9781479837243/algorithms-of-oppression/
+00:54:25	Kevin Kent:	👍
+00:59:14	Kevin Kent:	I think a lot of these models are trained using Wikipedia as the corpus so you can definitely see how a dataset that is created in a crowdsourced method can have bias in it
+00:59:29	Luke Shaw:	I have to go on the hour (a few mins) - really fascinating conversations! We don't need to go the stuff I mentioned - didn't have anything to present just were there for a discussion.
+01:01:43	Kevin Kent:	Sorry about that Luke, I kind of lost track of time in my part. But Im definitely going to read your reocmendatio
+01:02:18	Luke Shaw:	Thanks for the discussion all, see you next week. Can any recommendations in the slack or google sheets please :D
+01:02:55	Stephen Holsenbeck:	Will do, did you have stuff you wanted to present on Data Feminism?
+01:04:52	shamsuddeen:	Layla, you working on ethics ?
+01:04:58	Janita Botha:	This was awesome!
+01:05:06	Amélie Gourdon-Kanhukamwe (she/they):	Just heard of this in relation to white methods: https://www.zedbooks.net/shop/book/decolonizing-methodologies/
+01:05:52	Amélie Gourdon-Kanhukamwe (she/they):	Uni of Bristol has a data ethics journal club too, open outside. Will fetch the link.
+01:07:29	Kevin Kent:	Depthless is a true auto-antonym
+01:07:36	Amélie Gourdon-Kanhukamwe (she/they):	http://www.bristol.ac.uk/golding/events/2021/data-ethics-club---february-3.html
+01:07:55	Stephen Holsenbeck:	same
+01:08:07	Amélie Gourdon-Kanhukamwe (she/they):	Same same
+01:08:19	Stephen Holsenbeck:	share in the slack 🙂
+01:08:36	Kevin Kent:	Please :)
+01:10:40	Amélie Gourdon-Kanhukamwe (she/they):	Sorry for the plug, but if you have Twitter, I have a critical data science list: https://twitter.com/i/lists/1321784589464068097
+01:12:37	Amélie Gourdon-Kanhukamwe (she/they):	Angela Saini's Superior is a good general one on how science can be used in racist ways, for awareness (including the IBM nazi past).
+01:12:59	Janita Botha:	Thank you!
+01:16:22	rahul bahadur:	Thanks Everyone
+01:16:28	Janita Botha:	bye!
+```
+</details>
