@@ -1,3 +1,5 @@
+# (PART\*) Basics {-}
+
 # The Ames housing data
 
 **Learning objectives:**
