@@ -1,4 +1,4 @@
-# Review of chapters 10-14 {-}
+# Explaining models and predictions
 
 **Learning objectives:**
 
