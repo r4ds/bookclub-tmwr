@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>21.1 Slide 1 Title | Tidy Modeling with R Book Club</title>
+  <title>13.1 Regular and non-regular grids | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="21.1 Slide 1 Title | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="13.1 Regular and non-regular grids | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="21.1 Slide 1 Title | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="13.1 Regular and non-regular grids | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -24,15 +24,15 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-04-02" />
+<meta name="date" content="2021-04-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="inferential-analysis.html"/>
-<link rel="next" href="slide-2-title-9.html"/>
+<link rel="prev" href="grid-search.html"/>
+<link rel="next" href="evaluating-the-grid.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -298,45 +298,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="grid-search.html"><a href="grid-search.html"><i class="fa fa-check"></i><b>13</b> Grid search</a><ul>
-<li class="chapter" data-level="13.1" data-path="slide-1-title.html"><a href="slide-1-title.html"><i class="fa fa-check"></i><b>13.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="13.2" data-path="slide-2-title.html"><a href="slide-2-title.html"><i class="fa fa-check"></i><b>13.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="13.1" data-path="regular-and-non-regular-grids.html"><a href="regular-and-non-regular-grids.html"><i class="fa fa-check"></i><b>13.1</b> Regular and non-regular grids</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="regular-and-non-regular-grids.html"><a href="regular-and-non-regular-grids.html#regular-grids"><i class="fa fa-check"></i><b>13.1.1</b> Regular Grids</a></li>
+<li class="chapter" data-level="13.1.2" data-path="regular-and-non-regular-grids.html"><a href="regular-and-non-regular-grids.html#irregular-grids"><i class="fa fa-check"></i><b>13.1.2</b> Irregular Grids</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="evaluating-the-grid.html"><a href="evaluating-the-grid.html"><i class="fa fa-check"></i><b>13.2</b> Evaluating the grid</a></li>
+<li class="chapter" data-level="13.3" data-path="finalizing-the-model.html"><a href="finalizing-the-model.html"><i class="fa fa-check"></i><b>13.3</b> Finalizing the model</a></li>
+<li class="chapter" data-level="13.4" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html"><i class="fa fa-check"></i><b>13.4</b> Tools for efficient grid search</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html#submodel-optimization"><i class="fa fa-check"></i><b>13.4.1</b> Submodel optimization</a></li>
+<li class="chapter" data-level="13.4.2" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html#parallel-processing-1"><i class="fa fa-check"></i><b>13.4.2</b> Parallel processing</a></li>
+<li class="chapter" data-level="13.4.3" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html#benchmarking-parallel-with-boosted-trees"><i class="fa fa-check"></i><b>13.4.3</b> Benchmarking Parallel with boosted trees</a></li>
+<li class="chapter" data-level="13.4.4" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html#racing-methods"><i class="fa fa-check"></i><b>13.4.4</b> Racing Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="chapter-summary.html"><a href="chapter-summary.html"><i class="fa fa-check"></i><b>13.5</b> Chapter Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="iterative-search.html"><a href="iterative-search.html"><i class="fa fa-check"></i><b>14</b> Iterative search</a><ul>
-<li class="chapter" data-level="14.1" data-path="slide-1-title-1.html"><a href="slide-1-title-1.html"><i class="fa fa-check"></i><b>14.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="14.2" data-path="slide-2-title-1.html"><a href="slide-2-title-1.html"><i class="fa fa-check"></i><b>14.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="14.1" data-path="slide-1-title.html"><a href="slide-1-title.html"><i class="fa fa-check"></i><b>14.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="14.2" data-path="slide-2-title.html"><a href="slide-2-title.html"><i class="fa fa-check"></i><b>14.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="title.html"><a href="title.html"><i class="fa fa-check"></i><b>15</b> TITLE</a><ul>
-<li class="chapter" data-level="15.1" data-path="slide-1-title-2.html"><a href="slide-1-title-2.html"><i class="fa fa-check"></i><b>15.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="15.2" data-path="slide-2-title-2.html"><a href="slide-2-title-2.html"><i class="fa fa-check"></i><b>15.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="15.1" data-path="slide-1-title-1.html"><a href="slide-1-title-1.html"><i class="fa fa-check"></i><b>15.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="15.2" data-path="slide-2-title-1.html"><a href="slide-2-title-1.html"><i class="fa fa-check"></i><b>15.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="review-of-chapters-10-15.html"><a href="review-of-chapters-10-15.html"><i class="fa fa-check"></i>Review of chapters 10-15</a><ul>
-<li class="chapter" data-level="15.3" data-path="slide-1-title-3.html"><a href="slide-1-title-3.html"><i class="fa fa-check"></i><b>15.3</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="15.4" data-path="slide-2-title-3.html"><a href="slide-2-title-3.html"><i class="fa fa-check"></i><b>15.4</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="15.3" data-path="slide-1-title-2.html"><a href="slide-1-title-2.html"><i class="fa fa-check"></i><b>15.3</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="15.4" data-path="slide-2-title-2.html"><a href="slide-2-title-2.html"><i class="fa fa-check"></i><b>15.4</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="part"><span><b>Other Topics</b></span></li>
 <li class="chapter" data-level="16" data-path="encoding-categorical-data.html"><a href="encoding-categorical-data.html"><i class="fa fa-check"></i><b>16</b> Encoding categorical data</a><ul>
-<li class="chapter" data-level="16.1" data-path="slide-1-title-4.html"><a href="slide-1-title-4.html"><i class="fa fa-check"></i><b>16.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="16.2" data-path="slide-2-title-4.html"><a href="slide-2-title-4.html"><i class="fa fa-check"></i><b>16.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="16.1" data-path="slide-1-title-3.html"><a href="slide-1-title-3.html"><i class="fa fa-check"></i><b>16.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="16.2" data-path="slide-2-title-3.html"><a href="slide-2-title-3.html"><i class="fa fa-check"></i><b>16.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>17</b> Dimensionality reduction</a><ul>
-<li class="chapter" data-level="17.1" data-path="slide-1-title-5.html"><a href="slide-1-title-5.html"><i class="fa fa-check"></i><b>17.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="17.2" data-path="slide-2-title-5.html"><a href="slide-2-title-5.html"><i class="fa fa-check"></i><b>17.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="17.1" data-path="slide-1-title-4.html"><a href="slide-1-title-4.html"><i class="fa fa-check"></i><b>17.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="17.2" data-path="slide-2-title-4.html"><a href="slide-2-title-4.html"><i class="fa fa-check"></i><b>17.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="chapter" data-level="18" data-path="explaining-models-and-predictions.html"><a href="explaining-models-and-predictions.html"><i class="fa fa-check"></i><b>18</b> Explaining models and predictions</a><ul>
-<li class="chapter" data-level="18.1" data-path="slide-1-title-6.html"><a href="slide-1-title-6.html"><i class="fa fa-check"></i><b>18.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="18.2" data-path="slide-2-title-6.html"><a href="slide-2-title-6.html"><i class="fa fa-check"></i><b>18.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="18.1" data-path="slide-1-title-5.html"><a href="slide-1-title-5.html"><i class="fa fa-check"></i><b>18.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="18.2" data-path="slide-2-title-5.html"><a href="slide-2-title-5.html"><i class="fa fa-check"></i><b>18.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="chapter" data-level="19" data-path="when-should-you-trust-predictions.html"><a href="when-should-you-trust-predictions.html"><i class="fa fa-check"></i><b>19</b> When should you trust predictions?</a><ul>
-<li class="chapter" data-level="19.1" data-path="slide-1-title-7.html"><a href="slide-1-title-7.html"><i class="fa fa-check"></i><b>19.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="19.2" data-path="slide-2-title-7.html"><a href="slide-2-title-7.html"><i class="fa fa-check"></i><b>19.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="19.1" data-path="slide-1-title-6.html"><a href="slide-1-title-6.html"><i class="fa fa-check"></i><b>19.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="19.2" data-path="slide-2-title-6.html"><a href="slide-2-title-6.html"><i class="fa fa-check"></i><b>19.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="ensemble-models.html"><a href="ensemble-models.html"><i class="fa fa-check"></i><b>20</b> Ensemble models</a><ul>
-<li class="chapter" data-level="20.1" data-path="slide-1-title-8.html"><a href="slide-1-title-8.html"><i class="fa fa-check"></i><b>20.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="20.2" data-path="slide-2-title-8.html"><a href="slide-2-title-8.html"><i class="fa fa-check"></i><b>20.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="20.1" data-path="slide-1-title-7.html"><a href="slide-1-title-7.html"><i class="fa fa-check"></i><b>20.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="20.2" data-path="slide-2-title-7.html"><a href="slide-2-title-7.html"><i class="fa fa-check"></i><b>20.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="chapter" data-level="21" data-path="inferential-analysis.html"><a href="inferential-analysis.html"><i class="fa fa-check"></i><b>21</b> Inferential analysis</a><ul>
-<li class="chapter" data-level="21.1" data-path="slide-1-title-9.html"><a href="slide-1-title-9.html"><i class="fa fa-check"></i><b>21.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="21.2" data-path="slide-2-title-9.html"><a href="slide-2-title-9.html"><i class="fa fa-check"></i><b>21.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="21.1" data-path="slide-1-title-8.html"><a href="slide-1-title-8.html"><i class="fa fa-check"></i><b>21.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="21.2" data-path="slide-2-title-8.html"><a href="slide-2-title-8.html"><i class="fa fa-check"></i><b>21.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -358,17 +369,127 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="slide-1-title-9" class="section level2">
-<h2><span class="header-section-number">21.1</span> Slide 1 Title</h2>
-<p>Put the content of your slide here.</p>
+<div id="regular-and-non-regular-grids" class="section level2">
+<h2><span class="header-section-number">13.1</span> Regular and non-regular grids</h2>
+<p>Let’s consider an example model: an <code>mlp</code> neural network model. The parameters marked for tuning are:</p>
+<ul>
+<li><p>the number of hidden units,</p></li>
+<li><p>the number of fitting epochs in model training, and</p></li>
+<li><p>the amount of weight decay penalization.</p></li>
+</ul>
+<p>Using <code>parsnip</code>, the specification for a regression model fit using the <code>nnet</code> package for a multi layer perceptron is:</p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="regular-and-non-regular-grids.html#cb183-1"></a>mlp_spec &lt;-</span>
+<span id="cb183-2"><a href="regular-and-non-regular-grids.html#cb183-2"></a><span class="st">  </span><span class="kw">mlp</span>(<span class="dt">hidden_units =</span> <span class="kw">tune</span>(),</span>
+<span id="cb183-3"><a href="regular-and-non-regular-grids.html#cb183-3"></a>      <span class="dt">penalty =</span> <span class="kw">tune</span>(),</span>
+<span id="cb183-4"><a href="regular-and-non-regular-grids.html#cb183-4"></a>      <span class="dt">epochs =</span> <span class="kw">tune</span>()) <span class="op">%&gt;%</span></span>
+<span id="cb183-5"><a href="regular-and-non-regular-grids.html#cb183-5"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;nnet&quot;</span>, <span class="dt">trace =</span> <span class="dv">0</span>) <span class="op">%&gt;%</span></span>
+<span id="cb183-6"><a href="regular-and-non-regular-grids.html#cb183-6"></a><span class="st">  </span><span class="kw">set_mode</span>(<span class="st">&quot;regression&quot;</span>)</span></code></pre></div>
+<p>The argument <strong>trace = 0</strong> prevents extra logging of the training process. The <code>parameters()</code> function can extract the set of arguments with unknown values and set their <code>dials</code> objects. <code>pull_dials_object()</code> gives the current range of values.</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="regular-and-non-regular-grids.html#cb184-1"></a>mlp_param &lt;-<span class="st"> </span><span class="kw">parameters</span>(mlp_spec)</span>
+<span id="cb184-2"><a href="regular-and-non-regular-grids.html#cb184-2"></a>mlp_param <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull_dials_object</span>(<span class="st">&quot;hidden_units&quot;</span>)</span></code></pre></div>
+<pre><code>## # Hidden Units (quantitative)
+## Range: [1, 10]</code></pre>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="regular-and-non-regular-grids.html#cb186-1"></a>mlp_param <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull_dials_object</span>(<span class="st">&quot;penalty&quot;</span>)</span></code></pre></div>
+<pre><code>## Amount of Regularization (quantitative)
+## Transformer:  log-10 
+## Range (transformed scale): [-10, 0]</code></pre>
+<blockquote>
+<p>For <code>penalty</code>, the random numbers are uniform on the log (base 10) scale. The values in the grid are in their natural units.</p>
+</blockquote>
+<p><img src="https://media.giphy.com/media/iRBz7kiE3HsSA/giphy.gif" /></p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="regular-and-non-regular-grids.html#cb188-1"></a>mlp_param <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull_dials_object</span>(<span class="st">&quot;epochs&quot;</span>)</span></code></pre></div>
+<pre><code>## # Epochs (quantitative)
+## Range: [10, 1000]</code></pre>
+<div id="regular-grids" class="section level3">
+<h3><span class="header-section-number">13.1.1</span> Regular Grids</h3>
+<p>The <code>dials</code> package contains a set of <code>grid_*()</code> functions that take the parameter object and produce different types of grids.</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="regular-and-non-regular-grids.html#cb190-1"></a><span class="kw">grid_regular</span>(mlp_param, <span class="dt">levels =</span> <span class="dv">2</span>) </span></code></pre></div>
+<pre><code>## # A tibble: 8 x 3
+##   hidden_units      penalty epochs
+##          &lt;int&gt;        &lt;dbl&gt;  &lt;int&gt;
+## 1            1 0.0000000001     10
+## 2           10 0.0000000001     10
+## 3            1 1                10
+## 4           10 1                10
+## 5            1 0.0000000001   1000
+## 6           10 0.0000000001   1000
+## 7            1 1              1000
+## 8           10 1              1000</code></pre>
+<p>The <code>levels</code> argument is the number of levels per parameter to create. It can also take a named vector of values:</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="regular-and-non-regular-grids.html#cb192-1"></a>mlp_param <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb192-2"><a href="regular-and-non-regular-grids.html#cb192-2"></a><span class="st">  </span><span class="kw">grid_regular</span>(<span class="dt">levels =</span> <span class="kw">c</span>(<span class="dt">hidden_units =</span> <span class="dv">3</span>,</span>
+<span id="cb192-3"><a href="regular-and-non-regular-grids.html#cb192-3"></a>                          <span class="dt">penalty =</span> <span class="dv">2</span>, </span>
+<span id="cb192-4"><a href="regular-and-non-regular-grids.html#cb192-4"></a>                          <span class="dt">epochs =</span> <span class="dv">2</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 12 x 3
+##    hidden_units      penalty epochs
+##           &lt;int&gt;        &lt;dbl&gt;  &lt;int&gt;
+##  1            1 0.0000000001     10
+##  2            5 0.0000000001     10
+##  3           10 0.0000000001     10
+##  4            1 1                10
+##  5            5 1                10
+##  6           10 1                10
+##  7            1 0.0000000001   1000
+##  8            5 0.0000000001   1000
+##  9           10 0.0000000001   1000
+## 10            1 1              1000
+## 11            5 1              1000
+## 12           10 1              1000</code></pre>
+<p style="color:red;">
+Regular grids can be computationally expensive to use, especially when there are a large number of tuning parameters. This is true for many models but not all. There are some models whose tuning time decreases with a regular grid. More on this in a moment.
+</p>
+<p>One advantage of a regular grid is that the relationships between the tuning parameters and the model metrics are easily understood. The full factorial nature of designs allows for examination of each parameter separately.</p>
+</div>
+<div id="irregular-grids" class="section level3">
+<h3><span class="header-section-number">13.1.2</span> Irregular Grids</h3>
+<p>Even with small grids, random values can still result in overlaps. Also, the random grid needs to cover the whole parameter space.</p>
+<p>Even for a sample of 15 candidate points, this plot shows some overlap between points for our example:</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="regular-and-non-regular-grids.html#cb194-1"></a><span class="kw">library</span>(ggforce)</span>
+<span id="cb194-2"><a href="regular-and-non-regular-grids.html#cb194-2"></a><span class="kw">set.seed</span>(<span class="dv">200</span>)</span>
+<span id="cb194-3"><a href="regular-and-non-regular-grids.html#cb194-3"></a>mlp_param <span class="op">%&gt;%</span></span>
+<span id="cb194-4"><a href="regular-and-non-regular-grids.html#cb194-4"></a><span class="st">  </span><span class="co"># The &#39;original = FALSE&#39; option keeps penalty in log10 units</span></span>
+<span id="cb194-5"><a href="regular-and-non-regular-grids.html#cb194-5"></a><span class="st">  </span><span class="kw">grid_random</span>(<span class="dt">size =</span> <span class="dv">15</span>, <span class="dt">original =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb194-6"><a href="regular-and-non-regular-grids.html#cb194-6"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> .panel_x, <span class="dt">y =</span> .panel_y)) <span class="op">+</span></span>
+<span id="cb194-7"><a href="regular-and-non-regular-grids.html#cb194-7"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb194-8"><a href="regular-and-non-regular-grids.html#cb194-8"></a><span class="st">  </span><span class="kw">geom_blank</span>() <span class="op">+</span></span>
+<span id="cb194-9"><a href="regular-and-non-regular-grids.html#cb194-9"></a><span class="st">  </span><span class="kw">facet_matrix</span>(<span class="kw">vars</span>(hidden_units, penalty, epochs), <span class="dt">layer.diag =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb194-10"><a href="regular-and-non-regular-grids.html#cb194-10"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Random design with 15 candidates&quot;</span>)</span>
+<span id="cb194-11"><a href="regular-and-non-regular-grids.html#cb194-11"></a></span>
+<span id="cb194-12"><a href="regular-and-non-regular-grids.html#cb194-12"></a><span class="kw">ggsave</span>(<span class="dt">filename =</span> <span class="st">&quot;images/13_grid_random.png&quot;</span>)</span></code></pre></div>
+<p><img src="images/13_grid_random.png" /></p>
+<p>A much better approach is to use designs called</p>
+<div id="space-filling-designs" class="section level4">
+<h4><span class="header-section-number">13.1.2.1</span> Space Filling Designs !!!</h4>
+<p><img src="https://media.giphy.com/media/3o7buijTqhjxjbEqjK/giphy.gif" /></p>
+<p>They generally find a configuration of points that cover the parameter space with the smallest chance of overlapping. The <code>dials</code> package has:</p>
+<ul>
+<li><p>Latin hypercube</p></li>
+<li><p>Maximum entropy</p></li>
+</ul>
+<p>As with <code>grid_random()</code>, the primary inputs are the number of parameter combinations and a parameter object.</p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="regular-and-non-regular-grids.html#cb195-1"></a><span class="kw">library</span>(ggforce)</span>
+<span id="cb195-2"><a href="regular-and-non-regular-grids.html#cb195-2"></a><span class="kw">set.seed</span>(<span class="dv">200</span>)</span>
+<span id="cb195-3"><a href="regular-and-non-regular-grids.html#cb195-3"></a>mlp_param <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb195-4"><a href="regular-and-non-regular-grids.html#cb195-4"></a><span class="st">  </span><span class="kw">grid_latin_hypercube</span>(<span class="dt">size =</span> <span class="dv">15</span>, <span class="dt">original =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb195-5"><a href="regular-and-non-regular-grids.html#cb195-5"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> .panel_x, <span class="dt">y =</span> .panel_y)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb195-6"><a href="regular-and-non-regular-grids.html#cb195-6"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb195-7"><a href="regular-and-non-regular-grids.html#cb195-7"></a><span class="st">  </span><span class="kw">geom_blank</span>() <span class="op">+</span></span>
+<span id="cb195-8"><a href="regular-and-non-regular-grids.html#cb195-8"></a><span class="st">  </span><span class="kw">facet_matrix</span>(<span class="kw">vars</span>(hidden_units, penalty, epochs), <span class="dt">layer.diag =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb195-9"><a href="regular-and-non-regular-grids.html#cb195-9"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Latin Hypercube design with 15 candidates&quot;</span>)</span>
+<span id="cb195-10"><a href="regular-and-non-regular-grids.html#cb195-10"></a></span>
+<span id="cb195-11"><a href="regular-and-non-regular-grids.html#cb195-11"></a><span class="kw">ggsave</span>(<span class="st">&quot;images/13_latin_hypercube.png&quot;</span>)</span></code></pre></div>
+<p><img src="images/13_latin_hypercube.png" /></p>
+<p>The default design used by <code>tune</code>: maximum entropy design.</p>
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="inferential-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="slide-2-title-9.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="grid-search.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="evaluating-the-grid.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -399,7 +520,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/21-inferential_analysis.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/13-grid_search.Rmd",
 "text": "Edit"
 },
 "history": {

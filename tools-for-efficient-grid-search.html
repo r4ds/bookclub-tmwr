@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>13.4 Tools for efficient grid search | Tidy Modeling with R Book Club</title>
+  <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="13.4 Tools for efficient grid search | Tidy Modeling with R Book Club" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
+  <meta name="github-repo" content="r4ds/bookclub-tmwr" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="13.4 Tools for efficient grid search | Tidy Modeling with R Book Club" />
+  
+  <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
+  
+
+<meta name="author" content="The R4DS Online Learning Community" />
+
+
+<meta name="date" content="2021-04-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="finalizing-the-model.html"/>
+<link rel="next" href="chapter-summary.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/twitter-widget-0.0.1/widgets.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Tidy Modeling with R Book Club</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a><ul>
+<li class="chapter" data-level="" data-path="book-club-meetings.html"><a href="book-club-meetings.html"><i class="fa fa-check"></i>Book club meetings</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="software-for-modeling.html"><a href="software-for-modeling.html"><i class="fa fa-check"></i><b>1</b> Software for modeling</a><ul>
+<li class="chapter" data-level="1.1" data-path="the-pit-of-success.html"><a href="the-pit-of-success.html"><i class="fa fa-check"></i><b>1.1</b> The pit of success</a></li>
+<li class="chapter" data-level="1.2" data-path="types-of-models.html"><a href="types-of-models.html"><i class="fa fa-check"></i><b>1.2</b> Types of models</a></li>
+<li class="chapter" data-level="1.3" data-path="terminology.html"><a href="terminology.html"><i class="fa fa-check"></i><b>1.3</b> Terminology</a></li>
+<li class="chapter" data-level="1.4" data-path="the-data-analysis-process.html"><a href="the-data-analysis-process.html"><i class="fa fa-check"></i><b>1.4</b> The data analysis process</a></li>
+<li class="chapter" data-level="1.5" data-path="the-modeling-process.html"><a href="the-modeling-process.html"><i class="fa fa-check"></i><b>1.5</b> The modeling process</a></li>
+<li class="chapter" data-level="1.6" data-path="meeting-videos.html"><a href="meeting-videos.html"><i class="fa fa-check"></i><b>1.6</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="meeting-videos.html"><a href="meeting-videos.html#cohort-1"><i class="fa fa-check"></i><b>1.6.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="1.6.2" data-path="meeting-videos.html"><a href="meeting-videos.html#cohort-2"><i class="fa fa-check"></i><b>1.6.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="1.6.3" data-path="meeting-videos.html"><a href="meeting-videos.html#cohort-3"><i class="fa fa-check"></i><b>1.6.3</b> Cohort 3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="a-tidyverse-primer.html"><a href="a-tidyverse-primer.html"><i class="fa fa-check"></i><b>2</b> A tidyverse primer</a><ul>
+<li class="chapter" data-level="2.1" data-path="tidyverse-design-principles.html"><a href="tidyverse-design-principles.html"><i class="fa fa-check"></i><b>2.1</b> Tidyverse design Principles</a></li>
+<li class="chapter" data-level="2.2" data-path="design-for-humans-overview.html"><a href="design-for-humans-overview.html"><i class="fa fa-check"></i><b>2.2</b> Design for Humans - Overview</a></li>
+<li class="chapter" data-level="2.3" data-path="design-for-humans.html"><a href="design-for-humans.html"><i class="fa fa-check"></i><b>2.3</b> Design for Humans and the Tidyverse</a></li>
+<li class="chapter" data-level="2.4" data-path="reusing-existing-data-structures.html"><a href="reusing-existing-data-structures.html"><i class="fa fa-check"></i><b>2.4</b> Reusing existing data structures</a></li>
+<li class="chapter" data-level="2.5" data-path="designed-for-the-pipe.html"><a href="designed-for-the-pipe.html"><i class="fa fa-check"></i><b>2.5</b> Designed for the pipe</a></li>
+<li class="chapter" data-level="2.6" data-path="designed-for-functional-programming.html"><a href="designed-for-functional-programming.html"><i class="fa fa-check"></i><b>2.6</b> Designed for Functional Programming</a></li>
+<li class="chapter" data-level="2.7" data-path="tibbles-vs-data-frames.html"><a href="tibbles-vs-data-frames.html"><i class="fa fa-check"></i><b>2.7</b> Tibbles vs. Data Frames</a></li>
+<li class="chapter" data-level="2.8" data-path="how-to-read-and-wrangle-data.html"><a href="how-to-read-and-wrangle-data.html"><i class="fa fa-check"></i><b>2.8</b> How to read and wrangle data</a></li>
+<li class="chapter" data-level="2.9" data-path="further-reading.html"><a href="further-reading.html"><i class="fa fa-check"></i><b>2.9</b> Further Reading</a></li>
+<li class="chapter" data-level="2.10" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html"><i class="fa fa-check"></i><b>2.10</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="2.10.1" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-1-1"><i class="fa fa-check"></i><b>2.10.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="2.10.2" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-2-1"><i class="fa fa-check"></i><b>2.10.2</b> Cohort 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="a-review-of-r-modeling-fundamentals.html"><a href="a-review-of-r-modeling-fundamentals.html"><i class="fa fa-check"></i><b>3</b> A review of R modeling fundamentals</a><ul>
+<li class="chapter" data-level="3.1" data-path="r-formula-syntax.html"><a href="r-formula-syntax.html"><i class="fa fa-check"></i><b>3.1</b> R formula syntax</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="r-formula-syntax.html"><a href="r-formula-syntax.html#recap"><i class="fa fa-check"></i><b>3.1.1</b> Recap</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="inspecting-and-developing-models.html"><a href="inspecting-and-developing-models.html"><i class="fa fa-check"></i><b>3.2</b> Inspecting and developing models</a></li>
+<li class="chapter" data-level="3.3" data-path="more-of-base-and-stats.html"><a href="more-of-base-and-stats.html"><i class="fa fa-check"></i><b>3.3</b> More of <code>{base}</code> and <code>{stats}</code></a></li>
+<li class="chapter" data-level="3.4" data-path="why-tidy-principles-and-tidymodels.html"><a href="why-tidy-principles-and-tidymodels.html"><i class="fa fa-check"></i><b>3.4</b> Why Tidy Principles and <code>{tidymodels}</code>?</a></li>
+<li class="chapter" data-level="3.5" data-path="meeting-videos-2.html"><a href="meeting-videos-2.html"><i class="fa fa-check"></i><b>3.5</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="meeting-videos-2.html"><a href="meeting-videos-2.html#cohort-1-2"><i class="fa fa-check"></i><b>3.5.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="3.5.2" data-path="meeting-videos-2.html"><a href="meeting-videos-2.html#cohort-2-2"><i class="fa fa-check"></i><b>3.5.2</b> Cohort 2</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Basics</b></span></li>
+<li class="chapter" data-level="4" data-path="the-ames-housing-data.html"><a href="the-ames-housing-data.html"><i class="fa fa-check"></i><b>4</b> The Ames housing data</a><ul>
+<li class="chapter" data-level="4.1" data-path="pittsburgh-a-parallel-real-world-example.html"><a href="pittsburgh-a-parallel-real-world-example.html"><i class="fa fa-check"></i><b>4.1</b> Pittsburgh: a parallel real world example</a></li>
+<li class="chapter" data-level="4.2" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html"><i class="fa fa-check"></i><b>4.2</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-1-3"><i class="fa fa-check"></i><b>4.2.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="4.2.2" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-2-3"><i class="fa fa-check"></i><b>4.2.2</b> Cohort 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="spending-our-data.html"><a href="spending-our-data.html"><i class="fa fa-check"></i><b>5</b> Spending our data</a><ul>
+<li class="chapter" data-level="5.1" data-path="spending-our-data-1.html"><a href="spending-our-data-1.html"><i class="fa fa-check"></i><b>5.1</b> Spending our data</a></li>
+<li class="chapter" data-level="5.2" data-path="common-methods-for-splitting-data.html"><a href="common-methods-for-splitting-data.html"><i class="fa fa-check"></i><b>5.2</b> Common methods for splitting data</a></li>
+<li class="chapter" data-level="5.3" data-path="class-imbalance.html"><a href="class-imbalance.html"><i class="fa fa-check"></i><b>5.3</b> Class imbalance</a></li>
+<li class="chapter" data-level="5.4" data-path="continuous-outcome-data.html"><a href="continuous-outcome-data.html"><i class="fa fa-check"></i><b>5.4</b> Continuous outcome data</a></li>
+<li class="chapter" data-level="5.5" data-path="time-series-data.html"><a href="time-series-data.html"><i class="fa fa-check"></i><b>5.5</b> Time series data</a></li>
+<li class="chapter" data-level="5.6" data-path="multi-level-data.html"><a href="multi-level-data.html"><i class="fa fa-check"></i><b>5.6</b> Multi-level data</a></li>
+<li class="chapter" data-level="5.7" data-path="what-proportion-should-be-used.html"><a href="what-proportion-should-be-used.html"><i class="fa fa-check"></i><b>5.7</b> What proportion should be used?</a></li>
+<li class="chapter" data-level="5.8" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>5.8</b> Summary</a><ul>
+<li class="chapter" data-level="5.8.1" data-path="summary.html"><a href="summary.html#references"><i class="fa fa-check"></i><b>5.8.1</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html"><i class="fa fa-check"></i><b>5.9</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="5.9.1" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-1-4"><i class="fa fa-check"></i><b>5.9.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="5.9.2" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-2-4"><i class="fa fa-check"></i><b>5.9.2</b> Cohort 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="feature-engineering-with-recipes.html"><a href="feature-engineering-with-recipes.html"><i class="fa fa-check"></i><b>6</b> Feature engineering with recipes</a><ul>
+<li class="chapter" data-level="6.1" data-path="meeting-videos-5.html"><a href="meeting-videos-5.html"><i class="fa fa-check"></i><b>6.1</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="meeting-videos-5.html"><a href="meeting-videos-5.html#cohort-1-5"><i class="fa fa-check"></i><b>6.1.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="6.1.2" data-path="meeting-videos-5.html"><a href="meeting-videos-5.html#cohort-2-5"><i class="fa fa-check"></i><b>6.1.2</b> Cohort 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ai-ethics.html"><a href="ai-ethics.html"><i class="fa fa-check"></i>AI Ethics</a><ul>
+<li class="chapter" data-level="6.2" data-path="meeting-videos-6.html"><a href="meeting-videos-6.html"><i class="fa fa-check"></i><b>6.2</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="meeting-videos-6.html"><a href="meeting-videos-6.html#cohort-2-6"><i class="fa fa-check"></i><b>6.2.1</b> Cohort 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="fitting-models-with-parsnip.html"><a href="fitting-models-with-parsnip.html"><i class="fa fa-check"></i><b>7</b> Fitting models with parsnip</a><ul>
+<li class="chapter" data-level="7.1" data-path="create-a-model.html"><a href="create-a-model.html"><i class="fa fa-check"></i><b>7.1</b> Create a Model</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="create-a-model.html"><a href="create-a-model.html#different-model-interfaces"><i class="fa fa-check"></i><b>7.1.1</b> Different Model Interfaces</a></li>
+<li class="chapter" data-level="7.1.2" data-path="create-a-model.html"><a href="create-a-model.html#model-specification"><i class="fa fa-check"></i><b>7.1.2</b> Model Specification</a></li>
+<li class="chapter" data-level="7.1.3" data-path="create-a-model.html"><a href="create-a-model.html#model-fitting"><i class="fa fa-check"></i><b>7.1.3</b> Model Fitting</a></li>
+<li class="chapter" data-level="7.1.4" data-path="create-a-model.html"><a href="create-a-model.html#generalized-model-arguments"><i class="fa fa-check"></i><b>7.1.4</b> Generalized Model Arguments</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="use-model-results.html"><a href="use-model-results.html"><i class="fa fa-check"></i><b>7.2</b> Use Model results</a></li>
+<li class="chapter" data-level="7.3" data-path="make-predictions.html"><a href="make-predictions.html"><i class="fa fa-check"></i><b>7.3</b> Make Predictions</a></li>
+<li class="chapter" data-level="7.4" data-path="tidymodels-adjacent-packages.html"><a href="tidymodels-adjacent-packages.html"><i class="fa fa-check"></i><b>7.4</b> {tidymodels}-Adjacent Packages</a></li>
+<li class="chapter" data-level="7.5" data-path="summary-1.html"><a href="summary-1.html"><i class="fa fa-check"></i><b>7.5</b> Summary</a></li>
+<li class="chapter" data-level="7.6" data-path="meeting-videos-7.html"><a href="meeting-videos-7.html"><i class="fa fa-check"></i><b>7.6</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="meeting-videos-7.html"><a href="meeting-videos-7.html#cohort-1-6"><i class="fa fa-check"></i><b>7.6.1</b> Cohort 1</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="a-model-workflow.html"><a href="a-model-workflow.html"><i class="fa fa-check"></i><b>8</b> A model workflow</a><ul>
+<li class="chapter" data-level="8.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html"><i class="fa fa-check"></i><b>8.1</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-1-7"><i class="fa fa-check"></i><b>8.1.1</b> Cohort 1</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="judging-model-effectiveness.html"><a href="judging-model-effectiveness.html"><i class="fa fa-check"></i><b>9</b> Judging model effectiveness</a><ul>
+<li class="chapter" data-level="9.1" data-path="measures-of-model-fit.html"><a href="measures-of-model-fit.html"><i class="fa fa-check"></i><b>9.1</b> Measures of Model Fit</a></li>
+<li class="chapter" data-level="9.2" data-path="disclaimers.html"><a href="disclaimers.html"><i class="fa fa-check"></i><b>9.2</b> Disclaimers</a></li>
+<li class="chapter" data-level="9.3" data-path="regression-metrics.html"><a href="regression-metrics.html"><i class="fa fa-check"></i><b>9.3</b> Regression Metrics</a></li>
+<li class="chapter" data-level="9.4" data-path="binary-classification-metrics.html"><a href="binary-classification-metrics.html"><i class="fa fa-check"></i><b>9.4</b> Binary Classification Metrics</a></li>
+<li class="chapter" data-level="9.5" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>9.5</b> References</a></li>
+<li class="chapter" data-level="9.6" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html"><i class="fa fa-check"></i><b>9.6</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="9.6.1" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-1-8"><i class="fa fa-check"></i><b>9.6.1</b> Cohort 1</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="review-of-chapters-4-9.html"><a href="review-of-chapters-4-9.html"><i class="fa fa-check"></i>Review of chapters 4-9</a><ul>
+<li class="chapter" data-level="9.7" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html"><i class="fa fa-check"></i><b>9.7</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="9.7.1" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html#cohort-1-9"><i class="fa fa-check"></i><b>9.7.1</b> Cohort 1</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Tools for Creating Effective Models</b></span></li>
+<li class="chapter" data-level="10" data-path="resampling-for-evaluating-performance.html"><a href="resampling-for-evaluating-performance.html"><i class="fa fa-check"></i><b>10</b> Resampling for evaluating performance</a><ul>
+<li class="chapter" data-level="10.1" data-path="why.html"><a href="why.html"><i class="fa fa-check"></i><b>10.1</b> Why?</a></li>
+<li class="chapter" data-level="10.2" data-path="resubstitution-approach.html"><a href="resubstitution-approach.html"><i class="fa fa-check"></i><b>10.2</b> Resubstitution approach</a></li>
+<li class="chapter" data-level="10.3" data-path="resampling-methods.html"><a href="resampling-methods.html"><i class="fa fa-check"></i><b>10.3</b> Resampling methods</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="resampling-methods.html"><a href="resampling-methods.html#cross-validation"><i class="fa fa-check"></i><b>10.3.1</b> Cross-validation</a></li>
+<li class="chapter" data-level="10.3.2" data-path="resampling-methods.html"><a href="resampling-methods.html#validation-sets"><i class="fa fa-check"></i><b>10.3.2</b> Validation sets</a></li>
+<li class="chapter" data-level="10.3.3" data-path="resampling-methods.html"><a href="resampling-methods.html#boostrapping"><i class="fa fa-check"></i><b>10.3.3</b> Boostrapping</a></li>
+<li class="chapter" data-level="10.3.4" data-path="resampling-methods.html"><a href="resampling-methods.html#rolling-forecasting-origin-resampling"><i class="fa fa-check"></i><b>10.3.4</b> Rolling forecasting origin resampling</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="estimating-performance.html"><a href="estimating-performance.html"><i class="fa fa-check"></i><b>10.4</b> Estimating performance</a></li>
+<li class="chapter" data-level="10.5" data-path="parallel-processing.html"><a href="parallel-processing.html"><i class="fa fa-check"></i><b>10.5</b> Parallel processing</a></li>
+<li class="chapter" data-level="10.6" data-path="saving-the-resampled-objects.html"><a href="saving-the-resampled-objects.html"><i class="fa fa-check"></i><b>10.6</b> Saving the resampled objects</a></li>
+<li class="chapter" data-level="10.7" data-path="meeting-videos-11.html"><a href="meeting-videos-11.html"><i class="fa fa-check"></i><b>10.7</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="10.7.1" data-path="meeting-videos-11.html"><a href="meeting-videos-11.html#cohort-1-10"><i class="fa fa-check"></i><b>10.7.1</b> Cohort 1</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="comparing-models-with-resampling.html"><a href="comparing-models-with-resampling.html"><i class="fa fa-check"></i><b>11</b> Comparing models with resampling</a><ul>
+<li class="chapter" data-level="11.1" data-path="calculate-performance-statistics.html"><a href="calculate-performance-statistics.html"><i class="fa fa-check"></i><b>11.1</b> Calculate performance statistics</a></li>
+<li class="chapter" data-level="11.2" data-path="calculate-performance-statistics-workflowsets.html"><a href="calculate-performance-statistics-workflowsets.html"><i class="fa fa-check"></i><b>11.2</b> Calculate performance statistics: {workflowsets}</a></li>
+<li class="chapter" data-level="11.3" data-path="within-resample-correlation.html"><a href="within-resample-correlation.html"><i class="fa fa-check"></i><b>11.3</b> Within-resample correlation</a></li>
+<li class="chapter" data-level="11.4" data-path="practical-effect-size.html"><a href="practical-effect-size.html"><i class="fa fa-check"></i><b>11.4</b> Practical effect size</a></li>
+<li class="chapter" data-level="11.5" data-path="simple-comparison.html"><a href="simple-comparison.html"><i class="fa fa-check"></i><b>11.5</b> Simple Comparison</a></li>
+<li class="chapter" data-level="11.6" data-path="bayesian-methods.html"><a href="bayesian-methods.html"><i class="fa fa-check"></i><b>11.6</b> Bayesian methods</a></li>
+<li class="chapter" data-level="11.7" data-path="meeting-videos-12.html"><a href="meeting-videos-12.html"><i class="fa fa-check"></i><b>11.7</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="11.7.1" data-path="meeting-videos-12.html"><a href="meeting-videos-12.html#cohort-1-11"><i class="fa fa-check"></i><b>11.7.1</b> Cohort 1</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="model-tuning-and-the-dangers-of-overfitting.html"><a href="model-tuning-and-the-dangers-of-overfitting.html"><i class="fa fa-check"></i><b>12</b> Model tuning and the dangers of overfitting</a><ul>
+<li class="chapter" data-level="12.1" data-path="what-is-a-tuning-parameter.html"><a href="what-is-a-tuning-parameter.html"><i class="fa fa-check"></i><b>12.1</b> What is a Tuning Parameter?</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="what-is-a-tuning-parameter.html"><a href="what-is-a-tuning-parameter.html#examples"><i class="fa fa-check"></i><b>12.1.1</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="when-not-to-tune.html"><a href="when-not-to-tune.html"><i class="fa fa-check"></i><b>12.2</b> When not to tune</a></li>
+<li class="chapter" data-level="12.3" data-path="decisions-decisions.html"><a href="decisions-decisions.html"><i class="fa fa-check"></i><b>12.3</b> Decisions, Decisions…</a></li>
+<li class="chapter" data-level="12.4" data-path="what-metric-should-we-use.html"><a href="what-metric-should-we-use.html"><i class="fa fa-check"></i><b>12.4</b> What Metric Should We Use?</a></li>
+<li class="chapter" data-level="12.5" data-path="can-we-make-our-model-too-good.html"><a href="can-we-make-our-model-too-good.html"><i class="fa fa-check"></i><b>12.5</b> Can we make our model <em>too</em> good?</a></li>
+<li class="chapter" data-level="12.6" data-path="tuning-parameter-optimization-strategies.html"><a href="tuning-parameter-optimization-strategies.html"><i class="fa fa-check"></i><b>12.6</b> Tuning Parameter Optimization Strategies</a></li>
+<li class="chapter" data-level="12.7" data-path="tuning-parameters-in-tidymodels-dials.html"><a href="tuning-parameters-in-tidymodels-dials.html"><i class="fa fa-check"></i><b>12.7</b> Tuning Parameters in tidymodels <code>{dials}</code></a></li>
+<li class="chapter" data-level="12.8" data-path="lets-try-an-example.html"><a href="lets-try-an-example.html"><i class="fa fa-check"></i><b>12.8</b> Let’s try an example:</a></li>
+<li class="chapter" data-level="12.9" data-path="build-our-random-forest-model.html"><a href="build-our-random-forest-model.html"><i class="fa fa-check"></i><b>12.9</b> Build our random forest model:</a></li>
+<li class="chapter" data-level="12.10" data-path="add-tuning-parameters.html"><a href="add-tuning-parameters.html"><i class="fa fa-check"></i><b>12.10</b> Add tuning parameters:</a></li>
+<li class="chapter" data-level="12.11" data-path="updating-tuning-parameters.html"><a href="updating-tuning-parameters.html"><i class="fa fa-check"></i><b>12.11</b> Updating tuning parameters:</a></li>
+<li class="chapter" data-level="12.12" data-path="finalizing-tuning-parameters.html"><a href="finalizing-tuning-parameters.html"><i class="fa fa-check"></i><b>12.12</b> Finalizing tuning parameters:</a></li>
+<li class="chapter" data-level="12.13" data-path="what-is-next.html"><a href="what-is-next.html"><i class="fa fa-check"></i><b>12.13</b> What is next?</a></li>
+<li class="chapter" data-level="12.14" data-path="meeting-videos-13.html"><a href="meeting-videos-13.html"><i class="fa fa-check"></i><b>12.14</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="12.14.1" data-path="meeting-videos-13.html"><a href="meeting-videos-13.html#cohort-1-12"><i class="fa fa-check"></i><b>12.14.1</b> Cohort 1</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="grid-search.html"><a href="grid-search.html"><i class="fa fa-check"></i><b>13</b> Grid search</a><ul>
+<li class="chapter" data-level="13.1" data-path="regular-and-non-regular-grids.html"><a href="regular-and-non-regular-grids.html"><i class="fa fa-check"></i><b>13.1</b> Regular and non-regular grids</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="regular-and-non-regular-grids.html"><a href="regular-and-non-regular-grids.html#regular-grids"><i class="fa fa-check"></i><b>13.1.1</b> Regular Grids</a></li>
+<li class="chapter" data-level="13.1.2" data-path="regular-and-non-regular-grids.html"><a href="regular-and-non-regular-grids.html#irregular-grids"><i class="fa fa-check"></i><b>13.1.2</b> Irregular Grids</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="evaluating-the-grid.html"><a href="evaluating-the-grid.html"><i class="fa fa-check"></i><b>13.2</b> Evaluating the grid</a></li>
+<li class="chapter" data-level="13.3" data-path="finalizing-the-model.html"><a href="finalizing-the-model.html"><i class="fa fa-check"></i><b>13.3</b> Finalizing the model</a></li>
+<li class="chapter" data-level="13.4" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html"><i class="fa fa-check"></i><b>13.4</b> Tools for efficient grid search</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html#submodel-optimization"><i class="fa fa-check"></i><b>13.4.1</b> Submodel optimization</a></li>
+<li class="chapter" data-level="13.4.2" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html#parallel-processing-1"><i class="fa fa-check"></i><b>13.4.2</b> Parallel processing</a></li>
+<li class="chapter" data-level="13.4.3" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html#benchmarking-parallel-with-boosted-trees"><i class="fa fa-check"></i><b>13.4.3</b> Benchmarking Parallel with boosted trees</a></li>
+<li class="chapter" data-level="13.4.4" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html#racing-methods"><i class="fa fa-check"></i><b>13.4.4</b> Racing Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="chapter-summary.html"><a href="chapter-summary.html"><i class="fa fa-check"></i><b>13.5</b> Chapter Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="iterative-search.html"><a href="iterative-search.html"><i class="fa fa-check"></i><b>14</b> Iterative search</a><ul>
+<li class="chapter" data-level="14.1" data-path="slide-1-title.html"><a href="slide-1-title.html"><i class="fa fa-check"></i><b>14.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="14.2" data-path="slide-2-title.html"><a href="slide-2-title.html"><i class="fa fa-check"></i><b>14.2</b> Slide 2 Title</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="title.html"><a href="title.html"><i class="fa fa-check"></i><b>15</b> TITLE</a><ul>
+<li class="chapter" data-level="15.1" data-path="slide-1-title-1.html"><a href="slide-1-title-1.html"><i class="fa fa-check"></i><b>15.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="15.2" data-path="slide-2-title-1.html"><a href="slide-2-title-1.html"><i class="fa fa-check"></i><b>15.2</b> Slide 2 Title</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="review-of-chapters-10-15.html"><a href="review-of-chapters-10-15.html"><i class="fa fa-check"></i>Review of chapters 10-15</a><ul>
+<li class="chapter" data-level="15.3" data-path="slide-1-title-2.html"><a href="slide-1-title-2.html"><i class="fa fa-check"></i><b>15.3</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="15.4" data-path="slide-2-title-2.html"><a href="slide-2-title-2.html"><i class="fa fa-check"></i><b>15.4</b> Slide 2 Title</a></li>
+</ul></li>
+<li class="part"><span><b>Other Topics</b></span></li>
+<li class="chapter" data-level="16" data-path="encoding-categorical-data.html"><a href="encoding-categorical-data.html"><i class="fa fa-check"></i><b>16</b> Encoding categorical data</a><ul>
+<li class="chapter" data-level="16.1" data-path="slide-1-title-3.html"><a href="slide-1-title-3.html"><i class="fa fa-check"></i><b>16.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="16.2" data-path="slide-2-title-3.html"><a href="slide-2-title-3.html"><i class="fa fa-check"></i><b>16.2</b> Slide 2 Title</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>17</b> Dimensionality reduction</a><ul>
+<li class="chapter" data-level="17.1" data-path="slide-1-title-4.html"><a href="slide-1-title-4.html"><i class="fa fa-check"></i><b>17.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="17.2" data-path="slide-2-title-4.html"><a href="slide-2-title-4.html"><i class="fa fa-check"></i><b>17.2</b> Slide 2 Title</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="explaining-models-and-predictions.html"><a href="explaining-models-and-predictions.html"><i class="fa fa-check"></i><b>18</b> Explaining models and predictions</a><ul>
+<li class="chapter" data-level="18.1" data-path="slide-1-title-5.html"><a href="slide-1-title-5.html"><i class="fa fa-check"></i><b>18.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="18.2" data-path="slide-2-title-5.html"><a href="slide-2-title-5.html"><i class="fa fa-check"></i><b>18.2</b> Slide 2 Title</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="when-should-you-trust-predictions.html"><a href="when-should-you-trust-predictions.html"><i class="fa fa-check"></i><b>19</b> When should you trust predictions?</a><ul>
+<li class="chapter" data-level="19.1" data-path="slide-1-title-6.html"><a href="slide-1-title-6.html"><i class="fa fa-check"></i><b>19.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="19.2" data-path="slide-2-title-6.html"><a href="slide-2-title-6.html"><i class="fa fa-check"></i><b>19.2</b> Slide 2 Title</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="ensemble-models.html"><a href="ensemble-models.html"><i class="fa fa-check"></i><b>20</b> Ensemble models</a><ul>
+<li class="chapter" data-level="20.1" data-path="slide-1-title-7.html"><a href="slide-1-title-7.html"><i class="fa fa-check"></i><b>20.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="20.2" data-path="slide-2-title-7.html"><a href="slide-2-title-7.html"><i class="fa fa-check"></i><b>20.2</b> Slide 2 Title</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="inferential-analysis.html"><a href="inferential-analysis.html"><i class="fa fa-check"></i><b>21</b> Inferential analysis</a><ul>
+<li class="chapter" data-level="21.1" data-path="slide-1-title-8.html"><a href="slide-1-title-8.html"><i class="fa fa-check"></i><b>21.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="21.2" data-path="slide-2-title-8.html"><a href="slide-2-title-8.html"><i class="fa fa-check"></i><b>21.2</b> Slide 2 Title</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Tidy Modeling with R Book Club</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tools-for-efficient-grid-search" class="section level2">
+<h2><span class="header-section-number">13.4</span> Tools for efficient grid search</h2>
+<p>A few tricks:</p>
+<p><img src="https://media1.tenor.com/images/bfe5a0aefc5e45e5eeffedace153bcdb/tenor.gif" /></p>
+<div id="submodel-optimization" class="section level3">
+<h3><span class="header-section-number">13.4.1</span> Submodel optimization</h3>
+<p>Types of models where, from a single model fit, multiple tuning parameters can be evaluated without refitting:</p>
+<ul>
+<li><p>Partial Least Squares (no. of components to retain)</p></li>
+<li><p>Boosting models (no. of boosting iterations, i.e. trees)</p></li>
+<li><p><code>glmnet</code> makes (across the amount of regularization)</p></li>
+<li><p><code>MARS</code> adds a set of nonlinear features (number of terms to retain)</p></li>
+</ul>
+<blockquote>
+<p>The <code>tune</code> package automatically applies this type of optimization whenever an applicable model is tuned. See also <a href="https://tune.tidymodels.org/articles/extras/optimizations.html">this vignette</a></p>
+</blockquote>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="tools-for-efficient-grid-search.html#cb225-1"></a><span class="kw">methods</span>(<span class="st">&quot;multi_predict&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] multi_predict._C5.0*        multi_predict._earth*      
+## [3] multi_predict._elnet*       multi_predict._lognet*     
+## [5] multi_predict._multnet*     multi_predict._train.kknn* 
+## [7] multi_predict._xgb.Booster* multi_predict.default*     
+## see &#39;?methods&#39; for accessing help and source code</code></pre>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="tools-for-efficient-grid-search.html#cb227-1"></a>parsnip<span class="op">:::</span>multi_predict._C5<span class="fl">.0</span> <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb227-2"><a href="tools-for-efficient-grid-search.html#cb227-2"></a><span class="st">  </span><span class="kw">formals</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb227-3"><a href="tools-for-efficient-grid-search.html#cb227-3"></a><span class="st">  </span><span class="kw">names</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;object&quot;   &quot;new_data&quot; &quot;type&quot;     &quot;trees&quot;    &quot;...&quot;</code></pre>
+<p>For example, if a C5.0 model is fit to this cell classification data challenge, we can tune the trees. With all other parameters set at their default values, we can rapidly evaluate iterations from 1 to 100 :</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="tools-for-efficient-grid-search.html#cb229-1"></a><span class="kw">data</span>(cells)</span>
+<span id="cb229-2"><a href="tools-for-efficient-grid-search.html#cb229-2"></a></span>
+<span id="cb229-3"><a href="tools-for-efficient-grid-search.html#cb229-3"></a>cells &lt;-<span class="st"> </span>cells <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>case)</span>
+<span id="cb229-4"><a href="tools-for-efficient-grid-search.html#cb229-4"></a></span>
+<span id="cb229-5"><a href="tools-for-efficient-grid-search.html#cb229-5"></a>cell_folds &lt;-<span class="st"> </span><span class="kw">vfold_cv</span>(cells)</span>
+<span id="cb229-6"><a href="tools-for-efficient-grid-search.html#cb229-6"></a></span>
+<span id="cb229-7"><a href="tools-for-efficient-grid-search.html#cb229-7"></a>roc_res &lt;-<span class="st"> </span><span class="kw">metric_set</span>(roc_auc)</span>
+<span id="cb229-8"><a href="tools-for-efficient-grid-search.html#cb229-8"></a></span>
+<span id="cb229-9"><a href="tools-for-efficient-grid-search.html#cb229-9"></a>c5_spec &lt;-<span class="st"> </span></span>
+<span id="cb229-10"><a href="tools-for-efficient-grid-search.html#cb229-10"></a><span class="st">  </span><span class="kw">boost_tree</span>(<span class="dt">trees =</span> <span class="kw">tune</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb229-11"><a href="tools-for-efficient-grid-search.html#cb229-11"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;C5.0&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb229-12"><a href="tools-for-efficient-grid-search.html#cb229-12"></a><span class="st">  </span><span class="kw">set_mode</span>(<span class="st">&quot;classification&quot;</span>)</span>
+<span id="cb229-13"><a href="tools-for-efficient-grid-search.html#cb229-13"></a></span>
+<span id="cb229-14"><a href="tools-for-efficient-grid-search.html#cb229-14"></a><span class="kw">set.seed</span>(<span class="dv">2</span>)</span>
+<span id="cb229-15"><a href="tools-for-efficient-grid-search.html#cb229-15"></a>c5_tune &lt;-<span class="st"> </span>c5_spec <span class="op">%&gt;%</span></span>
+<span id="cb229-16"><a href="tools-for-efficient-grid-search.html#cb229-16"></a><span class="st">  </span><span class="kw">tune_grid</span>(</span>
+<span id="cb229-17"><a href="tools-for-efficient-grid-search.html#cb229-17"></a>    class <span class="op">~</span><span class="st"> </span>.,</span>
+<span id="cb229-18"><a href="tools-for-efficient-grid-search.html#cb229-18"></a>    <span class="dt">resamples =</span> cell_folds,</span>
+<span id="cb229-19"><a href="tools-for-efficient-grid-search.html#cb229-19"></a>    <span class="dt">grid =</span> <span class="kw">data.frame</span>(<span class="dt">trees =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">100</span>),</span>
+<span id="cb229-20"><a href="tools-for-efficient-grid-search.html#cb229-20"></a>    <span class="dt">metrics =</span> roc_res</span>
+<span id="cb229-21"><a href="tools-for-efficient-grid-search.html#cb229-21"></a>  )</span></code></pre></div>
+<blockquote>
+<p>Even though we fit the model without the submodel prediction trick, this optimization is automatically applied by <code>parsnip</code>.</p>
+</blockquote>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="tools-for-efficient-grid-search.html#cb230-1"></a><span class="kw">autoplot</span>(c5_tune)</span>
+<span id="cb230-2"><a href="tools-for-efficient-grid-search.html#cb230-2"></a></span>
+<span id="cb230-3"><a href="tools-for-efficient-grid-search.html#cb230-3"></a><span class="kw">ggsave</span>(<span class="st">&quot;images/13_c5_submodel.png&quot;</span>)</span></code></pre></div>
+<p><img src="images/13_c5_submodel.png" /></p>
+</div>
+<div id="parallel-processing-1" class="section level3">
+<h3><span class="header-section-number">13.4.2</span> Parallel processing</h3>
+<p>backend packages right now are <em><code>doFuture</code></em>, <code>doMC</code>, <code>doMPI</code>, <em><code>doParallel</code></em>, <code>doRedis</code>,<code>doRNG</code>, <code>doSNOW</code>, and <code>doAzureParallel</code></p>
+<p>In <code>tune_*()</code>, there are two approaches, often set in <code>control_grid()</code> or <code>control_resamples()</code></p>
+<ul>
+<li><p><code>parallel_over = "resamples</code> or</p></li>
+<li><p><code>parallel_over = "everything"</code> or</p></li>
+<li><p><code>parallel_over = NULL</code> (the default) chooses “resamples” if there are more than one resample, otherwise chooses “everything” to attempt to maximize core utilization</p></li>
+</ul>
+<p>Note that switching between <code>parallel_over</code> strategies is not guaranteed to use the same random number generation schemes. However, re-tuning a model using the same <code>parallel_over</code> strategy is guaranteed to be reproducible between runs.</p>
+To use them, register the parallel backend first.
+<p style="color:red;">
+On a shared server, never never consume all of the cores.
+</p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="tools-for-efficient-grid-search.html#cb231-1"></a>all_cores &lt;-<span class="st"> </span>parallel<span class="op">::</span><span class="kw">detectCores</span>(<span class="dt">logical =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb231-2"><a href="tools-for-efficient-grid-search.html#cb231-2"></a></span>
+<span id="cb231-3"><a href="tools-for-efficient-grid-search.html#cb231-3"></a><span class="kw">library</span>(doParallel)</span>
+<span id="cb231-4"><a href="tools-for-efficient-grid-search.html#cb231-4"></a>cl &lt;-<span class="st"> </span><span class="kw">makePSOCKcluster</span>(all_cores)</span>
+<span id="cb231-5"><a href="tools-for-efficient-grid-search.html#cb231-5"></a>doParallel<span class="op">::</span><span class="kw">registerDoParallel</span>(cl)</span></code></pre></div>
+<p>Be careful to avoid use of variables from the global environment. For example:</p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="tools-for-efficient-grid-search.html#cb232-1"></a>num_pcs &lt;-<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb232-2"><a href="tools-for-efficient-grid-search.html#cb232-2"></a></span>
+<span id="cb232-3"><a href="tools-for-efficient-grid-search.html#cb232-3"></a><span class="kw">recipe</span>(mpg <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> mtcars) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb232-4"><a href="tools-for-efficient-grid-search.html#cb232-4"></a><span class="st">  </span><span class="co"># Bad since num_pcs might not be found by a worker process</span></span>
+<span id="cb232-5"><a href="tools-for-efficient-grid-search.html#cb232-5"></a><span class="st">  </span><span class="kw">step_pca</span>(<span class="kw">all_predictors</span>(), <span class="dt">num_comp =</span> num_pcs)</span>
+<span id="cb232-6"><a href="tools-for-efficient-grid-search.html#cb232-6"></a></span>
+<span id="cb232-7"><a href="tools-for-efficient-grid-search.html#cb232-7"></a><span class="kw">recipe</span>(mpg <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> mtcars) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb232-8"><a href="tools-for-efficient-grid-search.html#cb232-8"></a><span class="st">  </span><span class="co"># Good since the value is injected into the object</span></span>
+<span id="cb232-9"><a href="tools-for-efficient-grid-search.html#cb232-9"></a><span class="st">  </span><span class="kw">step_pca</span>(<span class="kw">all_predictors</span>(), <span class="dt">num_comp =</span> <span class="op">!!</span>num_pcs)</span></code></pre></div>
+<p>for the most part, the logging provided by <code>tune_grid()</code> will not be seen when running in parallel.</p>
+</div>
+<div id="benchmarking-parallel-with-boosted-trees" class="section level3">
+<h3><span class="header-section-number">13.4.3</span> Benchmarking Parallel with boosted trees</h3>
+<p>Three scenarios</p>
+<ol style="list-style-type: decimal">
+<li><p>Preprocess the data prior to modeling using <code>dplyr</code></p></li>
+<li><p>Conduct the same preprocessing via a <code>recipe</code></p></li>
+<li><p>With a <code>recipe</code>, add a step that has a high computational cost</p></li>
+</ol>
+<p>using variable numbers of worker processes and using the two <code>parallel_over</code> options, on a computer with 10 physical cores</p>
+<p><img src="https://www.tmwr.org/figures/grid-par-times-1.svg" /></p>
+<p>For <code>dplyr</code> and the simple <code>recipe</code></p>
+<ul>
+<li><p>There is little difference in the execution times between the panels.</p></li>
+<li><p>There is some benefit for using <code>parallel_over = "everything"</code> with many cores. However, as shown in the figure, the majority of the benefit of parallel processing occurs in the first five workers.</p></li>
+</ul>
+<p>With the expensive preprocessing step, there is a considerable difference in execution times. Using <code>parallel_over = "everything"</code> is problematic since, even using all cores, it never achieves the execution time that <code>parallel_over = "resamples"</code> attains with just five cores. This is because the costly preprocessing step is unnecessarily repeated in the computational scheme.</p>
+<blockquote>
+<p>Overall, note that the increased computational savings will vary from model-to-model and are also affected by the size of the grid, the number of resamples, etc. A very computationally efficient model may not benefit as much from parallel processing.</p>
+</blockquote>
+</div>
+<div id="racing-methods" class="section level3">
+<h3><span class="header-section-number">13.4.4</span> Racing Methods</h3>
+<p>The <code>finetune</code> package contains functions for racing.</p>
+<p>One issue with grid search is that all models need to be fit across all resamples before any tuning parameters can be evaluated. It would be helpful if instead, at some point during tuning, an interim analysis could be conducted to eliminate any truly awful parameter candidates.</p>
+<p>In <em>racing methods</em> the tuning process evaluates all models on an initial subset of resamples. Based on their current performance metrics, some parameter sets are not considered in subsequent resamples.</p>
+<p>As an example, in the Chicago multilayer perceptron tuning process with a regular grid above, what would the results look like after only the first three folds?</p>
+<p>We can fit a model where the outcome is the resampled area under the ROC curve and the predictor is an indicator for the parameter combination. The model takes the resample-to-resample effect into account and produces point and interval estimates for each parameter setting. The results of the model are one-sided 95% confidence intervals that measure the loss of the ROC value relative to the currently best performing parameters.</p>
+<p>Any parameter set whose confidence interval includes zero would lack evidence that its performance is not statistically different from the best results. We retain 10 settings; these are resampled more. The remaining 10 submodels are no longer considered.</p>
+<p><video src="https://www.tmwr.org/race_results.mp4" controls=""><a href="https://www.tmwr.org/race_results.mp4">Video</a></video></p>
+<blockquote>
+<p>Racing methods can be more efficient than basic grid search as long as the interim analysis is fast and some parameter settings have poor performance. It also is most helpful when the model does <strong>not</strong> have the ability to exploit submodel predictions.</p>
+</blockquote>
+<p>The <code>tune_race_anova()</code> function conducts an Analysis of Variance (ANOVA) model to test for statistical significance of the different model configurations.</p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="tools-for-efficient-grid-search.html#cb233-1"></a><span class="kw">library</span>(finetune)</span>
+<span id="cb233-2"><a href="tools-for-efficient-grid-search.html#cb233-2"></a></span>
+<span id="cb233-3"><a href="tools-for-efficient-grid-search.html#cb233-3"></a><span class="kw">set.seed</span>(<span class="dv">99</span>)</span>
+<span id="cb233-4"><a href="tools-for-efficient-grid-search.html#cb233-4"></a>mlp_sfd_race &lt;-</span>
+<span id="cb233-5"><a href="tools-for-efficient-grid-search.html#cb233-5"></a><span class="st">  </span>mlp_wflow <span class="op">%&gt;%</span></span>
+<span id="cb233-6"><a href="tools-for-efficient-grid-search.html#cb233-6"></a><span class="st">  </span><span class="kw">tune_race_anova</span>(</span>
+<span id="cb233-7"><a href="tools-for-efficient-grid-search.html#cb233-7"></a>    Chicago_folds,</span>
+<span id="cb233-8"><a href="tools-for-efficient-grid-search.html#cb233-8"></a>    <span class="dt">grid =</span> <span class="dv">20</span>,</span>
+<span id="cb233-9"><a href="tools-for-efficient-grid-search.html#cb233-9"></a>    <span class="dt">param_info =</span> mlp_param,</span>
+<span id="cb233-10"><a href="tools-for-efficient-grid-search.html#cb233-10"></a>    <span class="dt">metrics =</span> rmse_mape_rsq_iic,</span>
+<span id="cb233-11"><a href="tools-for-efficient-grid-search.html#cb233-11"></a>    <span class="dt">control =</span> <span class="kw">control_race</span>(<span class="dt">verbose_elim =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb233-12"><a href="tools-for-efficient-grid-search.html#cb233-12"></a>  )</span>
+<span id="cb233-13"><a href="tools-for-efficient-grid-search.html#cb233-13"></a></span>
+<span id="cb233-14"><a href="tools-for-efficient-grid-search.html#cb233-14"></a><span class="kw">write_rds</span>(mlp_sfd_race, </span>
+<span id="cb233-15"><a href="tools-for-efficient-grid-search.html#cb233-15"></a>          <span class="st">&quot;data/13-Chicago-mlp_sfd_race.rds&quot;</span>,</span>
+<span id="cb233-16"><a href="tools-for-efficient-grid-search.html#cb233-16"></a>          <span class="dt">compress =</span> <span class="st">&quot;gz&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="tools-for-efficient-grid-search.html#cb234-1"></a><span class="kw">autoplot</span>(mlp_sfd_race)</span>
+<span id="cb234-2"><a href="tools-for-efficient-grid-search.html#cb234-2"></a></span>
+<span id="cb234-3"><a href="tools-for-efficient-grid-search.html#cb234-3"></a><span class="kw">ggsave</span>(<span class="st">&quot;images/13_mlp_sfd_race.png&quot;</span>,</span>
+<span id="cb234-4"><a href="tools-for-efficient-grid-search.html#cb234-4"></a>       <span class="dt">width =</span> <span class="dv">12</span>)</span></code></pre></div>
+<p><img src="images/13_mlp_sfd_race.png" /></p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="tools-for-efficient-grid-search.html#cb235-1"></a><span class="kw">show_best</span>(mlp_sfd_race, <span class="dt">n =</span> <span class="dv">6</span>)</span></code></pre></div>
+<pre><code>  hidden_units  penalty epochs num_comp .metric .estimator  mean     n
+         &lt;int&gt;    &lt;dbl&gt;  &lt;int&gt;    &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;
+1            6 3.08e- 5    126        3 rmse    standard    2.47     8
+2            8 2.15e- 1    148        9 rmse    standard    2.48     8
+3           10 9.52e- 3    157        3 rmse    standard    2.55     8
+4            6 2.60e-10     84       12 rmse    standard    2.56     8
+5            5 1.48e- 2     94        4 rmse    standard    2.57     8
+6            4 7.08e- 1     98       14 rmse    standard    2.60     8
+# ... with 2 more variables: std_err &lt;dbl&gt;, .config &lt;chr&gt;
+Warning message:
+No value of `metric` was given; metric &#39;rmse&#39; will be used. </code></pre>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="finalizing-the-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapter-summary.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/13-grid_search.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
