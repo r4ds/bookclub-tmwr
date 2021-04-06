@@ -30,7 +30,7 @@ library(details)
   - Specify `{tune}` **parallel-processing rules** using the `parallel_over` parameter.
   - Use `finetune::tune_race_anova()` to make tuning more efficient via **racing methods.**
 
-## The call to action:
+**The call to action:**
 
 Tuning machine learning models can be time consuming and computationally expensive.
 
