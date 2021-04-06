@@ -125,6 +125,7 @@ what-is-next
 meeting-videos-13
 cohort-1-12
 grid-search
+the-call-to-action
 regular-and-non-regular-grids
 regular-grids
 irregular-grids
@@ -140,7 +141,7 @@ chapter-summary
 iterative-search
 slide-1-title
 slide-2-title
-title
+screening-many-models
 slide-1-title-1
 slide-2-title-1
 slide-1-title-2

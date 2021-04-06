@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5.4 Continuous outcome data | Tidy Modeling with R Book Club</title>
+  <title>13.1 The call to action: | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5.4 Continuous outcome data | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="13.1 The call to action: | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5.4 Continuous outcome data | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="13.1 The call to action: | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="class-imbalance.html"/>
-<link rel="next" href="time-series-data.html"/>
+<link rel="prev" href="grid-search.html"/>
+<link rel="next" href="regular-and-non-regular-grids.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -370,21 +370,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="continuous-outcome-data" class="section level2">
-<h2><span class="header-section-number">5.4</span> Continuous outcome data</h2>
-<p>For continuous outcome data (e.g. costs), a stratified random sampling approach would involve conducting a 80/20 split within each quartile and then pool the results together. For the <a href="https://www.tmwr.org/ames.html">Ames housing dataset</a>, the call would look like this:</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="continuous-outcome-data.html#cb103-1"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb103-2"><a href="continuous-outcome-data.html#cb103-2"></a>ames_split &lt;-<span class="st"> </span><span class="kw">initial_split</span>(ames, <span class="dt">prop =</span> <span class="fl">0.80</span>, <span class="dt">strata =</span> Sale_Price)</span>
-<span id="cb103-3"><a href="continuous-outcome-data.html#cb103-3"></a>ames_train &lt;-<span class="st"> </span><span class="kw">training</span>(ames_split)</span>
-<span id="cb103-4"><a href="continuous-outcome-data.html#cb103-4"></a>ames_test  &lt;-<span class="st"> </span><span class="kw">testing</span>(ames_split)</span></code></pre></div>
+<div id="the-call-to-action" class="section level2">
+<h2><span class="header-section-number">13.1</span> The call to action:</h2>
+<p>Tuning machine learning models can be time consuming and computationally expensive.</p>
+<p>Thoughtful choices in the experimental design of searches can make them easier to deal with.</p>
+<hr />
+<p><img src="https://media2.giphy.com/media/yv1ggi3Cbase05a8iS/giphy.gif?cid=ecf05e47kfcugxzowyye8c229p69usyairwezq4tnj3hbdyr&amp;rid=giphy.gif" /></p>
+<ul>
+<li><p>Last week: how to tag arguments using <code>tune()</code>.</p></li>
+<li><p>This week: how to optimize the parameters, <strong>a priori</strong>.</p></li>
+<li><p>Next week: <strong>iterative</strong> methods.</p></li>
+</ul>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="class-imbalance.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="time-series-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="grid-search.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regular-and-non-regular-grids.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -415,7 +419,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/05-spending_our_data.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/13-grid_search.Rmd",
 "text": "Edit"
 },
 "history": {
