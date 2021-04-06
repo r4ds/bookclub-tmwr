@@ -1,4 +1,6 @@
-```{r include=F, echo=F}
+# Grid search
+
+```{r setup13, echo = FALSE, include = FALSE}
 knitr::opts_chunk$set(
   # collapse = TRUE
   warning = FALSE,
@@ -11,9 +13,24 @@ library(lubridate)
 library(details)
 ```
 
-# Grid search
+**Learning objectives:**
 
-The call to action:
+- Use the `{dials}` package to **create tuning grids.**
+  - Compare and contrast **regular and non-regular grids.**
+  - Use `dials::parameters()` to **examine tuning parameters.**
+  - Use `dials::grid_regular()` to **create a regular tuning grid.**
+  - Use `dials::grid_*random*()` functions to **create irregular tuning grids.**
+- Use `tune::tune_grid()` to **conduct a grid search.**
+  - Use the `grid` parameter to **specify tuning grids.**
+- **Finalize** a **tuned model.**
+  - Use `tune::select_*()` functions to **choose a tuned parameter set.**
+  - **Manually specify** a parameter set.
+- Improve grid search efficiency.
+  - Recognize how `{parsnip}` uses **submodel optimization** to make tuning more efficient.
+  - Specify `{tune}` **parallel-processing rules** using the `parallel_over` parameter.
+  - Use `finetune::tune_race_anova()` to make tuning more efficient via **racing methods.**
+
+## The call to action:
 
 Tuning machine learning models can be time consuming and computationally expensive.
 
