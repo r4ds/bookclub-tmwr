@@ -125,7 +125,6 @@ what-is-next
 meeting-videos-13
 cohort-1-12
 grid-search
-the-call-to-action
 regular-and-non-regular-grids
 regular-grids
 irregular-grids
