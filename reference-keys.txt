@@ -23,6 +23,7 @@ further-reading
 meeting-videos-1
 cohort-1-1
 cohort-2-1
+cohort-3-1
 a-review-of-r-modeling-fundamentals
 r-formula-syntax
 recap

@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-04-07" />
+<meta name="date" content="2021-04-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -165,6 +165,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.10" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html"><i class="fa fa-check"></i><b>2.10</b> Meeting Videos</a><ul>
 <li class="chapter" data-level="2.10.1" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-1-1"><i class="fa fa-check"></i><b>2.10.1</b> Cohort 1</a></li>
 <li class="chapter" data-level="2.10.2" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-2-1"><i class="fa fa-check"></i><b>2.10.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="2.10.3" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-3-1"><i class="fa fa-check"></i><b>2.10.3</b> Cohort 3</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="a-review-of-r-modeling-fundamentals.html"><a href="a-review-of-r-modeling-fundamentals.html"><i class="fa fa-check"></i><b>3</b> A review of R modeling fundamentals</a><ul>
@@ -398,7 +399,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>uses <code>data.frame</code></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="create-a-model.html#cb113-1"></a><span class="kw">lm</span>(formula, data, ...)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="create-a-model.html#cb114-1"></a><span class="kw">lm</span>(formula, data, ...)</span></code></pre></div>
 <p><br></p>
 <ul>
 <li><strong>{glmnet}</strong>
@@ -407,7 +408,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Uses a matrix</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="create-a-model.html#cb114-1"></a><span class="kw">glmnet</span>(<span class="dt">x =</span> matrix, <span class="dt">y =</span> vector, <span class="dt">family =</span> <span class="st">&quot;gaussian&quot;</span>, ...)</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="create-a-model.html#cb115-1"></a><span class="kw">glmnet</span>(<span class="dt">x =</span> matrix, <span class="dt">y =</span> vector, <span class="dt">family =</span> <span class="st">&quot;gaussian&quot;</span>, ...)</span></code></pre></div>
 <p><br>
 <br></p>
 </div>
@@ -441,12 +442,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><strong>Bringing it all together</strong></li>
 </ul>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="create-a-model.html#cb115-1"></a>lm_model_spec &lt;-<span class="st"> </span></span>
-<span id="cb115-2"><a href="create-a-model.html#cb115-2"></a><span class="st">  </span><span class="kw">linear_reg</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># specify model</span></span>
-<span id="cb115-3"><a href="create-a-model.html#cb115-3"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;lm&quot;</span>) <span class="co"># set engine</span></span>
-<span id="cb115-4"><a href="create-a-model.html#cb115-4"></a></span>
-<span id="cb115-5"><a href="create-a-model.html#cb115-5"></a></span>
-<span id="cb115-6"><a href="create-a-model.html#cb115-6"></a>lm_model_spec</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="create-a-model.html#cb116-1"></a>lm_model_spec &lt;-<span class="st"> </span></span>
+<span id="cb116-2"><a href="create-a-model.html#cb116-2"></a><span class="st">  </span><span class="kw">linear_reg</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># specify model</span></span>
+<span id="cb116-3"><a href="create-a-model.html#cb116-3"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;lm&quot;</span>) <span class="co"># set engine</span></span>
+<span id="cb116-4"><a href="create-a-model.html#cb116-4"></a></span>
+<span id="cb116-5"><a href="create-a-model.html#cb116-5"></a></span>
+<span id="cb116-6"><a href="create-a-model.html#cb116-6"></a>lm_model_spec</span></code></pre></div>
 <pre><code>## Linear Regression Model Specification (regression)
 ## 
 ## Computational engine: lm</code></pre>
@@ -468,19 +469,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>delays creating dummy variable and has underlying model function</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="create-a-model.html#cb117-1"></a><span class="co"># create model fit using formula</span></span>
-<span id="cb117-2"><a href="create-a-model.html#cb117-2"></a>lm_form_fit &lt;-<span class="st"> </span></span>
-<span id="cb117-3"><a href="create-a-model.html#cb117-3"></a><span class="st">  </span>lm_model_spec <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb117-4"><a href="create-a-model.html#cb117-4"></a><span class="st">  </span><span class="kw">fit</span>(Sale_Price <span class="op">~</span><span class="st"> </span>Longitude <span class="op">+</span><span class="st"> </span>Latitude, <span class="dt">data =</span> ames_train)</span>
-<span id="cb117-5"><a href="create-a-model.html#cb117-5"></a></span>
-<span id="cb117-6"><a href="create-a-model.html#cb117-6"></a></span>
-<span id="cb117-7"><a href="create-a-model.html#cb117-7"></a><span class="co"># create model fit using x/y</span></span>
-<span id="cb117-8"><a href="create-a-model.html#cb117-8"></a>lm_xy_fit &lt;-<span class="st"> </span></span>
-<span id="cb117-9"><a href="create-a-model.html#cb117-9"></a><span class="st">  </span>lm_model_spec <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb117-10"><a href="create-a-model.html#cb117-10"></a><span class="st">  </span><span class="kw">fit_xy</span>(</span>
-<span id="cb117-11"><a href="create-a-model.html#cb117-11"></a>    <span class="dt">x =</span> ames_train <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Longitude, Latitude),</span>
-<span id="cb117-12"><a href="create-a-model.html#cb117-12"></a>    <span class="dt">y =</span> ames_train <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(Sale_Price)</span>
-<span id="cb117-13"><a href="create-a-model.html#cb117-13"></a>    )</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="create-a-model.html#cb118-1"></a><span class="co"># create model fit using formula</span></span>
+<span id="cb118-2"><a href="create-a-model.html#cb118-2"></a>lm_form_fit &lt;-<span class="st"> </span></span>
+<span id="cb118-3"><a href="create-a-model.html#cb118-3"></a><span class="st">  </span>lm_model_spec <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb118-4"><a href="create-a-model.html#cb118-4"></a><span class="st">  </span><span class="kw">fit</span>(Sale_Price <span class="op">~</span><span class="st"> </span>Longitude <span class="op">+</span><span class="st"> </span>Latitude, <span class="dt">data =</span> ames_train)</span>
+<span id="cb118-5"><a href="create-a-model.html#cb118-5"></a></span>
+<span id="cb118-6"><a href="create-a-model.html#cb118-6"></a></span>
+<span id="cb118-7"><a href="create-a-model.html#cb118-7"></a><span class="co"># create model fit using x/y</span></span>
+<span id="cb118-8"><a href="create-a-model.html#cb118-8"></a>lm_xy_fit &lt;-<span class="st"> </span></span>
+<span id="cb118-9"><a href="create-a-model.html#cb118-9"></a><span class="st">  </span>lm_model_spec <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb118-10"><a href="create-a-model.html#cb118-10"></a><span class="st">  </span><span class="kw">fit_xy</span>(</span>
+<span id="cb118-11"><a href="create-a-model.html#cb118-11"></a>    <span class="dt">x =</span> ames_train <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Longitude, Latitude),</span>
+<span id="cb118-12"><a href="create-a-model.html#cb118-12"></a>    <span class="dt">y =</span> ames_train <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(Sale_Price)</span>
+<span id="cb118-13"><a href="create-a-model.html#cb118-13"></a>    )</span></code></pre></div>
 <p><br>
 <br></p>
 </div>
@@ -556,20 +557,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>The <code>translate()</code> provides the mapping from the parsnips interface to the each individual package’s implementation of the algorithm.</li>
 </ul>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="create-a-model.html#cb118-1"></a><span class="co"># stats implementation</span></span>
-<span id="cb118-2"><a href="create-a-model.html#cb118-2"></a><span class="kw">linear_reg</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb118-3"><a href="create-a-model.html#cb118-3"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;lm&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb118-4"><a href="create-a-model.html#cb118-4"></a><span class="st">  </span><span class="kw">translate</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="create-a-model.html#cb119-1"></a><span class="co"># stats implementation</span></span>
+<span id="cb119-2"><a href="create-a-model.html#cb119-2"></a><span class="kw">linear_reg</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb119-3"><a href="create-a-model.html#cb119-3"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;lm&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb119-4"><a href="create-a-model.html#cb119-4"></a><span class="st">  </span><span class="kw">translate</span>()</span></code></pre></div>
 <pre><code>## Linear Regression Model Specification (regression)
 ## 
 ## Computational engine: lm 
 ## 
 ## Model fit template:
 ## stats::lm(formula = missing_arg(), data = missing_arg(), weights = missing_arg())</code></pre>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="create-a-model.html#cb120-1"></a><span class="co"># glmnet implementation</span></span>
-<span id="cb120-2"><a href="create-a-model.html#cb120-2"></a><span class="kw">linear_reg</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb120-3"><a href="create-a-model.html#cb120-3"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;glmnet&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb120-4"><a href="create-a-model.html#cb120-4"></a><span class="st">  </span><span class="kw">translate</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="create-a-model.html#cb121-1"></a><span class="co"># glmnet implementation</span></span>
+<span id="cb121-2"><a href="create-a-model.html#cb121-2"></a><span class="kw">linear_reg</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb121-3"><a href="create-a-model.html#cb121-3"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;glmnet&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb121-4"><a href="create-a-model.html#cb121-4"></a><span class="st">  </span><span class="kw">translate</span>()</span></code></pre></div>
 <pre><code>## Linear Regression Model Specification (regression)
 ## 
 ## Computational engine: glmnet 

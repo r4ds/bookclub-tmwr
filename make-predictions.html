@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-04-07" />
+<meta name="date" content="2021-04-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -165,6 +165,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.10" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html"><i class="fa fa-check"></i><b>2.10</b> Meeting Videos</a><ul>
 <li class="chapter" data-level="2.10.1" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-1-1"><i class="fa fa-check"></i><b>2.10.1</b> Cohort 1</a></li>
 <li class="chapter" data-level="2.10.2" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-2-1"><i class="fa fa-check"></i><b>2.10.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="2.10.3" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-3-1"><i class="fa fa-check"></i><b>2.10.3</b> Cohort 3</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="a-review-of-r-modeling-fundamentals.html"><a href="a-review-of-r-modeling-fundamentals.html"><i class="fa fa-check"></i><b>3</b> A review of R modeling fundamentals</a><ul>
@@ -383,12 +384,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="make-predictions.html#cb124-1"></a><span class="co"># create example test set</span></span>
-<span id="cb124-2"><a href="make-predictions.html#cb124-2"></a>ames_test_small &lt;-<span class="st"> </span>ames_test <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span>
-<span id="cb124-3"><a href="make-predictions.html#cb124-3"></a></span>
-<span id="cb124-4"><a href="make-predictions.html#cb124-4"></a><span class="co"># predict on test set</span></span>
-<span id="cb124-5"><a href="make-predictions.html#cb124-5"></a><span class="kw">predict</span>(lm_form_fit, <span class="dt">new_data =</span> ames_test_small) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb124-6"><a href="make-predictions.html#cb124-6"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="make-predictions.html#cb125-1"></a><span class="co"># create example test set</span></span>
+<span id="cb125-2"><a href="make-predictions.html#cb125-2"></a>ames_test_small &lt;-<span class="st"> </span>ames_test <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span>
+<span id="cb125-3"><a href="make-predictions.html#cb125-3"></a></span>
+<span id="cb125-4"><a href="make-predictions.html#cb125-4"></a><span class="co"># predict on test set</span></span>
+<span id="cb125-5"><a href="make-predictions.html#cb125-5"></a><span class="kw">predict</span>(lm_form_fit, <span class="dt">new_data =</span> ames_test_small) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb125-6"><a href="make-predictions.html#cb125-6"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -417,13 +418,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Combining <code>bind_cols</code> with our predict function we can merge our predictions back to the test set.</li>
 </ul>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="make-predictions.html#cb125-1"></a><span class="co"># add predictions together with actuals</span></span>
-<span id="cb125-2"><a href="make-predictions.html#cb125-2"></a>ames_test_small <span class="op">%&gt;%</span></span>
-<span id="cb125-3"><a href="make-predictions.html#cb125-3"></a><span class="st">  </span><span class="kw">select</span>(Sale_Price) <span class="op">%&gt;%</span></span>
-<span id="cb125-4"><a href="make-predictions.html#cb125-4"></a><span class="st">  </span><span class="kw">bind_cols</span>(<span class="kw">predict</span>(lm_form_fit, ames_test_small)) <span class="op">%&gt;%</span></span>
-<span id="cb125-5"><a href="make-predictions.html#cb125-5"></a><span class="st">  </span><span class="co"># Add 95% prediction intervals to the results:</span></span>
-<span id="cb125-6"><a href="make-predictions.html#cb125-6"></a><span class="st">  </span><span class="kw">bind_cols</span>(<span class="kw">predict</span>(lm_form_fit, ames_test_small, <span class="dt">type =</span> <span class="st">&quot;pred_int&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb125-7"><a href="make-predictions.html#cb125-7"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="make-predictions.html#cb126-1"></a><span class="co"># add predictions together with actuals</span></span>
+<span id="cb126-2"><a href="make-predictions.html#cb126-2"></a>ames_test_small <span class="op">%&gt;%</span></span>
+<span id="cb126-3"><a href="make-predictions.html#cb126-3"></a><span class="st">  </span><span class="kw">select</span>(Sale_Price) <span class="op">%&gt;%</span></span>
+<span id="cb126-4"><a href="make-predictions.html#cb126-4"></a><span class="st">  </span><span class="kw">bind_cols</span>(<span class="kw">predict</span>(lm_form_fit, ames_test_small)) <span class="op">%&gt;%</span></span>
+<span id="cb126-5"><a href="make-predictions.html#cb126-5"></a><span class="st">  </span><span class="co"># Add 95% prediction intervals to the results:</span></span>
+<span id="cb126-6"><a href="make-predictions.html#cb126-6"></a><span class="st">  </span><span class="kw">bind_cols</span>(<span class="kw">predict</span>(lm_form_fit, ames_test_small, <span class="dt">type =</span> <span class="st">&quot;pred_int&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb126-7"><a href="make-predictions.html#cb126-7"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">

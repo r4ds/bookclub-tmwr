@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-04-07" />
+<meta name="date" content="2021-04-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -165,6 +165,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.10" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html"><i class="fa fa-check"></i><b>2.10</b> Meeting Videos</a><ul>
 <li class="chapter" data-level="2.10.1" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-1-1"><i class="fa fa-check"></i><b>2.10.1</b> Cohort 1</a></li>
 <li class="chapter" data-level="2.10.2" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-2-1"><i class="fa fa-check"></i><b>2.10.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="2.10.3" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-3-1"><i class="fa fa-check"></i><b>2.10.3</b> Cohort 3</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="a-review-of-r-modeling-fundamentals.html"><a href="a-review-of-r-modeling-fundamentals.html"><i class="fa fa-check"></i><b>3</b> A review of R modeling fundamentals</a><ul>
@@ -372,15 +373,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="build-our-random-forest-model" class="section level2">
 <h2><span class="header-section-number">12.9</span> Build our random forest model:</h2>
 <p>random forest model</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="build-our-random-forest-model.html#cb165-1"></a>rf_spec &lt;-<span class="st"> </span><span class="kw">rand_forest</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb165-2"><a href="build-our-random-forest-model.html#cb165-2"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;ranger&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb165-3"><a href="build-our-random-forest-model.html#cb165-3"></a><span class="st">  </span><span class="kw">set_mode</span>(<span class="st">&quot;regression&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="build-our-random-forest-model.html#cb166-1"></a>rf_spec &lt;-<span class="st"> </span><span class="kw">rand_forest</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb166-2"><a href="build-our-random-forest-model.html#cb166-2"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;ranger&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb166-3"><a href="build-our-random-forest-model.html#cb166-3"></a><span class="st">  </span><span class="kw">set_mode</span>(<span class="st">&quot;regression&quot;</span>) </span></code></pre></div>
 <p>Main Arguments <code>args()</code>:</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="build-our-random-forest-model.html#cb166-1"></a><span class="kw">args</span>(rand_forest)</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="build-our-random-forest-model.html#cb167-1"></a><span class="kw">args</span>(rand_forest)</span></code></pre></div>
 <pre><code>## function (mode = &quot;unknown&quot;, mtry = NULL, trees = NULL, min_n = NULL) 
 ## NULL</code></pre>
 <p>engine specific arguments:</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="build-our-random-forest-model.html#cb168-1"></a>?ranger<span class="op">::</span><span class="kw">ranger</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="build-our-random-forest-model.html#cb169-1"></a>?ranger<span class="op">::</span><span class="kw">ranger</span>()</span></code></pre></div>
 </div>
             </section>
 

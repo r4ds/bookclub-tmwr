@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-04-07" />
+<meta name="date" content="2021-04-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -165,6 +165,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.10" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html"><i class="fa fa-check"></i><b>2.10</b> Meeting Videos</a><ul>
 <li class="chapter" data-level="2.10.1" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-1-1"><i class="fa fa-check"></i><b>2.10.1</b> Cohort 1</a></li>
 <li class="chapter" data-level="2.10.2" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-2-1"><i class="fa fa-check"></i><b>2.10.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="2.10.3" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-3-1"><i class="fa fa-check"></i><b>2.10.3</b> Cohort 3</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="a-review-of-r-modeling-fundamentals.html"><a href="a-review-of-r-modeling-fundamentals.html"><i class="fa fa-check"></i><b>3</b> A review of R modeling fundamentals</a><ul>
@@ -372,11 +373,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="add-tuning-parameters" class="section level2">
 <h2><span class="header-section-number">12.10</span> Add tuning parameters:</h2>
 <p>We can add main arguments (mtry, min_n) and engine specific arguments (regularization.factor)</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="add-tuning-parameters.html#cb169-1"></a>rf_spec_tuned &lt;-<span class="st"> </span><span class="kw">rand_forest</span>(<span class="dt">mtry =</span> <span class="kw">tune</span>(), <span class="dt">trees =</span> <span class="dv">2000</span>, <span class="dt">min_n =</span> <span class="kw">tune</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb169-2"><a href="add-tuning-parameters.html#cb169-2"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;ranger&quot;</span>, <span class="dt">regularization.factor =</span> <span class="kw">tune</span>(<span class="st">&quot;reg&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb169-3"><a href="add-tuning-parameters.html#cb169-3"></a><span class="st">  </span><span class="kw">set_mode</span>(<span class="st">&quot;regression&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="add-tuning-parameters.html#cb170-1"></a>rf_spec_tuned &lt;-<span class="st"> </span><span class="kw">rand_forest</span>(<span class="dt">mtry =</span> <span class="kw">tune</span>(), <span class="dt">trees =</span> <span class="dv">2000</span>, <span class="dt">min_n =</span> <span class="kw">tune</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb170-2"><a href="add-tuning-parameters.html#cb170-2"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;ranger&quot;</span>, <span class="dt">regularization.factor =</span> <span class="kw">tune</span>(<span class="st">&quot;reg&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb170-3"><a href="add-tuning-parameters.html#cb170-3"></a><span class="st">  </span><span class="kw">set_mode</span>(<span class="st">&quot;regression&quot;</span>) </span></code></pre></div>
 <p><code>tune()</code> returns an expression. This tags the parameters for optimization within the tidymodels framework</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="add-tuning-parameters.html#cb170-1"></a><span class="kw">parameters</span>(rf_spec_tuned)</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="add-tuning-parameters.html#cb171-1"></a><span class="kw">parameters</span>(rf_spec_tuned)</span></code></pre></div>
 <pre><code>## Collection of 3 parameters for tuning
 ## 
 ##  identifier                  type    object

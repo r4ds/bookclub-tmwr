@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-04-07" />
+<meta name="date" content="2021-04-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -165,6 +165,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.10" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html"><i class="fa fa-check"></i><b>2.10</b> Meeting Videos</a><ul>
 <li class="chapter" data-level="2.10.1" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-1-1"><i class="fa fa-check"></i><b>2.10.1</b> Cohort 1</a></li>
 <li class="chapter" data-level="2.10.2" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-2-1"><i class="fa fa-check"></i><b>2.10.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="2.10.3" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-3-1"><i class="fa fa-check"></i><b>2.10.3</b> Cohort 3</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="a-review-of-r-modeling-fundamentals.html"><a href="a-review-of-r-modeling-fundamentals.html"><i class="fa fa-check"></i><b>3</b> A review of R modeling fundamentals</a><ul>
@@ -382,9 +383,9 @@ or a <code>workflows::workflow</code>, and <code>rset</code> object (as created 
 metrics you want with the <code>metrics</code> argument or stick with the defaults.
 The <code>control</code> argument can be used to view/retain/save outputs if
 further tuning is desired. Your call might look like:</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="estimating-performance.html#cb156-1"></a>rf_res &lt;-</span>
-<span id="cb156-2"><a href="estimating-performance.html#cb156-2"></a><span class="st">  </span>rf_wflow <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb156-3"><a href="estimating-performance.html#cb156-3"></a><span class="st">  </span><span class="kw">fit_resamples</span>(<span class="dt">resamples =</span> ames_folds, <span class="dt">control =</span> keep_pred)</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="estimating-performance.html#cb157-1"></a>rf_res &lt;-</span>
+<span id="cb157-2"><a href="estimating-performance.html#cb157-2"></a><span class="st">  </span>rf_wflow <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb157-3"><a href="estimating-performance.html#cb157-3"></a><span class="st">  </span><span class="kw">fit_resamples</span>(<span class="dt">resamples =</span> ames_folds, <span class="dt">control =</span> keep_pred)</span></code></pre></div>
 <p>The output (not viewed here because it’s thicc) can be manipulated in a
 number of ways to view just what you need. You can for example run
 <code>tune::collect_metrics(rf_res)</code> to see just the performance metrics.</p>

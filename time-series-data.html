@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-04-07" />
+<meta name="date" content="2021-04-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -165,6 +165,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.10" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html"><i class="fa fa-check"></i><b>2.10</b> Meeting Videos</a><ul>
 <li class="chapter" data-level="2.10.1" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-1-1"><i class="fa fa-check"></i><b>2.10.1</b> Cohort 1</a></li>
 <li class="chapter" data-level="2.10.2" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-2-1"><i class="fa fa-check"></i><b>2.10.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="2.10.3" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-3-1"><i class="fa fa-check"></i><b>2.10.3</b> Cohort 3</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="a-review-of-r-modeling-fundamentals.html"><a href="a-review-of-r-modeling-fundamentals.html"><i class="fa fa-check"></i><b>3</b> A review of R modeling fundamentals</a><ul>
@@ -372,15 +373,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="time-series-data" class="section level2">
 <h2><span class="header-section-number">5.5</span> Time series data</h2>
 <p>For time series data where you’d want to allocate data to the training set/test set depending on a sorted order, you can use <code>initial_time_split()</code> which works similarly to <code>initial_split()</code>. The <code>prop</code> argument can be used to specify what proportion of the first part of data should be used as the training set.</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="time-series-data.html#cb104-1"></a><span class="kw">data</span>(drinks)</span>
-<span id="cb104-2"><a href="time-series-data.html#cb104-2"></a>drinks_split &lt;-<span class="st"> </span><span class="kw">initial_time_split</span>(drinks)</span>
-<span id="cb104-3"><a href="time-series-data.html#cb104-3"></a>train_data &lt;-<span class="st"> </span><span class="kw">training</span>(drinks_split)</span>
-<span id="cb104-4"><a href="time-series-data.html#cb104-4"></a>test_data &lt;-<span class="st"> </span><span class="kw">testing</span>(drinks_split)</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="time-series-data.html#cb105-1"></a><span class="kw">data</span>(drinks)</span>
+<span id="cb105-2"><a href="time-series-data.html#cb105-2"></a>drinks_split &lt;-<span class="st"> </span><span class="kw">initial_time_split</span>(drinks)</span>
+<span id="cb105-3"><a href="time-series-data.html#cb105-3"></a>train_data &lt;-<span class="st"> </span><span class="kw">training</span>(drinks_split)</span>
+<span id="cb105-4"><a href="time-series-data.html#cb105-4"></a>test_data &lt;-<span class="st"> </span><span class="kw">testing</span>(drinks_split)</span></code></pre></div>
 <p>The <code>lag</code> argument can specify a lag period to use between the training and test set. This is useful if lagged predictors will be used during training and testing.</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="time-series-data.html#cb105-1"></a>drinks_lag_split &lt;-<span class="st"> </span><span class="kw">initial_time_split</span>(drinks, <span class="dt">lag =</span> <span class="dv">12</span>)</span>
-<span id="cb105-2"><a href="time-series-data.html#cb105-2"></a>train_data_lag &lt;-<span class="st"> </span><span class="kw">training</span>(drinks_lag_split)</span>
-<span id="cb105-3"><a href="time-series-data.html#cb105-3"></a>test_data_lag &lt;-<span class="st"> </span><span class="kw">testing</span>(drinks_lag_split)</span>
-<span id="cb105-4"><a href="time-series-data.html#cb105-4"></a><span class="kw">c</span>(<span class="kw">max</span>(train_data_lag<span class="op">$</span>date), <span class="kw">min</span>(test_data_lag<span class="op">$</span>date))</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="time-series-data.html#cb106-1"></a>drinks_lag_split &lt;-<span class="st"> </span><span class="kw">initial_time_split</span>(drinks, <span class="dt">lag =</span> <span class="dv">12</span>)</span>
+<span id="cb106-2"><a href="time-series-data.html#cb106-2"></a>train_data_lag &lt;-<span class="st"> </span><span class="kw">training</span>(drinks_lag_split)</span>
+<span id="cb106-3"><a href="time-series-data.html#cb106-3"></a>test_data_lag &lt;-<span class="st"> </span><span class="kw">testing</span>(drinks_lag_split)</span>
+<span id="cb106-4"><a href="time-series-data.html#cb106-4"></a><span class="kw">c</span>(<span class="kw">max</span>(train_data_lag<span class="op">$</span>date), <span class="kw">min</span>(test_data_lag<span class="op">$</span>date))</span></code></pre></div>
 <pre><code>## [1] &quot;2011-03-01&quot; &quot;2010-04-01&quot;</code></pre>
 </div>
             </section>
