@@ -2,7 +2,13 @@
 
 **Learning objectives:**
 
-- Jon will prefill these.
+- Use `tune::tune_bayes()` to optimize model parameters using **Bayesian optimization.**
+  - Describe how a **Gaussian process model** can be applied to parameter optimization.
+  - Explain how **acquisition functions** can be expressed as a trade-off between **exploration** and **exploitation.**
+  - Describe **expected improvement,** the default acquisition function **used by {tidymodels}.**
+- Use `finetune::tune_sim_anneal()` to optimize model parameters using **Simulated annealing.**
+  - Describe **simulated annealing search.**
+  
 
 ## Slide 1 Title
 
