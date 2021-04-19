@@ -35,7 +35,8 @@ Imports:
     tweetrmd,
     workflowsets,
     palmerpenguins,
-    finetune
+    finetune,
+    kernlab
 Remotes: 
     tidymodels/discrim,
     hadley/emo,
