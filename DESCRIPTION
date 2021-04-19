@@ -33,7 +33,10 @@ Imports:
     tidyverse,
     tufte,
     tweetrmd,
-    workflowsets
+    workflowsets,
+    palmerpenguins,
+    finetune,
+    kernlab
 Remotes: 
     tidymodels/discrim,
     hadley/emo,
