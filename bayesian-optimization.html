@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>21.1 Slide 1 Title | Tidy Modeling with R Book Club</title>
+  <title>14.2 Bayesian Optimization | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="21.1 Slide 1 Title | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="14.2 Bayesian Optimization | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="21.1 Slide 1 Title | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="14.2 Bayesian Optimization | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -24,15 +24,15 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-04-12" />
+<meta name="date" content="2021-04-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="inferential-analysis.html"/>
-<link rel="next" href="slide-2-title-8.html"/>
+<link rel="prev" href="svm-model-as-motivating-example.html"/>
+<link rel="next" href="simulated-annealing.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -314,41 +314,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.5" data-path="chapter-summary.html"><a href="chapter-summary.html"><i class="fa fa-check"></i><b>13.5</b> Chapter Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="iterative-search.html"><a href="iterative-search.html"><i class="fa fa-check"></i><b>14</b> Iterative search</a><ul>
-<li class="chapter" data-level="14.1" data-path="slide-1-title.html"><a href="slide-1-title.html"><i class="fa fa-check"></i><b>14.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="14.2" data-path="slide-2-title.html"><a href="slide-2-title.html"><i class="fa fa-check"></i><b>14.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="14.1" data-path="svm-model-as-motivating-example.html"><a href="svm-model-as-motivating-example.html"><i class="fa fa-check"></i><b>14.1</b> SVM model as motivating example</a></li>
+<li class="chapter" data-level="14.2" data-path="bayesian-optimization.html"><a href="bayesian-optimization.html"><i class="fa fa-check"></i><b>14.2</b> Bayesian Optimization</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="bayesian-optimization.html"><a href="bayesian-optimization.html#gaussian-process-model-at-a-high-level"><i class="fa fa-check"></i><b>14.2.1</b> Gaussian process model, at a high level</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="simulated-annealing.html"><a href="simulated-annealing.html"><i class="fa fa-check"></i><b>14.3</b> Simulated annealing</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="simulated-annealing.html"><a href="simulated-annealing.html#how-it-works"><i class="fa fa-check"></i><b>14.3.1</b> How it works</a></li>
+<li class="chapter" data-level="14.3.2" data-path="simulated-annealing.html"><a href="simulated-annealing.html#the-tune_sim_anneal-function"><i class="fa fa-check"></i><b>14.3.2</b> The tune_sim_anneal() function</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="references-2.html"><a href="references-2.html"><i class="fa fa-check"></i><b>14.4</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="screening-many-models.html"><a href="screening-many-models.html"><i class="fa fa-check"></i><b>15</b> Screening Many Models</a><ul>
-<li class="chapter" data-level="15.1" data-path="slide-1-title-1.html"><a href="slide-1-title-1.html"><i class="fa fa-check"></i><b>15.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="15.2" data-path="slide-2-title-1.html"><a href="slide-2-title-1.html"><i class="fa fa-check"></i><b>15.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="15.1" data-path="slide-1-title.html"><a href="slide-1-title.html"><i class="fa fa-check"></i><b>15.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="15.2" data-path="slide-2-title.html"><a href="slide-2-title.html"><i class="fa fa-check"></i><b>15.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="review-of-chapters-10-15.html"><a href="review-of-chapters-10-15.html"><i class="fa fa-check"></i>Review of chapters 10-15</a><ul>
-<li class="chapter" data-level="15.3" data-path="slide-1-title-2.html"><a href="slide-1-title-2.html"><i class="fa fa-check"></i><b>15.3</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="15.4" data-path="slide-2-title-2.html"><a href="slide-2-title-2.html"><i class="fa fa-check"></i><b>15.4</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="15.3" data-path="slide-1-title-1.html"><a href="slide-1-title-1.html"><i class="fa fa-check"></i><b>15.3</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="15.4" data-path="slide-2-title-1.html"><a href="slide-2-title-1.html"><i class="fa fa-check"></i><b>15.4</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="part"><span><b>Other Topics</b></span></li>
 <li class="chapter" data-level="16" data-path="encoding-categorical-data.html"><a href="encoding-categorical-data.html"><i class="fa fa-check"></i><b>16</b> Encoding categorical data</a><ul>
-<li class="chapter" data-level="16.1" data-path="slide-1-title-3.html"><a href="slide-1-title-3.html"><i class="fa fa-check"></i><b>16.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="16.2" data-path="slide-2-title-3.html"><a href="slide-2-title-3.html"><i class="fa fa-check"></i><b>16.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="16.1" data-path="slide-1-title-2.html"><a href="slide-1-title-2.html"><i class="fa fa-check"></i><b>16.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="16.2" data-path="slide-2-title-2.html"><a href="slide-2-title-2.html"><i class="fa fa-check"></i><b>16.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>17</b> Dimensionality reduction</a><ul>
-<li class="chapter" data-level="17.1" data-path="slide-1-title-4.html"><a href="slide-1-title-4.html"><i class="fa fa-check"></i><b>17.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="17.2" data-path="slide-2-title-4.html"><a href="slide-2-title-4.html"><i class="fa fa-check"></i><b>17.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="17.1" data-path="slide-1-title-3.html"><a href="slide-1-title-3.html"><i class="fa fa-check"></i><b>17.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="17.2" data-path="slide-2-title-3.html"><a href="slide-2-title-3.html"><i class="fa fa-check"></i><b>17.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="chapter" data-level="18" data-path="explaining-models-and-predictions.html"><a href="explaining-models-and-predictions.html"><i class="fa fa-check"></i><b>18</b> Explaining models and predictions</a><ul>
-<li class="chapter" data-level="18.1" data-path="slide-1-title-5.html"><a href="slide-1-title-5.html"><i class="fa fa-check"></i><b>18.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="18.2" data-path="slide-2-title-5.html"><a href="slide-2-title-5.html"><i class="fa fa-check"></i><b>18.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="18.1" data-path="slide-1-title-4.html"><a href="slide-1-title-4.html"><i class="fa fa-check"></i><b>18.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="18.2" data-path="slide-2-title-4.html"><a href="slide-2-title-4.html"><i class="fa fa-check"></i><b>18.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="chapter" data-level="19" data-path="when-should-you-trust-predictions.html"><a href="when-should-you-trust-predictions.html"><i class="fa fa-check"></i><b>19</b> When should you trust predictions?</a><ul>
-<li class="chapter" data-level="19.1" data-path="slide-1-title-6.html"><a href="slide-1-title-6.html"><i class="fa fa-check"></i><b>19.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="19.2" data-path="slide-2-title-6.html"><a href="slide-2-title-6.html"><i class="fa fa-check"></i><b>19.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="19.1" data-path="slide-1-title-5.html"><a href="slide-1-title-5.html"><i class="fa fa-check"></i><b>19.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="19.2" data-path="slide-2-title-5.html"><a href="slide-2-title-5.html"><i class="fa fa-check"></i><b>19.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="ensemble-models.html"><a href="ensemble-models.html"><i class="fa fa-check"></i><b>20</b> Ensemble models</a><ul>
-<li class="chapter" data-level="20.1" data-path="slide-1-title-7.html"><a href="slide-1-title-7.html"><i class="fa fa-check"></i><b>20.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="20.2" data-path="slide-2-title-7.html"><a href="slide-2-title-7.html"><i class="fa fa-check"></i><b>20.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="20.1" data-path="slide-1-title-6.html"><a href="slide-1-title-6.html"><i class="fa fa-check"></i><b>20.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="20.2" data-path="slide-2-title-6.html"><a href="slide-2-title-6.html"><i class="fa fa-check"></i><b>20.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="chapter" data-level="21" data-path="inferential-analysis.html"><a href="inferential-analysis.html"><i class="fa fa-check"></i><b>21</b> Inferential analysis</a><ul>
-<li class="chapter" data-level="21.1" data-path="slide-1-title-8.html"><a href="slide-1-title-8.html"><i class="fa fa-check"></i><b>21.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="21.2" data-path="slide-2-title-8.html"><a href="slide-2-title-8.html"><i class="fa fa-check"></i><b>21.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="21.1" data-path="slide-1-title-7.html"><a href="slide-1-title-7.html"><i class="fa fa-check"></i><b>21.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="21.2" data-path="slide-2-title-7.html"><a href="slide-2-title-7.html"><i class="fa fa-check"></i><b>21.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -370,17 +377,118 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="slide-1-title-8" class="section level2">
-<h2><span class="header-section-number">21.1</span> Slide 1 Title</h2>
-<p>Put the content of your slide here.</p>
+<div id="bayesian-optimization" class="section level2">
+<h2><span class="header-section-number">14.2</span> Bayesian Optimization</h2>
+<p>Bayesian optimization is one of the techniques that can be used to iteratively search for new tuning parameter values.</p>
+<p>Bayesian optimization consists of the following steps:</p>
+<ul>
+<li><p>create a model predicting new tuning parameter values based on the previously generated resampling results</p></li>
+<li><p>resampling of the new tuning parameter values</p></li>
+<li><p>create another model that recommends additional tuning parameter values based on the resampling results of the previous step</p></li>
+</ul>
+<p>This process can occur:</p>
+<ul>
+<li><p>for a predetermined number of iterations, or</p></li>
+<li><p>until there is no improvement in the results</p></li>
+</ul>
+<p>Let’s go over the most commonly used technique for Bayesian optimization, called the <strong>Gaussian process model.</strong></p>
+<div id="gaussian-process-model-at-a-high-level" class="section level3">
+<h3><span class="header-section-number">14.2.1</span> Gaussian process model, at a high level</h3>
+<p>In plain terms, Gaussian processes (GP) models allow us to make predictions about our data by incorporating prior knowledge and fitting a function to the data. With a given set of training points, there are potentially an infinite number of functions. GP shine by giving each of these functions a probability. This generates a probability distribution, which can harnessed.</p>
+<div id="how-is-it-used-for-tuning" class="section level4">
+<h4><span class="header-section-number">14.2.1.1</span> How is it used for tuning?</h4>
+<ul>
+<li><p>As the name suggests, the Gaussian distribution is central to GP models. We’re interested in the multivariate case of this distribution, where each random variable is distributed normally and their joint distribution is also Gaussian.</p></li>
+<li><p><strong>This collection of random variables in the context of our example is the collection of performance metrics for the tuning parameter candidate values.</strong> The 25 random variables making up the grid for our SVM model is assumed to be distributed as multivariate Gaussian.</p></li>
+<li><p>For the GP model:</p>
+<ul>
+<li><p>the inputs (i.e. predictors) are the tuning parameters, <code>cost</code> and <code>rbf_sigma</code></p></li>
+<li><p>the outcome is the performance metric, ROC AUC</p></li>
+<li><p>the outputs are predicted mean and variance (of ROC AUC) for the new candidate tuning parameters</p>
+<ul>
+<li>note: the predicted variance is mostly driven by how far it is from existing data</li>
+</ul></li>
+<li><p>A candidate is selected</p></li>
+<li><p>Performance estimate are calculated for all existing results</p></li>
+</ul></li>
+</ul>
+<p>This process is iterative, and keeps repeating until number of iterations is exhausted or no improvement occurs.</p>
+<p>See Max and Julia’s notes for an in-depth appreciation of the mathematical implications of GP, along with <a href="https://distill.pub/2019/visual-exploration-gaussian-processes/#Multivariate">this excellent interactive blog post by researchers at the University of Konstanz</a>. The elegant properties of GP allow us to:</p>
+<ul>
+<li><p>compute <em>new</em> performance statistics because we obtain a full probability model which reflects the entire distribution of the outcome</p></li>
+<li><p>represent highly non-linear relationships between model performance and the tuning parameters</p></li>
+</ul>
+<p>While it’s a powerful technique that can yield good results, it can be complex to set up. The two main considerations are:</p>
+<ul>
+<li><p>how to set up the model</p></li>
+<li><p>how to pick the parameter values suggested by the model</p></li>
+<li><p>resources, as it can be computationally expensive</p></li>
+</ul>
+<p>Point 2 is further explored in the next section.</p>
+</div>
+<div id="acquisition-functions" class="section level4">
+<h4><span class="header-section-number">14.2.1.2</span> Acquisition functions</h4>
+<p>As we saw previously, GP model generates predicted mean and variance for candidate combinations of parameter values. The next step is picking the parameter combination that could give us the best results. This picking process can be tricky, as <strong>there is a trade-off between the predicted mean and variance for new candidates</strong>. This trade-off is similar to another, the exploration-exploitation trade-off:</p>
+<ul>
+<li><p>Exploration: selection is towards “relatively unexplored” areas i.e. where there are fewer (or no) candidate models. This results in candidates having relatively <strong><em>higher</em></strong> variance, as they are “further” from existing data.</p></li>
+<li><p>Exploitation: selection is based on the best mean prediction. This results in candidates having relatively <strong><em>lower</em></strong> variance, as it focuses on existing data.</p></li>
+</ul>
+<p>The following is an example consisting of 1 tuning parameter (0,1) where the performance metric is r-squared. The points correspond to the observed candidate values for the tuning parameter. The shaded regions represent the mean +/- 1 standard error.</p>
+<ul>
+<li><p>From an exploitation standpoint, one might select a parameter value right next to the observed point - i.e. near left vertical line - as it has the best r-squared.</p></li>
+<li><p>From an exploration standpoint, one might consider the parameter value with the largest confidence interval - i.e. near right vertical line - since it would push our selection towards a region with no observed result. This is known as the <em>confidence bound approach</em>.</p>
+<p>Max and Julia note that the latter approach is not often used.</p>
+<p><img src="images/exploitation-exploration.svg" /></p></li>
+</ul>
+<p>This is where <em>acquisition functions</em> come in, as they can help us in this process of picking a suitable parameter value. The most commonly used one is <strong><em>expected improvement</em></strong>. Let’s illustrate how it works by bringing back the two candidate parameter values we were considering, 0.1 and 0.25:</p>
+<p><img src="images/iterative-exp-imp-1.svg" /></p>
+<p>We can see that the distribution for 0.1 is much narrower (red line), and has the best r-squared (vertical line). So, 0.1 is our current best <strong><em>on average</em></strong>; however, we can see that for parameter value 0.25 there is higher variance and <strong><em>more overall probability area above the current best</em></strong>. What does this mean for our expected improvement acquisition function?</p>
+<p><img src="images/expected-improvement.png" /></p>
+<p>We can see that the expected improvement is significantly higher for parameter value 0.25!</p>
+</div>
+<div id="the-tune_bayes-function" class="section level4">
+<h4><span class="header-section-number">14.2.1.3</span> The tune_bayes() function</h4>
+<p>The <code>tune_bayes()</code> function sets up Bayesian optimization iterative search. It’s similar to <code>tune_grid()</code> but with additional arguments. You can specify the maximum number of search iterations, the acquisition function to be used, and whether to stop the search if no improvement is detected. See Max and Julia for details and additional arguments.</p>
+<p>Let’s keep going with our SVM model. We can use the earlier SVM results as the initial substrate. Once again, we’re trying to maximize ROC AUC.</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="bayesian-optimization.html#cb248-1"></a>ctrl &lt;-<span class="st"> </span><span class="kw">control_bayes</span>(<span class="dt">verbose =</span> <span class="ot">TRUE</span>) <span class="co"># can also add more arguments, like no_improve</span></span>
+<span id="cb248-2"><a href="bayesian-optimization.html#cb248-2"></a></span>
+<span id="cb248-3"><a href="bayesian-optimization.html#cb248-3"></a><span class="kw">set.seed</span>(<span class="dv">420</span>)</span>
+<span id="cb248-4"><a href="bayesian-optimization.html#cb248-4"></a></span>
+<span id="cb248-5"><a href="bayesian-optimization.html#cb248-5"></a>svm_bo &lt;-</span>
+<span id="cb248-6"><a href="bayesian-optimization.html#cb248-6"></a><span class="st">  </span>svm_wflow <span class="op">%&gt;%</span></span>
+<span id="cb248-7"><a href="bayesian-optimization.html#cb248-7"></a><span class="st">  </span><span class="kw">tune_bayes</span>(</span>
+<span id="cb248-8"><a href="bayesian-optimization.html#cb248-8"></a>    <span class="dt">resamples =</span> penguins_folds, </span>
+<span id="cb248-9"><a href="bayesian-optimization.html#cb248-9"></a>    <span class="dt">metrics =</span> roc_res, </span>
+<span id="cb248-10"><a href="bayesian-optimization.html#cb248-10"></a>    <span class="dt">initial =</span> svm_initial, <span class="co"># tune_grid object produced earlier</span></span>
+<span id="cb248-11"><a href="bayesian-optimization.html#cb248-11"></a>    <span class="dt">param_info =</span> svm_param, <span class="co"># specified earlier too, with our new bounds for rbf_sigma</span></span>
+<span id="cb248-12"><a href="bayesian-optimization.html#cb248-12"></a>    <span class="dt">iter =</span> <span class="dv">25</span>, <span class="co"># maximum number of search iterations</span></span>
+<span id="cb248-13"><a href="bayesian-optimization.html#cb248-13"></a>    <span class="dt">control =</span> ctrl</span>
+<span id="cb248-14"><a href="bayesian-optimization.html#cb248-14"></a>  )</span></code></pre></div>
+<p>Looks like the improvements occurred at iterations 8, 11, 13, 12 and 10. We can pull the best result(s) like so:</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="bayesian-optimization.html#cb249-1"></a><span class="kw">show_best</span>(svm_bo) <span class="co"># same call as with grid search</span></span></code></pre></div>
+<pre><code>## # A tibble: 5 x 9
+##    cost rbf_sigma .metric .estimator  mean     n std_err .config .iter
+##   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;int&gt;
+## 1  2.42    0.0930 roc_auc binary     0.978     5 0.00892 Iter25     25
+## 2  5.28    0.0719 roc_auc binary     0.977     5 0.00932 Iter18     18
+## 3  4.57    0.0998 roc_auc binary     0.977     5 0.00932 Iter21     21
+## 4  4.70    0.0854 roc_auc binary     0.977     5 0.00932 Iter23     23
+## 5  6.52    0.0937 roc_auc binary     0.977     5 0.00826 Iter11     11</code></pre>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="bayesian-optimization.html#cb251-1"></a>p1 &lt;-<span class="st"> </span><span class="kw">autoplot</span>(svm_bo, <span class="dt">type =</span> <span class="st">&quot;performance&quot;</span>)</span>
+<span id="cb251-2"><a href="bayesian-optimization.html#cb251-2"></a>p2 &lt;-<span class="st"> </span><span class="kw">autoplot</span>(svm_bo, <span class="dt">type =</span> <span class="st">&quot;parameters&quot;</span>)</span>
+<span id="cb251-3"><a href="bayesian-optimization.html#cb251-3"></a></span>
+<span id="cb251-4"><a href="bayesian-optimization.html#cb251-4"></a>p1 <span class="op">+</span><span class="st"> </span>p2</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="inferential-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="slide-2-title-8.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="svm-model-as-motivating-example.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="simulated-annealing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -411,7 +519,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/21-inferential_analysis.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/14-iterative_search.Rmd",
 "text": "Edit"
 },
 "history": {
