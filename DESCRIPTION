@@ -34,7 +34,8 @@ Imports:
     tufte,
     tweetrmd,
     workflowsets,
-    palmerpenguins
+    palmerpenguins,
+    finetune
 Remotes: 
     tidymodels/discrim,
     hadley/emo,
