@@ -1,13 +1,486 @@
+```{r setup, include=F, echo=F}
+knitr::opts_chunk$set(
+  # collapse = TRUE
+  eval = TRUE,
+  warning = FALSE,
+  message = FALSE
+)
+library(details)
+```
+
 # Screening Many Models
 
 **Learning objectives:**
 
-- Jon will prefill these.
+-   Use the `{parsnip}` addin to create a set of **model specifications.**
 
-## Slide 1 Title
+-   Create a **workflow set** with the `{workflowsets}` package.
 
-Put the content of your slide here.
+    -   Describe the purposes of the **workflow set columns.**
+    -   Create a **workflow set** with a `recipe` preprocessor.
+    -   Create a **workflow set** with a `{dplyr}` selector preprocesor.
 
-## Slide 2 Title
+-   **Tune** and **evaluate workflow sets.**
 
-Put the content of your second slide here.
+    -   Use `workflowsets::workflow_map()` to **tune all models** in a workflow set.
+    -   Use convenience functions such as `workflowsets::rank_results()` to **examine** workflow set tuning results.
+    -   **Visualize** workflow set tuning results.
+
+-   Use `workflowsets::workflow_map` with `{finetune}` to **efficiently screen models** using the **racing approach.**\
+
+    -   **Compare** the **results of the racing approach** to the **results of the full workflow set screening.**
+
+-   **Finalize the best model** from a workflow set.
+
+## Obligatory Setup
+
+Using the [2021 World Happiness Report](https://www.kaggle.com/ajaypalsinghlo/world-happiness-report-2021). Why?
+
+-   Small
+-   Interesting
+
+<details>
+
+<summary>
+
+How I felt reading this chapter with `concrete` from `{modeldata}`
+
+</summary>
+
+![](images/15-woody-stare.jpg)
+
+</details>
+
+```{r}
+library(tidyverse)
+library(tidymodels)
+theme_set(theme_minimal(base_size = 16))
+
+df <- 
+  here::here('data', 'world-happiness-report-2021.csv') %>%
+  read_csv() %>% 
+  janitor::clean_names()
+
+df %>% skimr::skim()
+```
+
+```{r}
+df_selected <-
+  df %>%
+  select(
+    ladder_score,
+    logged_gdp_per_capita,
+    social_support,
+    healthy_life_expectancy,
+    freedom_to_make_life_choices,
+    generosity,
+    perceptions_of_corruption
+  )
+
+cors <-
+  df_selected %>% 
+  select(where(is.numeric)) %>% 
+  corrr::correlate() %>% 
+  rename(col1 = rowname) %>% 
+  pivot_longer(
+    -col1,
+    names_to = 'col2',
+    values_to = 'cor'
+  ) %>% 
+  arrange(desc(abs(cor)))
+cors %>% filter(col1 == 'ladder_score')
+
+p_cors <-
+  cors %>% 
+  filter(col1 < col2) %>% 
+  ggplot() +
+  aes(x = col1, y = col2) +
+  geom_tile(aes(fill = cor), alpha = 0.7) +
+  geom_text(aes(label = scales::number(cor, accuracy = 0.1))) +
+  guides(fill = FALSE) +
+  scale_fill_viridis_c(option = 'E', direction = 1, begin = 0.2) +
+  labs(x = NULL, y = NULL) +
+  theme(
+    panel.grid.major = element_blank(),
+    axis.text.x = element_blank()
+  )
+p_cors
+```
+
+## Creating `workflow_set`s
+
+```{r}
+seed <- 2021
+col_y <- 'ladder_score'
+col_y_sym <- col_y %>% sym()
+
+set.seed(seed)
+split <- df_selected %>% initial_split(strata = !!col_y_sym)
+df_trn <- split %>% training()
+df_tst  <- split %>% testing()
+
+folds <-
+  df_trn %>% 
+  vfold_cv(strata = !!col_y_sym, repeats = 5)
+folds
+```
+
+```{r}
+# My weird way of creating formulas sometimes, which can be helpful if you're experimenting with different response variables.
+form <- paste0(col_y, '~ .') %>% as.formula()
+rec_norm <-
+  df_trn %>% 
+  recipe(form, data = .) %>% 
+  step_normalize(all_predictors())
+
+rec_poly <-
+  rec_norm %>% 
+  step_poly(all_predictors()) %>% 
+  step_interact(~ all_predictors():all_predictors())
+rec_poly
+```
+
+<details>
+
+<summary>
+
+Code for recipes...
+
+</summary>
+
+```{r}
+library(rules)
+library(baguette)
+f_set <- function(spec) {
+  spec %>% 
+    set_mode('regression')
+}
+
+spec_lr <- 
+  linear_reg(penalty = tune(), mixture = tune()) %>% 
+  set_engine('glmnet')
+
+spec_mars <- 
+  mars(prod_degree = tune()) %>%
+  set_engine('earth') %>% 
+  f_set()
+
+spec_svm_r <- 
+  svm_rbf(cost = tune(), rbf_sigma = tune()) %>% 
+  set_engine('kernlab') %>% 
+  f_set()
+
+spec_svm_p <- 
+  svm_poly(cost = tune(), degree = tune()) %>% 
+  set_engine('kernlab') %>% 
+  f_set()
+
+spec_knn <- 
+  nearest_neighbor(
+    neighbors = tune(), 
+    dist_power = tune(), 
+    weight_func = tune()
+  ) %>% 
+  set_engine('kknn') %>% 
+  f_set()
+
+spec_cart <- 
+  decision_tree(cost_complexity = tune(), min_n = tune()) %>% 
+  set_engine('rpart') %>% 
+  f_set()
+
+spec_cart_bag <- 
+  bag_tree() %>% 
+  set_engine('rpart', times = 50L) %>% 
+  f_set()
+
+spec_rf <- 
+  rand_forest(mtry = tune(), min_n = tune(), trees = 200L) %>% 
+  set_engine('ranger') %>% 
+  f_set()
+
+spec_xgb <- 
+  boost_tree(
+    tree_depth = tune(),
+    learn_rate = tune(), 
+    loss_reduction = tune(), 
+    min_n = tune(), 
+    sample_size = tune(), 
+    trees = 200L
+  ) %>% 
+  set_engine('xgboost') %>% 
+  f_set()
+
+spec_cube <- 
+  cubist_rules(committees = tune(), neighbors = tune()) %>% 
+  set_engine('Cubist')
+```
+
+</details>
+
+<details>
+
+<summary>
+
+How I felt after creating 10 recipes
+
+</summary>
+
+![](images/15-recipes-relieved.jfif)
+
+</details>
+
+We can create `workflow_set`s, combining the recipes that standardizes the predictors with the non-linear models that work best when predictors are all on the same scale.
+
+```{r}
+library(workflowsets)
+
+sets_norm <- 
+  workflow_set(
+    preproc = list(norm = rec_norm), 
+    models = list(
+      svm_r = spec_svm_r, 
+      svm_p = spec_svm_p, 
+      knn = spec_knn
+    )
+  )
+sets_norm
+```
+
+Let's apply the quadratic pre-processing to models where it is most applicable.
+
+```{r}
+sets_poly <- 
+  workflow_set(
+    preproc = list(poly = rec_poly), 
+    models = list(lr = spec_lr, knn = spec_knn)
+  )
+```
+
+Finally, there are several recipes that don't really need pre-processing. Nonetheless, we need to have a `preproc` step, so we can use `workflowsets::workflow_variables()` for a dummy pre-processing step.
+
+```{r}
+preproc_dummy <- 
+  workflow_variables(
+    outcomes = !!col_y_sym, 
+    predictors = everything()
+  )
+
+sets_simple <- 
+  workflow_set(
+    preproc = list(simple = preproc_dummy), 
+    models = 
+      list(
+        mars = spec_mars, 
+        cart = spec_cart, 
+        cart_bag = spec_cart_bag,
+        rf = spec_rf, 
+        gb = spec_xgb, 
+        cube = spec_cube
+      )
+  )
+sets_simple
+```
+
+We can bind all of our `workflow_set`s together.
+
+```{r}
+sets <-
+  bind_rows(sets_norm, sets_poly, sets_simple) %>% 
+  mutate(across(wflow_id, ~str_remove(.x, '^simple_')))
+sets
+```
+
+And do the thing! (Observe the elegance.)
+
+```{r echo=T, include=T, eval=F}
+ctrl_grid <-
+  control_grid(
+    save_pred = TRUE,
+    parallel_over = 'everything',
+    save_workflow = TRUE
+  )
+
+res_grid <-
+  sets %>%
+  workflow_map(
+    seed = seed,
+    resamples = folds,
+    grid = 5,
+    control = ctrl_grid,
+    verbose = TRUE
+  )
+```
+
+<details>
+
+<summary>
+
+How I felt waiting for this to finish running
+
+</summary>
+
+![](images/15-tune-waiting.jpg)
+
+</details>
+
+```{r echo=F, include=F, eval=T}
+path_res_grid <- here::here('data', '15-res_grid.rds')
+```
+
+```{r echo=F, incude=F, eval=!file.exists(path_res_grid)}
+write_rds(res_grid, path_res_grid)
+```
+
+```{r echo=F, include=F, eval=T}
+res_grid <- read_rds(here::here('data', '15-res_grid.rds'))
+```
+
+## Ranking models
+
+Let's look at our results
+
+```{r}
+# How many models are there?
+n_model <-
+  res_grid %>% 
+  collect_metrics(summarize = FALSE) %>% 
+  nrow()
+n_model
+
+res_grid_filt <-
+  res_grid %>% 
+  # 'cart_bag' has <rsmp[+]> in the `results` column, so it won't work with `rank_results()`
+  filter(wflow_id != 'cart_bag')
+
+# Note that xgboost sucks if you don't have good parameters
+res_ranks <-
+  res_grid_filt %>% 
+  workflowsets::rank_results('rmse') %>% 
+  # Why this no filter out rsquared already?
+  filter(.metric == 'rmse') %>%
+  select(wflow_id, model, .config, rmse = mean, rank) %>% 
+  group_by(wflow_id) %>% 
+  slice_min(rank, with_ties = FALSE) %>% 
+  ungroup() %>% 
+  arrange(rank)
+res_ranks
+```
+
+Plot the ranks with standard errors.
+
+```{r echo=F, include=T, eval=T, fig.show=T}
+# workflowsets:::autoplot.workflow_set
+object <- res_grid_filt %>% filter(wflow_id != 'gb') # %>% filter(.metric == 'rmse')
+rank_metric <- 'rmse'
+metric <- 'rmse'
+select_best <- TRUE
+std_errs <- 1
+metric_info <- workflowsets:::pick_metric(res_grid_filt, rank_metric)
+metrics <- workflowsets:::collate_metrics(object)
+res <- 
+  object %>% 
+  workflowsets::rank_results(rank_metric = rank_metric, select_best = select_best) %>% 
+  filter(.metric == !!rank_metric) %>% 
+  mutate(across(wflow_id, ~fct_reorder(.x, -rank)))
+
+if (!is.null(metric)) {
+  keep_metrics <- unique(c(rank_metric, metric))
+  res <- dplyr::filter(res, .metric %in% keep_metrics)
+}
+num_metrics <- length(unique(res$.metric))
+has_std_error <- !all(is.na(res$std_err))
+p_ranks <- 
+  res %>% 
+  ggplot() + 
+  aes(x = wflow_id, y = mean, color = wflow_id) %>% 
+  geom_point(size = 4) +
+  geom_errorbar(
+    aes(
+      # Not sure why I have to repeat `x` and `color` here, but go on.
+      x = wflow_id,
+      color = wflow_id,
+      ymin = mean - std_errs * std_err, 
+      ymax = mean + std_errs * std_err
+    ), 
+    width = diff(range(res$rank))/75
+  ) +
+  coord_flip() +
+  guides(color = FALSE) +
+  theme(legend.position = 'top') +
+  paletteer::scale_color_paletteer_d(palette = 'beyonce::X74', direction = -1) +
+  labs(
+    x = 'Workflow Rank', y = metric_info$metric,
+    title = 'Quadratic SVM wins (Who would have guessed?)'
+  )
+p_ranks
+```
+
+If we wanted to look at the sub-models for a given `wflow_id`, we could do that with `autoplot()`.
+
+```{r}
+autoplot(
+  res_grid, 
+  id = 'norm_svm_p', 
+  metric = 'rmse'
+)
+```
+
+<details>
+
+<summary>
+
+How I feel every time I use `autoplot()`
+
+</summary>
+
+![](images/15-birdbox.jpg)
+
+</details>
+
+As shown in the book chapter, this could be a really good use case for `finetune::control_race()` and `workflowsets::workflow_map('tune_race_anova', ...)`
+
+## Finalizing the model
+
+Now we can finalize our choice of model.
+
+```{r}
+wflow_id_best <- 
+  res_ranks %>% 
+  slice_min(rank, with_ties = FALSE) %>% 
+  pull(wflow_id)
+wflow_id_best
+
+wf_best <-
+  res_grid %>% 
+  pull_workflow_set_result(wflow_id_best) %>% 
+  select_best(metric = 'rmse')
+wf_best
+
+fit_best <-
+  res_grid %>% 
+  pull_workflow(wflow_id_best) %>% 
+  finalize_workflow(wf_best) %>% 
+  last_fit(split = split)
+
+metrics_best <-
+  fit_best %>% 
+  collect_metrics()
+metrics_best
+```
+
+Finally, the canonical observed vs. predicted scatter plot.
+
+```{r }
+p_preds <-
+  fit_best %>% 
+  collect_predictions() %>% 
+  ggplot() +
+  aes(x = !!col_y_sym, y = .pred) +
+  geom_abline(linetype = 2) +
+  # Big cuz we don't have that many points.
+  geom_point(size = 4) +
+  tune::coord_obs_pred() +
+  labs(x = 'observed', y = 'predicted')
+p_preds
+```
