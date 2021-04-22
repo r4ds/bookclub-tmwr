@@ -79,7 +79,7 @@ cors <-
   df_selected %>% 
   select(where(is.numeric)) %>% 
   corrr::correlate() %>% 
-  rename(col1 = rowname) %>% 
+  rename(col1 = term) %>% 
   pivot_longer(
     -col1,
     names_to = 'col2',
