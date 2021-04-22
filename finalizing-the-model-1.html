@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>21.2 Slide 2 Title | Tidy Modeling with R Book Club</title>
+  <title>15.4 Finalizing the model | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="21.2 Slide 2 Title | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="15.4 Finalizing the model | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="21.2 Slide 2 Title | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="15.4 Finalizing the model | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -24,15 +24,15 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-04-19" />
+<meta name="date" content="2021-04-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="slide-1-title-7.html"/>
-
+<link rel="prev" href="ranking-models.html"/>
+<link rel="next" href="review-of-chapters-10-15.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,6 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/twitter-widget-0.0.1/widgets.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
@@ -120,6 +122,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -325,37 +328,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.4" data-path="references-2.html"><a href="references-2.html"><i class="fa fa-check"></i><b>14.4</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="screening-many-models.html"><a href="screening-many-models.html"><i class="fa fa-check"></i><b>15</b> Screening Many Models</a><ul>
-<li class="chapter" data-level="15.1" data-path="slide-1-title.html"><a href="slide-1-title.html"><i class="fa fa-check"></i><b>15.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="15.2" data-path="slide-2-title.html"><a href="slide-2-title.html"><i class="fa fa-check"></i><b>15.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="15.1" data-path="obligatory-setup.html"><a href="obligatory-setup.html"><i class="fa fa-check"></i><b>15.1</b> Obligatory Setup</a></li>
+<li class="chapter" data-level="15.2" data-path="creating-workflow-sets.html"><a href="creating-workflow-sets.html"><i class="fa fa-check"></i><b>15.2</b> Creating <code>workflow_set</code>s</a></li>
+<li class="chapter" data-level="15.3" data-path="ranking-models.html"><a href="ranking-models.html"><i class="fa fa-check"></i><b>15.3</b> Ranking models</a></li>
+<li class="chapter" data-level="15.4" data-path="finalizing-the-model-1.html"><a href="finalizing-the-model-1.html"><i class="fa fa-check"></i><b>15.4</b> Finalizing the model</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="review-of-chapters-10-15.html"><a href="review-of-chapters-10-15.html"><i class="fa fa-check"></i>Review of chapters 10-15</a><ul>
-<li class="chapter" data-level="15.3" data-path="slide-1-title-1.html"><a href="slide-1-title-1.html"><i class="fa fa-check"></i><b>15.3</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="15.4" data-path="slide-2-title-1.html"><a href="slide-2-title-1.html"><i class="fa fa-check"></i><b>15.4</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="15.5" data-path="slide-1-title.html"><a href="slide-1-title.html"><i class="fa fa-check"></i><b>15.5</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="15.6" data-path="slide-2-title.html"><a href="slide-2-title.html"><i class="fa fa-check"></i><b>15.6</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="part"><span><b>Other Topics</b></span></li>
 <li class="chapter" data-level="16" data-path="encoding-categorical-data.html"><a href="encoding-categorical-data.html"><i class="fa fa-check"></i><b>16</b> Encoding categorical data</a><ul>
-<li class="chapter" data-level="16.1" data-path="slide-1-title-2.html"><a href="slide-1-title-2.html"><i class="fa fa-check"></i><b>16.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="16.2" data-path="slide-2-title-2.html"><a href="slide-2-title-2.html"><i class="fa fa-check"></i><b>16.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="16.1" data-path="slide-1-title-1.html"><a href="slide-1-title-1.html"><i class="fa fa-check"></i><b>16.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="16.2" data-path="slide-2-title-1.html"><a href="slide-2-title-1.html"><i class="fa fa-check"></i><b>16.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>17</b> Dimensionality reduction</a><ul>
-<li class="chapter" data-level="17.1" data-path="slide-1-title-3.html"><a href="slide-1-title-3.html"><i class="fa fa-check"></i><b>17.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="17.2" data-path="slide-2-title-3.html"><a href="slide-2-title-3.html"><i class="fa fa-check"></i><b>17.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="17.1" data-path="slide-1-title-2.html"><a href="slide-1-title-2.html"><i class="fa fa-check"></i><b>17.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="17.2" data-path="slide-2-title-2.html"><a href="slide-2-title-2.html"><i class="fa fa-check"></i><b>17.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="chapter" data-level="18" data-path="explaining-models-and-predictions.html"><a href="explaining-models-and-predictions.html"><i class="fa fa-check"></i><b>18</b> Explaining models and predictions</a><ul>
-<li class="chapter" data-level="18.1" data-path="slide-1-title-4.html"><a href="slide-1-title-4.html"><i class="fa fa-check"></i><b>18.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="18.2" data-path="slide-2-title-4.html"><a href="slide-2-title-4.html"><i class="fa fa-check"></i><b>18.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="18.1" data-path="slide-1-title-3.html"><a href="slide-1-title-3.html"><i class="fa fa-check"></i><b>18.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="18.2" data-path="slide-2-title-3.html"><a href="slide-2-title-3.html"><i class="fa fa-check"></i><b>18.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="chapter" data-level="19" data-path="when-should-you-trust-predictions.html"><a href="when-should-you-trust-predictions.html"><i class="fa fa-check"></i><b>19</b> When should you trust predictions?</a><ul>
-<li class="chapter" data-level="19.1" data-path="slide-1-title-5.html"><a href="slide-1-title-5.html"><i class="fa fa-check"></i><b>19.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="19.2" data-path="slide-2-title-5.html"><a href="slide-2-title-5.html"><i class="fa fa-check"></i><b>19.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="19.1" data-path="slide-1-title-4.html"><a href="slide-1-title-4.html"><i class="fa fa-check"></i><b>19.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="19.2" data-path="slide-2-title-4.html"><a href="slide-2-title-4.html"><i class="fa fa-check"></i><b>19.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="ensemble-models.html"><a href="ensemble-models.html"><i class="fa fa-check"></i><b>20</b> Ensemble models</a><ul>
-<li class="chapter" data-level="20.1" data-path="slide-1-title-6.html"><a href="slide-1-title-6.html"><i class="fa fa-check"></i><b>20.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="20.2" data-path="slide-2-title-6.html"><a href="slide-2-title-6.html"><i class="fa fa-check"></i><b>20.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="20.1" data-path="slide-1-title-5.html"><a href="slide-1-title-5.html"><i class="fa fa-check"></i><b>20.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="20.2" data-path="slide-2-title-5.html"><a href="slide-2-title-5.html"><i class="fa fa-check"></i><b>20.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="chapter" data-level="21" data-path="inferential-analysis.html"><a href="inferential-analysis.html"><i class="fa fa-check"></i><b>21</b> Inferential analysis</a><ul>
-<li class="chapter" data-level="21.1" data-path="slide-1-title-7.html"><a href="slide-1-title-7.html"><i class="fa fa-check"></i><b>21.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="21.2" data-path="slide-2-title-7.html"><a href="slide-2-title-7.html"><i class="fa fa-check"></i><b>21.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="21.1" data-path="slide-1-title-6.html"><a href="slide-1-title-6.html"><i class="fa fa-check"></i><b>21.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="21.2" data-path="slide-2-title-6.html"><a href="slide-2-title-6.html"><i class="fa fa-check"></i><b>21.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -377,26 +382,57 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="slide-2-title-7" class="section level2">
-<h2><span class="header-section-number">21.2</span> Slide 2 Title</h2>
-<p>Put the content of your second slide here.</p>
+<div id="finalizing-the-model-1" class="section level2">
+<h2><span class="header-section-number">15.4</span> Finalizing the model</h2>
+<p>Now we can finalize our choice of model.</p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="finalizing-the-model-1.html#cb276-1"></a>wflow_id_best &lt;-<span class="st"> </span></span>
+<span id="cb276-2"><a href="finalizing-the-model-1.html#cb276-2"></a><span class="st">  </span>res_ranks <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb276-3"><a href="finalizing-the-model-1.html#cb276-3"></a><span class="st">  </span><span class="kw">slice_min</span>(rank, <span class="dt">with_ties =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb276-4"><a href="finalizing-the-model-1.html#cb276-4"></a><span class="st">  </span><span class="kw">pull</span>(wflow_id)</span>
+<span id="cb276-5"><a href="finalizing-the-model-1.html#cb276-5"></a></span>
+<span id="cb276-6"><a href="finalizing-the-model-1.html#cb276-6"></a>wf_best &lt;-</span>
+<span id="cb276-7"><a href="finalizing-the-model-1.html#cb276-7"></a><span class="st">  </span>res_grid <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb276-8"><a href="finalizing-the-model-1.html#cb276-8"></a><span class="st">  </span><span class="kw">pull_workflow_set_result</span>(wflow_id_best) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb276-9"><a href="finalizing-the-model-1.html#cb276-9"></a><span class="st">  </span><span class="kw">select_best</span>(<span class="dt">metric =</span> <span class="st">&#39;rmse&#39;</span>)</span>
+<span id="cb276-10"><a href="finalizing-the-model-1.html#cb276-10"></a></span>
+<span id="cb276-11"><a href="finalizing-the-model-1.html#cb276-11"></a>fit_best &lt;-</span>
+<span id="cb276-12"><a href="finalizing-the-model-1.html#cb276-12"></a><span class="st">  </span>res_grid <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb276-13"><a href="finalizing-the-model-1.html#cb276-13"></a><span class="st">  </span><span class="kw">pull_workflow</span>(wflow_id_best) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb276-14"><a href="finalizing-the-model-1.html#cb276-14"></a><span class="st">  </span><span class="kw">finalize_workflow</span>(wf_best) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb276-15"><a href="finalizing-the-model-1.html#cb276-15"></a><span class="st">  </span><span class="kw">last_fit</span>(<span class="dt">split =</span> split)</span>
+<span id="cb276-16"><a href="finalizing-the-model-1.html#cb276-16"></a></span>
+<span id="cb276-17"><a href="finalizing-the-model-1.html#cb276-17"></a>metrics_best &lt;-</span>
+<span id="cb276-18"><a href="finalizing-the-model-1.html#cb276-18"></a><span class="st">  </span>fit_best <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb276-19"><a href="finalizing-the-model-1.html#cb276-19"></a><span class="st">  </span><span class="kw">collect_metrics</span>()</span>
+<span id="cb276-20"><a href="finalizing-the-model-1.html#cb276-20"></a>metrics_best</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 4
+##   .metric .estimator .estimate .config             
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
+## 1 rmse    standard       0.616 Preprocessor1_Model1
+## 2 rsq     standard       0.756 Preprocessor1_Model1</code></pre>
+<p>Finally, the canonical observed vs. predicted scatter plot.</p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="finalizing-the-model-1.html#cb278-1"></a>p_preds &lt;-</span>
+<span id="cb278-2"><a href="finalizing-the-model-1.html#cb278-2"></a><span class="st">  </span>fit_best <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb278-3"><a href="finalizing-the-model-1.html#cb278-3"></a><span class="st">  </span><span class="kw">collect_predictions</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb278-4"><a href="finalizing-the-model-1.html#cb278-4"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb278-5"><a href="finalizing-the-model-1.html#cb278-5"></a><span class="st">  </span><span class="kw">aes</span>(<span class="dt">x =</span> <span class="op">!!</span>col_y_sym, <span class="dt">y =</span> .pred) <span class="op">+</span></span>
+<span id="cb278-6"><a href="finalizing-the-model-1.html#cb278-6"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">linetype =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb278-7"><a href="finalizing-the-model-1.html#cb278-7"></a><span class="st">  </span><span class="co"># Big cuz we don&#39;t have that many points.</span></span>
+<span id="cb278-8"><a href="finalizing-the-model-1.html#cb278-8"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></span>
+<span id="cb278-9"><a href="finalizing-the-model-1.html#cb278-9"></a><span class="st">  </span>tune<span class="op">::</span><span class="kw">coord_obs_pred</span>() <span class="op">+</span></span>
+<span id="cb278-10"><a href="finalizing-the-model-1.html#cb278-10"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;observed&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;predicted&#39;</span>)</span>
+<span id="cb278-11"><a href="finalizing-the-model-1.html#cb278-11"></a>p_preds</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
 
 </div>
 <!-- </div> -->
-
-
-
-
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="slide-1-title-7.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="ranking-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="review-of-chapters-10-15.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -419,6 +455,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -427,7 +464,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/21-inferential_analysis.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/15-screening_many_models.Rmd",
 "text": "Edit"
 },
 "history": {
