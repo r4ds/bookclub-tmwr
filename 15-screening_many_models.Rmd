@@ -1,7 +1,3 @@
-```{r setup-ch15, include=F, echo=F}
-library(details)
-```
-
 # Screening Many Models
 
 **Learning objectives:**
@@ -63,6 +59,7 @@ df %>% skimr::skim()
 ```
 
 ```{r}
+library(corrr)
 df_selected <-
   df %>%
   select(
@@ -188,7 +185,7 @@ spec_cart <-
   f_set()
 
 spec_cart_bag <- 
-  bag_tree() %>% 
+  baguette::bag_tree() %>% 
   set_engine('rpart', times = 50L) %>% 
   f_set()
 
@@ -210,7 +207,7 @@ spec_xgb <-
   f_set()
 
 spec_cube <- 
-  cubist_rules(committees = tune(), neighbors = tune()) %>% 
+  rules::cubist_rules(committees = tune(), neighbors = tune()) %>% 
   set_engine('Cubist')
 ```
 
@@ -440,14 +437,14 @@ Now we can finalize our choice of model.
 library(stacks)
 
 stack <-
-  stacks() %>% 
-  add_candidates(res_grid)
+  stacks::stacks() %>% 
+  stacks::add_candidates(res_grid)
 stack
 
-blend <- stack %>% blend_predictions()
+blend <- stack %>% stacks::blend_predictions()
 blend
 
-fit_ens <- blend %>% fit_members()
+fit_ens <- blend %>% stacks::fit_members()
 fit_ens
 ```
 
