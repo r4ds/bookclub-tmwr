@@ -470,3 +470,44 @@ objects named with a preceding period are considered "hidden". they won't show u
 01:12:51	shamsuddeen:	See you
 ```
 </details>
+
+### Cohort 3
+
+`r knitr::include_url("https://www.youtube.com/embed/KSrc17CHEDg")`
+
+<details>
+    <summary> Meeting chat log </summary>
+   
+```
+00:13:03	Daniel Chen (he/him):	https://r4ds.github.io/bookclub-tmwr/a-tidyverse-primer.html
+00:20:33	Jake Scott:	I used to have to read the docs every single time for gather and spread. The pivot verbs have saved my life many times!
+00:21:40	priyanka gagneja:	I somehow see the shared screen too small, is there a way to make it bigger ?
+00:22:14	Jake Scott:	You can click on the three dots at the corner of it, and then click "pin". At least that's what I did!
+00:22:25	edgar zamora:	^^same
+00:22:33	priyanka gagneja:	Perfect thanks
+00:22:38	Chris Martin:	I was confused by gather and spread too! I didn't realise they were the same as the pivot functions even though I use them!
+00:39:14	Jake Scott:	That is going to save me so much time, I had no idea about that!
+00:39:19	Morgan Grovenburg:	Same!!!
+00:40:05	Chris Martin:	Yeah, I had wondered how to get round that issue ...
+00:40:16	Chris Martin:	Now I know!
+00:40:35	Jake Scott:	I always commented out the pipe above too, which wasn't the worst in the world, but def slowed things down
+00:44:10	Ildiko Czeller:	the conflicted package can be used for explicit preferences for some functions
+00:44:29	Jake Scott:	MASS versus dplyr is always an epic battle between which filter() and select() I want to use, since they mask each other
+00:45:37	Hannah:	If you want to see the order in which packages were loaded you can check `searchpaths()`.
+00:46:01	Toryn Schafer:	Advanced R  has a section on the order of namespaces/package environments: https://adv-r.hadley.nz/environments.html#special-environments
+00:49:11	Ildiko Czeller:	%T>%
+00:49:20	Ildiko Czeller:	those are not exported I think
+00:49:29	jiwan:	%in% ?
+00:49:47	Ildiko Czeller:	%in% is a base I thing I think
+00:49:56	Hannah:	%in% is a base operator
+00:50:07	jiwan:	gotcha
+00:50:09	Ildiko Czeller:	%% notes any "infix" operator
+00:51:48	Hannah:	well done!
+00:52:41	jiwan:	thx for presenting!
+00:54:16	Morgan Grovenburg:	Are those DOTA 2 mouse pads?
+00:54:54	Daniel Chen (he/him):	yes :)
+00:55:30	Morgan Grovenburg:	Sweet
+01:03:01	Hannah:	I haven't used it yet but recently came across this package for working with pipelines: https://github.com/MilesMcBain/breakerofchains - it lets you run the code up to the line of the cursor
+01:04:24	Ildiko Czeller:	I think data.frame is only "preferred" if your script relies on one of the behaviors that tibble "corrects"
+```
+</details>

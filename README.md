@@ -22,29 +22,27 @@ If you would like to present, please add your name next to a chapter using the [
 - 2021-02-23: Chapter 8: A model workflow: Ben Gramza
 - 2021-03-02: Chapter 9: Judging model effectiveness: Joe Sydlowski
 - 2021-03-09: Q&A with authors Max Kuhn & Julia Silge: Chapters 1-9
-- 2021-03-16: Chapter 10: Resampling for evaluating performance: Asmae Toumi
-- **2021-03-23: Chapter 11: Comparing models with resampling: Jon Harmon**
-- 2021-03-30: Chapter 12: Modeling tuning and the dangers of overfitting
-- 2021-04-06: Chapter 13: Grid search
-- 2021-04-13: Chapter 14: Iterative search
-- 2021-04-20: Review: Chapters 10-14
+- 2021-03-16: Chapter 10: Resampling for evaluating performance: Asmae Toumi/Jon Harmon
+- 2021-03-23: Chapter 11: Comparing models with resampling: Jon Harmon
+- 2021-03-30: Chapter 12: Modeling tuning and the dangers of overfitting: Andrew Farina
+- 2021-04-06: Chapter 13: Grid search: Jim Gruman
+- **2021-04-13: Chapter 14: Iterative search: Asmae Toumi**
+- 2021-04-20: Chapter 15: Screening many models: Tan Ho
+- 2021-04-27: What we missed about {workflowsets}
+- 2021-05-04: Review: Chapters 10-15
 
 
 *Cohort 3: - Mondays, 11:00am CDT - facilitated by Ildiko Czeller*
 
 
 - 2021-03-29: Chapter 1: Software for modeling: Ildiko Czeller
-- 2021-04-05: Chapter 2: A tidyverse primer: TBD
-- 2021-04-12: Chapter 3: A review of R modeling fundamentals: TBD
-- 2021-04-19: Chapter 4: The Ames housing data: TBD
-
-<details>
-  <summary> Future Meetings </summary>
-
-- 2021-04-26: Chapter 5: Spending our data
-- 2021-05-03: Chapter 6: Feature engineering with recipes
-- 2021-0?-??: Chapter 7: Fitting models with parsnip
-- 2021-0?-??: Chapter 8: A model workflow
+- 2021-04-05: Chapter 2: A tidyverse primer: Daniel Chen
+- 2021-04-12: Chapter 3: A review of R modeling fundamentals: Edgar Zamora
+- 2021-04-19: Chapter 4: The Ames housing data: Jiwan Heo
+- **2021-04-26: Chapter 5: Spending our data: Ildiko Czeller**
+- 2021-05-03: Chapter 6: Feature engineering with recipes: Chris Martin
+- 2021-05-10: Chapter 7: Fitting models with parsnip
+- 2021-05-17: Chapter 8: A model workflow
 - 2021-0?-??: Chapter 9: Judging model effectiveness
 - 2021-0?-??: Chapter 10: Resampling for evaluating performance
 - 2021-0?-??: Chapter 11: Comparing models with resampling
@@ -52,7 +50,6 @@ If you would like to present, please add your name next to a chapter using the [
 - 2021-0?-??: Chapter 13: Grid search
 - 2021-0?-??: Chapter 14: Iterative search
 
-</details>
 <hr>
 
 

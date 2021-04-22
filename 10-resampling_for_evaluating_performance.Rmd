@@ -1,8 +1,4 @@
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
+# (PART\*) Tools for Creating Effective Models {-}
 
 # Resampling for evaluating performance
 
