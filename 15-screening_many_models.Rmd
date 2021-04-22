@@ -1,10 +1,4 @@
-```{r setup, include=F, echo=F}
-knitr::opts_chunk$set(
-  # collapse = TRUE
-  eval = TRUE,
-  warning = FALSE,
-  message = FALSE
-)
+```{r setup-ch15, include=F, echo=F}
 library(details)
 ```
 
@@ -16,19 +10,23 @@ library(details)
 
 -   Create a **workflow set** with the `{workflowsets}` package.
 
-    -   Describe the purposes of the **workflow set columns.**
-    -   Create a **workflow set** with a `recipe` preprocessor.
-    -   Create a **workflow set** with a `{dplyr}` selector preprocesor.
+-   Describe the purposes of the **workflow set columns.**
+
+-   Create a **workflow set** with a `recipe` preprocessor.
+
+-   Create a **workflow set** with a `{dplyr}` selector preprocessor.
 
 -   **Tune** and **evaluate workflow sets.**
 
-    -   Use `workflowsets::workflow_map()` to **tune all models** in a workflow set.
-    -   Use convenience functions such as `workflowsets::rank_results()` to **examine** workflow set tuning results.
-    -   **Visualize** workflow set tuning results.
+-   Use `workflowsets::workflow_map()` to **tune all models** in a workflow set.
 
--   Use `workflowsets::workflow_map` with `{finetune}` to **efficiently screen models** using the **racing approach.**\
+-   Use convenience functions such as `workflowsets::rank_results()` to **examine** workflow set tuning results.
 
-    -   **Compare** the **results of the racing approach** to the **results of the full workflow set screening.**
+-   **Visualize** workflow set tuning results.
+
+-   Use `workflowsets::workflow_map` with `{finetune}` to **efficiently screen models** using the **racing approach.**
+
+-   **Compare** the **results of the racing approach** to the **results of the full workflow set screening.**
 
 -   **Finalize the best model** from a workflow set.
 
@@ -260,15 +258,9 @@ sets_poly <-
 Finally, there are several recipes that don't really need pre-processing. Nonetheless, we need to have a `preproc` step, so we can use `workflowsets::workflow_variables()` for a dummy pre-processing step.
 
 ```{r}
-preproc_dummy <- 
-  workflow_variables(
-    outcomes = !!col_y_sym, 
-    predictors = everything()
-  )
-
 sets_simple <- 
   workflow_set(
-    preproc = list(simple = preproc_dummy), 
+    preproc = list(form),
     models = 
       list(
         mars = spec_mars, 
@@ -293,7 +285,12 @@ sets
 
 And do the thing! (Observe the elegance.)
 
-```{r echo=T, include=T, eval=F}
+```{r echo=F, include=F, eval=T}
+path_res_grid <- here::here('data', '15-res_grid.rds')
+do_run <- !file.exists(path_res_grid)
+```
+
+```{r echo=T, include=T, eval=do_run}
 ctrl_grid <-
   control_grid(
     save_pred = TRUE,
@@ -306,7 +303,7 @@ res_grid <-
   workflow_map(
     seed = seed,
     resamples = folds,
-    grid = 5,
+    grid = 3,
     control = ctrl_grid,
     verbose = TRUE
   )
@@ -324,16 +321,12 @@ How I felt waiting for this to finish running
 
 </details>
 
-```{r echo=F, include=F, eval=T}
-path_res_grid <- here::here('data', '15-res_grid.rds')
-```
-
-```{r echo=F, incude=F, eval=!file.exists(path_res_grid)}
+```{r echo=F, incude=F, eval=do_run}
 write_rds(res_grid, path_res_grid)
 ```
 
 ```{r echo=F, include=F, eval=T}
-res_grid <- read_rds(here::here('data', '15-res_grid.rds'))
+res_grid <- read_rds(path_res_grid)
 ```
 
 ## Ranking models
@@ -408,10 +401,9 @@ p_ranks <-
   coord_flip() +
   guides(color = FALSE) +
   theme(legend.position = 'top') +
-  paletteer::scale_color_paletteer_d(palette = 'beyonce::X74', direction = -1) +
   labs(
     x = 'Workflow Rank', y = metric_info$metric,
-    title = 'Quadratic SVM wins (Who would have guessed?)'
+    title = 'Quadratic SVM wins'
   )
 p_ranks
 ```
@@ -444,18 +436,31 @@ As shown in the book chapter, this could be a really good use case for `finetune
 
 Now we can finalize our choice of model.
 
+```{r stacks, echo=F, include=F, eval=F}
+library(stacks)
+
+stack <-
+  stacks() %>% 
+  add_candidates(res_grid)
+stack
+
+blend <- stack %>% blend_predictions()
+blend
+
+fit_ens <- blend %>% fit_members()
+fit_ens
+```
+
 ```{r}
 wflow_id_best <- 
   res_ranks %>% 
   slice_min(rank, with_ties = FALSE) %>% 
   pull(wflow_id)
-wflow_id_best
 
 wf_best <-
   res_grid %>% 
   pull_workflow_set_result(wflow_id_best) %>% 
   select_best(metric = 'rmse')
-wf_best
 
 fit_best <-
   res_grid %>% 
