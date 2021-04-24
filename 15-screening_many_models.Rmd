@@ -2,29 +2,18 @@
 
 **Learning objectives:**
 
--   Use the `{parsnip}` addin to create a set of **model specifications.**
-
--   Create a **workflow set** with the `{workflowsets}` package.
-
--   Describe the purposes of the **workflow set columns.**
-
--   Create a **workflow set** with a `recipe` preprocessor.
-
--   Create a **workflow set** with a `{dplyr}` selector preprocessor.
-
--   **Tune** and **evaluate workflow sets.**
-
--   Use `workflowsets::workflow_map()` to **tune all models** in a workflow set.
-
--   Use convenience functions such as `workflowsets::rank_results()` to **examine** workflow set tuning results.
-
--   **Visualize** workflow set tuning results.
-
--   Use `workflowsets::workflow_map` with `{finetune}` to **efficiently screen models** using the **racing approach.**
-
--   **Compare** the **results of the racing approach** to the **results of the full workflow set screening.**
-
--   **Finalize the best model** from a workflow set.
+- Use the `{parsnip}` `Generate parsnip model specifications` addin to create a set of **model specifications.**
+- Create a **workflow set** with the `{workflowsets}` package.
+  - Describe the purposes of the **workflow set columns.**
+  - Create a **workflow set** with a `recipe` preprocessor.
+  - Create a **workflow set** with a `{dplyr}` selector preprocesor.
+- **Tune** and **evaluate workflow sets.**
+  - Use `workflowsets::workflow_map()` to **tune all models** in a workflow set.
+  - Use convenience functions such as `workflowsets::rank_results()` to **examine** workflow set tuning results.
+  - **Visualize** workflow set tuning results.
+- Use `workflowsets::workflow_map` with `{finetune}` to **efficiently screen models** using the **racing approach.**
+  - **Compare** the **results of the racing approach** to the **results of the full workflow set screening.**
+- **Finalize the best model** from a workflow set.
 
 ## Obligatory Setup
 
