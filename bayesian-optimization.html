@@ -189,6 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html"><i class="fa fa-check"></i><b>4.2</b> Meeting Videos</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-1-3"><i class="fa fa-check"></i><b>4.2.1</b> Cohort 1</a></li>
 <li class="chapter" data-level="4.2.2" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-2-3"><i class="fa fa-check"></i><b>4.2.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="4.2.3" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-3-2"><i class="fa fa-check"></i><b>4.2.3</b> Cohort 3</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="spending-our-data.html"><a href="spending-our-data.html"><i class="fa fa-check"></i><b>5</b> Spending our data</a><ul>
@@ -455,22 +456,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">14.2.1.3</span> The tune_bayes() function</h4>
 <p>The <code>tune_bayes()</code> function sets up Bayesian optimization iterative search. It’s similar to <code>tune_grid()</code> but with additional arguments. You can specify the maximum number of search iterations, the acquisition function to be used, and whether to stop the search if no improvement is detected. See Max and Julia for details and additional arguments.</p>
 <p>Let’s keep going with our SVM model. We can use the earlier SVM results as the initial substrate. Once again, we’re trying to maximize ROC AUC.</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="bayesian-optimization.html#cb248-1"></a>ctrl &lt;-<span class="st"> </span><span class="kw">control_bayes</span>(<span class="dt">verbose =</span> <span class="ot">TRUE</span>) <span class="co"># can also add more arguments, like no_improve</span></span>
-<span id="cb248-2"><a href="bayesian-optimization.html#cb248-2"></a></span>
-<span id="cb248-3"><a href="bayesian-optimization.html#cb248-3"></a><span class="kw">set.seed</span>(<span class="dv">420</span>)</span>
-<span id="cb248-4"><a href="bayesian-optimization.html#cb248-4"></a></span>
-<span id="cb248-5"><a href="bayesian-optimization.html#cb248-5"></a>svm_bo &lt;-</span>
-<span id="cb248-6"><a href="bayesian-optimization.html#cb248-6"></a><span class="st">  </span>svm_wflow <span class="op">%&gt;%</span></span>
-<span id="cb248-7"><a href="bayesian-optimization.html#cb248-7"></a><span class="st">  </span><span class="kw">tune_bayes</span>(</span>
-<span id="cb248-8"><a href="bayesian-optimization.html#cb248-8"></a>    <span class="dt">resamples =</span> penguins_folds, </span>
-<span id="cb248-9"><a href="bayesian-optimization.html#cb248-9"></a>    <span class="dt">metrics =</span> roc_res, </span>
-<span id="cb248-10"><a href="bayesian-optimization.html#cb248-10"></a>    <span class="dt">initial =</span> svm_initial, <span class="co"># tune_grid object produced earlier</span></span>
-<span id="cb248-11"><a href="bayesian-optimization.html#cb248-11"></a>    <span class="dt">param_info =</span> svm_param, <span class="co"># specified earlier too, with our new bounds for rbf_sigma</span></span>
-<span id="cb248-12"><a href="bayesian-optimization.html#cb248-12"></a>    <span class="dt">iter =</span> <span class="dv">25</span>, <span class="co"># maximum number of search iterations</span></span>
-<span id="cb248-13"><a href="bayesian-optimization.html#cb248-13"></a>    <span class="dt">control =</span> ctrl</span>
-<span id="cb248-14"><a href="bayesian-optimization.html#cb248-14"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="bayesian-optimization.html#cb249-1"></a>ctrl &lt;-<span class="st"> </span><span class="kw">control_bayes</span>(<span class="dt">verbose =</span> <span class="ot">TRUE</span>) <span class="co"># can also add more arguments, like no_improve</span></span>
+<span id="cb249-2"><a href="bayesian-optimization.html#cb249-2"></a></span>
+<span id="cb249-3"><a href="bayesian-optimization.html#cb249-3"></a><span class="kw">set.seed</span>(<span class="dv">420</span>)</span>
+<span id="cb249-4"><a href="bayesian-optimization.html#cb249-4"></a></span>
+<span id="cb249-5"><a href="bayesian-optimization.html#cb249-5"></a>svm_bo &lt;-</span>
+<span id="cb249-6"><a href="bayesian-optimization.html#cb249-6"></a><span class="st">  </span>svm_wflow <span class="op">%&gt;%</span></span>
+<span id="cb249-7"><a href="bayesian-optimization.html#cb249-7"></a><span class="st">  </span><span class="kw">tune_bayes</span>(</span>
+<span id="cb249-8"><a href="bayesian-optimization.html#cb249-8"></a>    <span class="dt">resamples =</span> penguins_folds, </span>
+<span id="cb249-9"><a href="bayesian-optimization.html#cb249-9"></a>    <span class="dt">metrics =</span> roc_res, </span>
+<span id="cb249-10"><a href="bayesian-optimization.html#cb249-10"></a>    <span class="dt">initial =</span> svm_initial, <span class="co"># tune_grid object produced earlier</span></span>
+<span id="cb249-11"><a href="bayesian-optimization.html#cb249-11"></a>    <span class="dt">param_info =</span> svm_param, <span class="co"># specified earlier too, with our new bounds for rbf_sigma</span></span>
+<span id="cb249-12"><a href="bayesian-optimization.html#cb249-12"></a>    <span class="dt">iter =</span> <span class="dv">25</span>, <span class="co"># maximum number of search iterations</span></span>
+<span id="cb249-13"><a href="bayesian-optimization.html#cb249-13"></a>    <span class="dt">control =</span> ctrl</span>
+<span id="cb249-14"><a href="bayesian-optimization.html#cb249-14"></a>  )</span></code></pre></div>
 <p>Looks like the improvements occurred at iterations 8, 11, 13, 12 and 10. We can pull the best result(s) like so:</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="bayesian-optimization.html#cb249-1"></a><span class="kw">show_best</span>(svm_bo) <span class="co"># same call as with grid search</span></span></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="bayesian-optimization.html#cb250-1"></a><span class="kw">show_best</span>(svm_bo) <span class="co"># same call as with grid search</span></span></code></pre></div>
 <pre><code>## # A tibble: 5 x 9
 ##    cost rbf_sigma .metric .estimator  mean     n std_err .config .iter
 ##   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;int&gt;
@@ -479,10 +480,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 3  4.57    0.0998 roc_auc binary     0.977     5 0.00932 Iter21     21
 ## 4  4.70    0.0854 roc_auc binary     0.977     5 0.00932 Iter23     23
 ## 5  6.52    0.0937 roc_auc binary     0.977     5 0.00826 Iter11     11</code></pre>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="bayesian-optimization.html#cb251-1"></a>p1 &lt;-<span class="st"> </span><span class="kw">autoplot</span>(svm_bo, <span class="dt">type =</span> <span class="st">&quot;performance&quot;</span>)</span>
-<span id="cb251-2"><a href="bayesian-optimization.html#cb251-2"></a>p2 &lt;-<span class="st"> </span><span class="kw">autoplot</span>(svm_bo, <span class="dt">type =</span> <span class="st">&quot;parameters&quot;</span>)</span>
-<span id="cb251-3"><a href="bayesian-optimization.html#cb251-3"></a></span>
-<span id="cb251-4"><a href="bayesian-optimization.html#cb251-4"></a>p1 <span class="op">+</span><span class="st"> </span>p2</span></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="bayesian-optimization.html#cb252-1"></a>p1 &lt;-<span class="st"> </span><span class="kw">autoplot</span>(svm_bo, <span class="dt">type =</span> <span class="st">&quot;performance&quot;</span>)</span>
+<span id="cb252-2"><a href="bayesian-optimization.html#cb252-2"></a>p2 &lt;-<span class="st"> </span><span class="kw">autoplot</span>(svm_bo, <span class="dt">type =</span> <span class="st">&quot;parameters&quot;</span>)</span>
+<span id="cb252-3"><a href="bayesian-optimization.html#cb252-3"></a></span>
+<span id="cb252-4"><a href="bayesian-optimization.html#cb252-4"></a>p1 <span class="op">+</span><span class="st"> </span>p2</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
 </div>
 </div>

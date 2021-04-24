@@ -189,6 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html"><i class="fa fa-check"></i><b>4.2</b> Meeting Videos</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-1-3"><i class="fa fa-check"></i><b>4.2.1</b> Cohort 1</a></li>
 <li class="chapter" data-level="4.2.2" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-2-3"><i class="fa fa-check"></i><b>4.2.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="4.2.3" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-3-2"><i class="fa fa-check"></i><b>4.2.3</b> Cohort 3</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="spending-our-data.html"><a href="spending-our-data.html"><i class="fa fa-check"></i><b>5</b> Spending our data</a><ul>
@@ -385,25 +386,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="calculate-performance-statistics-workflowsets" class="section level2">
 <h2><span class="header-section-number">11.2</span> Calculate performance statistics: {workflowsets}</h2>
 <p>We’ll take a closer look at this, but workflowsets makes this stuff way cleaner!</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="calculate-performance-statistics-workflowsets.html#cb160-1"></a>lm_models &lt;-<span class="st"> </span>workflowsets<span class="op">::</span><span class="kw">workflow_set</span>(</span>
-<span id="cb160-2"><a href="calculate-performance-statistics-workflowsets.html#cb160-2"></a>  <span class="dt">preproc =</span> <span class="kw">list</span>(</span>
-<span id="cb160-3"><a href="calculate-performance-statistics-workflowsets.html#cb160-3"></a>    <span class="dt">basic =</span> basic_recipe,</span>
-<span id="cb160-4"><a href="calculate-performance-statistics-workflowsets.html#cb160-4"></a>    <span class="dt">interact =</span> interaction_recipe,</span>
-<span id="cb160-5"><a href="calculate-performance-statistics-workflowsets.html#cb160-5"></a>    <span class="dt">splines =</span> spline_recipe</span>
-<span id="cb160-6"><a href="calculate-performance-statistics-workflowsets.html#cb160-6"></a>  ),</span>
-<span id="cb160-7"><a href="calculate-performance-statistics-workflowsets.html#cb160-7"></a>  <span class="dt">models =</span> <span class="kw">list</span>(<span class="dt">lm =</span> lm_model),</span>
-<span id="cb160-8"><a href="calculate-performance-statistics-workflowsets.html#cb160-8"></a>  <span class="dt">cross =</span> <span class="ot">FALSE</span></span>
-<span id="cb160-9"><a href="calculate-performance-statistics-workflowsets.html#cb160-9"></a>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb160-10"><a href="calculate-performance-statistics-workflowsets.html#cb160-10"></a><span class="st">  </span>workflowsets<span class="op">::</span><span class="kw">workflow_map</span>(</span>
-<span id="cb160-11"><a href="calculate-performance-statistics-workflowsets.html#cb160-11"></a>    <span class="dt">fn =</span> <span class="st">&quot;fit_resamples&quot;</span>, </span>
-<span id="cb160-12"><a href="calculate-performance-statistics-workflowsets.html#cb160-12"></a>    <span class="co"># Options to `workflow_map()`: </span></span>
-<span id="cb160-13"><a href="calculate-performance-statistics-workflowsets.html#cb160-13"></a>    <span class="dt">seed =</span> <span class="dv">1101</span>, <span class="dt">verbose =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb160-14"><a href="calculate-performance-statistics-workflowsets.html#cb160-14"></a>    <span class="co"># Options to `fit_resamples()`: </span></span>
-<span id="cb160-15"><a href="calculate-performance-statistics-workflowsets.html#cb160-15"></a>    <span class="dt">resamples =</span> ames_folds, <span class="dt">control =</span> keep_pred</span>
-<span id="cb160-16"><a href="calculate-performance-statistics-workflowsets.html#cb160-16"></a>  )</span>
-<span id="cb160-17"><a href="calculate-performance-statistics-workflowsets.html#cb160-17"></a></span>
-<span id="cb160-18"><a href="calculate-performance-statistics-workflowsets.html#cb160-18"></a><span class="kw">collect_metrics</span>(lm_models) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb160-19"><a href="calculate-performance-statistics-workflowsets.html#cb160-19"></a><span class="st">  </span><span class="kw">filter</span>(.metric <span class="op">==</span><span class="st"> &quot;rsq&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="calculate-performance-statistics-workflowsets.html#cb161-1"></a>lm_models &lt;-<span class="st"> </span>workflowsets<span class="op">::</span><span class="kw">workflow_set</span>(</span>
+<span id="cb161-2"><a href="calculate-performance-statistics-workflowsets.html#cb161-2"></a>  <span class="dt">preproc =</span> <span class="kw">list</span>(</span>
+<span id="cb161-3"><a href="calculate-performance-statistics-workflowsets.html#cb161-3"></a>    <span class="dt">basic =</span> basic_recipe,</span>
+<span id="cb161-4"><a href="calculate-performance-statistics-workflowsets.html#cb161-4"></a>    <span class="dt">interact =</span> interaction_recipe,</span>
+<span id="cb161-5"><a href="calculate-performance-statistics-workflowsets.html#cb161-5"></a>    <span class="dt">splines =</span> spline_recipe</span>
+<span id="cb161-6"><a href="calculate-performance-statistics-workflowsets.html#cb161-6"></a>  ),</span>
+<span id="cb161-7"><a href="calculate-performance-statistics-workflowsets.html#cb161-7"></a>  <span class="dt">models =</span> <span class="kw">list</span>(<span class="dt">lm =</span> lm_model),</span>
+<span id="cb161-8"><a href="calculate-performance-statistics-workflowsets.html#cb161-8"></a>  <span class="dt">cross =</span> <span class="ot">FALSE</span></span>
+<span id="cb161-9"><a href="calculate-performance-statistics-workflowsets.html#cb161-9"></a>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb161-10"><a href="calculate-performance-statistics-workflowsets.html#cb161-10"></a><span class="st">  </span>workflowsets<span class="op">::</span><span class="kw">workflow_map</span>(</span>
+<span id="cb161-11"><a href="calculate-performance-statistics-workflowsets.html#cb161-11"></a>    <span class="dt">fn =</span> <span class="st">&quot;fit_resamples&quot;</span>, </span>
+<span id="cb161-12"><a href="calculate-performance-statistics-workflowsets.html#cb161-12"></a>    <span class="co"># Options to `workflow_map()`: </span></span>
+<span id="cb161-13"><a href="calculate-performance-statistics-workflowsets.html#cb161-13"></a>    <span class="dt">seed =</span> <span class="dv">1101</span>, <span class="dt">verbose =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb161-14"><a href="calculate-performance-statistics-workflowsets.html#cb161-14"></a>    <span class="co"># Options to `fit_resamples()`: </span></span>
+<span id="cb161-15"><a href="calculate-performance-statistics-workflowsets.html#cb161-15"></a>    <span class="dt">resamples =</span> ames_folds, <span class="dt">control =</span> keep_pred</span>
+<span id="cb161-16"><a href="calculate-performance-statistics-workflowsets.html#cb161-16"></a>  )</span>
+<span id="cb161-17"><a href="calculate-performance-statistics-workflowsets.html#cb161-17"></a></span>
+<span id="cb161-18"><a href="calculate-performance-statistics-workflowsets.html#cb161-18"></a><span class="kw">collect_metrics</span>(lm_models) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb161-19"><a href="calculate-performance-statistics-workflowsets.html#cb161-19"></a><span class="st">  </span><span class="kw">filter</span>(.metric <span class="op">==</span><span class="st"> &quot;rsq&quot;</span>)</span></code></pre></div>
 </div>
             </section>
 

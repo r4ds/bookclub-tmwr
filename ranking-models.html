@@ -189,6 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html"><i class="fa fa-check"></i><b>4.2</b> Meeting Videos</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-1-3"><i class="fa fa-check"></i><b>4.2.1</b> Cohort 1</a></li>
 <li class="chapter" data-level="4.2.2" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-2-3"><i class="fa fa-check"></i><b>4.2.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="4.2.3" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-3-2"><i class="fa fa-check"></i><b>4.2.3</b> Cohort 3</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="spending-our-data.html"><a href="spending-our-data.html"><i class="fa fa-check"></i><b>5</b> Spending our data</a><ul>
@@ -385,30 +386,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="ranking-models" class="section level2">
 <h2><span class="header-section-number">15.3</span> Ranking models</h2>
 <p>Let’s look at our results</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="ranking-models.html#cb271-1"></a><span class="co"># How many models are there?</span></span>
-<span id="cb271-2"><a href="ranking-models.html#cb271-2"></a>n_model &lt;-</span>
-<span id="cb271-3"><a href="ranking-models.html#cb271-3"></a><span class="st">  </span>res_grid <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb271-4"><a href="ranking-models.html#cb271-4"></a><span class="st">  </span><span class="kw">collect_metrics</span>(<span class="dt">summarize =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb271-5"><a href="ranking-models.html#cb271-5"></a><span class="st">  </span><span class="kw">nrow</span>()</span>
-<span id="cb271-6"><a href="ranking-models.html#cb271-6"></a>n_model</span></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="ranking-models.html#cb272-1"></a><span class="co"># How many models are there?</span></span>
+<span id="cb272-2"><a href="ranking-models.html#cb272-2"></a>n_model &lt;-</span>
+<span id="cb272-3"><a href="ranking-models.html#cb272-3"></a><span class="st">  </span>res_grid <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb272-4"><a href="ranking-models.html#cb272-4"></a><span class="st">  </span><span class="kw">collect_metrics</span>(<span class="dt">summarize =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb272-5"><a href="ranking-models.html#cb272-5"></a><span class="st">  </span><span class="kw">nrow</span>()</span>
+<span id="cb272-6"><a href="ranking-models.html#cb272-6"></a>n_model</span></code></pre></div>
 <pre><code>## [1] 3000</code></pre>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="ranking-models.html#cb273-1"></a>res_grid_filt &lt;-</span>
-<span id="cb273-2"><a href="ranking-models.html#cb273-2"></a><span class="st">  </span>res_grid <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb273-3"><a href="ranking-models.html#cb273-3"></a><span class="st">  </span><span class="co"># &#39;cart_bag&#39; has &lt;rsmp[+]&gt; in the `results` column, so it won&#39;t work with `rank_results()`</span></span>
-<span id="cb273-4"><a href="ranking-models.html#cb273-4"></a><span class="st">  </span><span class="kw">filter</span>(wflow_id <span class="op">!=</span><span class="st"> &#39;cart_bag&#39;</span>)</span>
-<span id="cb273-5"><a href="ranking-models.html#cb273-5"></a></span>
-<span id="cb273-6"><a href="ranking-models.html#cb273-6"></a><span class="co"># Note that xgboost sucks if you don&#39;t have good parameters</span></span>
-<span id="cb273-7"><a href="ranking-models.html#cb273-7"></a>res_ranks &lt;-</span>
-<span id="cb273-8"><a href="ranking-models.html#cb273-8"></a><span class="st">  </span>res_grid_filt <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb273-9"><a href="ranking-models.html#cb273-9"></a><span class="st">  </span>workflowsets<span class="op">::</span><span class="kw">rank_results</span>(<span class="st">&#39;rmse&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb273-10"><a href="ranking-models.html#cb273-10"></a><span class="st">  </span><span class="co"># Why this no filter out rsquared already?</span></span>
-<span id="cb273-11"><a href="ranking-models.html#cb273-11"></a><span class="st">  </span><span class="kw">filter</span>(.metric <span class="op">==</span><span class="st"> &#39;rmse&#39;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb273-12"><a href="ranking-models.html#cb273-12"></a><span class="st">  </span><span class="kw">select</span>(wflow_id, model, .config, <span class="dt">rmse =</span> mean, rank) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb273-13"><a href="ranking-models.html#cb273-13"></a><span class="st">  </span><span class="kw">group_by</span>(wflow_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb273-14"><a href="ranking-models.html#cb273-14"></a><span class="st">  </span><span class="kw">slice_min</span>(rank, <span class="dt">with_ties =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb273-15"><a href="ranking-models.html#cb273-15"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb273-16"><a href="ranking-models.html#cb273-16"></a><span class="st">  </span><span class="kw">arrange</span>(rank)</span>
-<span id="cb273-17"><a href="ranking-models.html#cb273-17"></a>res_ranks</span></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="ranking-models.html#cb274-1"></a>res_grid_filt &lt;-</span>
+<span id="cb274-2"><a href="ranking-models.html#cb274-2"></a><span class="st">  </span>res_grid <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb274-3"><a href="ranking-models.html#cb274-3"></a><span class="st">  </span><span class="co"># &#39;cart_bag&#39; has &lt;rsmp[+]&gt; in the `results` column, so it won&#39;t work with `rank_results()`</span></span>
+<span id="cb274-4"><a href="ranking-models.html#cb274-4"></a><span class="st">  </span><span class="kw">filter</span>(wflow_id <span class="op">!=</span><span class="st"> &#39;cart_bag&#39;</span>)</span>
+<span id="cb274-5"><a href="ranking-models.html#cb274-5"></a></span>
+<span id="cb274-6"><a href="ranking-models.html#cb274-6"></a><span class="co"># Note that xgboost sucks if you don&#39;t have good parameters</span></span>
+<span id="cb274-7"><a href="ranking-models.html#cb274-7"></a>res_ranks &lt;-</span>
+<span id="cb274-8"><a href="ranking-models.html#cb274-8"></a><span class="st">  </span>res_grid_filt <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb274-9"><a href="ranking-models.html#cb274-9"></a><span class="st">  </span>workflowsets<span class="op">::</span><span class="kw">rank_results</span>(<span class="st">&#39;rmse&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb274-10"><a href="ranking-models.html#cb274-10"></a><span class="st">  </span><span class="co"># Why this no filter out rsquared already?</span></span>
+<span id="cb274-11"><a href="ranking-models.html#cb274-11"></a><span class="st">  </span><span class="kw">filter</span>(.metric <span class="op">==</span><span class="st"> &#39;rmse&#39;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb274-12"><a href="ranking-models.html#cb274-12"></a><span class="st">  </span><span class="kw">select</span>(wflow_id, model, .config, <span class="dt">rmse =</span> mean, rank) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb274-13"><a href="ranking-models.html#cb274-13"></a><span class="st">  </span><span class="kw">group_by</span>(wflow_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb274-14"><a href="ranking-models.html#cb274-14"></a><span class="st">  </span><span class="kw">slice_min</span>(rank, <span class="dt">with_ties =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb274-15"><a href="ranking-models.html#cb274-15"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb274-16"><a href="ranking-models.html#cb274-16"></a><span class="st">  </span><span class="kw">arrange</span>(rank)</span>
+<span id="cb274-17"><a href="ranking-models.html#cb274-17"></a>res_ranks</span></code></pre></div>
 <pre><code>## # A tibble: 11 x 5
 ##    wflow_id         model            .config               rmse  rank
 ##    &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;                &lt;dbl&gt; &lt;int&gt;
@@ -426,11 +427,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Plot the ranks with standard errors.</p>
 <p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
 <p>If we wanted to look at the sub-models for a given <code>wflow_id</code>, we could do that with <code>autoplot()</code>.</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="ranking-models.html#cb275-1"></a><span class="kw">autoplot</span>(</span>
-<span id="cb275-2"><a href="ranking-models.html#cb275-2"></a>  res_grid, </span>
-<span id="cb275-3"><a href="ranking-models.html#cb275-3"></a>  <span class="dt">id =</span> <span class="st">&#39;norm_svm_p&#39;</span>, </span>
-<span id="cb275-4"><a href="ranking-models.html#cb275-4"></a>  <span class="dt">metric =</span> <span class="st">&#39;rmse&#39;</span></span>
-<span id="cb275-5"><a href="ranking-models.html#cb275-5"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="ranking-models.html#cb276-1"></a><span class="kw">autoplot</span>(</span>
+<span id="cb276-2"><a href="ranking-models.html#cb276-2"></a>  res_grid, </span>
+<span id="cb276-3"><a href="ranking-models.html#cb276-3"></a>  <span class="dt">id =</span> <span class="st">&#39;norm_svm_p&#39;</span>, </span>
+<span id="cb276-4"><a href="ranking-models.html#cb276-4"></a>  <span class="dt">metric =</span> <span class="st">&#39;rmse&#39;</span></span>
+<span id="cb276-5"><a href="ranking-models.html#cb276-5"></a>)</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
 <details>
 <p><summary></p>

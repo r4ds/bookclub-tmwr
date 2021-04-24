@@ -189,6 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html"><i class="fa fa-check"></i><b>4.2</b> Meeting Videos</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-1-3"><i class="fa fa-check"></i><b>4.2.1</b> Cohort 1</a></li>
 <li class="chapter" data-level="4.2.2" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-2-3"><i class="fa fa-check"></i><b>4.2.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="4.2.3" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-3-2"><i class="fa fa-check"></i><b>4.2.3</b> Cohort 3</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="spending-our-data.html"><a href="spending-our-data.html"><i class="fa fa-check"></i><b>5</b> Spending our data</a><ul>
@@ -386,75 +387,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">10.2</span> Resubstitution approach</h2>
 <p>In chapter 8, we fit a linear model to the training set. This is
 candidate model #1.</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="resubstitution-approach.html#cb137-1"></a><span class="kw">library</span>(tidymodels)</span>
-<span id="cb137-2"><a href="resubstitution-approach.html#cb137-2"></a><span class="kw">data</span>(ames)</span>
-<span id="cb137-3"><a href="resubstitution-approach.html#cb137-3"></a></span>
-<span id="cb137-4"><a href="resubstitution-approach.html#cb137-4"></a>ames &lt;-<span class="st"> </span><span class="kw">mutate</span>(ames, <span class="dt">Sale_Price =</span> <span class="kw">log10</span>(Sale_Price))</span>
-<span id="cb137-5"><a href="resubstitution-approach.html#cb137-5"></a></span>
-<span id="cb137-6"><a href="resubstitution-approach.html#cb137-6"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb137-7"><a href="resubstitution-approach.html#cb137-7"></a>ames_split &lt;-<span class="st"> </span><span class="kw">initial_split</span>(ames, <span class="dt">prop =</span> <span class="fl">0.80</span>, <span class="dt">strata =</span> Sale_Price)</span>
-<span id="cb137-8"><a href="resubstitution-approach.html#cb137-8"></a>ames_train &lt;-<span class="st"> </span><span class="kw">training</span>(ames_split)</span>
-<span id="cb137-9"><a href="resubstitution-approach.html#cb137-9"></a>ames_test  &lt;-<span class="st">  </span><span class="kw">testing</span>(ames_split)</span>
-<span id="cb137-10"><a href="resubstitution-approach.html#cb137-10"></a></span>
-<span id="cb137-11"><a href="resubstitution-approach.html#cb137-11"></a>ames_rec &lt;-<span class="st"> </span></span>
-<span id="cb137-12"><a href="resubstitution-approach.html#cb137-12"></a><span class="st">  </span><span class="kw">recipe</span>(Sale_Price <span class="op">~</span><span class="st"> </span>Neighborhood <span class="op">+</span><span class="st"> </span>Gr_Liv_Area <span class="op">+</span><span class="st"> </span>Year_Built <span class="op">+</span><span class="st"> </span>Bldg_Type <span class="op">+</span><span class="st"> </span></span>
-<span id="cb137-13"><a href="resubstitution-approach.html#cb137-13"></a><span class="st">           </span>Latitude <span class="op">+</span><span class="st"> </span>Longitude, <span class="dt">data =</span> ames_train) <span class="op">%&gt;%</span></span>
-<span id="cb137-14"><a href="resubstitution-approach.html#cb137-14"></a><span class="st">  </span><span class="kw">step_log</span>(Gr_Liv_Area, <span class="dt">base =</span> <span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb137-15"><a href="resubstitution-approach.html#cb137-15"></a><span class="st">  </span><span class="kw">step_other</span>(Neighborhood, <span class="dt">threshold =</span> <span class="fl">0.01</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb137-16"><a href="resubstitution-approach.html#cb137-16"></a><span class="st">  </span><span class="kw">step_dummy</span>(<span class="kw">all_nominal</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb137-17"><a href="resubstitution-approach.html#cb137-17"></a><span class="st">  </span><span class="kw">step_interact</span>( <span class="op">~</span><span class="st"> </span>Gr_Liv_Area<span class="op">:</span><span class="kw">starts_with</span>(<span class="st">&quot;Bldg_Type_&quot;</span>) ) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb137-18"><a href="resubstitution-approach.html#cb137-18"></a><span class="st">  </span><span class="kw">step_ns</span>(Latitude, Longitude, <span class="dt">deg_free =</span> <span class="dv">20</span>)</span>
-<span id="cb137-19"><a href="resubstitution-approach.html#cb137-19"></a></span>
-<span id="cb137-20"><a href="resubstitution-approach.html#cb137-20"></a>lm_model &lt;-<span class="st"> </span><span class="kw">linear_reg</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">set_engine</span>(<span class="st">&quot;lm&quot;</span>)</span>
-<span id="cb137-21"><a href="resubstitution-approach.html#cb137-21"></a></span>
-<span id="cb137-22"><a href="resubstitution-approach.html#cb137-22"></a>lm_wflow &lt;-<span class="st"> </span></span>
-<span id="cb137-23"><a href="resubstitution-approach.html#cb137-23"></a><span class="st">  </span><span class="kw">workflow</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb137-24"><a href="resubstitution-approach.html#cb137-24"></a><span class="st">  </span><span class="kw">add_model</span>(lm_model) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb137-25"><a href="resubstitution-approach.html#cb137-25"></a><span class="st">  </span><span class="kw">add_recipe</span>(ames_rec)</span>
-<span id="cb137-26"><a href="resubstitution-approach.html#cb137-26"></a></span>
-<span id="cb137-27"><a href="resubstitution-approach.html#cb137-27"></a>lm_fit &lt;-<span class="st"> </span><span class="kw">fit</span>(lm_wflow, ames_train)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="resubstitution-approach.html#cb138-1"></a><span class="kw">library</span>(tidymodels)</span>
+<span id="cb138-2"><a href="resubstitution-approach.html#cb138-2"></a><span class="kw">data</span>(ames)</span>
+<span id="cb138-3"><a href="resubstitution-approach.html#cb138-3"></a></span>
+<span id="cb138-4"><a href="resubstitution-approach.html#cb138-4"></a>ames &lt;-<span class="st"> </span><span class="kw">mutate</span>(ames, <span class="dt">Sale_Price =</span> <span class="kw">log10</span>(Sale_Price))</span>
+<span id="cb138-5"><a href="resubstitution-approach.html#cb138-5"></a></span>
+<span id="cb138-6"><a href="resubstitution-approach.html#cb138-6"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb138-7"><a href="resubstitution-approach.html#cb138-7"></a>ames_split &lt;-<span class="st"> </span><span class="kw">initial_split</span>(ames, <span class="dt">prop =</span> <span class="fl">0.80</span>, <span class="dt">strata =</span> Sale_Price)</span>
+<span id="cb138-8"><a href="resubstitution-approach.html#cb138-8"></a>ames_train &lt;-<span class="st"> </span><span class="kw">training</span>(ames_split)</span>
+<span id="cb138-9"><a href="resubstitution-approach.html#cb138-9"></a>ames_test  &lt;-<span class="st">  </span><span class="kw">testing</span>(ames_split)</span>
+<span id="cb138-10"><a href="resubstitution-approach.html#cb138-10"></a></span>
+<span id="cb138-11"><a href="resubstitution-approach.html#cb138-11"></a>ames_rec &lt;-<span class="st"> </span></span>
+<span id="cb138-12"><a href="resubstitution-approach.html#cb138-12"></a><span class="st">  </span><span class="kw">recipe</span>(Sale_Price <span class="op">~</span><span class="st"> </span>Neighborhood <span class="op">+</span><span class="st"> </span>Gr_Liv_Area <span class="op">+</span><span class="st"> </span>Year_Built <span class="op">+</span><span class="st"> </span>Bldg_Type <span class="op">+</span><span class="st"> </span></span>
+<span id="cb138-13"><a href="resubstitution-approach.html#cb138-13"></a><span class="st">           </span>Latitude <span class="op">+</span><span class="st"> </span>Longitude, <span class="dt">data =</span> ames_train) <span class="op">%&gt;%</span></span>
+<span id="cb138-14"><a href="resubstitution-approach.html#cb138-14"></a><span class="st">  </span><span class="kw">step_log</span>(Gr_Liv_Area, <span class="dt">base =</span> <span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb138-15"><a href="resubstitution-approach.html#cb138-15"></a><span class="st">  </span><span class="kw">step_other</span>(Neighborhood, <span class="dt">threshold =</span> <span class="fl">0.01</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb138-16"><a href="resubstitution-approach.html#cb138-16"></a><span class="st">  </span><span class="kw">step_dummy</span>(<span class="kw">all_nominal</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb138-17"><a href="resubstitution-approach.html#cb138-17"></a><span class="st">  </span><span class="kw">step_interact</span>( <span class="op">~</span><span class="st"> </span>Gr_Liv_Area<span class="op">:</span><span class="kw">starts_with</span>(<span class="st">&quot;Bldg_Type_&quot;</span>) ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb138-18"><a href="resubstitution-approach.html#cb138-18"></a><span class="st">  </span><span class="kw">step_ns</span>(Latitude, Longitude, <span class="dt">deg_free =</span> <span class="dv">20</span>)</span>
+<span id="cb138-19"><a href="resubstitution-approach.html#cb138-19"></a></span>
+<span id="cb138-20"><a href="resubstitution-approach.html#cb138-20"></a>lm_model &lt;-<span class="st"> </span><span class="kw">linear_reg</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">set_engine</span>(<span class="st">&quot;lm&quot;</span>)</span>
+<span id="cb138-21"><a href="resubstitution-approach.html#cb138-21"></a></span>
+<span id="cb138-22"><a href="resubstitution-approach.html#cb138-22"></a>lm_wflow &lt;-<span class="st"> </span></span>
+<span id="cb138-23"><a href="resubstitution-approach.html#cb138-23"></a><span class="st">  </span><span class="kw">workflow</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb138-24"><a href="resubstitution-approach.html#cb138-24"></a><span class="st">  </span><span class="kw">add_model</span>(lm_model) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb138-25"><a href="resubstitution-approach.html#cb138-25"></a><span class="st">  </span><span class="kw">add_recipe</span>(ames_rec)</span>
+<span id="cb138-26"><a href="resubstitution-approach.html#cb138-26"></a></span>
+<span id="cb138-27"><a href="resubstitution-approach.html#cb138-27"></a>lm_fit &lt;-<span class="st"> </span><span class="kw">fit</span>(lm_wflow, ames_train)</span></code></pre></div>
 <p>We can fit a random forest model the training data, and this random
 forest model will be candidate #2.</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="resubstitution-approach.html#cb138-1"></a>rf_model &lt;-<span class="st"> </span></span>
-<span id="cb138-2"><a href="resubstitution-approach.html#cb138-2"></a><span class="st">  </span><span class="kw">rand_forest</span>(<span class="dt">trees =</span> <span class="dv">1000</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb138-3"><a href="resubstitution-approach.html#cb138-3"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;ranger&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb138-4"><a href="resubstitution-approach.html#cb138-4"></a><span class="st">  </span><span class="kw">set_mode</span>(<span class="st">&quot;regression&quot;</span>)</span>
-<span id="cb138-5"><a href="resubstitution-approach.html#cb138-5"></a></span>
-<span id="cb138-6"><a href="resubstitution-approach.html#cb138-6"></a>rf_wflow &lt;-<span class="st"> </span></span>
-<span id="cb138-7"><a href="resubstitution-approach.html#cb138-7"></a><span class="st">  </span><span class="kw">workflow</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb138-8"><a href="resubstitution-approach.html#cb138-8"></a><span class="st">  </span><span class="kw">add_formula</span>(</span>
-<span id="cb138-9"><a href="resubstitution-approach.html#cb138-9"></a>    Sale_Price <span class="op">~</span><span class="st"> </span>Neighborhood <span class="op">+</span><span class="st"> </span>Gr_Liv_Area <span class="op">+</span><span class="st"> </span>Year_Built <span class="op">+</span><span class="st"> </span>Bldg_Type <span class="op">+</span><span class="st"> </span></span>
-<span id="cb138-10"><a href="resubstitution-approach.html#cb138-10"></a><span class="st">      </span>Latitude <span class="op">+</span><span class="st"> </span>Longitude) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb138-11"><a href="resubstitution-approach.html#cb138-11"></a><span class="st">  </span><span class="kw">add_model</span>(rf_model) </span>
-<span id="cb138-12"><a href="resubstitution-approach.html#cb138-12"></a></span>
-<span id="cb138-13"><a href="resubstitution-approach.html#cb138-13"></a>rf_fit &lt;-<span class="st"> </span>rf_wflow <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">fit</span>(<span class="dt">data =</span> ames_train)</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="resubstitution-approach.html#cb139-1"></a>rf_model &lt;-<span class="st"> </span></span>
+<span id="cb139-2"><a href="resubstitution-approach.html#cb139-2"></a><span class="st">  </span><span class="kw">rand_forest</span>(<span class="dt">trees =</span> <span class="dv">1000</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb139-3"><a href="resubstitution-approach.html#cb139-3"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;ranger&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb139-4"><a href="resubstitution-approach.html#cb139-4"></a><span class="st">  </span><span class="kw">set_mode</span>(<span class="st">&quot;regression&quot;</span>)</span>
+<span id="cb139-5"><a href="resubstitution-approach.html#cb139-5"></a></span>
+<span id="cb139-6"><a href="resubstitution-approach.html#cb139-6"></a>rf_wflow &lt;-<span class="st"> </span></span>
+<span id="cb139-7"><a href="resubstitution-approach.html#cb139-7"></a><span class="st">  </span><span class="kw">workflow</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb139-8"><a href="resubstitution-approach.html#cb139-8"></a><span class="st">  </span><span class="kw">add_formula</span>(</span>
+<span id="cb139-9"><a href="resubstitution-approach.html#cb139-9"></a>    Sale_Price <span class="op">~</span><span class="st"> </span>Neighborhood <span class="op">+</span><span class="st"> </span>Gr_Liv_Area <span class="op">+</span><span class="st"> </span>Year_Built <span class="op">+</span><span class="st"> </span>Bldg_Type <span class="op">+</span><span class="st"> </span></span>
+<span id="cb139-10"><a href="resubstitution-approach.html#cb139-10"></a><span class="st">      </span>Latitude <span class="op">+</span><span class="st"> </span>Longitude) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb139-11"><a href="resubstitution-approach.html#cb139-11"></a><span class="st">  </span><span class="kw">add_model</span>(rf_model) </span>
+<span id="cb139-12"><a href="resubstitution-approach.html#cb139-12"></a></span>
+<span id="cb139-13"><a href="resubstitution-approach.html#cb139-13"></a>rf_fit &lt;-<span class="st"> </span>rf_wflow <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">fit</span>(<span class="dt">data =</span> ames_train)</span></code></pre></div>
 <p>We can compare the performance of these two candidate models by</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="resubstitution-approach.html#cb139-1"></a>estimate_perf &lt;-<span class="st"> </span><span class="cf">function</span>(model, dat) {</span>
-<span id="cb139-2"><a href="resubstitution-approach.html#cb139-2"></a>  <span class="co"># Capture the names of the objects used</span></span>
-<span id="cb139-3"><a href="resubstitution-approach.html#cb139-3"></a>  cl &lt;-<span class="st"> </span><span class="kw">match.call</span>()</span>
-<span id="cb139-4"><a href="resubstitution-approach.html#cb139-4"></a>  obj_name &lt;-<span class="st"> </span><span class="kw">as.character</span>(cl<span class="op">$</span>model)</span>
-<span id="cb139-5"><a href="resubstitution-approach.html#cb139-5"></a>  data_name &lt;-<span class="st"> </span><span class="kw">as.character</span>(cl<span class="op">$</span>dat)</span>
-<span id="cb139-6"><a href="resubstitution-approach.html#cb139-6"></a>  data_name &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;ames_&quot;</span>, <span class="st">&quot;&quot;</span>, data_name)</span>
-<span id="cb139-7"><a href="resubstitution-approach.html#cb139-7"></a>  </span>
-<span id="cb139-8"><a href="resubstitution-approach.html#cb139-8"></a>  <span class="co"># Estimate these metrics:</span></span>
-<span id="cb139-9"><a href="resubstitution-approach.html#cb139-9"></a>  reg_metrics &lt;-<span class="st"> </span><span class="kw">metric_set</span>(rmse, rsq)</span>
-<span id="cb139-10"><a href="resubstitution-approach.html#cb139-10"></a>  </span>
-<span id="cb139-11"><a href="resubstitution-approach.html#cb139-11"></a>  model <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb139-12"><a href="resubstitution-approach.html#cb139-12"></a><span class="st">    </span><span class="kw">predict</span>(dat) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb139-13"><a href="resubstitution-approach.html#cb139-13"></a><span class="st">    </span><span class="kw">bind_cols</span>(dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Sale_Price)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb139-14"><a href="resubstitution-approach.html#cb139-14"></a><span class="st">    </span><span class="kw">reg_metrics</span>(Sale_Price, .pred) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb139-15"><a href="resubstitution-approach.html#cb139-15"></a><span class="st">    </span><span class="kw">select</span>(<span class="op">-</span>.estimator) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb139-16"><a href="resubstitution-approach.html#cb139-16"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">object =</span> obj_name, <span class="dt">data =</span> data_name)</span>
-<span id="cb139-17"><a href="resubstitution-approach.html#cb139-17"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="resubstitution-approach.html#cb140-1"></a>estimate_perf &lt;-<span class="st"> </span><span class="cf">function</span>(model, dat) {</span>
+<span id="cb140-2"><a href="resubstitution-approach.html#cb140-2"></a>  <span class="co"># Capture the names of the objects used</span></span>
+<span id="cb140-3"><a href="resubstitution-approach.html#cb140-3"></a>  cl &lt;-<span class="st"> </span><span class="kw">match.call</span>()</span>
+<span id="cb140-4"><a href="resubstitution-approach.html#cb140-4"></a>  obj_name &lt;-<span class="st"> </span><span class="kw">as.character</span>(cl<span class="op">$</span>model)</span>
+<span id="cb140-5"><a href="resubstitution-approach.html#cb140-5"></a>  data_name &lt;-<span class="st"> </span><span class="kw">as.character</span>(cl<span class="op">$</span>dat)</span>
+<span id="cb140-6"><a href="resubstitution-approach.html#cb140-6"></a>  data_name &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;ames_&quot;</span>, <span class="st">&quot;&quot;</span>, data_name)</span>
+<span id="cb140-7"><a href="resubstitution-approach.html#cb140-7"></a>  </span>
+<span id="cb140-8"><a href="resubstitution-approach.html#cb140-8"></a>  <span class="co"># Estimate these metrics:</span></span>
+<span id="cb140-9"><a href="resubstitution-approach.html#cb140-9"></a>  reg_metrics &lt;-<span class="st"> </span><span class="kw">metric_set</span>(rmse, rsq)</span>
+<span id="cb140-10"><a href="resubstitution-approach.html#cb140-10"></a>  </span>
+<span id="cb140-11"><a href="resubstitution-approach.html#cb140-11"></a>  model <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb140-12"><a href="resubstitution-approach.html#cb140-12"></a><span class="st">    </span><span class="kw">predict</span>(dat) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb140-13"><a href="resubstitution-approach.html#cb140-13"></a><span class="st">    </span><span class="kw">bind_cols</span>(dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Sale_Price)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb140-14"><a href="resubstitution-approach.html#cb140-14"></a><span class="st">    </span><span class="kw">reg_metrics</span>(Sale_Price, .pred) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb140-15"><a href="resubstitution-approach.html#cb140-15"></a><span class="st">    </span><span class="kw">select</span>(<span class="op">-</span>.estimator) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb140-16"><a href="resubstitution-approach.html#cb140-16"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">object =</span> obj_name, <span class="dt">data =</span> data_name)</span>
+<span id="cb140-17"><a href="resubstitution-approach.html#cb140-17"></a>}</span></code></pre></div>
 <p>Resubstitution errors for the linear model:</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="resubstitution-approach.html#cb140-1"></a><span class="kw">estimate_perf</span>(lm_fit, ames_train)</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="resubstitution-approach.html#cb141-1"></a><span class="kw">estimate_perf</span>(lm_fit, ames_train)</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 4
 ##   .metric .estimate object data 
 ##   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;
 ## 1 rmse       0.0726 lm_fit train
 ## 2 rsq        0.830  lm_fit train</code></pre>
 <p>Resubstitution errors for the random forest model:</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="resubstitution-approach.html#cb142-1"></a><span class="kw">estimate_perf</span>(rf_fit, ames_train)</span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="resubstitution-approach.html#cb143-1"></a><span class="kw">estimate_perf</span>(rf_fit, ames_train)</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 4
 ##   .metric .estimate object data 
 ##   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;
@@ -463,7 +464,7 @@ forest model will be candidate #2.</p>
 <p>We can see that the random forest model performs significantly better
 (2+ times as better). We can choose the random forest model as our only
 candidate model. We can test its performance on the test set:</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="resubstitution-approach.html#cb144-1"></a><span class="kw">estimate_perf</span>(rf_fit, ames_test)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="resubstitution-approach.html#cb145-1"></a><span class="kw">estimate_perf</span>(rf_fit, ames_test)</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 4
 ##   .metric .estimate object data 
 ##   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;

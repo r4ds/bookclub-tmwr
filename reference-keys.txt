@@ -39,6 +39,7 @@ pittsburgh-a-parallel-real-world-example
 meeting-videos-3
 cohort-1-3
 cohort-2-3
+cohort-3-2
 spending-our-data
 spending-our-data-1
 common-methods-for-splitting-data
