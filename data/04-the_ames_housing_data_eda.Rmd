@@ -1,0 +1,213 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse) # is this bad practice 👀👀
+library(leaflet)
+library(scales)
+library(patchwork)
+library(tidytext)
+theme_set(theme_light())
+
+data(ames, package = "modeldata")
+```
+
+![](https://www.thomasvanhoey.com/post/2019-12-06-rbootcamp-2019_files/sontidyverse.jpg)
+
+
+https://cran.r-project.org/web/packages/AmesHousing/AmesHousing.pdf
+
+# Textbook's EDA
+
+## Map
+
+Let's start with the coolest thing in the chapter! 
+
+Color is Neighborhood, Size is Sale_Price
+```{r}
+nb.cols <- 28
+mycolors <- colorRampPalette(RColorBrewer::brewer.pal(8, "Set2"))(nb.cols)
+
+pal <- colorFactor(
+  palette = mycolors,
+  levels = levels(ames$Neighborhood)
+)
+
+leaflet(ames) %>% 
+  addProviderTiles(providers$CartoDB.Positron) %>% 
+  addCircleMarkers(lng = ~Longitude, 
+                   lat = ~Latitude, 
+                   opacity = NULL, 
+                   radius = ~Sale_Price / 60000, 
+                   color = ~pal(Neighborhood), 
+                   group = ~Neighborhood, 
+                   popup = ~paste(Neighborhood, dollar(Sale_Price))) %>% 
+  addLayersControl(overlayGroups =  ames$Neighborhood,
+                   options = layersControlOptions(collapsed = FALSE))
+
+```
+
+Textbook points out:
+
+1. Isolated neighbourhoods (Timberland)
+2. Neighbourhoods that are surrounded by others (Meadow Village, Bloomington Heights)
+3. Overlapping neighbourhoods (Sommerset, Old Town)
+4. Out-of-place houses within neighbourhoods (Crawford, Veenker)
+
+## Sale_Price
+
+```{r}
+ames %>% 
+  summarize(mean(Sale_Price))
+```
+
+```{r}
+ggplot(ames, aes(x = Sale_Price)) + 
+  geom_histogram(bins = 50) +
+  geom_vline(xintercept = min(ames$Sale_Price), color = "red", linetype = "dashed") +
+  scale_x_continuous(labels = dollar_format()) +
+  labs(title = "Sale_Price shows a right skewed distribution",
+       subtitle = "Notice the minimum Sale_Price is above 0")
+```
+
+```{r}
+p1 <- ggplot(ames, aes(x = Sale_Price)) + 
+  geom_histogram(bins = 50) +
+  scale_x_log10(labels = dollar_format()) +
+  labs(title = "Log Transformed Sale_Price, looks normal")
+
+p2 <- ames %>%
+  mutate(Sale_Price = log10(Sale_Price)) %>% 
+  ggplot(aes(x = Sale_Price)) + 
+  geom_histogram(bins = 50) +
+  scale_x_continuous() +
+  labs(title = "Log Transformed Sale_Price, looks normal")
+
+p1 + p2
+```
+
+# Let's do some EDA
+
+## What kind of Columns do I have?
+
+```{r}
+ames %>% 
+  skimr::skim()
+```
+
+This is quite a lot of columns. It'd take a long time to go through them one by one.
+__Ask the group what their strategies are with large feature sets__
+
+### Strategy 1. Look at similar columns together ("Area", "SF", "Cond")
+
+```{r}
+ames %>% names()
+ames %>% select(matches("Area"))
+```
+
+1.1 Faceted histogram of numeric variables using pivot_longer (can also sample columns)
+```{r}
+ames %>% 
+  select(matches("SF")) %>% 
+  mutate(id = row_number()) %>% 
+  pivot_longer(-id, "measure", "value") %>% 
+  ggplot(aes(value, fill = measure)) +
+  geom_histogram(bins = 50) +
+  facet_wrap(~measure, scales = "free")
+```
+
+1.2 Faceted count column chart of categorical variables using reorder_within 
+```{r}
+ames %>% 
+  select(matches("Cond")) %>% 
+  select(-Second_Flr_SF) %>% 
+  mutate(id = row_number()) %>% 
+  pivot_longer(-id, "measure", "value") %>% 
+  count(measure, value) %>% 
+  mutate(value = reorder_within(value, n, measure)) %>% 
+  ggplot(aes(n, value, fill = measure)) + 
+  geom_col(show.legend = FALSE) + 
+  facet_wrap(~measure, scales = "free_y") + 
+  scale_y_reordered()
+```
+
+
+### Strategy 2. Create a Correlation map
+```{r}
+library(ggcorrplot)
+
+# Just taking numeric for now
+corr <- round(cor(ames %>% select(where(is.numeric))), 1)
+plotly::ggplotly(ggcorrplot(corr, type = "lower"))
+```
+
+## Question1: Which neighbourhoods sell the most and at what price?
+
+Column graph of house counts by neighbourhood, filled by median price
+```{r}
+ames %>% 
+  group_by(Neighborhood) %>% 
+  summarize(n = n(), median_price = median(Sale_Price)) %>% 
+  ungroup() %>% 
+  mutate(Neighborhood = fct_reorder(Neighborhood, n)) %>%  
+  ggplot(aes(n, Neighborhood, fill = median_price)) +
+  geom_col() +
+  scale_fill_continuous(labels = dollar_format()) +
+  labs(title = "# houses sold by neighbourhood, represented by median Sale_Price",
+       x = "# Houses Sold")
+```
+
+Boxplot of price distribution by neighbourhood
+```{r}
+ames %>% 
+  mutate(Neighborhood = fct_reorder(Neighborhood, Sale_Price, median)) %>% 
+  ggplot(aes(Sale_Price, Neighborhood, fill = Neighborhood)) +
+  geom_boxplot(show.legend = FALSE) +
+  labs(title = "Sale_Price distribution by neighbourhood")
+```
+
+## Question2: Which neighbourhoods have the oldest houses? Does it affect Price?
+
+geom_density_ridges chart year built by neighbourhoods 
+```{r}
+library(ggridges)
+
+ames %>% 
+  mutate(Neighborhood = fct_reorder(Neighborhood, Year_Built, median)) %>%
+  ggplot(aes(Year_Built, Neighborhood, fill = Neighborhood)) +
+  geom_density_ridges(show.legend = FALSE)
+```
+
+Scatter plot year vs price
+```{r}
+ames %>% 
+  ggplot(aes(Year_Built, Sale_Price)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+Calculate median Sale_Price by decades __thank you drob for this trick!__
+```{r}
+ames %>% 
+  mutate(decade = 10 * (Year_Built %/% 10)) %>% 
+  group_by(decade) %>% 
+  summarize(price = median(Sale_Price)) %>% 
+  ggplot(aes(decade, price)) +
+  geom_line() +
+  labs(title = "Median home sale price by decades")
+```
+
+
+## Further EDA questions:
+- Some people have no fence? Are these apartments?
+- How many people have pools?
+- Year Built vs Renovation vs Sold
+- Are older homes bigger?
+- Is there a popular Bldg_Type in an area?
+
