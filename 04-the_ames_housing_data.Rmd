@@ -198,3 +198,28 @@ Shiny app: https://conorotompkins.shinyapps.io/house_sale_estimator/
 00:58:43	Janita Botha:	Thanks....
 ```
 </details>
+
+### Cohort 3
+
+You can check out the EDA script presented by Jiwan Heo [here](./data/04-the_ames_housing_data_eda.Rmd). 
+
+`r knitr::include_url("https://www.youtube.com/embed/Jn66GVDGLrc")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:03:49	Daniel Chen:	https://r4ds.github.io/bookclub-tmwr/
+00:08:31	jiwan:	https://cran.r-project.org/web/packages/AmesHousing/AmesHousing.pdf
+00:17:34	Daniel Chen:	can you show qqplot of the transforemed plot?
+00:18:27	Daniel Chen:	it should be qqnorm(VALUES)
+00:18:48	Daniel Chen:	http://www.sthda.com/english/wiki/qq-plots-quantile-quantile-plots-r-base-graphs
+00:24:18	Chris Martin:	No, audio or video from me today I'm afraid …
+00:33:15	Toryn Schafer:	Thanks for the demo, Jiwan, have to head out early!
+00:47:41	Hannah Frick:	I also need to leave a littel early, thanks for the live demo - always interesting to see people explore datasets!
+00:53:53	Chris Martin:	Thanks for the demo!
+00:56:44	Chris Martin:	I some times end up coming back to EDA after doing some modelling. So, try not to worry too much about covering everything in an initial EDA.
+00:58:48	Chris Martin:	Thanks everyone
+```
+  
+</details>
