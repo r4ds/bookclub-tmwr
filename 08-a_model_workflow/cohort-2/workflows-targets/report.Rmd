@@ -11,7 +11,7 @@ params:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-This notebook demonstrates model workflows from the tidymodels R package, using [{targets}](https://books.ropensci.org/targets/) as a explanatory tool. 
+This notebook demonstrates model workflows from the tidymodels R package, using [{targets}](https://books.ropensci.org/targets/) as an explanatory tool. 
 
 **Disclaimer**: The actual fitting and modeling in this notebook don't represent best practices but rather serve to demonstrate workflows. In reality you would want to tune each of the models using cross-validation on the train set. Additionally, you'd want to define different recipes for each model type in the ``workflow_set()`` function. 
 
