@@ -1,0 +1,127 @@
+---
+title: "Tidy Modeling with R: Chapter 8 - A Model Workflow"
+author: "Kevin Kent"
+date: "4/25/2021"
+output: html_document
+params:
+  models: "none"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This notebook demonstrates model workflows from the tidymodels R package, using [{targets}](https://books.ropensci.org/targets/) as an explanatory tool. 
+
+**Disclaimer**: The actual fitting and modeling in this notebook don't represent best practices but rather serve to demonstrate workflows. In reality you would want to tune each of the models using cross-validation on the train set. Additionally, you'd want to define different recipes for each model type in the ``workflow_set()`` function. 
+
+At a high-level, a workflow object uses all or some of these elements:
+
+1. Pre-processing (recipe)
+2. Model
+3. Post-processing (not always applicable)
+
+We will be fitting the following models: ``r params$models``
+
+Let's take a look at the overall pipeline:
+
+```{r}
+
+tar_glimpse()
+
+```
+
+These are the individual steps and how long each step takes:
+
+```{r}
+
+tar_meta() %>%
+  select(name, seconds) %>%
+  kableExtra::kable()
+
+```
+
+
+# Descriptive Stats
+
+## Skimr
+
+```{r}
+
+tar_read(ames_raw) %>%
+  skim()
+
+```
+
+## Corrr
+
+```{r, fig.height= 10, fig.width = 18}
+
+tar_read(ames_raw) %>%
+  select_if(is.numeric) %>%
+        correlate() %>%    # Create correlation data frame (cor_df)
+       rearrange() %>%  # rearrange by correlations
+       shave() %>%
+        rplot()
+```
+
+## GGpairs - Only Predictors + Outcome
+
+Before cleaning:
+
+```{r, fig.width = 15, fig.height = 15}
+
+tar_read(ames_raw) %>%
+  select(Sale_Price, Gr_Liv_Area, Year_Built, Bldg_Type, Latitude, Longitude) %>%
+  ggpairs()
+
+```
+
+After cleaning:
+
+```{r, fig.width = 15, fig.height = 15}
+
+tar_read(ames_cleaned) %>%
+  select(Sale_Price, Gr_Liv_Area, Year_Built, Bldg_Type, Latitude, Longitude) %>%
+  ggpairs()
+
+
+```
+
+
+# Predictions
+
+Let's take a look at the predictions vs. observed for our models.
+
+```{r}
+
+tar_read(pred_actual) %>%
+  pivot_longer(c(-Sale_Price)) %>%
+  ggplot(aes(Sale_Price, value, col = name)) + geom_point() + geom_abline(intercept =0 , slope = 1) + scale_x_continuous(limits = c(4.5, NA)) + scale_y_continuous(limits = c(4.5, NA)) + facet_grid(name ~ .) + labs(title = "Predicted vs. Actual for Each Model", x = "Actual", y  = "Predicted")
+```
+
+Residuals vs. observed for each model:
+
+```{r}
+tar_read(pred_actual) %>%
+  pivot_longer(c(-Sale_Price)) %>%
+  mutate(value = value - Sale_Price) %>%
+  ggplot(aes(Sale_Price, value, col = name)) + geom_point() + geom_hline(yintercept = 0) + facet_grid(name ~.) + labs(title = "Actual vs. Residuals for Each Model", x = "Actual", y  = "Residual") 
+```
+
+
+# Evaluation
+
+```{r, fig.width=12}
+
+tar_read(eval) %>%
+  ggplot(aes(model, .estimate)) + geom_point() + facet_wrap(.metric ~., scales = "free") + coord_flip()
+
+```
+
+# Session Information
+
+```{r, echo = FALSE}
+sessionInfo()
+```
+
