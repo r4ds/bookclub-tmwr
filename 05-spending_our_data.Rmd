@@ -374,3 +374,19 @@ We will learn more about how to remedy certain issues such as class imbalance, b
 00:59:58	August:	https://cran.r-project.org/web/packages/anomalize/vignettes/anomalize_methods.html
 ```
 </details>
+
+### Cohort 3
+
+`r knitr::include_url("https://www.youtube.com/embed/Dxf3kgIkbpI")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:23:04	Daniel Chen (he/him):	I don't know why it's 10%
+00:23:23	Daniel Chen (he/him):	it seems like a good heuristic?
+00:29:33	Daniel Chen (he/him):	(Strata below 10% of the total are pooled together.)
+00:54:00	Ildiko Czeller:	https://spatialsample.tidymodels.org/reference/spatialsample.html
+```
+</details>
+
