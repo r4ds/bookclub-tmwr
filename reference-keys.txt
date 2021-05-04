@@ -1,6 +1,6 @@
 tab:unnamed-chunk-33
-tab:unnamed-chunk-56
-tab:unnamed-chunk-83
+tab:unnamed-chunk-61
+tab:unnamed-chunk-88
 software-for-modeling
 the-pit-of-success
 types-of-models
@@ -44,6 +44,7 @@ spending-our-data
 spending-our-data-1
 common-methods-for-splitting-data
 class-imbalance
+stratified-sampling-simulation
 continuous-outcome-data
 time-series-data
 multi-level-data
@@ -53,6 +54,7 @@ references
 meeting-videos-4
 cohort-1-4
 cohort-2-4
+cohort-3-3
 feature-engineering-with-recipes
 meeting-videos-5
 cohort-1-5

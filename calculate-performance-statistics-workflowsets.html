@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-04-26" />
+<meta name="date" content="2021-05-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -195,7 +195,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="spending-our-data.html"><a href="spending-our-data.html"><i class="fa fa-check"></i><b>5</b> Spending our data</a><ul>
 <li class="chapter" data-level="5.1" data-path="spending-our-data-1.html"><a href="spending-our-data-1.html"><i class="fa fa-check"></i><b>5.1</b> Spending our data</a></li>
 <li class="chapter" data-level="5.2" data-path="common-methods-for-splitting-data.html"><a href="common-methods-for-splitting-data.html"><i class="fa fa-check"></i><b>5.2</b> Common methods for splitting data</a></li>
-<li class="chapter" data-level="5.3" data-path="class-imbalance.html"><a href="class-imbalance.html"><i class="fa fa-check"></i><b>5.3</b> Class imbalance</a></li>
+<li class="chapter" data-level="5.3" data-path="class-imbalance.html"><a href="class-imbalance.html"><i class="fa fa-check"></i><b>5.3</b> Class imbalance</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="class-imbalance.html"><a href="class-imbalance.html#stratified-sampling-simulation"><i class="fa fa-check"></i><b>5.3.1</b> Stratified sampling simulation</a></li>
+</ul></li>
 <li class="chapter" data-level="5.4" data-path="continuous-outcome-data.html"><a href="continuous-outcome-data.html"><i class="fa fa-check"></i><b>5.4</b> Continuous outcome data</a></li>
 <li class="chapter" data-level="5.5" data-path="time-series-data.html"><a href="time-series-data.html"><i class="fa fa-check"></i><b>5.5</b> Time series data</a></li>
 <li class="chapter" data-level="5.6" data-path="multi-level-data.html"><a href="multi-level-data.html"><i class="fa fa-check"></i><b>5.6</b> Multi-level data</a></li>
@@ -206,6 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.9" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html"><i class="fa fa-check"></i><b>5.9</b> Meeting Videos</a><ul>
 <li class="chapter" data-level="5.9.1" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-1-4"><i class="fa fa-check"></i><b>5.9.1</b> Cohort 1</a></li>
 <li class="chapter" data-level="5.9.2" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-2-4"><i class="fa fa-check"></i><b>5.9.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="5.9.3" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-3-3"><i class="fa fa-check"></i><b>5.9.3</b> Cohort 3</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="feature-engineering-with-recipes.html"><a href="feature-engineering-with-recipes.html"><i class="fa fa-check"></i><b>6</b> Feature engineering with recipes</a><ul>
@@ -386,25 +389,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="calculate-performance-statistics-workflowsets" class="section level2">
 <h2><span class="header-section-number">11.2</span> Calculate performance statistics: {workflowsets}</h2>
 <p>We’ll take a closer look at this, but workflowsets makes this stuff way cleaner!</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="calculate-performance-statistics-workflowsets.html#cb161-1"></a>lm_models &lt;-<span class="st"> </span>workflowsets<span class="op">::</span><span class="kw">workflow_set</span>(</span>
-<span id="cb161-2"><a href="calculate-performance-statistics-workflowsets.html#cb161-2"></a>  <span class="dt">preproc =</span> <span class="kw">list</span>(</span>
-<span id="cb161-3"><a href="calculate-performance-statistics-workflowsets.html#cb161-3"></a>    <span class="dt">basic =</span> basic_recipe,</span>
-<span id="cb161-4"><a href="calculate-performance-statistics-workflowsets.html#cb161-4"></a>    <span class="dt">interact =</span> interaction_recipe,</span>
-<span id="cb161-5"><a href="calculate-performance-statistics-workflowsets.html#cb161-5"></a>    <span class="dt">splines =</span> spline_recipe</span>
-<span id="cb161-6"><a href="calculate-performance-statistics-workflowsets.html#cb161-6"></a>  ),</span>
-<span id="cb161-7"><a href="calculate-performance-statistics-workflowsets.html#cb161-7"></a>  <span class="dt">models =</span> <span class="kw">list</span>(<span class="dt">lm =</span> lm_model),</span>
-<span id="cb161-8"><a href="calculate-performance-statistics-workflowsets.html#cb161-8"></a>  <span class="dt">cross =</span> <span class="ot">FALSE</span></span>
-<span id="cb161-9"><a href="calculate-performance-statistics-workflowsets.html#cb161-9"></a>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb161-10"><a href="calculate-performance-statistics-workflowsets.html#cb161-10"></a><span class="st">  </span>workflowsets<span class="op">::</span><span class="kw">workflow_map</span>(</span>
-<span id="cb161-11"><a href="calculate-performance-statistics-workflowsets.html#cb161-11"></a>    <span class="dt">fn =</span> <span class="st">&quot;fit_resamples&quot;</span>, </span>
-<span id="cb161-12"><a href="calculate-performance-statistics-workflowsets.html#cb161-12"></a>    <span class="co"># Options to `workflow_map()`: </span></span>
-<span id="cb161-13"><a href="calculate-performance-statistics-workflowsets.html#cb161-13"></a>    <span class="dt">seed =</span> <span class="dv">1101</span>, <span class="dt">verbose =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb161-14"><a href="calculate-performance-statistics-workflowsets.html#cb161-14"></a>    <span class="co"># Options to `fit_resamples()`: </span></span>
-<span id="cb161-15"><a href="calculate-performance-statistics-workflowsets.html#cb161-15"></a>    <span class="dt">resamples =</span> ames_folds, <span class="dt">control =</span> keep_pred</span>
-<span id="cb161-16"><a href="calculate-performance-statistics-workflowsets.html#cb161-16"></a>  )</span>
-<span id="cb161-17"><a href="calculate-performance-statistics-workflowsets.html#cb161-17"></a></span>
-<span id="cb161-18"><a href="calculate-performance-statistics-workflowsets.html#cb161-18"></a><span class="kw">collect_metrics</span>(lm_models) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb161-19"><a href="calculate-performance-statistics-workflowsets.html#cb161-19"></a><span class="st">  </span><span class="kw">filter</span>(.metric <span class="op">==</span><span class="st"> &quot;rsq&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="calculate-performance-statistics-workflowsets.html#cb170-1"></a>lm_models &lt;-<span class="st"> </span>workflowsets<span class="op">::</span><span class="kw">workflow_set</span>(</span>
+<span id="cb170-2"><a href="calculate-performance-statistics-workflowsets.html#cb170-2"></a>  <span class="dt">preproc =</span> <span class="kw">list</span>(</span>
+<span id="cb170-3"><a href="calculate-performance-statistics-workflowsets.html#cb170-3"></a>    <span class="dt">basic =</span> basic_recipe,</span>
+<span id="cb170-4"><a href="calculate-performance-statistics-workflowsets.html#cb170-4"></a>    <span class="dt">interact =</span> interaction_recipe,</span>
+<span id="cb170-5"><a href="calculate-performance-statistics-workflowsets.html#cb170-5"></a>    <span class="dt">splines =</span> spline_recipe</span>
+<span id="cb170-6"><a href="calculate-performance-statistics-workflowsets.html#cb170-6"></a>  ),</span>
+<span id="cb170-7"><a href="calculate-performance-statistics-workflowsets.html#cb170-7"></a>  <span class="dt">models =</span> <span class="kw">list</span>(<span class="dt">lm =</span> lm_model),</span>
+<span id="cb170-8"><a href="calculate-performance-statistics-workflowsets.html#cb170-8"></a>  <span class="dt">cross =</span> <span class="ot">FALSE</span></span>
+<span id="cb170-9"><a href="calculate-performance-statistics-workflowsets.html#cb170-9"></a>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb170-10"><a href="calculate-performance-statistics-workflowsets.html#cb170-10"></a><span class="st">  </span>workflowsets<span class="op">::</span><span class="kw">workflow_map</span>(</span>
+<span id="cb170-11"><a href="calculate-performance-statistics-workflowsets.html#cb170-11"></a>    <span class="dt">fn =</span> <span class="st">&quot;fit_resamples&quot;</span>, </span>
+<span id="cb170-12"><a href="calculate-performance-statistics-workflowsets.html#cb170-12"></a>    <span class="co"># Options to `workflow_map()`: </span></span>
+<span id="cb170-13"><a href="calculate-performance-statistics-workflowsets.html#cb170-13"></a>    <span class="dt">seed =</span> <span class="dv">1101</span>, <span class="dt">verbose =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb170-14"><a href="calculate-performance-statistics-workflowsets.html#cb170-14"></a>    <span class="co"># Options to `fit_resamples()`: </span></span>
+<span id="cb170-15"><a href="calculate-performance-statistics-workflowsets.html#cb170-15"></a>    <span class="dt">resamples =</span> ames_folds, <span class="dt">control =</span> keep_pred</span>
+<span id="cb170-16"><a href="calculate-performance-statistics-workflowsets.html#cb170-16"></a>  )</span>
+<span id="cb170-17"><a href="calculate-performance-statistics-workflowsets.html#cb170-17"></a></span>
+<span id="cb170-18"><a href="calculate-performance-statistics-workflowsets.html#cb170-18"></a><span class="kw">collect_metrics</span>(lm_models) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb170-19"><a href="calculate-performance-statistics-workflowsets.html#cb170-19"></a><span class="st">  </span><span class="kw">filter</span>(.metric <span class="op">==</span><span class="st"> &quot;rsq&quot;</span>)</span></code></pre></div>
 </div>
             </section>
 

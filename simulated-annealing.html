@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-04-26" />
+<meta name="date" content="2021-05-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -195,7 +195,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="spending-our-data.html"><a href="spending-our-data.html"><i class="fa fa-check"></i><b>5</b> Spending our data</a><ul>
 <li class="chapter" data-level="5.1" data-path="spending-our-data-1.html"><a href="spending-our-data-1.html"><i class="fa fa-check"></i><b>5.1</b> Spending our data</a></li>
 <li class="chapter" data-level="5.2" data-path="common-methods-for-splitting-data.html"><a href="common-methods-for-splitting-data.html"><i class="fa fa-check"></i><b>5.2</b> Common methods for splitting data</a></li>
-<li class="chapter" data-level="5.3" data-path="class-imbalance.html"><a href="class-imbalance.html"><i class="fa fa-check"></i><b>5.3</b> Class imbalance</a></li>
+<li class="chapter" data-level="5.3" data-path="class-imbalance.html"><a href="class-imbalance.html"><i class="fa fa-check"></i><b>5.3</b> Class imbalance</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="class-imbalance.html"><a href="class-imbalance.html#stratified-sampling-simulation"><i class="fa fa-check"></i><b>5.3.1</b> Stratified sampling simulation</a></li>
+</ul></li>
 <li class="chapter" data-level="5.4" data-path="continuous-outcome-data.html"><a href="continuous-outcome-data.html"><i class="fa fa-check"></i><b>5.4</b> Continuous outcome data</a></li>
 <li class="chapter" data-level="5.5" data-path="time-series-data.html"><a href="time-series-data.html"><i class="fa fa-check"></i><b>5.5</b> Time series data</a></li>
 <li class="chapter" data-level="5.6" data-path="multi-level-data.html"><a href="multi-level-data.html"><i class="fa fa-check"></i><b>5.6</b> Multi-level data</a></li>
@@ -206,6 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.9" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html"><i class="fa fa-check"></i><b>5.9</b> Meeting Videos</a><ul>
 <li class="chapter" data-level="5.9.1" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-1-4"><i class="fa fa-check"></i><b>5.9.1</b> Cohort 1</a></li>
 <li class="chapter" data-level="5.9.2" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-2-4"><i class="fa fa-check"></i><b>5.9.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="5.9.3" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-3-3"><i class="fa fa-check"></i><b>5.9.3</b> Cohort 3</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="feature-engineering-with-recipes.html"><a href="feature-engineering-with-recipes.html"><i class="fa fa-check"></i><b>6</b> Feature engineering with recipes</a><ul>
@@ -435,22 +438,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>cooling_coef</code>: dictates how quickly the acceptance probability decreases as the we go through iterations. Larger coefficient values means the probability of accepting a bad result will decrease.</p></li>
 </ul>
 <p>Implemention is very similar to grid search and Bayesian optimization. We can print out the best results, and have visual assessments of our search went across iterations.</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="simulated-annealing.html#cb253-1"></a>ctrl_sa &lt;-<span class="st"> </span><span class="kw">control_sim_anneal</span>(<span class="dt">verbose =</span> <span class="ot">TRUE</span>, <span class="dt">no_improve =</span> 10L)</span>
-<span id="cb253-2"><a href="simulated-annealing.html#cb253-2"></a></span>
-<span id="cb253-3"><a href="simulated-annealing.html#cb253-3"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb253-4"><a href="simulated-annealing.html#cb253-4"></a></span>
-<span id="cb253-5"><a href="simulated-annealing.html#cb253-5"></a>svm_sa &lt;-</span>
-<span id="cb253-6"><a href="simulated-annealing.html#cb253-6"></a><span class="st">  </span>svm_wflow <span class="op">%&gt;%</span></span>
-<span id="cb253-7"><a href="simulated-annealing.html#cb253-7"></a><span class="st">  </span><span class="kw">tune_sim_anneal</span>(</span>
-<span id="cb253-8"><a href="simulated-annealing.html#cb253-8"></a>    <span class="dt">resamples =</span> penguins_folds,</span>
-<span id="cb253-9"><a href="simulated-annealing.html#cb253-9"></a>    <span class="dt">metrics =</span> roc_res,</span>
-<span id="cb253-10"><a href="simulated-annealing.html#cb253-10"></a>    <span class="dt">initial =</span> svm_initial,</span>
-<span id="cb253-11"><a href="simulated-annealing.html#cb253-11"></a>    <span class="dt">param_info =</span> svm_param,</span>
-<span id="cb253-12"><a href="simulated-annealing.html#cb253-12"></a>    <span class="dt">iter =</span> <span class="dv">50</span>,</span>
-<span id="cb253-13"><a href="simulated-annealing.html#cb253-13"></a>    <span class="dt">control =</span> ctrl_sa</span>
-<span id="cb253-14"><a href="simulated-annealing.html#cb253-14"></a>  )</span>
-<span id="cb253-15"><a href="simulated-annealing.html#cb253-15"></a></span>
-<span id="cb253-16"><a href="simulated-annealing.html#cb253-16"></a><span class="kw">show_best</span>(svm_sa)</span></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="simulated-annealing.html#cb262-1"></a>ctrl_sa &lt;-<span class="st"> </span><span class="kw">control_sim_anneal</span>(<span class="dt">verbose =</span> <span class="ot">TRUE</span>, <span class="dt">no_improve =</span> 10L)</span>
+<span id="cb262-2"><a href="simulated-annealing.html#cb262-2"></a></span>
+<span id="cb262-3"><a href="simulated-annealing.html#cb262-3"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb262-4"><a href="simulated-annealing.html#cb262-4"></a></span>
+<span id="cb262-5"><a href="simulated-annealing.html#cb262-5"></a>svm_sa &lt;-</span>
+<span id="cb262-6"><a href="simulated-annealing.html#cb262-6"></a><span class="st">  </span>svm_wflow <span class="op">%&gt;%</span></span>
+<span id="cb262-7"><a href="simulated-annealing.html#cb262-7"></a><span class="st">  </span><span class="kw">tune_sim_anneal</span>(</span>
+<span id="cb262-8"><a href="simulated-annealing.html#cb262-8"></a>    <span class="dt">resamples =</span> penguins_folds,</span>
+<span id="cb262-9"><a href="simulated-annealing.html#cb262-9"></a>    <span class="dt">metrics =</span> roc_res,</span>
+<span id="cb262-10"><a href="simulated-annealing.html#cb262-10"></a>    <span class="dt">initial =</span> svm_initial,</span>
+<span id="cb262-11"><a href="simulated-annealing.html#cb262-11"></a>    <span class="dt">param_info =</span> svm_param,</span>
+<span id="cb262-12"><a href="simulated-annealing.html#cb262-12"></a>    <span class="dt">iter =</span> <span class="dv">50</span>,</span>
+<span id="cb262-13"><a href="simulated-annealing.html#cb262-13"></a>    <span class="dt">control =</span> ctrl_sa</span>
+<span id="cb262-14"><a href="simulated-annealing.html#cb262-14"></a>  )</span>
+<span id="cb262-15"><a href="simulated-annealing.html#cb262-15"></a></span>
+<span id="cb262-16"><a href="simulated-annealing.html#cb262-16"></a><span class="kw">show_best</span>(svm_sa)</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 9
 ##      cost rbf_sigma .metric .estimator  mean     n std_err .config         .iter
 ##     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;           &lt;int&gt;

@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-04-26" />
+<meta name="date" content="2021-05-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -195,7 +195,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="spending-our-data.html"><a href="spending-our-data.html"><i class="fa fa-check"></i><b>5</b> Spending our data</a><ul>
 <li class="chapter" data-level="5.1" data-path="spending-our-data-1.html"><a href="spending-our-data-1.html"><i class="fa fa-check"></i><b>5.1</b> Spending our data</a></li>
 <li class="chapter" data-level="5.2" data-path="common-methods-for-splitting-data.html"><a href="common-methods-for-splitting-data.html"><i class="fa fa-check"></i><b>5.2</b> Common methods for splitting data</a></li>
-<li class="chapter" data-level="5.3" data-path="class-imbalance.html"><a href="class-imbalance.html"><i class="fa fa-check"></i><b>5.3</b> Class imbalance</a></li>
+<li class="chapter" data-level="5.3" data-path="class-imbalance.html"><a href="class-imbalance.html"><i class="fa fa-check"></i><b>5.3</b> Class imbalance</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="class-imbalance.html"><a href="class-imbalance.html#stratified-sampling-simulation"><i class="fa fa-check"></i><b>5.3.1</b> Stratified sampling simulation</a></li>
+</ul></li>
 <li class="chapter" data-level="5.4" data-path="continuous-outcome-data.html"><a href="continuous-outcome-data.html"><i class="fa fa-check"></i><b>5.4</b> Continuous outcome data</a></li>
 <li class="chapter" data-level="5.5" data-path="time-series-data.html"><a href="time-series-data.html"><i class="fa fa-check"></i><b>5.5</b> Time series data</a></li>
 <li class="chapter" data-level="5.6" data-path="multi-level-data.html"><a href="multi-level-data.html"><i class="fa fa-check"></i><b>5.6</b> Multi-level data</a></li>
@@ -206,6 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.9" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html"><i class="fa fa-check"></i><b>5.9</b> Meeting Videos</a><ul>
 <li class="chapter" data-level="5.9.1" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-1-4"><i class="fa fa-check"></i><b>5.9.1</b> Cohort 1</a></li>
 <li class="chapter" data-level="5.9.2" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-2-4"><i class="fa fa-check"></i><b>5.9.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="5.9.3" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-3-3"><i class="fa fa-check"></i><b>5.9.3</b> Cohort 3</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="feature-engineering-with-recipes.html"><a href="feature-engineering-with-recipes.html"><i class="fa fa-check"></i><b>6</b> Feature engineering with recipes</a><ul>
@@ -389,8 +392,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><code>tidy()</code> - Has a bunch of versatility, but for our context it can take our model object and return our model coefficients into a nice tibble.</li>
 </ul>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="use-model-results.html#cb124-1"></a>broom<span class="op">::</span><span class="kw">tidy</span>(lm_form_fit) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb124-2"><a href="use-model-results.html#cb124-2"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="use-model-results.html#cb133-1"></a>broom<span class="op">::</span><span class="kw">tidy</span>(lm_form_fit) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb133-2"><a href="use-model-results.html#cb133-2"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -429,8 +432,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><code>glance()</code> - allows us in this context to convert our model’s summary statistics into a <code>tibble</code></li>
 </ul>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="use-model-results.html#cb125-1"></a>broom<span class="op">::</span><span class="kw">glance</span>(lm_form_fit) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb125-2"><a href="use-model-results.html#cb125-2"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="use-model-results.html#cb134-1"></a>broom<span class="op">::</span><span class="kw">glance</span>(lm_form_fit) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb134-2"><a href="use-model-results.html#cb134-2"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <colgroup>
 <col width="9%" />

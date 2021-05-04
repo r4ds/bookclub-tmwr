@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-04-26" />
+<meta name="date" content="2021-05-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -195,7 +195,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="spending-our-data.html"><a href="spending-our-data.html"><i class="fa fa-check"></i><b>5</b> Spending our data</a><ul>
 <li class="chapter" data-level="5.1" data-path="spending-our-data-1.html"><a href="spending-our-data-1.html"><i class="fa fa-check"></i><b>5.1</b> Spending our data</a></li>
 <li class="chapter" data-level="5.2" data-path="common-methods-for-splitting-data.html"><a href="common-methods-for-splitting-data.html"><i class="fa fa-check"></i><b>5.2</b> Common methods for splitting data</a></li>
-<li class="chapter" data-level="5.3" data-path="class-imbalance.html"><a href="class-imbalance.html"><i class="fa fa-check"></i><b>5.3</b> Class imbalance</a></li>
+<li class="chapter" data-level="5.3" data-path="class-imbalance.html"><a href="class-imbalance.html"><i class="fa fa-check"></i><b>5.3</b> Class imbalance</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="class-imbalance.html"><a href="class-imbalance.html#stratified-sampling-simulation"><i class="fa fa-check"></i><b>5.3.1</b> Stratified sampling simulation</a></li>
+</ul></li>
 <li class="chapter" data-level="5.4" data-path="continuous-outcome-data.html"><a href="continuous-outcome-data.html"><i class="fa fa-check"></i><b>5.4</b> Continuous outcome data</a></li>
 <li class="chapter" data-level="5.5" data-path="time-series-data.html"><a href="time-series-data.html"><i class="fa fa-check"></i><b>5.5</b> Time series data</a></li>
 <li class="chapter" data-level="5.6" data-path="multi-level-data.html"><a href="multi-level-data.html"><i class="fa fa-check"></i><b>5.6</b> Multi-level data</a></li>
@@ -206,6 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.9" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html"><i class="fa fa-check"></i><b>5.9</b> Meeting Videos</a><ul>
 <li class="chapter" data-level="5.9.1" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-1-4"><i class="fa fa-check"></i><b>5.9.1</b> Cohort 1</a></li>
 <li class="chapter" data-level="5.9.2" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-2-4"><i class="fa fa-check"></i><b>5.9.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="5.9.3" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-3-3"><i class="fa fa-check"></i><b>5.9.3</b> Cohort 3</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="feature-engineering-with-recipes.html"><a href="feature-engineering-with-recipes.html"><i class="fa fa-check"></i><b>6</b> Feature engineering with recipes</a><ul>
@@ -386,16 +389,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="updating-tuning-parameters" class="section level2">
 <h2><span class="header-section-number">12.11</span> Updating tuning parameters:</h2>
 <p>To see what we need to update/ finalize, we can call the function in the <code>{dials}</code> package</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="updating-tuning-parameters.html#cb174-1"></a><span class="kw">mtry</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="updating-tuning-parameters.html#cb183-1"></a><span class="kw">mtry</span>()</span></code></pre></div>
 <pre><code>## # Randomly Selected Predictors (quantitative)
 ## Range: [1, ?]</code></pre>
 <p>We can also use the <code>{dials}</code> package to see the tuning range</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="updating-tuning-parameters.html#cb176-1"></a><span class="kw">min_n</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="updating-tuning-parameters.html#cb185-1"></a><span class="kw">min_n</span>()</span></code></pre></div>
 <pre><code>## Minimal Node Size (quantitative)
 ## Range: [2, 40]</code></pre>
 <p>To update/finalize or adjust the hyperparameters we can use the <code>update()</code> function to update in-place:</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="updating-tuning-parameters.html#cb178-1"></a><span class="kw">parameters</span>(rf_spec_tuned) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb178-2"><a href="updating-tuning-parameters.html#cb178-2"></a><span class="st">  </span><span class="kw">update</span>(<span class="dt">mtry =</span> <span class="kw">mtry</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">4</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="updating-tuning-parameters.html#cb187-1"></a><span class="kw">parameters</span>(rf_spec_tuned) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb187-2"><a href="updating-tuning-parameters.html#cb187-2"></a><span class="st">  </span><span class="kw">update</span>(<span class="dt">mtry =</span> <span class="kw">mtry</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">4</span>)))</span></code></pre></div>
 <pre><code>## Collection of 3 parameters for tuning
 ## 
 ##  identifier                  type    object

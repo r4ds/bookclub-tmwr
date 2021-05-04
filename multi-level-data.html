@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-04-26" />
+<meta name="date" content="2021-05-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -195,7 +195,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="spending-our-data.html"><a href="spending-our-data.html"><i class="fa fa-check"></i><b>5</b> Spending our data</a><ul>
 <li class="chapter" data-level="5.1" data-path="spending-our-data-1.html"><a href="spending-our-data-1.html"><i class="fa fa-check"></i><b>5.1</b> Spending our data</a></li>
 <li class="chapter" data-level="5.2" data-path="common-methods-for-splitting-data.html"><a href="common-methods-for-splitting-data.html"><i class="fa fa-check"></i><b>5.2</b> Common methods for splitting data</a></li>
-<li class="chapter" data-level="5.3" data-path="class-imbalance.html"><a href="class-imbalance.html"><i class="fa fa-check"></i><b>5.3</b> Class imbalance</a></li>
+<li class="chapter" data-level="5.3" data-path="class-imbalance.html"><a href="class-imbalance.html"><i class="fa fa-check"></i><b>5.3</b> Class imbalance</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="class-imbalance.html"><a href="class-imbalance.html#stratified-sampling-simulation"><i class="fa fa-check"></i><b>5.3.1</b> Stratified sampling simulation</a></li>
+</ul></li>
 <li class="chapter" data-level="5.4" data-path="continuous-outcome-data.html"><a href="continuous-outcome-data.html"><i class="fa fa-check"></i><b>5.4</b> Continuous outcome data</a></li>
 <li class="chapter" data-level="5.5" data-path="time-series-data.html"><a href="time-series-data.html"><i class="fa fa-check"></i><b>5.5</b> Time series data</a></li>
 <li class="chapter" data-level="5.6" data-path="multi-level-data.html"><a href="multi-level-data.html"><i class="fa fa-check"></i><b>5.6</b> Multi-level data</a></li>
@@ -206,6 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.9" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html"><i class="fa fa-check"></i><b>5.9</b> Meeting Videos</a><ul>
 <li class="chapter" data-level="5.9.1" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-1-4"><i class="fa fa-check"></i><b>5.9.1</b> Cohort 1</a></li>
 <li class="chapter" data-level="5.9.2" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-2-4"><i class="fa fa-check"></i><b>5.9.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="5.9.3" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-3-3"><i class="fa fa-check"></i><b>5.9.3</b> Cohort 3</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="feature-engineering-with-recipes.html"><a href="feature-engineering-with-recipes.html"><i class="fa fa-check"></i><b>6</b> Feature engineering with recipes</a><ul>
@@ -387,6 +390,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.6</span> Multi-level data</h2>
 <p>It’s important to figure out what the <strong>independent experimental unit</strong> is in your data. In the Ames dataset, there is one row per house and so houses and their properties are considered to be independent of one another.</p>
 <p>In other datasets, there may be multiple rows per experimental unit (e.g. as in patients who are measured multiple times across time). This has implications for data splitting. To avoid data from the same experimental unit being in both the training and test set, split along the independent experimental units such that X% of experimental units are in the training set.</p>
+<p>Example:</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="multi-level-data.html#cb114-1"></a><span class="co"># data source: http://www.bristol.ac.uk/cmm/learning/mmsoftware/data-rev.html#oxboys</span></span>
+<span id="cb114-2"><a href="multi-level-data.html#cb114-2"></a>child_heights &lt;-<span class="st"> </span><span class="kw">read_delim</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;data/Oxboys.txt&quot;</span>), <span class="dt">col_names =</span> <span class="ot">FALSE</span>, <span class="dt">delim =</span> <span class="st">&quot; &quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb114-3"><a href="multi-level-data.html#cb114-3"></a><span class="st">  </span><span class="kw">set_names</span>(<span class="kw">c</span>(<span class="st">&quot;child_id&quot;</span>, <span class="st">&quot;age_norm&quot;</span>, <span class="st">&quot;height&quot;</span>, <span class="st">&quot;measurement_id&quot;</span>, <span class="st">&quot;season&quot;</span>))</span>
+<span id="cb114-4"><a href="multi-level-data.html#cb114-4"></a><span class="kw">head</span>(child_heights)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 5
+##   child_id age_norm height measurement_id season
+##      &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;          &lt;dbl&gt;  &lt;dbl&gt;
+## 1        1   -1       140.              1   7.32
+## 2        1   -0.747   143.              2   9.36
+## 3        1   -0.463   145.              3   0.84
+## 4        1   -0.164   147.              4   4.32
+## 5        1   -0.002   148.              5   6.24
+## 6        1    0.247   150.              6   9.36</code></pre>
+<p>Depending on the modeling problem we may want to split the data to train and test set in a way that data points for children remain together. You can do this with the following code.</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="multi-level-data.html#cb116-1"></a>child_heights_split &lt;-<span class="st"> </span>child_heights <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb116-2"><a href="multi-level-data.html#cb116-2"></a><span class="st">  </span><span class="kw">group_nest</span>(child_id) <span class="op">%&gt;%</span></span>
+<span id="cb116-3"><a href="multi-level-data.html#cb116-3"></a><span class="st">  </span><span class="kw">initial_split</span>()</span>
+<span id="cb116-4"><a href="multi-level-data.html#cb116-4"></a></span>
+<span id="cb116-5"><a href="multi-level-data.html#cb116-5"></a>child_heights_train &lt;-<span class="st"> </span><span class="kw">training</span>(child_heights_split) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb116-6"><a href="multi-level-data.html#cb116-6"></a><span class="st">  </span><span class="kw">unnest</span>(data)</span></code></pre></div>
+<p>For other task it might be more suitable to split along measurement id and all childrens’ last measurement will be the test set.</p>
 </div>
             </section>
 

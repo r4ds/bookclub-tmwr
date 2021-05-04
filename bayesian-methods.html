@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-04-26" />
+<meta name="date" content="2021-05-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -195,7 +195,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="spending-our-data.html"><a href="spending-our-data.html"><i class="fa fa-check"></i><b>5</b> Spending our data</a><ul>
 <li class="chapter" data-level="5.1" data-path="spending-our-data-1.html"><a href="spending-our-data-1.html"><i class="fa fa-check"></i><b>5.1</b> Spending our data</a></li>
 <li class="chapter" data-level="5.2" data-path="common-methods-for-splitting-data.html"><a href="common-methods-for-splitting-data.html"><i class="fa fa-check"></i><b>5.2</b> Common methods for splitting data</a></li>
-<li class="chapter" data-level="5.3" data-path="class-imbalance.html"><a href="class-imbalance.html"><i class="fa fa-check"></i><b>5.3</b> Class imbalance</a></li>
+<li class="chapter" data-level="5.3" data-path="class-imbalance.html"><a href="class-imbalance.html"><i class="fa fa-check"></i><b>5.3</b> Class imbalance</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="class-imbalance.html"><a href="class-imbalance.html#stratified-sampling-simulation"><i class="fa fa-check"></i><b>5.3.1</b> Stratified sampling simulation</a></li>
+</ul></li>
 <li class="chapter" data-level="5.4" data-path="continuous-outcome-data.html"><a href="continuous-outcome-data.html"><i class="fa fa-check"></i><b>5.4</b> Continuous outcome data</a></li>
 <li class="chapter" data-level="5.5" data-path="time-series-data.html"><a href="time-series-data.html"><i class="fa fa-check"></i><b>5.5</b> Time series data</a></li>
 <li class="chapter" data-level="5.6" data-path="multi-level-data.html"><a href="multi-level-data.html"><i class="fa fa-check"></i><b>5.6</b> Multi-level data</a></li>
@@ -206,6 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.9" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html"><i class="fa fa-check"></i><b>5.9</b> Meeting Videos</a><ul>
 <li class="chapter" data-level="5.9.1" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-1-4"><i class="fa fa-check"></i><b>5.9.1</b> Cohort 1</a></li>
 <li class="chapter" data-level="5.9.2" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-2-4"><i class="fa fa-check"></i><b>5.9.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="5.9.3" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-3-3"><i class="fa fa-check"></i><b>5.9.3</b> Cohort 3</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="feature-engineering-with-recipes.html"><a href="feature-engineering-with-recipes.html"><i class="fa fa-check"></i><b>6</b> Feature engineering with recipes</a><ul>
@@ -385,29 +388,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="bayesian-methods" class="section level2">
 <h2><span class="header-section-number">11.6</span> Bayesian methods</h2>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="bayesian-methods.html#cb163-1"></a><span class="kw">library</span>(tidyposterior)</span>
-<span id="cb163-2"><a href="bayesian-methods.html#cb163-2"></a><span class="kw">library</span>(rstanarm)</span>
-<span id="cb163-3"><a href="bayesian-methods.html#cb163-3"></a></span>
-<span id="cb163-4"><a href="bayesian-methods.html#cb163-4"></a>rqs_diff &lt;-<span class="st"> </span>ames_folds <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb163-5"><a href="bayesian-methods.html#cb163-5"></a><span class="st">  </span><span class="kw">bind_cols</span>(rsq_estimates <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>id)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb163-6"><a href="bayesian-methods.html#cb163-6"></a><span class="st">  </span><span class="kw">perf_mod</span>(</span>
-<span id="cb163-7"><a href="bayesian-methods.html#cb163-7"></a>    <span class="dt">prior_intercept =</span> <span class="kw">student_t</span>(<span class="dt">df =</span> <span class="dv">1</span>),</span>
-<span id="cb163-8"><a href="bayesian-methods.html#cb163-8"></a>    <span class="dt">chains =</span> <span class="dv">4</span>,</span>
-<span id="cb163-9"><a href="bayesian-methods.html#cb163-9"></a>    <span class="dt">iter =</span> <span class="dv">5000</span>,</span>
-<span id="cb163-10"><a href="bayesian-methods.html#cb163-10"></a>    <span class="dt">seed =</span> <span class="dv">2</span></span>
-<span id="cb163-11"><a href="bayesian-methods.html#cb163-11"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb163-12"><a href="bayesian-methods.html#cb163-12"></a><span class="st">  </span><span class="kw">contrast_models</span>(</span>
-<span id="cb163-13"><a href="bayesian-methods.html#cb163-13"></a>    <span class="dt">list_1 =</span> <span class="st">&quot;with splines&quot;</span>,</span>
-<span id="cb163-14"><a href="bayesian-methods.html#cb163-14"></a>    <span class="dt">list_2 =</span> <span class="st">&quot;no splines&quot;</span>,</span>
-<span id="cb163-15"><a href="bayesian-methods.html#cb163-15"></a>    <span class="dt">seed =</span> <span class="dv">36</span></span>
-<span id="cb163-16"><a href="bayesian-methods.html#cb163-16"></a>  )</span>
-<span id="cb163-17"><a href="bayesian-methods.html#cb163-17"></a></span>
-<span id="cb163-18"><a href="bayesian-methods.html#cb163-18"></a><span class="kw">summary</span>(rqs_diff, <span class="dt">size =</span> <span class="fl">0.02</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># 0.02 is our practical effect size.</span></span>
-<span id="cb163-19"><a href="bayesian-methods.html#cb163-19"></a><span class="st">  </span><span class="kw">select</span>(contrast, <span class="kw">starts_with</span>(<span class="st">&quot;pract&quot;</span>))</span>
-<span id="cb163-20"><a href="bayesian-methods.html#cb163-20"></a><span class="co">#&gt; # A tibble: 1 x 4</span></span>
-<span id="cb163-21"><a href="bayesian-methods.html#cb163-21"></a><span class="co">#&gt;   contrast                   pract_neg pract_equiv pract_pos</span></span>
-<span id="cb163-22"><a href="bayesian-methods.html#cb163-22"></a><span class="co">#&gt;   &lt;chr&gt;                          &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;</span></span>
-<span id="cb163-23"><a href="bayesian-methods.html#cb163-23"></a><span class="co">#&gt; 1 with splines vs no splines         0       0.989    0.0113</span></span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="bayesian-methods.html#cb172-1"></a><span class="kw">library</span>(tidyposterior)</span>
+<span id="cb172-2"><a href="bayesian-methods.html#cb172-2"></a><span class="kw">library</span>(rstanarm)</span>
+<span id="cb172-3"><a href="bayesian-methods.html#cb172-3"></a></span>
+<span id="cb172-4"><a href="bayesian-methods.html#cb172-4"></a>rqs_diff &lt;-<span class="st"> </span>ames_folds <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb172-5"><a href="bayesian-methods.html#cb172-5"></a><span class="st">  </span><span class="kw">bind_cols</span>(rsq_estimates <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>id)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb172-6"><a href="bayesian-methods.html#cb172-6"></a><span class="st">  </span><span class="kw">perf_mod</span>(</span>
+<span id="cb172-7"><a href="bayesian-methods.html#cb172-7"></a>    <span class="dt">prior_intercept =</span> <span class="kw">student_t</span>(<span class="dt">df =</span> <span class="dv">1</span>),</span>
+<span id="cb172-8"><a href="bayesian-methods.html#cb172-8"></a>    <span class="dt">chains =</span> <span class="dv">4</span>,</span>
+<span id="cb172-9"><a href="bayesian-methods.html#cb172-9"></a>    <span class="dt">iter =</span> <span class="dv">5000</span>,</span>
+<span id="cb172-10"><a href="bayesian-methods.html#cb172-10"></a>    <span class="dt">seed =</span> <span class="dv">2</span></span>
+<span id="cb172-11"><a href="bayesian-methods.html#cb172-11"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb172-12"><a href="bayesian-methods.html#cb172-12"></a><span class="st">  </span><span class="kw">contrast_models</span>(</span>
+<span id="cb172-13"><a href="bayesian-methods.html#cb172-13"></a>    <span class="dt">list_1 =</span> <span class="st">&quot;with splines&quot;</span>,</span>
+<span id="cb172-14"><a href="bayesian-methods.html#cb172-14"></a>    <span class="dt">list_2 =</span> <span class="st">&quot;no splines&quot;</span>,</span>
+<span id="cb172-15"><a href="bayesian-methods.html#cb172-15"></a>    <span class="dt">seed =</span> <span class="dv">36</span></span>
+<span id="cb172-16"><a href="bayesian-methods.html#cb172-16"></a>  )</span>
+<span id="cb172-17"><a href="bayesian-methods.html#cb172-17"></a></span>
+<span id="cb172-18"><a href="bayesian-methods.html#cb172-18"></a><span class="kw">summary</span>(rqs_diff, <span class="dt">size =</span> <span class="fl">0.02</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># 0.02 is our practical effect size.</span></span>
+<span id="cb172-19"><a href="bayesian-methods.html#cb172-19"></a><span class="st">  </span><span class="kw">select</span>(contrast, <span class="kw">starts_with</span>(<span class="st">&quot;pract&quot;</span>))</span>
+<span id="cb172-20"><a href="bayesian-methods.html#cb172-20"></a><span class="co">#&gt; # A tibble: 1 x 4</span></span>
+<span id="cb172-21"><a href="bayesian-methods.html#cb172-21"></a><span class="co">#&gt;   contrast                   pract_neg pract_equiv pract_pos</span></span>
+<span id="cb172-22"><a href="bayesian-methods.html#cb172-22"></a><span class="co">#&gt;   &lt;chr&gt;                          &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb172-23"><a href="bayesian-methods.html#cb172-23"></a><span class="co">#&gt; 1 with splines vs no splines         0       0.989    0.0113</span></span></code></pre></div>
 </div>
             </section>
 

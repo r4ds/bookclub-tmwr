@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-04-26" />
+<meta name="date" content="2021-05-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -195,7 +195,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="spending-our-data.html"><a href="spending-our-data.html"><i class="fa fa-check"></i><b>5</b> Spending our data</a><ul>
 <li class="chapter" data-level="5.1" data-path="spending-our-data-1.html"><a href="spending-our-data-1.html"><i class="fa fa-check"></i><b>5.1</b> Spending our data</a></li>
 <li class="chapter" data-level="5.2" data-path="common-methods-for-splitting-data.html"><a href="common-methods-for-splitting-data.html"><i class="fa fa-check"></i><b>5.2</b> Common methods for splitting data</a></li>
-<li class="chapter" data-level="5.3" data-path="class-imbalance.html"><a href="class-imbalance.html"><i class="fa fa-check"></i><b>5.3</b> Class imbalance</a></li>
+<li class="chapter" data-level="5.3" data-path="class-imbalance.html"><a href="class-imbalance.html"><i class="fa fa-check"></i><b>5.3</b> Class imbalance</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="class-imbalance.html"><a href="class-imbalance.html#stratified-sampling-simulation"><i class="fa fa-check"></i><b>5.3.1</b> Stratified sampling simulation</a></li>
+</ul></li>
 <li class="chapter" data-level="5.4" data-path="continuous-outcome-data.html"><a href="continuous-outcome-data.html"><i class="fa fa-check"></i><b>5.4</b> Continuous outcome data</a></li>
 <li class="chapter" data-level="5.5" data-path="time-series-data.html"><a href="time-series-data.html"><i class="fa fa-check"></i><b>5.5</b> Time series data</a></li>
 <li class="chapter" data-level="5.6" data-path="multi-level-data.html"><a href="multi-level-data.html"><i class="fa fa-check"></i><b>5.6</b> Multi-level data</a></li>
@@ -206,6 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.9" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html"><i class="fa fa-check"></i><b>5.9</b> Meeting Videos</a><ul>
 <li class="chapter" data-level="5.9.1" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-1-4"><i class="fa fa-check"></i><b>5.9.1</b> Cohort 1</a></li>
 <li class="chapter" data-level="5.9.2" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-2-4"><i class="fa fa-check"></i><b>5.9.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="5.9.3" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-3-3"><i class="fa fa-check"></i><b>5.9.3</b> Cohort 3</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="feature-engineering-with-recipes.html"><a href="feature-engineering-with-recipes.html"><i class="fa fa-check"></i><b>6</b> Feature engineering with recipes</a><ul>
@@ -386,15 +389,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="time-series-data" class="section level2">
 <h2><span class="header-section-number">5.5</span> Time series data</h2>
 <p>For time series data where you’d want to allocate data to the training set/test set depending on a sorted order, you can use <code>initial_time_split()</code> which works similarly to <code>initial_split()</code>. The <code>prop</code> argument can be used to specify what proportion of the first part of data should be used as the training set.</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="time-series-data.html#cb106-1"></a><span class="kw">data</span>(drinks)</span>
-<span id="cb106-2"><a href="time-series-data.html#cb106-2"></a>drinks_split &lt;-<span class="st"> </span><span class="kw">initial_time_split</span>(drinks)</span>
-<span id="cb106-3"><a href="time-series-data.html#cb106-3"></a>train_data &lt;-<span class="st"> </span><span class="kw">training</span>(drinks_split)</span>
-<span id="cb106-4"><a href="time-series-data.html#cb106-4"></a>test_data &lt;-<span class="st"> </span><span class="kw">testing</span>(drinks_split)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="time-series-data.html#cb111-1"></a><span class="kw">data</span>(drinks)</span>
+<span id="cb111-2"><a href="time-series-data.html#cb111-2"></a>drinks_split &lt;-<span class="st"> </span><span class="kw">initial_time_split</span>(drinks)</span>
+<span id="cb111-3"><a href="time-series-data.html#cb111-3"></a>train_data &lt;-<span class="st"> </span><span class="kw">training</span>(drinks_split)</span>
+<span id="cb111-4"><a href="time-series-data.html#cb111-4"></a>test_data &lt;-<span class="st"> </span><span class="kw">testing</span>(drinks_split)</span></code></pre></div>
 <p>The <code>lag</code> argument can specify a lag period to use between the training and test set. This is useful if lagged predictors will be used during training and testing.</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="time-series-data.html#cb107-1"></a>drinks_lag_split &lt;-<span class="st"> </span><span class="kw">initial_time_split</span>(drinks, <span class="dt">lag =</span> <span class="dv">12</span>)</span>
-<span id="cb107-2"><a href="time-series-data.html#cb107-2"></a>train_data_lag &lt;-<span class="st"> </span><span class="kw">training</span>(drinks_lag_split)</span>
-<span id="cb107-3"><a href="time-series-data.html#cb107-3"></a>test_data_lag &lt;-<span class="st"> </span><span class="kw">testing</span>(drinks_lag_split)</span>
-<span id="cb107-4"><a href="time-series-data.html#cb107-4"></a><span class="kw">c</span>(<span class="kw">max</span>(train_data_lag<span class="op">$</span>date), <span class="kw">min</span>(test_data_lag<span class="op">$</span>date))</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="time-series-data.html#cb112-1"></a>drinks_lag_split &lt;-<span class="st"> </span><span class="kw">initial_time_split</span>(drinks, <span class="dt">lag =</span> <span class="dv">12</span>)</span>
+<span id="cb112-2"><a href="time-series-data.html#cb112-2"></a>train_data_lag &lt;-<span class="st"> </span><span class="kw">training</span>(drinks_lag_split)</span>
+<span id="cb112-3"><a href="time-series-data.html#cb112-3"></a>test_data_lag &lt;-<span class="st"> </span><span class="kw">testing</span>(drinks_lag_split)</span>
+<span id="cb112-4"><a href="time-series-data.html#cb112-4"></a><span class="kw">c</span>(<span class="kw">max</span>(train_data_lag<span class="op">$</span>date), <span class="kw">min</span>(test_data_lag<span class="op">$</span>date))</span></code></pre></div>
 <pre><code>## [1] &quot;2011-03-01&quot; &quot;2010-04-01&quot;</code></pre>
 </div>
             </section>

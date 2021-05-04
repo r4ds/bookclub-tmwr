@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-04-26" />
+<meta name="date" content="2021-05-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -195,7 +195,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="spending-our-data.html"><a href="spending-our-data.html"><i class="fa fa-check"></i><b>5</b> Spending our data</a><ul>
 <li class="chapter" data-level="5.1" data-path="spending-our-data-1.html"><a href="spending-our-data-1.html"><i class="fa fa-check"></i><b>5.1</b> Spending our data</a></li>
 <li class="chapter" data-level="5.2" data-path="common-methods-for-splitting-data.html"><a href="common-methods-for-splitting-data.html"><i class="fa fa-check"></i><b>5.2</b> Common methods for splitting data</a></li>
-<li class="chapter" data-level="5.3" data-path="class-imbalance.html"><a href="class-imbalance.html"><i class="fa fa-check"></i><b>5.3</b> Class imbalance</a></li>
+<li class="chapter" data-level="5.3" data-path="class-imbalance.html"><a href="class-imbalance.html"><i class="fa fa-check"></i><b>5.3</b> Class imbalance</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="class-imbalance.html"><a href="class-imbalance.html#stratified-sampling-simulation"><i class="fa fa-check"></i><b>5.3.1</b> Stratified sampling simulation</a></li>
+</ul></li>
 <li class="chapter" data-level="5.4" data-path="continuous-outcome-data.html"><a href="continuous-outcome-data.html"><i class="fa fa-check"></i><b>5.4</b> Continuous outcome data</a></li>
 <li class="chapter" data-level="5.5" data-path="time-series-data.html"><a href="time-series-data.html"><i class="fa fa-check"></i><b>5.5</b> Time series data</a></li>
 <li class="chapter" data-level="5.6" data-path="multi-level-data.html"><a href="multi-level-data.html"><i class="fa fa-check"></i><b>5.6</b> Multi-level data</a></li>
@@ -206,6 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.9" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html"><i class="fa fa-check"></i><b>5.9</b> Meeting Videos</a><ul>
 <li class="chapter" data-level="5.9.1" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-1-4"><i class="fa fa-check"></i><b>5.9.1</b> Cohort 1</a></li>
 <li class="chapter" data-level="5.9.2" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-2-4"><i class="fa fa-check"></i><b>5.9.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="5.9.3" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-3-3"><i class="fa fa-check"></i><b>5.9.3</b> Cohort 3</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="feature-engineering-with-recipes.html"><a href="feature-engineering-with-recipes.html"><i class="fa fa-check"></i><b>6</b> Feature engineering with recipes</a><ul>
@@ -711,6 +714,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb104-2"><a href="class-imbalance.html#cb104-2"></a>members_split &lt;-<span class="st"> </span><span class="kw">initial_split</span>(members, <span class="dt">prop =</span> <span class="fl">0.80</span>, <span class="dt">strata =</span> died)</span>
 <span id="cb104-3"><a href="class-imbalance.html#cb104-3"></a>members_train &lt;-<span class="st"> </span><span class="kw">training</span>(members_split)</span>
 <span id="cb104-4"><a href="class-imbalance.html#cb104-4"></a>members_test &lt;-<span class="st"> </span><span class="kw">testing</span>(members_split)</span></code></pre></div>
+<div id="stratified-sampling-simulation" class="section level3">
+<h3><span class="header-section-number">5.3.1</span> Stratified sampling simulation</h3>
+<p>With simulation we can see the effect of stratification: we expect that the expected value does not change with stratification but the variance is lower.</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="class-imbalance.html#cb105-1"></a>simulate_stratified_sampling &lt;-<span class="st"> </span><span class="cf">function</span>(prop_in_dataset, <span class="dt">n_resample =</span> <span class="dv">50</span>,</span>
+<span id="cb105-2"><a href="class-imbalance.html#cb105-2"></a>                                         <span class="dt">n_rows =</span> <span class="dv">1000</span>, <span class="dt">seed =</span> <span class="dv">45678</span>) {</span>
+<span id="cb105-3"><a href="class-imbalance.html#cb105-3"></a>  <span class="kw">set.seed</span>(seed)</span>
+<span id="cb105-4"><a href="class-imbalance.html#cb105-4"></a>  </span>
+<span id="cb105-5"><a href="class-imbalance.html#cb105-5"></a>  data_to_split &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">died =</span> <span class="kw">c</span>(</span>
+<span id="cb105-6"><a href="class-imbalance.html#cb105-6"></a>    <span class="kw">rep</span>(<span class="dv">1</span>, <span class="kw">floor</span>(n_rows <span class="op">*</span><span class="st"> </span>prop_in_dataset)),</span>
+<span id="cb105-7"><a href="class-imbalance.html#cb105-7"></a>    <span class="kw">rep</span>(<span class="dv">0</span>, <span class="kw">floor</span>(n_rows <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>prop_in_dataset)))</span>
+<span id="cb105-8"><a href="class-imbalance.html#cb105-8"></a>  ))</span>
+<span id="cb105-9"><a href="class-imbalance.html#cb105-9"></a>  </span>
+<span id="cb105-10"><a href="class-imbalance.html#cb105-10"></a>  samples &lt;-<span class="st"> </span><span class="kw">map_dfr</span>(<span class="kw">seq_len</span>(n_resample), <span class="op">~</span>{</span>
+<span id="cb105-11"><a href="class-imbalance.html#cb105-11"></a>    <span class="kw">initial_split</span>(data_to_split) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb105-12"><a href="class-imbalance.html#cb105-12"></a><span class="st">      </span><span class="kw">testing</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb105-13"><a href="class-imbalance.html#cb105-13"></a><span class="st">      </span><span class="kw">summarize</span>(<span class="dt">died_pct =</span> <span class="kw">mean</span>(died))</span>
+<span id="cb105-14"><a href="class-imbalance.html#cb105-14"></a>  }) </span>
+<span id="cb105-15"><a href="class-imbalance.html#cb105-15"></a>  </span>
+<span id="cb105-16"><a href="class-imbalance.html#cb105-16"></a>  stratified_samples &lt;-<span class="st"> </span><span class="kw">map_dfr</span>(<span class="kw">seq_len</span>(n_resample), <span class="op">~</span>{</span>
+<span id="cb105-17"><a href="class-imbalance.html#cb105-17"></a>    <span class="kw">initial_split</span>(data_to_split, <span class="dt">strata =</span> died) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb105-18"><a href="class-imbalance.html#cb105-18"></a><span class="st">      </span><span class="kw">testing</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb105-19"><a href="class-imbalance.html#cb105-19"></a><span class="st">      </span><span class="kw">summarize</span>(<span class="dt">died_pct =</span> <span class="kw">mean</span>(died))</span>
+<span id="cb105-20"><a href="class-imbalance.html#cb105-20"></a>  }) </span>
+<span id="cb105-21"><a href="class-imbalance.html#cb105-21"></a>  </span>
+<span id="cb105-22"><a href="class-imbalance.html#cb105-22"></a>  <span class="kw">rbind</span>(</span>
+<span id="cb105-23"><a href="class-imbalance.html#cb105-23"></a>    samples <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">stratified =</span> <span class="ot">FALSE</span>),</span>
+<span id="cb105-24"><a href="class-imbalance.html#cb105-24"></a>    stratified_samples <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">stratified =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb105-25"><a href="class-imbalance.html#cb105-25"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb105-26"><a href="class-imbalance.html#cb105-26"></a><span class="st">    </span><span class="kw">group_by</span>(stratified) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb105-27"><a href="class-imbalance.html#cb105-27"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(died_pct), <span class="dt">var =</span> <span class="kw">var</span>(died_pct))</span>
+<span id="cb105-28"><a href="class-imbalance.html#cb105-28"></a>}</span></code></pre></div>
+<p>rsample does not stratify if class imbalance is <a href="https://rsample.tidymodels.org/reference/initial_split.html#arguments">more extreme than 10%</a></p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="class-imbalance.html#cb106-1"></a><span class="kw">simulate_stratified_sampling</span>(<span class="fl">0.09</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 3
+##   stratified   mean      var
+##   &lt;lgl&gt;       &lt;dbl&gt;    &lt;dbl&gt;
+## 1 FALSE      0.0864 0.000223
+## 2 TRUE       0.0878 0.000250</code></pre>
+<p>Stratified sampling happens:</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="class-imbalance.html#cb108-1"></a><span class="kw">simulate_stratified_sampling</span>(<span class="fl">0.11</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 3
+##   stratified  mean      var
+##   &lt;lgl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
+## 1 FALSE      0.107 0.000309
+## 2 TRUE       0.108 0</code></pre>
+</div>
 </div>
             </section>
 

@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-04-26" />
+<meta name="date" content="2021-05-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -195,7 +195,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="spending-our-data.html"><a href="spending-our-data.html"><i class="fa fa-check"></i><b>5</b> Spending our data</a><ul>
 <li class="chapter" data-level="5.1" data-path="spending-our-data-1.html"><a href="spending-our-data-1.html"><i class="fa fa-check"></i><b>5.1</b> Spending our data</a></li>
 <li class="chapter" data-level="5.2" data-path="common-methods-for-splitting-data.html"><a href="common-methods-for-splitting-data.html"><i class="fa fa-check"></i><b>5.2</b> Common methods for splitting data</a></li>
-<li class="chapter" data-level="5.3" data-path="class-imbalance.html"><a href="class-imbalance.html"><i class="fa fa-check"></i><b>5.3</b> Class imbalance</a></li>
+<li class="chapter" data-level="5.3" data-path="class-imbalance.html"><a href="class-imbalance.html"><i class="fa fa-check"></i><b>5.3</b> Class imbalance</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="class-imbalance.html"><a href="class-imbalance.html#stratified-sampling-simulation"><i class="fa fa-check"></i><b>5.3.1</b> Stratified sampling simulation</a></li>
+</ul></li>
 <li class="chapter" data-level="5.4" data-path="continuous-outcome-data.html"><a href="continuous-outcome-data.html"><i class="fa fa-check"></i><b>5.4</b> Continuous outcome data</a></li>
 <li class="chapter" data-level="5.5" data-path="time-series-data.html"><a href="time-series-data.html"><i class="fa fa-check"></i><b>5.5</b> Time series data</a></li>
 <li class="chapter" data-level="5.6" data-path="multi-level-data.html"><a href="multi-level-data.html"><i class="fa fa-check"></i><b>5.6</b> Multi-level data</a></li>
@@ -206,6 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.9" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html"><i class="fa fa-check"></i><b>5.9</b> Meeting Videos</a><ul>
 <li class="chapter" data-level="5.9.1" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-1-4"><i class="fa fa-check"></i><b>5.9.1</b> Cohort 1</a></li>
 <li class="chapter" data-level="5.9.2" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-2-4"><i class="fa fa-check"></i><b>5.9.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="5.9.3" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-3-3"><i class="fa fa-check"></i><b>5.9.3</b> Cohort 3</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="feature-engineering-with-recipes.html"><a href="feature-engineering-with-recipes.html"><i class="fa fa-check"></i><b>6</b> Feature engineering with recipes</a><ul>
@@ -385,17 +388,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="decisions-decisions" class="section level2">
 <h2><span class="header-section-number">12.3</span> Decisions, Decisions…</h2>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="decisions-decisions.html#cb165-1"></a><span class="kw">data</span>(ames, <span class="dt">package =</span> <span class="st">&quot;modeldata&quot;</span>)</span>
-<span id="cb165-2"><a href="decisions-decisions.html#cb165-2"></a>ames &lt;-<span class="st"> </span>ames <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">Sale_Price =</span> <span class="kw">log10</span>(Sale_Price)) </span>
-<span id="cb165-3"><a href="decisions-decisions.html#cb165-3"></a></span>
-<span id="cb165-4"><a href="decisions-decisions.html#cb165-4"></a><span class="kw">set.seed</span>(<span class="dv">63</span>)</span>
-<span id="cb165-5"><a href="decisions-decisions.html#cb165-5"></a>ames_split &lt;-<span class="st"> </span><span class="kw">initial_split</span>(ames, <span class="dt">prop =</span> <span class="fl">0.80</span>, <span class="dt">strata =</span> Central_Air)</span>
-<span id="cb165-6"><a href="decisions-decisions.html#cb165-6"></a>ames_train &lt;-<span class="st"> </span><span class="kw">training</span>(ames_split)</span>
-<span id="cb165-7"><a href="decisions-decisions.html#cb165-7"></a>ames_test &lt;-<span class="st"> </span><span class="kw">testing</span>(ames_split)</span>
-<span id="cb165-8"><a href="decisions-decisions.html#cb165-8"></a></span>
-<span id="cb165-9"><a href="decisions-decisions.html#cb165-9"></a><span class="kw">set.seed</span>(<span class="dv">63</span>)</span>
-<span id="cb165-10"><a href="decisions-decisions.html#cb165-10"></a>rs &lt;-<span class="st"> </span><span class="kw">vfold_cv</span>(ames_train, <span class="dt">repeats =</span> <span class="dv">10</span>)</span></code></pre></div>
-<p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="decisions-decisions.html#cb174-1"></a><span class="kw">data</span>(ames, <span class="dt">package =</span> <span class="st">&quot;modeldata&quot;</span>)</span>
+<span id="cb174-2"><a href="decisions-decisions.html#cb174-2"></a>ames &lt;-<span class="st"> </span>ames <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">Sale_Price =</span> <span class="kw">log10</span>(Sale_Price)) </span>
+<span id="cb174-3"><a href="decisions-decisions.html#cb174-3"></a></span>
+<span id="cb174-4"><a href="decisions-decisions.html#cb174-4"></a><span class="kw">set.seed</span>(<span class="dv">63</span>)</span>
+<span id="cb174-5"><a href="decisions-decisions.html#cb174-5"></a>ames_split &lt;-<span class="st"> </span><span class="kw">initial_split</span>(ames, <span class="dt">prop =</span> <span class="fl">0.80</span>, <span class="dt">strata =</span> Central_Air)</span>
+<span id="cb174-6"><a href="decisions-decisions.html#cb174-6"></a>ames_train &lt;-<span class="st"> </span><span class="kw">training</span>(ames_split)</span>
+<span id="cb174-7"><a href="decisions-decisions.html#cb174-7"></a>ames_test &lt;-<span class="st"> </span><span class="kw">testing</span>(ames_split)</span>
+<span id="cb174-8"><a href="decisions-decisions.html#cb174-8"></a></span>
+<span id="cb174-9"><a href="decisions-decisions.html#cb174-9"></a><span class="kw">set.seed</span>(<span class="dv">63</span>)</span>
+<span id="cb174-10"><a href="decisions-decisions.html#cb174-10"></a>rs &lt;-<span class="st"> </span><span class="kw">vfold_cv</span>(ames_train, <span class="dt">repeats =</span> <span class="dv">10</span>)</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
 </div>
             </section>
 
