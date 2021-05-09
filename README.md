@@ -40,10 +40,10 @@ If you would like to present, please add your name next to a chapter using the [
 - 2021-04-12: Chapter 3: A review of R modeling fundamentals: Edgar Zamora
 - 2021-04-19: Chapter 4: The Ames housing data: Jiwan Heo
 - 2021-04-26: Chapter 5: Spending our data: Ildiko Czeller
-- **2021-05-03: Chapter 6: Feature engineering with recipes: Chris Martin**
-- 2021-05-10: Chapter 7: Fitting models with parsnip
-- 2021-05-17: Chapter 8: A model workflow
-- 2021-0?-??: Chapter 9: Judging model effectiveness
+- **2021-05-10: Chapter 6: Feature engineering with recipes: Priyanka Gagneja**
+- 2021-05-17: Chapter 7: Fitting models with parsnip
+- 2021-05-24: Chapter 8: A model workflow
+- 2021-05-31: Chapter 9: Judging model effectiveness
 - 2021-0?-??: Chapter 10: Resampling for evaluating performance
 - 2021-0?-??: Chapter 11: Comparing models with resampling
 - 2021-0?-??: Chapter 12: Modeling tuning and the dangers of overfitting
