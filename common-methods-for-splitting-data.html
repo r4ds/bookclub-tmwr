@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-05-04" />
+<meta name="date" content="2021-05-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -396,7 +396,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb98-4"><a href="common-methods-for-splitting-data.html#cb98-4"></a>ames_split &lt;-<span class="st"> </span><span class="kw">initial_split</span>(ames, <span class="dt">prop =</span> <span class="fl">0.80</span>)</span>
 <span id="cb98-5"><a href="common-methods-for-splitting-data.html#cb98-5"></a>ames_split</span></code></pre></div>
 <pre><code>## &lt;Analysis/Assess/Total&gt;
-## &lt;2345/585/2930&gt;</code></pre>
+## &lt;2344/586/2930&gt;</code></pre>
 <p>The object <code>ames_split</code> is an <code>rsplit</code> object. To get the training and test results you can call on <code>training()</code> and <code>test()</code>:</p>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="common-methods-for-splitting-data.html#cb100-1"></a>ames_train &lt;-<span class="st"> </span><span class="kw">training</span>(ames_split)</span>
 <span id="cb100-2"><a href="common-methods-for-splitting-data.html#cb100-2"></a>ames_test  &lt;-<span class="st"> </span><span class="kw">testing</span>(ames_split)</span></code></pre></div>

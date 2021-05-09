@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-05-04" />
+<meta name="date" content="2021-05-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -435,16 +435,16 @@ rather 5- or 10- fold CV is preferred.</p>
 ## # A tibble: 10 x 2
 ##    splits             id    
 ##    &lt;list&gt;             &lt;chr&gt; 
-##  1 &lt;split [2111/235]&gt; Fold01
-##  2 &lt;split [2111/235]&gt; Fold02
-##  3 &lt;split [2111/235]&gt; Fold03
-##  4 &lt;split [2111/235]&gt; Fold04
-##  5 &lt;split [2111/235]&gt; Fold05
-##  6 &lt;split [2111/235]&gt; Fold06
-##  7 &lt;split [2112/234]&gt; Fold07
-##  8 &lt;split [2112/234]&gt; Fold08
-##  9 &lt;split [2112/234]&gt; Fold09
-## 10 &lt;split [2112/234]&gt; Fold10</code></pre>
+##  1 &lt;split [2107/235]&gt; Fold01
+##  2 &lt;split [2107/235]&gt; Fold02
+##  3 &lt;split [2108/234]&gt; Fold03
+##  4 &lt;split [2108/234]&gt; Fold04
+##  5 &lt;split [2108/234]&gt; Fold05
+##  6 &lt;split [2108/234]&gt; Fold06
+##  7 &lt;split [2108/234]&gt; Fold07
+##  8 &lt;split [2108/234]&gt; Fold08
+##  9 &lt;split [2108/234]&gt; Fold09
+## 10 &lt;split [2108/234]&gt; Fold10</code></pre>
 <p>The output contains info on how the training data was split: ~2000 are
 in the analysis set, and ~220 are in the assessment set. You can
 recuperate these sets by calling <code>analysis()</code> or <code>assessment()</code>.</p>
@@ -465,16 +465,16 @@ now averaging over <em>V x R</em> statistics:</p>
 ## # A tibble: 50 x 3
 ##    splits             id      id2   
 ##    &lt;list&gt;             &lt;chr&gt;   &lt;chr&gt; 
-##  1 &lt;split [2111/235]&gt; Repeat1 Fold01
-##  2 &lt;split [2111/235]&gt; Repeat1 Fold02
-##  3 &lt;split [2111/235]&gt; Repeat1 Fold03
-##  4 &lt;split [2111/235]&gt; Repeat1 Fold04
-##  5 &lt;split [2111/235]&gt; Repeat1 Fold05
-##  6 &lt;split [2111/235]&gt; Repeat1 Fold06
-##  7 &lt;split [2112/234]&gt; Repeat1 Fold07
-##  8 &lt;split [2112/234]&gt; Repeat1 Fold08
-##  9 &lt;split [2112/234]&gt; Repeat1 Fold09
-## 10 &lt;split [2112/234]&gt; Repeat1 Fold10
+##  1 &lt;split [2107/235]&gt; Repeat1 Fold01
+##  2 &lt;split [2107/235]&gt; Repeat1 Fold02
+##  3 &lt;split [2108/234]&gt; Repeat1 Fold03
+##  4 &lt;split [2108/234]&gt; Repeat1 Fold04
+##  5 &lt;split [2108/234]&gt; Repeat1 Fold05
+##  6 &lt;split [2108/234]&gt; Repeat1 Fold06
+##  7 &lt;split [2108/234]&gt; Repeat1 Fold07
+##  8 &lt;split [2108/234]&gt; Repeat1 Fold08
+##  9 &lt;split [2108/234]&gt; Repeat1 Fold09
+## 10 &lt;split [2108/234]&gt; Repeat1 Fold10
 ## # … with 40 more rows</code></pre>
 </div>
 <div id="leave-one-out-cross-validation" class="section level4">
@@ -492,26 +492,26 @@ same data points can appear in the assessment set multiple times.</p>
 ## # A tibble: 20 x 2
 ##    splits             id        
 ##    &lt;list&gt;             &lt;chr&gt;     
-##  1 &lt;split [2112/234]&gt; Resample01
-##  2 &lt;split [2112/234]&gt; Resample02
-##  3 &lt;split [2112/234]&gt; Resample03
-##  4 &lt;split [2112/234]&gt; Resample04
-##  5 &lt;split [2112/234]&gt; Resample05
-##  6 &lt;split [2112/234]&gt; Resample06
-##  7 &lt;split [2112/234]&gt; Resample07
-##  8 &lt;split [2112/234]&gt; Resample08
-##  9 &lt;split [2112/234]&gt; Resample09
-## 10 &lt;split [2112/234]&gt; Resample10
-## 11 &lt;split [2112/234]&gt; Resample11
-## 12 &lt;split [2112/234]&gt; Resample12
-## 13 &lt;split [2112/234]&gt; Resample13
-## 14 &lt;split [2112/234]&gt; Resample14
-## 15 &lt;split [2112/234]&gt; Resample15
-## 16 &lt;split [2112/234]&gt; Resample16
-## 17 &lt;split [2112/234]&gt; Resample17
-## 18 &lt;split [2112/234]&gt; Resample18
-## 19 &lt;split [2112/234]&gt; Resample19
-## 20 &lt;split [2112/234]&gt; Resample20</code></pre>
+##  1 &lt;split [2107/235]&gt; Resample01
+##  2 &lt;split [2107/235]&gt; Resample02
+##  3 &lt;split [2107/235]&gt; Resample03
+##  4 &lt;split [2107/235]&gt; Resample04
+##  5 &lt;split [2107/235]&gt; Resample05
+##  6 &lt;split [2107/235]&gt; Resample06
+##  7 &lt;split [2107/235]&gt; Resample07
+##  8 &lt;split [2107/235]&gt; Resample08
+##  9 &lt;split [2107/235]&gt; Resample09
+## 10 &lt;split [2107/235]&gt; Resample10
+## 11 &lt;split [2107/235]&gt; Resample11
+## 12 &lt;split [2107/235]&gt; Resample12
+## 13 &lt;split [2107/235]&gt; Resample13
+## 14 &lt;split [2107/235]&gt; Resample14
+## 15 &lt;split [2107/235]&gt; Resample15
+## 16 &lt;split [2107/235]&gt; Resample16
+## 17 &lt;split [2107/235]&gt; Resample17
+## 18 &lt;split [2107/235]&gt; Resample18
+## 19 &lt;split [2107/235]&gt; Resample19
+## 20 &lt;split [2107/235]&gt; Resample20</code></pre>
 </div>
 </div>
 <div id="validation-sets" class="section level3">
@@ -531,7 +531,7 @@ conduct stratified sampling.</p>
 ## # A tibble: 1 x 2
 ##   splits             id        
 ##   &lt;list&gt;             &lt;chr&gt;     
-## 1 &lt;split [1760/586]&gt; validation</code></pre>
+## 1 &lt;split [1756/586]&gt; validation</code></pre>
 </div>
 <div id="boostrapping" class="section level3">
 <h3><span class="header-section-number">10.3.3</span> Boostrapping</h3>
@@ -554,11 +554,11 @@ conducting stratified sampling.</p>
 ## # A tibble: 5 x 2
 ##   splits             id        
 ##   &lt;list&gt;             &lt;chr&gt;     
-## 1 &lt;split [2346/854]&gt; Bootstrap1
-## 2 &lt;split [2346/860]&gt; Bootstrap2
-## 3 &lt;split [2346/842]&gt; Bootstrap3
-## 4 &lt;split [2346/867]&gt; Bootstrap4
-## 5 &lt;split [2346/847]&gt; Bootstrap5</code></pre>
+## 1 &lt;split [2342/830]&gt; Bootstrap1
+## 2 &lt;split [2342/867]&gt; Bootstrap2
+## 3 &lt;split [2342/856]&gt; Bootstrap3
+## 4 &lt;split [2342/849]&gt; Bootstrap4
+## 5 &lt;split [2342/888]&gt; Bootstrap5</code></pre>
 </div>
 <div id="rolling-forecasting-origin-resampling" class="section level3">
 <h3><span class="header-section-number">10.3.4</span> Rolling forecasting origin resampling</h3>

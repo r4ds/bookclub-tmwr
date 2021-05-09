@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-05-04" />
+<meta name="date" content="2021-05-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -455,15 +455,15 @@ forest model will be candidate #2.</p>
 <pre><code>## # A tibble: 2 x 4
 ##   .metric .estimate object data 
 ##   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;
-## 1 rmse       0.0726 lm_fit train
-## 2 rsq        0.830  lm_fit train</code></pre>
+## 1 rmse       0.0751 lm_fit train
+## 2 rsq        0.819  lm_fit train</code></pre>
 <p>Resubstitution errors for the random forest model:</p>
 <div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="resubstitution-approach.html#cb152-1"></a><span class="kw">estimate_perf</span>(rf_fit, ames_train)</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 4
 ##   .metric .estimate object data 
 ##   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;
-## 1 rmse       0.0344 rf_fit train
-## 2 rsq        0.965  rf_fit train</code></pre>
+## 1 rmse       0.0366 rf_fit train
+## 2 rsq        0.960  rf_fit train</code></pre>
 <p>We can see that the random forest model performs significantly better
 (2+ times as better). We can choose the random forest model as our only
 candidate model. We can test its performance on the test set:</p>
@@ -471,8 +471,8 @@ candidate model. We can test its performance on the test set:</p>
 <pre><code>## # A tibble: 2 x 4
 ##   .metric .estimate object data 
 ##   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;
-## 1 rmse       0.0809 rf_fit test 
-## 2 rsq        0.799  rf_fit test</code></pre>
+## 1 rmse       0.0698 rf_fit test 
+## 2 rsq        0.852  rf_fit test</code></pre>
 <p>The random forest model, which previously performed well on the training
 set, is significantly worse on the test set. Just out of curiosity, we
 can see how the linear model performs on the test set:</p>

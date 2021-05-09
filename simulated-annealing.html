@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-05-04" />
+<meta name="date" content="2021-05-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -455,13 +455,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb262-15"><a href="simulated-annealing.html#cb262-15"></a></span>
 <span id="cb262-16"><a href="simulated-annealing.html#cb262-16"></a><span class="kw">show_best</span>(svm_sa)</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 9
-##      cost rbf_sigma .metric .estimator  mean     n std_err .config         .iter
-##     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;           &lt;int&gt;
-## 1  2      0.0001    roc_auc binary     0.865     5  0.0287 initial_Prepro…     0
-## 2  7.64   0.0000422 roc_auc binary     0.865     5  0.0287 Iter9               9
-## 3 15.5    0.0000765 roc_auc binary     0.865     5  0.0287 Iter10             10
-## 4  0.0156 0.000001  roc_auc binary     0.580     5  0.179  initial_Prepro…     0
-## 5  2      0.000001  roc_auc binary     0.580     5  0.179  initial_Prepro…     0</code></pre>
+##    cost rbf_sigma .metric .estimator  mean     n std_err .config .iter
+##   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;int&gt;
+## 1 30.8     0.0684 roc_auc binary     0.969     5  0.0105 Iter45     45
+## 2  6.40    0.0658 roc_auc binary     0.969     5  0.0110 Iter47     47
+## 3 19.5     0.0276 roc_auc binary     0.968     5  0.0114 Iter28     28
+## 4 17.1     0.0360 roc_auc binary     0.968     5  0.0114 Iter46     46
+## 5  7.90    0.0234 roc_auc binary     0.967     5  0.0127 Iter37     37</code></pre>
 <p>Voilààà!</p>
 </div>
 </div>

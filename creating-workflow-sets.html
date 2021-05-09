@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-05-04" />
+<meta name="date" content="2021-05-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -403,18 +403,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb268-13"><a href="creating-workflow-sets.html#cb268-13"></a>folds</span></code></pre></div>
 <pre><code>## #  10-fold cross-validation repeated 5 times using stratification 
 ## # A tibble: 50 x 3
-##    splits           id      id2   
-##    &lt;list&gt;           &lt;chr&gt;   &lt;chr&gt; 
-##  1 &lt;split [101/12]&gt; Repeat1 Fold01
-##  2 &lt;split [101/12]&gt; Repeat1 Fold02
-##  3 &lt;split [101/12]&gt; Repeat1 Fold03
-##  4 &lt;split [101/12]&gt; Repeat1 Fold04
-##  5 &lt;split [101/12]&gt; Repeat1 Fold05
-##  6 &lt;split [101/12]&gt; Repeat1 Fold06
-##  7 &lt;split [101/12]&gt; Repeat1 Fold07
-##  8 &lt;split [101/12]&gt; Repeat1 Fold08
-##  9 &lt;split [104/9]&gt;  Repeat1 Fold09
-## 10 &lt;split [105/8]&gt;  Repeat1 Fold10
+##    splits          id      id2   
+##    &lt;list&gt;          &lt;chr&gt;   &lt;chr&gt; 
+##  1 &lt;split [97/12]&gt; Repeat1 Fold01
+##  2 &lt;split [97/12]&gt; Repeat1 Fold02
+##  3 &lt;split [97/12]&gt; Repeat1 Fold03
+##  4 &lt;split [97/12]&gt; Repeat1 Fold04
+##  5 &lt;split [97/12]&gt; Repeat1 Fold05
+##  6 &lt;split [97/12]&gt; Repeat1 Fold06
+##  7 &lt;split [97/12]&gt; Repeat1 Fold07
+##  8 &lt;split [100/9]&gt; Repeat1 Fold08
+##  9 &lt;split [101/8]&gt; Repeat1 Fold09
+## 10 &lt;split [101/8]&gt; Repeat1 Fold10
 ## # … with 40 more rows</code></pre>
 <div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="creating-workflow-sets.html#cb270-1"></a><span class="co"># My weird way of creating formulas sometimes, which can be helpful if you&#39;re experimenting with different response variables.</span></span>
 <span id="cb270-2"><a href="creating-workflow-sets.html#cb270-2"></a>form &lt;-<span class="st"> </span><span class="kw">paste0</span>(col_y, <span class="st">&#39;~ .&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.formula</span>()</span>

@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-05-04" />
+<meta name="date" content="2021-05-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -478,11 +478,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## # A tibble: 5 x 9
 ##    cost rbf_sigma .metric .estimator  mean     n std_err .config .iter
 ##   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;int&gt;
-## 1  2.42    0.0930 roc_auc binary     0.978     5 0.00892 Iter25     25
-## 2  5.28    0.0719 roc_auc binary     0.977     5 0.00932 Iter18     18
-## 3  4.57    0.0998 roc_auc binary     0.977     5 0.00932 Iter21     21
-## 4  4.70    0.0854 roc_auc binary     0.977     5 0.00932 Iter23     23
-## 5  6.52    0.0937 roc_auc binary     0.977     5 0.00826 Iter11     11</code></pre>
+## 1 18.6     0.0969 roc_auc binary     0.972     5 0.00970 Iter21     21
+## 2 12.0     0.0991 roc_auc binary     0.972     5 0.00991 Iter18     18
+## 3 22.1     0.0828 roc_auc binary     0.971     5 0.0101  Iter25     25
+## 4 15.4     0.0850 roc_auc binary     0.971     5 0.0103  Iter17     17
+## 5  3.87    0.0969 roc_auc binary     0.970     5 0.0106  Iter20     20</code></pre>
 <div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="bayesian-optimization.html#cb261-1"></a>p1 &lt;-<span class="st"> </span><span class="kw">autoplot</span>(svm_bo, <span class="dt">type =</span> <span class="st">&quot;performance&quot;</span>)</span>
 <span id="cb261-2"><a href="bayesian-optimization.html#cb261-2"></a>p2 &lt;-<span class="st"> </span><span class="kw">autoplot</span>(svm_bo, <span class="dt">type =</span> <span class="st">&quot;parameters&quot;</span>)</span>
 <span id="cb261-3"><a href="bayesian-optimization.html#cb261-3"></a></span>
