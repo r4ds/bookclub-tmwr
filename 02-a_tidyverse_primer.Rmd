@@ -46,7 +46,7 @@ The `tidyverse` offers packages that are easily readable and understood by human
 
 Consider the `mtcars` dataset, which comprises fuel consumption and 10 aspects of autombile design and performance from 1973-1974. Previewing the first six rows of the data, we see:
 
-```{r, echo = FALSE}
+```{r head, echo = FALSE}
 head(mtcars)
 ```
 
@@ -56,7 +56,7 @@ If we wanted to arrange these in ascending order based on the `mpg` and `gear` v
 
 The function `arrange()`, in the `dplyr` package of the `tidyverse`, takes a data frame and column names as such:
 
-```{r, eval = FALSE}
+```{r arrange, eval = FALSE}
 arrange(.data = mtcars, gear, mpg)
 ```
 

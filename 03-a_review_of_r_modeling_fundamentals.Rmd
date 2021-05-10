@@ -1,4 +1,4 @@
-```{r setup, include=F, echo=F}
+```{r setup-03, include=F, echo=F}
 knitr::opts_chunk$set(
   # collapse = TRUE
   warning = FALSE,
@@ -26,13 +26,13 @@ library(details)
 We'll use the `trees` data set provided in `{modeldata}` (loaded with `{tidymodels}`) for demonstration purposes. Tree girth (in inches), height (in feet), and volume (in cubic feet) are provided. (Girth is somewhat like a measure of diameter.)
 
 
-```{r }
+```{r library-theme-03}
 library(tidyverse)
 library(tidymodels)
 theme_set(theme_minimal(base_size = 14))
 ```
 
-```{r }
+```{r trees-03}
 data(trees)
 
 trees <- as_tibble(trees)
@@ -47,20 +47,20 @@ Note that there is an analytical way to calculate tree volume from measures of d
 
 We observe that `Girth` is strongly correlated with `Volume`
 
-```{r eval=F, echo=F, include=F}
+```{r trees-correlation-03, eval=F, echo=F, include=F}
 trees %>% 
   mutate(across(Girth, list(`2` = ~.x^2))) %>% 
   corrr::correlate()
 ```
 
-```{r }
+```{r trees-correlation-b-03}
 trees %>% 
   corrr::correlate()
 ```
 
 Shame on you `r emo::ji('wink')` if you didn't guess I would make a scatter plot given a data set with two variables.
 
-```{r }
+```{r trees-plot-03}
 trees %>% 
   ggplot(aes(x = Girth, y = Height)) + 
   geom_point(aes(size = Volume))
@@ -70,7 +70,7 @@ trees %>%
 
 We can fit a linear regression model to predict `Volume` as a function of the other two features, using the formula syntax to save us from some typing.
 
-```{r }
+```{r reg_fit-03}
 reg_fit <- lm(Volume ~ ., data = trees)
 reg_fit
 ```
@@ -93,25 +93,25 @@ This due to the way `.` is interpreted by (`%>%`). The (`%>%`) passes the object
 
 This would be confusing since within `lm()`, the `.` is interpreted as "all variables aside from the outcome". This is why we explicitly call `formula()`. This allows us to pass the data object (`trees`) with the pipe to the `data` argument, below, not to the actual formula.
 
-```{r }
+```{r lm-03}
 trees %>% lm(formula(Volume ~ .), data = .)
 ```
 
 Interaction terms are easy to generate.
 
-```{r }
+```{r inter_fit-03}
 inter_fit <- lm(Volume ~ Girth * Height, data = trees)
 inter_fit
 ```
 
 Same goes for polynomial terms. The use of the identity function, `I()`, allows us to apply literal math to the predictors.
 
-```{r }
+```{r poly_fit-03}
 poly_fit <- lm(Volume ~ Girth + I(Girth^2) + Height, data = trees)
 poly_fit 
 ```
 
-```{r }
+```{r poly_fit3-03}
 poly_fit3 <- lm(Volume ~ (.)^2, data = trees)
 poly_fit3
 # There are only two predictors in this model so this produces the same results as 
@@ -122,14 +122,14 @@ poly_fit3
 
 Excluding columns is intuitive.
 
-```{r }
+```{r no_heigh_fit-03}
 no_height_fit <- lm(Volume ~ . - Height, data = trees)
 no_height_fit
 ```
 
 The intercept term can be removed conveniently. *This is just for illustrative purposes only. Removing the intercept is rarely done. In this particular case, it may make sense as it is impossible for a tree to have negative volume*
 
-```{r }
+```{r no_intercept_fit-03}
 no_intercept_fit <- lm(Volume ~ . + 0, data = trees)
 no_intercept_fit
 ```
@@ -138,7 +138,7 @@ no_intercept_fit
 
 To illustrate another convenience provided by formulas, let's add a categorical column.
 
-```{r }
+```{r trees2-03}
 trees2 <- trees
 set.seed(42)
 trees2$group = sample(toupper(letters[1:4]), size = nrow(trees2), replace = TRUE)
@@ -147,20 +147,20 @@ trees2
 
 Encoding the categories as separate features is done auto-magically with the formula syntax.
 
-```{r }
+```{r dummy_fit-03}
 dummy_fit <- lm(Volume ~ ., data = trees2)
 dummy_fit
 ```
 
 Under the hood, this is done by `model.matrix()`.
 
-```{r }
+```{r matrix-03}
 model.matrix(Volume ~ ., data = trees2) %>% head(10)
 ```
 
 To visualize the inclusion of a polynomial:
 
-```{r }
+```{r dummy_fit3-03}
 dummy_fit3 <- lm(Volume ~ (.)^3, data = trees2)
 dummy_fit3
 ```
@@ -187,12 +187,12 @@ A short recap of the 4 main diagnostic plots produced by `plot()` of a model obj
   - good to check for assumptions of homoscedasticity (equal variance)  
 - *Residual vs Leverage* plot helps to identify an influential cases (cases that don't get along with the trend of the majority). these are identified by where residuals are located off the Cook's distance line.
 
-```{r }
+```{r base_plot-03}
 par(mfrow = c(1, 2))
 plot(reg_fit, which = c(1, 2))
 ```
 
-```{r, echo=F, include=F}
+```{r par_tweak-03, echo=F, include=F}
 par(mfrow = c(1, 1))
 ```
 
@@ -200,7 +200,7 @@ The second plot does not show any strong violation of the normality assumption. 
 
 Note that there is a `{ggplot2}` way to generate the same plots.
 
-```{r }
+```{r ggfortify-03}
 library(ggfortify)
 
 autoplot(reg_fit, which = c(1, 2))
@@ -218,13 +218,13 @@ autoplot(reg_fit, which = c(1, 2))
 
 </details>
 
-```{r }
+```{r summary-03}
 summary(reg_fit)
 ```
 
 Use `{broom}` for a tidy version.
 
-```{r }
+```{r broom-03}
 library(broom)
 
 reg_fit %>% tidy()
@@ -243,7 +243,7 @@ reg_fit %>% glance() %>% glimpse()
 
 We can compare all of the models we made before.
 
-```{r }
+```{r glance-03}
 list(
   'reg' = reg_fit,
   'inter' = inter_fit,
@@ -260,7 +260,7 @@ We observe that the polynomial fit is the best.
 
 We can create models for each `group` in `trees2`.
 
-```{r }
+```{r tidy-03}
 reg_fits <-
   trees2 %>%
   group_nest(group) %>% 
@@ -290,7 +290,7 @@ reg_fits %>% .select_unnest(augmented)
 
 R's `{base}` and `{stats}` libraries have lots of built-in functions that help perform statistical analysis. For example, `anova()` can be used to compare two regression models quickly.
 
-```{r }
+```{r anova-03}
 anova(reg_fit, poly_fit)
 ```
 
@@ -304,7 +304,7 @@ We observe that the second order term for `Girth` does indeed provide significan
 
 </details>
 
-```{r echo=F, include=F, eval=F}
+```{r anscombe-03, echo=F, include=F, eval=F}
 ff <- y ~ x
 mods <- setNames(as.list(1:4), paste0("lm", 1:4))
 for(i in 1:4) {
@@ -350,12 +350,12 @@ layout(matrix(c(1,2,3,3), 2, 2, byrow = TRUE))
 
 There are probably lots of functions that you didn't know you even needed.
 
-```{r echo=F, include=F}
+```{r clean-03, echo=F, include=F}
 # If the whole book is knitted, `df` might be assigned in a previous chapter, throwing off the following example error.
 rm('df')
 ```
 
-```{r error=T}
+```{r add_column-03, error=T}
 add_column <- function(data) {
   # Whoops! `df` should be `data`
   df %>% mutate(dummy = 1)
@@ -366,7 +366,7 @@ trees %>% add_column()
 
 `df()` is the density function for the F distribution with `df1` and `df2` degrees of freedom
 
-```{r }
+```{r density_function-03}
 df
 ```
 
