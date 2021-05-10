@@ -53,15 +53,16 @@ If you would like to present, please add your name next to a chapter using the [
 - 2021-04-11: Chapter 7: Fitting models with parsnip: Shamsuddeen Hassan Muhammad
 - 2021-04-18: Chapter 9: Judging model effectiveness: Luke Shaw
 - 2021-04-25: Chapter 8: A model workflow: Kevin Kent
-- 2021-05-02: Chapter 10: Resampling for evaluating performance
-- 2021-05-09: Chapter 11: Comparing models with resampling
+- 2021-05-02: Chapter 10: Resampling for evaluating performance: Rahul Bahadur
+- 2021-05-09: Chapter 11: Comparing models with resampling: Graeme Davidson
 
 </details>
 
-- **2021-05-16: Chapter 12: Model tuning and the dangers of overfitting**
-- 2021-05-23: Chapter 13: Grid search
-- 2021-05-30: Chapter 14: Iterative search
-- 2021-06-06: Chapter 15: Screening many models
+- **2021-05-16: Chapter 12: Model tuning and the dangers of overfitting: Shamsuddeen Hassan Muhammad**
+- 2021-05-23: Chapter 13: Grid search: Stephen Holsenbeck
+- 2021-05-30: Appendix A: Recommended preoprocessing
+- 2021-06-06: Chapter 14: Iterative search
+- 2021-06-13: Chapter 15: Screening many models
 
 
 *Cohort 3: Mondays, 11:00am CDT - facilitated by Ildiko Czeller*
