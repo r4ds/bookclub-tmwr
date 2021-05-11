@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-05-10" />
+<meta name="date" content="2021-05-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -389,44 +389,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="finalizing-the-model-1" class="section level2">
 <h2><span class="header-section-number">15.4</span> Finalizing the model</h2>
 <p>Now we can finalize our choice of model.</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="finalizing-the-model-1.html#cb286-1"></a>wflow_id_best &lt;-<span class="st"> </span></span>
-<span id="cb286-2"><a href="finalizing-the-model-1.html#cb286-2"></a><span class="st">  </span>res_ranks <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb286-3"><a href="finalizing-the-model-1.html#cb286-3"></a><span class="st">  </span><span class="kw">slice_min</span>(rank, <span class="dt">with_ties =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb286-4"><a href="finalizing-the-model-1.html#cb286-4"></a><span class="st">  </span><span class="kw">pull</span>(wflow_id)</span>
-<span id="cb286-5"><a href="finalizing-the-model-1.html#cb286-5"></a></span>
-<span id="cb286-6"><a href="finalizing-the-model-1.html#cb286-6"></a>wf_best &lt;-</span>
-<span id="cb286-7"><a href="finalizing-the-model-1.html#cb286-7"></a><span class="st">  </span>res_grid <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb286-8"><a href="finalizing-the-model-1.html#cb286-8"></a><span class="st">  </span><span class="kw">pull_workflow_set_result</span>(wflow_id_best) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb286-9"><a href="finalizing-the-model-1.html#cb286-9"></a><span class="st">  </span><span class="kw">select_best</span>(<span class="dt">metric =</span> <span class="st">&#39;rmse&#39;</span>)</span>
-<span id="cb286-10"><a href="finalizing-the-model-1.html#cb286-10"></a></span>
-<span id="cb286-11"><a href="finalizing-the-model-1.html#cb286-11"></a>fit_best &lt;-</span>
-<span id="cb286-12"><a href="finalizing-the-model-1.html#cb286-12"></a><span class="st">  </span>res_grid <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb286-13"><a href="finalizing-the-model-1.html#cb286-13"></a><span class="st">  </span><span class="kw">pull_workflow</span>(wflow_id_best) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb286-14"><a href="finalizing-the-model-1.html#cb286-14"></a><span class="st">  </span><span class="kw">finalize_workflow</span>(wf_best) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb286-15"><a href="finalizing-the-model-1.html#cb286-15"></a><span class="st">  </span><span class="kw">last_fit</span>(<span class="dt">split =</span> split)</span>
-<span id="cb286-16"><a href="finalizing-the-model-1.html#cb286-16"></a></span>
-<span id="cb286-17"><a href="finalizing-the-model-1.html#cb286-17"></a>metrics_best &lt;-</span>
-<span id="cb286-18"><a href="finalizing-the-model-1.html#cb286-18"></a><span class="st">  </span>fit_best <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb286-19"><a href="finalizing-the-model-1.html#cb286-19"></a><span class="st">  </span><span class="kw">collect_metrics</span>()</span>
-<span id="cb286-20"><a href="finalizing-the-model-1.html#cb286-20"></a>metrics_best</span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="finalizing-the-model-1.html#cb289-1"></a>wflow_id_best &lt;-<span class="st"> </span></span>
+<span id="cb289-2"><a href="finalizing-the-model-1.html#cb289-2"></a><span class="st">  </span>res_ranks <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb289-3"><a href="finalizing-the-model-1.html#cb289-3"></a><span class="st">  </span><span class="kw">slice_min</span>(rank, <span class="dt">with_ties =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb289-4"><a href="finalizing-the-model-1.html#cb289-4"></a><span class="st">  </span><span class="kw">pull</span>(wflow_id)</span>
+<span id="cb289-5"><a href="finalizing-the-model-1.html#cb289-5"></a></span>
+<span id="cb289-6"><a href="finalizing-the-model-1.html#cb289-6"></a>wf_best &lt;-</span>
+<span id="cb289-7"><a href="finalizing-the-model-1.html#cb289-7"></a><span class="st">  </span>res_grid <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb289-8"><a href="finalizing-the-model-1.html#cb289-8"></a><span class="st">  </span><span class="kw">pull_workflow_set_result</span>(wflow_id_best) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb289-9"><a href="finalizing-the-model-1.html#cb289-9"></a><span class="st">  </span><span class="kw">select_best</span>(<span class="dt">metric =</span> <span class="st">&#39;rmse&#39;</span>)</span>
+<span id="cb289-10"><a href="finalizing-the-model-1.html#cb289-10"></a></span>
+<span id="cb289-11"><a href="finalizing-the-model-1.html#cb289-11"></a>fit_best &lt;-</span>
+<span id="cb289-12"><a href="finalizing-the-model-1.html#cb289-12"></a><span class="st">  </span>res_grid <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb289-13"><a href="finalizing-the-model-1.html#cb289-13"></a><span class="st">  </span><span class="kw">pull_workflow</span>(wflow_id_best) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb289-14"><a href="finalizing-the-model-1.html#cb289-14"></a><span class="st">  </span><span class="kw">finalize_workflow</span>(wf_best) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb289-15"><a href="finalizing-the-model-1.html#cb289-15"></a><span class="st">  </span><span class="kw">last_fit</span>(<span class="dt">split =</span> split)</span>
+<span id="cb289-16"><a href="finalizing-the-model-1.html#cb289-16"></a></span>
+<span id="cb289-17"><a href="finalizing-the-model-1.html#cb289-17"></a>metrics_best &lt;-</span>
+<span id="cb289-18"><a href="finalizing-the-model-1.html#cb289-18"></a><span class="st">  </span>fit_best <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb289-19"><a href="finalizing-the-model-1.html#cb289-19"></a><span class="st">  </span><span class="kw">collect_metrics</span>()</span>
+<span id="cb289-20"><a href="finalizing-the-model-1.html#cb289-20"></a>metrics_best</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 4
 ##   .metric .estimator .estimate .config             
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
-## 1 rmse    standard       0.474 Preprocessor1_Model1
-## 2 rsq     standard       0.824 Preprocessor1_Model1</code></pre>
+## 1 rmse    standard       0.514 Preprocessor1_Model1
+## 2 rsq     standard       0.816 Preprocessor1_Model1</code></pre>
 <p>Finally, the canonical observed vs. predicted scatter plot.</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="finalizing-the-model-1.html#cb288-1"></a>p_preds &lt;-</span>
-<span id="cb288-2"><a href="finalizing-the-model-1.html#cb288-2"></a><span class="st">  </span>fit_best <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb288-3"><a href="finalizing-the-model-1.html#cb288-3"></a><span class="st">  </span><span class="kw">collect_predictions</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb288-4"><a href="finalizing-the-model-1.html#cb288-4"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
-<span id="cb288-5"><a href="finalizing-the-model-1.html#cb288-5"></a><span class="st">  </span><span class="kw">aes</span>(<span class="dt">x =</span> <span class="op">!!</span>col_y_sym, <span class="dt">y =</span> .pred) <span class="op">+</span></span>
-<span id="cb288-6"><a href="finalizing-the-model-1.html#cb288-6"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">linetype =</span> <span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb288-7"><a href="finalizing-the-model-1.html#cb288-7"></a><span class="st">  </span><span class="co"># Big cuz we don&#39;t have that many points.</span></span>
-<span id="cb288-8"><a href="finalizing-the-model-1.html#cb288-8"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></span>
-<span id="cb288-9"><a href="finalizing-the-model-1.html#cb288-9"></a><span class="st">  </span>tune<span class="op">::</span><span class="kw">coord_obs_pred</span>() <span class="op">+</span></span>
-<span id="cb288-10"><a href="finalizing-the-model-1.html#cb288-10"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;observed&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;predicted&#39;</span>)</span>
-<span id="cb288-11"><a href="finalizing-the-model-1.html#cb288-11"></a>p_preds</span></code></pre></div>
-<p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="finalizing-the-model-1.html#cb291-1"></a>p_preds &lt;-</span>
+<span id="cb291-2"><a href="finalizing-the-model-1.html#cb291-2"></a><span class="st">  </span>fit_best <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb291-3"><a href="finalizing-the-model-1.html#cb291-3"></a><span class="st">  </span><span class="kw">collect_predictions</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb291-4"><a href="finalizing-the-model-1.html#cb291-4"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb291-5"><a href="finalizing-the-model-1.html#cb291-5"></a><span class="st">  </span><span class="kw">aes</span>(<span class="dt">x =</span> <span class="op">!!</span>col_y_sym, <span class="dt">y =</span> .pred) <span class="op">+</span></span>
+<span id="cb291-6"><a href="finalizing-the-model-1.html#cb291-6"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">linetype =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb291-7"><a href="finalizing-the-model-1.html#cb291-7"></a><span class="st">  </span><span class="co"># Big cuz we don&#39;t have that many points.</span></span>
+<span id="cb291-8"><a href="finalizing-the-model-1.html#cb291-8"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></span>
+<span id="cb291-9"><a href="finalizing-the-model-1.html#cb291-9"></a><span class="st">  </span>tune<span class="op">::</span><span class="kw">coord_obs_pred</span>() <span class="op">+</span></span>
+<span id="cb291-10"><a href="finalizing-the-model-1.html#cb291-10"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;observed&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;predicted&#39;</span>)</span>
+<span id="cb291-11"><a href="finalizing-the-model-1.html#cb291-11"></a>p_preds</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/15-preds-1.png" width="672" /></p>
 
 </div>
 <!-- </div> -->

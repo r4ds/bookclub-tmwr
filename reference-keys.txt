@@ -1,6 +1,6 @@
-tab:unnamed-chunk-33
-tab:unnamed-chunk-61
-tab:unnamed-chunk-88
+tab:skim-05
+tab:llhood-12
+tab:15-setup
 software-for-modeling
 the-pit-of-success
 types-of-models

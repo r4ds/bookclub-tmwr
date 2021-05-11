@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-05-10" />
+<meta name="date" content="2021-05-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -438,30 +438,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>cooling_coef</code>: dictates how quickly the acceptance probability decreases as the we go through iterations. Larger coefficient values means the probability of accepting a bad result will decrease.</p></li>
 </ul>
 <p>Implemention is very similar to grid search and Bayesian optimization. We can print out the best results, and have visual assessments of our search went across iterations.</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="simulated-annealing.html#cb262-1"></a>ctrl_sa &lt;-<span class="st"> </span><span class="kw">control_sim_anneal</span>(<span class="dt">verbose =</span> <span class="ot">TRUE</span>, <span class="dt">no_improve =</span> 10L)</span>
-<span id="cb262-2"><a href="simulated-annealing.html#cb262-2"></a></span>
-<span id="cb262-3"><a href="simulated-annealing.html#cb262-3"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb262-4"><a href="simulated-annealing.html#cb262-4"></a></span>
-<span id="cb262-5"><a href="simulated-annealing.html#cb262-5"></a>svm_sa &lt;-</span>
-<span id="cb262-6"><a href="simulated-annealing.html#cb262-6"></a><span class="st">  </span>svm_wflow <span class="op">%&gt;%</span></span>
-<span id="cb262-7"><a href="simulated-annealing.html#cb262-7"></a><span class="st">  </span><span class="kw">tune_sim_anneal</span>(</span>
-<span id="cb262-8"><a href="simulated-annealing.html#cb262-8"></a>    <span class="dt">resamples =</span> penguins_folds,</span>
-<span id="cb262-9"><a href="simulated-annealing.html#cb262-9"></a>    <span class="dt">metrics =</span> roc_res,</span>
-<span id="cb262-10"><a href="simulated-annealing.html#cb262-10"></a>    <span class="dt">initial =</span> svm_initial,</span>
-<span id="cb262-11"><a href="simulated-annealing.html#cb262-11"></a>    <span class="dt">param_info =</span> svm_param,</span>
-<span id="cb262-12"><a href="simulated-annealing.html#cb262-12"></a>    <span class="dt">iter =</span> <span class="dv">50</span>,</span>
-<span id="cb262-13"><a href="simulated-annealing.html#cb262-13"></a>    <span class="dt">control =</span> ctrl_sa</span>
-<span id="cb262-14"><a href="simulated-annealing.html#cb262-14"></a>  )</span>
-<span id="cb262-15"><a href="simulated-annealing.html#cb262-15"></a></span>
-<span id="cb262-16"><a href="simulated-annealing.html#cb262-16"></a><span class="kw">show_best</span>(svm_sa)</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="simulated-annealing.html#cb264-1"></a>ctrl_sa &lt;-<span class="st"> </span><span class="kw">control_sim_anneal</span>(<span class="dt">verbose =</span> <span class="ot">TRUE</span>, <span class="dt">no_improve =</span> 10L)</span>
+<span id="cb264-2"><a href="simulated-annealing.html#cb264-2"></a></span>
+<span id="cb264-3"><a href="simulated-annealing.html#cb264-3"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb264-4"><a href="simulated-annealing.html#cb264-4"></a></span>
+<span id="cb264-5"><a href="simulated-annealing.html#cb264-5"></a>svm_sa &lt;-</span>
+<span id="cb264-6"><a href="simulated-annealing.html#cb264-6"></a><span class="st">  </span>svm_wflow <span class="op">%&gt;%</span></span>
+<span id="cb264-7"><a href="simulated-annealing.html#cb264-7"></a><span class="st">  </span><span class="kw">tune_sim_anneal</span>(</span>
+<span id="cb264-8"><a href="simulated-annealing.html#cb264-8"></a>    <span class="dt">resamples =</span> penguins_folds,</span>
+<span id="cb264-9"><a href="simulated-annealing.html#cb264-9"></a>    <span class="dt">metrics =</span> roc_res,</span>
+<span id="cb264-10"><a href="simulated-annealing.html#cb264-10"></a>    <span class="dt">initial =</span> svm_initial,</span>
+<span id="cb264-11"><a href="simulated-annealing.html#cb264-11"></a>    <span class="dt">param_info =</span> svm_param,</span>
+<span id="cb264-12"><a href="simulated-annealing.html#cb264-12"></a>    <span class="dt">iter =</span> <span class="dv">50</span>,</span>
+<span id="cb264-13"><a href="simulated-annealing.html#cb264-13"></a>    <span class="dt">control =</span> ctrl_sa</span>
+<span id="cb264-14"><a href="simulated-annealing.html#cb264-14"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="simulated-annealing.html#cb265-1"></a><span class="kw">show_best</span>(svm_sa)</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 9
 ##    cost rbf_sigma .metric .estimator  mean     n std_err .config .iter
 ##   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;int&gt;
-## 1 30.8     0.0684 roc_auc binary     0.969     5  0.0105 Iter45     45
-## 2  6.40    0.0658 roc_auc binary     0.969     5  0.0110 Iter47     47
-## 3 19.5     0.0276 roc_auc binary     0.968     5  0.0114 Iter28     28
-## 4 17.1     0.0360 roc_auc binary     0.968     5  0.0114 Iter46     46
-## 5  7.90    0.0234 roc_auc binary     0.967     5  0.0127 Iter37     37</code></pre>
+## 1 19.5     0.0199 roc_auc binary     0.965     5 0.0101  Iter27     27
+## 2 14.2     0.0276 roc_auc binary     0.964     5 0.0105  Iter30     30
+## 3  5.91    0.0930 roc_auc binary     0.964     5 0.00958 Iter29     29
+## 4 25.0     0.0786 roc_auc binary     0.964     5 0.00874 Iter31     31
+## 5  4.14    0.0666 roc_auc binary     0.963     5 0.0110  Iter23     23</code></pre>
 <p>Voilààà!</p>
 </div>
 </div>

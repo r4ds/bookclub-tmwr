@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-05-10" />
+<meta name="date" content="2021-05-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -426,7 +426,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="r-formula-syntax.html#cb46-1"></a>trees <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb46-2"><a href="r-formula-syntax.html#cb46-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Girth, <span class="dt">y =</span> Height)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb46-3"><a href="r-formula-syntax.html#cb46-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">size =</span> Volume))</span></code></pre></div>
-<p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="bookclub-tmwr_files/figure-html/trees-plot-03-1.png" width="672" /></p>
 <hr />
 <p>We can fit a linear regression model to predict <code>Volume</code> as a function of the other two features, using the formula syntax to save us from some typing.</p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="r-formula-syntax.html#cb47-1"></a>reg_fit &lt;-<span class="st"> </span><span class="kw">lm</span>(Volume <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> trees)</span>
