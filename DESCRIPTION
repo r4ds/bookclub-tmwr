@@ -16,12 +16,15 @@ Imports:
     discrim,
     earth,
     emo,
+    finetune,
     ggfortify,
     glmnet,
     here,
     janitor,
     kableExtra,
+    kernlab,
     mda,
+    palmerpenguins,
     patchwork,
     ranger,
     remotes,
@@ -36,10 +39,7 @@ Imports:
     tidyverse,
     tufte,
     tweetrmd,
-    workflowsets,
-    palmerpenguins,
-    finetune,
-    kernlab
+    workflowsets
 Remotes: 
     tidymodels/discrim,
     hadley/emo,

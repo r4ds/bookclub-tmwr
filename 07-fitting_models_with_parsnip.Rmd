@@ -17,7 +17,7 @@
 
 - __Chapter Setup Below__
 
-```{r set-up, warning=FALSE, message=FALSE}
+```{r set-up-07, warning=FALSE, message=FALSE}
 # load parsnip, recipes, rsample, broom...
 library(tidymodels)
 library(AmesHousing)
@@ -266,7 +266,7 @@ predict(lm_form_fit, new_data = ames_test_small) %>%
 
 - Combining `bind_cols` with our predict function we can merge our predictions back to the test set.
 
-```{r}
+```{r combine-07}
 # add predictions together with actuals
 ames_test_small %>%
   select(Sale_Price) %>%
