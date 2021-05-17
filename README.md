@@ -78,10 +78,10 @@ If you would like to present, please add your name next to a chapter using the [
 
 </details>
 
-- **2021-05-17: Chapter 6: Feature engineering with recipes: Priyanka Gagneja**
-- 2021-05-24: Chapter 7: Fitting models with parsnip
-- 2021-05-31: Chapter 8: A model workflow
-- 2021-06-07: Chapter 9: Judging model effectiveness
+- **2021-05-24: Chapter 6: Feature engineering with recipes: Priyanka Gagneja**
+- 2021-05-31: Chapter 7: Fitting models with parsnip
+- 2021-06-??: Chapter 8: A model workflow
+- 2021-06-??: Chapter 9: Judging model effectiveness
 - 2021-0?-??: Chapter 10: Resampling for evaluating performance
 - 2021-0?-??: Chapter 11: Comparing models with resampling
 - 2021-0?-??: Chapter 12: Model tuning and the dangers of overfitting
