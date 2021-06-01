@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-05-17" />
+<meta name="date" content="2021-06-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -584,10 +584,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Model fit template:
 ## stats::lm(formula = missing_arg(), data = missing_arg(), weights = missing_arg())</code></pre>
 <div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="create-a-model.html#cb131-1"></a><span class="co"># glmnet implementation</span></span>
-<span id="cb131-2"><a href="create-a-model.html#cb131-2"></a><span class="kw">linear_reg</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb131-2"><a href="create-a-model.html#cb131-2"></a><span class="kw">linear_reg</span>(<span class="dt">penalty =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb131-3"><a href="create-a-model.html#cb131-3"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;glmnet&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb131-4"><a href="create-a-model.html#cb131-4"></a><span class="st">  </span><span class="kw">translate</span>()</span></code></pre></div>
 <pre><code>## Linear Regression Model Specification (regression)
+## 
+## Main Arguments:
+##   penalty = 1
 ## 
 ## Computational engine: glmnet 
 ## 
