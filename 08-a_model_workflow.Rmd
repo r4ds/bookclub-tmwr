@@ -193,7 +193,7 @@ tree_predictions %>%
 ## Notes
 
 - how the formula is used will depend on the model specification
-- If a modeling package uses the formula not only for preprocessing or has a syntax not supported by `model.matrix` you can specify a formula in `add_formula`
+- If a modeling package uses the formula not only for pre-processing or has a syntax not supported by `model.matrix` you can specify a formula in `add_model`
 - Later the `{workflows}` package will contain tools to help with post processing, such as creating hard predictions from class probabilities.
 
 
