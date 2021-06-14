@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-06-01" />
+<meta name="date" content="2021-06-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -238,8 +238,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="a-model-workflow.html"><a href="a-model-workflow.html"><i class="fa fa-check"></i><b>8</b> A model workflow</a><ul>
-<li class="chapter" data-level="8.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html"><i class="fa fa-check"></i><b>8.1</b> Meeting Videos</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-1-7"><i class="fa fa-check"></i><b>8.1.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="8.1" data-path="workflows.html"><a href="workflows.html"><i class="fa fa-check"></i><b>8.1</b> Workflows</a></li>
+<li class="chapter" data-level="8.2" data-path="demonstration.html"><a href="demonstration.html"><i class="fa fa-check"></i><b>8.2</b> Demonstration</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="demonstration.html"><a href="demonstration.html#some-data-exploration-and-cleaning"><i class="fa fa-check"></i><b>8.2.1</b> Some data exploration and cleaning</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="modeling-with-workflows.html"><a href="modeling-with-workflows.html"><i class="fa fa-check"></i><b>8.3</b> Modeling with workflows</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="modeling-with-workflows.html"><a href="modeling-with-workflows.html#different-model-same-recipe"><i class="fa fa-check"></i><b>8.3.1</b> Different model, same recipe</a></li>
+<li class="chapter" data-level="8.3.2" data-path="modeling-with-workflows.html"><a href="modeling-with-workflows.html#same-model-different-preprocessing"><i class="fa fa-check"></i><b>8.3.2</b> Same model, different preprocessing</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="managing-many-workflows.html"><a href="managing-many-workflows.html"><i class="fa fa-check"></i><b>8.4</b> Managing many workflows</a></li>
+<li class="chapter" data-level="8.5" data-path="notes.html"><a href="notes.html"><i class="fa fa-check"></i><b>8.5</b> Notes</a></li>
+<li class="chapter" data-level="8.6" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html"><i class="fa fa-check"></i><b>8.6</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-1-7"><i class="fa fa-check"></i><b>8.6.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="judging-model-effectiveness.html"><a href="judging-model-effectiveness.html"><i class="fa fa-check"></i><b>9</b> Judging model effectiveness</a><ul>
@@ -389,13 +399,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="finalizing-tuning-parameters" class="section level2">
 <h2><span class="header-section-number">12.12</span> Finalizing tuning parameters:</h2>
 <p>The update function may not be useful if a recipe is attached to a workflow that adjusts the number of columns. Instead of <code>update()</code> we can use the <code>finalize()</code> function.</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="finalizing-tuning-parameters.html#cb189-1"></a>updated_params &lt;-<span class="st"> </span><span class="kw">workflow</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb189-2"><a href="finalizing-tuning-parameters.html#cb189-2"></a><span class="st">  </span><span class="kw">add_model</span>(rf_spec_tuned) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb189-3"><a href="finalizing-tuning-parameters.html#cb189-3"></a><span class="st">  </span><span class="kw">add_recipe</span>(ames_recipe) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb189-4"><a href="finalizing-tuning-parameters.html#cb189-4"></a><span class="st">  </span><span class="kw">parameters</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb189-5"><a href="finalizing-tuning-parameters.html#cb189-5"></a><span class="st">  </span><span class="kw">finalize</span>(ames_train)</span>
-<span id="cb189-6"><a href="finalizing-tuning-parameters.html#cb189-6"></a></span>
-<span id="cb189-7"><a href="finalizing-tuning-parameters.html#cb189-7"></a>updated_params</span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="finalizing-tuning-parameters.html#cb214-1"></a>updated_params &lt;-<span class="st"> </span><span class="kw">workflow</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb214-2"><a href="finalizing-tuning-parameters.html#cb214-2"></a><span class="st">  </span><span class="kw">add_model</span>(rf_spec_tuned) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb214-3"><a href="finalizing-tuning-parameters.html#cb214-3"></a><span class="st">  </span><span class="kw">add_recipe</span>(ames_recipe) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb214-4"><a href="finalizing-tuning-parameters.html#cb214-4"></a><span class="st">  </span><span class="kw">parameters</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb214-5"><a href="finalizing-tuning-parameters.html#cb214-5"></a><span class="st">  </span><span class="kw">finalize</span>(ames_train)</span>
+<span id="cb214-6"><a href="finalizing-tuning-parameters.html#cb214-6"></a></span>
+<span id="cb214-7"><a href="finalizing-tuning-parameters.html#cb214-7"></a>updated_params</span></code></pre></div>
 <pre><code>## Collection of 3 parameters for tuning
 ## 
 ##  identifier                  type    object
@@ -403,7 +413,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##       min_n                 min_n nparam[+]
 ##         reg regularization.factor nparam[+]</code></pre>
 <p>With the <code>finalize()</code> function, mtry was completed based on the number of predictors in the training dataset</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="finalizing-tuning-parameters.html#cb191-1"></a>updated_params <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull_dials_object</span>(<span class="st">&quot;mtry&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="finalizing-tuning-parameters.html#cb216-1"></a>updated_params <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull_dials_object</span>(<span class="st">&quot;mtry&quot;</span>)</span></code></pre></div>
 <pre><code>## # Randomly Selected Predictors (quantitative)
 ## Range: [1, 74]</code></pre>
 </div>

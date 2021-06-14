@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-06-01" />
+<meta name="date" content="2021-06-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -238,8 +238,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="a-model-workflow.html"><a href="a-model-workflow.html"><i class="fa fa-check"></i><b>8</b> A model workflow</a><ul>
-<li class="chapter" data-level="8.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html"><i class="fa fa-check"></i><b>8.1</b> Meeting Videos</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-1-7"><i class="fa fa-check"></i><b>8.1.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="8.1" data-path="workflows.html"><a href="workflows.html"><i class="fa fa-check"></i><b>8.1</b> Workflows</a></li>
+<li class="chapter" data-level="8.2" data-path="demonstration.html"><a href="demonstration.html"><i class="fa fa-check"></i><b>8.2</b> Demonstration</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="demonstration.html"><a href="demonstration.html#some-data-exploration-and-cleaning"><i class="fa fa-check"></i><b>8.2.1</b> Some data exploration and cleaning</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="modeling-with-workflows.html"><a href="modeling-with-workflows.html"><i class="fa fa-check"></i><b>8.3</b> Modeling with workflows</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="modeling-with-workflows.html"><a href="modeling-with-workflows.html#different-model-same-recipe"><i class="fa fa-check"></i><b>8.3.1</b> Different model, same recipe</a></li>
+<li class="chapter" data-level="8.3.2" data-path="modeling-with-workflows.html"><a href="modeling-with-workflows.html#same-model-different-preprocessing"><i class="fa fa-check"></i><b>8.3.2</b> Same model, different preprocessing</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="managing-many-workflows.html"><a href="managing-many-workflows.html"><i class="fa fa-check"></i><b>8.4</b> Managing many workflows</a></li>
+<li class="chapter" data-level="8.5" data-path="notes.html"><a href="notes.html"><i class="fa fa-check"></i><b>8.5</b> Notes</a></li>
+<li class="chapter" data-level="8.6" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html"><i class="fa fa-check"></i><b>8.6</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-1-7"><i class="fa fa-check"></i><b>8.6.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="judging-model-effectiveness.html"><a href="judging-model-effectiveness.html"><i class="fa fa-check"></i><b>9</b> Judging model effectiveness</a><ul>
@@ -389,30 +399,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="ranking-models" class="section level2">
 <h2><span class="header-section-number">15.3</span> Ranking models</h2>
 <p>Let’s look at our results</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="ranking-models.html#cb284-1"></a><span class="co"># How many models are there?</span></span>
-<span id="cb284-2"><a href="ranking-models.html#cb284-2"></a>n_model &lt;-</span>
-<span id="cb284-3"><a href="ranking-models.html#cb284-3"></a><span class="st">  </span>res_grid <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb284-4"><a href="ranking-models.html#cb284-4"></a><span class="st">  </span><span class="kw">collect_metrics</span>(<span class="dt">summarize =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb284-5"><a href="ranking-models.html#cb284-5"></a><span class="st">  </span><span class="kw">nrow</span>()</span>
-<span id="cb284-6"><a href="ranking-models.html#cb284-6"></a>n_model</span></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="ranking-models.html#cb309-1"></a><span class="co"># How many models are there?</span></span>
+<span id="cb309-2"><a href="ranking-models.html#cb309-2"></a>n_model &lt;-</span>
+<span id="cb309-3"><a href="ranking-models.html#cb309-3"></a><span class="st">  </span>res_grid <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb309-4"><a href="ranking-models.html#cb309-4"></a><span class="st">  </span><span class="kw">collect_metrics</span>(<span class="dt">summarize =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb309-5"><a href="ranking-models.html#cb309-5"></a><span class="st">  </span><span class="kw">nrow</span>()</span>
+<span id="cb309-6"><a href="ranking-models.html#cb309-6"></a>n_model</span></code></pre></div>
 <pre><code>## [1] 3000</code></pre>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="ranking-models.html#cb286-1"></a>res_grid_filt &lt;-</span>
-<span id="cb286-2"><a href="ranking-models.html#cb286-2"></a><span class="st">  </span>res_grid <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb286-3"><a href="ranking-models.html#cb286-3"></a><span class="st">  </span><span class="co"># &#39;cart_bag&#39; has &lt;rsmp[+]&gt; in the `results` column, so it won&#39;t work with `rank_results()`</span></span>
-<span id="cb286-4"><a href="ranking-models.html#cb286-4"></a><span class="st">  </span><span class="kw">filter</span>(wflow_id <span class="op">!=</span><span class="st"> &#39;cart_bag&#39;</span>)</span>
-<span id="cb286-5"><a href="ranking-models.html#cb286-5"></a></span>
-<span id="cb286-6"><a href="ranking-models.html#cb286-6"></a><span class="co"># Note that xgboost sucks if you don&#39;t have good parameters</span></span>
-<span id="cb286-7"><a href="ranking-models.html#cb286-7"></a>res_ranks &lt;-</span>
-<span id="cb286-8"><a href="ranking-models.html#cb286-8"></a><span class="st">  </span>res_grid_filt <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb286-9"><a href="ranking-models.html#cb286-9"></a><span class="st">  </span>workflowsets<span class="op">::</span><span class="kw">rank_results</span>(<span class="st">&#39;rmse&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb286-10"><a href="ranking-models.html#cb286-10"></a><span class="st">  </span><span class="co"># Why this no filter out rsquared already?</span></span>
-<span id="cb286-11"><a href="ranking-models.html#cb286-11"></a><span class="st">  </span><span class="kw">filter</span>(.metric <span class="op">==</span><span class="st"> &#39;rmse&#39;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb286-12"><a href="ranking-models.html#cb286-12"></a><span class="st">  </span><span class="kw">select</span>(wflow_id, model, .config, <span class="dt">rmse =</span> mean, rank) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb286-13"><a href="ranking-models.html#cb286-13"></a><span class="st">  </span><span class="kw">group_by</span>(wflow_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb286-14"><a href="ranking-models.html#cb286-14"></a><span class="st">  </span><span class="kw">slice_min</span>(rank, <span class="dt">with_ties =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb286-15"><a href="ranking-models.html#cb286-15"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb286-16"><a href="ranking-models.html#cb286-16"></a><span class="st">  </span><span class="kw">arrange</span>(rank)</span>
-<span id="cb286-17"><a href="ranking-models.html#cb286-17"></a>res_ranks</span></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="ranking-models.html#cb311-1"></a>res_grid_filt &lt;-</span>
+<span id="cb311-2"><a href="ranking-models.html#cb311-2"></a><span class="st">  </span>res_grid <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb311-3"><a href="ranking-models.html#cb311-3"></a><span class="st">  </span><span class="co"># &#39;cart_bag&#39; has &lt;rsmp[+]&gt; in the `results` column, so it won&#39;t work with `rank_results()`</span></span>
+<span id="cb311-4"><a href="ranking-models.html#cb311-4"></a><span class="st">  </span><span class="kw">filter</span>(wflow_id <span class="op">!=</span><span class="st"> &#39;cart_bag&#39;</span>)</span>
+<span id="cb311-5"><a href="ranking-models.html#cb311-5"></a></span>
+<span id="cb311-6"><a href="ranking-models.html#cb311-6"></a><span class="co"># Note that xgboost sucks if you don&#39;t have good parameters</span></span>
+<span id="cb311-7"><a href="ranking-models.html#cb311-7"></a>res_ranks &lt;-</span>
+<span id="cb311-8"><a href="ranking-models.html#cb311-8"></a><span class="st">  </span>res_grid_filt <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb311-9"><a href="ranking-models.html#cb311-9"></a><span class="st">  </span>workflowsets<span class="op">::</span><span class="kw">rank_results</span>(<span class="st">&#39;rmse&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb311-10"><a href="ranking-models.html#cb311-10"></a><span class="st">  </span><span class="co"># Why this no filter out rsquared already?</span></span>
+<span id="cb311-11"><a href="ranking-models.html#cb311-11"></a><span class="st">  </span><span class="kw">filter</span>(.metric <span class="op">==</span><span class="st"> &#39;rmse&#39;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb311-12"><a href="ranking-models.html#cb311-12"></a><span class="st">  </span><span class="kw">select</span>(wflow_id, model, .config, <span class="dt">rmse =</span> mean, rank) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb311-13"><a href="ranking-models.html#cb311-13"></a><span class="st">  </span><span class="kw">group_by</span>(wflow_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb311-14"><a href="ranking-models.html#cb311-14"></a><span class="st">  </span><span class="kw">slice_min</span>(rank, <span class="dt">with_ties =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb311-15"><a href="ranking-models.html#cb311-15"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb311-16"><a href="ranking-models.html#cb311-16"></a><span class="st">  </span><span class="kw">arrange</span>(rank)</span>
+<span id="cb311-17"><a href="ranking-models.html#cb311-17"></a>res_ranks</span></code></pre></div>
 <pre><code>## # A tibble: 11 x 5
 ##    wflow_id         model            .config               rmse  rank
 ##    &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;                &lt;dbl&gt; &lt;int&gt;
@@ -430,11 +440,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Plot the ranks with standard errors.</p>
 <p><img src="bookclub-tmwr_files/figure-html/15-plots-1.png" width="672" /></p>
 <p>If we wanted to look at the sub-models for a given <code>wflow_id</code>, we could do that with <code>autoplot()</code>.</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="ranking-models.html#cb288-1"></a><span class="kw">autoplot</span>(</span>
-<span id="cb288-2"><a href="ranking-models.html#cb288-2"></a>  res_grid, </span>
-<span id="cb288-3"><a href="ranking-models.html#cb288-3"></a>  <span class="dt">id =</span> <span class="st">&#39;norm_svm_p&#39;</span>, </span>
-<span id="cb288-4"><a href="ranking-models.html#cb288-4"></a>  <span class="dt">metric =</span> <span class="st">&#39;rmse&#39;</span></span>
-<span id="cb288-5"><a href="ranking-models.html#cb288-5"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="ranking-models.html#cb313-1"></a><span class="kw">autoplot</span>(</span>
+<span id="cb313-2"><a href="ranking-models.html#cb313-2"></a>  res_grid, </span>
+<span id="cb313-3"><a href="ranking-models.html#cb313-3"></a>  <span class="dt">id =</span> <span class="st">&#39;norm_svm_p&#39;</span>, </span>
+<span id="cb313-4"><a href="ranking-models.html#cb313-4"></a>  <span class="dt">metric =</span> <span class="st">&#39;rmse&#39;</span></span>
+<span id="cb313-5"><a href="ranking-models.html#cb313-5"></a>)</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/15-autoplot-1.png" width="672" /></p>
 <details>
 <p><summary></p>

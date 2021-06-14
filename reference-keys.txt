@@ -74,6 +74,14 @@ summary-1
 meeting-videos-7
 cohort-1-6
 a-model-workflow
+workflows
+demonstration
+some-data-exploration-and-cleaning
+modeling-with-workflows
+different-model-same-recipe
+same-model-different-preprocessing
+managing-many-workflows
+notes
 meeting-videos-8
 cohort-1-7
 judging-model-effectiveness

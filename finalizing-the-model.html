@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-06-01" />
+<meta name="date" content="2021-06-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -238,8 +238,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="a-model-workflow.html"><a href="a-model-workflow.html"><i class="fa fa-check"></i><b>8</b> A model workflow</a><ul>
-<li class="chapter" data-level="8.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html"><i class="fa fa-check"></i><b>8.1</b> Meeting Videos</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-1-7"><i class="fa fa-check"></i><b>8.1.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="8.1" data-path="workflows.html"><a href="workflows.html"><i class="fa fa-check"></i><b>8.1</b> Workflows</a></li>
+<li class="chapter" data-level="8.2" data-path="demonstration.html"><a href="demonstration.html"><i class="fa fa-check"></i><b>8.2</b> Demonstration</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="demonstration.html"><a href="demonstration.html#some-data-exploration-and-cleaning"><i class="fa fa-check"></i><b>8.2.1</b> Some data exploration and cleaning</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="modeling-with-workflows.html"><a href="modeling-with-workflows.html"><i class="fa fa-check"></i><b>8.3</b> Modeling with workflows</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="modeling-with-workflows.html"><a href="modeling-with-workflows.html#different-model-same-recipe"><i class="fa fa-check"></i><b>8.3.1</b> Different model, same recipe</a></li>
+<li class="chapter" data-level="8.3.2" data-path="modeling-with-workflows.html"><a href="modeling-with-workflows.html#same-model-different-preprocessing"><i class="fa fa-check"></i><b>8.3.2</b> Same model, different preprocessing</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="managing-many-workflows.html"><a href="managing-many-workflows.html"><i class="fa fa-check"></i><b>8.4</b> Managing many workflows</a></li>
+<li class="chapter" data-level="8.5" data-path="notes.html"><a href="notes.html"><i class="fa fa-check"></i><b>8.5</b> Notes</a></li>
+<li class="chapter" data-level="8.6" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html"><i class="fa fa-check"></i><b>8.6</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-1-7"><i class="fa fa-check"></i><b>8.6.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="judging-model-effectiveness.html"><a href="judging-model-effectiveness.html"><i class="fa fa-check"></i><b>9</b> Judging model effectiveness</a><ul>
@@ -394,52 +404,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>manually choose parameters, or</p></li>
 <li><p><code>select_best()</code></p></li>
 </ul>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="finalizing-the-model.html#cb229-1"></a><span class="kw">select_best</span>(mlp_sfd_tune, <span class="dt">metric =</span> <span class="st">&quot;iic&quot;</span>)</span>
-<span id="cb229-2"><a href="finalizing-the-model.html#cb229-2"></a></span>
-<span id="cb229-3"><a href="finalizing-the-model.html#cb229-3"></a><span class="co"># or, a manual selection that corresponds to the regular method</span></span>
-<span id="cb229-4"><a href="finalizing-the-model.html#cb229-4"></a></span>
-<span id="cb229-5"><a href="finalizing-the-model.html#cb229-5"></a>reg_param &lt;-<span class="st"> </span></span>
-<span id="cb229-6"><a href="finalizing-the-model.html#cb229-6"></a><span class="st">  </span><span class="kw">tibble</span>(</span>
-<span id="cb229-7"><a href="finalizing-the-model.html#cb229-7"></a>    <span class="dt">num_comp =</span> <span class="dv">0</span>,</span>
-<span id="cb229-8"><a href="finalizing-the-model.html#cb229-8"></a>    <span class="dt">epochs =</span> <span class="dv">200</span>,</span>
-<span id="cb229-9"><a href="finalizing-the-model.html#cb229-9"></a>    <span class="dt">hidden_units =</span> <span class="dv">5</span>,</span>
-<span id="cb229-10"><a href="finalizing-the-model.html#cb229-10"></a>    <span class="dt">penalty =</span> <span class="dv">1</span>   <span class="co"># log10</span></span>
-<span id="cb229-11"><a href="finalizing-the-model.html#cb229-11"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="finalizing-the-model.html#cb254-1"></a><span class="kw">select_best</span>(mlp_sfd_tune, <span class="dt">metric =</span> <span class="st">&quot;iic&quot;</span>)</span>
+<span id="cb254-2"><a href="finalizing-the-model.html#cb254-2"></a></span>
+<span id="cb254-3"><a href="finalizing-the-model.html#cb254-3"></a><span class="co"># or, a manual selection that corresponds to the regular method</span></span>
+<span id="cb254-4"><a href="finalizing-the-model.html#cb254-4"></a></span>
+<span id="cb254-5"><a href="finalizing-the-model.html#cb254-5"></a>reg_param &lt;-<span class="st"> </span></span>
+<span id="cb254-6"><a href="finalizing-the-model.html#cb254-6"></a><span class="st">  </span><span class="kw">tibble</span>(</span>
+<span id="cb254-7"><a href="finalizing-the-model.html#cb254-7"></a>    <span class="dt">num_comp =</span> <span class="dv">0</span>,</span>
+<span id="cb254-8"><a href="finalizing-the-model.html#cb254-8"></a>    <span class="dt">epochs =</span> <span class="dv">200</span>,</span>
+<span id="cb254-9"><a href="finalizing-the-model.html#cb254-9"></a>    <span class="dt">hidden_units =</span> <span class="dv">5</span>,</span>
+<span id="cb254-10"><a href="finalizing-the-model.html#cb254-10"></a>    <span class="dt">penalty =</span> <span class="dv">1</span>   <span class="co"># log10</span></span>
+<span id="cb254-11"><a href="finalizing-the-model.html#cb254-11"></a>  )</span></code></pre></div>
 <pre><code># A tibble: 1 x 5
   hidden_units penalty epochs num_comp .config              
          &lt;int&gt;   &lt;dbl&gt;  &lt;int&gt;    &lt;int&gt; &lt;chr&gt;                
 1            9 0.00780    158       14 Preprocessor06_Model1</code></pre>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="finalizing-the-model.html#cb231-1"></a>final_sfd_wflow &lt;-<span class="st"> </span></span>
-<span id="cb231-2"><a href="finalizing-the-model.html#cb231-2"></a><span class="st">  </span>mlp_wflow <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb231-3"><a href="finalizing-the-model.html#cb231-3"></a><span class="st">  </span><span class="kw">finalize_workflow</span>(<span class="kw">select_best</span>(mlp_sfd_tune, <span class="dt">metric =</span> <span class="st">&quot;rmse&quot;</span>)) </span></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="finalizing-the-model.html#cb256-1"></a>final_sfd_wflow &lt;-<span class="st"> </span></span>
+<span id="cb256-2"><a href="finalizing-the-model.html#cb256-2"></a><span class="st">  </span>mlp_wflow <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb256-3"><a href="finalizing-the-model.html#cb256-3"></a><span class="st">  </span><span class="kw">finalize_workflow</span>(<span class="kw">select_best</span>(mlp_sfd_tune, <span class="dt">metric =</span> <span class="st">&quot;rmse&quot;</span>)) </span></code></pre></div>
 <p>Now the model can fit the <em>entire training</em> set:</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="finalizing-the-model.html#cb232-1"></a>final_sfd_fit &lt;-<span class="st"> </span></span>
-<span id="cb232-2"><a href="finalizing-the-model.html#cb232-2"></a><span class="st">  </span>final_sfd_wflow <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb232-3"><a href="finalizing-the-model.html#cb232-3"></a><span class="st">  </span><span class="kw">fit</span>(Chicago_train)</span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="finalizing-the-model.html#cb257-1"></a>final_sfd_fit &lt;-<span class="st"> </span></span>
+<span id="cb257-2"><a href="finalizing-the-model.html#cb257-2"></a><span class="st">  </span>final_sfd_wflow <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb257-3"><a href="finalizing-the-model.html#cb257-3"></a><span class="st">  </span><span class="kw">fit</span>(Chicago_train)</span></code></pre></div>
 <p>This object can now be used to make future predictions on new data.</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="finalizing-the-model.html#cb233-1"></a>final_sfd_fit <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb233-2"><a href="finalizing-the-model.html#cb233-2"></a><span class="st">   </span><span class="kw">predict</span>(<span class="dt">new_data =</span> Chicago_test) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb233-3"><a href="finalizing-the-model.html#cb233-3"></a><span class="st">   </span><span class="kw">bind_cols</span>(Chicago_test) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb233-4"><a href="finalizing-the-model.html#cb233-4"></a><span class="st">   </span><span class="kw">rmse</span>(<span class="dt">truth =</span> ridership, <span class="dt">estimate =</span> .pred)</span></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="finalizing-the-model.html#cb258-1"></a>final_sfd_fit <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb258-2"><a href="finalizing-the-model.html#cb258-2"></a><span class="st">   </span><span class="kw">predict</span>(<span class="dt">new_data =</span> Chicago_test) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb258-3"><a href="finalizing-the-model.html#cb258-3"></a><span class="st">   </span><span class="kw">bind_cols</span>(Chicago_test) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb258-4"><a href="finalizing-the-model.html#cb258-4"></a><span class="st">   </span><span class="kw">rmse</span>(<span class="dt">truth =</span> ridership, <span class="dt">estimate =</span> .pred)</span></code></pre></div>
 <pre><code># A tibble: 1 x 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 1 rmse    standard        3.01</code></pre>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="finalizing-the-model.html#cb235-1"></a>final_sfd_fit <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb235-2"><a href="finalizing-the-model.html#cb235-2"></a><span class="st">   </span><span class="kw">predict</span>(<span class="dt">new_data =</span> Chicago_test) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb235-3"><a href="finalizing-the-model.html#cb235-3"></a><span class="st">   </span><span class="kw">bind_cols</span>(Chicago_test) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb235-4"><a href="finalizing-the-model.html#cb235-4"></a><span class="st">   </span><span class="kw">mutate</span>(<span class="dt">weekday =</span> <span class="kw">wday</span>(date, </span>
-<span id="cb235-5"><a href="finalizing-the-model.html#cb235-5"></a>                         <span class="dt">label =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb235-6"><a href="finalizing-the-model.html#cb235-6"></a><span class="st">   </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(ridership, </span>
-<span id="cb235-7"><a href="finalizing-the-model.html#cb235-7"></a>              .pred, </span>
-<span id="cb235-8"><a href="finalizing-the-model.html#cb235-8"></a>              <span class="dt">color =</span> weekday)) <span class="op">+</span></span>
-<span id="cb235-9"><a href="finalizing-the-model.html#cb235-9"></a><span class="st">   </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb235-10"><a href="finalizing-the-model.html#cb235-10"></a><span class="st">   </span><span class="kw">geom_abline</span>(<span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
-<span id="cb235-11"><a href="finalizing-the-model.html#cb235-11"></a><span class="st">   </span><span class="kw">scale_color_brewer</span>(<span class="dt">type =</span> <span class="st">&quot;qual&quot;</span>) <span class="op">+</span></span>
-<span id="cb235-12"><a href="finalizing-the-model.html#cb235-12"></a><span class="st">   </span><span class="kw">coord_fixed</span>() <span class="op">+</span></span>
-<span id="cb235-13"><a href="finalizing-the-model.html#cb235-13"></a><span class="st">   </span><span class="kw">expand_limits</span>(<span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">y =</span> <span class="dv">0</span>)</span>
-<span id="cb235-14"><a href="finalizing-the-model.html#cb235-14"></a></span>
-<span id="cb235-15"><a href="finalizing-the-model.html#cb235-15"></a><span class="kw">ggsave</span>(<span class="st">&quot;images/13_test_performance.png&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="finalizing-the-model.html#cb260-1"></a>final_sfd_fit <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb260-2"><a href="finalizing-the-model.html#cb260-2"></a><span class="st">   </span><span class="kw">predict</span>(<span class="dt">new_data =</span> Chicago_test) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb260-3"><a href="finalizing-the-model.html#cb260-3"></a><span class="st">   </span><span class="kw">bind_cols</span>(Chicago_test) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb260-4"><a href="finalizing-the-model.html#cb260-4"></a><span class="st">   </span><span class="kw">mutate</span>(<span class="dt">weekday =</span> <span class="kw">wday</span>(date, </span>
+<span id="cb260-5"><a href="finalizing-the-model.html#cb260-5"></a>                         <span class="dt">label =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb260-6"><a href="finalizing-the-model.html#cb260-6"></a><span class="st">   </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(ridership, </span>
+<span id="cb260-7"><a href="finalizing-the-model.html#cb260-7"></a>              .pred, </span>
+<span id="cb260-8"><a href="finalizing-the-model.html#cb260-8"></a>              <span class="dt">color =</span> weekday)) <span class="op">+</span></span>
+<span id="cb260-9"><a href="finalizing-the-model.html#cb260-9"></a><span class="st">   </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb260-10"><a href="finalizing-the-model.html#cb260-10"></a><span class="st">   </span><span class="kw">geom_abline</span>(<span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb260-11"><a href="finalizing-the-model.html#cb260-11"></a><span class="st">   </span><span class="kw">scale_color_brewer</span>(<span class="dt">type =</span> <span class="st">&quot;qual&quot;</span>) <span class="op">+</span></span>
+<span id="cb260-12"><a href="finalizing-the-model.html#cb260-12"></a><span class="st">   </span><span class="kw">coord_fixed</span>() <span class="op">+</span></span>
+<span id="cb260-13"><a href="finalizing-the-model.html#cb260-13"></a><span class="st">   </span><span class="kw">expand_limits</span>(<span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">y =</span> <span class="dv">0</span>)</span>
+<span id="cb260-14"><a href="finalizing-the-model.html#cb260-14"></a></span>
+<span id="cb260-15"><a href="finalizing-the-model.html#cb260-15"></a><span class="kw">ggsave</span>(<span class="st">&quot;images/13_test_performance.png&quot;</span>)</span></code></pre></div>
 <p><img src="images/13_test_performance.png" /></p>
 <p>I learned here that the <strong>recipe</strong> must exclude the dependent variable for the <code>predict()</code> to run on test data.</p>
 </div>

@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-06-01" />
+<meta name="date" content="2021-06-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -238,8 +238,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="a-model-workflow.html"><a href="a-model-workflow.html"><i class="fa fa-check"></i><b>8</b> A model workflow</a><ul>
-<li class="chapter" data-level="8.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html"><i class="fa fa-check"></i><b>8.1</b> Meeting Videos</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-1-7"><i class="fa fa-check"></i><b>8.1.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="8.1" data-path="workflows.html"><a href="workflows.html"><i class="fa fa-check"></i><b>8.1</b> Workflows</a></li>
+<li class="chapter" data-level="8.2" data-path="demonstration.html"><a href="demonstration.html"><i class="fa fa-check"></i><b>8.2</b> Demonstration</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="demonstration.html"><a href="demonstration.html#some-data-exploration-and-cleaning"><i class="fa fa-check"></i><b>8.2.1</b> Some data exploration and cleaning</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="modeling-with-workflows.html"><a href="modeling-with-workflows.html"><i class="fa fa-check"></i><b>8.3</b> Modeling with workflows</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="modeling-with-workflows.html"><a href="modeling-with-workflows.html#different-model-same-recipe"><i class="fa fa-check"></i><b>8.3.1</b> Different model, same recipe</a></li>
+<li class="chapter" data-level="8.3.2" data-path="modeling-with-workflows.html"><a href="modeling-with-workflows.html#same-model-different-preprocessing"><i class="fa fa-check"></i><b>8.3.2</b> Same model, different preprocessing</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="managing-many-workflows.html"><a href="managing-many-workflows.html"><i class="fa fa-check"></i><b>8.4</b> Managing many workflows</a></li>
+<li class="chapter" data-level="8.5" data-path="notes.html"><a href="notes.html"><i class="fa fa-check"></i><b>8.5</b> Notes</a></li>
+<li class="chapter" data-level="8.6" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html"><i class="fa fa-check"></i><b>8.6</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-1-7"><i class="fa fa-check"></i><b>8.6.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="judging-model-effectiveness.html"><a href="judging-model-effectiveness.html"><i class="fa fa-check"></i><b>9</b> Judging model effectiveness</a><ul>
@@ -402,44 +412,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>The <code>tune</code> package automatically applies this type of optimization whenever an applicable model is tuned. See also <a href="https://tune.tidymodels.org/articles/extras/optimizations.html">this vignette</a></p>
 </blockquote>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="tools-for-efficient-grid-search.html#cb236-1"></a><span class="kw">methods</span>(<span class="st">&quot;multi_predict&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="tools-for-efficient-grid-search.html#cb261-1"></a><span class="kw">methods</span>(<span class="st">&quot;multi_predict&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] multi_predict._C5.0*        multi_predict._earth*      
 ## [3] multi_predict._elnet*       multi_predict._lognet*     
 ## [5] multi_predict._multnet*     multi_predict._train.kknn* 
 ## [7] multi_predict._xgb.Booster* multi_predict.default*     
 ## see &#39;?methods&#39; for accessing help and source code</code></pre>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="tools-for-efficient-grid-search.html#cb238-1"></a>parsnip<span class="op">:::</span>multi_predict._C5<span class="fl">.0</span> <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb238-2"><a href="tools-for-efficient-grid-search.html#cb238-2"></a><span class="st">  </span><span class="kw">formals</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb238-3"><a href="tools-for-efficient-grid-search.html#cb238-3"></a><span class="st">  </span><span class="kw">names</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="tools-for-efficient-grid-search.html#cb263-1"></a>parsnip<span class="op">:::</span>multi_predict._C5<span class="fl">.0</span> <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb263-2"><a href="tools-for-efficient-grid-search.html#cb263-2"></a><span class="st">  </span><span class="kw">formals</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb263-3"><a href="tools-for-efficient-grid-search.html#cb263-3"></a><span class="st">  </span><span class="kw">names</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;object&quot;   &quot;new_data&quot; &quot;type&quot;     &quot;trees&quot;    &quot;...&quot;</code></pre>
 <p>For example, if a C5.0 model is fit to this cell classification data challenge, we can tune the trees. With all other parameters set at their default values, we can rapidly evaluate iterations from 1 to 100 :</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="tools-for-efficient-grid-search.html#cb240-1"></a><span class="kw">data</span>(cells)</span>
-<span id="cb240-2"><a href="tools-for-efficient-grid-search.html#cb240-2"></a></span>
-<span id="cb240-3"><a href="tools-for-efficient-grid-search.html#cb240-3"></a>cells &lt;-<span class="st"> </span>cells <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>case)</span>
-<span id="cb240-4"><a href="tools-for-efficient-grid-search.html#cb240-4"></a></span>
-<span id="cb240-5"><a href="tools-for-efficient-grid-search.html#cb240-5"></a>cell_folds &lt;-<span class="st"> </span><span class="kw">vfold_cv</span>(cells)</span>
-<span id="cb240-6"><a href="tools-for-efficient-grid-search.html#cb240-6"></a></span>
-<span id="cb240-7"><a href="tools-for-efficient-grid-search.html#cb240-7"></a>roc_res &lt;-<span class="st"> </span><span class="kw">metric_set</span>(roc_auc)</span>
-<span id="cb240-8"><a href="tools-for-efficient-grid-search.html#cb240-8"></a></span>
-<span id="cb240-9"><a href="tools-for-efficient-grid-search.html#cb240-9"></a>c5_spec &lt;-<span class="st"> </span></span>
-<span id="cb240-10"><a href="tools-for-efficient-grid-search.html#cb240-10"></a><span class="st">  </span><span class="kw">boost_tree</span>(<span class="dt">trees =</span> <span class="kw">tune</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb240-11"><a href="tools-for-efficient-grid-search.html#cb240-11"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;C5.0&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb240-12"><a href="tools-for-efficient-grid-search.html#cb240-12"></a><span class="st">  </span><span class="kw">set_mode</span>(<span class="st">&quot;classification&quot;</span>)</span>
-<span id="cb240-13"><a href="tools-for-efficient-grid-search.html#cb240-13"></a></span>
-<span id="cb240-14"><a href="tools-for-efficient-grid-search.html#cb240-14"></a><span class="kw">set.seed</span>(<span class="dv">2</span>)</span>
-<span id="cb240-15"><a href="tools-for-efficient-grid-search.html#cb240-15"></a>c5_tune &lt;-<span class="st"> </span>c5_spec <span class="op">%&gt;%</span></span>
-<span id="cb240-16"><a href="tools-for-efficient-grid-search.html#cb240-16"></a><span class="st">  </span><span class="kw">tune_grid</span>(</span>
-<span id="cb240-17"><a href="tools-for-efficient-grid-search.html#cb240-17"></a>    class <span class="op">~</span><span class="st"> </span>.,</span>
-<span id="cb240-18"><a href="tools-for-efficient-grid-search.html#cb240-18"></a>    <span class="dt">resamples =</span> cell_folds,</span>
-<span id="cb240-19"><a href="tools-for-efficient-grid-search.html#cb240-19"></a>    <span class="dt">grid =</span> <span class="kw">data.frame</span>(<span class="dt">trees =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">100</span>),</span>
-<span id="cb240-20"><a href="tools-for-efficient-grid-search.html#cb240-20"></a>    <span class="dt">metrics =</span> roc_res</span>
-<span id="cb240-21"><a href="tools-for-efficient-grid-search.html#cb240-21"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="tools-for-efficient-grid-search.html#cb265-1"></a><span class="kw">data</span>(cells)</span>
+<span id="cb265-2"><a href="tools-for-efficient-grid-search.html#cb265-2"></a></span>
+<span id="cb265-3"><a href="tools-for-efficient-grid-search.html#cb265-3"></a>cells &lt;-<span class="st"> </span>cells <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>case)</span>
+<span id="cb265-4"><a href="tools-for-efficient-grid-search.html#cb265-4"></a></span>
+<span id="cb265-5"><a href="tools-for-efficient-grid-search.html#cb265-5"></a>cell_folds &lt;-<span class="st"> </span><span class="kw">vfold_cv</span>(cells)</span>
+<span id="cb265-6"><a href="tools-for-efficient-grid-search.html#cb265-6"></a></span>
+<span id="cb265-7"><a href="tools-for-efficient-grid-search.html#cb265-7"></a>roc_res &lt;-<span class="st"> </span><span class="kw">metric_set</span>(roc_auc)</span>
+<span id="cb265-8"><a href="tools-for-efficient-grid-search.html#cb265-8"></a></span>
+<span id="cb265-9"><a href="tools-for-efficient-grid-search.html#cb265-9"></a>c5_spec &lt;-<span class="st"> </span></span>
+<span id="cb265-10"><a href="tools-for-efficient-grid-search.html#cb265-10"></a><span class="st">  </span><span class="kw">boost_tree</span>(<span class="dt">trees =</span> <span class="kw">tune</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb265-11"><a href="tools-for-efficient-grid-search.html#cb265-11"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;C5.0&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb265-12"><a href="tools-for-efficient-grid-search.html#cb265-12"></a><span class="st">  </span><span class="kw">set_mode</span>(<span class="st">&quot;classification&quot;</span>)</span>
+<span id="cb265-13"><a href="tools-for-efficient-grid-search.html#cb265-13"></a></span>
+<span id="cb265-14"><a href="tools-for-efficient-grid-search.html#cb265-14"></a><span class="kw">set.seed</span>(<span class="dv">2</span>)</span>
+<span id="cb265-15"><a href="tools-for-efficient-grid-search.html#cb265-15"></a>c5_tune &lt;-<span class="st"> </span>c5_spec <span class="op">%&gt;%</span></span>
+<span id="cb265-16"><a href="tools-for-efficient-grid-search.html#cb265-16"></a><span class="st">  </span><span class="kw">tune_grid</span>(</span>
+<span id="cb265-17"><a href="tools-for-efficient-grid-search.html#cb265-17"></a>    class <span class="op">~</span><span class="st"> </span>.,</span>
+<span id="cb265-18"><a href="tools-for-efficient-grid-search.html#cb265-18"></a>    <span class="dt">resamples =</span> cell_folds,</span>
+<span id="cb265-19"><a href="tools-for-efficient-grid-search.html#cb265-19"></a>    <span class="dt">grid =</span> <span class="kw">data.frame</span>(<span class="dt">trees =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">100</span>),</span>
+<span id="cb265-20"><a href="tools-for-efficient-grid-search.html#cb265-20"></a>    <span class="dt">metrics =</span> roc_res</span>
+<span id="cb265-21"><a href="tools-for-efficient-grid-search.html#cb265-21"></a>  )</span></code></pre></div>
 <blockquote>
 <p>Even though we fit the model without the submodel prediction trick, this optimization is automatically applied by <code>parsnip</code>.</p>
 </blockquote>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="tools-for-efficient-grid-search.html#cb241-1"></a><span class="kw">autoplot</span>(c5_tune)</span>
-<span id="cb241-2"><a href="tools-for-efficient-grid-search.html#cb241-2"></a></span>
-<span id="cb241-3"><a href="tools-for-efficient-grid-search.html#cb241-3"></a><span class="kw">ggsave</span>(<span class="st">&quot;images/13_c5_submodel.png&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="tools-for-efficient-grid-search.html#cb266-1"></a><span class="kw">autoplot</span>(c5_tune)</span>
+<span id="cb266-2"><a href="tools-for-efficient-grid-search.html#cb266-2"></a></span>
+<span id="cb266-3"><a href="tools-for-efficient-grid-search.html#cb266-3"></a><span class="kw">ggsave</span>(<span class="st">&quot;images/13_c5_submodel.png&quot;</span>)</span></code></pre></div>
 <p><img src="images/13_c5_submodel.png" /></p>
 </div>
 <div id="parallel-processing-1" class="section level3">
@@ -456,21 +466,21 @@ To use them, register the parallel backend first.
 <p style="color:red;">
 On a shared server, never never consume all of the cores.
 </p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="tools-for-efficient-grid-search.html#cb242-1"></a>all_cores &lt;-<span class="st"> </span>parallel<span class="op">::</span><span class="kw">detectCores</span>(<span class="dt">logical =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb242-2"><a href="tools-for-efficient-grid-search.html#cb242-2"></a></span>
-<span id="cb242-3"><a href="tools-for-efficient-grid-search.html#cb242-3"></a><span class="kw">library</span>(doParallel)</span>
-<span id="cb242-4"><a href="tools-for-efficient-grid-search.html#cb242-4"></a>cl &lt;-<span class="st"> </span><span class="kw">makePSOCKcluster</span>(all_cores)</span>
-<span id="cb242-5"><a href="tools-for-efficient-grid-search.html#cb242-5"></a>doParallel<span class="op">::</span><span class="kw">registerDoParallel</span>(cl)</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="tools-for-efficient-grid-search.html#cb267-1"></a>all_cores &lt;-<span class="st"> </span>parallel<span class="op">::</span><span class="kw">detectCores</span>(<span class="dt">logical =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb267-2"><a href="tools-for-efficient-grid-search.html#cb267-2"></a></span>
+<span id="cb267-3"><a href="tools-for-efficient-grid-search.html#cb267-3"></a><span class="kw">library</span>(doParallel)</span>
+<span id="cb267-4"><a href="tools-for-efficient-grid-search.html#cb267-4"></a>cl &lt;-<span class="st"> </span><span class="kw">makePSOCKcluster</span>(all_cores)</span>
+<span id="cb267-5"><a href="tools-for-efficient-grid-search.html#cb267-5"></a>doParallel<span class="op">::</span><span class="kw">registerDoParallel</span>(cl)</span></code></pre></div>
 <p>Be careful to avoid use of variables from the global environment. For example:</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="tools-for-efficient-grid-search.html#cb243-1"></a>num_pcs &lt;-<span class="st"> </span><span class="dv">3</span></span>
-<span id="cb243-2"><a href="tools-for-efficient-grid-search.html#cb243-2"></a></span>
-<span id="cb243-3"><a href="tools-for-efficient-grid-search.html#cb243-3"></a><span class="kw">recipe</span>(mpg <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> mtcars) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb243-4"><a href="tools-for-efficient-grid-search.html#cb243-4"></a><span class="st">  </span><span class="co"># Bad since num_pcs might not be found by a worker process</span></span>
-<span id="cb243-5"><a href="tools-for-efficient-grid-search.html#cb243-5"></a><span class="st">  </span><span class="kw">step_pca</span>(<span class="kw">all_predictors</span>(), <span class="dt">num_comp =</span> num_pcs)</span>
-<span id="cb243-6"><a href="tools-for-efficient-grid-search.html#cb243-6"></a></span>
-<span id="cb243-7"><a href="tools-for-efficient-grid-search.html#cb243-7"></a><span class="kw">recipe</span>(mpg <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> mtcars) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb243-8"><a href="tools-for-efficient-grid-search.html#cb243-8"></a><span class="st">  </span><span class="co"># Good since the value is injected into the object</span></span>
-<span id="cb243-9"><a href="tools-for-efficient-grid-search.html#cb243-9"></a><span class="st">  </span><span class="kw">step_pca</span>(<span class="kw">all_predictors</span>(), <span class="dt">num_comp =</span> <span class="op">!!</span>num_pcs)</span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="tools-for-efficient-grid-search.html#cb268-1"></a>num_pcs &lt;-<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb268-2"><a href="tools-for-efficient-grid-search.html#cb268-2"></a></span>
+<span id="cb268-3"><a href="tools-for-efficient-grid-search.html#cb268-3"></a><span class="kw">recipe</span>(mpg <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> mtcars) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb268-4"><a href="tools-for-efficient-grid-search.html#cb268-4"></a><span class="st">  </span><span class="co"># Bad since num_pcs might not be found by a worker process</span></span>
+<span id="cb268-5"><a href="tools-for-efficient-grid-search.html#cb268-5"></a><span class="st">  </span><span class="kw">step_pca</span>(<span class="kw">all_predictors</span>(), <span class="dt">num_comp =</span> num_pcs)</span>
+<span id="cb268-6"><a href="tools-for-efficient-grid-search.html#cb268-6"></a></span>
+<span id="cb268-7"><a href="tools-for-efficient-grid-search.html#cb268-7"></a><span class="kw">recipe</span>(mpg <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> mtcars) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb268-8"><a href="tools-for-efficient-grid-search.html#cb268-8"></a><span class="st">  </span><span class="co"># Good since the value is injected into the object</span></span>
+<span id="cb268-9"><a href="tools-for-efficient-grid-search.html#cb268-9"></a><span class="st">  </span><span class="kw">step_pca</span>(<span class="kw">all_predictors</span>(), <span class="dt">num_comp =</span> <span class="op">!!</span>num_pcs)</span></code></pre></div>
 <p>for the most part, the logging provided by <code>tune_grid()</code> will not be seen when running in parallel.</p>
 </div>
 <div id="benchmarking-parallel-with-boosted-trees" class="section level3">
@@ -506,28 +516,28 @@ On a shared server, never never consume all of the cores.
 <p>Racing methods can be more efficient than basic grid search as long as the interim analysis is fast and some parameter settings have poor performance. It also is most helpful when the model does <strong>not</strong> have the ability to exploit submodel predictions.</p>
 </blockquote>
 <p>The <code>tune_race_anova()</code> function conducts an Analysis of Variance (ANOVA) model to test for statistical significance of the different model configurations.</p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="tools-for-efficient-grid-search.html#cb244-1"></a><span class="kw">library</span>(finetune)</span>
-<span id="cb244-2"><a href="tools-for-efficient-grid-search.html#cb244-2"></a></span>
-<span id="cb244-3"><a href="tools-for-efficient-grid-search.html#cb244-3"></a><span class="kw">set.seed</span>(<span class="dv">99</span>)</span>
-<span id="cb244-4"><a href="tools-for-efficient-grid-search.html#cb244-4"></a>mlp_sfd_race &lt;-</span>
-<span id="cb244-5"><a href="tools-for-efficient-grid-search.html#cb244-5"></a><span class="st">  </span>mlp_wflow <span class="op">%&gt;%</span></span>
-<span id="cb244-6"><a href="tools-for-efficient-grid-search.html#cb244-6"></a><span class="st">  </span><span class="kw">tune_race_anova</span>(</span>
-<span id="cb244-7"><a href="tools-for-efficient-grid-search.html#cb244-7"></a>    Chicago_folds,</span>
-<span id="cb244-8"><a href="tools-for-efficient-grid-search.html#cb244-8"></a>    <span class="dt">grid =</span> <span class="dv">20</span>,</span>
-<span id="cb244-9"><a href="tools-for-efficient-grid-search.html#cb244-9"></a>    <span class="dt">param_info =</span> mlp_param,</span>
-<span id="cb244-10"><a href="tools-for-efficient-grid-search.html#cb244-10"></a>    <span class="dt">metrics =</span> rmse_mape_rsq_iic,</span>
-<span id="cb244-11"><a href="tools-for-efficient-grid-search.html#cb244-11"></a>    <span class="dt">control =</span> <span class="kw">control_race</span>(<span class="dt">verbose_elim =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb244-12"><a href="tools-for-efficient-grid-search.html#cb244-12"></a>  )</span>
-<span id="cb244-13"><a href="tools-for-efficient-grid-search.html#cb244-13"></a></span>
-<span id="cb244-14"><a href="tools-for-efficient-grid-search.html#cb244-14"></a><span class="kw">write_rds</span>(mlp_sfd_race, </span>
-<span id="cb244-15"><a href="tools-for-efficient-grid-search.html#cb244-15"></a>          <span class="st">&quot;data/13-Chicago-mlp_sfd_race.rds&quot;</span>,</span>
-<span id="cb244-16"><a href="tools-for-efficient-grid-search.html#cb244-16"></a>          <span class="dt">compress =</span> <span class="st">&quot;gz&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="tools-for-efficient-grid-search.html#cb245-1"></a><span class="kw">autoplot</span>(mlp_sfd_race)</span>
-<span id="cb245-2"><a href="tools-for-efficient-grid-search.html#cb245-2"></a></span>
-<span id="cb245-3"><a href="tools-for-efficient-grid-search.html#cb245-3"></a><span class="kw">ggsave</span>(<span class="st">&quot;images/13_mlp_sfd_race.png&quot;</span>,</span>
-<span id="cb245-4"><a href="tools-for-efficient-grid-search.html#cb245-4"></a>       <span class="dt">width =</span> <span class="dv">12</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="tools-for-efficient-grid-search.html#cb269-1"></a><span class="kw">library</span>(finetune)</span>
+<span id="cb269-2"><a href="tools-for-efficient-grid-search.html#cb269-2"></a></span>
+<span id="cb269-3"><a href="tools-for-efficient-grid-search.html#cb269-3"></a><span class="kw">set.seed</span>(<span class="dv">99</span>)</span>
+<span id="cb269-4"><a href="tools-for-efficient-grid-search.html#cb269-4"></a>mlp_sfd_race &lt;-</span>
+<span id="cb269-5"><a href="tools-for-efficient-grid-search.html#cb269-5"></a><span class="st">  </span>mlp_wflow <span class="op">%&gt;%</span></span>
+<span id="cb269-6"><a href="tools-for-efficient-grid-search.html#cb269-6"></a><span class="st">  </span><span class="kw">tune_race_anova</span>(</span>
+<span id="cb269-7"><a href="tools-for-efficient-grid-search.html#cb269-7"></a>    Chicago_folds,</span>
+<span id="cb269-8"><a href="tools-for-efficient-grid-search.html#cb269-8"></a>    <span class="dt">grid =</span> <span class="dv">20</span>,</span>
+<span id="cb269-9"><a href="tools-for-efficient-grid-search.html#cb269-9"></a>    <span class="dt">param_info =</span> mlp_param,</span>
+<span id="cb269-10"><a href="tools-for-efficient-grid-search.html#cb269-10"></a>    <span class="dt">metrics =</span> rmse_mape_rsq_iic,</span>
+<span id="cb269-11"><a href="tools-for-efficient-grid-search.html#cb269-11"></a>    <span class="dt">control =</span> <span class="kw">control_race</span>(<span class="dt">verbose_elim =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb269-12"><a href="tools-for-efficient-grid-search.html#cb269-12"></a>  )</span>
+<span id="cb269-13"><a href="tools-for-efficient-grid-search.html#cb269-13"></a></span>
+<span id="cb269-14"><a href="tools-for-efficient-grid-search.html#cb269-14"></a><span class="kw">write_rds</span>(mlp_sfd_race, </span>
+<span id="cb269-15"><a href="tools-for-efficient-grid-search.html#cb269-15"></a>          <span class="st">&quot;data/13-Chicago-mlp_sfd_race.rds&quot;</span>,</span>
+<span id="cb269-16"><a href="tools-for-efficient-grid-search.html#cb269-16"></a>          <span class="dt">compress =</span> <span class="st">&quot;gz&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="tools-for-efficient-grid-search.html#cb270-1"></a><span class="kw">autoplot</span>(mlp_sfd_race)</span>
+<span id="cb270-2"><a href="tools-for-efficient-grid-search.html#cb270-2"></a></span>
+<span id="cb270-3"><a href="tools-for-efficient-grid-search.html#cb270-3"></a><span class="kw">ggsave</span>(<span class="st">&quot;images/13_mlp_sfd_race.png&quot;</span>,</span>
+<span id="cb270-4"><a href="tools-for-efficient-grid-search.html#cb270-4"></a>       <span class="dt">width =</span> <span class="dv">12</span>)</span></code></pre></div>
 <p><img src="images/13_mlp_sfd_race.png" /></p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="tools-for-efficient-grid-search.html#cb246-1"></a><span class="kw">show_best</span>(mlp_sfd_race, <span class="dt">n =</span> <span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="tools-for-efficient-grid-search.html#cb271-1"></a><span class="kw">show_best</span>(mlp_sfd_race, <span class="dt">n =</span> <span class="dv">6</span>)</span></code></pre></div>
 <pre><code>  hidden_units  penalty epochs num_comp .metric .estimator  mean     n
          &lt;int&gt;    &lt;dbl&gt;  &lt;int&gt;    &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;
 1            6 3.08e- 5    126        3 rmse    standard    2.47     8
