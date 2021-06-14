@@ -17,7 +17,7 @@
 - Describe how a workflow that uses a formula decides how to pre-process data.
   - Describe how workflows **using tree-based models** pre-process factor predictors.
   - **Add a special formula** to a workflow with the `formula` argument to `workflows::add_model()`.
-- Describe workflow steps that are **not yet included** in `{tidmodels}`.
+- Describe workflow steps that are **not yet included** in `{tidymodels}`.
 
 ## Workflows
 
