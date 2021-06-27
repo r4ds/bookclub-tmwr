@@ -81,7 +81,7 @@ If you would like to present, please add your name next to a chapter using the [
 </details>
 
 - **2021-06-14: Chapter 8: A model workflow: Ildiko Czeller**
-- 2021-06-21: Chapter 9: Judging model effectiveness
+- 2021-06-28: Chapter 9: Judging model effectiveness: Federica Gazzelloni
 - 2021-0?-??: Chapter 10: Resampling for evaluating performance
 - 2021-0?-??: Chapter 11: Comparing models with resampling
 - 2021-0?-??: Chapter 12: Model tuning and the dangers of overfitting
