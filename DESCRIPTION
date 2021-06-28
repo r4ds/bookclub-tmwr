@@ -39,6 +39,7 @@ Imports:
     tidymodels,
     tidyposterior,
     tidyverse,
+    tidytuesdayR,
     tufte,
     tweetrmd,
     workflowsets
