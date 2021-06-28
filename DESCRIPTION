@@ -24,6 +24,7 @@ Imports:
     kableExtra,
     kernlab,
     mda,
+    nycflights13,
     palmerpenguins,
     patchwork,
     ranger,
