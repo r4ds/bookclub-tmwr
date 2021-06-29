@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Notes on Chapter 9 Judging model effectiveness - Cohort 3 | Tidy Modeling with R Book Club</title>
+  <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Notes on Chapter 9 Judging model effectiveness - Cohort 3 | Tidy Modeling with R Book Club" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
+  <meta name="github-repo" content="r4ds/bookclub-tmwr" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Notes on Chapter 9 Judging model effectiveness - Cohort 3 | Tidy Modeling with R Book Club" />
+  
+  <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
+  
+
+<meta name="author" content="The R4DS Online Learning Community" />
+
+
+<meta name="date" content="2021-06-29" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="meeting-videos-9.html"/>
+<link rel="next" href="review-of-chapters-4-9.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/twitter-widget-0.0.1/widgets.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/d3-3.3.8/d3.min.js"></script>
+<script src="libs/dagre-0.4.0/dagre-d3.min.js"></script>
+<link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet" />
+<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/chromatography-0.1/chromatography.js"></script>
+<script src="libs/DiagrammeR-binding-1.0.6.1/DiagrammeR.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Tidy Modeling with R Book Club</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a><ul>
+<li class="chapter" data-level="" data-path="book-club-meetings.html"><a href="book-club-meetings.html"><i class="fa fa-check"></i>Book club meetings</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="software-for-modeling.html"><a href="software-for-modeling.html"><i class="fa fa-check"></i><b>1</b> Software for modeling</a><ul>
+<li class="chapter" data-level="1.1" data-path="the-pit-of-success.html"><a href="the-pit-of-success.html"><i class="fa fa-check"></i><b>1.1</b> The pit of success</a></li>
+<li class="chapter" data-level="1.2" data-path="types-of-models.html"><a href="types-of-models.html"><i class="fa fa-check"></i><b>1.2</b> Types of models</a></li>
+<li class="chapter" data-level="1.3" data-path="terminology.html"><a href="terminology.html"><i class="fa fa-check"></i><b>1.3</b> Terminology</a></li>
+<li class="chapter" data-level="1.4" data-path="the-data-analysis-process.html"><a href="the-data-analysis-process.html"><i class="fa fa-check"></i><b>1.4</b> The data analysis process</a></li>
+<li class="chapter" data-level="1.5" data-path="the-modeling-process.html"><a href="the-modeling-process.html"><i class="fa fa-check"></i><b>1.5</b> The modeling process</a></li>
+<li class="chapter" data-level="1.6" data-path="meeting-videos.html"><a href="meeting-videos.html"><i class="fa fa-check"></i><b>1.6</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="meeting-videos.html"><a href="meeting-videos.html#cohort-1"><i class="fa fa-check"></i><b>1.6.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="1.6.2" data-path="meeting-videos.html"><a href="meeting-videos.html#cohort-2"><i class="fa fa-check"></i><b>1.6.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="1.6.3" data-path="meeting-videos.html"><a href="meeting-videos.html#cohort-3"><i class="fa fa-check"></i><b>1.6.3</b> Cohort 3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="a-tidyverse-primer.html"><a href="a-tidyverse-primer.html"><i class="fa fa-check"></i><b>2</b> A tidyverse primer</a><ul>
+<li class="chapter" data-level="2.1" data-path="tidyverse-design-principles.html"><a href="tidyverse-design-principles.html"><i class="fa fa-check"></i><b>2.1</b> Tidyverse design Principles</a></li>
+<li class="chapter" data-level="2.2" data-path="design-for-humans-overview.html"><a href="design-for-humans-overview.html"><i class="fa fa-check"></i><b>2.2</b> Design for Humans - Overview</a></li>
+<li class="chapter" data-level="2.3" data-path="design-for-humans.html"><a href="design-for-humans.html"><i class="fa fa-check"></i><b>2.3</b> Design for Humans and the Tidyverse</a></li>
+<li class="chapter" data-level="2.4" data-path="reusing-existing-data-structures.html"><a href="reusing-existing-data-structures.html"><i class="fa fa-check"></i><b>2.4</b> Reusing existing data structures</a></li>
+<li class="chapter" data-level="2.5" data-path="designed-for-the-pipe.html"><a href="designed-for-the-pipe.html"><i class="fa fa-check"></i><b>2.5</b> Designed for the pipe</a></li>
+<li class="chapter" data-level="2.6" data-path="designed-for-functional-programming.html"><a href="designed-for-functional-programming.html"><i class="fa fa-check"></i><b>2.6</b> Designed for Functional Programming</a></li>
+<li class="chapter" data-level="2.7" data-path="tibbles-vs-data-frames.html"><a href="tibbles-vs-data-frames.html"><i class="fa fa-check"></i><b>2.7</b> Tibbles vs. Data Frames</a></li>
+<li class="chapter" data-level="2.8" data-path="how-to-read-and-wrangle-data.html"><a href="how-to-read-and-wrangle-data.html"><i class="fa fa-check"></i><b>2.8</b> How to read and wrangle data</a></li>
+<li class="chapter" data-level="2.9" data-path="further-reading.html"><a href="further-reading.html"><i class="fa fa-check"></i><b>2.9</b> Further Reading</a></li>
+<li class="chapter" data-level="2.10" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html"><i class="fa fa-check"></i><b>2.10</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="2.10.1" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-1-1"><i class="fa fa-check"></i><b>2.10.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="2.10.2" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-2-1"><i class="fa fa-check"></i><b>2.10.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="2.10.3" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-3-1"><i class="fa fa-check"></i><b>2.10.3</b> Cohort 3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="a-review-of-r-modeling-fundamentals.html"><a href="a-review-of-r-modeling-fundamentals.html"><i class="fa fa-check"></i><b>3</b> A review of R modeling fundamentals</a><ul>
+<li class="chapter" data-level="3.1" data-path="r-formula-syntax.html"><a href="r-formula-syntax.html"><i class="fa fa-check"></i><b>3.1</b> R formula syntax</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="r-formula-syntax.html"><a href="r-formula-syntax.html#recap"><i class="fa fa-check"></i><b>3.1.1</b> Recap</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="inspecting-and-developing-models.html"><a href="inspecting-and-developing-models.html"><i class="fa fa-check"></i><b>3.2</b> Inspecting and developing models</a></li>
+<li class="chapter" data-level="3.3" data-path="more-of-base-and-stats.html"><a href="more-of-base-and-stats.html"><i class="fa fa-check"></i><b>3.3</b> More of <code>{base}</code> and <code>{stats}</code></a></li>
+<li class="chapter" data-level="3.4" data-path="why-tidy-principles-and-tidymodels.html"><a href="why-tidy-principles-and-tidymodels.html"><i class="fa fa-check"></i><b>3.4</b> Why Tidy Principles and <code>{tidymodels}</code>?</a></li>
+<li class="chapter" data-level="3.5" data-path="meeting-videos-2.html"><a href="meeting-videos-2.html"><i class="fa fa-check"></i><b>3.5</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="meeting-videos-2.html"><a href="meeting-videos-2.html#cohort-1-2"><i class="fa fa-check"></i><b>3.5.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="3.5.2" data-path="meeting-videos-2.html"><a href="meeting-videos-2.html#cohort-2-2"><i class="fa fa-check"></i><b>3.5.2</b> Cohort 2</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Basics</b></span></li>
+<li class="chapter" data-level="4" data-path="the-ames-housing-data.html"><a href="the-ames-housing-data.html"><i class="fa fa-check"></i><b>4</b> The Ames housing data</a><ul>
+<li class="chapter" data-level="4.1" data-path="pittsburgh-a-parallel-real-world-example.html"><a href="pittsburgh-a-parallel-real-world-example.html"><i class="fa fa-check"></i><b>4.1</b> Pittsburgh: a parallel real world example</a></li>
+<li class="chapter" data-level="4.2" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html"><i class="fa fa-check"></i><b>4.2</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-1-3"><i class="fa fa-check"></i><b>4.2.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="4.2.2" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-2-3"><i class="fa fa-check"></i><b>4.2.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="4.2.3" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-3-2"><i class="fa fa-check"></i><b>4.2.3</b> Cohort 3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="spending-our-data.html"><a href="spending-our-data.html"><i class="fa fa-check"></i><b>5</b> Spending our data</a><ul>
+<li class="chapter" data-level="5.1" data-path="spending-our-data-1.html"><a href="spending-our-data-1.html"><i class="fa fa-check"></i><b>5.1</b> Spending our data</a></li>
+<li class="chapter" data-level="5.2" data-path="common-methods-for-splitting-data.html"><a href="common-methods-for-splitting-data.html"><i class="fa fa-check"></i><b>5.2</b> Common methods for splitting data</a></li>
+<li class="chapter" data-level="5.3" data-path="class-imbalance.html"><a href="class-imbalance.html"><i class="fa fa-check"></i><b>5.3</b> Class imbalance</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="class-imbalance.html"><a href="class-imbalance.html#stratified-sampling-simulation"><i class="fa fa-check"></i><b>5.3.1</b> Stratified sampling simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="continuous-outcome-data.html"><a href="continuous-outcome-data.html"><i class="fa fa-check"></i><b>5.4</b> Continuous outcome data</a></li>
+<li class="chapter" data-level="5.5" data-path="time-series-data.html"><a href="time-series-data.html"><i class="fa fa-check"></i><b>5.5</b> Time series data</a></li>
+<li class="chapter" data-level="5.6" data-path="multi-level-data.html"><a href="multi-level-data.html"><i class="fa fa-check"></i><b>5.6</b> Multi-level data</a></li>
+<li class="chapter" data-level="5.7" data-path="what-proportion-should-be-used.html"><a href="what-proportion-should-be-used.html"><i class="fa fa-check"></i><b>5.7</b> What proportion should be used?</a></li>
+<li class="chapter" data-level="5.8" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>5.8</b> Summary</a><ul>
+<li class="chapter" data-level="5.8.1" data-path="summary.html"><a href="summary.html#references"><i class="fa fa-check"></i><b>5.8.1</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html"><i class="fa fa-check"></i><b>5.9</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="5.9.1" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-1-4"><i class="fa fa-check"></i><b>5.9.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="5.9.2" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-2-4"><i class="fa fa-check"></i><b>5.9.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="5.9.3" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-3-3"><i class="fa fa-check"></i><b>5.9.3</b> Cohort 3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="feature-engineering-with-recipes.html"><a href="feature-engineering-with-recipes.html"><i class="fa fa-check"></i><b>6</b> Feature engineering with recipes</a><ul>
+<li class="chapter" data-level="6.1" data-path="meeting-videos-5.html"><a href="meeting-videos-5.html"><i class="fa fa-check"></i><b>6.1</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="meeting-videos-5.html"><a href="meeting-videos-5.html#cohort-1-5"><i class="fa fa-check"></i><b>6.1.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="6.1.2" data-path="meeting-videos-5.html"><a href="meeting-videos-5.html#cohort-2-5"><i class="fa fa-check"></i><b>6.1.2</b> Cohort 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ai-ethics.html"><a href="ai-ethics.html"><i class="fa fa-check"></i>AI Ethics</a><ul>
+<li class="chapter" data-level="6.2" data-path="meeting-videos-6.html"><a href="meeting-videos-6.html"><i class="fa fa-check"></i><b>6.2</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="meeting-videos-6.html"><a href="meeting-videos-6.html#cohort-2-6"><i class="fa fa-check"></i><b>6.2.1</b> Cohort 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="fitting-models-with-parsnip.html"><a href="fitting-models-with-parsnip.html"><i class="fa fa-check"></i><b>7</b> Fitting models with parsnip</a><ul>
+<li class="chapter" data-level="7.1" data-path="create-a-model.html"><a href="create-a-model.html"><i class="fa fa-check"></i><b>7.1</b> Create a Model</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="create-a-model.html"><a href="create-a-model.html#different-model-interfaces"><i class="fa fa-check"></i><b>7.1.1</b> Different Model Interfaces</a></li>
+<li class="chapter" data-level="7.1.2" data-path="create-a-model.html"><a href="create-a-model.html#model-specification"><i class="fa fa-check"></i><b>7.1.2</b> Model Specification</a></li>
+<li class="chapter" data-level="7.1.3" data-path="create-a-model.html"><a href="create-a-model.html#model-fitting"><i class="fa fa-check"></i><b>7.1.3</b> Model Fitting</a></li>
+<li class="chapter" data-level="7.1.4" data-path="create-a-model.html"><a href="create-a-model.html#generalized-model-arguments"><i class="fa fa-check"></i><b>7.1.4</b> Generalized Model Arguments</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="use-model-results.html"><a href="use-model-results.html"><i class="fa fa-check"></i><b>7.2</b> Use Model results</a></li>
+<li class="chapter" data-level="7.3" data-path="make-predictions.html"><a href="make-predictions.html"><i class="fa fa-check"></i><b>7.3</b> Make Predictions</a></li>
+<li class="chapter" data-level="7.4" data-path="tidymodels-adjacent-packages.html"><a href="tidymodels-adjacent-packages.html"><i class="fa fa-check"></i><b>7.4</b> {tidymodels}-Adjacent Packages</a></li>
+<li class="chapter" data-level="7.5" data-path="summary-1.html"><a href="summary-1.html"><i class="fa fa-check"></i><b>7.5</b> Summary</a></li>
+<li class="chapter" data-level="7.6" data-path="meeting-videos-7.html"><a href="meeting-videos-7.html"><i class="fa fa-check"></i><b>7.6</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="meeting-videos-7.html"><a href="meeting-videos-7.html#cohort-1-6"><i class="fa fa-check"></i><b>7.6.1</b> Cohort 1</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="a-model-workflow.html"><a href="a-model-workflow.html"><i class="fa fa-check"></i><b>8</b> A model workflow</a><ul>
+<li class="chapter" data-level="8.1" data-path="workflows.html"><a href="workflows.html"><i class="fa fa-check"></i><b>8.1</b> Workflows</a></li>
+<li class="chapter" data-level="8.2" data-path="demonstration.html"><a href="demonstration.html"><i class="fa fa-check"></i><b>8.2</b> Demonstration</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="demonstration.html"><a href="demonstration.html#some-data-exploration-and-cleaning"><i class="fa fa-check"></i><b>8.2.1</b> Some data exploration and cleaning</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="modeling-with-workflows.html"><a href="modeling-with-workflows.html"><i class="fa fa-check"></i><b>8.3</b> Modeling with workflows</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="modeling-with-workflows.html"><a href="modeling-with-workflows.html#different-model-same-recipe"><i class="fa fa-check"></i><b>8.3.1</b> Different model, same recipe</a></li>
+<li class="chapter" data-level="8.3.2" data-path="modeling-with-workflows.html"><a href="modeling-with-workflows.html#same-model-different-preprocessing"><i class="fa fa-check"></i><b>8.3.2</b> Same model, different preprocessing</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="managing-many-workflows.html"><a href="managing-many-workflows.html"><i class="fa fa-check"></i><b>8.4</b> Managing many workflows</a></li>
+<li class="chapter" data-level="8.5" data-path="notes.html"><a href="notes.html"><i class="fa fa-check"></i><b>8.5</b> Notes</a></li>
+<li class="chapter" data-level="8.6" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html"><i class="fa fa-check"></i><b>8.6</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-1-7"><i class="fa fa-check"></i><b>8.6.1</b> Cohort 1</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="judging-model-effectiveness.html"><a href="judging-model-effectiveness.html"><i class="fa fa-check"></i><b>9</b> Judging model effectiveness</a><ul>
+<li class="chapter" data-level="9.1" data-path="measures-of-model-fit.html"><a href="measures-of-model-fit.html"><i class="fa fa-check"></i><b>9.1</b> Measures of Model Fit</a></li>
+<li class="chapter" data-level="9.2" data-path="disclaimers.html"><a href="disclaimers.html"><i class="fa fa-check"></i><b>9.2</b> Disclaimers</a></li>
+<li class="chapter" data-level="9.3" data-path="regression-metrics.html"><a href="regression-metrics.html"><i class="fa fa-check"></i><b>9.3</b> Regression Metrics</a></li>
+<li class="chapter" data-level="9.4" data-path="binary-classification-metrics.html"><a href="binary-classification-metrics.html"><i class="fa fa-check"></i><b>9.4</b> Binary Classification Metrics</a></li>
+<li class="chapter" data-level="9.5" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>9.5</b> References</a></li>
+<li class="chapter" data-level="9.6" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html"><i class="fa fa-check"></i><b>9.6</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="9.6.1" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-1-8"><i class="fa fa-check"></i><b>9.6.1</b> Cohort 1</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><i class="fa fa-check"></i>Notes on Chapter 9 Judging model effectiveness - Cohort 3</a><ul>
+<li class="chapter" data-level="9.6.2" data-path="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#performance-metrics-and-inference"><i class="fa fa-check"></i><b>9.6.2</b> Performance Metrics and Inference</a></li>
+<li class="chapter" data-level="9.6.3" data-path="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#to-recap-the-step-for-modeling-as-seen-in-the-previous-chapters"><i class="fa fa-check"></i><b>9.6.3</b> To Recap the step for modeling as seen in the previous chapters:</a></li>
+<li class="chapter" data-level="9.6.4" data-path="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#case-studies"><i class="fa fa-check"></i><b>9.6.4</b> Case Studies</a></li>
+<li class="chapter" data-level="9.6.5" data-path="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#nyc-flights-data-modeling"><i class="fa fa-check"></i><b>9.6.5</b> NYC flights data modeling</a></li>
+<li class="chapter" data-level="9.6.6" data-path="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#conclusion"><i class="fa fa-check"></i><b>9.6.6</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="review-of-chapters-4-9.html"><a href="review-of-chapters-4-9.html"><i class="fa fa-check"></i>Review of chapters 4-9</a><ul>
+<li class="chapter" data-level="9.7" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html"><i class="fa fa-check"></i><b>9.7</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="9.7.1" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html#cohort-1-9"><i class="fa fa-check"></i><b>9.7.1</b> Cohort 1</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Tools for Creating Effective Models</b></span></li>
+<li class="chapter" data-level="10" data-path="resampling-for-evaluating-performance.html"><a href="resampling-for-evaluating-performance.html"><i class="fa fa-check"></i><b>10</b> Resampling for evaluating performance</a><ul>
+<li class="chapter" data-level="10.1" data-path="why.html"><a href="why.html"><i class="fa fa-check"></i><b>10.1</b> Why?</a></li>
+<li class="chapter" data-level="10.2" data-path="resubstitution-approach.html"><a href="resubstitution-approach.html"><i class="fa fa-check"></i><b>10.2</b> Resubstitution approach</a></li>
+<li class="chapter" data-level="10.3" data-path="resampling-methods.html"><a href="resampling-methods.html"><i class="fa fa-check"></i><b>10.3</b> Resampling methods</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="resampling-methods.html"><a href="resampling-methods.html#cross-validation"><i class="fa fa-check"></i><b>10.3.1</b> Cross-validation</a></li>
+<li class="chapter" data-level="10.3.2" data-path="resampling-methods.html"><a href="resampling-methods.html#validation-sets"><i class="fa fa-check"></i><b>10.3.2</b> Validation sets</a></li>
+<li class="chapter" data-level="10.3.3" data-path="resampling-methods.html"><a href="resampling-methods.html#boostrapping"><i class="fa fa-check"></i><b>10.3.3</b> Boostrapping</a></li>
+<li class="chapter" data-level="10.3.4" data-path="resampling-methods.html"><a href="resampling-methods.html#rolling-forecasting-origin-resampling"><i class="fa fa-check"></i><b>10.3.4</b> Rolling forecasting origin resampling</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="estimating-performance.html"><a href="estimating-performance.html"><i class="fa fa-check"></i><b>10.4</b> Estimating performance</a></li>
+<li class="chapter" data-level="10.5" data-path="parallel-processing.html"><a href="parallel-processing.html"><i class="fa fa-check"></i><b>10.5</b> Parallel processing</a></li>
+<li class="chapter" data-level="10.6" data-path="saving-the-resampled-objects.html"><a href="saving-the-resampled-objects.html"><i class="fa fa-check"></i><b>10.6</b> Saving the resampled objects</a></li>
+<li class="chapter" data-level="10.7" data-path="meeting-videos-11.html"><a href="meeting-videos-11.html"><i class="fa fa-check"></i><b>10.7</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="10.7.1" data-path="meeting-videos-11.html"><a href="meeting-videos-11.html#cohort-1-10"><i class="fa fa-check"></i><b>10.7.1</b> Cohort 1</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="comparing-models-with-resampling.html"><a href="comparing-models-with-resampling.html"><i class="fa fa-check"></i><b>11</b> Comparing models with resampling</a><ul>
+<li class="chapter" data-level="11.1" data-path="calculate-performance-statistics.html"><a href="calculate-performance-statistics.html"><i class="fa fa-check"></i><b>11.1</b> Calculate performance statistics</a></li>
+<li class="chapter" data-level="11.2" data-path="calculate-performance-statistics-workflowsets.html"><a href="calculate-performance-statistics-workflowsets.html"><i class="fa fa-check"></i><b>11.2</b> Calculate performance statistics: {workflowsets}</a></li>
+<li class="chapter" data-level="11.3" data-path="within-resample-correlation.html"><a href="within-resample-correlation.html"><i class="fa fa-check"></i><b>11.3</b> Within-resample correlation</a></li>
+<li class="chapter" data-level="11.4" data-path="practical-effect-size.html"><a href="practical-effect-size.html"><i class="fa fa-check"></i><b>11.4</b> Practical effect size</a></li>
+<li class="chapter" data-level="11.5" data-path="simple-comparison.html"><a href="simple-comparison.html"><i class="fa fa-check"></i><b>11.5</b> Simple Comparison</a></li>
+<li class="chapter" data-level="11.6" data-path="bayesian-methods.html"><a href="bayesian-methods.html"><i class="fa fa-check"></i><b>11.6</b> Bayesian methods</a></li>
+<li class="chapter" data-level="11.7" data-path="meeting-videos-12.html"><a href="meeting-videos-12.html"><i class="fa fa-check"></i><b>11.7</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="11.7.1" data-path="meeting-videos-12.html"><a href="meeting-videos-12.html#cohort-1-11"><i class="fa fa-check"></i><b>11.7.1</b> Cohort 1</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="model-tuning-and-the-dangers-of-overfitting.html"><a href="model-tuning-and-the-dangers-of-overfitting.html"><i class="fa fa-check"></i><b>12</b> Model tuning and the dangers of overfitting</a><ul>
+<li class="chapter" data-level="12.1" data-path="what-is-a-tuning-parameter.html"><a href="what-is-a-tuning-parameter.html"><i class="fa fa-check"></i><b>12.1</b> What is a Tuning Parameter?</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="what-is-a-tuning-parameter.html"><a href="what-is-a-tuning-parameter.html#examples"><i class="fa fa-check"></i><b>12.1.1</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="when-not-to-tune.html"><a href="when-not-to-tune.html"><i class="fa fa-check"></i><b>12.2</b> When not to tune</a></li>
+<li class="chapter" data-level="12.3" data-path="decisions-decisions.html"><a href="decisions-decisions.html"><i class="fa fa-check"></i><b>12.3</b> Decisions, Decisions…</a></li>
+<li class="chapter" data-level="12.4" data-path="what-metric-should-we-use.html"><a href="what-metric-should-we-use.html"><i class="fa fa-check"></i><b>12.4</b> What Metric Should We Use?</a></li>
+<li class="chapter" data-level="12.5" data-path="can-we-make-our-model-too-good.html"><a href="can-we-make-our-model-too-good.html"><i class="fa fa-check"></i><b>12.5</b> Can we make our model <em>too</em> good?</a></li>
+<li class="chapter" data-level="12.6" data-path="tuning-parameter-optimization-strategies.html"><a href="tuning-parameter-optimization-strategies.html"><i class="fa fa-check"></i><b>12.6</b> Tuning Parameter Optimization Strategies</a></li>
+<li class="chapter" data-level="12.7" data-path="tuning-parameters-in-tidymodels-dials.html"><a href="tuning-parameters-in-tidymodels-dials.html"><i class="fa fa-check"></i><b>12.7</b> Tuning Parameters in tidymodels <code>{dials}</code></a></li>
+<li class="chapter" data-level="12.8" data-path="lets-try-an-example.html"><a href="lets-try-an-example.html"><i class="fa fa-check"></i><b>12.8</b> Let’s try an example:</a></li>
+<li class="chapter" data-level="12.9" data-path="build-our-random-forest-model.html"><a href="build-our-random-forest-model.html"><i class="fa fa-check"></i><b>12.9</b> Build our random forest model:</a></li>
+<li class="chapter" data-level="12.10" data-path="add-tuning-parameters.html"><a href="add-tuning-parameters.html"><i class="fa fa-check"></i><b>12.10</b> Add tuning parameters:</a></li>
+<li class="chapter" data-level="12.11" data-path="updating-tuning-parameters.html"><a href="updating-tuning-parameters.html"><i class="fa fa-check"></i><b>12.11</b> Updating tuning parameters:</a></li>
+<li class="chapter" data-level="12.12" data-path="finalizing-tuning-parameters.html"><a href="finalizing-tuning-parameters.html"><i class="fa fa-check"></i><b>12.12</b> Finalizing tuning parameters:</a></li>
+<li class="chapter" data-level="12.13" data-path="what-is-next.html"><a href="what-is-next.html"><i class="fa fa-check"></i><b>12.13</b> What is next?</a></li>
+<li class="chapter" data-level="12.14" data-path="meeting-videos-13.html"><a href="meeting-videos-13.html"><i class="fa fa-check"></i><b>12.14</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="12.14.1" data-path="meeting-videos-13.html"><a href="meeting-videos-13.html#cohort-1-12"><i class="fa fa-check"></i><b>12.14.1</b> Cohort 1</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="grid-search.html"><a href="grid-search.html"><i class="fa fa-check"></i><b>13</b> Grid search</a><ul>
+<li class="chapter" data-level="13.1" data-path="regular-and-non-regular-grids.html"><a href="regular-and-non-regular-grids.html"><i class="fa fa-check"></i><b>13.1</b> Regular and non-regular grids</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="regular-and-non-regular-grids.html"><a href="regular-and-non-regular-grids.html#regular-grids"><i class="fa fa-check"></i><b>13.1.1</b> Regular Grids</a></li>
+<li class="chapter" data-level="13.1.2" data-path="regular-and-non-regular-grids.html"><a href="regular-and-non-regular-grids.html#irregular-grids"><i class="fa fa-check"></i><b>13.1.2</b> Irregular Grids</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="evaluating-the-grid.html"><a href="evaluating-the-grid.html"><i class="fa fa-check"></i><b>13.2</b> Evaluating the grid</a></li>
+<li class="chapter" data-level="13.3" data-path="finalizing-the-model.html"><a href="finalizing-the-model.html"><i class="fa fa-check"></i><b>13.3</b> Finalizing the model</a></li>
+<li class="chapter" data-level="13.4" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html"><i class="fa fa-check"></i><b>13.4</b> Tools for efficient grid search</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html#submodel-optimization"><i class="fa fa-check"></i><b>13.4.1</b> Submodel optimization</a></li>
+<li class="chapter" data-level="13.4.2" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html#parallel-processing-1"><i class="fa fa-check"></i><b>13.4.2</b> Parallel processing</a></li>
+<li class="chapter" data-level="13.4.3" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html#benchmarking-parallel-with-boosted-trees"><i class="fa fa-check"></i><b>13.4.3</b> Benchmarking Parallel with boosted trees</a></li>
+<li class="chapter" data-level="13.4.4" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html#racing-methods"><i class="fa fa-check"></i><b>13.4.4</b> Racing Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="chapter-summary.html"><a href="chapter-summary.html"><i class="fa fa-check"></i><b>13.5</b> Chapter Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="iterative-search.html"><a href="iterative-search.html"><i class="fa fa-check"></i><b>14</b> Iterative search</a><ul>
+<li class="chapter" data-level="14.1" data-path="svm-model-as-motivating-example.html"><a href="svm-model-as-motivating-example.html"><i class="fa fa-check"></i><b>14.1</b> SVM model as motivating example</a></li>
+<li class="chapter" data-level="14.2" data-path="bayesian-optimization.html"><a href="bayesian-optimization.html"><i class="fa fa-check"></i><b>14.2</b> Bayesian Optimization</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="bayesian-optimization.html"><a href="bayesian-optimization.html#gaussian-process-model-at-a-high-level"><i class="fa fa-check"></i><b>14.2.1</b> Gaussian process model, at a high level</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="simulated-annealing.html"><a href="simulated-annealing.html"><i class="fa fa-check"></i><b>14.3</b> Simulated annealing</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="simulated-annealing.html"><a href="simulated-annealing.html#how-it-works"><i class="fa fa-check"></i><b>14.3.1</b> How it works</a></li>
+<li class="chapter" data-level="14.3.2" data-path="simulated-annealing.html"><a href="simulated-annealing.html#the-tune_sim_anneal-function"><i class="fa fa-check"></i><b>14.3.2</b> The tune_sim_anneal() function</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="references-2.html"><a href="references-2.html"><i class="fa fa-check"></i><b>14.4</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="screening-many-models.html"><a href="screening-many-models.html"><i class="fa fa-check"></i><b>15</b> Screening Many Models</a><ul>
+<li class="chapter" data-level="15.1" data-path="obligatory-setup.html"><a href="obligatory-setup.html"><i class="fa fa-check"></i><b>15.1</b> Obligatory Setup</a></li>
+<li class="chapter" data-level="15.2" data-path="creating-workflow-sets.html"><a href="creating-workflow-sets.html"><i class="fa fa-check"></i><b>15.2</b> Creating <code>workflow_set</code>s</a></li>
+<li class="chapter" data-level="15.3" data-path="ranking-models.html"><a href="ranking-models.html"><i class="fa fa-check"></i><b>15.3</b> Ranking models</a></li>
+<li class="chapter" data-level="15.4" data-path="finalizing-the-model-1.html"><a href="finalizing-the-model-1.html"><i class="fa fa-check"></i><b>15.4</b> Finalizing the model</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="review-of-chapters-10-15.html"><a href="review-of-chapters-10-15.html"><i class="fa fa-check"></i>Review of chapters 10-15</a><ul>
+<li class="chapter" data-level="15.5" data-path="slide-1-title.html"><a href="slide-1-title.html"><i class="fa fa-check"></i><b>15.5</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="15.6" data-path="slide-2-title.html"><a href="slide-2-title.html"><i class="fa fa-check"></i><b>15.6</b> Slide 2 Title</a></li>
+</ul></li>
+<li class="part"><span><b>Other Topics</b></span></li>
+<li class="chapter" data-level="16" data-path="encoding-categorical-data.html"><a href="encoding-categorical-data.html"><i class="fa fa-check"></i><b>16</b> Encoding categorical data</a><ul>
+<li class="chapter" data-level="16.1" data-path="slide-1-title-1.html"><a href="slide-1-title-1.html"><i class="fa fa-check"></i><b>16.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="16.2" data-path="slide-2-title-1.html"><a href="slide-2-title-1.html"><i class="fa fa-check"></i><b>16.2</b> Slide 2 Title</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>17</b> Dimensionality reduction</a><ul>
+<li class="chapter" data-level="17.1" data-path="slide-1-title-2.html"><a href="slide-1-title-2.html"><i class="fa fa-check"></i><b>17.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="17.2" data-path="slide-2-title-2.html"><a href="slide-2-title-2.html"><i class="fa fa-check"></i><b>17.2</b> Slide 2 Title</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="explaining-models-and-predictions.html"><a href="explaining-models-and-predictions.html"><i class="fa fa-check"></i><b>18</b> Explaining models and predictions</a><ul>
+<li class="chapter" data-level="18.1" data-path="slide-1-title-3.html"><a href="slide-1-title-3.html"><i class="fa fa-check"></i><b>18.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="18.2" data-path="slide-2-title-3.html"><a href="slide-2-title-3.html"><i class="fa fa-check"></i><b>18.2</b> Slide 2 Title</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="when-should-you-trust-predictions.html"><a href="when-should-you-trust-predictions.html"><i class="fa fa-check"></i><b>19</b> When should you trust predictions?</a><ul>
+<li class="chapter" data-level="19.1" data-path="slide-1-title-4.html"><a href="slide-1-title-4.html"><i class="fa fa-check"></i><b>19.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="19.2" data-path="slide-2-title-4.html"><a href="slide-2-title-4.html"><i class="fa fa-check"></i><b>19.2</b> Slide 2 Title</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="ensemble-models.html"><a href="ensemble-models.html"><i class="fa fa-check"></i><b>20</b> Ensemble models</a><ul>
+<li class="chapter" data-level="20.1" data-path="slide-1-title-5.html"><a href="slide-1-title-5.html"><i class="fa fa-check"></i><b>20.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="20.2" data-path="slide-2-title-5.html"><a href="slide-2-title-5.html"><i class="fa fa-check"></i><b>20.2</b> Slide 2 Title</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="inferential-analysis.html"><a href="inferential-analysis.html"><i class="fa fa-check"></i><b>21</b> Inferential analysis</a><ul>
+<li class="chapter" data-level="21.1" data-path="slide-1-title-6.html"><a href="slide-1-title-6.html"><i class="fa fa-check"></i><b>21.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="21.2" data-path="slide-2-title-6.html"><a href="slide-2-title-6.html"><i class="fa fa-check"></i><b>21.2</b> Slide 2 Title</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Tidy Modeling with R Book Club</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="notes-on-chapter-9-judging-model-effectiveness---cohort-3" class="section level1 unnumbered">
+<h1>Notes on Chapter 9 Judging model effectiveness - Cohort 3</h1>
+<div id="performance-metrics-and-inference" class="section level3">
+<h3><span class="header-section-number">9.6.2</span> Performance Metrics and Inference</h3>
+<p>Q&amp;A:</p>
+<ul>
+<li>How will we evaluate the performance of our workflow?</li>
+<li>How the model will be used? (predictive strength is primary)</li>
+<li>How close our predictions come to the observed data?</li>
+<li>How closely this model fits the actual data?</li>
+</ul>
+<hr />
+<p>In this section, we talk about the validity of probabilistic distributions, and in general, the qualities of a model.
+The package used is <strong>yardstick</strong>.</p>
+<p>This package focuses on methods of resampling that are critical to modeling activities, such as performance measures and performance metrics.</p>
+<hr />
+<p><strong>Identification of the quality of a model</strong>:</p>
+<p>The main takeaway of this chapter <strong>Judging the model effectiveness</strong> is to identify the effectiveness of the modeling procedures.</p>
+<p>An example of constraints is when the model uses different units for measuring the differences between the observed and predicted values. In particular, the transformation cannot be caught but embedded in the metric.
+Types of metrics are: the <strong>root mean squared error (RMSE)</strong> as a performance metric used in regression models and various data units transformation such as the log transformation of the variables.</p>
+<p>Let’s begin with what a useful model includes:</p>
+<ul>
+<li>parameter estimation</li>
+<li>model selection and tuning</li>
+<li>performance assessment</li>
+</ul>
+<p>What we want in this chapter is to be able to identify the effectiveness of a model on available data. A step back to previous chapters is needed to find the part of the modeling procedures of interest in this contest.</p>
+<hr />
+</div>
+<div id="to-recap-the-step-for-modeling-as-seen-in-the-previous-chapters" class="section level3">
+<h3><span class="header-section-number">9.6.3</span> To Recap the step for modeling as seen in the previous chapters:</h3>
+<p>The construction of a model implies: the observed variable and the predictors tested against correlation; this is to see if they influence each other, and if positive, in what way. For example, the predictors can change predicted outcome values if a modification in association takes place.</p>
+<ul>
+<li><strong>construction of the model</strong></li>
+</ul>
+<p>Below is a <em>sample</em> data frame and the classical way to make a linear model with the function <strong>lm()</strong>. A comparison of the two slightly different models is done with <strong>anova()</strong> function.</p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb171-1"></a><span class="kw">data</span>(crickets, <span class="dt">package =</span> <span class="st">&quot;modeldata&quot;</span>)</span>
+<span id="cb171-2"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb171-2"></a>interaction_fit &lt;-<span class="st">  </span><span class="kw">lm</span>(rate <span class="op">~</span><span class="st"> </span>(temp <span class="op">+</span><span class="st"> </span>species)<span class="op">^</span><span class="dv">2</span>, <span class="dt">data =</span> crickets) </span>
+<span id="cb171-3"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb171-3"></a>main_effect_fit &lt;-<span class="st">  </span><span class="kw">lm</span>(rate <span class="op">~</span><span class="st"> </span>temp <span class="op">+</span><span class="st"> </span>species, <span class="dt">data =</span> crickets) </span>
+<span id="cb171-4"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb171-4"></a></span>
+<span id="cb171-5"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb171-5"></a><span class="co"># Compare the two: standard two-way analysis of variance </span></span>
+<span id="cb171-6"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb171-6"></a><span class="kw">anova</span>(main_effect_fit, interaction_fit)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: rate ~ temp + species
+## Model 2: rate ~ (temp + species)^2
+##   Res.Df    RSS Df Sum of Sq     F Pr(&gt;F)
+## 1     28 89.350                          
+## 2     27 85.074  1    4.2758 1.357 0.2542</code></pre>
+<ul>
+<li><strong>estimation of the model</strong></li>
+</ul>
+<p>The estimation of the model is obtained using the <strong>predict()</strong> function; it conducts specific calculations after the fitted model is created, in this case we test it against <em>new data</em>:</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb173-1"></a>new_values &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">species =</span> <span class="st">&quot;O. exclamationis&quot;</span>, <span class="dt">temp =</span> <span class="dv">15</span><span class="op">:</span><span class="dv">20</span>)</span>
+<span id="cb173-2"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb173-2"></a><span class="co"># predict(main_effect_fit, new_values)</span></span></code></pre></div>
+<p>Below are the available statistical and machine learning models to be used with predict()</p>
+<div class="figure">
+<img src="images/modeling_functions.png" alt="" />
+<p class="caption">Examples of other functions and predict type objects</p>
+</div>
+<hr />
+<div id="tidymodels-modeling-as-a-step-by-step-mode" class="section level4">
+<h4><span class="header-section-number">9.6.3.1</span> Tidymodels: modeling as a step by step mode</h4>
+<p>The strategy of <strong>Tidymodels</strong> is to decide for a model to use on a step-by-step mode, this is the main difference than just using lm() or glm() functions and then predict().</p>
+<p><em>When valuing a model, the fundamental is to have a clear view of the data and the type of manipulation to obtain the answer to our questions</em></p>
+<p>The first step is to <em>evaluate the structure of the data</em>, it needs to be balanced for deciding a smart strategy for allocating data.</p>
+<p>Smart Strategy for allocating data:</p>
+<ul>
+<li>allocate specific subsets of data for different tasks</li>
+<li>allocate the largest possible amount to the model parameter estimation only</li>
+</ul>
+<p>The second is to <em>split the data into two main parts</em> as train and test sets, sometimes a third set is valued such as the validation set.</p>
+<p>Splitting data:</p>
+<ul>
+<li><p><strong>training set</strong> (the substrate to develop the model and estimate the parameters)</p></li>
+<li><p><strong>validation set</strong> (a small set of data to measure performance as the network was trained)</p></li>
+<li><p><strong>test set</strong> (the final (unbiased) arbiter to determine the efficacy of the model)</p></li>
+</ul>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb174-1"></a><span class="kw">data</span>(ames, <span class="dt">package =</span> <span class="st">&quot;modeldata&quot;</span>)</span>
+<span id="cb174-2"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb174-2"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb174-3"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb174-3"></a>ames_split &lt;-<span class="st"> </span><span class="kw">initial_split</span>(ames, <span class="dt">prop =</span> <span class="fl">0.80</span>)</span>
+<span id="cb174-4"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb174-4"></a></span>
+<span id="cb174-5"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb174-5"></a>ames_train &lt;-<span class="st"> </span><span class="kw">training</span>(ames_split)</span>
+<span id="cb174-6"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb174-6"></a>ames_test  &lt;-<span class="st"> </span><span class="kw">testing</span>(ames_split)</span></code></pre></div>
+<p>The step-by-step model decomposes the modeling procedure into a certain number of customized steps.</p>
+<p>The modeling functions are:</p>
+<ul>
+<li>recipe()</li>
+<li>prep()</li>
+<li>bake()</li>
+</ul>
+<p>Recipe objects for feature engineering and data preprocessing prior to modeling.
+Transformations and encoding of the data with <strong>recipes</strong> help choosing the option which is the most associated with the outcome, through data preprocessing techniques applying it for different models.</p>
+<ul>
+<li><strong>recipe()</strong> defines the steps of the model</li>
+</ul>
+Figure <a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#fig:diagram1">9.1</a> Graph of the modeling steps<br />
+
+<div class="figure"><span id="fig:diagram1"></span>
+<div id="htmlwidget-ede7ed3a9950f01fd946" style="width:100%;height:100%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ede7ed3a9950f01fd946">{"x":{"diagram":"\ngraph LR\nA(recipe)-->B[lm]\nA-->C[glm]\nA-->D[stan]\nB-- some step_ functions -->P(prep)\nC-- some step_ function-->P(prep)\nD-- some step_ function-->P(prep)\nP-->H(bake)\n\nG[recipe equals to fit]-->F[prep is another recipe]\nF-->E[bake equals to predict]\n\nstyle A fill:#f9f\nstyle P fill:#f9f\nstyle H fill:#f9f\nstyle F fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5\n\n"},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Figure 9.1: Graph of the modeling steps
+</p>
+</div>
+<p>In the model, the matrix data transformation is obtained from a data frame which modify through the modeling procedure to a numeric design matrix.</p>
+<div class="figure">
+<img src="images/steps.png" alt="" />
+<p class="caption">Modeling steps</p>
+</div>
+</div>
+<div id="workflow-to-combine-models-and-recipes" class="section level4">
+<h4><span class="header-section-number">9.6.3.2</span> Workflow: to combine models and recipes</h4>
+<p>Once the model is set and the recipe prepared and then baked, the next step involves wrapping everything up in a workflow to have all the steps together.</p>
+<hr />
+</div>
+</div>
+<div id="case-studies" class="section level3">
+<h3><span class="header-section-number">9.6.4</span> Case Studies</h3>
+</div>
+<div id="nyc-flights-data-modeling" class="section level3">
+<h3><span class="header-section-number">9.6.5</span> NYC flights data modeling</h3>
+<p>Let’s see this in practice with an example taken from:
+<a href="https://www.tidymodels.org/start/recipes/" class="uri">https://www.tidymodels.org/start/recipes/</a></p>
+<p>Data are from {nycflights13} package:</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-1"></a><span class="kw">library</span>(nycflights13) </span>
+<span id="cb175-2"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-2"></a></span>
+<span id="cb175-3"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-3"></a><span class="co"># tidy data and manipulation ----------------</span></span>
+<span id="cb175-4"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-4"></a></span>
+<span id="cb175-5"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-5"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb175-6"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-6"></a></span>
+<span id="cb175-7"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-7"></a>flight_data &lt;-</span>
+<span id="cb175-8"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-8"></a><span class="st">  </span>flights <span class="op">%&gt;%</span></span>
+<span id="cb175-9"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-9"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">arr_delay =</span> <span class="kw">ifelse</span>(arr_delay <span class="op">&gt;=</span><span class="st"> </span><span class="dv">30</span>, <span class="st">&quot;late&quot;</span>, <span class="st">&quot;on_time&quot;</span>),</span>
+<span id="cb175-10"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-10"></a>         <span class="dt">arr_delay =</span> <span class="kw">factor</span>(arr_delay),<span class="dt">date =</span> <span class="kw">as.Date</span>(time_hour)) <span class="op">%&gt;%</span></span>
+<span id="cb175-11"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-11"></a><span class="st">  </span><span class="kw">inner_join</span>(weather, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;origin&quot;</span>, <span class="st">&quot;time_hour&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb175-12"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-12"></a><span class="st">  </span><span class="kw">select</span>(dep_time, flight, origin, dest, air_time, distance,</span>
+<span id="cb175-13"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-13"></a>         carrier, date, arr_delay, time_hour) <span class="op">%&gt;%</span></span>
+<span id="cb175-14"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-14"></a><span class="st">  </span><span class="kw">na.omit</span>() <span class="op">%&gt;%</span></span>
+<span id="cb175-15"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-15"></a><span class="st">  </span><span class="kw">mutate_if</span>(is.character, as.factor)</span>
+<span id="cb175-16"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-16"></a></span>
+<span id="cb175-17"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-17"></a></span>
+<span id="cb175-18"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-18"></a><span class="co">## split -------------------</span></span>
+<span id="cb175-19"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-19"></a><span class="kw">set.seed</span>(<span class="dv">555</span>)</span>
+<span id="cb175-20"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-20"></a>data_split &lt;-<span class="st"> </span><span class="kw">initial_split</span>(flight_data, <span class="dt">prop =</span> <span class="dv">3</span><span class="op">/</span><span class="dv">4</span>)</span>
+<span id="cb175-21"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-21"></a></span>
+<span id="cb175-22"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-22"></a>train_data &lt;-<span class="st"> </span><span class="kw">training</span>(data_split)</span>
+<span id="cb175-23"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-23"></a>test_data  &lt;-<span class="st"> </span><span class="kw">testing</span>(data_split)</span>
+<span id="cb175-24"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-24"></a></span>
+<span id="cb175-25"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-25"></a><span class="co">## apply the recipe ------------------</span></span>
+<span id="cb175-26"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-26"></a>flights_rec &lt;-</span>
+<span id="cb175-27"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-27"></a><span class="st">  </span><span class="kw">recipe</span>(arr_delay <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> train_data) <span class="op">%&gt;%</span></span>
+<span id="cb175-28"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-28"></a><span class="st">  </span><span class="kw">update_role</span>(flight, time_hour, <span class="dt">new_role =</span> <span class="st">&quot;ID&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb175-29"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-29"></a><span class="st">  </span><span class="kw">step_date</span>(date, <span class="dt">features =</span> <span class="kw">c</span>(<span class="st">&quot;dow&quot;</span>, <span class="st">&quot;month&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb175-30"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-30"></a><span class="st">  </span><span class="kw">step_holiday</span>(date, <span class="dt">holidays =</span> timeDate<span class="op">::</span><span class="kw">listHolidays</span>(<span class="st">&quot;US&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb175-31"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-31"></a><span class="st">  </span><span class="kw">step_rm</span>(date) <span class="op">%&gt;%</span></span>
+<span id="cb175-32"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-32"></a><span class="st">  </span><span class="kw">step_dummy</span>(<span class="kw">all_nominal</span>(), <span class="op">-</span><span class="kw">all_outcomes</span>()) <span class="op">%&gt;%</span></span>
+<span id="cb175-33"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-33"></a><span class="st">    </span><span class="co"># remove columns from the data when the training</span></span>
+<span id="cb175-34"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-34"></a><span class="st">  </span><span class="co"># set data have a single value</span></span>
+<span id="cb175-35"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb175-35"></a><span class="st">  </span><span class="kw">step_zv</span>(<span class="kw">all_predictors</span>())</span></code></pre></div>
+<p>Fit a model with a recipe and apply the workflow:</p>
+<ol style="list-style-type: decimal">
+<li>process the recipe using the training set</li>
+<li>apply the recipe to the training set</li>
+<li>apply the recipe to the test set</li>
+</ol>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb176-1"></a>lr_mod &lt;-</span>
+<span id="cb176-2"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb176-2"></a><span class="st">  </span><span class="kw">logistic_reg</span>() <span class="op">%&gt;%</span></span>
+<span id="cb176-3"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb176-3"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;glm&quot;</span>)</span></code></pre></div>
+<p><strong>Workflow</strong>: to simplify the process a <em>parsnip object</em> pairs a model and recipe together</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb177-1"></a>flights_wflow &lt;-</span>
+<span id="cb177-2"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb177-2"></a><span class="st">  </span><span class="kw">workflow</span>() <span class="op">%&gt;%</span></span>
+<span id="cb177-3"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb177-3"></a><span class="st">  </span><span class="kw">add_model</span>(lr_mod) <span class="op">%&gt;%</span></span>
+<span id="cb177-4"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb177-4"></a><span class="st">  </span><span class="kw">add_recipe</span>(flights_rec)</span></code></pre></div>
+<p><strong>Fit</strong>: The function to prepare the recipe and train the model from the resulting predictors</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb178-1"></a>flights_fit &lt;-</span>
+<span id="cb178-2"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb178-2"></a><span class="st">  </span>flights_wflow <span class="op">%&gt;%</span></span>
+<span id="cb178-3"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb178-3"></a><span class="st">  </span><span class="co"># prepare the recipe and train the model</span></span>
+<span id="cb178-4"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb178-4"></a><span class="st">  </span><span class="kw">fit</span>(<span class="dt">data =</span> train_data)</span></code></pre></div>
+<p><strong>Extract</strong> the model or recipe objects from the workflow:</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb179-1"></a>flights_fit <span class="op">%&gt;%</span></span>
+<span id="cb179-2"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb179-2"></a><span class="st">  </span><span class="kw">pull_workflow_fit</span>() <span class="op">%&gt;%</span></span>
+<span id="cb179-3"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb179-3"></a><span class="st">  </span><span class="kw">tidy</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 158 x 5
+##    term                         estimate std.error statistic  p.value
+##    &lt;chr&gt;                           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+##  1 (Intercept)                   5.25    2.72           1.93 5.40e- 2
+##  2 dep_time                     -0.00167 0.0000141   -118.   0       
+##  3 air_time                     -0.0438  0.000561     -78.0  0       
+##  4 distance                      0.00615 0.00150        4.10 4.09e- 5
+##  5 date_USChristmasDay           1.14    0.171          6.65 2.86e-11
+##  6 date_USColumbusDay            0.627   0.169          3.72 2.03e- 4
+##  7 date_USCPulaskisBirthday      0.702   0.133          5.29 1.25e- 7
+##  8 date_USDecorationMemorialDay  0.363   0.117          3.11 1.86e- 3
+##  9 date_USElectionDay            0.695   0.177          3.92 8.87e- 5
+## 10 date_USGoodFriday             1.15    0.156          7.39 1.45e-13
+## # … with 148 more rows</code></pre>
+<p>Use a trained workflow to <strong>predict</strong> following these steps:</p>
+<ol style="list-style-type: decimal">
+<li>build the model (lr_mod),</li>
+<li>create a preprocessing recipe (flights_rec),</li>
+<li>bundle the model and recipe (flights_wflow), and</li>
+<li>train the workflow using a single call to fit()</li>
+</ol>
+Figure <a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#fig:diagram2">9.2</a> Graph of the workflow steps<br />
+
+<div class="figure"><span id="fig:diagram2"></span>
+<div id="htmlwidget-44709c577f142f54a48a" style="width:100%;height:100%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-44709c577f142f54a48a">{"x":{"diagram":"\ngraph TB\nA(Build the model) .->B(Create a preprocessing recipe)\nA-->E(lr_mod)\nB.->C(Bundle the model and recipe)\nB-->F(flights_rec)\nC.->D(Train the workflow using fit)\nC-->G(flights_wflow)\nD-->H(fit)\nstyle A fill:#f9f\nstyle B fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5\nstyle C fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5\nstyle D fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5\n"},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Figure 9.2: Graph of the workflow steps
+</p>
+</div>
+<p>Then use the trained workflow to predict using the <strong>test data</strong> or any other new data:</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb181-1"></a>flights_pred &lt;-<span class="st"> </span></span>
+<span id="cb181-2"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb181-2"></a><span class="st">  </span><span class="kw">predict</span>(flights_fit, test_data, <span class="dt">type =</span> <span class="st">&quot;prob&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb181-3"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb181-3"></a><span class="st">  </span><span class="kw">bind_cols</span>(test_data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(arr_delay, time_hour, flight)) </span>
+<span id="cb181-4"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb181-4"></a></span>
+<span id="cb181-5"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb181-5"></a><span class="co"># flights_pred</span></span></code></pre></div>
+Figure <a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#fig:diagram3">9.3</a> Graph of the workflow to predict<br />
+
+<div class="figure"><span id="fig:diagram3"></span>
+<div id="htmlwidget-f0b9dfd60a56e3955bf1" style="width:100%;height:100%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f0b9dfd60a56e3955bf1">{"x":{"diagram":"\n        graph LR\n        A[workflow]-->B{predict}\nstyle A fill:#f9f\nstyle B fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5\n        "},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Figure 9.3: Graph of the workflow to predict
+</p>
+</div>
+<hr />
+<p><strong>How will we evaluate the performance of our workflow?</strong></p>
+<p>To finally answer our question we need to check the area under the ROC curve.</p>
+<ul>
+<li>What is a ROC curve?</li>
+</ul>
+<p>It is a curve that identifies the area of credibility of our model. To calculate the curve we use two functions: roc_curve() and roc_auc(), the curve and the area under the curve, respectively.</p>
+<p>The ROC curve uses the class probability estimates to give us a sense of performance across the entire set of potential probability cutoffs.</p>
+<p>Once the predicted class of probabilities are obtained we can generate a ROC curve. Let’s see it applied in our NYC flights case study. We need late and on_time variable predictors to create the curve and apply the <strong>autoplot()</strong> method as shown below:</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb182-1"></a>flights_pred <span class="op">%&gt;%</span></span>
+<span id="cb182-2"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb182-2"></a><span class="st">  </span><span class="kw">roc_curve</span>(<span class="dt">truth =</span> arr_delay, .pred_late) <span class="op">%&gt;%</span></span>
+<span id="cb182-3"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb182-3"></a><span class="st">  </span><span class="kw">autoplot</span>()</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb183-1"></a>flights_pred <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb183-2"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb183-2"></a><span class="st">  </span><span class="kw">roc_auc</span>(<span class="dt">truth =</span> arr_delay, .pred_late)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##   .metric .estimator .estimate
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+## 1 roc_auc binary         0.761</code></pre>
+<p>In particular, below are shown the steps for different cases, and the visualization used to evaluate the credibility of a model.</p>
+<hr />
+<div id="functions-that-can-be-used-to-measure-predictive-strengths-of-a-model" class="section level4">
+<h4><span class="header-section-number">9.6.5.1</span> Functions that can be used to measure predictive strengths of a model</h4>
+<p>The assessment of the models is via empirical validation and grouped by the nature of the outcome data, and this can be done through:</p>
+<ul>
+<li>regression metrics (purely numeric)</li>
+<li>binary classes</li>
+<li>multilevel metrics (three or more class levels)</li>
+</ul>
+<p><strong>Regression metrics</strong></p>
+<p>For this example I use the data from <strong>The Trust for Public Land</strong> for ranking the public parks in the US. <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-06-22/readme.md" class="uri">https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-06-22/readme.md</a></p>
+<ul>
+<li>Data load and Split</li>
+</ul>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb185-1"></a><span class="kw">library</span>(tidytuesdayR)</span>
+<span id="cb185-2"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb185-2"></a>tuesdata &lt;-<span class="st"> </span>tidytuesdayR<span class="op">::</span><span class="kw">tt_load</span>(<span class="dv">2021</span>, <span class="dt">week =</span> <span class="dv">26</span>)</span></code></pre></div>
+<pre><code>## 
+##  Downloading file 1 of 1: `parks.csv`</code></pre>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb187-1"></a>parks &lt;-<span class="st"> </span>tuesdata<span class="op">$</span>parks</span>
+<span id="cb187-2"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb187-2"></a></span>
+<span id="cb187-3"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb187-3"></a></span>
+<span id="cb187-4"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb187-4"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb187-5"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb187-5"></a></span>
+<span id="cb187-6"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb187-6"></a>parks_split &lt;-<span class="st"> </span><span class="kw">initial_split</span>(parks, <span class="dt">prop =</span> <span class="fl">0.80</span>)</span>
+<span id="cb187-7"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb187-7"></a>parks_train &lt;-<span class="st"> </span><span class="kw">training</span>(parks_split)</span>
+<span id="cb187-8"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb187-8"></a>parks_test  &lt;-<span class="st"> </span><span class="kw">testing</span>(parks_split)</span></code></pre></div>
+<ul>
+<li>Exploratory analysis</li>
+</ul>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb188-1"></a><span class="kw">ggplot</span>(parks_train,<span class="kw">aes</span>(<span class="dt">x=</span>year,<span class="dt">y =</span> rank))<span class="op">+</span></span>
+<span id="cb188-2"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb188-2"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>city)) <span class="op">+</span></span>
+<span id="cb188-3"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb188-3"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Year&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Sum of all city ranks per year&quot;</span>)<span class="op">+</span></span>
+<span id="cb188-4"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb188-4"></a><span class="st">  </span><span class="kw">guides</span>(<span class="dt">fill=</span><span class="st">&quot;none&quot;</span>)<span class="op">+</span></span>
+<span id="cb188-5"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb188-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;US City Ranks per Year&quot;</span>)<span class="op">+</span></span>
+<span id="cb188-6"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb188-6"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb189-1"></a>parks_train <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb189-2"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb189-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols=</span><span class="kw">c</span>(<span class="dv">13</span>,<span class="dv">15</span>,<span class="dv">17</span>,<span class="dv">19</span>,<span class="dv">21</span>,<span class="dv">23</span>),<span class="dt">names_to=</span><span class="st">&quot;amenities&quot;</span>,<span class="dt">values_to=</span><span class="st">&quot;points&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb189-3"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb189-3"></a><span class="st">  </span><span class="kw">select</span>(year,rank,city,amenities_points,amenities,points)<span class="op">%&gt;%</span></span>
+<span id="cb189-4"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb189-4"></a><span class="st">  </span><span class="kw">drop_na</span>()<span class="op">%&gt;%</span></span>
+<span id="cb189-5"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb189-5"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>points, <span class="dt">y =</span> amenities_points)) <span class="op">+</span></span>
+<span id="cb189-6"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb189-6"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>amenities,<span class="dt">color=</span>amenities),<span class="dt">size=</span><span class="fl">0.5</span>,<span class="dt">alpha=</span><span class="fl">0.7</span>) <span class="op">+</span></span>
+<span id="cb189-7"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb189-7"></a><span class="st">  </span><span class="kw">geom_smooth</span>()<span class="op">+</span></span>
+<span id="cb189-8"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb189-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Points per single amenity&quot;</span>,<span class="dt">y =</span> <span class="st">&quot;Amenities points&quot;</span>) <span class="op">+</span></span>
+<span id="cb189-9"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb189-9"></a><span class="st">  </span><span class="kw">guides</span>(<span class="dt">fill=</span><span class="st">&quot;none&quot;</span>,<span class="dt">color=</span><span class="st">&quot;none&quot;</span>) <span class="op">+</span></span>
+<span id="cb189-10"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb189-10"></a><span class="st">  </span><span class="kw">scale_color_viridis</span>(<span class="dt">discrete=</span><span class="ot">TRUE</span>) <span class="op">+</span></span>
+<span id="cb189-11"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb189-11"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Amenities points&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb189-12"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb189-12"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>Type of available engine modeling:</p>
+<ul>
+<li><p>linear_reg() %&gt;% set_engine(“lm”)</p></li>
+<li><p>linear_reg() %&gt;% set_engine(“glmnet”)</p></li>
+<li><p>linear_reg() %&gt;% set_engine(“stan”)</p></li>
+<li><p>Apply a simple Recipe without step_ … functions</p></li>
+</ul>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb190-1"></a>parks_rec &lt;-<span class="st"> </span><span class="kw">recipe</span>(amenities_points <span class="op">~</span><span class="st"> </span>basketball_points <span class="op">+</span><span class="st"> </span>dogpark_points<span class="op">+</span></span>
+<span id="cb190-2"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb190-2"></a><span class="st">                      </span>playground_points<span class="op">+</span>rec_sr_points<span class="op">+</span>restroom_points<span class="op">+</span></span>
+<span id="cb190-3"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb190-3"></a><span class="st">                      </span>splashground_points, <span class="dt">data=</span>parks_train)</span></code></pre></div>
+<ul>
+<li>Set the Workflow</li>
+</ul>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb191-1"></a>lm_model &lt;-<span class="st"> </span><span class="kw">linear_reg</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">set_engine</span>(<span class="st">&quot;lm&quot;</span>) </span>
+<span id="cb191-2"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb191-2"></a>lm_wflow &lt;-<span class="st"> </span><span class="kw">workflow</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_model</span>(lm_model)</span>
+<span id="cb191-3"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb191-3"></a>lm_wflow &lt;-<span class="st"> </span>lm_wflow <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_recipe</span>(parks_rec)</span>
+<span id="cb191-4"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb191-4"></a>lm_fit &lt;-<span class="st"> </span><span class="kw">fit</span>(lm_wflow, parks_train)</span>
+<span id="cb191-5"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb191-5"></a></span>
+<span id="cb191-6"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb191-6"></a><span class="co"># predict(lm_fit, parks_test %&gt;% slice(1:3))</span></span>
+<span id="cb191-7"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb191-7"></a></span>
+<span id="cb191-8"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb191-8"></a><span class="co"># test the model on new data</span></span>
+<span id="cb191-9"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb191-9"></a>parks_test_res &lt;-<span class="st"> </span><span class="kw">predict</span>(lm_fit, <span class="dt">new_data =</span> parks_test <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>amenities_points)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb191-10"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb191-10"></a><span class="st">  </span><span class="kw">bind_cols</span>(parks_test <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(amenities_points))</span>
+<span id="cb191-11"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb191-11"></a></span>
+<span id="cb191-12"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb191-12"></a>parks_test_res</span></code></pre></div>
+<pre><code>## # A tibble: 143 x 2
+##    .pred amenities_points
+##    &lt;dbl&gt;            &lt;dbl&gt;
+##  1  79.2             79.3
+##  2  77.9             78  
+##  3  65.1             65.2
+##  4  37.2             37.2
+##  5  58.6             58.7
+##  6  79.4             79.5
+##  7  47.5             47.5
+##  8  60.8             60.8
+##  9  56.0             56  
+## 10  62.0             62  
+## # … with 133 more rows</code></pre>
+<p>Then we check the linear relation between selected components of amenities by year.
+In this visualization, the overall amenities points are checked against basketball points.</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb193-1"></a>parks_train<span class="op">%&gt;%</span></span>
+<span id="cb193-2"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb193-2"></a><span class="kw">filter</span>(year<span class="op">&gt;=</span><span class="dv">2015</span>)<span class="op">%&gt;%</span></span>
+<span id="cb193-3"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb193-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> basketball_points, <span class="dt">y =</span> amenities_points)) <span class="op">+</span></span>
+<span id="cb193-4"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb193-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">.2</span>) <span class="op">+</span></span>
+<span id="cb193-5"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb193-5"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>year) <span class="op">+</span></span>
+<span id="cb193-6"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb193-6"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> lm, <span class="dt">formula =</span> y <span class="op">~</span><span class="st"> </span>x, <span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb193-7"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb193-7"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></span>
+<span id="cb193-8"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb193-8"></a><span class="st">  </span><span class="kw">scale_y_log10</span>() <span class="op">+</span></span>
+<span id="cb193-9"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb193-9"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;basketball_points&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;amenities_points&quot;</span>)</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>Then we see how the overall amenities points are shaping predicted values:</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb194-1"></a><span class="kw">ggplot</span>(parks_test_res, <span class="kw">aes</span>(<span class="dt">x =</span> amenities_points, <span class="dt">y =</span> .pred)) <span class="op">+</span></span>
+<span id="cb194-2"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb194-2"></a><span class="st">  </span><span class="co"># Create a diagonal line:</span></span>
+<span id="cb194-3"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb194-3"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">lty =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb194-4"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb194-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></span>
+<span id="cb194-5"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb194-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Predicted amenities points&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Amenities points&quot;</span>) <span class="op">+</span></span>
+<span id="cb194-6"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb194-6"></a><span class="st">  </span><span class="co"># Scale and size the x- and y-axis uniformly:</span></span>
+<span id="cb194-7"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb194-7"></a><span class="st">  </span><span class="kw">coord_obs_pred</span>()</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<ul>
+<li>Apply the root mean squared error rmse()</li>
+</ul>
+<p>The first measure used for the model is the root mean squared error: <em>RMSE</em></p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb195-1"></a><span class="co"># rmse(data, truth = outcome, estimate = .pred)</span></span>
+<span id="cb195-2"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb195-2"></a></span>
+<span id="cb195-3"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb195-3"></a><span class="kw">rmse</span>(parks_test_res, <span class="dt">truth =</span> amenities_points, <span class="dt">estimate =</span> .pred)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##   .metric .estimator .estimate
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+## 1 rmse    standard       0.176</code></pre>
+<p>Then make a comparison adding more metrics at once: <em>Multiple metrics at once</em></p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb197-1"></a><span class="co"># data_metrics &lt;- metric_set(rmse, rsq, mae)</span></span>
+<span id="cb197-2"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb197-2"></a><span class="co"># data_metrics(data_test_res, truth = outcome, estimate = .pred)</span></span>
+<span id="cb197-3"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb197-3"></a></span>
+<span id="cb197-4"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb197-4"></a>parks_metrics &lt;-<span class="st"> </span><span class="kw">metric_set</span>(rmse, rsq, mae)</span>
+<span id="cb197-5"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb197-5"></a></span>
+<span id="cb197-6"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb197-6"></a><span class="kw">parks_metrics</span>(parks_test_res, <span class="dt">truth =</span> amenities_points, <span class="dt">estimate =</span> .pred)</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##   .metric .estimator .estimate
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+## 1 rmse    standard       0.176
+## 2 rsq     standard       1.00 
+## 3 mae     standard       0.114</code></pre>
+<hr />
+<p>Here we use some examples from the book with a sample predictions and multiple resampling:</p>
+<p><strong>Binary classes</strong></p>
+<ol style="list-style-type: decimal">
+<li><em>Confusion matrix</em>:</li>
+</ol>
+<p>Confusion matrix gives a holistic view of the performance of your model</p>
+<p><strong>What is a Confusion Matrix?</strong></p>
+<p>It is a matrix that contains values such as:</p>
+<ul>
+<li>True Positive (TP)</li>
+<li>True Negative (TN)</li>
+<li>False Positive – Type 1 Error (FP)</li>
+<li>False Negative – Type 2 Error (FN)</li>
+</ul>
+<div class="figure">
+<img src="images/confusion_matrix.png" alt="" />
+<p class="caption">Confusion matrix</p>
+</div>
+<p>Example 1: two_class_example</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb199-1"></a><span class="kw">data</span>(<span class="st">&quot;two_class_example&quot;</span>)</span>
+<span id="cb199-2"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb199-2"></a><span class="kw">conf_mat</span>(two_class_example, <span class="dt">truth =</span> truth, <span class="dt">estimate =</span> predicted)</span></code></pre></div>
+<pre><code>##           Truth
+## Prediction Class1 Class2
+##     Class1    227     50
+##     Class2     31    192</code></pre>
+<p>The confusion matrix contains other metrics that can be extracted under specific conditions.</p>
+<ul>
+<li><strong>Precision</strong> is how certain you are of your true positives</li>
+<li><strong>Recall</strong> is how certain you are that you are not missing any positives.</li>
+</ul>
+<p>The measure used to estimate the effectiveness is the <strong>overall accuracy</strong>. It uses the hard class predictions to measure performance, which tells us whether our model is actually estimating a probability of cutoff to establish if the model predicted well or not with <em>accuracy</em>.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><em>Accuracy</em>:</li>
+</ol>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb201-1"></a><span class="kw">accuracy</span>(two_class_example, <span class="dt">truth =</span> truth, <span class="dt">estimate =</span> predicted)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##   .metric  .estimator .estimate
+##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy binary         0.838</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><em>Matthews correlation coefficient</em>:</li>
+</ol>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb203-1"></a><span class="kw">mcc</span>(two_class_example, truth, predicted)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##   .metric .estimator .estimate
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+## 1 mcc     binary         0.677</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li><em>F1 metric</em>:
+F1-score is a harmonic mean of <strong>Precision</strong> and <strong>Recall</strong>.
+The F1-score captures both the trends in a single value: when we try to increase the precision of our model, the recall (aka, <em>sensitivity</em>) goes down, and vice-versa.</li>
+</ol>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb205-1"></a><span class="kw">f_meas</span>(two_class_example, truth, predicted) <span class="co">#,event_level = &quot;second&quot;)</span></span></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##   .metric .estimator .estimate
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+## 1 f_meas  binary         0.849</code></pre>
+<p>all of the above have the <strong>event_level</strong> argument (first/second level)</p>
+<hr />
+<p>To visualize the model metrics behavior, the <strong>receiver operating characteristic (ROC) curve</strong> computes the <em>sensitivity</em> and <em>specificity</em> over a continuum of different event thresholds</p>
+<ul>
+<li><strong>roc_curve()</strong> (curve)</li>
+<li><strong>roc_auc()</strong> (area)</li>
+</ul>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb207-1"></a>two_class_curve &lt;-<span class="st"> </span><span class="kw">roc_curve</span>(two_class_example, truth, Class1)</span>
+<span id="cb207-2"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb207-2"></a>  </span>
+<span id="cb207-3"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb207-3"></a>two_class_curve</span></code></pre></div>
+<pre><code>## # A tibble: 502 x 3
+##    .threshold specificity sensitivity
+##         &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+##  1 -Inf           0                 1
+##  2    1.79e-7     0                 1
+##  3    4.50e-6     0.00413           1
+##  4    5.81e-6     0.00826           1
+##  5    5.92e-6     0.0124            1
+##  6    1.22e-5     0.0165            1
+##  7    1.40e-5     0.0207            1
+##  8    1.43e-5     0.0248            1
+##  9    2.38e-5     0.0289            1
+## 10    3.30e-5     0.0331            1
+## # … with 492 more rows</code></pre>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb209-1"></a><span class="kw">roc_auc</span>(two_class_example, truth, Class1)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##   .metric .estimator .estimate
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+## 1 roc_auc binary         0.939</code></pre>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb211-1"></a><span class="kw">autoplot</span>(two_class_curve)</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<hr />
+<p><strong>Multi-class</strong></p>
+<p>Finally we see data with three or more classes</p>
+<ul>
+<li><em>Accuracy</em>:</li>
+</ul>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb212-1"></a><span class="kw">data</span>(hpc_cv)</span>
+<span id="cb212-2"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb212-2"></a></span>
+<span id="cb212-3"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb212-3"></a><span class="kw">accuracy</span>(hpc_cv, obs, pred)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##   .metric  .estimator .estimate
+##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy multiclass     0.709</code></pre>
+<ul>
+<li><em>Matthews correlation coefficient</em>:</li>
+</ul>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb214-1"></a><span class="kw">mcc</span>(hpc_cv, obs, pred)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##   .metric .estimator .estimate
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+## 1 mcc     multiclass     0.515</code></pre>
+<p>And then the <em>sensitivity</em> calculation for different estimators:</p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb216-1"></a>macro_sens &lt;-<span class="kw">sensitivity</span>(hpc_cv, obs, pred, <span class="dt">estimator =</span> <span class="st">&quot;macro&quot;</span>);</span>
+<span id="cb216-2"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb216-2"></a>weigh_sens &lt;-<span class="st"> </span><span class="kw">sensitivity</span>(hpc_cv, obs, pred, <span class="dt">estimator =</span> <span class="st">&quot;macro_weighted&quot;</span>);</span>
+<span id="cb216-3"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb216-3"></a>micro_sens &lt;-<span class="st"> </span><span class="kw">sensitivity</span>(hpc_cv, obs, pred, <span class="dt">estimator =</span> <span class="st">&quot;micro&quot;</span>);</span>
+<span id="cb216-4"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb216-4"></a></span>
+<span id="cb216-5"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb216-5"></a>sens &lt;-<span class="st"> </span><span class="kw">rbind</span>(macro_sens,weigh_sens,micro_sens)</span>
+<span id="cb216-6"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb216-6"></a>sens</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##   .metric .estimator     .estimate
+##   &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;
+## 1 sens    macro              0.560
+## 2 sens    macro_weighted     0.709
+## 3 sens    micro              0.709</code></pre>
+<p>And the ROC curve:</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb218-1"></a><span class="kw">roc_auc</span>(hpc_cv, obs, VF, F, M, L)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##   .metric .estimator .estimate
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+## 1 roc_auc hand_till      0.829</code></pre>
+<p>The ROC area:</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb220-1"></a><span class="kw">roc_auc</span>(hpc_cv, obs, VF, F, M, L, <span class="dt">estimator =</span> <span class="st">&quot;macro_weighted&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##   .metric .estimator     .estimate
+##   &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;
+## 1 roc_auc macro_weighted     0.868</code></pre>
+<p>The ROC visualization:
+<a href="https://www.tidymodels.org/start/resampling/" class="uri">https://www.tidymodels.org/start/resampling/</a></p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb222-1"></a>hpc_cv <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Resample) <span class="op">%&gt;%</span></span>
+<span id="cb222-2"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb222-2"></a><span class="st">  </span><span class="kw">roc_curve</span>(obs, VF, F, M, L) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb222-3"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#cb222-3"></a><span class="st">  </span><span class="kw">autoplot</span>()</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<hr />
+</div>
+</div>
+<div id="conclusion" class="section level3">
+<h3><span class="header-section-number">9.6.6</span> Conclusion</h3>
+<p>Judging the effectiveness of a variety of different models and to choose between them, we need to consider how well these models behave through the use of some performance statistics:</p>
+<ul>
+<li>the area under the Receiver Operating Characteristic (ROC) curve, and</li>
+<li>overall classification accuracy.</li>
+</ul>
+<p>In conclusion when judging on a model effectiveness is important to follow few clear steps:</p>
+<ul>
+<li>check of the data used for the modeling if contains any of the hidden information, such as modification of the units</li>
+<li>second step is to calculate the ROC curve and the Area underneath the curve, plot it to see how it behaves on the model</li>
+<li>third is to apply some selected metrics such as RMSE or RSQ, MAE etc.. to evaluate the estimation values</li>
+<li>fourth make the confusion matrix as well as all the related metrics (sensitivity, specificity, accuracy, F1 …)</li>
+<li>finally applyi again the ROC curve visualization on resampling to see the best fit</li>
+</ul>
+<hr />
+<div id="resources" class="section level4">
+<h4><span class="header-section-number">9.6.6.1</span> Resources</h4>
+<ul>
+<li>yardstick:
+<a href="https://yardstick.tidymodels.org/" class="uri">https://yardstick.tidymodels.org/</a></li>
+<li>recipes:
+<a href="https://www.tidymodels.org/start/recipes/" class="uri">https://www.tidymodels.org/start/recipes/</a></li>
+<li>ROC curve:
+<a href="https://www.analyticsvidhya.com/blog/2020/06/auc-roc-curve-machine-learning/?utm_source=linkedin&amp;utm_medium=social&amp;utm_campaign=old-blog&amp;utm_content=B&amp;custom=LDV150" class="uri">https://www.analyticsvidhya.com/blog/2020/06/auc-roc-curve-machine-learning/?utm_source=linkedin&amp;utm_medium=social&amp;utm_campaign=old-blog&amp;utm_content=B&amp;custom=LDV150</a></li>
+<li>Decoding the confusion matrix:
+<a href="https://towardsdatascience.com/decoding-the-confusion-matrix-bb4801decbb" class="uri">https://towardsdatascience.com/decoding-the-confusion-matrix-bb4801decbb</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="meeting-videos-9.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="review-of-chapters-4-9.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/09chapter_notes.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

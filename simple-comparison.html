@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-06-27" />
+<meta name="date" content="2021-06-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,6 +56,14 @@
 <script src="libs/twitter-widget-0.0.1/widgets.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/d3-3.3.8/d3.min.js"></script>
+<script src="libs/dagre-0.4.0/dagre-d3.min.js"></script>
+<link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet" />
+<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/chromatography-0.1/chromatography.js"></script>
+<script src="libs/DiagrammeR-binding-1.0.6.1/DiagrammeR.js"></script>
 
 
 <style type="text/css">
@@ -262,6 +270,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.6.1" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-1-8"><i class="fa fa-check"></i><b>9.6.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><i class="fa fa-check"></i>Notes on Chapter 9 Judging model effectiveness - Cohort 3</a><ul>
+<li class="chapter" data-level="9.6.2" data-path="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#performance-metrics-and-inference"><i class="fa fa-check"></i><b>9.6.2</b> Performance Metrics and Inference</a></li>
+<li class="chapter" data-level="9.6.3" data-path="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#to-recap-the-step-for-modeling-as-seen-in-the-previous-chapters"><i class="fa fa-check"></i><b>9.6.3</b> To Recap the step for modeling as seen in the previous chapters:</a></li>
+<li class="chapter" data-level="9.6.4" data-path="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#case-studies"><i class="fa fa-check"></i><b>9.6.4</b> Case Studies</a></li>
+<li class="chapter" data-level="9.6.5" data-path="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#nyc-flights-data-modeling"><i class="fa fa-check"></i><b>9.6.5</b> NYC flights data modeling</a></li>
+<li class="chapter" data-level="9.6.6" data-path="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#conclusion"><i class="fa fa-check"></i><b>9.6.6</b> Conclusion</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="review-of-chapters-4-9.html"><a href="review-of-chapters-4-9.html"><i class="fa fa-check"></i>Review of chapters 4-9</a><ul>
 <li class="chapter" data-level="9.7" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html"><i class="fa fa-check"></i><b>9.7</b> Meeting Videos</a><ul>
 <li class="chapter" data-level="9.7.1" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html#cohort-1-9"><i class="fa fa-check"></i><b>9.7.1</b> Cohort 1</a></li>
@@ -399,12 +414,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="simple-comparison" class="section level2">
 <h2><span class="header-section-number">11.5</span> Simple Comparison</h2>
 <p>Use difference to cancel out the resample-to-resample effect.</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="simple-comparison.html#cb196-1"></a>compare_lm &lt;-<span class="st"> </span>rsq_estimates <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb196-2"><a href="simple-comparison.html#cb196-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">difference =</span> <span class="st">`</span><span class="dt">with splines</span><span class="st">`</span> <span class="op">-</span><span class="st"> `</span><span class="dt">no splines</span><span class="st">`</span>)</span>
-<span id="cb196-3"><a href="simple-comparison.html#cb196-3"></a></span>
-<span id="cb196-4"><a href="simple-comparison.html#cb196-4"></a><span class="kw">lm</span>(difference <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> compare_lm) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb196-5"><a href="simple-comparison.html#cb196-5"></a><span class="st">  </span><span class="kw">tidy</span>(<span class="dt">conf.int =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb196-6"><a href="simple-comparison.html#cb196-6"></a><span class="st">  </span><span class="kw">select</span>(estimate, p.value, <span class="kw">starts_with</span>(<span class="st">&quot;conf&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="simple-comparison.html#cb248-1"></a>compare_lm &lt;-<span class="st"> </span>rsq_estimates <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb248-2"><a href="simple-comparison.html#cb248-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">difference =</span> <span class="st">`</span><span class="dt">with splines</span><span class="st">`</span> <span class="op">-</span><span class="st"> `</span><span class="dt">no splines</span><span class="st">`</span>)</span>
+<span id="cb248-3"><a href="simple-comparison.html#cb248-3"></a></span>
+<span id="cb248-4"><a href="simple-comparison.html#cb248-4"></a><span class="kw">lm</span>(difference <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> compare_lm) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb248-5"><a href="simple-comparison.html#cb248-5"></a><span class="st">  </span><span class="kw">tidy</span>(<span class="dt">conf.int =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb248-6"><a href="simple-comparison.html#cb248-6"></a><span class="st">  </span><span class="kw">select</span>(estimate, p.value, <span class="kw">starts_with</span>(<span class="st">&quot;conf&quot;</span>))</span></code></pre></div>
 </div>
             </section>
 

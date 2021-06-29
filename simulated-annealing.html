@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-06-27" />
+<meta name="date" content="2021-06-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,6 +56,14 @@
 <script src="libs/twitter-widget-0.0.1/widgets.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/d3-3.3.8/d3.min.js"></script>
+<script src="libs/dagre-0.4.0/dagre-d3.min.js"></script>
+<link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet" />
+<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/chromatography-0.1/chromatography.js"></script>
+<script src="libs/DiagrammeR-binding-1.0.6.1/DiagrammeR.js"></script>
 
 
 <style type="text/css">
@@ -262,6 +270,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.6.1" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-1-8"><i class="fa fa-check"></i><b>9.6.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><i class="fa fa-check"></i>Notes on Chapter 9 Judging model effectiveness - Cohort 3</a><ul>
+<li class="chapter" data-level="9.6.2" data-path="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#performance-metrics-and-inference"><i class="fa fa-check"></i><b>9.6.2</b> Performance Metrics and Inference</a></li>
+<li class="chapter" data-level="9.6.3" data-path="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#to-recap-the-step-for-modeling-as-seen-in-the-previous-chapters"><i class="fa fa-check"></i><b>9.6.3</b> To Recap the step for modeling as seen in the previous chapters:</a></li>
+<li class="chapter" data-level="9.6.4" data-path="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#case-studies"><i class="fa fa-check"></i><b>9.6.4</b> Case Studies</a></li>
+<li class="chapter" data-level="9.6.5" data-path="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#nyc-flights-data-modeling"><i class="fa fa-check"></i><b>9.6.5</b> NYC flights data modeling</a></li>
+<li class="chapter" data-level="9.6.6" data-path="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#conclusion"><i class="fa fa-check"></i><b>9.6.6</b> Conclusion</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="review-of-chapters-4-9.html"><a href="review-of-chapters-4-9.html"><i class="fa fa-check"></i>Review of chapters 4-9</a><ul>
 <li class="chapter" data-level="9.7" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html"><i class="fa fa-check"></i><b>9.7</b> Meeting Videos</a><ul>
 <li class="chapter" data-level="9.7.1" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html#cohort-1-9"><i class="fa fa-check"></i><b>9.7.1</b> Cohort 1</a></li>
@@ -448,21 +463,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>cooling_coef</code>: dictates how quickly the acceptance probability decreases as the we go through iterations. Larger coefficient values means the probability of accepting a bad result will decrease.</p></li>
 </ul>
 <p>Implemention is very similar to grid search and Bayesian optimization. We can print out the best results, and have visual assessments of our search went across iterations.</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="simulated-annealing.html#cb289-1"></a>ctrl_sa &lt;-<span class="st"> </span><span class="kw">control_sim_anneal</span>(<span class="dt">verbose =</span> <span class="ot">TRUE</span>, <span class="dt">no_improve =</span> 10L)</span>
-<span id="cb289-2"><a href="simulated-annealing.html#cb289-2"></a></span>
-<span id="cb289-3"><a href="simulated-annealing.html#cb289-3"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb289-4"><a href="simulated-annealing.html#cb289-4"></a></span>
-<span id="cb289-5"><a href="simulated-annealing.html#cb289-5"></a>svm_sa &lt;-</span>
-<span id="cb289-6"><a href="simulated-annealing.html#cb289-6"></a><span class="st">  </span>svm_wflow <span class="op">%&gt;%</span></span>
-<span id="cb289-7"><a href="simulated-annealing.html#cb289-7"></a><span class="st">  </span><span class="kw">tune_sim_anneal</span>(</span>
-<span id="cb289-8"><a href="simulated-annealing.html#cb289-8"></a>    <span class="dt">resamples =</span> penguins_folds,</span>
-<span id="cb289-9"><a href="simulated-annealing.html#cb289-9"></a>    <span class="dt">metrics =</span> roc_res,</span>
-<span id="cb289-10"><a href="simulated-annealing.html#cb289-10"></a>    <span class="dt">initial =</span> svm_initial,</span>
-<span id="cb289-11"><a href="simulated-annealing.html#cb289-11"></a>    <span class="dt">param_info =</span> svm_param,</span>
-<span id="cb289-12"><a href="simulated-annealing.html#cb289-12"></a>    <span class="dt">iter =</span> <span class="dv">50</span>,</span>
-<span id="cb289-13"><a href="simulated-annealing.html#cb289-13"></a>    <span class="dt">control =</span> ctrl_sa</span>
-<span id="cb289-14"><a href="simulated-annealing.html#cb289-14"></a>  )</span></code></pre></div>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="simulated-annealing.html#cb290-1"></a><span class="kw">show_best</span>(svm_sa)</span></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="simulated-annealing.html#cb341-1"></a>ctrl_sa &lt;-<span class="st"> </span><span class="kw">control_sim_anneal</span>(<span class="dt">verbose =</span> <span class="ot">TRUE</span>, <span class="dt">no_improve =</span> 10L)</span>
+<span id="cb341-2"><a href="simulated-annealing.html#cb341-2"></a></span>
+<span id="cb341-3"><a href="simulated-annealing.html#cb341-3"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb341-4"><a href="simulated-annealing.html#cb341-4"></a></span>
+<span id="cb341-5"><a href="simulated-annealing.html#cb341-5"></a>svm_sa &lt;-</span>
+<span id="cb341-6"><a href="simulated-annealing.html#cb341-6"></a><span class="st">  </span>svm_wflow <span class="op">%&gt;%</span></span>
+<span id="cb341-7"><a href="simulated-annealing.html#cb341-7"></a><span class="st">  </span><span class="kw">tune_sim_anneal</span>(</span>
+<span id="cb341-8"><a href="simulated-annealing.html#cb341-8"></a>    <span class="dt">resamples =</span> penguins_folds,</span>
+<span id="cb341-9"><a href="simulated-annealing.html#cb341-9"></a>    <span class="dt">metrics =</span> roc_res,</span>
+<span id="cb341-10"><a href="simulated-annealing.html#cb341-10"></a>    <span class="dt">initial =</span> svm_initial,</span>
+<span id="cb341-11"><a href="simulated-annealing.html#cb341-11"></a>    <span class="dt">param_info =</span> svm_param,</span>
+<span id="cb341-12"><a href="simulated-annealing.html#cb341-12"></a>    <span class="dt">iter =</span> <span class="dv">50</span>,</span>
+<span id="cb341-13"><a href="simulated-annealing.html#cb341-13"></a>    <span class="dt">control =</span> ctrl_sa</span>
+<span id="cb341-14"><a href="simulated-annealing.html#cb341-14"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="simulated-annealing.html#cb342-1"></a><span class="kw">show_best</span>(svm_sa)</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 9
 ##    cost rbf_sigma .metric .estimator  mean     n std_err .config .iter
 ##   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;int&gt;

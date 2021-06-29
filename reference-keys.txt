@@ -1,4 +1,7 @@
 tab:skim-05
+fig:diagram1
+fig:diagram2
+fig:diagram3
 tab:llhood-12
 tab:15-setup
 software-for-modeling
@@ -92,6 +95,15 @@ binary-classification-metrics
 references-1
 meeting-videos-9
 cohort-1-8
+performance-metrics-and-inference
+to-recap-the-step-for-modeling-as-seen-in-the-previous-chapters
+tidymodels-modeling-as-a-step-by-step-mode
+workflow-to-combine-models-and-recipes
+case-studies
+nyc-flights-data-modeling
+functions-that-can-be-used-to-measure-predictive-strengths-of-a-model
+conclusion
+resources
 meeting-videos-10
 cohort-1-9
 resampling-for-evaluating-performance
