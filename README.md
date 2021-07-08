@@ -77,14 +77,14 @@ If you would like to present, please add your name next to a chapter using the [
 - 2021-04-26: Chapter 5: Spending our data: Ildiko Czeller
 - 2021-05-24: Chapter 6: Feature engineering with recipes: Priyanka Gagneja
 - 2021-06-07: Chapter 7: Fitting models with parsnip: Toryn Schafer
+- 2021-06-14: Chapter 8: A model workflow: Ildiko Czeller
+- 2021-06-28: Chapter 9: Judging model effectiveness: Federica Gazzelloni
+- 2021-07-05: Chapter 10: Resampling for evaluating performance: Jiwan Heo
 
 </details>
 
-- **2021-06-14: Chapter 8: A model workflow: Ildiko Czeller**
-- 2021-06-28: Chapter 9: Judging model effectiveness: Federica Gazzelloni
-- 2021-07-05: Chapter 10: Resampling for evaluating performance: Jiwan Heo
-- 2021-0?-??: Chapter 11: Comparing models with resampling
-- 2021-0?-??: Chapter 12: Model tuning and the dangers of overfitting
+- **2021-07-19: Chapter 11: Comparing models with resampling: Edgar Zamora**
+- 2021-07-26: Chapter 12: Model tuning and the dangers of overfitting
 - 2021-0?-??: Chapter 13: Grid search
 - 2021-0?-??: Chapter 14: Iterative search
 
