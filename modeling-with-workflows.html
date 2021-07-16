@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-06-29" />
+<meta name="date" content="2021-07-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -432,42 +432,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="modeling-with-workflows.html#cb148-1"></a>fitted_workflow_lm &lt;-<span class="st"> </span>tree_workflow_lm <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">fit</span>(trees_training)</span>
 <span id="cb148-2"><a href="modeling-with-workflows.html#cb148-2"></a></span>
 <span id="cb148-3"><a href="modeling-with-workflows.html#cb148-3"></a><span class="kw">tidy</span>(<span class="kw">pull_workflow_prepped_recipe</span>(fitted_workflow_lm), <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 33 x 3
+<pre><code>## # A tibble: 35 x 3
 ##    terms       retained                                                id       
 ##    &lt;chr&gt;       &lt;chr&gt;                                                   &lt;chr&gt;    
-##  1 legal_stat… DPW Maintained                                          other_aB…
-##  2 legal_stat… Permitted Site                                          other_aB…
-##  3 legal_stat… Undocumented                                            other_aB…
-##  4 species     Acacia melanoxylon :: Blackwood Acacia                  other_aB…
-##  5 species     Arbutus &#39;Marina&#39; :: Hybrid Strawberry Tree              other_aB…
-##  6 species     Callistemon citrinus :: Lemon Bottlebrush               other_aB…
-##  7 species     Corymbia ficifolia :: Red Flowering Gum                 other_aB…
-##  8 species     Eriobotrya deflexa :: Bronze Loquat                     other_aB…
-##  9 species     Ficus microcarpa nitida &#39;Green Gem&#39; :: Indian Laurel F… other_aB…
-## 10 species     Ginkgo biloba :: Maidenhair Tree                        other_aB…
-## # … with 23 more rows</code></pre>
+##  1 legal_stat… DPW Maintained                                          other_a8…
+##  2 legal_stat… Permitted Site                                          other_a8…
+##  3 legal_stat… Undocumented                                            other_a8…
+##  4 species     Acacia melanoxylon :: Blackwood Acacia                  other_a8…
+##  5 species     Arbutus &#39;Marina&#39; :: Hybrid Strawberry Tree              other_a8…
+##  6 species     Callistemon citrinus :: Lemon Bottlebrush               other_a8…
+##  7 species     Corymbia ficifolia :: Red Flowering Gum                 other_a8…
+##  8 species     Cupressus macrocarpa :: Monterey Cypress                other_a8…
+##  9 species     Eriobotrya deflexa :: Bronze Loquat                     other_a8…
+## 10 species     Ficus microcarpa nitida &#39;Green Gem&#39; :: Indian Laurel F… other_a8…
+## # … with 25 more rows</code></pre>
 <div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="modeling-with-workflows.html#cb150-1"></a><span class="kw">tidy</span>(<span class="kw">pull_workflow_fit</span>(fitted_workflow_lm))</span></code></pre></div>
-<pre><code>## # A tibble: 39 x 5
+<pre><code>## # A tibble: 41 x 5
 ##    term                                  estimate  std.error statistic   p.value
 ##    &lt;chr&gt;                                    &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-##  1 (Intercept)                            3.05e+1    4.23e+0      7.21 5.68e- 13
-##  2 site_order                            -2.52e-3    1.15e-4    -22.0  3.69e-107
-##  3 date_planted                          -4.21e-5    4.88e-7    -86.2  0        
-##  4 latitude                               5.22e-1    4.08e-2     12.8  1.90e- 37
-##  5 longitude                              3.98e-1    3.28e-2     12.1  8.41e- 34
-##  6 na_ind_date_planted                   -6.19e-1    9.74e-3    -63.5  0        
-##  7 legal_status_Permitted.Site            1.13e-1    4.55e-3     24.8  6.68e-136
-##  8 legal_status_Undocumented              7.98e-2    6.55e-3     12.2  3.59e- 34
-##  9 legal_status_other                     7.06e-2    9.35e-3      7.55 4.44e- 14
-## 10 species_Arbutus..Marina.....Hybrid.…  -3.66e-1    8.29e-3    -44.2  0        
-## # … with 29 more rows</code></pre>
+##  1 (Intercept)                            6.35e+1    4.22e+0     15.1  3.57e- 51
+##  2 site_order                            -3.08e-3    1.15e-4    -26.9  1.66e-158
+##  3 date_planted                          -4.19e-5    4.83e-7    -86.8  0        
+##  4 latitude                               5.56e-1    4.03e-2     13.8  2.75e- 43
+##  5 longitude                              6.78e-1    3.28e-2     20.7  6.99e- 95
+##  6 na_ind_date_planted                   -6.22e-1    9.62e-3    -64.7  0        
+##  7 legal_status_Permitted.Site            1.07e-1    4.51e-3     23.8  4.47e-125
+##  8 legal_status_Undocumented              7.55e-2    6.51e-3     11.6  4.43e- 31
+##  9 legal_status_other                     6.61e-2    9.22e-3      7.16 7.88e- 13
+## 10 species_Arbutus..Marina.....Hybrid.…  -3.67e-1    8.20e-3    -44.8  0        
+## # … with 31 more rows</code></pre>
 <div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="modeling-with-workflows.html#cb152-1"></a>trees_testing<span class="op">$</span>pred_lm &lt;-<span class="st"> </span><span class="kw">predict</span>(fitted_workflow_lm, trees_testing)<span class="op">$</span>.pred</span>
 <span id="cb152-2"><a href="modeling-with-workflows.html#cb152-2"></a></span>
 <span id="cb152-3"><a href="modeling-with-workflows.html#cb152-3"></a><span class="kw">rmse</span>(trees_testing, diam, pred_lm)</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 rmse    standard       0.319</code></pre>
+## 1 rmse    standard       0.316</code></pre>
 <div id="different-model-same-recipe" class="section level3">
 <h3><span class="header-section-number">8.3.1</span> Different model, same recipe</h3>
 <div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="modeling-with-workflows.html#cb154-1"></a>rand_forest_spec &lt;-<span class="st"> </span><span class="kw">rand_forest</span>(</span>
@@ -489,12 +489,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## # A tibble: 1 x 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 rmse    standard       0.319</code></pre>
+## 1 rmse    standard       0.316</code></pre>
 <div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="modeling-with-workflows.html#cb156-1"></a><span class="kw">rmse</span>(trees_testing, diam, pred_rf)</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 rmse    standard       0.309</code></pre>
+## 1 rmse    standard       0.307</code></pre>
 </div>
 <div id="same-model-different-preprocessing" class="section level3">
 <h3><span class="header-section-number">8.3.2</span> Same model, different preprocessing</h3>
@@ -505,7 +505,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb158-5"><a href="modeling-with-workflows.html#cb158-5"></a><span class="st">  </span><span class="kw">predict</span>(trees_testing)</span>
 <span id="cb158-6"><a href="modeling-with-workflows.html#cb158-6"></a></span>
 <span id="cb158-7"><a href="modeling-with-workflows.html#cb158-7"></a><span class="kw">rmse_vec</span>(trees_testing<span class="op">$</span>diam, formula_predictions<span class="op">$</span>.pred)</span></code></pre></div>
-<pre><code>## [1] 0.3571624</code></pre>
+<pre><code>## [1] 0.3574375</code></pre>
 </div>
 </div>
             </section>
