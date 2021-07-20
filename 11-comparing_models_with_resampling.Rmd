@@ -125,3 +125,39 @@ summary(rqs_diff, size = 0.02) %>% # 0.02 is our practical effect size.
 00:47:45	Andy Farina:	Thank you Jon, great presentation and addition of workflow sets
 ```
 </details>
+
+### Cohort 3
+
+`r knitr::include_url("https://www.youtube.com/embed/oyc5T8fh5r0")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:12:38	Daniel Chen:	it's essentially doing the multiple recipes and collecting the model metrics for you across all your preprocessing steps/models
+00:12:40	Daniel Chen:	?
+00:14:29	Daniel Chen:	fn 	
+
+The function to run. Acceptable values are: tune::tune_grid(), tune::tune_bayes(), tune::fit_resamples(), finetune::tune_race_anova(), finetune::tune_race_win_loss(), or finetune::tune_sim_anneal().
+00:15:00	Daniel Chen:	seems like there's only a few functions that are availiable to be used
+00:16:36	Daniel Chen:	but they're using the string instead of quoted form because they're matching on string to see which functions are allowed: https://github.com/tidymodels/workflowsets/blob/main/R/workflow_map.R#L101
+00:16:53	Ildiko Czeller:	makes sense, thanks
+00:16:55	Toryn Schafer (she/her):	Thanks, Daniel!
+00:32:13	Daniel Chen:	i guess they're using tidyposterior, instead of tidymodels. so i guess that's what's adding to the confusion
+00:35:06	Daniel Chen:	cross 	
+
+A logical: should all combinations of the preprocessors and models be used to create the workflows? If FALSE, the length of preproc and models should be equal.
+00:49:17	jiwan:	tune_grid(
+  object,
+  preprocessor,
+  resamples,
+  ...,
+  param_info = NULL,
+  grid = 10,
+  metrics = NULL,
+  control = control_grid()
+)
+00:50:04	Daniel Chen:	https://tune.tidymodels.org/reference/tune_grid.html
+00:50:52	jiwan:	A data frame of tuning combinations or a positive integer. The data frame should have columns for each parameter being tuned and rows for tuning parameter candidates. An integer denotes the number of candidate parameter sets to be created automatically
+```
+</details>
