@@ -17,7 +17,7 @@
 
 - __Chapter Setup Below__
 
-```{r set-up, warning=FALSE, message=FALSE}
+```{r set-up-07, warning=FALSE, message=FALSE}
 # load parsnip, recipes, rsample, broom...
 library(tidymodels)
 library(AmesHousing)
@@ -207,7 +207,7 @@ linear_reg() %>%
 
 
 # glmnet implementation
-linear_reg() %>% 
+linear_reg(penalty = 1) %>% 
   set_engine("glmnet") %>% 
   translate()
 ```
@@ -266,7 +266,7 @@ predict(lm_form_fit, new_data = ames_test_small) %>%
 
 - Combining `bind_cols` with our predict function we can merge our predictions back to the test set.
 
-```{r}
+```{r combine-07}
 # add predictions together with actuals
 ames_test_small %>%
   select(Sale_Price) %>%
@@ -350,5 +350,36 @@ ggplot(parabolic, aes(x = X1, y = X2)) +
 00:31:15	Scott Nestler:	There are actually 30 different model types and engines at https://www.tidymodels.org/find/parsnip/ that work with parsnip.
 00:43:55	Tony ElHabr:	yay volunteers
 00:44:48	Andy Farina:	Thanks Jordan, excellent presentation
+```
+</details>
+
+### Cohort 3
+
+`r knitr::include_url("https://www.youtube.com/embed/-wG0XrZe00U")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:15:22	Ildiko Czeller:	> linear_reg()
+Linear Regression Model Specification (regression)
+
+> linear_reg() %>% set_mode("classification")
+Linear Regression Model Specification (classification)
+00:17:00	Edgar Zamora:	https://www.tidymodels.org/find/parsnip/
+00:22:51	Toryn Schafer (she/her):	model.matrix
+00:26:52	Ildiko Czeller:	Hi Daniel! good to see you
+00:27:14	Daniel Chen:	hello hello!
+00:29:02	Daniel Chen:	I forgot there was an article/help page of all the supported engines
+00:30:04	Daniel Chen:	ooh they moved the things around: this is the page to help you find arguments: https://www.tidymodels.org/find/parsnip/
+00:30:40	Daniel Chen:	that page has the model/engine parsnip param name and original param name
+00:31:03	Ildiko Czeller:	thanks!
+00:34:36	Daniel Chen:	you just need to be careful with the column names after `tidy` since they don't always mean the same thing for each model output.
+
+but it makes the column names consistent so you can combine tables
+00:45:18	jiwan:	Error in parsnip::rand_forest(verbose = TRUE) : 
+  unused argument (verbose = TRUE)
+00:45:48	Daniel Chen:	unused arguments usually get ignored. maybe you get a warning?
+00:54:29	Daniel Chen:	bye all!
 ```
 </details>

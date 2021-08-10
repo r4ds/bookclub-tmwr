@@ -242,3 +242,19 @@ https://thatdatatho.com/tutorial-about-magrittrs-pipe-operator-and-placeholders/
 01:23:00	Layla Bouzoubaa:	Thanks everyone!
 ```
 </details>
+
+### Cohort 3
+
+`r knitr::include_url("https://www.youtube.com/embed/wSLqq89_utQ")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:30:17	Toryn Schafer (she/her):	It says on the juice help page that it is superseded by bake
+00:30:47	Ildiko Czeller:	https://recipes.tidymodels.org/articles/Ordering.html
+00:51:31	Ildiko Czeller:	step_pca(matches("(SF$)|(Gr_Liv)"), num_comp = 2)
+00:52:01	jiwan:	https://juliasilge.com/blog/best-hip-hop/ Julia Silge has a nice blog post on PCA
+01:01:52	jiwan:	?step_normalize(
+```
+</details>

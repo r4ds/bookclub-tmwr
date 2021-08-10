@@ -259,3 +259,20 @@ best_models_binary %>%
 01:06:47	Andy Farina:	Excellent Joe, thank you!
 ```
 </details>
+
+### Cohort 3
+
+`r knitr::include_url("https://www.youtube.com/embed/jvN0YP37Xlg")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:13:11	Ildiko Czeller:	my connection is unstable, i am here but without video for now
+00:57:20	jiwan:	https://community.rstudio.com/t/predict-a-class-using-a-threshold-different-than-the-0-5-default-with-tidymodels/56273
+00:58:29	Toryn Schafer (she/her):	https://www.rdocumentation.org/packages/probably/versions/0.0.6/topics/make_class_pred
+00:59:06	Toryn Schafer (she/her):	https://cran.r-project.org/web/packages/probably/vignettes/where-to-use.html
+00:59:42	Ildiko Czeller:	https://probably.tidymodels.org/reference/append_class_pred.html
+01:01:41	Toryn Schafer (she/her):	https://adv-r.hadley.nz/fp.html
+```
+</details>

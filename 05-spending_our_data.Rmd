@@ -27,7 +27,7 @@ Choosing how to conduct the split of the data into training and test sets may no
 
 The most common type of sampling is known as random sampling and it is done readily in R using the [rsample](https://rsample.tidymodels.org) package with the `initial_split()`function. For the [Ames housing dataset](https://www.tmwr.org/ames.html), the call would be:
 
-```{r message=FALSE}
+```{r setup-05, message=FALSE}
 library(tidymodels)
 set.seed(123)
 data(ames)
@@ -37,7 +37,7 @@ ames_split
 
 The object `ames_split` is an `rsplit` object. To get the training and test results you can call on `training()` and `test()`:
 
-```{r}
+```{r train-test-05}
 ames_train <- training(ames_split)
 ames_test  <- testing(ames_split)
 ```
@@ -49,7 +49,7 @@ In many instances, random splitting is not suitable. This includes datasets that
 
 Splitting methods suited for datasets containing class imbalance should be considered. Let's consider a #Tidytuesday dataset on [Himalayan expedition members](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-09-22/readme.md), which Julia Silge recently explored [here](https://juliasilge.com/blog/himalayan-climbing/) using **{tidymodels}**. 
 
-```{r message=FALSE}
+```{r skim-05, message=FALSE}
 library(tidyverse)
 library(skimr)
 members <- read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-09-22/members.csv") 
@@ -59,7 +59,7 @@ skim(members)
 
 Let's say we were interested in predicting the likelihood of survival or death for an expedition member. It would be a good idea to check for class imbalance: 
 
-```{r message=FALSE}
+```{r janitor-05, message=FALSE}
 library(janitor)
 
 members %>% 
@@ -69,18 +69,69 @@ members %>%
 
 We can see that nearly 99% of people survive their expedition. This dataset would be ripe for a sampling technique adept at handling such extreme class imbalance. This technique is called *stratified sampling*, in which "the training/test split is conducted separately within each class and then these subsamples are combined into the overall training and test set". Operationally, this is done by using the `strata` argument inside `initial_split()`:
 
-```{r}
+```{r more-split-05}
 set.seed(123)
 members_split <- initial_split(members, prop = 0.80, strata = died)
 members_train <- training(members_split)
 members_test <- testing(members_split)
 ```
 
+
+### Stratified sampling simulation
+
+With simulation we can see the effect of stratification: we expect that the expected value does not change with stratification but the variance is lower.
+
+```{r simulate-stratified}
+simulate_stratified_sampling <- function(prop_in_dataset, n_resample = 50,
+                                         n_rows = 1000, seed = 45678) {
+  set.seed(seed)
+  
+  data_to_split <- tibble(died = c(
+    rep(1, floor(n_rows * prop_in_dataset)),
+    rep(0, floor(n_rows * (1 - prop_in_dataset)))
+  ))
+  
+  samples <- map_dfr(seq_len(n_resample), ~{
+    initial_split(data_to_split) %>% 
+      testing() %>% 
+      summarize(died_pct = mean(died))
+  }) 
+  
+  stratified_samples <- map_dfr(seq_len(n_resample), ~{
+    initial_split(data_to_split, strata = died) %>% 
+      testing() %>% 
+      summarize(died_pct = mean(died))
+  }) 
+  
+  rbind(
+    samples %>% mutate(stratified = FALSE),
+    stratified_samples %>% mutate(stratified = TRUE)
+  ) %>% 
+    group_by(stratified) %>% 
+    summarize(mean = mean(died_pct), var = var(died_pct))
+}
+```
+
+
+rsample does not stratify if class imbalance is [more extreme than 10%](https://rsample.tidymodels.org/reference/initial_split.html#arguments) 
+
+```{r stratified-b}
+simulate_stratified_sampling(0.09)
+```
+
+Stratified sampling happens:
+
+```{r stratified-c}
+simulate_stratified_sampling(0.11)
+```
+
+
+
 ## Continuous outcome data 
 
 For continuous outcome data (e.g. costs), a stratified random sampling approach would involve conducting a 80/20 split within each quartile and then pool the results together. For the [Ames housing dataset](https://www.tmwr.org/ames.html), the call would look like this:
 
-```{r}
+```{r more-split-b-05}
 set.seed(123)
 ames_split <- initial_split(ames, prop = 0.80, strata = Sale_Price)
 ames_train <- training(ames_split)
@@ -91,7 +142,7 @@ ames_test  <- testing(ames_split)
 
 For time series data where you'd want to allocate data to the training set/test set depending on a sorted order, you can use `initial_time_split()` which works similarly to `initial_split()`. The `prop` argument can be used to specify what proportion of the first part of data should be used as the training set. 
 
-```{r}
+```{r time-train-test-05}
 data(drinks)
 drinks_split <- initial_time_split(drinks)
 train_data <- training(drinks_split)
@@ -100,7 +151,7 @@ test_data <- testing(drinks_split)
 
 The `lag` argument can specify a lag period to use between the training and test set. This is useful if lagged predictors will be used during training and testing. 
 
-```{r}
+```{r lag-train-test-05}
 drinks_lag_split <- initial_time_split(drinks, lag = 12)
 train_data_lag <- training(drinks_lag_split)
 test_data_lag <- testing(drinks_lag_split)
@@ -113,13 +164,35 @@ It's important to figure out what the **independent experimental unit** is in yo
 
 In other datasets, there may be multiple rows per experimental unit (e.g. as in patients who are measured multiple times across time). This has implications for data splitting. To avoid data from the same experimental unit being in both the training and test set, split along the independent experimental units such that X% of experimental units are in the training set. 
 
+Example:
+
+```{r heights-05}
+# data source: http://www.bristol.ac.uk/cmm/learning/mmsoftware/data-rev.html#oxboys
+child_heights <- read_delim(here::here("data/Oxboys.txt"), col_names = FALSE, delim = " ") %>%
+  set_names(c("child_id", "age_norm", "height", "measurement_id", "season"))
+head(child_heights)
+```
+
+Depending on the modeling problem we may want to split the data to train and test set in a way that data points for children remain together. You can do this with the following code. 
+
+```{r heights-split-05}
+child_heights_split <- child_heights %>% 
+  group_nest(child_id) %>%
+  initial_split()
+
+child_heights_train <- training(child_heights_split) %>% 
+  unnest(data)
+```
+
+For other task it might be more suitable to split along measurement id and all childrens' last measurement will be the test set.
+
 ## What proportion should be used?
 
-```{r include = F}
+```{r tweetrmd, include = F}
 library(tweetrmd)
 ```
 
-```{r echo = F}
+```{r split-size-tweet, echo = F}
 include_tweet("https://twitter.com/asmae_toumi/status/1356024351720689669?s=20")
 ```
 
@@ -301,3 +374,19 @@ We will learn more about how to remedy certain issues such as class imbalance, b
 00:59:58	August:	https://cran.r-project.org/web/packages/anomalize/vignettes/anomalize_methods.html
 ```
 </details>
+
+### Cohort 3
+
+`r knitr::include_url("https://www.youtube.com/embed/Dxf3kgIkbpI")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:23:04	Daniel Chen (he/him):	I don't know why it's 10%
+00:23:23	Daniel Chen (he/him):	it seems like a good heuristic?
+00:29:33	Daniel Chen (he/him):	(Strata below 10% of the total are pooled together.)
+00:54:00	Ildiko Czeller:	https://spatialsample.tidymodels.org/reference/spatialsample.html
+```
+</details>
+

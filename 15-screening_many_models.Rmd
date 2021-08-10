@@ -2,29 +2,18 @@
 
 **Learning objectives:**
 
--   Use the `{parsnip}` addin to create a set of **model specifications.**
-
--   Create a **workflow set** with the `{workflowsets}` package.
-
--   Describe the purposes of the **workflow set columns.**
-
--   Create a **workflow set** with a `recipe` preprocessor.
-
--   Create a **workflow set** with a `{dplyr}` selector preprocessor.
-
--   **Tune** and **evaluate workflow sets.**
-
--   Use `workflowsets::workflow_map()` to **tune all models** in a workflow set.
-
--   Use convenience functions such as `workflowsets::rank_results()` to **examine** workflow set tuning results.
-
--   **Visualize** workflow set tuning results.
-
--   Use `workflowsets::workflow_map` with `{finetune}` to **efficiently screen models** using the **racing approach.**
-
--   **Compare** the **results of the racing approach** to the **results of the full workflow set screening.**
-
--   **Finalize the best model** from a workflow set.
+- Use the `{parsnip}` `Generate parsnip model specifications` addin to create a set of **model specifications.**
+- Create a **workflow set** with the `{workflowsets}` package.
+  - Describe the purposes of the **workflow set columns.**
+  - Create a **workflow set** with a `recipe` preprocessor.
+  - Create a **workflow set** with a `{dplyr}` selector preprocesor.
+- **Tune** and **evaluate workflow sets.**
+  - Use `workflowsets::workflow_map()` to **tune all models** in a workflow set.
+  - Use convenience functions such as `workflowsets::rank_results()` to **examine** workflow set tuning results.
+  - **Visualize** workflow set tuning results.
+- Use `workflowsets::workflow_map` with `{finetune}` to **efficiently screen models** using the **racing approach.**
+  - **Compare** the **results of the racing approach** to the **results of the full workflow set screening.**
+- **Finalize the best model** from a workflow set.
 
 ## Obligatory Setup
 
@@ -45,7 +34,7 @@ How I felt reading this chapter with `concrete` from `{modeldata}`
 
 </details>
 
-```{r}
+```{r 15-setup}
 library(tidyverse)
 library(tidymodels)
 theme_set(theme_minimal(base_size = 16))
@@ -58,7 +47,7 @@ df <-
 df %>% skimr::skim()
 ```
 
-```{r}
+```{r 15-corrr}
 library(corrr)
 df_selected <-
   df %>%
@@ -104,7 +93,7 @@ p_cors
 
 ## Creating `workflow_set`s
 
-```{r}
+```{r 15-workflowset}
 seed <- 2021
 col_y <- 'ladder_score'
 col_y_sym <- col_y %>% sym()
@@ -120,7 +109,7 @@ folds <-
 folds
 ```
 
-```{r}
+```{r 15-formulas}
 # My weird way of creating formulas sometimes, which can be helpful if you're experimenting with different response variables.
 form <- paste0(col_y, '~ .') %>% as.formula()
 rec_norm <-
@@ -143,7 +132,7 @@ Code for recipes...
 
 </summary>
 
-```{r}
+```{r 15-models}
 library(rules)
 library(baguette)
 f_set <- function(spec) {
@@ -227,7 +216,7 @@ How I felt after creating 10 recipes
 
 We can create `workflow_set`s, combining the recipes that standardizes the predictors with the non-linear models that work best when predictors are all on the same scale.
 
-```{r}
+```{r 15-workflowsets-together}
 library(workflowsets)
 
 sets_norm <- 
@@ -244,7 +233,7 @@ sets_norm
 
 Let's apply the quadratic pre-processing to models where it is most applicable.
 
-```{r}
+```{r 15-sets-poly}
 sets_poly <- 
   workflow_set(
     preproc = list(poly = rec_poly), 
@@ -254,7 +243,7 @@ sets_poly <-
 
 Finally, there are several recipes that don't really need pre-processing. Nonetheless, we need to have a `preproc` step, so we can use `workflowsets::workflow_variables()` for a dummy pre-processing step.
 
-```{r}
+```{r 15-sets-simple}
 sets_simple <- 
   workflow_set(
     preproc = list(form),
@@ -273,7 +262,7 @@ sets_simple
 
 We can bind all of our `workflow_set`s together.
 
-```{r}
+```{r 15-all-sets}
 sets <-
   bind_rows(sets_norm, sets_poly, sets_simple) %>% 
   mutate(across(wflow_id, ~str_remove(.x, '^simple_')))
@@ -282,12 +271,12 @@ sets
 
 And do the thing! (Observe the elegance.)
 
-```{r echo=F, include=F, eval=T}
+```{r 15-load-results, echo=F, include=F, eval=T}
 path_res_grid <- here::here('data', '15-res_grid.rds')
 do_run <- !file.exists(path_res_grid)
 ```
 
-```{r echo=T, include=T, eval=do_run}
+```{r 15-do-tune, echo=T, include=T, eval=do_run}
 ctrl_grid <-
   control_grid(
     save_pred = TRUE,
@@ -318,11 +307,11 @@ How I felt waiting for this to finish running
 
 </details>
 
-```{r echo=F, incude=F, eval=do_run}
+```{r 15-write-res_grid, echo=F, incude=F, eval=do_run}
 write_rds(res_grid, path_res_grid)
 ```
 
-```{r echo=F, include=F, eval=T}
+```{r 15-read-res_grid, echo=F, include=F, eval=T}
 res_grid <- read_rds(path_res_grid)
 ```
 
@@ -330,7 +319,7 @@ res_grid <- read_rds(path_res_grid)
 
 Let's look at our results
 
-```{r}
+```{r 15-ranking_models}
 # How many models are there?
 n_model <-
   res_grid %>% 
@@ -359,7 +348,7 @@ res_ranks
 
 Plot the ranks with standard errors.
 
-```{r echo=F, include=T, eval=T, fig.show=T}
+```{r 15-plots, echo=F, include=T, eval=T, fig.show=T}
 # workflowsets:::autoplot.workflow_set
 object <- res_grid_filt %>% filter(wflow_id != 'gb') # %>% filter(.metric == 'rmse')
 rank_metric <- 'rmse'
@@ -407,7 +396,7 @@ p_ranks
 
 If we wanted to look at the sub-models for a given `wflow_id`, we could do that with `autoplot()`.
 
-```{r}
+```{r 15-autoplot}
 autoplot(
   res_grid, 
   id = 'norm_svm_p', 
@@ -433,7 +422,7 @@ As shown in the book chapter, this could be a really good use case for `finetune
 
 Now we can finalize our choice of model.
 
-```{r stacks, echo=F, include=F, eval=F}
+```{r 15-stacks, echo=F, include=F, eval=F}
 library(stacks)
 
 stack <-
@@ -448,7 +437,7 @@ fit_ens <- blend %>% stacks::fit_members()
 fit_ens
 ```
 
-```{r}
+```{r 15-best-stacks}
 wflow_id_best <- 
   res_ranks %>% 
   slice_min(rank, with_ties = FALSE) %>% 
@@ -473,7 +462,7 @@ metrics_best
 
 Finally, the canonical observed vs. predicted scatter plot.
 
-```{r }
+```{r 15-preds}
 p_preds <-
   fit_best %>% 
   collect_predictions() %>% 
