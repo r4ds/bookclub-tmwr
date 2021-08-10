@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-07-20" />
+<meta name="date" content="2021-08-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -507,7 +507,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb344-14"><a href="bayesian-optimization.html#cb344-14"></a>  )</span></code></pre></div>
 <p>Looks like the improvements occurred at iterations 8, 11, 13, 12 and 10. We can pull the best result(s) like so:</p>
 <div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="bayesian-optimization.html#cb345-1"></a><span class="kw">show_best</span>(svm_bo) <span class="co"># same call as with grid search</span></span></code></pre></div>
-<pre><code>## # A tibble: 5 x 9
+<pre><code>## # A tibble: 5 × 9
 ##    cost rbf_sigma .metric .estimator  mean     n std_err .config .iter
 ##   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;int&gt;
 ## 1 31.5     0.0986 roc_auc binary     0.965     5 0.00909 Iter21     21

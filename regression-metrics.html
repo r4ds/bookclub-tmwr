@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-07-20" />
+<meta name="date" content="2021-08-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -505,7 +505,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb170-72"><a href="regression-metrics.html#cb170-72"></a>        <span class="dt">strip.text.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">8</span>))</span></code></pre></div>
 <p><img src="images/09-best_models.png" /></p>
 <div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="regression-metrics.html#cb171-1"></a>best_models <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(metric_name, penalty, mixture) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">distinct</span>()</span></code></pre></div>
-<pre><code>## # A tibble: 14 x 3
+<pre><code>## # A tibble: 14 × 3
 ##    metric_name        penalty mixture
 ##    &lt;chr&gt;                &lt;dbl&gt;   &lt;dbl&gt;
 ##  1 rmse              1.74e- 6   0.887

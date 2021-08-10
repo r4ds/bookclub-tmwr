@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-07-20" />
+<meta name="date" content="2021-08-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -439,22 +439,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="modeling-with-workflows.html#cb151-1"></a>fitted_workflow_lm &lt;-<span class="st"> </span>tree_workflow_lm <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">fit</span>(trees_training)</span>
 <span id="cb151-2"><a href="modeling-with-workflows.html#cb151-2"></a></span>
 <span id="cb151-3"><a href="modeling-with-workflows.html#cb151-3"></a><span class="kw">tidy</span>(<span class="kw">pull_workflow_prepped_recipe</span>(fitted_workflow_lm), <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 35 x 3
-##    terms       retained                                                id       
-##    &lt;chr&gt;       &lt;chr&gt;                                                   &lt;chr&gt;    
-##  1 legal_stat… DPW Maintained                                          other_a8…
-##  2 legal_stat… Permitted Site                                          other_a8…
-##  3 legal_stat… Undocumented                                            other_a8…
-##  4 species     Acacia melanoxylon :: Blackwood Acacia                  other_a8…
-##  5 species     Arbutus &#39;Marina&#39; :: Hybrid Strawberry Tree              other_a8…
-##  6 species     Callistemon citrinus :: Lemon Bottlebrush               other_a8…
-##  7 species     Corymbia ficifolia :: Red Flowering Gum                 other_a8…
-##  8 species     Cupressus macrocarpa :: Monterey Cypress                other_a8…
-##  9 species     Eriobotrya deflexa :: Bronze Loquat                     other_a8…
-## 10 species     Ficus microcarpa nitida &#39;Green Gem&#39; :: Indian Laurel F… other_a8…
+<pre><code>## # A tibble: 35 × 3
+##    terms        retained                                               id       
+##    &lt;chr&gt;        &lt;chr&gt;                                                  &lt;chr&gt;    
+##  1 legal_status DPW Maintained                                         other_a8…
+##  2 legal_status Permitted Site                                         other_a8…
+##  3 legal_status Undocumented                                           other_a8…
+##  4 species      Acacia melanoxylon :: Blackwood Acacia                 other_a8…
+##  5 species      Arbutus &#39;Marina&#39; :: Hybrid Strawberry Tree             other_a8…
+##  6 species      Callistemon citrinus :: Lemon Bottlebrush              other_a8…
+##  7 species      Corymbia ficifolia :: Red Flowering Gum                other_a8…
+##  8 species      Cupressus macrocarpa :: Monterey Cypress               other_a8…
+##  9 species      Eriobotrya deflexa :: Bronze Loquat                    other_a8…
+## 10 species      Ficus microcarpa nitida &#39;Green Gem&#39; :: Indian Laurel … other_a8…
 ## # … with 25 more rows</code></pre>
 <div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="modeling-with-workflows.html#cb153-1"></a><span class="kw">tidy</span>(<span class="kw">pull_workflow_fit</span>(fitted_workflow_lm))</span></code></pre></div>
-<pre><code>## # A tibble: 41 x 5
+<pre><code>## # A tibble: 41 × 5
 ##    term                                  estimate  std.error statistic   p.value
 ##    &lt;chr&gt;                                    &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
 ##  1 (Intercept)                            6.35e+1    4.22e+0     15.1  3.57e- 51
@@ -471,7 +471,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="modeling-with-workflows.html#cb155-1"></a>trees_testing<span class="op">$</span>pred_lm &lt;-<span class="st"> </span><span class="kw">predict</span>(fitted_workflow_lm, trees_testing)<span class="op">$</span>.pred</span>
 <span id="cb155-2"><a href="modeling-with-workflows.html#cb155-2"></a></span>
 <span id="cb155-3"><a href="modeling-with-workflows.html#cb155-3"></a><span class="kw">rmse</span>(trees_testing, diam, pred_lm)</span></code></pre></div>
-<pre><code>## # A tibble: 1 x 3
+<pre><code>## # A tibble: 1 × 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 ## 1 rmse    standard       0.316</code></pre>
@@ -493,12 +493,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb157-14"><a href="modeling-with-workflows.html#cb157-14"></a>trees_testing<span class="op">$</span>pred_rf &lt;-<span class="st"> </span><span class="kw">predict</span>(fitted_workflow_rf, trees_testing)<span class="op">$</span>.pred</span>
 <span id="cb157-15"><a href="modeling-with-workflows.html#cb157-15"></a></span>
 <span id="cb157-16"><a href="modeling-with-workflows.html#cb157-16"></a><span class="kw">rmse</span>(trees_testing, diam, pred_lm)</span></code></pre></div>
-<pre><code>## # A tibble: 1 x 3
+<pre><code>## # A tibble: 1 × 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 ## 1 rmse    standard       0.316</code></pre>
 <div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="modeling-with-workflows.html#cb159-1"></a><span class="kw">rmse</span>(trees_testing, diam, pred_rf)</span></code></pre></div>
-<pre><code>## # A tibble: 1 x 3
+<pre><code>## # A tibble: 1 × 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 ## 1 rmse    standard       0.307</code></pre>

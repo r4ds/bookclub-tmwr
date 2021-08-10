@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-07-20" />
+<meta name="date" content="2021-08-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -434,7 +434,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb355-12"><a href="creating-workflow-sets.html#cb355-12"></a><span class="st">  </span><span class="kw">vfold_cv</span>(<span class="dt">strata =</span> <span class="op">!!</span>col_y_sym, <span class="dt">repeats =</span> <span class="dv">5</span>)</span>
 <span id="cb355-13"><a href="creating-workflow-sets.html#cb355-13"></a>folds</span></code></pre></div>
 <pre><code>## #  10-fold cross-validation repeated 5 times using stratification 
-## # A tibble: 50 x 3
+## # A tibble: 50 × 3
 ##    splits          id      id2   
 ##    &lt;list&gt;          &lt;chr&gt;   &lt;chr&gt; 
 ##  1 &lt;split [97/12]&gt; Repeat1 Fold01
@@ -562,12 +562,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb360-10"><a href="creating-workflow-sets.html#cb360-10"></a>    )</span>
 <span id="cb360-11"><a href="creating-workflow-sets.html#cb360-11"></a>  )</span>
 <span id="cb360-12"><a href="creating-workflow-sets.html#cb360-12"></a>sets_norm</span></code></pre></div>
-<pre><code>## # A workflow set/tibble: 3 x 4
-##   wflow_id   info             option      result    
-##   &lt;chr&gt;      &lt;list&gt;           &lt;list&gt;      &lt;list&gt;    
-## 1 norm_svm_r &lt;tibble [1 × 4]&gt; &lt;wrkflw__ &gt; &lt;list [0]&gt;
-## 2 norm_svm_p &lt;tibble [1 × 4]&gt; &lt;wrkflw__ &gt; &lt;list [0]&gt;
-## 3 norm_knn   &lt;tibble [1 × 4]&gt; &lt;wrkflw__ &gt; &lt;list [0]&gt;</code></pre>
+<pre><code>## # A workflow set/tibble: 3 × 4
+##   wflow_id   info             option    result    
+##   &lt;chr&gt;      &lt;list&gt;           &lt;list&gt;    &lt;list&gt;    
+## 1 norm_svm_r &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+## 2 norm_svm_p &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+## 3 norm_knn   &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;</code></pre>
 <p>Let’s apply the quadratic pre-processing to models where it is most applicable.</p>
 <div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="creating-workflow-sets.html#cb362-1"></a>sets_poly &lt;-<span class="st"> </span></span>
 <span id="cb362-2"><a href="creating-workflow-sets.html#cb362-2"></a><span class="st">  </span><span class="kw">workflow_set</span>(</span>
@@ -589,34 +589,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb363-12"><a href="creating-workflow-sets.html#cb363-12"></a>      )</span>
 <span id="cb363-13"><a href="creating-workflow-sets.html#cb363-13"></a>  )</span>
 <span id="cb363-14"><a href="creating-workflow-sets.html#cb363-14"></a>sets_simple</span></code></pre></div>
-<pre><code>## # A workflow set/tibble: 6 x 4
-##   wflow_id         info             option      result    
-##   &lt;chr&gt;            &lt;list&gt;           &lt;list&gt;      &lt;list&gt;    
-## 1 formula_mars     &lt;tibble [1 × 4]&gt; &lt;wrkflw__ &gt; &lt;list [0]&gt;
-## 2 formula_cart     &lt;tibble [1 × 4]&gt; &lt;wrkflw__ &gt; &lt;list [0]&gt;
-## 3 formula_cart_bag &lt;tibble [1 × 4]&gt; &lt;wrkflw__ &gt; &lt;list [0]&gt;
-## 4 formula_rf       &lt;tibble [1 × 4]&gt; &lt;wrkflw__ &gt; &lt;list [0]&gt;
-## 5 formula_gb       &lt;tibble [1 × 4]&gt; &lt;wrkflw__ &gt; &lt;list [0]&gt;
-## 6 formula_cube     &lt;tibble [1 × 4]&gt; &lt;wrkflw__ &gt; &lt;list [0]&gt;</code></pre>
+<pre><code>## # A workflow set/tibble: 6 × 4
+##   wflow_id         info             option    result    
+##   &lt;chr&gt;            &lt;list&gt;           &lt;list&gt;    &lt;list&gt;    
+## 1 formula_mars     &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+## 2 formula_cart     &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+## 3 formula_cart_bag &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+## 4 formula_rf       &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+## 5 formula_gb       &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+## 6 formula_cube     &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;</code></pre>
 <p>We can bind all of our <code>workflow_set</code>s together.</p>
 <div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="creating-workflow-sets.html#cb365-1"></a>sets &lt;-</span>
 <span id="cb365-2"><a href="creating-workflow-sets.html#cb365-2"></a><span class="st">  </span><span class="kw">bind_rows</span>(sets_norm, sets_poly, sets_simple) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb365-3"><a href="creating-workflow-sets.html#cb365-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="kw">across</span>(wflow_id, <span class="op">~</span><span class="kw">str_remove</span>(.x, <span class="st">&#39;^simple_&#39;</span>)))</span>
 <span id="cb365-4"><a href="creating-workflow-sets.html#cb365-4"></a>sets</span></code></pre></div>
-<pre><code>## # A workflow set/tibble: 11 x 4
-##    wflow_id         info             option      result    
-##    &lt;chr&gt;            &lt;list&gt;           &lt;list&gt;      &lt;list&gt;    
-##  1 norm_svm_r       &lt;tibble [1 × 4]&gt; &lt;wrkflw__ &gt; &lt;list [0]&gt;
-##  2 norm_svm_p       &lt;tibble [1 × 4]&gt; &lt;wrkflw__ &gt; &lt;list [0]&gt;
-##  3 norm_knn         &lt;tibble [1 × 4]&gt; &lt;wrkflw__ &gt; &lt;list [0]&gt;
-##  4 poly_lr          &lt;tibble [1 × 4]&gt; &lt;wrkflw__ &gt; &lt;list [0]&gt;
-##  5 poly_knn         &lt;tibble [1 × 4]&gt; &lt;wrkflw__ &gt; &lt;list [0]&gt;
-##  6 formula_mars     &lt;tibble [1 × 4]&gt; &lt;wrkflw__ &gt; &lt;list [0]&gt;
-##  7 formula_cart     &lt;tibble [1 × 4]&gt; &lt;wrkflw__ &gt; &lt;list [0]&gt;
-##  8 formula_cart_bag &lt;tibble [1 × 4]&gt; &lt;wrkflw__ &gt; &lt;list [0]&gt;
-##  9 formula_rf       &lt;tibble [1 × 4]&gt; &lt;wrkflw__ &gt; &lt;list [0]&gt;
-## 10 formula_gb       &lt;tibble [1 × 4]&gt; &lt;wrkflw__ &gt; &lt;list [0]&gt;
-## 11 formula_cube     &lt;tibble [1 × 4]&gt; &lt;wrkflw__ &gt; &lt;list [0]&gt;</code></pre>
+<pre><code>## # A workflow set/tibble: 11 × 4
+##    wflow_id         info             option    result    
+##    &lt;chr&gt;            &lt;list&gt;           &lt;list&gt;    &lt;list&gt;    
+##  1 norm_svm_r       &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+##  2 norm_svm_p       &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+##  3 norm_knn         &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+##  4 poly_lr          &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+##  5 poly_knn         &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+##  6 formula_mars     &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+##  7 formula_cart     &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+##  8 formula_cart_bag &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+##  9 formula_rf       &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+## 10 formula_gb       &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+## 11 formula_cube     &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;</code></pre>
 <p>And do the thing! (Observe the elegance.)</p>
 <div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="creating-workflow-sets.html#cb367-1"></a>ctrl_grid &lt;-</span>
 <span id="cb367-2"><a href="creating-workflow-sets.html#cb367-2"></a><span class="st">  </span><span class="kw">control_grid</span>(</span>

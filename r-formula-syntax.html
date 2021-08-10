@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-07-20" />
+<meta name="date" content="2021-08-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -428,7 +428,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb42-2"><a href="r-formula-syntax.html#cb42-2"></a></span>
 <span id="cb42-3"><a href="r-formula-syntax.html#cb42-3"></a>trees &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(trees)</span>
 <span id="cb42-4"><a href="r-formula-syntax.html#cb42-4"></a>trees</span></code></pre></div>
-<pre><code>## # A tibble: 31 x 3
+<pre><code>## # A tibble: 31 × 3
 ##    Girth Height Volume
 ##    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
 ##  1   8.3     70   10.3
@@ -448,7 +448,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We observe that <code>Girth</code> is strongly correlated with <code>Volume</code></p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="r-formula-syntax.html#cb44-1"></a>trees <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb44-2"><a href="r-formula-syntax.html#cb44-2"></a><span class="st">  </span>corrr<span class="op">::</span><span class="kw">correlate</span>()</span></code></pre></div>
-<pre><code>## # A tibble: 3 x 4
+<pre><code>## # A tibble: 3 × 4
 ##   term    Girth Height Volume
 ##   &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
 ## 1 Girth  NA      0.519  0.967
@@ -548,7 +548,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb62-2"><a href="r-formula-syntax.html#cb62-2"></a><span class="kw">set.seed</span>(<span class="dv">42</span>)</span>
 <span id="cb62-3"><a href="r-formula-syntax.html#cb62-3"></a>trees2<span class="op">$</span>group =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">toupper</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]), <span class="dt">size =</span> <span class="kw">nrow</span>(trees2), <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb62-4"><a href="r-formula-syntax.html#cb62-4"></a>trees2</span></code></pre></div>
-<pre><code>## # A tibble: 31 x 4
+<pre><code>## # A tibble: 31 × 4
 ##    Girth Height Volume group
 ##    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;
 ##  1   8.3     70   10.3 A    

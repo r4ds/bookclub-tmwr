@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-07-20" />
+<meta name="date" content="2021-08-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -440,15 +440,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb163-18"><a href="managing-many-workflows.html#cb163-18"></a>)</span>
 <span id="cb163-19"><a href="managing-many-workflows.html#cb163-19"></a></span>
 <span id="cb163-20"><a href="managing-many-workflows.html#cb163-20"></a>tree_workflows</span></code></pre></div>
-<pre><code>## # A workflow set/tibble: 6 x 4
-##   wflow_id          info             option      result    
-##   &lt;chr&gt;             &lt;list&gt;           &lt;list&gt;      &lt;list&gt;    
-## 1 variables_lm      &lt;tibble [1 × 4]&gt; &lt;wrkflw__ &gt; &lt;list [0]&gt;
-## 2 variables_rf      &lt;tibble [1 × 4]&gt; &lt;wrkflw__ &gt; &lt;list [0]&gt;
-## 3 simple_formula_lm &lt;tibble [1 × 4]&gt; &lt;wrkflw__ &gt; &lt;list [0]&gt;
-## 4 simple_formula_rf &lt;tibble [1 × 4]&gt; &lt;wrkflw__ &gt; &lt;list [0]&gt;
-## 5 trees_recipe_lm   &lt;tibble [1 × 4]&gt; &lt;wrkflw__ &gt; &lt;list [0]&gt;
-## 6 trees_recipe_rf   &lt;tibble [1 × 4]&gt; &lt;wrkflw__ &gt; &lt;list [0]&gt;</code></pre>
+<pre><code>## # A workflow set/tibble: 6 × 4
+##   wflow_id          info             option    result    
+##   &lt;chr&gt;             &lt;list&gt;           &lt;list&gt;    &lt;list&gt;    
+## 1 variables_lm      &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+## 2 variables_rf      &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+## 3 simple_formula_lm &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+## 4 simple_formula_rf &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+## 5 trees_recipe_lm   &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+## 6 trees_recipe_rf   &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;</code></pre>
 <div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="managing-many-workflows.html#cb165-1"></a>tree_predictions &lt;-<span class="st"> </span>tree_workflows <span class="op">%&gt;%</span></span>
 <span id="cb165-2"><a href="managing-many-workflows.html#cb165-2"></a><span class="st">  </span><span class="kw">rowwise</span>() <span class="op">%&gt;%</span></span>
 <span id="cb165-3"><a href="managing-many-workflows.html#cb165-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">fitted_wf =</span> <span class="kw">list</span>(<span class="kw">fit</span>(info<span class="op">$</span>workflow[[<span class="dv">1</span>]], trees_training))) <span class="op">%&gt;%</span></span>
@@ -456,16 +456,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb165-5"><a href="managing-many-workflows.html#cb165-5"></a></span>
 <span id="cb165-6"><a href="managing-many-workflows.html#cb165-6"></a>tree_predictions <span class="op">%&gt;%</span></span>
 <span id="cb165-7"><a href="managing-many-workflows.html#cb165-7"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">rmse =</span> <span class="kw">rmse_vec</span>(trees_testing<span class="op">$</span>diam, pred<span class="op">$</span>.pred))</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 7
+<pre><code>## # A tibble: 6 × 7
 ## # Rowwise: 
-##   wflow_id       info         option     result   fitted_wf pred            rmse
-##   &lt;chr&gt;          &lt;list&gt;       &lt;list&gt;     &lt;list&gt;   &lt;list&gt;    &lt;list&gt;         &lt;dbl&gt;
-## 1 variables_lm   &lt;tibble [1 … &lt;wrkflw__… &lt;list [… &lt;workflo… &lt;tibble [29,5… 0.367
-## 2 variables_rf   &lt;tibble [1 … &lt;wrkflw__… &lt;list [… &lt;workflo… &lt;tibble [29,5… 0.311
-## 3 simple_formul… &lt;tibble [1 … &lt;wrkflw__… &lt;list [… &lt;workflo… &lt;tibble [29,5… 0.356
-## 4 simple_formul… &lt;tibble [1 … &lt;wrkflw__… &lt;list [… &lt;workflo… &lt;tibble [29,5… 0.341
-## 5 trees_recipe_… &lt;tibble [1 … &lt;wrkflw__… &lt;list [… &lt;workflo… &lt;tibble [29,5… 0.316
-## 6 trees_recipe_… &lt;tibble [1 … &lt;wrkflw__… &lt;list [… &lt;workflo… &lt;tibble [29,5… 0.321</code></pre>
+##   wflow_id          info             option    result     fitted_wf  pred   rmse
+##   &lt;chr&gt;             &lt;list&gt;           &lt;list&gt;    &lt;list&gt;     &lt;list&gt;     &lt;lis&gt; &lt;dbl&gt;
+## 1 variables_lm      &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt; &lt;workflow&gt; &lt;tib… 0.367
+## 2 variables_rf      &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt; &lt;workflow&gt; &lt;tib… 0.311
+## 3 simple_formula_lm &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt; &lt;workflow&gt; &lt;tib… 0.356
+## 4 simple_formula_rf &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt; &lt;workflow&gt; &lt;tib… 0.341
+## 5 trees_recipe_lm   &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt; &lt;workflow&gt; &lt;tib… 0.316
+## 6 trees_recipe_rf   &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt; &lt;workflow&gt; &lt;tib… 0.321</code></pre>
 </div>
             </section>
 

@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-07-20" />
+<meta name="date" content="2021-08-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -779,14 +779,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb106-28"><a href="class-imbalance.html#cb106-28"></a>}</span></code></pre></div>
 <p>rsample does not stratify if class imbalance is <a href="https://rsample.tidymodels.org/reference/initial_split.html#arguments">more extreme than 10%</a></p>
 <div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="class-imbalance.html#cb107-1"></a><span class="kw">simulate_stratified_sampling</span>(<span class="fl">0.09</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 2 x 3
+<pre><code>## # A tibble: 2 × 3
 ##   stratified   mean      var
 ##   &lt;lgl&gt;       &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 FALSE      0.0910 0.000240
 ## 2 TRUE       0.0917 0.000257</code></pre>
 <p>Stratified sampling happens:</p>
 <div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="class-imbalance.html#cb109-1"></a><span class="kw">simulate_stratified_sampling</span>(<span class="fl">0.11</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 2 x 3
+<pre><code>## # A tibble: 2 × 3
 ##   stratified  mean      var
 ##   &lt;lgl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 FALSE      0.110 0.000257

@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-07-20" />
+<meta name="date" content="2021-08-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -484,14 +484,14 @@ forest model will be candidate #2.</p>
 <span id="cb231-17"><a href="resubstitution-approach.html#cb231-17"></a>}</span></code></pre></div>
 <p>Resubstitution errors for the linear model:</p>
 <div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="resubstitution-approach.html#cb232-1"></a><span class="kw">estimate_perf</span>(lm_fit, ames_train)</span></code></pre></div>
-<pre><code>## # A tibble: 2 x 4
+<pre><code>## # A tibble: 2 × 4
 ##   .metric .estimate object data 
 ##   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;
 ## 1 rmse       0.0751 lm_fit train
 ## 2 rsq        0.819  lm_fit train</code></pre>
 <p>Resubstitution errors for the random forest model:</p>
 <div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="resubstitution-approach.html#cb234-1"></a><span class="kw">estimate_perf</span>(rf_fit, ames_train)</span></code></pre></div>
-<pre><code>## # A tibble: 2 x 4
+<pre><code>## # A tibble: 2 × 4
 ##   .metric .estimate object data 
 ##   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;
 ## 1 rmse       0.0366 rf_fit train
@@ -500,7 +500,7 @@ forest model will be candidate #2.</p>
 (2+ times as better). We can choose the random forest model as our only
 candidate model. We can test its performance on the test set:</p>
 <div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="resubstitution-approach.html#cb236-1"></a><span class="kw">estimate_perf</span>(rf_fit, ames_test)</span></code></pre></div>
-<pre><code>## # A tibble: 2 x 4
+<pre><code>## # A tibble: 2 × 4
 ##   .metric .estimate object data 
 ##   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;
 ## 1 rmse       0.0698 rf_fit test 

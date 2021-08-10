@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-07-20" />
+<meta name="date" content="2021-08-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -438,7 +438,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb35-15"><a href="how-to-read-and-wrangle-data.html#cb35-15"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(date, station) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb35-16"><a href="how-to-read-and-wrangle-data.html#cb35-16"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarize</span>(<span class="dt">rides =</span> <span class="kw">max</span>(rides), <span class="dt">.groups =</span> <span class="st">&quot;drop&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="how-to-read-and-wrangle-data.html#cb36-1"></a><span class="kw">head</span>(all_stations, <span class="dv">10</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 10 x 3
+<pre><code>## # A tibble: 10 × 3
 ##    date       station             rides
 ##    &lt;date&gt;     &lt;chr&gt;               &lt;dbl&gt;
 ##  1 2001-01-01 18th                0    

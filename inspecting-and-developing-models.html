@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-07-20" />
+<meta name="date" content="2021-08-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -473,7 +473,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="inspecting-and-developing-models.html#cb74-1"></a><span class="kw">library</span>(broom)</span>
 <span id="cb74-2"><a href="inspecting-and-developing-models.html#cb74-2"></a></span>
 <span id="cb74-3"><a href="inspecting-and-developing-models.html#cb74-3"></a>reg_fit <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tidy</span>()</span></code></pre></div>
-<pre><code>## # A tibble: 3 x 5
+<pre><code>## # A tibble: 3 × 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept)  -58.0       8.64      -6.71 2.75e- 7
@@ -510,7 +510,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb78-8"><a href="inspecting-and-developing-models.html#cb78-8"></a><span class="st">  </span><span class="kw">map_dfr</span>(glance, <span class="dt">.id =</span> <span class="st">&#39;id&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb78-9"><a href="inspecting-and-developing-models.html#cb78-9"></a><span class="st">  </span><span class="kw">select</span>(id, adj.r.squared) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb78-10"><a href="inspecting-and-developing-models.html#cb78-10"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(adj.r.squared))</span></code></pre></div>
-<pre><code>## # A tibble: 5 x 2
+<pre><code>## # A tibble: 5 × 2
 ##   id           adj.r.squared
 ##   &lt;chr&gt;                &lt;dbl&gt;
 ## 1 poly                 0.975
@@ -541,7 +541,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb80-19"><a href="inspecting-and-developing-models.html#cb80-19"></a>}</span>
 <span id="cb80-20"><a href="inspecting-and-developing-models.html#cb80-20"></a></span>
 <span id="cb80-21"><a href="inspecting-and-developing-models.html#cb80-21"></a>reg_fits <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">.select_unnest</span>(tidied)</span></code></pre></div>
-<pre><code>## # A tibble: 12 x 6
+<pre><code>## # A tibble: 12 × 6
 ##    group term        estimate std.error statistic    p.value
 ##    &lt;chr&gt; &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
 ##  1 A     (Intercept) -44.6       17.5      -2.55  0.0312    
@@ -557,7 +557,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 11 D     Girth         6.03       0.372    16.2   0.0000852 
 ## 12 D     Height       -0.0268     0.214    -0.125 0.906</code></pre>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="inspecting-and-developing-models.html#cb82-1"></a>reg_fits <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">.select_unnest</span>(glanced)</span></code></pre></div>
-<pre><code>## # A tibble: 4 x 13
+<pre><code>## # A tibble: 4 × 13
 ##   group r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
 ##   &lt;chr&gt;     &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1 A         0.960         0.951  3.81     107.  5.27e-7     2  -31.3  70.7  72.6
@@ -566,7 +566,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 D         0.990         0.985  2.80     194.  1.04e-4     2  -15.2  38.4  38.2
 ## # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="inspecting-and-developing-models.html#cb84-1"></a>reg_fits <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">.select_unnest</span>(augmented)</span></code></pre></div>
-<pre><code>## # A tibble: 31 x 10
+<pre><code>## # A tibble: 31 × 10
 ##    group Volume Girth Height .fitted .resid   .hat .sigma .cooksd .std.resid
 ##    &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
 ##  1 A       10.3   8.3     70    7.81  2.49  0.252    3.91 0.0645       0.758

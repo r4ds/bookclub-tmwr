@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-07-20" />
+<meta name="date" content="2021-08-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -478,7 +478,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb341-11"><a href="svm-model-as-motivating-example.html#cb341-11"></a><span class="st">  </span>svm_wflow <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb341-12"><a href="svm-model-as-motivating-example.html#cb341-12"></a><span class="st">  </span><span class="kw">tune_grid</span>(<span class="dt">resamples =</span> penguins_folds, <span class="dt">grid =</span> start_grid, <span class="dt">metrics =</span> roc_res)</span></code></pre></div>
 <div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="svm-model-as-motivating-example.html#cb342-1"></a><span class="kw">collect_metrics</span>(svm_initial)</span></code></pre></div>
-<pre><code>## # A tibble: 4 x 8
+<pre><code>## # A tibble: 4 × 8
 ##     cost rbf_sigma .metric .estimator  mean     n std_err .config             
 ##    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;               
 ## 1 0.0156  0.000001 roc_auc binary     0.588     5  0.171  Preprocessor1_Model1

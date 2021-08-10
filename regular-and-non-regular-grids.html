@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-07-20" />
+<meta name="date" content="2021-08-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -453,7 +453,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">13.1.1</span> Regular Grids</h3>
 <p>The <code>dials</code> package contains a set of <code>grid_*()</code> functions that take the parameter object and produce different types of grids.</p>
 <div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="regular-and-non-regular-grids.html#cb285-1"></a><span class="kw">grid_regular</span>(mlp_param, <span class="dt">levels =</span> <span class="dv">2</span>) </span></code></pre></div>
-<pre><code>## # A tibble: 8 x 3
+<pre><code>## # A tibble: 8 × 3
 ##   hidden_units      penalty epochs
 ##          &lt;int&gt;        &lt;dbl&gt;  &lt;int&gt;
 ## 1            1 0.0000000001     10
@@ -469,7 +469,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb287-2"><a href="regular-and-non-regular-grids.html#cb287-2"></a><span class="st">  </span><span class="kw">grid_regular</span>(<span class="dt">levels =</span> <span class="kw">c</span>(<span class="dt">hidden_units =</span> <span class="dv">3</span>,</span>
 <span id="cb287-3"><a href="regular-and-non-regular-grids.html#cb287-3"></a>                          <span class="dt">penalty =</span> <span class="dv">2</span>, </span>
 <span id="cb287-4"><a href="regular-and-non-regular-grids.html#cb287-4"></a>                          <span class="dt">epochs =</span> <span class="dv">2</span>))</span></code></pre></div>
-<pre><code>## # A tibble: 12 x 3
+<pre><code>## # A tibble: 12 × 3
 ##    hidden_units      penalty epochs
 ##           &lt;int&gt;        &lt;dbl&gt;  &lt;int&gt;
 ##  1            1 0.0000000001     10
