@@ -80,13 +80,14 @@ If you would like to present, please add your name next to a chapter using the [
 - 2021-06-14: Chapter 8: A model workflow: Ildiko Czeller
 - 2021-06-28: Chapter 9: Judging model effectiveness: Federica Gazzelloni
 - 2021-07-05: Chapter 10: Resampling for evaluating performance: Jiwan Heo
+- 2021-07-19: Chapter 11: Comparing models with resampling: Edgar Zamora
+- 2021-07-26: Chapter 12: Model tuning and the dangers of overfitting: Daniel Chen
+- 2021-08-09: Chapter 13: Grid search: Jiwan Heo
 
 </details>
 
-- **2021-07-19: Chapter 11: Comparing models with resampling: Edgar Zamora**
-- 2021-07-26: Chapter 12: Model tuning and the dangers of overfitting
-- 2021-0?-??: Chapter 13: Grid search
-- 2021-0?-??: Chapter 14: Iterative search
+- 2021-08-16: Chapter 14: Iterative search: Ildiko Czeller
+- 2021-08-23: Chapter 15: Screening many models: Federica Gazzelloni
 
 <hr>
 
