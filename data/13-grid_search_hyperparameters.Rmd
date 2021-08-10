@@ -1,0 +1,163 @@
+---
+title: "Ch. 13 Grid Search Cohort 3 Material"
+author: "Jiwan Heo"
+date: "2021-08-09"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Setup
+
+```{r}
+library(tidyverse)
+library(tidymodels)
+doParallel::registerDoParallel(cores = parallel::detectCores())
+
+# Pre-processing outside a recipe.
+# This function just turns `age_upon_outcome` into a single unit column (weeks)
+parse_age <- function(dat) {
+  dat %>% 
+    mutate(age_upon_outcome = ifelse(age_upon_outcome == "NULL", NA, age_upon_outcome)) %>%  
+    mutate(age_upon_outcome = lubridate::as.period(age_upon_outcome)) %>%
+    mutate(age_upon_outcome = lubridate::time_length(age_upon_outcome, unit = "weeks"))
+}
+
+dataset <- read_csv(here::here("sliced", "s01e10", "train.csv")) %>% 
+  parse_age() # data from: https://www.kaggle.com/c/sliced-s01e10-playoffs-2/data
+
+holdout <- read_csv(here::here("sliced", "s01e10", "test.csv")) %>% 
+  parse_age()
+
+# Using just 1% of data for the sake of speed
+dataset_partial <- dataset[sample(1:nrow(dataset), round(nrow(dataset) * 0.01), replace = TRUE), ]
+  
+set.seed(123)
+
+init_split <- initial_split(dataset_partial)
+training <- training(init_split)
+testing <- testing(init_split)
+
+set.seed(234)
+folds <- vfold_cv(training, v = 5)
+```
+
+# Model Training
+
+## Recipe
+
+```{r}
+library(textrecipes)
+
+# Some arbitrary recipe steps.
+# These got me log loss of 6.6, so don't use this recipe
+
+my_recipe <- recipe(outcome_type ~ ., data = training) %>% 
+  update_role(id, new_role = "id") %>% 
+  step_date(datetime, features = c("month")) %>% 
+  step_rm(datetime, name, date_of_birth) %>% 
+  step_impute_mean(age_upon_outcome) %>% 
+  step_normalize(age_upon_outcome) %>% 
+  step_novel(c(animal_type, breed)) %>% 
+  step_unknown(c(animal_type, breed)) %>% 
+  step_dummy(animal_type, sex, spay_neuter, datetime_month) %>%
+  step_tokenize(breed) %>% 
+  step_tokenfilter(breed, max_tokens = 30) %>%
+  step_tf(breed) %>% 
+  step_tokenize(color) %>% 
+  step_tokenfilter(color, max_tokens = 15) %>%
+  step_tf(color)
+```
+
+## Model Specs
+
+### Random Forest
+ 
+0.754 -> min_n: 20, trees: 800, mtry: 22   # I like taking notes like this, every time I find a good combination of hyperparameters
+0.651 -> min_n: 10, trees: 800, mtry: 12
+0.649 -> min_n: 10, trees: 800, mtry: 12
+0.594 -> min_n: 14, trees: 200, mtry: 19
+
+```{r}
+rf_spec <- 
+  rand_forest(min_n = tune(), trees = tune(), mtry = tune()) %>% 
+  set_engine("ranger") %>% 
+  set_mode("classification")
+
+rf_wf <- workflow() %>% 
+  add_recipe(my_recipe) %>% 
+  add_model(rf_spec)
+
+my_tuning_grid <- crossing(
+  mtry = 1:5, 
+  trees = c(10, 20), # For the sake of minimizing a certain metric, like log loss, I use the autoplot() to find a set of
+  min_n = 1:10       # hyperparameters that work with each other. (Can't comment on if this is good practice or not)
+)
+
+rf_tune <- rf_wf %>% 
+  tune_grid(
+    resamples = folds,
+    metrics = metric_set(mn_log_loss, accuracy),
+    grid = my_tuning_grid # Can pass in a tibble, or a positive integer, to be used to create a latin hypercube grid
+  )
+
+autoplot(rf_tune)
+show_best(rf_tune)
+
+my_guess <- tibble(min_n = 3, trees = 1, mtry = 2) # Since we can use a tibble, to represent a combination of hyperparameters,
+                                                   # We can finalize the model spec with a custom combination. 
+tuned_rf_wf <- rf_wf %>%                           # This means we don't have to call `select_best()`
+  finalize_workflow(my_guess)
+
+last_tuned_rf <- tuned_rf_wf %>% 
+  last_fit(init_split)
+
+last_tuned_rf %>% collect_metrics()
+
+holdout_preds <- last_tuned_rf [[".workflow"]][[1]] %>% # There's probably a better way to do this, but I'm pulling 
+  fit(dataset) %>%                                      # the workflow out of a last_fit object, fit the entire dataset,
+  predict(holdout)                                      # And then predicting a completely new holdout data
+```
+
+### Penalized Multi Logistic Reg
+
+0.781 -> penalty: 1.24, mixture: 0.019
+
+```{r}
+multinom_reg_glmnet_spec <-
+  multinom_reg(
+  mode = "classification",
+  penalty = tune(),
+  mixture = tune()
+) %>%
+  set_engine("glmnet", family = "multinom")
+
+multinom_reg_wf <- workflow() %>% 
+  add_recipe(my_recipe) %>% 
+  add_model(multinom_reg_glmnet_spec)
+
+my_pen_grid <- grid_latin_hypercube( # An explicit latin hypercube grid
+  penalty(c(0.001, 1)),
+  mixture(c(0, 1)),
+   size = 10
+)
+
+multinom_tune <- multinom_reg_wf %>% 
+  tune_grid(
+    resamples = folds,
+    metrics = metric_set(mn_log_loss),
+    grid = my_pen_grid, # Passing in an explicit latin hypercube grid.
+    control = control_grid(verbose = TRUE, parallel_over = "resamples") 
+  )
+
+show_best(multinom_tune)
+autoplot(multinom_tune)
+
+final_multinom_reg_wf <- finalize_workflow(multinom_reg_wf, select_best(multinom_tune))
+
+holdout_pred <- final_multinom_reg_wf %>% 
+  fit(dataset) %>% 
+  predict(holdout)
+```
