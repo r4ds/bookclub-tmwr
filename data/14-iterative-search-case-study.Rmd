@@ -1,0 +1,123 @@
+# Iterative search case study
+
+```{r 14-casestudy-setup, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(tidymodels)
+tidymodels_prefer()
+library(palmerpenguins)
+```
+
+```{r 14-cs-data-explore}
+head(penguins)
+
+summary(penguins)
+
+penguins_complete <- penguins %>% 
+  filter(across(where(is.numeric), ~!is.na(.x)))
+
+ggplot(penguins_complete, aes(flipper_length_mm, bill_length_mm)) + 
+  geom_point(aes(color = species, shape = species))
+```
+
+```{r 14-cs-split}
+penguin_split <- initial_split(penguins_complete, prop = 0.8)
+penguin_folds <- vfold_cv(training(penguin_split), v = 10)
+```
+
+```{r 14-cs-usemodels}
+usemodels::use_glmnet(
+  species ~ .,
+  data = training(penguin_split),
+  verbose = TRUE,
+  tune = TRUE,
+  colors = TRUE
+)
+```
+
+```{r 14-cs-tunegrid}
+glmnet_recipe <- 
+  recipe(formula = species ~ ., data = training(penguin_split)) %>% 
+  step_unknown(all_nominal(), -all_outcomes()) %>% 
+  step_novel(all_nominal(), -all_outcomes()) %>% 
+  ## This model requires the predictors to be numeric. The most common 
+  ## method to convert qualitative predictors to numeric is to create 
+  ## binary indicator variables (aka dummy variables) from these 
+  ## predictors. 
+  step_dummy(all_nominal(), -all_outcomes()) %>% 
+  ## Regularization methods sum up functions of the model slope 
+  ## coefficients. Because of this, the predictor variables should be on 
+  ## the same scale. Before centering and scaling the numeric predictors, 
+  ## any predictors with a single unique value are filtered out. 
+  step_zv(all_predictors()) %>% 
+  step_normalize(all_predictors(), -all_nominal()) 
+
+glmnet_spec <- 
+  multinom_reg(penalty = tune(), mixture = tune()) %>% 
+  set_mode("classification") %>% 
+  set_engine("glmnet") 
+
+glmnet_workflow <- 
+  workflow() %>% 
+  add_recipe(glmnet_recipe) %>% 
+  add_model(glmnet_spec) 
+
+# glmnet_grid <- tidyr::crossing(
+#   penalty = 10^seq(-6, -1, length.out = 20),
+#   mixture = c(0.05, 0.2, 0.4, 0.6, 0.8, 1)
+# ) 
+# 
+# glmnet_tune <- 
+#   tune_grid(glmnet_workflow, resamples = penguin_folds, grid = glmnet_grid)
+```
+
+```{r 14-cs-examine-tunegrid}
+glmnet_tune %>% 
+  autoplot()
+```
+```{r 14-cs-bo}
+glmnet_workflow %>% 
+  parameters()
+
+glmnet_workflow %>% 
+  pull_dials_object("mixture")
+
+bo_tuned <- glmnet_workflow %>% 
+  tune_bayes(
+    resamples = penguin_folds,
+    iter = 20,
+    metrics = metric_set(roc_auc),
+    initial = 5,
+    control = control_bayes(verbose = TRUE, no_improve = 100, uncertain = 3)
+  )
+autoplot(bo_tuned)
+show_best(bo_tuned)
+```
+
+```{r 14-cs-params}
+library(finetune)
+params <- glmnet_workflow %>% 
+  parameters() %>% 
+  update(penalty = penalty(c(-5, -2)), mixture = mixture(c(0.05, 0.9)))
+
+sa_tuned <- finetune::tune_sim_anneal(
+  glmnet_workflow,
+  resamples = penguin_folds,
+  param_info = params,
+  initial = tune_grid(glmnet_workflow, resamples = penguin_folds, grid = 4),
+  control = finetune::control_sim_anneal(verbose = TRUE)
+)
+autoplot(sa_tuned)
+```
+
+```{r 14-cs-finalize}
+final_model <- select_best(sa_tuned)
+
+final_model <- sa_tuned %>% 
+  extract_workflow() %>% 
+  finalize_workflow(final_model) %>% 
+  last_fit(split = penguin_split) 
+
+final_model %>% 
+  collect_metrics()
+```
+
