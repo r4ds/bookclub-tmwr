@@ -335,6 +335,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.13" data-path="what-is-next.html"><a href="what-is-next.html"><i class="fa fa-check"></i><b>12.13</b> What is next?</a></li>
 <li class="chapter" data-level="12.14" data-path="meeting-videos-13.html"><a href="meeting-videos-13.html"><i class="fa fa-check"></i><b>12.14</b> Meeting Videos</a><ul>
 <li class="chapter" data-level="12.14.1" data-path="meeting-videos-13.html"><a href="meeting-videos-13.html#cohort-1-12"><i class="fa fa-check"></i><b>12.14.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="12.14.2" data-path="meeting-videos-13.html"><a href="meeting-videos-13.html#cohort-3-11"><i class="fa fa-check"></i><b>12.14.2</b> Cohort 3</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="grid-search.html"><a href="grid-search.html"><i class="fa fa-check"></i><b>13</b> Grid search</a><ul>
@@ -351,6 +352,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.4.4" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html#racing-methods"><i class="fa fa-check"></i><b>13.4.4</b> Racing Methods</a></li>
 </ul></li>
 <li class="chapter" data-level="13.5" data-path="chapter-summary.html"><a href="chapter-summary.html"><i class="fa fa-check"></i><b>13.5</b> Chapter Summary</a></li>
+<li class="chapter" data-level="13.6" data-path="meeting-videos-14.html"><a href="meeting-videos-14.html"><i class="fa fa-check"></i><b>13.6</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="13.6.1" data-path="meeting-videos-14.html"><a href="meeting-videos-14.html#cohort-3-12"><i class="fa fa-check"></i><b>13.6.1</b> Cohort 3</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="iterative-search.html"><a href="iterative-search.html"><i class="fa fa-check"></i><b>14</b> Iterative search</a><ul>
 <li class="chapter" data-level="14.1" data-path="svm-model-as-motivating-example.html"><a href="svm-model-as-motivating-example.html"><i class="fa fa-check"></i><b>14.1</b> SVM model as motivating example</a></li>
@@ -362,6 +366,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.3.2" data-path="simulated-annealing.html"><a href="simulated-annealing.html#the-tune_sim_anneal-function"><i class="fa fa-check"></i><b>14.3.2</b> The tune_sim_anneal() function</a></li>
 </ul></li>
 <li class="chapter" data-level="14.4" data-path="references-2.html"><a href="references-2.html"><i class="fa fa-check"></i><b>14.4</b> References</a></li>
+<li class="chapter" data-level="14.5" data-path="meeting-videos-15.html"><a href="meeting-videos-15.html"><i class="fa fa-check"></i><b>14.5</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="14.5.1" data-path="meeting-videos-15.html"><a href="meeting-videos-15.html#cohort-3-13"><i class="fa fa-check"></i><b>14.5.1</b> Cohort 3</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="screening-many-models.html"><a href="screening-many-models.html"><i class="fa fa-check"></i><b>15</b> Screening Many Models</a><ul>
 <li class="chapter" data-level="15.1" data-path="obligatory-setup.html"><a href="obligatory-setup.html"><i class="fa fa-check"></i><b>15.1</b> Obligatory Setup</a></li>
@@ -427,18 +434,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>the amount of weight decay penalization.</p></li>
 </ul>
 <p>Using <code>parsnip</code>, the specification for a regression model fit using the <code>nnet</code> package for a multi layer perceptron is:</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="regular-and-non-regular-grids.html#cb278-1"></a>mlp_spec &lt;-</span>
-<span id="cb278-2"><a href="regular-and-non-regular-grids.html#cb278-2"></a><span class="st">  </span><span class="kw">mlp</span>(<span class="dt">hidden_units =</span> <span class="kw">tune</span>(),</span>
-<span id="cb278-3"><a href="regular-and-non-regular-grids.html#cb278-3"></a>      <span class="dt">penalty =</span> <span class="kw">tune</span>(),</span>
-<span id="cb278-4"><a href="regular-and-non-regular-grids.html#cb278-4"></a>      <span class="dt">epochs =</span> <span class="kw">tune</span>()) <span class="op">%&gt;%</span></span>
-<span id="cb278-5"><a href="regular-and-non-regular-grids.html#cb278-5"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;nnet&quot;</span>, <span class="dt">trace =</span> <span class="dv">0</span>) <span class="op">%&gt;%</span></span>
-<span id="cb278-6"><a href="regular-and-non-regular-grids.html#cb278-6"></a><span class="st">  </span><span class="kw">set_mode</span>(<span class="st">&quot;regression&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="regular-and-non-regular-grids.html#cb279-1"></a>mlp_spec &lt;-</span>
+<span id="cb279-2"><a href="regular-and-non-regular-grids.html#cb279-2"></a><span class="st">  </span><span class="kw">mlp</span>(<span class="dt">hidden_units =</span> <span class="kw">tune</span>(),</span>
+<span id="cb279-3"><a href="regular-and-non-regular-grids.html#cb279-3"></a>      <span class="dt">penalty =</span> <span class="kw">tune</span>(),</span>
+<span id="cb279-4"><a href="regular-and-non-regular-grids.html#cb279-4"></a>      <span class="dt">epochs =</span> <span class="kw">tune</span>()) <span class="op">%&gt;%</span></span>
+<span id="cb279-5"><a href="regular-and-non-regular-grids.html#cb279-5"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;nnet&quot;</span>, <span class="dt">trace =</span> <span class="dv">0</span>) <span class="op">%&gt;%</span></span>
+<span id="cb279-6"><a href="regular-and-non-regular-grids.html#cb279-6"></a><span class="st">  </span><span class="kw">set_mode</span>(<span class="st">&quot;regression&quot;</span>)</span></code></pre></div>
 <p>The argument <strong>trace = 0</strong> prevents extra logging of the training process. The <code>parameters()</code> function can extract the set of arguments with unknown values and set their <code>dials</code> objects. <code>pull_dials_object()</code> gives the current range of values.</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="regular-and-non-regular-grids.html#cb279-1"></a>mlp_param &lt;-<span class="st"> </span><span class="kw">parameters</span>(mlp_spec)</span>
-<span id="cb279-2"><a href="regular-and-non-regular-grids.html#cb279-2"></a>mlp_param <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull_dials_object</span>(<span class="st">&quot;hidden_units&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="regular-and-non-regular-grids.html#cb280-1"></a>mlp_param &lt;-<span class="st"> </span><span class="kw">parameters</span>(mlp_spec)</span>
+<span id="cb280-2"><a href="regular-and-non-regular-grids.html#cb280-2"></a>mlp_param <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull_dials_object</span>(<span class="st">&quot;hidden_units&quot;</span>)</span></code></pre></div>
 <pre><code>## # Hidden Units (quantitative)
 ## Range: [1, 10]</code></pre>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="regular-and-non-regular-grids.html#cb281-1"></a>mlp_param <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull_dials_object</span>(<span class="st">&quot;penalty&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="regular-and-non-regular-grids.html#cb282-1"></a>mlp_param <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull_dials_object</span>(<span class="st">&quot;penalty&quot;</span>)</span></code></pre></div>
 <pre><code>## Amount of Regularization (quantitative)
 ## Transformer:  log-10 
 ## Range (transformed scale): [-10, 0]</code></pre>
@@ -446,13 +453,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For <code>penalty</code>, the random numbers are uniform on the log (base 10) scale. The values in the grid are in their natural units.</p>
 </blockquote>
 <p><img src="https://media.giphy.com/media/iRBz7kiE3HsSA/giphy.gif" /></p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="regular-and-non-regular-grids.html#cb283-1"></a>mlp_param <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull_dials_object</span>(<span class="st">&quot;epochs&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="regular-and-non-regular-grids.html#cb284-1"></a>mlp_param <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull_dials_object</span>(<span class="st">&quot;epochs&quot;</span>)</span></code></pre></div>
 <pre><code>## # Epochs (quantitative)
 ## Range: [10, 1000]</code></pre>
 <div id="regular-grids" class="section level3">
 <h3><span class="header-section-number">13.1.1</span> Regular Grids</h3>
 <p>The <code>dials</code> package contains a set of <code>grid_*()</code> functions that take the parameter object and produce different types of grids.</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="regular-and-non-regular-grids.html#cb285-1"></a><span class="kw">grid_regular</span>(mlp_param, <span class="dt">levels =</span> <span class="dv">2</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="regular-and-non-regular-grids.html#cb286-1"></a><span class="kw">grid_regular</span>(mlp_param, <span class="dt">levels =</span> <span class="dv">2</span>) </span></code></pre></div>
 <pre><code>## # A tibble: 8 × 3
 ##   hidden_units      penalty epochs
 ##          &lt;int&gt;        &lt;dbl&gt;  &lt;int&gt;
@@ -465,10 +472,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 7            1 1              1000
 ## 8           10 1              1000</code></pre>
 <p>The <code>levels</code> argument is the number of levels per parameter to create. It can also take a named vector of values:</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="regular-and-non-regular-grids.html#cb287-1"></a>mlp_param <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb287-2"><a href="regular-and-non-regular-grids.html#cb287-2"></a><span class="st">  </span><span class="kw">grid_regular</span>(<span class="dt">levels =</span> <span class="kw">c</span>(<span class="dt">hidden_units =</span> <span class="dv">3</span>,</span>
-<span id="cb287-3"><a href="regular-and-non-regular-grids.html#cb287-3"></a>                          <span class="dt">penalty =</span> <span class="dv">2</span>, </span>
-<span id="cb287-4"><a href="regular-and-non-regular-grids.html#cb287-4"></a>                          <span class="dt">epochs =</span> <span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="regular-and-non-regular-grids.html#cb288-1"></a>mlp_param <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb288-2"><a href="regular-and-non-regular-grids.html#cb288-2"></a><span class="st">  </span><span class="kw">grid_regular</span>(<span class="dt">levels =</span> <span class="kw">c</span>(<span class="dt">hidden_units =</span> <span class="dv">3</span>,</span>
+<span id="cb288-3"><a href="regular-and-non-regular-grids.html#cb288-3"></a>                          <span class="dt">penalty =</span> <span class="dv">2</span>, </span>
+<span id="cb288-4"><a href="regular-and-non-regular-grids.html#cb288-4"></a>                          <span class="dt">epochs =</span> <span class="dv">2</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 12 × 3
 ##    hidden_units      penalty epochs
 ##           &lt;int&gt;        &lt;dbl&gt;  &lt;int&gt;
@@ -493,18 +500,18 @@ Regular grids can be computationally expensive to use, especially when there are
 <h3><span class="header-section-number">13.1.2</span> Irregular Grids</h3>
 <p>Even with small grids, random values can still result in overlaps. Also, the random grid needs to cover the whole parameter space.</p>
 <p>Even for a sample of 15 candidate points, this plot shows some overlap between points for our example:</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="regular-and-non-regular-grids.html#cb289-1"></a><span class="kw">library</span>(ggforce)</span>
-<span id="cb289-2"><a href="regular-and-non-regular-grids.html#cb289-2"></a><span class="kw">set.seed</span>(<span class="dv">200</span>)</span>
-<span id="cb289-3"><a href="regular-and-non-regular-grids.html#cb289-3"></a>mlp_param <span class="op">%&gt;%</span></span>
-<span id="cb289-4"><a href="regular-and-non-regular-grids.html#cb289-4"></a><span class="st">  </span><span class="co"># The &#39;original = FALSE&#39; option keeps penalty in log10 units</span></span>
-<span id="cb289-5"><a href="regular-and-non-regular-grids.html#cb289-5"></a><span class="st">  </span><span class="kw">grid_random</span>(<span class="dt">size =</span> <span class="dv">15</span>, <span class="dt">original =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></span>
-<span id="cb289-6"><a href="regular-and-non-regular-grids.html#cb289-6"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> .panel_x, <span class="dt">y =</span> .panel_y)) <span class="op">+</span></span>
-<span id="cb289-7"><a href="regular-and-non-regular-grids.html#cb289-7"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb289-8"><a href="regular-and-non-regular-grids.html#cb289-8"></a><span class="st">  </span><span class="kw">geom_blank</span>() <span class="op">+</span></span>
-<span id="cb289-9"><a href="regular-and-non-regular-grids.html#cb289-9"></a><span class="st">  </span><span class="kw">facet_matrix</span>(<span class="kw">vars</span>(hidden_units, penalty, epochs), <span class="dt">layer.diag =</span> <span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb289-10"><a href="regular-and-non-regular-grids.html#cb289-10"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Random design with 15 candidates&quot;</span>)</span>
-<span id="cb289-11"><a href="regular-and-non-regular-grids.html#cb289-11"></a></span>
-<span id="cb289-12"><a href="regular-and-non-regular-grids.html#cb289-12"></a><span class="kw">ggsave</span>(<span class="dt">filename =</span> <span class="st">&quot;images/13_grid_random.png&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="regular-and-non-regular-grids.html#cb290-1"></a><span class="kw">library</span>(ggforce)</span>
+<span id="cb290-2"><a href="regular-and-non-regular-grids.html#cb290-2"></a><span class="kw">set.seed</span>(<span class="dv">200</span>)</span>
+<span id="cb290-3"><a href="regular-and-non-regular-grids.html#cb290-3"></a>mlp_param <span class="op">%&gt;%</span></span>
+<span id="cb290-4"><a href="regular-and-non-regular-grids.html#cb290-4"></a><span class="st">  </span><span class="co"># The &#39;original = FALSE&#39; option keeps penalty in log10 units</span></span>
+<span id="cb290-5"><a href="regular-and-non-regular-grids.html#cb290-5"></a><span class="st">  </span><span class="kw">grid_random</span>(<span class="dt">size =</span> <span class="dv">15</span>, <span class="dt">original =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb290-6"><a href="regular-and-non-regular-grids.html#cb290-6"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> .panel_x, <span class="dt">y =</span> .panel_y)) <span class="op">+</span></span>
+<span id="cb290-7"><a href="regular-and-non-regular-grids.html#cb290-7"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb290-8"><a href="regular-and-non-regular-grids.html#cb290-8"></a><span class="st">  </span><span class="kw">geom_blank</span>() <span class="op">+</span></span>
+<span id="cb290-9"><a href="regular-and-non-regular-grids.html#cb290-9"></a><span class="st">  </span><span class="kw">facet_matrix</span>(<span class="kw">vars</span>(hidden_units, penalty, epochs), <span class="dt">layer.diag =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb290-10"><a href="regular-and-non-regular-grids.html#cb290-10"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Random design with 15 candidates&quot;</span>)</span>
+<span id="cb290-11"><a href="regular-and-non-regular-grids.html#cb290-11"></a></span>
+<span id="cb290-12"><a href="regular-and-non-regular-grids.html#cb290-12"></a><span class="kw">ggsave</span>(<span class="dt">filename =</span> <span class="st">&quot;images/13_grid_random.png&quot;</span>)</span></code></pre></div>
 <p><img src="images/13_grid_random.png" /></p>
 <p>A much better approach is to use designs called</p>
 <div id="space-filling-designs" class="section level4">
@@ -516,17 +523,17 @@ Regular grids can be computationally expensive to use, especially when there are
 <li><p>Maximum entropy</p></li>
 </ul>
 <p>As with <code>grid_random()</code>, the primary inputs are the number of parameter combinations and a parameter object.</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="regular-and-non-regular-grids.html#cb290-1"></a><span class="kw">library</span>(ggforce)</span>
-<span id="cb290-2"><a href="regular-and-non-regular-grids.html#cb290-2"></a><span class="kw">set.seed</span>(<span class="dv">200</span>)</span>
-<span id="cb290-3"><a href="regular-and-non-regular-grids.html#cb290-3"></a>mlp_param <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb290-4"><a href="regular-and-non-regular-grids.html#cb290-4"></a><span class="st">  </span><span class="kw">grid_latin_hypercube</span>(<span class="dt">size =</span> <span class="dv">15</span>, <span class="dt">original =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb290-5"><a href="regular-and-non-regular-grids.html#cb290-5"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> .panel_x, <span class="dt">y =</span> .panel_y)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb290-6"><a href="regular-and-non-regular-grids.html#cb290-6"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb290-7"><a href="regular-and-non-regular-grids.html#cb290-7"></a><span class="st">  </span><span class="kw">geom_blank</span>() <span class="op">+</span></span>
-<span id="cb290-8"><a href="regular-and-non-regular-grids.html#cb290-8"></a><span class="st">  </span><span class="kw">facet_matrix</span>(<span class="kw">vars</span>(hidden_units, penalty, epochs), <span class="dt">layer.diag =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb290-9"><a href="regular-and-non-regular-grids.html#cb290-9"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Latin Hypercube design with 15 candidates&quot;</span>)</span>
-<span id="cb290-10"><a href="regular-and-non-regular-grids.html#cb290-10"></a></span>
-<span id="cb290-11"><a href="regular-and-non-regular-grids.html#cb290-11"></a><span class="kw">ggsave</span>(<span class="st">&quot;images/13_latin_hypercube.png&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="regular-and-non-regular-grids.html#cb291-1"></a><span class="kw">library</span>(ggforce)</span>
+<span id="cb291-2"><a href="regular-and-non-regular-grids.html#cb291-2"></a><span class="kw">set.seed</span>(<span class="dv">200</span>)</span>
+<span id="cb291-3"><a href="regular-and-non-regular-grids.html#cb291-3"></a>mlp_param <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb291-4"><a href="regular-and-non-regular-grids.html#cb291-4"></a><span class="st">  </span><span class="kw">grid_latin_hypercube</span>(<span class="dt">size =</span> <span class="dv">15</span>, <span class="dt">original =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb291-5"><a href="regular-and-non-regular-grids.html#cb291-5"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> .panel_x, <span class="dt">y =</span> .panel_y)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb291-6"><a href="regular-and-non-regular-grids.html#cb291-6"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb291-7"><a href="regular-and-non-regular-grids.html#cb291-7"></a><span class="st">  </span><span class="kw">geom_blank</span>() <span class="op">+</span></span>
+<span id="cb291-8"><a href="regular-and-non-regular-grids.html#cb291-8"></a><span class="st">  </span><span class="kw">facet_matrix</span>(<span class="kw">vars</span>(hidden_units, penalty, epochs), <span class="dt">layer.diag =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb291-9"><a href="regular-and-non-regular-grids.html#cb291-9"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Latin Hypercube design with 15 candidates&quot;</span>)</span>
+<span id="cb291-10"><a href="regular-and-non-regular-grids.html#cb291-10"></a></span>
+<span id="cb291-11"><a href="regular-and-non-regular-grids.html#cb291-11"></a><span class="kw">ggsave</span>(<span class="st">&quot;images/13_latin_hypercube.png&quot;</span>)</span></code></pre></div>
 <p><img src="images/13_latin_hypercube.png" /></p>
 <p>The default design used by <code>tune</code>: maximum entropy design.</p>
 </div>

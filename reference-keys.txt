@@ -156,6 +156,7 @@ finalizing-tuning-parameters
 what-is-next
 meeting-videos-13
 cohort-1-12
+cohort-3-11
 grid-search
 regular-and-non-regular-grids
 regular-grids
@@ -169,6 +170,8 @@ parallel-processing-1
 benchmarking-parallel-with-boosted-trees
 racing-methods
 chapter-summary
+meeting-videos-14
+cohort-3-12
 iterative-search
 svm-model-as-motivating-example
 bayesian-optimization
@@ -180,6 +183,8 @@ simulated-annealing
 how-it-works
 the-tune_sim_anneal-function
 references-2
+meeting-videos-15
+cohort-3-13
 screening-many-models
 obligatory-setup
 creating-workflow_sets

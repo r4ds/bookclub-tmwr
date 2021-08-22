@@ -335,6 +335,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.13" data-path="what-is-next.html"><a href="what-is-next.html"><i class="fa fa-check"></i><b>12.13</b> What is next?</a></li>
 <li class="chapter" data-level="12.14" data-path="meeting-videos-13.html"><a href="meeting-videos-13.html"><i class="fa fa-check"></i><b>12.14</b> Meeting Videos</a><ul>
 <li class="chapter" data-level="12.14.1" data-path="meeting-videos-13.html"><a href="meeting-videos-13.html#cohort-1-12"><i class="fa fa-check"></i><b>12.14.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="12.14.2" data-path="meeting-videos-13.html"><a href="meeting-videos-13.html#cohort-3-11"><i class="fa fa-check"></i><b>12.14.2</b> Cohort 3</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="grid-search.html"><a href="grid-search.html"><i class="fa fa-check"></i><b>13</b> Grid search</a><ul>
@@ -351,6 +352,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.4.4" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html#racing-methods"><i class="fa fa-check"></i><b>13.4.4</b> Racing Methods</a></li>
 </ul></li>
 <li class="chapter" data-level="13.5" data-path="chapter-summary.html"><a href="chapter-summary.html"><i class="fa fa-check"></i><b>13.5</b> Chapter Summary</a></li>
+<li class="chapter" data-level="13.6" data-path="meeting-videos-14.html"><a href="meeting-videos-14.html"><i class="fa fa-check"></i><b>13.6</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="13.6.1" data-path="meeting-videos-14.html"><a href="meeting-videos-14.html#cohort-3-12"><i class="fa fa-check"></i><b>13.6.1</b> Cohort 3</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="iterative-search.html"><a href="iterative-search.html"><i class="fa fa-check"></i><b>14</b> Iterative search</a><ul>
 <li class="chapter" data-level="14.1" data-path="svm-model-as-motivating-example.html"><a href="svm-model-as-motivating-example.html"><i class="fa fa-check"></i><b>14.1</b> SVM model as motivating example</a></li>
@@ -362,6 +366,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.3.2" data-path="simulated-annealing.html"><a href="simulated-annealing.html#the-tune_sim_anneal-function"><i class="fa fa-check"></i><b>14.3.2</b> The tune_sim_anneal() function</a></li>
 </ul></li>
 <li class="chapter" data-level="14.4" data-path="references-2.html"><a href="references-2.html"><i class="fa fa-check"></i><b>14.4</b> References</a></li>
+<li class="chapter" data-level="14.5" data-path="meeting-videos-15.html"><a href="meeting-videos-15.html"><i class="fa fa-check"></i><b>14.5</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="14.5.1" data-path="meeting-videos-15.html"><a href="meeting-videos-15.html#cohort-3-13"><i class="fa fa-check"></i><b>14.5.1</b> Cohort 3</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="screening-many-models.html"><a href="screening-many-models.html"><i class="fa fa-check"></i><b>15</b> Screening Many Models</a><ul>
 <li class="chapter" data-level="15.1" data-path="obligatory-setup.html"><a href="obligatory-setup.html"><i class="fa fa-check"></i><b>15.1</b> Obligatory Setup</a></li>
@@ -470,21 +477,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>cooling_coef</code>: dictates how quickly the acceptance probability decreases as the we go through iterations. Larger coefficient values means the probability of accepting a bad result will decrease.</p></li>
 </ul>
 <p>Implemention is very similar to grid search and Bayesian optimization. We can print out the best results, and have visual assessments of our search went across iterations.</p>
-<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="simulated-annealing.html#cb348-1"></a>ctrl_sa &lt;-<span class="st"> </span><span class="kw">control_sim_anneal</span>(<span class="dt">verbose =</span> <span class="ot">TRUE</span>, <span class="dt">no_improve =</span> 10L)</span>
-<span id="cb348-2"><a href="simulated-annealing.html#cb348-2"></a></span>
-<span id="cb348-3"><a href="simulated-annealing.html#cb348-3"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb348-4"><a href="simulated-annealing.html#cb348-4"></a></span>
-<span id="cb348-5"><a href="simulated-annealing.html#cb348-5"></a>svm_sa &lt;-</span>
-<span id="cb348-6"><a href="simulated-annealing.html#cb348-6"></a><span class="st">  </span>svm_wflow <span class="op">%&gt;%</span></span>
-<span id="cb348-7"><a href="simulated-annealing.html#cb348-7"></a><span class="st">  </span><span class="kw">tune_sim_anneal</span>(</span>
-<span id="cb348-8"><a href="simulated-annealing.html#cb348-8"></a>    <span class="dt">resamples =</span> penguins_folds,</span>
-<span id="cb348-9"><a href="simulated-annealing.html#cb348-9"></a>    <span class="dt">metrics =</span> roc_res,</span>
-<span id="cb348-10"><a href="simulated-annealing.html#cb348-10"></a>    <span class="dt">initial =</span> svm_initial,</span>
-<span id="cb348-11"><a href="simulated-annealing.html#cb348-11"></a>    <span class="dt">param_info =</span> svm_param,</span>
-<span id="cb348-12"><a href="simulated-annealing.html#cb348-12"></a>    <span class="dt">iter =</span> <span class="dv">50</span>,</span>
-<span id="cb348-13"><a href="simulated-annealing.html#cb348-13"></a>    <span class="dt">control =</span> ctrl_sa</span>
-<span id="cb348-14"><a href="simulated-annealing.html#cb348-14"></a>  )</span></code></pre></div>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="simulated-annealing.html#cb349-1"></a><span class="kw">show_best</span>(svm_sa)</span></code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="simulated-annealing.html#cb350-1"></a>ctrl_sa &lt;-<span class="st"> </span><span class="kw">control_sim_anneal</span>(<span class="dt">verbose =</span> <span class="ot">TRUE</span>, <span class="dt">no_improve =</span> 10L)</span>
+<span id="cb350-2"><a href="simulated-annealing.html#cb350-2"></a></span>
+<span id="cb350-3"><a href="simulated-annealing.html#cb350-3"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb350-4"><a href="simulated-annealing.html#cb350-4"></a></span>
+<span id="cb350-5"><a href="simulated-annealing.html#cb350-5"></a>svm_sa &lt;-</span>
+<span id="cb350-6"><a href="simulated-annealing.html#cb350-6"></a><span class="st">  </span>svm_wflow <span class="op">%&gt;%</span></span>
+<span id="cb350-7"><a href="simulated-annealing.html#cb350-7"></a><span class="st">  </span><span class="kw">tune_sim_anneal</span>(</span>
+<span id="cb350-8"><a href="simulated-annealing.html#cb350-8"></a>    <span class="dt">resamples =</span> penguins_folds,</span>
+<span id="cb350-9"><a href="simulated-annealing.html#cb350-9"></a>    <span class="dt">metrics =</span> roc_res,</span>
+<span id="cb350-10"><a href="simulated-annealing.html#cb350-10"></a>    <span class="dt">initial =</span> svm_initial,</span>
+<span id="cb350-11"><a href="simulated-annealing.html#cb350-11"></a>    <span class="dt">param_info =</span> svm_param,</span>
+<span id="cb350-12"><a href="simulated-annealing.html#cb350-12"></a>    <span class="dt">iter =</span> <span class="dv">50</span>,</span>
+<span id="cb350-13"><a href="simulated-annealing.html#cb350-13"></a>    <span class="dt">control =</span> ctrl_sa</span>
+<span id="cb350-14"><a href="simulated-annealing.html#cb350-14"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="simulated-annealing.html#cb351-1"></a><span class="kw">show_best</span>(svm_sa)</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 9
 ##    cost rbf_sigma .metric .estimator  mean     n std_err .config .iter
 ##   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;int&gt;

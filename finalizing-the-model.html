@@ -335,6 +335,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.13" data-path="what-is-next.html"><a href="what-is-next.html"><i class="fa fa-check"></i><b>12.13</b> What is next?</a></li>
 <li class="chapter" data-level="12.14" data-path="meeting-videos-13.html"><a href="meeting-videos-13.html"><i class="fa fa-check"></i><b>12.14</b> Meeting Videos</a><ul>
 <li class="chapter" data-level="12.14.1" data-path="meeting-videos-13.html"><a href="meeting-videos-13.html#cohort-1-12"><i class="fa fa-check"></i><b>12.14.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="12.14.2" data-path="meeting-videos-13.html"><a href="meeting-videos-13.html#cohort-3-11"><i class="fa fa-check"></i><b>12.14.2</b> Cohort 3</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="grid-search.html"><a href="grid-search.html"><i class="fa fa-check"></i><b>13</b> Grid search</a><ul>
@@ -351,6 +352,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.4.4" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html#racing-methods"><i class="fa fa-check"></i><b>13.4.4</b> Racing Methods</a></li>
 </ul></li>
 <li class="chapter" data-level="13.5" data-path="chapter-summary.html"><a href="chapter-summary.html"><i class="fa fa-check"></i><b>13.5</b> Chapter Summary</a></li>
+<li class="chapter" data-level="13.6" data-path="meeting-videos-14.html"><a href="meeting-videos-14.html"><i class="fa fa-check"></i><b>13.6</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="13.6.1" data-path="meeting-videos-14.html"><a href="meeting-videos-14.html#cohort-3-12"><i class="fa fa-check"></i><b>13.6.1</b> Cohort 3</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="iterative-search.html"><a href="iterative-search.html"><i class="fa fa-check"></i><b>14</b> Iterative search</a><ul>
 <li class="chapter" data-level="14.1" data-path="svm-model-as-motivating-example.html"><a href="svm-model-as-motivating-example.html"><i class="fa fa-check"></i><b>14.1</b> SVM model as motivating example</a></li>
@@ -362,6 +366,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.3.2" data-path="simulated-annealing.html"><a href="simulated-annealing.html#the-tune_sim_anneal-function"><i class="fa fa-check"></i><b>14.3.2</b> The tune_sim_anneal() function</a></li>
 </ul></li>
 <li class="chapter" data-level="14.4" data-path="references-2.html"><a href="references-2.html"><i class="fa fa-check"></i><b>14.4</b> References</a></li>
+<li class="chapter" data-level="14.5" data-path="meeting-videos-15.html"><a href="meeting-videos-15.html"><i class="fa fa-check"></i><b>14.5</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="14.5.1" data-path="meeting-videos-15.html"><a href="meeting-videos-15.html#cohort-3-13"><i class="fa fa-check"></i><b>14.5.1</b> Cohort 3</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="screening-many-models.html"><a href="screening-many-models.html"><i class="fa fa-check"></i><b>15</b> Screening Many Models</a><ul>
 <li class="chapter" data-level="15.1" data-path="obligatory-setup.html"><a href="obligatory-setup.html"><i class="fa fa-check"></i><b>15.1</b> Obligatory Setup</a></li>
@@ -426,52 +433,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>manually choose parameters, or</p></li>
 <li><p><code>select_best()</code></p></li>
 </ul>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="finalizing-the-model.html#cb313-1"></a><span class="kw">select_best</span>(mlp_sfd_tune, <span class="dt">metric =</span> <span class="st">&quot;iic&quot;</span>)</span>
-<span id="cb313-2"><a href="finalizing-the-model.html#cb313-2"></a></span>
-<span id="cb313-3"><a href="finalizing-the-model.html#cb313-3"></a><span class="co"># or, a manual selection that corresponds to the regular method</span></span>
-<span id="cb313-4"><a href="finalizing-the-model.html#cb313-4"></a></span>
-<span id="cb313-5"><a href="finalizing-the-model.html#cb313-5"></a>reg_param &lt;-<span class="st"> </span></span>
-<span id="cb313-6"><a href="finalizing-the-model.html#cb313-6"></a><span class="st">  </span><span class="kw">tibble</span>(</span>
-<span id="cb313-7"><a href="finalizing-the-model.html#cb313-7"></a>    <span class="dt">num_comp =</span> <span class="dv">0</span>,</span>
-<span id="cb313-8"><a href="finalizing-the-model.html#cb313-8"></a>    <span class="dt">epochs =</span> <span class="dv">200</span>,</span>
-<span id="cb313-9"><a href="finalizing-the-model.html#cb313-9"></a>    <span class="dt">hidden_units =</span> <span class="dv">5</span>,</span>
-<span id="cb313-10"><a href="finalizing-the-model.html#cb313-10"></a>    <span class="dt">penalty =</span> <span class="dv">1</span>   <span class="co"># log10</span></span>
-<span id="cb313-11"><a href="finalizing-the-model.html#cb313-11"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="finalizing-the-model.html#cb314-1"></a><span class="kw">select_best</span>(mlp_sfd_tune, <span class="dt">metric =</span> <span class="st">&quot;iic&quot;</span>)</span>
+<span id="cb314-2"><a href="finalizing-the-model.html#cb314-2"></a></span>
+<span id="cb314-3"><a href="finalizing-the-model.html#cb314-3"></a><span class="co"># or, a manual selection that corresponds to the regular method</span></span>
+<span id="cb314-4"><a href="finalizing-the-model.html#cb314-4"></a></span>
+<span id="cb314-5"><a href="finalizing-the-model.html#cb314-5"></a>reg_param &lt;-<span class="st"> </span></span>
+<span id="cb314-6"><a href="finalizing-the-model.html#cb314-6"></a><span class="st">  </span><span class="kw">tibble</span>(</span>
+<span id="cb314-7"><a href="finalizing-the-model.html#cb314-7"></a>    <span class="dt">num_comp =</span> <span class="dv">0</span>,</span>
+<span id="cb314-8"><a href="finalizing-the-model.html#cb314-8"></a>    <span class="dt">epochs =</span> <span class="dv">200</span>,</span>
+<span id="cb314-9"><a href="finalizing-the-model.html#cb314-9"></a>    <span class="dt">hidden_units =</span> <span class="dv">5</span>,</span>
+<span id="cb314-10"><a href="finalizing-the-model.html#cb314-10"></a>    <span class="dt">penalty =</span> <span class="dv">1</span>   <span class="co"># log10</span></span>
+<span id="cb314-11"><a href="finalizing-the-model.html#cb314-11"></a>  )</span></code></pre></div>
 <pre><code># A tibble: 1 x 5
   hidden_units penalty epochs num_comp .config              
          &lt;int&gt;   &lt;dbl&gt;  &lt;int&gt;    &lt;int&gt; &lt;chr&gt;                
 1            9 0.00780    158       14 Preprocessor06_Model1</code></pre>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="finalizing-the-model.html#cb315-1"></a>final_sfd_wflow &lt;-<span class="st"> </span></span>
-<span id="cb315-2"><a href="finalizing-the-model.html#cb315-2"></a><span class="st">  </span>mlp_wflow <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb315-3"><a href="finalizing-the-model.html#cb315-3"></a><span class="st">  </span><span class="kw">finalize_workflow</span>(<span class="kw">select_best</span>(mlp_sfd_tune, <span class="dt">metric =</span> <span class="st">&quot;rmse&quot;</span>)) </span></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="finalizing-the-model.html#cb316-1"></a>final_sfd_wflow &lt;-<span class="st"> </span></span>
+<span id="cb316-2"><a href="finalizing-the-model.html#cb316-2"></a><span class="st">  </span>mlp_wflow <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb316-3"><a href="finalizing-the-model.html#cb316-3"></a><span class="st">  </span><span class="kw">finalize_workflow</span>(<span class="kw">select_best</span>(mlp_sfd_tune, <span class="dt">metric =</span> <span class="st">&quot;rmse&quot;</span>)) </span></code></pre></div>
 <p>Now the model can fit the <em>entire training</em> set:</p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="finalizing-the-model.html#cb316-1"></a>final_sfd_fit &lt;-<span class="st"> </span></span>
-<span id="cb316-2"><a href="finalizing-the-model.html#cb316-2"></a><span class="st">  </span>final_sfd_wflow <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb316-3"><a href="finalizing-the-model.html#cb316-3"></a><span class="st">  </span><span class="kw">fit</span>(Chicago_train)</span></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="finalizing-the-model.html#cb317-1"></a>final_sfd_fit &lt;-<span class="st"> </span></span>
+<span id="cb317-2"><a href="finalizing-the-model.html#cb317-2"></a><span class="st">  </span>final_sfd_wflow <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb317-3"><a href="finalizing-the-model.html#cb317-3"></a><span class="st">  </span><span class="kw">fit</span>(Chicago_train)</span></code></pre></div>
 <p>This object can now be used to make future predictions on new data.</p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="finalizing-the-model.html#cb317-1"></a>final_sfd_fit <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb317-2"><a href="finalizing-the-model.html#cb317-2"></a><span class="st">   </span><span class="kw">predict</span>(<span class="dt">new_data =</span> Chicago_test) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb317-3"><a href="finalizing-the-model.html#cb317-3"></a><span class="st">   </span><span class="kw">bind_cols</span>(Chicago_test) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb317-4"><a href="finalizing-the-model.html#cb317-4"></a><span class="st">   </span><span class="kw">rmse</span>(<span class="dt">truth =</span> ridership, <span class="dt">estimate =</span> .pred)</span></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="finalizing-the-model.html#cb318-1"></a>final_sfd_fit <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb318-2"><a href="finalizing-the-model.html#cb318-2"></a><span class="st">   </span><span class="kw">predict</span>(<span class="dt">new_data =</span> Chicago_test) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb318-3"><a href="finalizing-the-model.html#cb318-3"></a><span class="st">   </span><span class="kw">bind_cols</span>(Chicago_test) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb318-4"><a href="finalizing-the-model.html#cb318-4"></a><span class="st">   </span><span class="kw">rmse</span>(<span class="dt">truth =</span> ridership, <span class="dt">estimate =</span> .pred)</span></code></pre></div>
 <pre><code># A tibble: 1 x 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 1 rmse    standard        3.01</code></pre>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="finalizing-the-model.html#cb319-1"></a>final_sfd_fit <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb319-2"><a href="finalizing-the-model.html#cb319-2"></a><span class="st">   </span><span class="kw">predict</span>(<span class="dt">new_data =</span> Chicago_test) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb319-3"><a href="finalizing-the-model.html#cb319-3"></a><span class="st">   </span><span class="kw">bind_cols</span>(Chicago_test) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb319-4"><a href="finalizing-the-model.html#cb319-4"></a><span class="st">   </span><span class="kw">mutate</span>(<span class="dt">weekday =</span> <span class="kw">wday</span>(date, </span>
-<span id="cb319-5"><a href="finalizing-the-model.html#cb319-5"></a>                         <span class="dt">label =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb319-6"><a href="finalizing-the-model.html#cb319-6"></a><span class="st">   </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(ridership, </span>
-<span id="cb319-7"><a href="finalizing-the-model.html#cb319-7"></a>              .pred, </span>
-<span id="cb319-8"><a href="finalizing-the-model.html#cb319-8"></a>              <span class="dt">color =</span> weekday)) <span class="op">+</span></span>
-<span id="cb319-9"><a href="finalizing-the-model.html#cb319-9"></a><span class="st">   </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb319-10"><a href="finalizing-the-model.html#cb319-10"></a><span class="st">   </span><span class="kw">geom_abline</span>(<span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
-<span id="cb319-11"><a href="finalizing-the-model.html#cb319-11"></a><span class="st">   </span><span class="kw">scale_color_brewer</span>(<span class="dt">type =</span> <span class="st">&quot;qual&quot;</span>) <span class="op">+</span></span>
-<span id="cb319-12"><a href="finalizing-the-model.html#cb319-12"></a><span class="st">   </span><span class="kw">coord_fixed</span>() <span class="op">+</span></span>
-<span id="cb319-13"><a href="finalizing-the-model.html#cb319-13"></a><span class="st">   </span><span class="kw">expand_limits</span>(<span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">y =</span> <span class="dv">0</span>)</span>
-<span id="cb319-14"><a href="finalizing-the-model.html#cb319-14"></a></span>
-<span id="cb319-15"><a href="finalizing-the-model.html#cb319-15"></a><span class="kw">ggsave</span>(<span class="st">&quot;images/13_test_performance.png&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="finalizing-the-model.html#cb320-1"></a>final_sfd_fit <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb320-2"><a href="finalizing-the-model.html#cb320-2"></a><span class="st">   </span><span class="kw">predict</span>(<span class="dt">new_data =</span> Chicago_test) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb320-3"><a href="finalizing-the-model.html#cb320-3"></a><span class="st">   </span><span class="kw">bind_cols</span>(Chicago_test) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb320-4"><a href="finalizing-the-model.html#cb320-4"></a><span class="st">   </span><span class="kw">mutate</span>(<span class="dt">weekday =</span> <span class="kw">wday</span>(date, </span>
+<span id="cb320-5"><a href="finalizing-the-model.html#cb320-5"></a>                         <span class="dt">label =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb320-6"><a href="finalizing-the-model.html#cb320-6"></a><span class="st">   </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(ridership, </span>
+<span id="cb320-7"><a href="finalizing-the-model.html#cb320-7"></a>              .pred, </span>
+<span id="cb320-8"><a href="finalizing-the-model.html#cb320-8"></a>              <span class="dt">color =</span> weekday)) <span class="op">+</span></span>
+<span id="cb320-9"><a href="finalizing-the-model.html#cb320-9"></a><span class="st">   </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb320-10"><a href="finalizing-the-model.html#cb320-10"></a><span class="st">   </span><span class="kw">geom_abline</span>(<span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb320-11"><a href="finalizing-the-model.html#cb320-11"></a><span class="st">   </span><span class="kw">scale_color_brewer</span>(<span class="dt">type =</span> <span class="st">&quot;qual&quot;</span>) <span class="op">+</span></span>
+<span id="cb320-12"><a href="finalizing-the-model.html#cb320-12"></a><span class="st">   </span><span class="kw">coord_fixed</span>() <span class="op">+</span></span>
+<span id="cb320-13"><a href="finalizing-the-model.html#cb320-13"></a><span class="st">   </span><span class="kw">expand_limits</span>(<span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">y =</span> <span class="dv">0</span>)</span>
+<span id="cb320-14"><a href="finalizing-the-model.html#cb320-14"></a></span>
+<span id="cb320-15"><a href="finalizing-the-model.html#cb320-15"></a><span class="kw">ggsave</span>(<span class="st">&quot;images/13_test_performance.png&quot;</span>)</span></code></pre></div>
 <p><img src="images/13_test_performance.png" /></p>
 <p>I learned here that the <strong>recipe</strong> must exclude the dependent variable for the <code>predict()</code> to run on test data.</p>
 </div>

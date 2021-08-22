@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>12.5 Can we make our model too good? | Tidy Modeling with R Book Club</title>
+  <title>14.5 Meeting Videos | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="12.5 Can we make our model too good? | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="14.5 Meeting Videos | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="12.5 Can we make our model too good? | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="14.5 Meeting Videos | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="what-metric-should-we-use.html"/>
-<link rel="next" href="tuning-parameter-optimization-strategies.html"/>
+<link rel="prev" href="references-2.html"/>
+<link rel="next" href="screening-many-models.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -425,23 +425,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="can-we-make-our-model-too-good" class="section level2">
-<h2><span class="header-section-number">12.5</span> Can we make our model <em>too</em> good?</h2>
-<p><strong>Overfitting</strong> is always a concern as we start to tune hyperparameters.</p>
-<p>tip from the book: <code>Using out of sample data is the solution for detecting when a model is overemphasizing the training set</code></p>
-<div class="figure">
-<img src="images/overfitting.png" alt="" />
-<p class="caption">graphs depicting what overfitting looks like</p>
+<div id="meeting-videos-15" class="section level2">
+<h2><span class="header-section-number">14.5</span> Meeting Videos</h2>
+<div id="cohort-3-13" class="section level3">
+<h3><span class="header-section-number">14.5.1</span> Cohort 3</h3>
+<iframe src="https://www.youtube.com/embed/a_tg77VOtHk" width="100%" height="400px">
+</iframe>
+<details>
+<p><summary> Meeting chat log </summary></p>
+<pre><code>00:11:21    Daniel Chen:    is this like picking the parameters for a given distribution? like beta(0, 1) vs beta(0.1, 0.9)?
+00:12:09    Daniel Chen:    ok nvm this is the svm example right now. I guess that question is for the Bayesian point
+00:12:49    Jiwan Heo:  I think so, updating priors to make posterior distribution
+00:31:36    Daniel Chen:    the usemodels is mainly a way to help you out with somewhat reasonable defaults
+00:35:02    Daniel Chen:    like the &quot;caterpillar plot&quot; to help you see if things converged?
+00:35:08    Jiwan Heo:  yea!
+00:38:13    Daniel Chen:    i forgot what data is using? the post resamples?
+00:38:23    Daniel Chen:    you might need to manually pull that out from the data?
+00:44:57    Daniel Chen:    for the bayes stuff. is there a way to change the backend for the bayes calculation? e.g., using STAN or something?
+00:47:33    Jiwan Heo:  maybe in the model spec?
+00:47:43    Jiwan Heo:  bayes.model = linear_reg() %&gt;%
+  set_engine(engine = &quot;stan&quot;, 
+             prior_intercept = prior.dist, 
+             prior = prior.dist) %&gt;%
+  set_mode(mode = &quot;regression&quot;)
+00:49:08    Daniel Chen:    oooh. yeah. okay
+00:54:52    Daniel Chen:    yeah i guess this ends up being hard since bayes is anaother layer of things to understand the examples
+00:55:07    Daniel Chen:    i do wonder if the SVM example or something can/should be simplified to be used as a chapter 0
+00:55:26    Daniel Chen:    I&#39;ve only really used grid search in the past personally in the past
+00:55:36    Daniel Chen:    but i was before tidymodels and all hand coded
+00:55:42    Daniel Chen:    expand.grid was a friend :)
+01:03:16    Jiwan Heo:  have to jump off, thank you for the presentation!
+01:09:27    Daniel Chen:    i&#39;m good for next week</code></pre>
+</details>
+
 </div>
-<p>Image Credit (<a href="https://therbootcamp.github.io/ML_2019Oct/_sessions/Recap/Recap.html#8" class="uri">https://therbootcamp.github.io/ML_2019Oct/_sessions/Recap/Recap.html#8</a>)</p>
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="what-metric-should-we-use.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="tuning-parameter-optimization-strategies.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="references-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="screening-many-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -473,7 +499,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/12-model_tuning_and_the_dangers_of_overfitting.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/14-iterative_search.Rmd",
 "text": "Edit"
 },
 "history": {
