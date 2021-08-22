@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>15.3 Ranking models | Tidy Modeling with R Book Club</title>
+  <title>2.2 Design for Humans - Overview | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="15.3 Ranking models | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="2.2 Design for Humans - Overview | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="15.3 Ranking models | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="2.2 Design for Humans - Overview | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="creating-workflow_sets.html"/>
-<link rel="next" href="finalizing-the-model-1.html"/>
+<link rel="prev" href="tidyverse-design-principles.html"/>
+<link rel="next" href="design-for-humans.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -418,71 +418,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ranking-models" class="section level2">
-<h2><span class="header-section-number">15.3</span> Ranking models</h2>
-<p>Let’s look at our results</p>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="ranking-models.html#cb368-1"></a><span class="co"># How many models are there?</span></span>
-<span id="cb368-2"><a href="ranking-models.html#cb368-2"></a>n_model &lt;-</span>
-<span id="cb368-3"><a href="ranking-models.html#cb368-3"></a><span class="st">  </span>res_grid <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb368-4"><a href="ranking-models.html#cb368-4"></a><span class="st">  </span><span class="kw">collect_metrics</span>(<span class="dt">summarize =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb368-5"><a href="ranking-models.html#cb368-5"></a><span class="st">  </span><span class="kw">nrow</span>()</span>
-<span id="cb368-6"><a href="ranking-models.html#cb368-6"></a>n_model</span></code></pre></div>
-<pre><code>## [1] 3000</code></pre>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="ranking-models.html#cb370-1"></a>res_grid_filt &lt;-</span>
-<span id="cb370-2"><a href="ranking-models.html#cb370-2"></a><span class="st">  </span>res_grid <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb370-3"><a href="ranking-models.html#cb370-3"></a><span class="st">  </span><span class="co"># &#39;cart_bag&#39; has &lt;rsmp[+]&gt; in the `results` column, so it won&#39;t work with `rank_results()`</span></span>
-<span id="cb370-4"><a href="ranking-models.html#cb370-4"></a><span class="st">  </span><span class="kw">filter</span>(wflow_id <span class="op">!=</span><span class="st"> &#39;cart_bag&#39;</span>)</span>
-<span id="cb370-5"><a href="ranking-models.html#cb370-5"></a></span>
-<span id="cb370-6"><a href="ranking-models.html#cb370-6"></a><span class="co"># Note that xgboost sucks if you don&#39;t have good parameters</span></span>
-<span id="cb370-7"><a href="ranking-models.html#cb370-7"></a>res_ranks &lt;-</span>
-<span id="cb370-8"><a href="ranking-models.html#cb370-8"></a><span class="st">  </span>res_grid_filt <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb370-9"><a href="ranking-models.html#cb370-9"></a><span class="st">  </span>workflowsets<span class="op">::</span><span class="kw">rank_results</span>(<span class="st">&#39;rmse&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb370-10"><a href="ranking-models.html#cb370-10"></a><span class="st">  </span><span class="co"># Why this no filter out rsquared already?</span></span>
-<span id="cb370-11"><a href="ranking-models.html#cb370-11"></a><span class="st">  </span><span class="kw">filter</span>(.metric <span class="op">==</span><span class="st"> &#39;rmse&#39;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb370-12"><a href="ranking-models.html#cb370-12"></a><span class="st">  </span><span class="kw">select</span>(wflow_id, model, .config, <span class="dt">rmse =</span> mean, rank) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb370-13"><a href="ranking-models.html#cb370-13"></a><span class="st">  </span><span class="kw">group_by</span>(wflow_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb370-14"><a href="ranking-models.html#cb370-14"></a><span class="st">  </span><span class="kw">slice_min</span>(rank, <span class="dt">with_ties =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb370-15"><a href="ranking-models.html#cb370-15"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb370-16"><a href="ranking-models.html#cb370-16"></a><span class="st">  </span><span class="kw">arrange</span>(rank)</span>
-<span id="cb370-17"><a href="ranking-models.html#cb370-17"></a>res_ranks</span></code></pre></div>
-<pre><code>## # A tibble: 11 × 5
-##    wflow_id         model            .config               rmse  rank
-##    &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;                &lt;dbl&gt; &lt;int&gt;
-##  1 norm_svm_p       svm_poly         Preprocessor1_Model2 0.513     1
-##  2 formula_rf       rand_forest      Preprocessor1_Model2 0.546     3
-##  3 formula_cart_bag bag_tree         Preprocessor1_Model1 0.559     5
-##  4 formula_cube     cubist_rules     Preprocessor1_Model2 0.567     7
-##  5 formula_mars     mars             Preprocessor1_Model2 0.570     9
-##  6 formula_gb       boost_tree       Preprocessor1_Model2 0.580    11
-##  7 norm_knn         nearest_neighbor Preprocessor1_Model2 0.587    12
-##  8 poly_knn         nearest_neighbor Preprocessor1_Model3 0.674    17
-##  9 formula_cart     decision_tree    Preprocessor1_Model3 0.689    18
-## 10 poly_lr          linear_reg       Preprocessor1_Model2 0.768    23
-## 11 norm_svm_r       svm_rbf          Preprocessor1_Model3 1.03     24</code></pre>
-<p>Plot the ranks with standard errors.</p>
-<p><img src="bookclub-tmwr_files/figure-html/15-plots-1.png" width="672" /></p>
-<p>If we wanted to look at the sub-models for a given <code>wflow_id</code>, we could do that with <code>autoplot()</code>.</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="ranking-models.html#cb372-1"></a><span class="kw">autoplot</span>(</span>
-<span id="cb372-2"><a href="ranking-models.html#cb372-2"></a>  res_grid, </span>
-<span id="cb372-3"><a href="ranking-models.html#cb372-3"></a>  <span class="dt">id =</span> <span class="st">&#39;norm_svm_p&#39;</span>, </span>
-<span id="cb372-4"><a href="ranking-models.html#cb372-4"></a>  <span class="dt">metric =</span> <span class="st">&#39;rmse&#39;</span></span>
-<span id="cb372-5"><a href="ranking-models.html#cb372-5"></a>)</span></code></pre></div>
-<p><img src="bookclub-tmwr_files/figure-html/15-autoplot-1.png" width="672" /></p>
-<details>
-<p><summary></p>
-<p>How I feel every time I use <code>autoplot()</code></p>
-<p></summary></p>
-<p><img src="images/15-birdbox.jpg" /></p>
-</details>
-<p>As shown in the book chapter, this could be a really good use case for <code>finetune::control_race()</code> and <code>workflowsets::workflow_map('tune_race_anova', ...)</code></p>
+<div id="design-for-humans---overview" class="section level2">
+<h2><span class="header-section-number">2.2</span> Design for Humans - Overview</h2>
+<blockquote>
+<p>“Programs must be written for people to read, and only incidentally for machines to execute.”</p>
+<p>- Hal Abelson</p>
+</blockquote>
+<p><img src="images/designthinking_illustration_final2-02.png" alt="Design Thinking" />
+Credit: <a href="https://www.nngroup.com/articles/design-thinking/">Nielson Norman Group</a></p>
+<p><strong>Motivation</strong> - <a href="https://design.tidyverse.org/unifying-principles.html">Avoiding Norman Doors</a></p>
+<p>What are the equivalent of Norman Doors in programming?</p>
+<iframe src="https://www.youtube.com/embed/yY96hTb8WgI" width="100%" height="400px">
+</iframe>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="creating-workflow_sets.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="finalizing-the-model-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="tidyverse-design-principles.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="design-for-humans.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -514,7 +469,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/15-screening_many_models.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/02-a_tidyverse_primer.Rmd",
 "text": "Edit"
 },
 "history": {

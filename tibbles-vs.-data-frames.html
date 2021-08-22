@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.7 Tibbles vs. Data Frames | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.7 Tibbles vs. Data Frames | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-08-10" />
+<meta name="date" content="2021-08-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="designed-for-functional-programming.html"/>
 <link rel="next" href="how-to-read-and-wrangle-data.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -165,12 +165,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2" data-path="a-tidyverse-primer.html"><a href="a-tidyverse-primer.html"><i class="fa fa-check"></i><b>2</b> A tidyverse primer</a><ul>
 <li class="chapter" data-level="2.1" data-path="tidyverse-design-principles.html"><a href="tidyverse-design-principles.html"><i class="fa fa-check"></i><b>2.1</b> Tidyverse design Principles</a></li>
-<li class="chapter" data-level="2.2" data-path="design-for-humans-overview.html"><a href="design-for-humans-overview.html"><i class="fa fa-check"></i><b>2.2</b> Design for Humans - Overview</a></li>
+<li class="chapter" data-level="2.2" data-path="design-for-humans---overview.html"><a href="design-for-humans---overview.html"><i class="fa fa-check"></i><b>2.2</b> Design for Humans - Overview</a></li>
 <li class="chapter" data-level="2.3" data-path="design-for-humans.html"><a href="design-for-humans.html"><i class="fa fa-check"></i><b>2.3</b> Design for Humans and the Tidyverse</a></li>
 <li class="chapter" data-level="2.4" data-path="reusing-existing-data-structures.html"><a href="reusing-existing-data-structures.html"><i class="fa fa-check"></i><b>2.4</b> Reusing existing data structures</a></li>
 <li class="chapter" data-level="2.5" data-path="designed-for-the-pipe.html"><a href="designed-for-the-pipe.html"><i class="fa fa-check"></i><b>2.5</b> Designed for the pipe</a></li>
 <li class="chapter" data-level="2.6" data-path="designed-for-functional-programming.html"><a href="designed-for-functional-programming.html"><i class="fa fa-check"></i><b>2.6</b> Designed for Functional Programming</a></li>
-<li class="chapter" data-level="2.7" data-path="tibbles-vs-data-frames.html"><a href="tibbles-vs-data-frames.html"><i class="fa fa-check"></i><b>2.7</b> Tibbles vs. Data Frames</a></li>
+<li class="chapter" data-level="2.7" data-path="tibbles-vs.-data-frames.html"><a href="tibbles-vs.-data-frames.html"><i class="fa fa-check"></i><b>2.7</b> Tibbles vs. Data Frames</a></li>
 <li class="chapter" data-level="2.8" data-path="how-to-read-and-wrangle-data.html"><a href="how-to-read-and-wrangle-data.html"><i class="fa fa-check"></i><b>2.8</b> How to read and wrangle data</a></li>
 <li class="chapter" data-level="2.9" data-path="further-reading.html"><a href="further-reading.html"><i class="fa fa-check"></i><b>2.9</b> Further Reading</a></li>
 <li class="chapter" data-level="2.10" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html"><i class="fa fa-check"></i><b>2.10</b> Meeting Videos</a><ul>
@@ -275,12 +275,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.6.2" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-3-8"><i class="fa fa-check"></i><b>9.6.2</b> Cohort 3</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><i class="fa fa-check"></i>Notes on Chapter 9 Judging model effectiveness - Cohort 3</a><ul>
-<li class="chapter" data-level="9.6.3" data-path="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#performance-metrics-and-inference"><i class="fa fa-check"></i><b>9.6.3</b> Performance Metrics and Inference</a></li>
-<li class="chapter" data-level="9.6.4" data-path="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#to-recap-the-step-for-modeling-as-seen-in-the-previous-chapters"><i class="fa fa-check"></i><b>9.6.4</b> To Recap the step for modeling as seen in the previous chapters:</a></li>
-<li class="chapter" data-level="9.6.5" data-path="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#case-studies"><i class="fa fa-check"></i><b>9.6.5</b> Case Studies</a></li>
-<li class="chapter" data-level="9.6.6" data-path="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#nyc-flights-data-modeling"><i class="fa fa-check"></i><b>9.6.6</b> NYC flights data modeling</a></li>
-<li class="chapter" data-level="9.6.7" data-path="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness-cohort-3.html#conclusion"><i class="fa fa-check"></i><b>9.6.7</b> Conclusion</a></li>
+<li class="chapter" data-level="" data-path="notes-on-chapter-9-judging-model-effectiveness---cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness---cohort-3.html"><i class="fa fa-check"></i>Notes on Chapter 9 Judging model effectiveness - Cohort 3</a><ul>
+<li class="chapter" data-level="9.6.3" data-path="notes-on-chapter-9-judging-model-effectiveness---cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness---cohort-3.html#performance-metrics-and-inference"><i class="fa fa-check"></i><b>9.6.3</b> Performance Metrics and Inference</a></li>
+<li class="chapter" data-level="9.6.4" data-path="notes-on-chapter-9-judging-model-effectiveness---cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness---cohort-3.html#to-recap-the-step-for-modeling-as-seen-in-the-previous-chapters"><i class="fa fa-check"></i><b>9.6.4</b> To Recap the step for modeling as seen in the previous chapters:</a></li>
+<li class="chapter" data-level="9.6.5" data-path="notes-on-chapter-9-judging-model-effectiveness---cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness---cohort-3.html#case-studies"><i class="fa fa-check"></i><b>9.6.5</b> Case Studies</a></li>
+<li class="chapter" data-level="9.6.6" data-path="notes-on-chapter-9-judging-model-effectiveness---cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness---cohort-3.html#nyc-flights-data-modeling"><i class="fa fa-check"></i><b>9.6.6</b> NYC flights data modeling</a></li>
+<li class="chapter" data-level="9.6.7" data-path="notes-on-chapter-9-judging-model-effectiveness---cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness---cohort-3.html#conclusion"><i class="fa fa-check"></i><b>9.6.7</b> Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="review-of-chapters-4-9.html"><a href="review-of-chapters-4-9.html"><i class="fa fa-check"></i>Review of chapters 4-9</a><ul>
 <li class="chapter" data-level="9.7" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html"><i class="fa fa-check"></i><b>9.7</b> Meeting Videos</a><ul>
@@ -365,7 +365,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="15" data-path="screening-many-models.html"><a href="screening-many-models.html"><i class="fa fa-check"></i><b>15</b> Screening Many Models</a><ul>
 <li class="chapter" data-level="15.1" data-path="obligatory-setup.html"><a href="obligatory-setup.html"><i class="fa fa-check"></i><b>15.1</b> Obligatory Setup</a></li>
-<li class="chapter" data-level="15.2" data-path="creating-workflow-sets.html"><a href="creating-workflow-sets.html"><i class="fa fa-check"></i><b>15.2</b> Creating <code>workflow_set</code>s</a></li>
+<li class="chapter" data-level="15.2" data-path="creating-workflow_sets.html"><a href="creating-workflow_sets.html"><i class="fa fa-check"></i><b>15.2</b> Creating <code>workflow_set</code>s</a></li>
 <li class="chapter" data-level="15.3" data-path="ranking-models.html"><a href="ranking-models.html"><i class="fa fa-check"></i><b>15.3</b> Ranking models</a></li>
 <li class="chapter" data-level="15.4" data-path="finalizing-the-model-1.html"><a href="finalizing-the-model-1.html"><i class="fa fa-check"></i><b>15.4</b> Finalizing the model</a></li>
 </ul></li>
@@ -424,13 +424,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><strong>Tibbles work with column names that are not syntactically valid variable names</strong>.</li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="tibbles-vs-data-frames.html#cb18-1"></a><span class="kw">data.frame</span>(<span class="st">`</span><span class="dt">this does not work</span><span class="st">`</span> =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,</span>
-<span id="cb18-2"><a href="tibbles-vs-data-frames.html#cb18-2"></a>           <span class="dt">oops =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="tibbles-vs.-data-frames.html#cb18-1"></a><span class="kw">data.frame</span>(<span class="st">`</span><span class="dt">this does not work</span><span class="st">`</span> =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,</span>
+<span id="cb18-2"><a href="tibbles-vs.-data-frames.html#cb18-2"></a>           <span class="dt">oops =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">4</span>)</span></code></pre></div>
 <pre><code>##   this.does.not.work oops
 ## 1                  1    3
 ## 2                  2    4</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="tibbles-vs-data-frames.html#cb20-1"></a><span class="kw">tibble</span>(<span class="st">`</span><span class="dt">this does work, though</span><span class="st">`</span> =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,</span>
-<span id="cb20-2"><a href="tibbles-vs-data-frames.html#cb20-2"></a>       <span class="st">`</span><span class="dt">woohoo!</span><span class="st">`</span> =<span class="st"> </span><span class="dv">3</span><span class="op">:</span><span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="tibbles-vs.-data-frames.html#cb20-1"></a><span class="kw">tibble</span>(<span class="st">`</span><span class="dt">this does work, though</span><span class="st">`</span> =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,</span>
+<span id="cb20-2"><a href="tibbles-vs.-data-frames.html#cb20-2"></a>       <span class="st">`</span><span class="dt">woohoo!</span><span class="st">`</span> =<span class="st"> </span><span class="dv">3</span><span class="op">:</span><span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 2
 ##   `this does work, though` `woohoo!`
 ##                      &lt;int&gt;     &lt;int&gt;
@@ -439,20 +439,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><strong>Tibbles prevent partial matching of arguments</strong> to avoid accidental errors</li>
 </ul>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="tibbles-vs-data-frames.html#cb22-1"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">partial =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span>
-<span id="cb22-2"><a href="tibbles-vs-data-frames.html#cb22-2"></a>tbbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">partial =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span>
-<span id="cb22-3"><a href="tibbles-vs-data-frames.html#cb22-3"></a></span>
-<span id="cb22-4"><a href="tibbles-vs-data-frames.html#cb22-4"></a>df<span class="op">$</span>part</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="tibbles-vs.-data-frames.html#cb22-1"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">partial =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span>
+<span id="cb22-2"><a href="tibbles-vs.-data-frames.html#cb22-2"></a>tbbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">partial =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span>
+<span id="cb22-3"><a href="tibbles-vs.-data-frames.html#cb22-3"></a></span>
+<span id="cb22-4"><a href="tibbles-vs.-data-frames.html#cb22-4"></a>df<span class="op">$</span>part</span></code></pre></div>
 <pre><code>## [1] 1 2 3 4 5</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="tibbles-vs-data-frames.html#cb24-1"></a>tbbl<span class="op">$</span>part</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="tibbles-vs.-data-frames.html#cb24-1"></a>tbbl<span class="op">$</span>part</span></code></pre></div>
 <pre><code>## Warning: Unknown or uninitialised column: `part`.</code></pre>
 <pre><code>## NULL</code></pre>
 <ul>
 <li><strong>Tibbles prevent dimension dropping</strong>, so subsetting data into a single column will never return a vector.</li>
 </ul>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="tibbles-vs-data-frames.html#cb27-1"></a>df[, <span class="st">&quot;partial&quot;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="tibbles-vs.-data-frames.html#cb27-1"></a>df[, <span class="st">&quot;partial&quot;</span>]</span></code></pre></div>
 <pre><code>## [1] 1 2 3 4 5</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="tibbles-vs-data-frames.html#cb29-1"></a>tbbl[, <span class="st">&quot;partial&quot;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="tibbles-vs.-data-frames.html#cb29-1"></a>tbbl[, <span class="st">&quot;partial&quot;</span>]</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 1
 ##   partial
 ##     &lt;int&gt;
@@ -464,16 +464,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><strong>Tibbles allow for list-columns</strong>, which can be a powerful tool when working with the <code>purrr</code> package.</li>
 </ul>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="tibbles-vs-data-frames.html#cb31-1"></a>template_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">1</span>, <span class="dt">b =</span> <span class="dv">2</span>, <span class="dt">c =</span> <span class="dv">3</span>, <span class="dt">d =</span> <span class="dv">4</span>, <span class="dt">e =</span> <span class="dv">5</span>)</span>
-<span id="cb31-2"><a href="tibbles-vs-data-frames.html#cb31-2"></a></span>
-<span id="cb31-3"><a href="tibbles-vs-data-frames.html#cb31-3"></a><span class="kw">data.frame</span>(<span class="dt">col =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">list_col =</span> template_list)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="tibbles-vs.-data-frames.html#cb31-1"></a>template_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">1</span>, <span class="dt">b =</span> <span class="dv">2</span>, <span class="dt">c =</span> <span class="dv">3</span>, <span class="dt">d =</span> <span class="dv">4</span>, <span class="dt">e =</span> <span class="dv">5</span>)</span>
+<span id="cb31-2"><a href="tibbles-vs.-data-frames.html#cb31-2"></a></span>
+<span id="cb31-3"><a href="tibbles-vs.-data-frames.html#cb31-3"></a><span class="kw">data.frame</span>(<span class="dt">col =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">list_col =</span> template_list)</span></code></pre></div>
 <pre><code>##   col list_col.a list_col.b list_col.c list_col.d list_col.e
 ## 1   1          1          2          3          4          5
 ## 2   2          1          2          3          4          5
 ## 3   3          1          2          3          4          5
 ## 4   4          1          2          3          4          5
 ## 5   5          1          2          3          4          5</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="tibbles-vs-data-frames.html#cb33-1"></a><span class="kw">tibble</span>(<span class="dt">col =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">list_col =</span> template_list)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="tibbles-vs.-data-frames.html#cb33-1"></a><span class="kw">tibble</span>(<span class="dt">col =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">list_col =</span> template_list)</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 2
 ##     col list_col    
 ##   &lt;int&gt; &lt;named list&gt;
@@ -533,6 +533,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "lunr",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }
