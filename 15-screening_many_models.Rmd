@@ -475,3 +475,34 @@ p_preds <-
   labs(x = 'observed', y = 'predicted')
 p_preds
 ```
+
+## Meeting Videos
+
+### Cohort 3
+
+`r knitr::include_url("https://www.youtube.com/embed/p87Eum6SdD8")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:16:29	Federica Gazzelloni:	https://www.tidymodels.org/start/models/
+00:17:29	Federica Gazzelloni:	https://r4ds.had.co.nz/many-models.html
+00:31:46	Daniel Chen (he/him):	since there was a talk about "the whole thing" I feel like this set of examples is a good candidate for it all wihtout having to we-write large swaths of things
+00:32:54	Ildiko Czeller:	exactly! I feel like some of the package articles do a better job showing the "whole" thing at one place than the book
+00:34:28	Daniel Chen (he/him):	the book is more for learning ml and concepts, but since tidymodels is new (to me) i'm always fighting with how I used to do things or how things are done manually
+00:35:17	Daniel Chen (he/him):	I also haven't fit a predictive model since dissertation things. so I know for me personally my confusion and struggle is mainly not actually using it regularly
+00:36:57	Ildiko Czeller:	for me too I currently do not need predictive models for work so I need to find use cases outside work... which I haven't done yet but plan to
+00:38:32	Ben:	I thought it was only me, I can relate to your struggle, its actually a thing. 
+00:53:30	Ildiko Czeller:	workflow_map has a default value fn = "tune_grid", which I would prefer always write explicityly. it is a sensible default but it is just weird to read the code without it for me. like we map without specifying a function
+00:55:24	Daniel Chen (he/him):	+1
+00:58:39	Daniel Chen (he/him):	40 minutes : |
+00:59:00	Daniel Chen (he/him):	the verbose = TRUE is probably there so you know it's doing something. and didn't just stall
+00:59:09	Ildiko Czeller:	I wonder which of the 10 models makes it so slow. maybe neural net?
+00:59:52	Daniel Chen (he/him):	3min * 12models. that's not too bad
+01:00:29	Ildiko Czeller:	hmm there are several models taking several minutes there. interesting. it would probably worth it to set up computing in the cloud on a more powerful computer if it is important.
+01:01:18	Ildiko Czeller:	yeah it is not too bad to wait once, but if you realise in the end you made a mistake...
+01:05:26	Daniel Chen (he/him):	that was a good review of the most confusing chapters
+01:11:28	Daniel Chen (he/him):	i have conference stuff next 2 weeks so i'm +1 for break
+```
+</details>
