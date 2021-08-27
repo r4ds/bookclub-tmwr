@@ -190,6 +190,8 @@ obligatory-setup
 creating-workflow_sets
 ranking-models
 finalizing-the-model-1
+meeting-videos-16
+cohort-3-14
 slide-1-title
 slide-2-title
 encoding-categorical-data

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 14 Iterative search | Tidy Modeling with R Book Club</title>
+  <title>15.5 Meeting Videos | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 14 Iterative search | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="15.5 Meeting Videos | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 14 Iterative search | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="15.5 Meeting Videos | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="meeting-videos-14.html"/>
-<link rel="next" href="svm-model-as-motivating-example.html"/>
+<link rel="prev" href="finalizing-the-model-1.html"/>
+<link rel="next" href="review-of-chapters-10-15.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -428,29 +428,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="iterative-search" class="section level1">
-<h1><span class="header-section-number">Chapter 14</span> Iterative search</h1>
-<p><strong>Learning objectives:</strong></p>
-<ul>
-<li>Use <code>tune::tune_bayes()</code> to optimize model parameters using <strong>Bayesian optimization.</strong>
-<ul>
-<li>Describe how a <strong>Gaussian process model</strong> can be applied to parameter optimization.</li>
-<li>Explain how <strong>acquisition functions</strong> can be expressed as a trade-off between <strong>exploration</strong> and <strong>exploitation.</strong></li>
-<li>Describe <strong>expected improvement,</strong> the default acquisition function <strong>used by {tidymodels}.</strong></li>
-</ul></li>
-<li>Use <code>finetune::tune_sim_anneal()</code> to optimize model parameters using <strong>Simulated annealing.</strong>
-<ul>
-<li>Describe <strong>simulated annealing search.</strong></li>
-</ul></li>
-</ul>
+<div id="meeting-videos-16" class="section level2">
+<h2><span class="header-section-number">15.5</span> Meeting Videos</h2>
+<div id="cohort-3-14" class="section level3">
+<h3><span class="header-section-number">15.5.1</span> Cohort 3</h3>
+<iframe src="https://www.youtube.com/embed/p87Eum6SdD8" width="100%" height="400px">
+</iframe>
+<details>
+<p><summary> Meeting chat log </summary></p>
+<pre><code>00:16:29    Federica Gazzelloni:    https://www.tidymodels.org/start/models/
+00:17:29    Federica Gazzelloni:    https://r4ds.had.co.nz/many-models.html
+00:31:46    Daniel Chen (he/him):   since there was a talk about &quot;the whole thing&quot; I feel like this set of examples is a good candidate for it all wihtout having to we-write large swaths of things
+00:32:54    Ildiko Czeller: exactly! I feel like some of the package articles do a better job showing the &quot;whole&quot; thing at one place than the book
+00:34:28    Daniel Chen (he/him):   the book is more for learning ml and concepts, but since tidymodels is new (to me) i&#39;m always fighting with how I used to do things or how things are done manually
+00:35:17    Daniel Chen (he/him):   I also haven&#39;t fit a predictive model since dissertation things. so I know for me personally my confusion and struggle is mainly not actually using it regularly
+00:36:57    Ildiko Czeller: for me too I currently do not need predictive models for work so I need to find use cases outside work... which I haven&#39;t done yet but plan to
+00:38:32    Ben:    I thought it was only me, I can relate to your struggle, its actually a thing. 
+00:53:30    Ildiko Czeller: workflow_map has a default value fn = &quot;tune_grid&quot;, which I would prefer always write explicityly. it is a sensible default but it is just weird to read the code without it for me. like we map without specifying a function
+00:55:24    Daniel Chen (he/him):   +1
+00:58:39    Daniel Chen (he/him):   40 minutes : |
+00:59:00    Daniel Chen (he/him):   the verbose = TRUE is probably there so you know it&#39;s doing something. and didn&#39;t just stall
+00:59:09    Ildiko Czeller: I wonder which of the 10 models makes it so slow. maybe neural net?
+00:59:52    Daniel Chen (he/him):   3min * 12models. that&#39;s not too bad
+01:00:29    Ildiko Czeller: hmm there are several models taking several minutes there. interesting. it would probably worth it to set up computing in the cloud on a more powerful computer if it is important.
+01:01:18    Ildiko Czeller: yeah it is not too bad to wait once, but if you realise in the end you made a mistake...
+01:05:26    Daniel Chen (he/him):   that was a good review of the most confusing chapters
+01:11:28    Daniel Chen (he/him):   i have conference stuff next 2 weeks so i&#39;m +1 for break</code></pre>
+</details>
+
 </div>
+</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="meeting-videos-14.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="svm-model-as-motivating-example.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="finalizing-the-model-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="review-of-chapters-10-15.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -482,7 +497,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/14-iterative_search.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/15-screening_many_models.Rmd",
 "text": "Edit"
 },
 "history": {
