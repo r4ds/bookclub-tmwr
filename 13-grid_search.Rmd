@@ -702,3 +702,19 @@ No value of `metric` was given; metric 'rmse' will be used.
 - consider racing methods to skip poor parameter combinations
 
 Grid search is computationally expensive, but thoughtful choices in the experimental design can make them tractable.
+
+## Meeting Videos
+
+### Cohort 3
+
+`r knitr::include_url("https://www.youtube.com/embed/FTuti94dgYs")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:33:23	jiwan:	how do we go about visualizing/ making sense of hyperparameters when there's more than 3-4
+00:52:32	jiwan:	https://juliasilge.com/blog/shelter-animals/
+```
+</details>
+

@@ -331,3 +331,39 @@ Voilààà!
 
 -   **Get started with tidymodels and TidyTuesday Palmer penguins**: <https://juliasilge.com/blog/palmer-penguins/>
 -   **A Visual Exploration of Gaussian Processes**: <https://distill.pub/2019/visual-exploration-gaussian-processes/#Multivariate>
+
+## Meeting Videos
+
+### Cohort 3
+
+`r knitr::include_url("https://www.youtube.com/embed/a_tg77VOtHk")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:11:21	Daniel Chen:	is this like picking the parameters for a given distribution? like beta(0, 1) vs beta(0.1, 0.9)?
+00:12:09	Daniel Chen:	ok nvm this is the svm example right now. I guess that question is for the Bayesian point
+00:12:49	Jiwan Heo:	I think so, updating priors to make posterior distribution
+00:31:36	Daniel Chen:	the usemodels is mainly a way to help you out with somewhat reasonable defaults
+00:35:02	Daniel Chen:	like the "caterpillar plot" to help you see if things converged?
+00:35:08	Jiwan Heo:	yea!
+00:38:13	Daniel Chen:	i forgot what data is using? the post resamples?
+00:38:23	Daniel Chen:	you might need to manually pull that out from the data?
+00:44:57	Daniel Chen:	for the bayes stuff. is there a way to change the backend for the bayes calculation? e.g., using STAN or something?
+00:47:33	Jiwan Heo:	maybe in the model spec?
+00:47:43	Jiwan Heo:	bayes.model = linear_reg() %>%
+  set_engine(engine = "stan", 
+             prior_intercept = prior.dist, 
+             prior = prior.dist) %>%
+  set_mode(mode = "regression")
+00:49:08	Daniel Chen:	oooh. yeah. okay
+00:54:52	Daniel Chen:	yeah i guess this ends up being hard since bayes is anaother layer of things to understand the examples
+00:55:07	Daniel Chen:	i do wonder if the SVM example or something can/should be simplified to be used as a chapter 0
+00:55:26	Daniel Chen:	I've only really used grid search in the past personally in the past
+00:55:36	Daniel Chen:	but i was before tidymodels and all hand coded
+00:55:42	Daniel Chen:	expand.grid was a friend :)
+01:03:16	Jiwan Heo:	have to jump off, thank you for the presentation!
+01:09:27	Daniel Chen:	i'm good for next week
+```
+</details>

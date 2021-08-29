@@ -541,3 +541,34 @@ given that our starting girth is 8.3, the dV/dH should be positive even if we ha
 01:21:45	Kevin Kent:	And those standards emanate from a philosophy about how programs should be designed. Basically agreeing with august
 ```
 </details>
+
+### Cohort 3
+
+`r knitr::include_url("https://www.youtube.com/embed/nNvjk3qtHUo")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:12:03	Ildiko Czeller:	not modeling related, but girth was a new word for me :)
+00:22:04	Hannah Frick:	it's doing 2-way interactions for all in the ()
+00:23:57	Toryn Schafer:	lm(mpg ~ (.)^2, data = mtcars)
+00:25:57	Hannah Frick:	and then all 3-way interactions: m(mpg ~ (.)^3, data = mtcars)
+00:26:08	Hannah Frick:	*lm
+00:36:24	Chris Martin:	I think this was the example for + 0
+00:37:11	Jake Scott:	Thank you! I think seeing it like that makes it make more sense, at least for me. Also thanks to Toryn for explaining!
+00:37:40	Ildiko Czeller:	+1! thank you both. (it is a shame we cannot like posts here :) )
+00:43:57	Hannah Frick:	you specify like a matix with c(rows, columns)
+00:56:15	Ildiko Czeller:	does anova makes sense if one models predictors are not a superset of the other model predictors?
+00:58:41	Jake Scott:	I think it would make sense just insofar as we care whether the fit is different between model 1 or model 2. Like maybe model 1 is Y ~ X and model 2 is Y ~ Z. I believe we could use ANOVA to see we get different fits. Not sure it is the primary way to discern that, but I think it'd work no? I may have to hit the books to refresh myself!
+00:59:23	Hannah Frick:	anova is for nested models only if I recall correctly
+00:59:31	Toryn Schafer:	Would have to double check, but no, I think the models need to be nested (predictors a subset of the larger model)
+01:00:15	Ildiko Czeller:	i need to refresh a lot of stats :) it is not clear to me when /why you would use anova or just compare r^2
+01:00:28	Toryn Schafer:	ANOVA has the p-value haha
+01:00:37	Ildiko Czeller:	or maybe anova tells you if a smaller r^2 is smaller enough
+01:01:15	Jake Scott:	The mighty p-value. But yes I am rusty so not sure- if you say it has to be nested, my guess is you're correct!
+01:01:27	Chris Martin:	Thanks Edgar
+01:02:51	Toryn Schafer:	Ildiko, yes it will tell you if the increase in R^2 is significant (remember R^2 always increases with more predictors)
+01:04:10	Ildiko Czeller:	thank you Toryn, makes sense!
+```
+</details>

@@ -274,3 +274,31 @@ tree_predictions %>%
 00:59:04	Asmae Toumi:	Goodnight gang
 ```
 </details>
+
+### Cohort 3
+
+`r knitr::include_url("https://www.youtube.com/embed/J29iQXGmw8w")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:06:03	Daniel Chen (he/him):	hello. i'm here. just finishing up stuff before meeting
+00:06:44	Ildiko Czeller:	welcome Federica. is this your first tidymodels bookclub?
+00:15:21	Federica Gazzelloni:	@Ildiko hello yes, just jumped in. Thanks!
+00:16:05	Toryn Schafer (she/her):	Welcome!
+00:16:40	Daniel Chen (he/him):	Q: the bake() gives you the data after all those step_() functions from recipies?
+00:17:39	Toryn Schafer (she/her):	Yes, I think that’s right, Daniel. From the help page the value of bake() is: “A tibble, matrix, or sparse matrix that may have different columns than the original columns in new_data.”
+00:22:45	Daniel Chen (he/him):	what is the response/y variable for this dataset?
+00:28:36	Daniel Chen (he/him):	oh I see it's `diam`
+00:41:56	Federica Gazzelloni:	@Toryn thanks very interesting
+00:45:24	Federica Gazzelloni:	Hello @Daniel 
+00:45:37	Daniel Chen (he/him):	so working with workflow_sets still needs you to drop into rowwise? there's no function to fit those models for you?
+00:45:49	Daniel Chen (he/him):	hello @Federica!
+00:47:27	Toryn Schafer (she/her):	In the book they used map instead of rowwise, but yeah doesn’t seem to be one function: map(info, ~ fit(.x$workflow[[1]], ames_train))
+00:54:39	Federica Gazzelloni:	need to go, very good job! see you next time hopefully
+01:07:43	Ildiko Czeller:	https://www.tidymodels.org/learn/develop/
+01:08:24	Ildiko Czeller:	https://hardhat.tidymodels.org/
+01:09:07	Ildiko Czeller:	https://tidymodels.github.io/model-implementation-principles/
+```
+</details>
