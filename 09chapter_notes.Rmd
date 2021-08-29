@@ -688,7 +688,7 @@ In conclusion when judging on a model effectiveness is important to follow few c
 - second step is to calculate the ROC curve and the Area underneath the curve, plot it to see how it behaves on the model
 - third is to apply some selected metrics such as RMSE or RSQ, MAE etc.. to evaluate the estimation values
 - fourth make the confusion matrix as well as all the related metrics (sensitivity, specificity, accuracy, F1 ...)
-- finally applyi again the ROC curve visualization on resampling to see the best fit
+- finally apply again the ROC curve visualization on resampling to see the best fit
 
 
 -------------------------
