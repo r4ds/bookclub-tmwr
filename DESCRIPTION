@@ -47,12 +47,14 @@ Imports:
     corrplot,
     ggforce,
     bestNormalize,
+    dimRed,
     learntidymodels,
     mixOmics
 Remotes: 
     hadley/emo,
     gadenbuie/tweetrmd,
     tidymodels/embed,
+    tidymodels/finetune,
     tidymodels/learntidymodels
 biocViews: mixOmics
 
