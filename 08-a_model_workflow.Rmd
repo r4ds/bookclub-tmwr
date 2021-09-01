@@ -109,8 +109,8 @@ tree_workflow_lm <- workflow() %>%
 ```{r sf_trees_fit_and_examine}
 fitted_workflow_lm <- tree_workflow_lm %>% fit(trees_training)
 
-tidy(pull_workflow_prepped_recipe(fitted_workflow_lm), 3)
-tidy(pull_workflow_fit(fitted_workflow_lm))
+tidy(extract_recipe(fitted_workflow_lm), 3)
+tidy(extract_fit_parsnip(fitted_workflow_lm))
 ```
 
 ```{r sf_trees_predict_and_eval}
