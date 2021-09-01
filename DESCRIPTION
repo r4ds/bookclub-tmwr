@@ -42,8 +42,17 @@ Imports:
     tidytuesdayR,
     tufte,
     tweetrmd,
-    workflowsets
+    workflowsets,
+    beans,
+    corrplot,
+    ggforce,
+    bestNormalize,
+    learntidymodels,
+    mixOmics
 Remotes: 
-    tidymodels/discrim,
     hadley/emo,
-    gadenbuie/tweetrmd
+    gadenbuie/tweetrmd,
+    tidymodels/embed,
+    tidymodels/learntidymodels
+biocViews: mixOmics
+

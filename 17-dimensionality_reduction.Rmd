@@ -2,12 +2,159 @@
 
 **Learning objectives:**
 
-- Jon will prefill these.
+- Create, prep, and bake recipes outside of a workflow to test or debug the recipes.
+- Compare and contrast dimensionality reduction techniques (techniques used to create a small set of features that capture the main aspects of the original predictor set).
+- Use principal component analysis (PCA) to reduce dimensionality.
+- Use partial least squares (PLS) to reduce dimensionality.
+- Use independent component analysis (ICA) to reduce dimensionality.
+- Use uniform manifold approximation and projection (UMAP) to reduce dimensionality.
+- Use dimensionality reduction techniques in conjunction with modeling techniques.
 
-## Slide 1 Title
+## {recipes} without {workflows}
 
-Put the content of your slide here.
+![recipe() defines preprocessing, prep() calculates stats from training set, bake() applies preprocessing to new data](images/17-recipes-process.svg)
 
-## Slide 2 Title
+## Principal Component Analysis (PCA)
 
-Put the content of your second slide here.
+```{r 17-prep, include = FALSE}
+library(tidymodels)
+tidymodels_prefer()
+library(beans)
+library(corrplot)
+library(ggforce)
+library(bestNormalize)
+library(learntidymodels)
+library(embed)
+
+set.seed(1701)
+bean_split <- initial_split(beans, strata = class, prop = 3/4)
+
+bean_train <- training(bean_split)
+bean_test  <- testing(bean_split)
+
+set.seed(1702)
+bean_val <- validation_split(bean_train, strata = class, prop = 4/5)
+bean_val$splits[[1]]
+#> <Training/Validation/Total>
+#> <8163/2044/10207>
+
+tmwr_cols <- colorRampPalette(c("#91CBD765", "#CA225E"))
+bean_train %>% 
+  # dplyr::filter(class == levels(bean_train$class)[[5]]) %>% 
+  select(-class) %>%
+  cor() %>% 
+  corrplot(col = tmwr_cols(200), tl.col = "black") +
+  ggplot2::facet_wrap(~class)
+
+bean_rec <-
+  # Use the training data from the bean_val split object
+  recipe(class ~ ., data = analysis(bean_val$splits[[1]])) %>%
+  step_zv(all_numeric_predictors()) %>%
+  step_orderNorm(all_numeric_predictors()) %>% 
+  step_normalize(all_numeric_predictors())
+
+bean_rec_trained <- prep(bean_rec)
+
+show_variables <- 
+  bean_rec %>% 
+  prep(log_changes = TRUE)
+
+bean_validation <- bean_val$splits %>% pluck(1) %>% assessment()
+bean_val_processed <- bake(bean_rec_trained, new_data = bean_validation)
+
+plot_validation_results <- function(recipe, dat = assessment(bean_val$splits[[1]])) {
+  recipe %>%
+    # Estimate any additional steps
+    prep() %>%
+    # Process the data (the validation set by default)
+    bake(new_data = dat) %>%
+    # Create the scatterplot matrix
+    ggplot(aes(x = .panel_x, y = .panel_y, col = class, fill = class)) +
+    geom_point(alpha = 0.4, size = 0.5) +
+    geom_autodensity(alpha = .3) +
+    facet_matrix(vars(-class), layer.diag = 2) + 
+    scale_color_brewer(palette = "Dark2") + 
+    scale_fill_brewer(palette = "Dark2")
+}
+```
+
+- PCA = unsupervised method, finds up to N new features (where N = # features) to explain variation.
+
+```{r 17-pca}
+bean_rec_trained %>%
+  step_pca(all_numeric_predictors(), num_comp = 4) %>%
+  plot_validation_results() + 
+  ggtitle("Principal Component Analysis")
+```
+
+## Partial Least Squares (PLS)
+
+- Supervised PCA.
+
+```{r 17-pls}
+bean_rec_trained %>%
+  step_pls(all_numeric_predictors(), outcome = "class", num_comp = 4) %>%
+  plot_validation_results() + 
+  ggtitle("Partial Least Squares")
+```
+
+## Independent Component Anysis (ICA)
+
+- "As statistically independent from one another as possible."
+- "It can be thought of as maximizing the 'non-Gaussianity' of the ICA components.
+
+```{r 17-ica}
+bean_rec_trained %>%
+  step_ica(all_numeric_predictors(), num_comp = 4) %>%
+  plot_validation_results() + 
+  ggtitle("Independent Component Analysis")
+```
+
+## Uniform Manifold Approximation and Projection (UMAP)
+
+- Uses distance-based nearest neighbor to find local areas where data points are more likely related.
+- Relationships saved as directed graph w/most points not connected.
+- Create smaller feature set such that graph is well approximated.
+
+```{r 17-umap}
+library(embed)
+bean_rec_trained %>%
+  step_umap(all_numeric_predictors(), outcome = "class", num_comp = 4) %>%
+  plot_validation_results() +
+  ggtitle("Uniform Manifold Approximation and Projection (supervised)")
+```
+
+## Modeling
+
+(This is slow so I don't actually run it here.)
+
+```{r 17-modeling, eval = FALSE}
+ctrl <- control_grid(parallel_over = "everything")
+bean_res <- 
+  workflow_set(
+    preproc = list(basic = class ~., pls = pls_rec, umap = umap_rec), 
+    models = list(bayes = bayes_spec, fda = fda_spec,
+                  rda = rda_spec, bag = bagging_pec,
+                  mlp = mlp_spec)
+  ) %>% 
+  workflow_map(
+    verbose = TRUE,
+    seed = 1703,
+    resamples = bean_val,
+    grid = 10,
+    metrics = metric_set(roc_auc)
+  )
+
+rankings <- 
+  rank_results(bean_res, select_best = TRUE) %>% 
+  mutate(method = map_chr(wflow_id, ~ str_split(.x, "_", simplify = TRUE)[1])) 
+
+rankings %>% 
+  ggplot(aes(x = rank, y = mean, pch = method, col = model)) + 
+  geom_point(cex = 3) + 
+  theme(legend.position = "right") +
+  labs(y = "ROC AUC") +
+  coord_cartesian(ylim = c(0, 1))
+```
+
+![](images/17-model_ranks.png)
