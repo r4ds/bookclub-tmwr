@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>19.1 Slide 1 Title | Tidy Modeling with R Book Club</title>
+  <title>20.1 Slide 1 Title | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="19.1 Slide 1 Title | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="20.1 Slide 1 Title | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="19.1 Slide 1 Title | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="20.1 Slide 1 Title | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -24,14 +24,14 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-08-29" />
+<meta name="date" content="2021-09-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="when-should-you-trust-predictions.html"/>
+<link rel="prev" href="ensemble-models.html"/>
 <link rel="next" href="slide-2-title-4.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -56,14 +56,6 @@
 <script src="libs/twitter-widget-0.0.1/widgets.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<script src="libs/d3-3.3.8/d3.min.js"></script>
-<script src="libs/dagre-0.4.0/dagre-d3.min.js"></script>
-<link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet" />
-<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
-<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
-<script src="libs/chromatography-0.1/chromatography.js"></script>
-<script src="libs/DiagrammeR-binding-1.0.6.1/DiagrammeR.js"></script>
 
 
 <style type="text/css">
@@ -275,13 +267,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.6.2" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-3-8"><i class="fa fa-check"></i><b>9.6.2</b> Cohort 3</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="notes-on-chapter-9-judging-model-effectiveness---cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness---cohort-3.html"><i class="fa fa-check"></i>Notes on Chapter 9 Judging model effectiveness - Cohort 3</a><ul>
-<li class="chapter" data-level="9.6.3" data-path="notes-on-chapter-9-judging-model-effectiveness---cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness---cohort-3.html#performance-metrics-and-inference"><i class="fa fa-check"></i><b>9.6.3</b> Performance Metrics and Inference</a></li>
-<li class="chapter" data-level="9.6.4" data-path="notes-on-chapter-9-judging-model-effectiveness---cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness---cohort-3.html#to-recap-the-step-for-modeling-as-seen-in-the-previous-chapters"><i class="fa fa-check"></i><b>9.6.4</b> To Recap the step for modeling as seen in the previous chapters:</a></li>
-<li class="chapter" data-level="9.6.5" data-path="notes-on-chapter-9-judging-model-effectiveness---cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness---cohort-3.html#case-studies"><i class="fa fa-check"></i><b>9.6.5</b> Case Studies</a></li>
-<li class="chapter" data-level="9.6.6" data-path="notes-on-chapter-9-judging-model-effectiveness---cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness---cohort-3.html#nyc-flights-data-modeling"><i class="fa fa-check"></i><b>9.6.6</b> NYC flights data modeling</a></li>
-<li class="chapter" data-level="9.6.7" data-path="notes-on-chapter-9-judging-model-effectiveness---cohort-3.html"><a href="notes-on-chapter-9-judging-model-effectiveness---cohort-3.html#conclusion"><i class="fa fa-check"></i><b>9.6.7</b> Conclusion</a></li>
-</ul></li>
 <li class="chapter" data-level="" data-path="review-of-chapters-4-9.html"><a href="review-of-chapters-4-9.html"><i class="fa fa-check"></i>Review of chapters 4-9</a><ul>
 <li class="chapter" data-level="9.7" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html"><i class="fa fa-check"></i><b>9.7</b> Meeting Videos</a><ul>
 <li class="chapter" data-level="9.7.1" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html#cohort-1-9"><i class="fa fa-check"></i><b>9.7.1</b> Cohort 1</a></li>
@@ -389,24 +374,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.2" data-path="slide-2-title-1.html"><a href="slide-2-title-1.html"><i class="fa fa-check"></i><b>16.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>17</b> Dimensionality reduction</a><ul>
-<li class="chapter" data-level="17.1" data-path="slide-1-title-2.html"><a href="slide-1-title-2.html"><i class="fa fa-check"></i><b>17.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="17.2" data-path="slide-2-title-2.html"><a href="slide-2-title-2.html"><i class="fa fa-check"></i><b>17.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="17.1" data-path="recipes-without-workflows.html"><a href="recipes-without-workflows.html"><i class="fa fa-check"></i><b>17.1</b> {recipes} without {workflows}</a></li>
+<li class="chapter" data-level="17.2" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i><b>17.2</b> Principal Component Analysis (PCA)</a></li>
+<li class="chapter" data-level="17.3" data-path="partial-least-squares-pls.html"><a href="partial-least-squares-pls.html"><i class="fa fa-check"></i><b>17.3</b> Partial Least Squares (PLS)</a></li>
+<li class="chapter" data-level="17.4" data-path="independent-component-anysis-ica.html"><a href="independent-component-anysis-ica.html"><i class="fa fa-check"></i><b>17.4</b> Independent Component Anysis (ICA)</a></li>
+<li class="chapter" data-level="17.5" data-path="uniform-manifold-approximation-and-projection-umap.html"><a href="uniform-manifold-approximation-and-projection-umap.html"><i class="fa fa-check"></i><b>17.5</b> Uniform Manifold Approximation and Projection (UMAP)</a></li>
+<li class="chapter" data-level="17.6" data-path="modeling.html"><a href="modeling.html"><i class="fa fa-check"></i><b>17.6</b> Modeling</a></li>
 </ul></li>
 <li class="chapter" data-level="18" data-path="explaining-models-and-predictions.html"><a href="explaining-models-and-predictions.html"><i class="fa fa-check"></i><b>18</b> Explaining models and predictions</a><ul>
-<li class="chapter" data-level="18.1" data-path="slide-1-title-3.html"><a href="slide-1-title-3.html"><i class="fa fa-check"></i><b>18.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="18.2" data-path="slide-2-title-3.html"><a href="slide-2-title-3.html"><i class="fa fa-check"></i><b>18.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="18.1" data-path="slide-1-title-2.html"><a href="slide-1-title-2.html"><i class="fa fa-check"></i><b>18.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="18.2" data-path="slide-2-title-2.html"><a href="slide-2-title-2.html"><i class="fa fa-check"></i><b>18.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="chapter" data-level="19" data-path="when-should-you-trust-predictions.html"><a href="when-should-you-trust-predictions.html"><i class="fa fa-check"></i><b>19</b> When should you trust predictions?</a><ul>
-<li class="chapter" data-level="19.1" data-path="slide-1-title-4.html"><a href="slide-1-title-4.html"><i class="fa fa-check"></i><b>19.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="19.2" data-path="slide-2-title-4.html"><a href="slide-2-title-4.html"><i class="fa fa-check"></i><b>19.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="19.1" data-path="slide-1-title-3.html"><a href="slide-1-title-3.html"><i class="fa fa-check"></i><b>19.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="19.2" data-path="slide-2-title-3.html"><a href="slide-2-title-3.html"><i class="fa fa-check"></i><b>19.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="ensemble-models.html"><a href="ensemble-models.html"><i class="fa fa-check"></i><b>20</b> Ensemble models</a><ul>
-<li class="chapter" data-level="20.1" data-path="slide-1-title-5.html"><a href="slide-1-title-5.html"><i class="fa fa-check"></i><b>20.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="20.2" data-path="slide-2-title-5.html"><a href="slide-2-title-5.html"><i class="fa fa-check"></i><b>20.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="20.1" data-path="slide-1-title-4.html"><a href="slide-1-title-4.html"><i class="fa fa-check"></i><b>20.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="20.2" data-path="slide-2-title-4.html"><a href="slide-2-title-4.html"><i class="fa fa-check"></i><b>20.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="chapter" data-level="21" data-path="inferential-analysis.html"><a href="inferential-analysis.html"><i class="fa fa-check"></i><b>21</b> Inferential analysis</a><ul>
-<li class="chapter" data-level="21.1" data-path="slide-1-title-6.html"><a href="slide-1-title-6.html"><i class="fa fa-check"></i><b>21.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="21.2" data-path="slide-2-title-6.html"><a href="slide-2-title-6.html"><i class="fa fa-check"></i><b>21.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="21.1" data-path="slide-1-title-5.html"><a href="slide-1-title-5.html"><i class="fa fa-check"></i><b>21.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="21.2" data-path="slide-2-title-5.html"><a href="slide-2-title-5.html"><i class="fa fa-check"></i><b>21.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -429,7 +418,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="slide-1-title-4" class="section level2">
-<h2><span class="header-section-number">19.1</span> Slide 1 Title</h2>
+<h2><span class="header-section-number">20.1</span> Slide 1 Title</h2>
 <p>Put the content of your slide here.</p>
 </div>
             </section>
@@ -437,7 +426,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="when-should-you-trust-predictions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ensemble-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="slide-2-title-4.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -470,7 +459,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/19-when_should_you_trust_predictions.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/20-ensemble_models.Rmd",
 "text": "Edit"
 },
 "history": {
