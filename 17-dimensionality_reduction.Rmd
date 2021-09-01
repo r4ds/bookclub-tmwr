@@ -104,6 +104,7 @@ bean_rec_trained %>%
 - "It can be thought of as maximizing the 'non-Gaussianity' of the ICA components.
 
 ```{r 17-ica}
+# Note: ICA requires the "dimRed" and "fastICA" packages.
 bean_rec_trained %>%
   step_ica(all_numeric_predictors(), num_comp = 4) %>%
   plot_validation_results() + 

@@ -81,7 +81,7 @@ p_cors <-
   aes(x = col1, y = col2) +
   geom_tile(aes(fill = cor), alpha = 0.7) +
   geom_text(aes(label = scales::number(cor, accuracy = 0.1))) +
-  guides(fill = FALSE) +
+  guides(fill = "none") +
   scale_fill_viridis_c(option = 'E', direction = 1, begin = 0.2) +
   labs(x = NULL, y = NULL) +
   theme(
@@ -385,7 +385,7 @@ p_ranks <-
     width = diff(range(res$rank))/75
   ) +
   coord_flip() +
-  guides(color = FALSE) +
+  guides(color = "none") +
   theme(legend.position = 'top') +
   labs(
     x = 'Workflow Rank', y = metric_info$metric,
@@ -445,12 +445,12 @@ wflow_id_best <-
 
 wf_best <-
   res_grid %>% 
-  pull_workflow_set_result(wflow_id_best) %>% 
+  extract_workflow_set_result(wflow_id_best) %>% 
   select_best(metric = 'rmse')
 
 fit_best <-
   res_grid %>% 
-  pull_workflow(wflow_id_best) %>% 
+  extract_workflow(wflow_id_best) %>% 
   finalize_workflow(wf_best) %>% 
   last_fit(split = split)
 
