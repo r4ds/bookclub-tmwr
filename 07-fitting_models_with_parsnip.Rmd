@@ -335,7 +335,7 @@ ggplot(parabolic, aes(x = X1, y = X2)) +
 <details>
   <summary> Meeting chat log </summary>
   
-  ```
+```
 00:15:40	Tan Ho:	YESSS
 00:15:58	Tan Ho:	(@ the drake meme)
 00:21:51	Tyler Grant Smith:	space advantage
@@ -352,6 +352,41 @@ ggplot(parabolic, aes(x = X1, y = X2)) +
 00:44:48	Andy Farina:	Thanks Jordan, excellent presentation
 ```
 </details>
+
+### Cohort 2
+
+`r knitr::include_url("https://www.youtube.com/embed/gjBKHu4yJlY")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:12:53	shamsuddeen:	https://torch.mlverse.org
+00:13:21	shamsuddeen:	Book: https://mlverse.github.io/torchbook_materials/
+00:16:18	Janita Botha:	I'm in the meeting twice because my sound is not working this morning
+00:26:10	August:	fit_xy doesn't do the contrast coding automatically, fit does. 
+00:28:04	Luke Shaw:	Is fit_xy a 'safer' option?
+00:28:33	rahul bahadur:	@August. If you were to have categorical predictors in `lm()` would fit_xy() be able to model it? `lm()` automatically does contrast coding internally
+00:30:55	Luke Shaw:	https://xkcd.com/927/
+00:33:10	Amélie Gourdon-Kanhukamwe (she/they):	Nice one Luke!
+00:34:44	rahul bahadur:	I hope tidymodels doesn't end up becoming just another standard :P
+00:34:50	August:	I'm not sure about safer, it depends I suppose if you have done a recipe with the coding before hand. 
+00:35:39	Kevin Kent:	I wonder if future packages that tidy models references will be built with a tidy models integration in mind. Instead of tidy models having to do so much translation
+00:36:34	Luke Shaw:	Thanks August. Think I need to get my hands dirty using it to really help me understand!
+00:37:34	Luke Shaw:	Yeah I'm only joking with the xkcd but does feel relevant. Kinda hoping tidymodels can be the one standard I get v. familiar with and has a long life
+00:40:30	Kevin Kent:	I think modeltime is an example of a modeling package done with tidymodels in mind. Kind of designed first for tidy models instead of having to do a bunch of translation to fit into the framework. Hopefully more do development like this
+00:41:21	Kevin Kent:	But I guess that one is doing a similar job to tidymodels in the sense of pulling in functionality from other packages as engines
+00:41:45	August:	Absolutely.
+00:42:44	August:	btw I have mostly used fit() rather than fit_xy() although the latter by be preferable
+00:42:54	Kevin Kent:	I love these templating packages..excited to use them
+00:43:18	Kevin Kent:	rstudio add in looks fantastic
+00:44:23	rahul bahadur:	Yes, fit_xy(), though requires more code, would not lead to unknown behaviour. I believe.
+00:44:41	Kevin Kent:	Yeah less “magic” happening
+00:46:19	Luke Shaw:	This feels very scary about using "fit": "If the data were preprocessed in any way, incorrect predictions will be generated (sometimes, without errors)."
+00:47:56	Luke Shaw:	^^^ that's  not about the function fit() - my bad
+00:48:09	Kevin Kent:	Or if you accidentally read in a numeric column as categorical and then run fit it won’t throw an error even though its not meaningful as a categorical variable
+```
+</details
 
 ### Cohort 3
 

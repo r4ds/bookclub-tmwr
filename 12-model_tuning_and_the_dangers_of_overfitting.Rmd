@@ -313,7 +313,7 @@ The parameter object we just explored knows the range of the parameters. the `{d
 <details>
   <summary> Meeting chat log </summary>
   
-  ```
+```
 00:11:27	Jon Harmon (jonthegeek):	usethis::use_package("patchwork")
 00:23:12	Jon Harmon (jonthegeek):	@jim Which chapter are you going to present: 13? 14? 15? 😊
 00:27:52	Jim Gruman:	:) sure, 13 sounds good
@@ -345,6 +345,33 @@ The parameter object we just explored knows the range of the parameters. the `{d
 00:54:23	Tan Ho:	if 16 isn't written by the time I present we can probably just review lol
 ```
 </details>
+
+### Cohort 2
+
+`r knitr::include_url("https://www.youtube.com/embed/uHntG4id-Y8")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:13:12	Luke Shaw:	sounds cool :)
+00:13:26	Kevin Kent:	For sure!
+00:34:14	August:	https://www.tidymodels.org/learn/develop/models/
+00:34:21	August:	build your own engine]
+00:34:40	August:	that's what the link is sorry.
+00:39:39	Amélie Gourdon-Kanhukamwe (she/they):	Hear hear!
+00:43:23	August:	I've added it to the slack group
+00:43:36	August:	come learn bayes!!! 
+00:43:47	Kevin Kent:	Yeah I’m trying to convert :)
+00:54:30	Kevin Kent:	https://matrixprofile.org/
+00:55:53	August:	found it! 
+00:55:55	August:	https://www.tidymodels.org/learn/develop/recipes/
+00:56:48	Stephen Holsenbeck:	Good to see you too, thank you!
+00:56:49	Luke Shaw:	thanks Janita - see you all next week :)
+00:56:51	Amélie Gourdon-Kanhukamwe (she/they):	Sorry all, been working all night and I am knackered, but thanks Janita!
+```
+</details
+
 
 ### Cohort 3
 

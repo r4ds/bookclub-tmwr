@@ -478,6 +478,40 @@ p_preds
 
 ## Meeting Videos
 
+### Cohort 1
+
+`r knitr::include_url("https://www.youtube.com/embed/Oqla9cWYCak")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:07:17	Jordan Krogmann:	@jon the power of the doge shirt!
+00:13:59	Jordan Krogmann:	ggpairs is a great package for this
+00:14:20	Conor Tompkins:	I always want to tilt corr matrices a little bit
+00:14:22	Asmae Toumi:	eyes emoji
+00:14:36	Jon Harmon:	👀
+00:26:51	Jon Harmon:	https://github.com/tidymodels/workflowsets/pull/48
+00:34:23	Jim Gruman:	gotta step off … thank you Tony!!!
+```
+</details
+
+### Cohort 2
+
+`r knitr::include_url("https://www.youtube.com/embed/M71Ey5Ikf4Y")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:08:13	Luke Shaw:	https://www.datakind.org/
+00:11:46	Luke Shaw:	https://www.tidyverse.org/blog/2021/05/choose-tidymodels-adventure/
+00:12:54	Luke Shaw:	https://www.youtube.com/watch?v=2OfTEakSFXQ
+00:44:23	shamsuddeen:	Is ok for me too
+```
+</details
+
+
 ### Cohort 3
 
 `r knitr::include_url("https://www.youtube.com/embed/p87Eum6SdD8")`

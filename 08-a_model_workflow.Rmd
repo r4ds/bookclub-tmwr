@@ -206,7 +206,7 @@ tree_predictions %>%
 <details>
   <summary> Meeting chat log </summary>
   
-  ```
+```
 00:13:53	Tyler Grant Smith:	i used skimr today on a dataset with 77 million rows and 200 columns...it took a while
 00:14:14	Tan Ho:	The official R soundtrack https://www.youtube.com/watch?v=-9BzWBufH1s
 00:14:19	Tyler Grant Smith:	that would have been smart...oh well
@@ -274,6 +274,23 @@ tree_predictions %>%
 00:59:04	Asmae Toumi:	Goodnight gang
 ```
 </details>
+
+### Cohort 2
+
+`r knitr::include_url("https://www.youtube.com/embed/sNrJrEiPF0U")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:14:55	Janita Botha:	THIS IS SOOOOO COOL!!!!
+00:33:32	shamsuddeen:	This is good Kevin. Tidy Modelling should have something like this incorporated in a workflow.
+00:33:33	shamsuddeen:	Tidy target
+00:48:17	Roberto Villegas-Diaz:	https://snakemake.readthedocs.io/en/stable/
+00:52:40	shamsuddeen:	Thanks Kevin
+```
+</details
+
 
 ### Cohort 3
 

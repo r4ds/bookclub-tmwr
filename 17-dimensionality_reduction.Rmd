@@ -159,3 +159,26 @@ rankings %>%
 ```
 
 ![](images/17-model_ranks.png)
+## Meeting Videos
+
+### Cohort 1
+
+`r knitr::include_url("https://www.youtube.com/embed/ewNOYUwKwCM")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:24:23	Daniel Chen (he/him):	PCA maximizes the variance
+00:41:01	Daniel Chen (he/him):	I guess it depends on what you're using it for? like for a visualization or using PCA for feature engineering
+00:42:01	Daniel Chen (he/him):	how useful is tuning the number of PCs? I've always looked at elbow plots or something for that stuff?
+00:45:45	Daniel Chen (he/him):	run pca after LASSO! :p
+00:45:52	Daniel Chen (he/him):	wait. that doesn't make sense
+00:45:53	Daniel Chen (he/him):	nvm
+00:49:15	Daniel Chen (he/him):	kind of surprised they didn't show other MDS (multi dimensional scaling) examples since PCA is a special case of MDS
+00:50:14	Daniel Chen (he/him):	if you want to give names to "loadings" you'd use factor analysis
+00:52:44	Jim Gruman:	thank you Jon!!
+00:53:13	Daniel Chen (he/him):	bye everyone!
+```
+</details
+

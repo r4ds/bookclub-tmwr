@@ -11,7 +11,7 @@ For this week, Cohort 1 met with the authors, Max Kuhn and Julia Silge!
 <details>
   <summary> Meeting chat log </summary>
   
-  ```
+```
 00:04:25	Janita Botha:	I am gatcrashing, if that's oke?
 00:04:56	Jim Gruman:	Welcome Janita
 00:05:45	Jon Harmon (jonthegeek):	Everyone is welcome!
@@ -100,4 +100,4 @@ bake() -> apply
 01:05:55	Jonathan Leslie:	Thanks, Max
 01:05:56	arjun paudel:	Thank you!!
 01:05:56	Andy Farina:	Thank you!
-  ```
+```
