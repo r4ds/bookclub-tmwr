@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.4 Reusing existing data structures | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.4 Reusing existing data structures | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-09-01" />
+<meta name="date" content="2021-09-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -34,6 +34,7 @@
 <link rel="prev" href="design-for-humans.html"/>
 <link rel="next" href="designed-for-the-pipe.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -439,9 +439,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## # A tibble: 3 × 2
 ##   splits          id        
 ##   &lt;list&gt;          &lt;chr&gt;     
-## 1 &lt;split [32/12]&gt; Bootstrap1
-## 2 &lt;split [32/10]&gt; Bootstrap2
-## 3 &lt;split [32/13]&gt; Bootstrap3</code></pre>
+## 1 &lt;split [32/10]&gt; Bootstrap1
+## 2 &lt;split [32/11]&gt; Bootstrap2
+## 3 &lt;split [32/11]&gt; Bootstrap3</code></pre>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="reusing-existing-data-structures.html#cb8-1"></a><span class="kw">class</span>(boot_samp)</span></code></pre></div>
 <pre><code>## [1] &quot;bootstraps&quot; &quot;rset&quot;       &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
 <hr />
@@ -464,7 +464,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -505,7 +504,7 @@ gitbook.start({
 },
 "download": null,
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
