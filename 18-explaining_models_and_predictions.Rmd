@@ -2,7 +2,10 @@
 
 **Learning objectives:**
 
-- Jon will prefill these.
+- Recognize some R packages for model explanations.
+- Use {DALEX} and {DALEXtra} to produce local model explanations for a model trained using {tidymodels}.
+- Use {DALEX} and {DALEXtra} to produce global model explanations for a model trained using {tidymodels}.
+- Use {DALEX} and {DALEXtra} to produce partial dependence profiles for a model trained using {tidymodels}.
 
 ## Slide 1 Title
 
