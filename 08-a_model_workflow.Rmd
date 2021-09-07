@@ -289,7 +289,7 @@ tree_predictions %>%
 00:48:17	Roberto Villegas-Diaz:	https://snakemake.readthedocs.io/en/stable/
 00:52:40	shamsuddeen:	Thanks Kevin
 ```
-</details
+</details>
 
 
 ### Cohort 3

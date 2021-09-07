@@ -18,7 +18,7 @@ Put the content of your second slide here.
 
 `r knitr::include_url("https://www.youtube.com/embed/J8rZ1u4PhM8")`
 
-`r knitr::include_url("https://www.youtube.com/embed/URL")`
+`r knitr::include_url("https://www.youtube.com/embed/Pdm9G8nfR1g")`
 
 <details>
   <summary> Meeting chat log </summary>
@@ -67,5 +67,5 @@ beepr::beep(8)
 01:02:00	Andrew G. Farina:	Thank you Tony!
 
 ```
-</details
+</details>
 

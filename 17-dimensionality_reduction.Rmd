@@ -159,6 +159,7 @@ rankings %>%
 ```
 
 ![](images/17-model_ranks.png)
+
 ## Meeting Videos
 
 ### Cohort 1
@@ -180,5 +181,5 @@ rankings %>%
 00:52:44	Jim Gruman:	thank you Jon!!
 00:53:13	Daniel Chen (he/him):	bye everyone!
 ```
-</details
+</details>
 

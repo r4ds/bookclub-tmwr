@@ -344,7 +344,7 @@ Voilààà!
 ```
 00:18:01	Conor Tompkins:	The cat is behind you
 ```
-</details
+</details>
 
 ### Cohort 2
 
@@ -364,7 +364,7 @@ Voilààà!
 00:54:07	Janita Botha:	bye!
 00:54:12	Amélie Gourdon-Kanhukamwe (she/they):	Bye!
 ```
-</details
+</details>
 
 
 ### Cohort 3
