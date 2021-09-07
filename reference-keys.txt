@@ -76,6 +76,7 @@ summary-1
 meeting-videos-7
 cohort-1-6
 cohort-2-7
+cohort-3-6
 a-model-workflow
 workflows
 demonstration
@@ -88,6 +89,7 @@ notes
 meeting-videos-8
 cohort-1-7
 cohort-2-8
+cohort-3-7
 judging-model-effectiveness
 measures-of-model-fit
 disclaimers
@@ -97,6 +99,7 @@ references-1
 meeting-videos-9
 cohort-1-8
 cohort-2-9
+cohort-3-8
 meeting-videos-10
 cohort-1-9
 resampling-for-evaluating-performance
@@ -117,6 +120,7 @@ saving-the-resampled-objects
 meeting-videos-11
 cohort-1-10
 cohort-2-10
+cohort-3-9
 comparing-models-with-resampling
 calculate-performance-statistics
 calculate-performance-statistics-workflowsets
@@ -127,6 +131,7 @@ bayesian-methods
 meeting-videos-12
 cohort-1-11
 cohort-2-11
+cohort-3-10
 model-tuning-and-the-dangers-of-overfitting
 what-is-a-tuning-parameter
 examples
@@ -145,6 +150,7 @@ what-is-next
 meeting-videos-13
 cohort-1-12
 cohort-2-12
+cohort-3-11
 grid-search
 regular-and-non-regular-grids
 regular-grids
@@ -161,6 +167,7 @@ chapter-summary
 meeting-videos-14
 cohort-1-13
 cohort-2-13
+cohort-3-12
 iterative-search
 svm-model-as-motivating-example
 bayesian-optimization
@@ -174,6 +181,8 @@ the-tune_sim_anneal-function
 references-2
 meeting-videos-15
 cohort-1-14
+cohort-2-14
+cohort-3-13
 screening-many-models
 obligatory-setup
 creating-workflow_sets
@@ -181,6 +190,8 @@ ranking-models
 finalizing-the-model-1
 meeting-videos-16
 cohort-1-15
+cohort-2-15
+cohort-3-14
 meeting-videos-17
 cohort-1-16
 encoding-categorical-data
@@ -193,6 +204,7 @@ partial-least-squares-pls
 independent-component-anysis-ica
 uniform-manifold-approximation-and-projection-umap
 modeling
+meeting-videos-18
 cohort-1-17
 explaining-models-and-predictions
 slide-1-title-1
@@ -203,7 +215,7 @@ slide-2-title-2
 ensemble-models
 slide-1-title-3
 slide-2-title-3
-meeting-videos-18
+meeting-videos-19
 cohort-1-18
 inferential-analysis
 slide-1-title-4

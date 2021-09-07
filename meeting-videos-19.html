@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.7 Tibbles vs. Data Frames | Tidy Modeling with R Book Club</title>
+  <title>20.3 Meeting Videos | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.7 Tibbles vs. Data Frames | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="20.3 Meeting Videos | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.7 Tibbles vs. Data Frames | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="20.3 Meeting Videos | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="designed-for-functional-programming.html"/>
-<link rel="next" href="how-to-read-and-wrangle-data.html"/>
+<link rel="prev" href="slide-2-title-3.html"/>
+<link rel="next" href="inferential-analysis.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -436,78 +436,70 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="tibbles-vs.-data-frames" class="section level2">
-<h2><span class="header-section-number">2.7</span> Tibbles vs. Data Frames</h2>
-<p>A <code>tibble</code> is a special type of data frame with some additional properties. Specifically:</p>
-<ul>
-<li><strong>Tibbles work with column names that are not syntactically valid variable names</strong>.</li>
-</ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="tibbles-vs.-data-frames.html#cb18-1"></a><span class="kw">data.frame</span>(<span class="st">`</span><span class="dt">this does not work</span><span class="st">`</span> =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,</span>
-<span id="cb18-2"><a href="tibbles-vs.-data-frames.html#cb18-2"></a>           <span class="dt">oops =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">4</span>)</span></code></pre></div>
-<pre><code>##   this.does.not.work oops
-## 1                  1    3
-## 2                  2    4</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="tibbles-vs.-data-frames.html#cb20-1"></a><span class="kw">tibble</span>(<span class="st">`</span><span class="dt">this does work, though</span><span class="st">`</span> =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,</span>
-<span id="cb20-2"><a href="tibbles-vs.-data-frames.html#cb20-2"></a>       <span class="st">`</span><span class="dt">woohoo!</span><span class="st">`</span> =<span class="st"> </span><span class="dv">3</span><span class="op">:</span><span class="dv">4</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 2 × 2
-##   `this does work, though` `woohoo!`
-##                      &lt;int&gt;     &lt;int&gt;
-## 1                        1         3
-## 2                        2         4</code></pre>
-<ul>
-<li><strong>Tibbles prevent partial matching of arguments</strong> to avoid accidental errors</li>
-</ul>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="tibbles-vs.-data-frames.html#cb22-1"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">partial =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span>
-<span id="cb22-2"><a href="tibbles-vs.-data-frames.html#cb22-2"></a>tbbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">partial =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span>
-<span id="cb22-3"><a href="tibbles-vs.-data-frames.html#cb22-3"></a></span>
-<span id="cb22-4"><a href="tibbles-vs.-data-frames.html#cb22-4"></a>df<span class="op">$</span>part</span></code></pre></div>
-<pre><code>## [1] 1 2 3 4 5</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="tibbles-vs.-data-frames.html#cb24-1"></a>tbbl<span class="op">$</span>part</span></code></pre></div>
-<pre><code>## Warning: Unknown or uninitialised column: `part`.</code></pre>
-<pre><code>## NULL</code></pre>
-<ul>
-<li><strong>Tibbles prevent dimension dropping</strong>, so subsetting data into a single column will never return a vector.</li>
-</ul>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="tibbles-vs.-data-frames.html#cb27-1"></a>df[, <span class="st">&quot;partial&quot;</span>]</span></code></pre></div>
-<pre><code>## [1] 1 2 3 4 5</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="tibbles-vs.-data-frames.html#cb29-1"></a>tbbl[, <span class="st">&quot;partial&quot;</span>]</span></code></pre></div>
-<pre><code>## # A tibble: 5 × 1
-##   partial
-##     &lt;int&gt;
-## 1       1
-## 2       2
-## 3       3
-## 4       4
-## 5       5</code></pre>
-<ul>
-<li><strong>Tibbles allow for list-columns</strong>, which can be a powerful tool when working with the <code>purrr</code> package.</li>
-</ul>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="tibbles-vs.-data-frames.html#cb31-1"></a>template_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">1</span>, <span class="dt">b =</span> <span class="dv">2</span>, <span class="dt">c =</span> <span class="dv">3</span>, <span class="dt">d =</span> <span class="dv">4</span>, <span class="dt">e =</span> <span class="dv">5</span>)</span>
-<span id="cb31-2"><a href="tibbles-vs.-data-frames.html#cb31-2"></a></span>
-<span id="cb31-3"><a href="tibbles-vs.-data-frames.html#cb31-3"></a><span class="kw">data.frame</span>(<span class="dt">col =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">list_col =</span> template_list)</span></code></pre></div>
-<pre><code>##   col list_col.a list_col.b list_col.c list_col.d list_col.e
-## 1   1          1          2          3          4          5
-## 2   2          1          2          3          4          5
-## 3   3          1          2          3          4          5
-## 4   4          1          2          3          4          5
-## 5   5          1          2          3          4          5</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="tibbles-vs.-data-frames.html#cb33-1"></a><span class="kw">tibble</span>(<span class="dt">col =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">list_col =</span> template_list)</span></code></pre></div>
-<pre><code>## # A tibble: 5 × 2
-##     col list_col    
-##   &lt;int&gt; &lt;named list&gt;
-## 1     1 &lt;dbl [1]&gt;   
-## 2     2 &lt;dbl [1]&gt;   
-## 3     3 &lt;dbl [1]&gt;   
-## 4     4 &lt;dbl [1]&gt;   
-## 5     5 &lt;dbl [1]&gt;</code></pre>
+<div id="meeting-videos-19" class="section level2">
+<h2><span class="header-section-number">20.3</span> Meeting Videos</h2>
+<div id="cohort-1-18" class="section level3">
+<h3><span class="header-section-number">20.3.1</span> Cohort 1</h3>
+<iframe src="https://www.youtube.com/embed/J8rZ1u4PhM8" width="100%" height="400px">
+</iframe>
+<iframe src="https://www.youtube.com/embed/Pdm9G8nfR1g" width="100%" height="400px">
+</iframe>
+<details>
+<p><summary> Meeting chat log </summary></p>
+<pre><code># 2021-05-25 Preview with Asmae Toumi
+00:07:45    tan-iphone: timed with an audience
+00:08:00    tan-iphone: did you get the cursive IDE set up?
+00:11:00    Tony ElHabr:    yup! victor mono is the secret
+00:18:44    tan-iphone: foreach
+00:18:47    tan-iphone: or future or something
+00:18:53    Marschall Furman (he/him):  parallel package
+00:19:55    Jim Gruman: all_cores &lt;- parallelly::availableCores(omit = 1)
+future::plan(&quot;multisession&quot;, workers = all_cores) # on Windows
+00:47:55    tan-iphone: &quot;you&#39;ll learn when you grow up&quot;
+
+# 2021-06-01 Preview with Tony ElHabr
+00:08:56    Jon Harmon: Like tensorflow but very few insane installation issues: https://github.com/mlverse/torch
+00:23:46    Daryn Ramsden:  Is it multinom_reg because there’s a logistic regression under the hood?
+00:25:18    Jon Harmon: I think so, as far as google is telling me.
+00:27:19    Asmae Toumi:    Max’s quote: “One other note that is in the upcoming ensemble chapter about racing and stacking... the stack can only use the candidates that had the complete set of resamples done. With racing, it works fast by avoiding using all of the resamples for candidates that show poor performance. If the racing method quickly gets down to one tuning parameter set, that is the only candidate that can be added to the data stack (since it has the whole set of resamples.”
+00:27:26    Pavitra:    Why is there a rank jump from 2  to 12?
+00:27:51    Jon Harmon: By model. It&#39;s showing the top 2 of each.
+00:28:00    Daryn Ramsden:  ohhhh
+00:28:35    Jon Harmon: Er not by model per se but by... some combo....
+00:28:41    Daryn Ramsden:  So models ranked 3-11 are also rf?
+00:31:58    Asmae Toumi:    i’d be curious to see the stacks results without tune race anova
+00:33:16    Jon Harmon: beepr always reminds me of this silliness that I had running a year and a half ago or so when Max had mentioned {tune} somewhere but the repo was still private... and it exactly solved something I was working on so I wanted to know as soon as it was public:
+tune_check &lt;- httr::GET(
+  url = &quot;https://github.com/tidymodels/tune&quot;
+)
+while (httr::status_code(tune_check) == 404) {
+  Sys.sleep(15*60)
+  tune_check &lt;- httr::GET(
+    url = &quot;https://github.com/tidymodels/tune&quot;
+  )
+}
+beepr::beep(8)
+00:58:21    Asmae Toumi:    Tony hive forever
+00:58:48    Asmae Toumi:    Can you send the code and data? I want to understand it better too
+01:00:11    Pavitra:    Ledell
+01:00:13    Asmae Toumi:    Erin LeDell is a legend
+01:00:22    Asmae Toumi:    It was so funny
+01:01:53    Pavitra:    Thank you Tony!! This was awesome
+01:01:54    Jim Gruman: thank you!!
+01:02:00    Andrew G. Farina:   Thank you Tony!
+</code></pre>
+</details>
+
 </div>
+</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="designed-for-functional-programming.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="how-to-read-and-wrangle-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="slide-2-title-3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="inferential-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -538,7 +530,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/02-a_tidyverse_primer.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/20-ensemble_models.Rmd",
 "text": "Edit"
 },
 "history": {
