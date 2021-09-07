@@ -370,7 +370,7 @@ The parameter object we just explored knows the range of the parameters. the `{d
 00:56:49	Luke Shaw:	thanks Janita - see you all next week :)
 00:56:51	Amélie Gourdon-Kanhukamwe (she/they):	Sorry all, been working all night and I am knackered, but thanks Janita!
 ```
-</details
+</details>
 
 
 ### Cohort 3

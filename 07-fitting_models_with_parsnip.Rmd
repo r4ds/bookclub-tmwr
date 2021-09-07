@@ -386,7 +386,7 @@ ggplot(parabolic, aes(x = X1, y = X2)) +
 00:47:56	Luke Shaw:	^^^ that's  not about the function fit() - my bad
 00:48:09	Kevin Kent:	Or if you accidentally read in a numeric column as categorical and then run fit it won’t throw an error even though its not meaningful as a categorical variable
 ```
-</details
+</details>
 
 ### Cohort 3
 

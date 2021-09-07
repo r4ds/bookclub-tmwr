@@ -423,7 +423,7 @@ where they save the model results.
 00:35:03	rahul bahadur:	http://appliedpredictivemodeling.com/blog/2014/11/27/vpuig01pqbklmi72b8lcl3ij5hj2qm
 00:35:38	Amélie Gourdon-Kanhukamwe (she/they):	Thanks
 ```
-</details
+</details>
 
 
 ### Cohort 3

@@ -748,7 +748,7 @@ Grid search is computationally expensive, but thoughtful choices in the experime
 01:31:26	Janita Botha:	happy days!
 01:31:26	Stephen:	Thanks for coming Janita :) glad you enjoyed!
 ```
-</details
+</details>
 
 
 ### Cohort 3

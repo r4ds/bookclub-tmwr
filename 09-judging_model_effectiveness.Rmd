@@ -275,7 +275,7 @@ best_models_binary %>%
 00:28:45	rahul bahadur:	I think that would be simply assigning all predictions to one value out of the 2
 00:55:51	Janita Botha:	bye folks!
 ```
-</details
+</details>
 
 
 ### Cohort 3
