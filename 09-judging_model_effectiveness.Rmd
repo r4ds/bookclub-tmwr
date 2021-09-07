@@ -237,7 +237,7 @@ best_models_binary %>%
 <details>
   <summary> Meeting chat log </summary>
   
-  ```
+```
 00:14:27	Jonathan Trattner:	Is there supposed to be sound?
 00:16:42	Jonathan Trattner:	I love how R’s parent S is up next
 00:24:03	Asmae Toumi:	Amazing
@@ -259,6 +259,24 @@ best_models_binary %>%
 01:06:47	Andy Farina:	Excellent Joe, thank you!
 ```
 </details>
+
+### Cohort 2
+
+`r knitr::include_url("https://www.youtube.com/embed/wVYp6PVJhqI")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:10:24	Amélie Gourdon-Kanhukamwe (she/they):	https://www.meetup.com/tech-ethics-bristol/
+00:11:52	Janita Botha:	it's a little small but ok
+00:12:34	Janita Botha:	that is perfect!
+00:27:39	Janita Botha:	sidewarren - but I really like the idea of a "stupid" model. What would be the equivalent in a classification model?
+00:28:45	rahul bahadur:	I think that would be simply assigning all predictions to one value out of the 2
+00:55:51	Janita Botha:	bye folks!
+```
+</details
+
 
 ### Cohort 3
 

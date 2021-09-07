@@ -401,7 +401,7 @@ df
 <details>
   <summary> Meeting chat log </summary>
   
-  ```
+```
 00:06:11	Jonathan Trattner:	I second that
 00:08:03	Tan Ho:	Time to find and send memez
 00:09:11	Tan Ho:	You all have seen Hadley cat vibing, right?
@@ -493,7 +493,7 @@ df
 <details>
   <summary> Meeting chat log </summary>
   
-  ```
+```
 00:08:16	Kevin Kent:	Welcome Carlo! Where are you living now?
 00:08:29	Carlo Medina:	im based in nyc currently
 00:08:44	Kevin Kent:	Nice! I grew up there. Currently in Boston

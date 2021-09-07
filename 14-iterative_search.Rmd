@@ -334,6 +334,39 @@ Voilààà!
 
 ## Meeting Videos
 
+### Cohort 1
+
+`r knitr::include_url("https://www.youtube.com/embed/MD0XjJkZkxE")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:18:01	Conor Tompkins:	The cat is behind you
+```
+</details
+
+### Cohort 2
+
+`r knitr::include_url("https://www.youtube.com/embed/B2RRopTnwds")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:40:55	Janita Botha:	can you zoom in please?
+00:44:58	Janita Botha:	all good
+00:45:00	Janita Botha:	:)
+00:47:42	Janita Botha:	thanks stephen
+00:47:48	Amélie Gourdon-Kanhukamwe (she/they):	Thanks!
+00:48:24	Stephen:	https://docs.google.com/spreadsheets/d/1vD4LG4_nhsxSAxXiBi42iKIvZXQtNxgB5C_PUkIZ0wo/edit#gid=0
+00:53:14	Janita Botha:	Yes!
+00:54:07	Janita Botha:	bye!
+00:54:12	Amélie Gourdon-Kanhukamwe (she/they):	Bye!
+```
+</details
+
+
 ### Cohort 3
 
 `r knitr::include_url("https://www.youtube.com/embed/a_tg77VOtHk")`
