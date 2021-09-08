@@ -50,7 +50,11 @@ Imports:
     tidytuesdayR,
     tufte,
     tweetrmd,
-    workflowsets
+    workflowsets,
+    treesnip,
+    DALEX,
+    DALEXtra,
+    iBreakDown
 Remotes: 
     hadley/emo,
     gadenbuie/tweetrmd,
@@ -58,4 +62,3 @@ Remotes:
     tidymodels/finetune,
     tidymodels/learntidymodels
 biocViews: mixOmics
-
