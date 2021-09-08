@@ -103,7 +103,7 @@ The final model may be used for a conclusion and/or produce predictions on new d
 <details>
   <summary> Meeting chat log </summary>
   
-  ```
+```
 00:10:57	Andrew G. Farina:	Sorry guys, I have a sleeping baby in the room, so I am stuck with only chat tonight. Looking forward to the discussion though.
 00:11:10	mayagans:	Hi baby!!!
 00:11:31	mayagans:	(Hi everyone else too — Im also in a loud house right now super stoked for this!)
@@ -213,7 +213,7 @@ How does the significance of the model's variables play into the above? Let's ta
 <details>
   <summary> Meeting chat log </summary>
   
-  ```
+```
 00:06:50	Stephen Holsenbeck:	https://docs.google.com/spreadsheets/d/1vD4LG4_nhsxSAxXiBi42iKIvZXQtNxgB5C_PUkIZ0wo/edit#gid=0
 00:08:48	Amélie Gourdon-Kanhukamwe:	Questions (if forgotten): name (pronunciation), location, fun fact about yourself, why are you here?
 00:21:23	Carmen Santana:	when the pandemic is over you should come to Portugal, great wine here!!
@@ -244,7 +244,7 @@ How does the significance of the model's variables play into the above? Let's ta
 <details>
   <summary> Meeting chat log </summary>
   
-  ```
+```
 00:13:08	Morgan Grovenburg:	Daniel I love your Blue's Clues background!
 00:13:34	Daniel Chen:	( : #steve
 00:13:56	Morgan Grovenburg:	I miss Steve!

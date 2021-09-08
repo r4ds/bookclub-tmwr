@@ -114,7 +114,7 @@ summary(rqs_diff, size = 0.02) %>% # 0.02 is our practical effect size.
 <details>
   <summary> Meeting chat log </summary>
   
-  ```
+```
 00:14:48	Tony ElHabr:	seed = 1101
 00:14:52	Tony ElHabr:	what a hipster
 00:15:11	pavitra:	I see a subliminal binary message
@@ -125,6 +125,29 @@ summary(rqs_diff, size = 0.02) %>% # 0.02 is our practical effect size.
 00:47:45	Andy Farina:	Thank you Jon, great presentation and addition of workflow sets
 ```
 </details>
+
+### Cohort 2
+
+`r knitr::include_url("https://www.youtube.com/embed/ECzECMexLzc")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:08:57	Janita Botha:	I have problems with physical knitting too... :)
+00:10:18	Roberto Villegas-Diaz:	XSEDE
+00:13:15	rahul bahadur:	Anyone works with Spark here? - SparkR/sparklyr?
+00:22:38	Luke Shaw:	no sorry, have used pyspark before so have some spark understanding though
+01:04:05	Amélie Gourdon-Kanhukamwe (she/they):	I have another call this week, gonna dash
+01:04:18	Stephen Holsenbeck:	ok, thanks for coming!
+01:04:24	Janita Botha:	bye!
+01:04:28	Luke Shaw:	Bye :)
+01:13:19	Janita Botha:	cool! :)
+01:14:37	Janita Botha:	I have to run! See you folks next week!
+01:14:55	Stephen Holsenbeck:	Bye Janita, have a good Monday!
+```
+</details>
+
 
 ### Cohort 3
 

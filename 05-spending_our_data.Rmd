@@ -232,7 +232,7 @@ We will learn more about how to remedy certain issues such as class imbalance, b
 <details>
   <summary> Meeting chat log </summary>
   
-  ```
+```
 00:09:24	Jon Harmon (jonthegeek):	Oops typo! Tan shouldn't have accepted that!
 00:10:05	Tan Ho:	umm
 00:10:18	Tyler Grant Smith:	I never take notes, but if I did, I wish I would take them like this
@@ -329,7 +329,7 @@ We will learn more about how to remedy certain issues such as class imbalance, b
 <details>
   <summary> Meeting chat log </summary>
   
-  ```
+```
 00:07:17	Janita Botha:	Sorry I'm late... Been slow booting up...
 00:08:46	Amélie Gourdon-Kanhukamwe (she/they):	https://supervised-ml-course.netlify.app/
 00:08:58	shamsuddeen:	Thank you

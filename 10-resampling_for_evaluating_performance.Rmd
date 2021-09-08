@@ -364,7 +364,7 @@ where they save the model results.
 <details>
   <summary> Meeting chat log </summary>
   
-  ```
+```
 00:10:27	pavitra:	hahaha..look at Jon resampling his wine 
 00:10:38	Jonathan Trattner:	HAH
 00:10:44	pavitra:	1-fold CV
@@ -407,6 +407,24 @@ where they save the model results.
 01:18:19	Conor Tompkins:	Thanks Jon!
 ```
 </details>
+
+### Cohort 2
+
+`r knitr::include_url("https://www.youtube.com/embed/21j9SRPTmX4")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:03:08	Roberto Villegas-Diaz:	I’m using my 4G today, but it’s running really slow, so I won’t turn on my video!
+00:03:29	Stephen Holsenbeck:	ok 👍
+00:22:57	August:	FYI this is where the idea comes from: https://otexts.com/fpp3/tscv.html
+00:29:12	August:	https://robjhyndman.com/papers/cv-wp.pdf
+00:35:03	rahul bahadur:	http://appliedpredictivemodeling.com/blog/2014/11/27/vpuig01pqbklmi72b8lcl3ij5hj2qm
+00:35:38	Amélie Gourdon-Kanhukamwe (she/they):	Thanks
+```
+</details>
+
 
 ### Cohort 3
 

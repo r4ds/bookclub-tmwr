@@ -27,7 +27,7 @@ Shiny app: https://conorotompkins.shinyapps.io/house_sale_estimator/
 <details>
   <summary> Meeting chat log </summary>
   
-  ```
+```
 00:11:41    Tyler Grant Smith:  does jon sound far away
 00:11:44    Jonathan Trattner:  yes
 00:11:58    Yoni Sidi:  Austin is far away
@@ -166,7 +166,7 @@ Shiny app: https://conorotompkins.shinyapps.io/house_sale_estimator/
 <details>
   <summary> Meeting chat log </summary>
   
-  ```
+```
 00:07:46	Janita Botha:	I am new here! My name is Janita (she/they) and I am a PhD student in sensory science. Not a programmer but need Tidy models to work for me... I've caught up with the YouTube videos of the other cohorts
 00:08:15	Janita Botha:	Also, I am based it New Zealand. It is 7AM on a Monday morning here
 00:08:24	Roberto Villegas-Diaz:	Welcome!
