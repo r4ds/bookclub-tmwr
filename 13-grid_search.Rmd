@@ -705,6 +705,52 @@ Grid search is computationally expensive, but thoughtful choices in the experime
 
 ## Meeting Videos
 
+### Cohort 1
+
+`r knitr::include_url("https://www.youtube.com/embed/i4YvRhl7jyk")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:17:09	Andy Farina:	Not sure if everyone saw this, but tomorrow (Tuesday, 07 April) at noon (MDT), the salt lake city  r users group is hosting a talk on Stacked ensemble Modeling using {stacks} https://www.meetup.com/slc-rug/events/275790402/?rv=cr1&_xtd=gatlbWFpbF9jbGlja9oAJDVkMmFjNjc0LTJlOGUtNGJlNS1hYjk5LWM1ZDBjODU5YTEyYQ&_af=event&_af_eid=275790402
+00:17:28	Jordan Krogmann:	+1 noice
+00:27:10	Conor Tompkins:	Very cool
+01:02:28	Asmae Toumi:	I volunteeeeeeeeeerrrrrrrrrrrr
+01:02:36	Asmae Toumi:	Tony!
+01:02:41	Asmae Toumi:	Or else you’re not getting big data bowl money
+01:02:53	Asmae Toumi:	That’s too bad, im keeping your 5k
+01:03:25	Asmae Toumi:	I can try and harass someone in the slack
+01:03:44	Asmae Toumi:	Lmao
+01:05:57	Asmae Toumi:	Bye yall
+```
+</details>
+
+### Cohort 2
+
+`r knitr::include_url("https://www.youtube.com/embed/dcoZfBaAfBY")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:10:22	Janita Botha:	did anyone join the other cohort's session last week?
+00:10:43	kevin :	Yeah I joined for most of it
+00:10:56	kevin :	Even got in a question at the end 😎
+00:11:40	Janita Botha:	That is awesome. Just had too much going on that day.
+00:12:03	kevin :	Always the recording to watch
+01:04:34	Luke Shaw:	Gotta go, cheers for the session :)
+01:07:20	kevin :	Thanks so much Stephen, I gotta drop as well
+01:07:24	kevin :	Great sessions
+01:30:42	Amélie Gourdon-Kanhukamwe (she/they):	Gonna drop too, thanks Stephen!
+01:30:49	Stephen:	Thanks Amelie!
+01:31:13	Janita Botha:	I've really enjoyed this and listening in on your conversation!
+01:31:26	Janita Botha:	happy days!
+01:31:26	Stephen:	Thanks for coming Janita :) glad you enjoyed!
+```
+</details>
+
+
 ### Cohort 3
 
 `r knitr::include_url("https://www.youtube.com/embed/FTuti94dgYs")`
@@ -717,4 +763,3 @@ Grid search is computationally expensive, but thoughtful choices in the experime
 00:52:32	jiwan:	https://juliasilge.com/blog/shelter-animals/
 ```
 </details>
-

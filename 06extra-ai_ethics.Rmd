@@ -11,7 +11,7 @@ Cohort 2 had a discussion of AI Ethics at this point in the club.
 <details>
   <summary> Meeting chat log </summary>
   
-  ```
+```
 00:04:27	Luke Shaw:	Hey all :) My internet is a bit unstable so will be off-video
 00:17:45	Amélie Gourdon-Kanhukamwe:	If you have not seen it, Coded Bias is now available to stream, at least in the US, possibly in the UK too: https://www.codedbias.com/ (feaures Joy Buolamwini and many others, Klein too - Data Feminism).
 00:18:45	Stephen Holsenbeck:	🌟🙏 awesome! thank you for the recommendation!

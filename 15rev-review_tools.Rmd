@@ -1,13 +1,68 @@
 # Review of chapters 10-15 {-}
 
-**Learning objectives:**
+## Meeting Videos
 
-- Jon will prefill these.
+### Cohort 1
 
-## Slide 1 Title
+`r knitr::include_url("https://www.youtube.com/embed/E367TzWLQ7k")`
 
-Put the content of your slide here.
+`r knitr::include_url("https://www.youtube.com/embed/V4AzeLUYZfQ")`
 
-## Slide 2 Title
+<details>
+  <summary> Meeting chat logs </summary>
+  
+```
+# 2021-05-11 Review
 
-Put the content of your second slide here.
+00:26:16	Jon Harmon (jonthegeek):	https://www.tmwr.org/recipes.html#a-simple-recipe-for-the-ames-housing-data#GNaFeX:~:text=The%20function%20all_nominal_predictors
+00:39:19	Jim Gruman:	library(InformationValue)  was what we used to use to set the cutoff for glm models
+00:40:10	Tony ElHabr:	nice
+00:42:01	Asmae Toumi:	Maybe the changes were the friends we made all along
+00:42:03	tan_iphone:	Lmao hiya!
+00:46:14	tan_iphone:	Cookbook!
+00:50:02	Asmae Toumi:	We could just find cool data sets and kick the shit together
+00:50:51	Asmae Toumi:	I can volunteer for the first one
+00:50:58	Asmae Toumi:	It would be on workflow sets and stacks
+00:51:11	Asmae Toumi:	yessss
+00:51:35	Asmae Toumi:	Yessssssssss
+00:51:46	Asmae Toumi:	Together??
+00:52:05	Asmae Toumi:	Lmao straight up
+
+# 2021-05-18 Q&A
+
+00:09:55	pavitra:	your hair looks cute, Julia
+00:10:36	Julia Silge:	Thank you so much!! My bangs are back
+00:24:50	Bryan Shalloway:	+1 on that function!
+00:27:50	Tony ElHabr:	sandwich!
+00:27:55	Tony ElHabr:	putting all the ingredients together
+00:47:13	Kevin Kent:	Sounds like a lot of mind mapping (to make sense of all of that)
+00:47:30	Jon Harmon (jonthegeek):	mind_map()
+00:47:48	Kevin Kent:	Oh snap, that’s good :)
+00:51:15	Julia Silge:	https://github.com/tidymodels/dials/issues
+00:54:35	Julia Silge:	https://github.com/tidymodels/dials/blob/master/.github/CONTRIBUTING.md
+00:54:39	Jon Harmon (jonthegeek):	https://www.tidymodels.org/contribute/
+00:56:28	Tony ElHabr:	did my first pull request at a dev day
+00:58:54	Apoorva Srinivasan:	For me personally, julia your blogs have helped me learn about the functions in todymodels works the most
+00:59:19	Kevin Kent:	+1 to that and the screencasts
+01:01:23	Julia Silge:	Thank you so much!
+01:02:33	Kevin Kent:	One more question - how often do you expect users to write custom step or model functions for their tidymodels code? For instance in sklearn it seems like there is a strong role for custom transformers and esitmators.
+01:04:03	Jon Harmon (jonthegeek):	https://www.tidymodels.org/learn/develop/
+01:04:18	Max Kuhn:	Gotta go. Thanks!
+01:04:22	Kevin Kent:	Cool thanks for the explanation
+01:05:16	arjun paudel:	Any plan on creating recipe for quantile normalizer similar to quantile_transform in sklearn
+01:05:34	Jordan Krogmann:	Thanks Julia and Max!
+01:05:40	Kevin Kent:	This was great, thanks so much
+01:07:06	Apoorva Srinivasan:	Thank you so much!!
+01:07:17	Conor Tompkins:	Thanks for the talk!
+01:07:25	Jonathan Leslie:	Thank you!
+01:07:39	shahrdad:	Thanks a lot Julia and Max
+01:08:18	Asmae Toumi:	Thanks queen, and thanks king (if you see the chat Max)
+01:08:28	Asmae Toumi:	Omg, what dataset? Does someone have a link
+01:08:36	Asmae Toumi:	I NEED THOSE BEANS
+01:08:51	Andrew G. Farina:	Thank you both, this was great!
+01:08:58	Julia Silge:	I will send you the beans!
+01:09:21	Asmae Toumi:	Hahahahahah thank you
+01:09:27	Daniel Lupercio:	Thank you Julia, have a good evening everyone!
+```
+</details>
+

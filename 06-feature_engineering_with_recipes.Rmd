@@ -36,7 +36,7 @@
 <details>
   <summary> Meeting chat log </summary>
   
-  ```
+```
 00:06:28	Tyler Grant Smith:	getting kind of scruffy jon
 00:07:22	Jim Gruman:	{purr}
 00:07:37	Jim Gruman:	{purrr}
@@ -141,7 +141,7 @@
 <details>
   <summary> Meeting chat log </summary>
   
-  ```
+```
 00:18:37	Kevin Kent:	I found out the other day that you can group tabs in chrome
 00:18:51	shamsuddeen:	yes
 00:18:57	Stephen Holsenbeck:	yes! such a great new feature, I love it
