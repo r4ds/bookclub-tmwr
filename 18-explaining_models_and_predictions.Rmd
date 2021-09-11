@@ -12,7 +12,6 @@
 Load in the data and set up explainer
 ```{r 18-load-data, warning=FALSE, message=FALSE}
 library(tidymodels)
-library(treesnip)
 library(skimr)
 library(DALEX)
 library(DALEXtra)
