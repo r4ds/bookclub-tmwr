@@ -51,7 +51,7 @@ Imports:
     tufte,
     tweetrmd,
     workflowsets,
-    treesnip,
+    curso-r/treesnip,
     DALEX,
     DALEXtra,
     iBreakDown

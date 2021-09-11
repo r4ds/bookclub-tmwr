@@ -10,7 +10,7 @@
 ## Chapter 18 Setup
 
 Load in the data and set up explainer
-```{r load-data, warning=FALSE, message=FALSE}
+```{r 18-load-data, warning=FALSE, message=FALSE}
 library(tidymodels)
 library(treesnip)
 library(skimr)
@@ -61,7 +61,7 @@ explainer_boost <-
   
 ![](images/18_boost_breakdown3.png)
 
-```{r local, eval=FALSE}
+```{r 18-local, eval=FALSE}
 #Break-down
 boost_breakdown <- predict_parts(explainer = explainer_boost,
                                  new_observation = sample_n(rush_df,1))
@@ -100,7 +100,7 @@ dev.off()
   
   ![](images/18_boost_paribus2.png)
 
-```{r ceterus, eval=FALSE}
+```{r 18-ceterus, eval=FALSE}
 #Ceterus Paribus
 boost_paribus <- predict_profile(explainer = explainer_boost,
                                  new_observation = sample_n(rush_df,1),
@@ -124,7 +124,7 @@ dev.off()
   
   ![](images/18_boost_vip.png)
 
-```{r global, eval=FALSE}
+```{r 18-global, eval=FALSE}
 boost_vip <- model_parts(explainer_boost, loss_function = loss_root_mean_square)
 
 png(file="images/18_boost_vip.png")
@@ -142,7 +142,7 @@ dev.off()
   
    ![](images/18_boost_profile.png)
   
-```{r global profile, eval=FALSE}
+```{r 18-global_profile, eval=FALSE}
 boost_profile <- model_profile(explainer_boost,
                                N = 1000, 
                                variables = "rusher_age", 
