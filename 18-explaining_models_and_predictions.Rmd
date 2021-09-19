@@ -7,10 +7,158 @@
 - Use {DALEX} and {DALEXtra} to produce global model explanations for a model trained using {tidymodels}.
 - Use {DALEX} and {DALEXtra} to produce partial dependence profiles for a model trained using {tidymodels}.
 
-## Slide 1 Title
+## Chapter 18 Setup
 
-Put the content of your slide here.
+Load in the data and set up explainer
+```{r 18-load-data, warning=FALSE, message=FALSE}
+library(tidymodels)
+library(skimr)
+library(DALEX)
+library(DALEXtra)
+library(iBreakDown)
 
-## Slide 2 Title
+rush_model <- readRDS(here::here("data", "18-fit_rush_yards.RDS"))
+rush_df <- readRDS(here::here("data", "18-nfl_rush_df.RDS"))
 
-Put the content of your second slide here.
+skim(rush_df)
+
+explainer_boost <- 
+  explain_tidymodels(
+    rush_model, 
+    data = rush_df,
+    y = rush_df$rushing_yards,
+    verbose = TRUE
+  )
+
+```
+## Overview
+
+![](images/18_dalex_overview.png)
+
+## Local Explanations
+- Provides information about a prediction for a single observation
+
+- Which variables contribute to this result the most?
+
+- "Break-down" explanations compute the contribution from each feature
+  - Results for many explanatory variables can be presented in a limited space
+  - Only the additive attributions, misleading for models with interactions
+  
+![](images/18_boost_breakdown.png)
+  
+- Break-down plots with interactions
+  - More accurate if the model itself uses interactions
+  - Much more time-consuming
+  - Interactions is not based on any formal statistical-significance test
+  
+![](images/18_boost_breakdown2.png)
+  
+- SHapley Additive exPlanations (SHAP) are based on “Shapley values”
+  - "Cooperation is beneficial, because it may bring more benefit than individual actions"
+  - Decompose a model’s predictions into contributions that can be attributed additively to different explanatory variables
+  - If the model is not additive, then the Shapley values may be misleading
+  
+![](images/18_boost_breakdown3.png)
+
+```{r 18-local, eval=FALSE}
+#Break-down
+boost_breakdown <- predict_parts(explainer = explainer_boost,
+                                 new_observation = sample_n(rush_df,1))
+
+png(file="images/18_boost_breakdown.png", width = 600)
+plot(boost_breakdown)
+dev.off()
+
+
+#Break-dwon Interactions
+boost_breakdown2 <- predict_parts(explainer = explainer_boost,
+                                 new_observation = sample_n(rush_df,1),
+                                 type = "break_down_interactions")
+
+png(file="images/18_boost_breakdown2.png", width = 600)
+plot(boost_breakdown2)
+dev.off()
+
+#SHAP
+boost_breakdown3 <- predict_parts(explainer = explainer_boost,
+                                 new_observation = sample_n(rush_df,1),
+                                 type = "shap")
+
+png(file="images/18_boost_breakdown3.png", width = 600)
+plot(boost_breakdown3)
+dev.off()
+```
+
+## Local Explanations for Interactions
+
+- "Ceteris-paribus" profiles show how a model’s prediction would change if the value of a single exploratory variable changed
+  - Graphical representation is easy to understand and explain
+  - Not a valid assumption with highly correlated or interaction variables
+  
+  ![](images/18_boost_paribus.png)
+  
+  ![](images/18_boost_paribus2.png)
+
+```{r 18-ceterus, eval=FALSE}
+#Ceterus Paribus
+boost_paribus <- predict_profile(explainer = explainer_boost,
+                                 new_observation = sample_n(rush_df,1),
+                                 variables = c("rusher_age", "yardline_100"))
+
+png(file="images/18_boost_paribus.png")
+plot(boost_paribus, variables = c("rusher_age"))
+dev.off()
+
+png(file="images/18_boost_paribus2.png")
+plot(boost_paribus, variables = c("yardline_100"))
+dev.off()
+```
+
+## Global Explanations
+
+- Which features are most important in driving the predictions aggregated over the whole training set
+- Measure how much does a model’s performance change if the effect of a selected explanatory variable(s) is(are) removed
+  - If variables are correlated, then models like random forest are expected to spread importance across many variables
+  - Dependent on the random nature of the permutations
+  
+  ![](images/18_boost_vip.png)
+
+```{r 18-global, eval=FALSE}
+boost_vip <- model_parts(explainer_boost, loss_function = loss_root_mean_square)
+
+png(file="images/18_boost_vip.png")
+plot(boost_vip, max_featuers = 10)
+dev.off()
+```
+
+
+## Global Explanations from Local Explanations
+
+- Partial-dependence plots
+  - How does the expected value of model prediction behave as a function of a selected explanatory variable?
+  - PD profiles are averages of CP profiles
+  - Problematic for correlated explanatory variables
+  
+   ![](images/18_boost_profile.png)
+  
+```{r 18-global_profile, eval=FALSE}
+boost_profile <- model_profile(explainer_boost,
+                               N = 1000, 
+                               variables = "rusher_age", 
+                               groups = "position")
+
+png(file="images/18_boost_profile.png")
+plot(boost_profile)
+dev.off()
+```
+
+
+## References
+
+[DALEX Github](https://modeloriented.github.io/DALEX/)
+
+[DALEXtra Github](https://github.com/ModelOriented/DALEXtra)
+
+[Exploratory Model Anaylsis](https://ema.drwhy.ai/)
+
+![](images/18_dalex_contents.png)
