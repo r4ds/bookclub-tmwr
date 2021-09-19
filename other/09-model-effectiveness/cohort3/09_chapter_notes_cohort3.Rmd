@@ -1,0 +1,676 @@
+# Notes on Chapter 9 Judging model effectiveness - Cohort 3 {-}
+
+
+### Performance Metrics and Inference
+
+
+Q&A:
+
+- How will we evaluate the performance of our workflow?
+- How the model will be used? (predictive strength is primary)
+- How close our predictions come to the observed data?
+- How closely this model fits the actual data?
+
+-------------------------------
+
+
+In this section, we talk about the validity of probabilistic distributions, and in general, the qualities of a model. 
+The package used is **yardstick**.
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(tidyverse)
+library(tidymodels)
+tidymodels_prefer()
+library(DiagrammeR)
+library(viridis)
+```
+
+
+This package focuses on methods of resampling that are critical to modeling activities, such as performance measures and performance metrics.
+
+
+-------------------------
+
+**Identification of the quality of a model**:
+
+The main takeaway of this chapter **Judging the model effectiveness** is to identify the effectiveness of the modeling procedures.
+
+An example of constraints is when the model uses different units for measuring the differences between the observed and predicted values. In particular, the transformation cannot be caught but embedded in the metric. 
+Types of metrics are: the **root mean squared error (RMSE)** as a performance metric used in regression models and various data units transformation such as the log transformation of the variables.
+
+
+Let's begin with what a useful model includes:
+
+- parameter estimation
+- model selection and tuning
+- performance assessment
+
+What we want in this chapter is to be able to identify the effectiveness of a model on available data.  A step back to previous chapters is needed to find the part of the modeling procedures of interest in this contest.
+
+-----------------------------
+
+
+### To Recap the step for modeling as seen in the previous chapters:
+
+The construction of a model implies: the observed variable and the predictors tested against correlation; this is to see if they influence each other, and if positive, in what way. For example, the predictors can change predicted outcome values if a modification in association takes place.
+
+
+- **construction of the model**
+
+Below is a *sample* data frame and the classical way to make a linear model with the function **lm()**. A comparison of the two slightly different models is done with **anova()** function.
+
+```{r }
+data(crickets, package = "modeldata")
+interaction_fit <-  lm(rate ~ (temp + species)^2, data = crickets) 
+main_effect_fit <-  lm(rate ~ temp + species, data = crickets) 
+# Compare the two: standard two-way analysis of variance 
+anova(main_effect_fit, interaction_fit)
+```
+
+
+- **estimation of the model**
+
+The estimation of the model is obtained using the **predict()** function; it conducts specific calculations after the fitted model is created, in this case we test it against *new data*:
+```{r}
+new_values <- data.frame(species = "O. exclamationis", temp = 15:20)
+# predict(main_effect_fit, new_values)
+```
+
+Below are the available statistical and machine learning models to be used with predict()
+
+![Examples of other functions and predict type objects](images/modeling_functions.png)
+
+
+--------------------------
+
+#### Tidymodels: modeling as a step by step mode
+
+The strategy of **Tidymodels** is to decide for a model to use on a step-by-step mode, this is the main difference than just using lm() or glm() functions and then predict().
+
+
+*When valuing a model, the fundamental is to have a clear view of the data and the type of manipulation to obtain the answer to our questions*
+
+
+
+The first step is to *evaluate the structure of the data*, it needs to be balanced for deciding a smart strategy for allocating data.
+
+
+Smart Strategy for allocating data:
+
+- allocate specific subsets of data for different tasks
+- allocate the largest possible amount to the model parameter estimation only
+
+
+The second is to *split the data into two main parts* as train and test sets, sometimes a third set is valued such as the validation set.
+
+ 
+ 
+Splitting data: 
+
+- **training set** (the substrate to develop the model and estimate the parameters)
+
+- **validation set** (a small set of data to measure performance as the network was trained)
+
+- **test set** (the final (unbiased) arbiter to determine the efficacy of the model)
+
+ 
+```{r}
+data(ames, package = "modeldata")
+set.seed(123)
+ames_split <- initial_split(ames, prop = 0.80)
+ames_train <- training(ames_split)
+ames_test  <- testing(ames_split)
+```
+
+
+
+The step-by-step model decomposes the modeling procedure into a certain number of customized steps. 
+
+The modeling functions are: 
+
+- recipe()
+- prep()
+- bake()
+
+
+
+Recipe objects for feature engineering and data preprocessing prior to modeling.\n
+Transformations and encoding of the data with **recipes** help choosing the option which is the most associated with the outcome, through data preprocessing techniques applying it for different models.
+
+* **recipe()** defines the steps of the model
+
+Figure \@ref(fig:diagram1) Graph of the modeling steps  
+```{r diagram1, echo = FALSE, out.width = NULL, fig.cap = "Graph of the modeling steps"}
+# library(DiagrammeR)
+mermaid("
+graph LR
+A(recipe)-->B[lm]
+A-->C[glm]
+A-->D[stan]
+B-- some step_ functions -->P(prep)
+C-- some step_ function-->P(prep)
+D-- some step_ function-->P(prep)
+P-->H(bake)
+G[recipe equals to fit]-->F[prep is another recipe]
+F-->E[bake equals to predict]
+style A fill:#f9f
+style P fill:#f9f
+style H fill:#f9f
+style F fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+",height = '100%', width = '100%'
+)
+```
+
+
+
+In the model, the matrix data transformation is obtained from a data frame which modify through the modeling procedure to a numeric design matrix.
+
+![Modeling steps](images/steps.png)
+
+
+
+
+#### Workflow: to combine models and recipes 
+
+Once the model is set and the recipe prepared and then baked, the next step involves wrapping everything up in a workflow to have all the steps together.
+
+
+
+
+-----------------------------
+
+### Case Studies
+
+### NYC flights data modeling
+
+Let's see this in practice with an example taken from:
+<https://www.tidymodels.org/start/recipes/>
+
+Data are from {nycflights13} package:
+```{r}
+library(nycflights13) 
+# tidy data and manipulation ----------------
+set.seed(123)
+flight_data <-
+  flights %>%
+  mutate(arr_delay = ifelse(arr_delay >= 30, "late", "on_time"),
+         arr_delay = factor(arr_delay),date = as.Date(time_hour)) %>%
+  inner_join(weather, by = c("origin", "time_hour")) %>%
+  select(dep_time, flight, origin, dest, air_time, distance,
+         carrier, date, arr_delay, time_hour) %>%
+  na.omit() %>%
+  mutate_if(is.character, as.factor)
+## split -------------------
+set.seed(555)
+data_split <- initial_split(flight_data, prop = 3/4)
+train_data <- training(data_split)
+test_data  <- testing(data_split)
+## apply the recipe ------------------
+flights_rec <-
+  recipe(arr_delay ~ ., data = train_data) %>%
+  update_role(flight, time_hour, new_role = "ID") %>%
+  step_date(date, features = c("dow", "month")) %>%
+  step_holiday(date, holidays = timeDate::listHolidays("US")) %>%
+  step_rm(date) %>%
+  step_dummy(all_nominal(), -all_outcomes()) %>%
+    # remove columns from the data when the training
+  # set data have a single value
+  step_zv(all_predictors())
+```
+
+
+Fit a model with a recipe and apply the workflow:
+
+1. process the recipe using the training set
+2. apply the recipe to the training set
+3. apply the recipe to the test set
+
+
+```{r}
+lr_mod <-
+  logistic_reg() %>%
+  set_engine("glm")
+```
+
+
+**Workflow**: to simplify the process a *parsnip object* pairs a model and recipe together
+
+```{r}
+flights_wflow <-
+  workflow() %>%
+  add_model(lr_mod) %>%
+  add_recipe(flights_rec)
+```
+
+**Fit**: The function to prepare the recipe and train the model from the resulting predictors
+
+```{r}
+flights_fit <-
+  flights_wflow %>%
+  # prepare the recipe and train the model
+  fit(data = train_data)
+```
+
+
+**Extract** the model or recipe objects from the workflow:
+
+```{r}
+flights_fit %>%
+  pull_workflow_fit() %>%
+  tidy()
+```
+
+
+Use a trained workflow to **predict** following these steps:
+
+1. build the model (lr_mod),
+2. create a preprocessing recipe (flights_rec),
+3. bundle the model and recipe (flights_wflow), and
+4. train the workflow using a single call to fit()
+
+
+Figure \@ref(fig:diagram2) Graph of the workflow steps  
+```{r diagram2, echo = FALSE, out.width = NULL, fig.cap = "Graph of the workflow steps"}
+mermaid("
+graph TB
+A(Build the model) .->B(Create a preprocessing recipe)
+A-->E(lr_mod)
+B.->C(Bundle the model and recipe)
+B-->F(flights_rec)
+C.->D(Train the workflow using fit)
+C-->G(flights_wflow)
+D-->H(fit)
+style A fill:#f9f
+style B fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+style C fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+style D fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+",
+height = '100%', width = '100%'
+)
+```
+
+
+
+Then use the trained workflow to predict using the **test data** or any other new data:
+
+```{r}
+flights_pred <- 
+  predict(flights_fit, test_data, type = "prob") %>% 
+  bind_cols(test_data %>% select(arr_delay, time_hour, flight)) 
+# flights_pred
+```
+
+
+Figure \@ref(fig:diagram3) Graph of the workflow to predict  
+```{r diagram3, echo = FALSE, out.width = NULL, fig.cap = "Graph of the workflow to predict"}
+mermaid("
+        graph LR
+        A[workflow]-->B{predict}
+style A fill:#f9f
+style B fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+        ",
+height = '100%', width = '100%')
+```
+
+
+
+
+--------------------------------
+
+
+**How will we evaluate the performance of our workflow?**
+
+
+To finally answer our question we need to check the area under the ROC curve.
+
+- What is a ROC curve?
+
+It is a curve that identifies the area of credibility of our model. To calculate the curve we use two functions: roc_curve() and roc_auc(), the curve and the area under the curve, respectively.
+
+The ROC curve uses the class probability estimates to give us a sense of performance across the entire set of potential probability cutoffs. 
+
+Once the predicted class of probabilities are obtained we can generate a ROC curve. Let's see it applied in our NYC flights case study. We need late and on_time variable predictors to create the curve and apply the **autoplot()** method as shown below:
+
+
+```{r}
+flights_pred %>%
+  roc_curve(truth = arr_delay, .pred_late) %>%
+  autoplot()
+```
+
+```{r}
+flights_pred %>% 
+  roc_auc(truth = arr_delay, .pred_late)
+```
+
+
+In particular, below are shown the steps for different cases, and the visualization used to evaluate the credibility of a model.
+
+-------------------------------
+
+
+#### Functions that can be used to measure predictive strengths of a model
+
+The assessment of the models is via empirical validation and grouped by the nature of the outcome data, and this can be done through: 
+
+- regression metrics (purely numeric)
+- binary classes 
+- multilevel metrics (three or more class levels)
+
+
+**Regression metrics**
+
+For this example I use the data from **The Trust for Public Land** for ranking the public parks in the US. <https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-06-22/readme.md> 
+
+- Data load and Split
+```{r message=FALSE, warning=FALSE}
+library(tidytuesdayR)
+tuesdata <- tidytuesdayR::tt_load(2021, week = 26)
+parks <- tuesdata$parks
+set.seed(123)
+parks_split <- initial_split(parks, prop = 0.80)
+parks_train <- training(parks_split)
+parks_test  <- testing(parks_split)
+```
+
+
+- Exploratory analysis
+```{r}
+ggplot(parks_train,aes(x=year,y = rank))+
+  geom_col(aes(fill=city)) +
+  labs(x="Year", y = "Sum of all city ranks per year")+
+  guides(fill="none")+
+  labs(title="US City Ranks per Year")+
+  theme_minimal()
+```
+
+```{r message=FALSE, warning=FALSE}
+parks_train %>% 
+  pivot_longer(cols=c(13,15,17,19,21,23),names_to="amenities",values_to="points") %>%
+  select(year,rank,city,amenities_points,amenities,points)%>%
+  drop_na()%>%
+ggplot(aes(x=points, y = amenities_points)) +
+  geom_point(aes(fill=amenities,color=amenities),size=0.5,alpha=0.7) +
+  geom_smooth()+
+  labs(x="Points per single amenity",y = "Amenities points") +
+  guides(fill="none",color="none") +
+  scale_color_viridis(discrete=TRUE) +
+  labs(title="Amenities points") + 
+  theme_minimal()
+```
+
+
+Type of available engine modeling:
+
+- linear_reg() %>% set_engine("lm")
+- linear_reg() %>% set_engine("glmnet")
+- linear_reg() %>% set_engine("stan")
+
+
+- Apply a simple Recipe without step_ ... functions
+```{r}
+parks_rec <- recipe(amenities_points ~ basketball_points + dogpark_points+
+                      playground_points+rec_sr_points+restroom_points+
+                      splashground_points, data=parks_train)
+```
+
+
+- Set the Workflow
+```{r}
+lm_model <- linear_reg() %>% set_engine("lm") 
+lm_wflow <- workflow() %>% add_model(lm_model)
+lm_wflow <- lm_wflow %>% add_recipe(parks_rec)
+lm_fit <- fit(lm_wflow, parks_train)
+# predict(lm_fit, parks_test %>% slice(1:3))
+# test the model on new data
+parks_test_res <- predict(lm_fit, new_data = parks_test %>% select(-amenities_points)) %>% 
+  bind_cols(parks_test %>% select(amenities_points))
+parks_test_res
+```
+
+Then we check the linear relation between selected components of amenities by year.
+In this visualization, the overall amenities points are checked against basketball points.
+
+```{r}
+parks_train%>%
+filter(year>=2015)%>%
+  ggplot(aes(x = basketball_points, y = amenities_points)) +
+  geom_point(alpha = .2) +
+  facet_wrap(~ year) +
+  geom_smooth(method = lm, formula = y ~ x, se = FALSE, col = "red") +
+  scale_x_log10() +
+  scale_y_log10() +
+  labs(x = "basketball_points", y = "amenities_points")
+```
+
+
+Then we see how the overall amenities points are shaping predicted values:
+```{r message=FALSE, warning=FALSE}
+ggplot(parks_test_res, aes(x = amenities_points, y = .pred)) +
+  # Create a diagonal line:
+  geom_abline(lty = 2) +
+  geom_point(alpha = 0.5) +
+  labs(y = "Predicted amenities points", x = "Amenities points") +
+  # Scale and size the x- and y-axis uniformly:
+  coord_obs_pred()
+```
+
+
+
+- Apply the root mean squared error rmse()
+
+The first measure used for the model is the root mean squared error: *RMSE*
+
+```{r}
+# rmse(data, truth = outcome, estimate = .pred)
+rmse(parks_test_res, truth = amenities_points, estimate = .pred)
+```
+
+
+Then make a comparison adding more metrics at once: *Multiple metrics at once*
+```{r}
+# data_metrics <- metric_set(rmse, rsq, mae)
+# data_metrics(data_test_res, truth = outcome, estimate = .pred)
+parks_metrics <- metric_set(rmse, rsq, mae)
+parks_metrics(parks_test_res, truth = amenities_points, estimate = .pred)
+```
+
+
+------------------------------
+
+Here we use some examples from the book with a sample predictions and multiple resampling:
+
+**Binary classes**
+
+1. *Confusion matrix*:
+
+Confusion matrix gives a holistic view of the performance of your model
+
+**What is a Confusion Matrix?**
+
+It is a matrix that contains values such as:
+
+- True Positive (TP)
+- True Negative (TN)
+- False Positive – Type 1 Error (FP)
+- False Negative – Type 2 Error (FN)
+
+![Confusion matrix](images/confusion_matrix.png)
+
+Example 1: two_class_example
+
+```{r}
+data("two_class_example")
+conf_mat(two_class_example, truth = truth, estimate = predicted)
+```
+
+
+The confusion matrix contains other metrics that can be extracted under specific conditions.
+
+
+- **Precision** is how certain you are of your true positives
+- **Recall** is how certain you are that you are not missing any positives.
+
+The measure used to estimate the effectiveness is the **overall accuracy**. It uses the hard class predictions to measure performance, which tells us whether our model is actually estimating a probability of cutoff to establish if the model predicted well or not with *accuracy*.
+
+
+2. *Accuracy*:
+
+```{r}
+accuracy(two_class_example, truth = truth, estimate = predicted)
+```
+
+3. *Matthews correlation coefficient*:
+```{r}
+mcc(two_class_example, truth, predicted)
+```
+
+4. *F1 metric*:
+F1-score is a harmonic mean of **Precision** and **Recall**.
+The F1-score captures both the trends in a single value: when we try to increase the precision of our model, the recall (aka, *sensitivity*) goes down, and vice-versa. 
+```{r}
+f_meas(two_class_example, truth, predicted) #,event_level = "second")
+```
+
+
+all of the above have the **event_level** argument (first/second level)
+
+
+---------------------------
+
+
+To visualize the model metrics behavior, the **receiver operating characteristic (ROC) curve** computes the *sensitivity* and *specificity* over a continuum of different event thresholds
+
+- **roc_curve()** (curve)
+- **roc_auc()** (area)
+
+```{r}
+two_class_curve <- roc_curve(two_class_example, truth, Class1)
+  
+two_class_curve
+```
+
+
+```{r}
+roc_auc(two_class_example, truth, Class1)
+```
+
+```{r}
+autoplot(two_class_curve)
+```
+
+
+--------------------------
+
+
+**Multi-class**
+
+Finally we see data with three or more classes
+
+- *Accuracy*:
+```{r}
+data(hpc_cv)
+accuracy(hpc_cv, obs, pred)
+```
+
+- *Matthews correlation coefficient*:
+```{r}
+mcc(hpc_cv, obs, pred)
+```
+
+
+
+```{r include=FALSE}
+class_totals <- 
+  count(hpc_cv, obs, name = "totals") %>% 
+  mutate(class_wts = totals / sum(totals))
+class_totals
+```
+
+
+
+```{r include=FALSE}
+cell_counts <- 
+  hpc_cv %>% 
+  group_by(obs, pred) %>% 
+  count() %>% 
+  ungroup()
+# Compute the four sensitivities using 1-vs-all
+one_versus_all <- 
+  cell_counts %>% 
+  filter(obs == pred) %>% 
+  full_join(class_totals, by = "obs") %>% 
+  mutate(sens = n / totals)
+one_versus_all
+```
+
+```{r include=FALSE}
+one_versus_all %>% 
+  summarize(
+    macro = mean(sens), 
+    macro_wts = weighted.mean(sens, class_wts),
+    micro = sum(n) / sum(totals)
+  )
+```
+
+
+And then the *sensitivity* calculation for different estimators:
+```{r}
+macro_sens <-sensitivity(hpc_cv, obs, pred, estimator = "macro");
+weigh_sens <- sensitivity(hpc_cv, obs, pred, estimator = "macro_weighted");
+micro_sens <- sensitivity(hpc_cv, obs, pred, estimator = "micro");
+sens <- rbind(macro_sens,weigh_sens,micro_sens)
+sens
+```
+
+And the ROC curve:
+```{r}
+roc_auc(hpc_cv, obs, VF, F, M, L)
+```
+
+The ROC area:
+```{r}
+roc_auc(hpc_cv, obs, VF, F, M, L, estimator = "macro_weighted")
+```
+
+The ROC visualization:
+<https://www.tidymodels.org/start/resampling/>
+```{r}
+hpc_cv %>% group_by(Resample) %>%
+  roc_curve(obs, VF, F, M, L) %>% 
+  autoplot()
+```
+
+
+--------------------------
+
+
+### Conclusion
+
+Judging the effectiveness of a variety of different models and to choose between them, we need to consider how well these models behave through the use of some performance statistics:
+
+- the area under the Receiver Operating Characteristic (ROC) curve, and
+- overall classification accuracy.
+
+In conclusion when judging on a model effectiveness is important to follow few clear steps:
+
+- check of the data used for the modeling if contains any of the hidden information, such as modification of the units
+- second step is to calculate the ROC curve and the Area underneath the curve, plot it to see how it behaves on the model
+- third is to apply some selected metrics such as RMSE or RSQ, MAE etc.. to evaluate the estimation values
+- fourth make the confusion matrix as well as all the related metrics (sensitivity, specificity, accuracy, F1 ...)
+- finally apply again the ROC curve visualization on resampling to see the best fit
+
+
+-------------------------
+
+#### Resources
+
+- yardstick:
+<https://yardstick.tidymodels.org/>
+- recipes:
+<https://www.tidymodels.org/start/recipes/>
+- ROC curve:
+<https://www.analyticsvidhya.com/blog/2020/06/auc-roc-curve-machine-learning/?utm_source=linkedin&utm_medium=social&utm_campaign=old-blog&utm_content=B&custom=LDV150>
+- Decoding the confusion matrix:
+<https://towardsdatascience.com/decoding-the-confusion-matrix-bb4801decbb>
