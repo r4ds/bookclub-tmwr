@@ -88,6 +88,8 @@ If you would like to present, please add your name next to a chapter using the [
 
 </details>
 
+- 2021-09-20: Chapter 17: Dimensionality reduction: Ildiko Czeller & Federica Gazzelloni
+
 <hr>
 
 
