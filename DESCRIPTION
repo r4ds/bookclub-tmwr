@@ -13,6 +13,7 @@ Imports:
     beans,
     bestNormalize,
     bookdown,
+    broom.mixed,
     corrplot,
     corrr,
     details,
