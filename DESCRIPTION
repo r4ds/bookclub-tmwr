@@ -20,6 +20,7 @@ Imports:
     dimRed,
     discrim,
     DiagrammeR,
+    dotwhisker,
     earth,
     emo,
     fastICA,
