@@ -85,10 +85,11 @@ If you would like to present, please add your name next to a chapter using the [
 - 2021-08-09: Chapter 13: Grid search: Jiwan Heo
 - 2021-08-16: Chapter 14: Iterative search: Ildiko Czeller
 - 2021-08-23: Chapter 15: Screening many models: Federica Gazzelloni
+- 2021-09-20: Chapter 17: Dimensionality reduction: Ildiko Czeller & Federica Gazzelloni
 
 </details>
 
-- 2021-09-20: Chapter 17: Dimensionality reduction: Ildiko Czeller & Federica Gazzelloni
+- 2021-09-27: Chapter 18: Explaining models and predictions: Ildiko Czeller & Federica Gazzelloni
 
 <hr>
 
