@@ -50,7 +50,7 @@ trn %>% count(w1)
 tst %>% count(w1)
 ```
 
-```{r fit}
+```{r trust-fit}
 fit <-
   logistic_reg() %>% 
   set_engine('glm') %>% 
@@ -59,7 +59,7 @@ fit <-
 fit %>% tidy()
 ```
 
-```{r preds_tst}
+```{r trust-preds_tst}
 predict_stuff <- function(fit, set) {
   bind_cols(
     fit %>% 
@@ -77,7 +77,7 @@ preds_tst <- fit %>% predict_stuff(tst)
 
 How's the model accuracy?
 
-```{r mets}
+```{r trust-mets}
 preds_tst %>% 
   accuracy(estimate = .pred_class, truth = w1)
 ```
@@ -86,7 +86,7 @@ Seems reasonable... so maybe modeling soccer match outcomes with 2 variables ain
 
 Observe the fitted class boundary. (Confidence intervals shown instead of prediction intervals because I didn't want to use stan... Max please forgive me.)
 
-```{r tst_grid, echo=F, fig.align='center'}
+```{r trust-tst_grid, echo=F, fig.align='center'}
 tst_grid <-
   crossing(
     spi1 = seq(0, 100, length = 101),
@@ -137,7 +137,7 @@ preds_tst_grid %>%
 
 Use the `{probably}` package!
 
-```{r make_two_class_pred}
+```{r trust-make_two_class_pred}
 lvls <- levels(preds_tst$w1)
 
 preds_tst_eqz <- 
@@ -149,7 +149,7 @@ preds_tst_eqz %>% count(.pred_with_eqz)
 
 Look at how `make_two_class_pred` changes our confusion matrix.
 
-```{r cmat}
+```{r trust-cmat}
 # All data
 preds_tst_eqz %>% conf_mat(w1, .pred_class) %>% autoplot('heatmap')
 # Reportable results only
@@ -158,7 +158,7 @@ preds_tst_eqz %>% conf_mat(w1, .pred_with_eqz) %>% autoplot('heatmap')
 
 Does the equivocal zone help improve accuracy? How sensitive is accuracy and our reportable rate to the width of the buffer?
 
-```{r sens_to_buffer}
+```{r trust-sens_to_buffer}
 eq_zone_results <- function(buffer) {
   preds_tst_eqz <- 
     preds_tst %>% 
@@ -177,7 +177,7 @@ map_dfr(seq(0, 0.15, length.out = 40), eq_zone_results) %>%
 
 How does the standard error look across the feature space
 
-```{r echo=F}
+```{r trust-other1, echo=F}
 pal <- c(
   '#fef0d9',
   '#fdcc8a',
@@ -220,7 +220,7 @@ Let's stress-test a model, seeing how it might work on some unusual observations
 
 For this, we fit a new model with pre-game team 1 probability of winning (`prob1`) and pre-game probability of a draw (`probtie`). (We can better illustrate an extreme example with these features.)
 
-```{r fit2}
+```{r trust-fit2}
 fit2 <-
   logistic_reg() %>% 
   set_engine('glm') %>% 
@@ -230,8 +230,8 @@ fit2 %>% tidy()
 
 How's the accuracy looking?
 
-```{r preds_tst2}
-preds_tst2 <- fit2 %>% predict_stuff()
+```{r trust-preds_tst2}
+preds_tst2 <- fit2 %>% predict_stuff(tst)
 
 preds_tst2 %>% 
   accuracy(estimate = .pred_class, truth = w1)
@@ -241,7 +241,7 @@ preds_tst2 %>% conf_mat(w1, .pred_class) %>% autoplot('heatmap')
 
 Not bad... but is it deceiving in some extreme cases?
 
-```{r echo=F}
+```{r trust-other2, echo=F}
 tst_grid2 <-
   crossing(
     prob1 = seq(0, 1, length = 101),
@@ -287,7 +287,7 @@ Can we identify how applicable the model is for any new prediction (a.k.a the mo
 
 Let's use PCA to do so.
 
-```{r pca-two-class-train, echo = FALSE, out.width = "100%"}
+```{r trust-pca-two-class-train, echo = FALSE, out.width = "100%"}
 pca_rec <- recipe(~ ., data = trn %>% select(prob1, probtie)) %>% 
   step_normalize(all_numeric_predictors()) %>% 
   step_pca(all_numeric_predictors(), num_comp = 2) %>% 
