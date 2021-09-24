@@ -11,7 +11,9 @@ library(details)
 
 **Learning objectives:**
 
--   Jon will prefill these.
+- Use the `{probably}` package to create an **equivocal zone** to improve model accuracy.
+  - Describe the trade-off between **accuracy** and **reportability**.
+- Use the `{applicable}` package to **quantify how applicable a model is to new data.**
 
 ## Equivocal Results
 
@@ -162,7 +164,7 @@ Does the equivocal zone help improve accuracy? How sensitive is accuracy and our
 eq_zone_results <- function(buffer) {
   preds_tst_eqz <- 
     preds_tst %>% 
-    mutate(.pred_with_eqz = make_two_class_pred(.pred_yes, lvls, buffer = buffer))
+    mutate(.pred_with_eqz = make_two_class_pred(.pred_no, lvls, buffer = buffer))
   acc <- preds_tst_eqz %>% accuracy(w1, .pred_with_eqz)
   rep_rate <- reportable_rate(preds_tst_eqz$.pred_with_eqz)
   tibble(accuracy = acc$.estimate, reportable = rep_rate, buffer = buffer)
