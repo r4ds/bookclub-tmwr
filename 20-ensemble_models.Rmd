@@ -2,7 +2,10 @@
 
 **Learning objectives:**
 
-- Jon will prefill these.
+- Create a data stack for the `{stacks}` package using `stacks()` and `add_candidates`.
+- Fit a **meta-learning model** using `blend_predictions()`.
+- Fit the **member models** using `fit_members()`.
+- Test the results of an ensemble model.
 
 ## Slide 1 Title
 
