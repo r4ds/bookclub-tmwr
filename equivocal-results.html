@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>21.2 Slide 2 Title | Tidy Modeling with R Book Club</title>
+  <title>19.1 Equivocal Results | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="21.2 Slide 2 Title | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="19.1 Equivocal Results | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="21.2 Slide 2 Title | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="19.1 Equivocal Results | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="slide-1-title-3.html"/>
-
+<link rel="prev" href="when-should-you-trust-predictions.html"/>
+<link rel="next" href="model-applicability.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -407,19 +407,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="18.7" data-path="references-3.html"><a href="references-3.html"><i class="fa fa-check"></i><b>18.7</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="19" data-path="when-should-you-trust-predictions.html"><a href="when-should-you-trust-predictions.html"><i class="fa fa-check"></i><b>19</b> When should you trust predictions?</a><ul>
-<li class="chapter" data-level="19.1" data-path="slide-1-title-1.html"><a href="slide-1-title-1.html"><i class="fa fa-check"></i><b>19.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="19.2" data-path="slide-2-title-1.html"><a href="slide-2-title-1.html"><i class="fa fa-check"></i><b>19.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="19.1" data-path="equivocal-results.html"><a href="equivocal-results.html"><i class="fa fa-check"></i><b>19.1</b> Equivocal Results</a></li>
+<li class="chapter" data-level="19.2" data-path="model-applicability.html"><a href="model-applicability.html"><i class="fa fa-check"></i><b>19.2</b> Model Applicability</a></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="ensemble-models.html"><a href="ensemble-models.html"><i class="fa fa-check"></i><b>20</b> Ensemble models</a><ul>
-<li class="chapter" data-level="20.1" data-path="slide-1-title-2.html"><a href="slide-1-title-2.html"><i class="fa fa-check"></i><b>20.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="20.2" data-path="slide-2-title-2.html"><a href="slide-2-title-2.html"><i class="fa fa-check"></i><b>20.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="20.1" data-path="slide-1-title-1.html"><a href="slide-1-title-1.html"><i class="fa fa-check"></i><b>20.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="20.2" data-path="slide-2-title-1.html"><a href="slide-2-title-1.html"><i class="fa fa-check"></i><b>20.2</b> Slide 2 Title</a></li>
 <li class="chapter" data-level="20.3" data-path="meeting-videos-19.html"><a href="meeting-videos-19.html"><i class="fa fa-check"></i><b>20.3</b> Meeting Videos</a><ul>
 <li class="chapter" data-level="20.3.1" data-path="meeting-videos-19.html"><a href="meeting-videos-19.html#cohort-1-18"><i class="fa fa-check"></i><b>20.3.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="21" data-path="inferential-analysis.html"><a href="inferential-analysis.html"><i class="fa fa-check"></i><b>21</b> Inferential analysis</a><ul>
-<li class="chapter" data-level="21.1" data-path="slide-1-title-3.html"><a href="slide-1-title-3.html"><i class="fa fa-check"></i><b>21.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="21.2" data-path="slide-2-title-3.html"><a href="slide-2-title-3.html"><i class="fa fa-check"></i><b>21.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="21.1" data-path="slide-1-title-2.html"><a href="slide-1-title-2.html"><i class="fa fa-check"></i><b>21.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="21.2" data-path="slide-2-title-2.html"><a href="slide-2-title-2.html"><i class="fa fa-check"></i><b>21.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -441,26 +441,118 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="slide-2-title-3" class="section level2">
-<h2><span class="header-section-number">21.2</span> Slide 2 Title</h2>
-<p>Put the content of your second slide here.</p>
-
+<div id="equivocal-results" class="section level2">
+<h2><span class="header-section-number">19.1</span> Equivocal Results</h2>
+<p>What the heck is this? Loosely, equivacol results are a range of results indicating that the prediction should not be reported.</p>
+<p>Let’s take a soccer example. (Data courtesy of 538.)</p>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="equivocal-results.html#cb354-1"></a>df &lt;-<span class="st"> </span></span>
+<span id="cb354-2"><a href="equivocal-results.html#cb354-2"></a><span class="st">  </span>here<span class="op">::</span><span class="kw">here</span>(<span class="st">&#39;data&#39;</span>, <span class="st">&#39;spi_matches_latest.csv&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb354-3"><a href="equivocal-results.html#cb354-3"></a><span class="st">  </span><span class="kw">read_csv</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb354-4"><a href="equivocal-results.html#cb354-4"></a><span class="st">  </span><span class="kw">drop_na</span>(score1) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb354-5"><a href="equivocal-results.html#cb354-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">w1 =</span> <span class="kw">ifelse</span>(score1 <span class="op">&gt;</span><span class="st"> </span>score2, <span class="st">&#39;yes&#39;</span>, <span class="st">&#39;no&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">factor</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb354-6"><a href="equivocal-results.html#cb354-6"></a><span class="st">  </span><span class="kw">select</span>(</span>
+<span id="cb354-7"><a href="equivocal-results.html#cb354-7"></a>    w1, season, <span class="kw">matches</span>(<span class="st">&#39;(team|spi|prob|importance)[12]&#39;</span>), probtie</span>
+<span id="cb354-8"><a href="equivocal-results.html#cb354-8"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb354-9"><a href="equivocal-results.html#cb354-9"></a><span class="st">  </span><span class="co"># we need this as  feature, so it can&#39;t be NA</span></span>
+<span id="cb354-10"><a href="equivocal-results.html#cb354-10"></a><span class="st">  </span><span class="kw">drop_na</span>(importance1)</span></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="equivocal-results.html#cb355-1"></a><span class="co"># much more data in 2021 season than in older seasons, so use older seasons as test set</span></span>
+<span id="cb355-2"><a href="equivocal-results.html#cb355-2"></a>trn &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(season <span class="op">==</span><span class="st"> </span><span class="dv">2021</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>season)</span>
+<span id="cb355-3"><a href="equivocal-results.html#cb355-3"></a>tst &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(season <span class="op">!=</span><span class="st"> </span><span class="dv">2021</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>season)</span>
+<span id="cb355-4"><a href="equivocal-results.html#cb355-4"></a>trn <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(w1)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 2
+##   w1        n
+##   &lt;fct&gt; &lt;int&gt;
+## 1 no     1376
+## 2 yes    1054</code></pre>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="equivocal-results.html#cb357-1"></a>tst <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(w1)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 2
+##   w1        n
+##   &lt;fct&gt; &lt;int&gt;
+## 1 no      248
+## 2 yes     227</code></pre>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="equivocal-results.html#cb359-1"></a>fit &lt;-</span>
+<span id="cb359-2"><a href="equivocal-results.html#cb359-2"></a><span class="st">  </span><span class="kw">logistic_reg</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb359-3"><a href="equivocal-results.html#cb359-3"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&#39;glm&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb359-4"><a href="equivocal-results.html#cb359-4"></a><span class="st">  </span><span class="co"># 2 variables cuz dumb humans like 2-D plots</span></span>
+<span id="cb359-5"><a href="equivocal-results.html#cb359-5"></a><span class="st">  </span><span class="kw">fit</span>(w1 <span class="op">~</span><span class="st"> </span>spi1 <span class="op">+</span><span class="st"> </span>importance1, <span class="dt">data =</span> trn)</span>
+<span id="cb359-6"><a href="equivocal-results.html#cb359-6"></a>fit <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tidy</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept) -0.742     0.107       -6.92 4.50e-12
+## 2 spi1         0.0100    0.00259      3.86 1.13e- 4
+## 3 importance1  0.00381   0.00250      1.52 1.27e- 1</code></pre>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="equivocal-results.html#cb361-1"></a>predict_stuff &lt;-<span class="st"> </span><span class="cf">function</span>(fit, set) {</span>
+<span id="cb361-2"><a href="equivocal-results.html#cb361-2"></a>  <span class="kw">bind_cols</span>(</span>
+<span id="cb361-3"><a href="equivocal-results.html#cb361-3"></a>    fit <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb361-4"><a href="equivocal-results.html#cb361-4"></a><span class="st">      </span><span class="kw">predict</span>(set),</span>
+<span id="cb361-5"><a href="equivocal-results.html#cb361-5"></a>    fit <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb361-6"><a href="equivocal-results.html#cb361-6"></a><span class="st">      </span><span class="kw">predict</span>(set, <span class="dt">type =</span> <span class="st">&#39;prob&#39;</span>),</span>
+<span id="cb361-7"><a href="equivocal-results.html#cb361-7"></a>    fit <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb361-8"><a href="equivocal-results.html#cb361-8"></a><span class="st">      </span><span class="kw">predict</span>(set, <span class="dt">type =</span> <span class="st">&#39;conf_int&#39;</span>, <span class="dt">std_error =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb361-9"><a href="equivocal-results.html#cb361-9"></a>    set</span>
+<span id="cb361-10"><a href="equivocal-results.html#cb361-10"></a>  )</span>
+<span id="cb361-11"><a href="equivocal-results.html#cb361-11"></a>}</span>
+<span id="cb361-12"><a href="equivocal-results.html#cb361-12"></a></span>
+<span id="cb361-13"><a href="equivocal-results.html#cb361-13"></a>preds_tst &lt;-<span class="st"> </span>fit <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">predict_stuff</span>(tst)</span></code></pre></div>
+<p>How’s the model accuracy?</p>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="equivocal-results.html#cb362-1"></a>preds_tst <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb362-2"><a href="equivocal-results.html#cb362-2"></a><span class="st">  </span><span class="kw">accuracy</span>(<span class="dt">estimate =</span> .pred_class, <span class="dt">truth =</span> w1)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 3
+##   .metric  .estimator .estimate
+##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy binary         0.579</code></pre>
+<p>Seems reasonable… so maybe modeling soccer match outcomes with 2 variables ain’t so bad, eh?</p>
+<p>Observe the fitted class boundary. (Confidence intervals shown instead of prediction intervals because I didn’t want to use stan… Max please forgive me.)</p>
+<p><img src="bookclub-tmwr_files/figure-html/trust-tst_grid-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Use the <code>{probably}</code> package!</p>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="equivocal-results.html#cb364-1"></a>lvls &lt;-<span class="st"> </span><span class="kw">levels</span>(preds_tst<span class="op">$</span>w1)</span>
+<span id="cb364-2"><a href="equivocal-results.html#cb364-2"></a></span>
+<span id="cb364-3"><a href="equivocal-results.html#cb364-3"></a>preds_tst_eqz &lt;-<span class="st"> </span></span>
+<span id="cb364-4"><a href="equivocal-results.html#cb364-4"></a><span class="st">  </span>preds_tst <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb364-5"><a href="equivocal-results.html#cb364-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">.pred_with_eqz =</span> <span class="kw">make_two_class_pred</span>(.pred_yes, lvls, <span class="dt">buffer =</span> <span class="fl">0.025</span>))</span>
+<span id="cb364-6"><a href="equivocal-results.html#cb364-6"></a></span>
+<span id="cb364-7"><a href="equivocal-results.html#cb364-7"></a>preds_tst_eqz <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(.pred_with_eqz)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 2
+##   .pred_with_eqz     n
+##       &lt;clss_prd&gt; &lt;int&gt;
+## 1           [EQ]    50
+## 2             no    48
+## 3            yes   377</code></pre>
+<p>Look at how <code>make_two_class_pred</code> changes our confusion matrix.</p>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="equivocal-results.html#cb366-1"></a><span class="co"># All data</span></span>
+<span id="cb366-2"><a href="equivocal-results.html#cb366-2"></a>preds_tst_eqz <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">conf_mat</span>(w1, .pred_class) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">autoplot</span>(<span class="st">&#39;heatmap&#39;</span>)</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/trust-cmat-1.png" width="672" /></p>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="equivocal-results.html#cb367-1"></a><span class="co"># Reportable results only</span></span>
+<span id="cb367-2"><a href="equivocal-results.html#cb367-2"></a>preds_tst_eqz <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">conf_mat</span>(w1, .pred_with_eqz) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">autoplot</span>(<span class="st">&#39;heatmap&#39;</span>)</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/trust-cmat-2.png" width="672" /></p>
+<p>Does the equivocal zone help improve accuracy? How sensitive is accuracy and our reportable rate to the width of the buffer?</p>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="equivocal-results.html#cb368-1"></a>eq_zone_results &lt;-<span class="st"> </span><span class="cf">function</span>(buffer) {</span>
+<span id="cb368-2"><a href="equivocal-results.html#cb368-2"></a>  preds_tst_eqz &lt;-<span class="st"> </span></span>
+<span id="cb368-3"><a href="equivocal-results.html#cb368-3"></a><span class="st">    </span>preds_tst <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb368-4"><a href="equivocal-results.html#cb368-4"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">.pred_with_eqz =</span> <span class="kw">make_two_class_pred</span>(.pred_yes, lvls, <span class="dt">buffer =</span> buffer))</span>
+<span id="cb368-5"><a href="equivocal-results.html#cb368-5"></a>  acc &lt;-<span class="st"> </span>preds_tst_eqz <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">accuracy</span>(w1, .pred_with_eqz)</span>
+<span id="cb368-6"><a href="equivocal-results.html#cb368-6"></a>  rep_rate &lt;-<span class="st"> </span><span class="kw">reportable_rate</span>(preds_tst_eqz<span class="op">$</span>.pred_with_eqz)</span>
+<span id="cb368-7"><a href="equivocal-results.html#cb368-7"></a>  <span class="kw">tibble</span>(<span class="dt">accuracy =</span> acc<span class="op">$</span>.estimate, <span class="dt">reportable =</span> rep_rate, <span class="dt">buffer =</span> buffer)</span>
+<span id="cb368-8"><a href="equivocal-results.html#cb368-8"></a>}</span>
+<span id="cb368-9"><a href="equivocal-results.html#cb368-9"></a></span>
+<span id="cb368-10"><a href="equivocal-results.html#cb368-10"></a><span class="kw">map_dfr</span>(<span class="kw">seq</span>(<span class="dv">0</span>, <span class="fl">0.15</span>, <span class="dt">length.out =</span> <span class="dv">40</span>), eq_zone_results) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb368-11"><a href="equivocal-results.html#cb368-11"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="kw">c</span>(<span class="op">-</span>buffer)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb368-12"><a href="equivocal-results.html#cb368-12"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> buffer, <span class="dt">y =</span> value, <span class="dt">col =</span> name)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb368-13"><a href="equivocal-results.html#cb368-13"></a><span class="st">  </span><span class="kw">geom_step</span>(<span class="dt">size =</span> <span class="fl">1.2</span>, <span class="dt">alpha =</span> <span class="fl">0.8</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb368-14"><a href="equivocal-results.html#cb368-14"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="ot">NULL</span>)</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/trust-sens_to_buffer-1.png" width="672" /></p>
+<p>How does the standard error look across the feature space</p>
+<p><img src="bookclub-tmwr_files/figure-html/trust-other1-1.png" width="672" /></p>
+<p>Makes sense… we’re more uncertain for cases outside of the normal boundary of our data.</p>
 </div>
-<!-- </div> -->
-
-
-
-
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="slide-1-title-3.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="when-should-you-trust-predictions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="model-applicability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -491,7 +583,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/21-inferential_analysis.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/19-when_should_you_trust_predictions.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>21.1 Slide 1 Title | Tidy Modeling with R Book Club</title>
+  <title>19.2 Model Applicability | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="21.1 Slide 1 Title | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="19.2 Model Applicability | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="21.1 Slide 1 Title | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="19.2 Model Applicability | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="inferential-analysis.html"/>
-<link rel="next" href="slide-2-title-3.html"/>
+<link rel="prev" href="equivocal-results.html"/>
+<link rel="next" href="ensemble-models.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -407,19 +407,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="18.7" data-path="references-3.html"><a href="references-3.html"><i class="fa fa-check"></i><b>18.7</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="19" data-path="when-should-you-trust-predictions.html"><a href="when-should-you-trust-predictions.html"><i class="fa fa-check"></i><b>19</b> When should you trust predictions?</a><ul>
-<li class="chapter" data-level="19.1" data-path="slide-1-title-1.html"><a href="slide-1-title-1.html"><i class="fa fa-check"></i><b>19.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="19.2" data-path="slide-2-title-1.html"><a href="slide-2-title-1.html"><i class="fa fa-check"></i><b>19.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="19.1" data-path="equivocal-results.html"><a href="equivocal-results.html"><i class="fa fa-check"></i><b>19.1</b> Equivocal Results</a></li>
+<li class="chapter" data-level="19.2" data-path="model-applicability.html"><a href="model-applicability.html"><i class="fa fa-check"></i><b>19.2</b> Model Applicability</a></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="ensemble-models.html"><a href="ensemble-models.html"><i class="fa fa-check"></i><b>20</b> Ensemble models</a><ul>
-<li class="chapter" data-level="20.1" data-path="slide-1-title-2.html"><a href="slide-1-title-2.html"><i class="fa fa-check"></i><b>20.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="20.2" data-path="slide-2-title-2.html"><a href="slide-2-title-2.html"><i class="fa fa-check"></i><b>20.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="20.1" data-path="slide-1-title-1.html"><a href="slide-1-title-1.html"><i class="fa fa-check"></i><b>20.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="20.2" data-path="slide-2-title-1.html"><a href="slide-2-title-1.html"><i class="fa fa-check"></i><b>20.2</b> Slide 2 Title</a></li>
 <li class="chapter" data-level="20.3" data-path="meeting-videos-19.html"><a href="meeting-videos-19.html"><i class="fa fa-check"></i><b>20.3</b> Meeting Videos</a><ul>
 <li class="chapter" data-level="20.3.1" data-path="meeting-videos-19.html"><a href="meeting-videos-19.html#cohort-1-18"><i class="fa fa-check"></i><b>20.3.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="21" data-path="inferential-analysis.html"><a href="inferential-analysis.html"><i class="fa fa-check"></i><b>21</b> Inferential analysis</a><ul>
-<li class="chapter" data-level="21.1" data-path="slide-1-title-3.html"><a href="slide-1-title-3.html"><i class="fa fa-check"></i><b>21.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="21.2" data-path="slide-2-title-3.html"><a href="slide-2-title-3.html"><i class="fa fa-check"></i><b>21.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="21.1" data-path="slide-1-title-2.html"><a href="slide-1-title-2.html"><i class="fa fa-check"></i><b>21.1</b> Slide 1 Title</a></li>
+<li class="chapter" data-level="21.2" data-path="slide-2-title-2.html"><a href="slide-2-title-2.html"><i class="fa fa-check"></i><b>21.2</b> Slide 2 Title</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -441,17 +441,92 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="slide-1-title-3" class="section level2">
-<h2><span class="header-section-number">21.1</span> Slide 1 Title</h2>
-<p>Put the content of your slide here.</p>
+<div id="model-applicability" class="section level2">
+<h2><span class="header-section-number">19.2</span> Model Applicability</h2>
+<p>Let’s stress-test a model, seeing how it might work on some unusual observations.</p>
+<p>For this, we fit a new model with pre-game team 1 probability of winning (<code>prob1</code>) and pre-game probability of a draw (<code>probtie</code>). (We can better illustrate an extreme example with these features.)</p>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="model-applicability.html#cb369-1"></a>fit2 &lt;-</span>
+<span id="cb369-2"><a href="model-applicability.html#cb369-2"></a><span class="st">  </span><span class="kw">logistic_reg</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb369-3"><a href="model-applicability.html#cb369-3"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&#39;glm&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb369-4"><a href="model-applicability.html#cb369-4"></a><span class="st">  </span><span class="kw">fit</span>(w1 <span class="op">~</span><span class="st"> </span>prob1 <span class="op">+</span><span class="st"> </span>probtie, <span class="dt">data =</span> trn)</span>
+<span id="cb369-5"><a href="model-applicability.html#cb369-5"></a>fit2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tidy</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)   -2.25      0.440   -5.12   3.10e- 7
+## 2 prob1          4.48      0.357   12.6    3.59e-36
+## 3 probtie        0.116     1.36     0.0852 9.32e- 1</code></pre>
+<p>How’s the accuracy looking?</p>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="model-applicability.html#cb371-1"></a>preds_tst2 &lt;-<span class="st"> </span>fit2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">predict_stuff</span>(tst)</span>
+<span id="cb371-2"><a href="model-applicability.html#cb371-2"></a></span>
+<span id="cb371-3"><a href="model-applicability.html#cb371-3"></a>preds_tst2 <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb371-4"><a href="model-applicability.html#cb371-4"></a><span class="st">  </span><span class="kw">accuracy</span>(<span class="dt">estimate =</span> .pred_class, <span class="dt">truth =</span> w1)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 3
+##   .metric  .estimator .estimate
+##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy binary         0.604</code></pre>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="model-applicability.html#cb373-1"></a>preds_tst2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">conf_mat</span>(w1, .pred_class) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">autoplot</span>(<span class="st">&#39;heatmap&#39;</span>)</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/trust-preds_tst2-1.png" width="672" /></p>
+<p>Not bad… but is it deceiving in some extreme cases?</p>
+<p><img src="bookclub-tmwr_files/figure-html/trust-other2-1.png" width="672" /></p>
+<p>Note that this model is pretty confident even for weird combinations like <code>probtie = 0.5</code> and <code>prob1 = 0.5</code> (implying that the other team has 0% chance of winning).</p>
+<p>Can we identify how applicable the model is for any new prediction (a.k.a the model’s applicability domain)?</p>
+<p>Let’s use PCA to do so.</p>
+<p><img src="bookclub-tmwr_files/figure-html/trust-pca-two-class-train-1.png" width="100%" /></p>
+<p>The PCA scores for the training set are shown in panel (b). Next, using these results, we measure the distance of each training set point to the center of the PCA data (panel (c)). We can then use this reference distribution (panel (d)) to estimate how far away a data point is from the mainstream of the training data.</p>
+<p>So, how can we use this PCA suff? Well, we can compute distances and percentiles based on those distances.</p>
+<p>The plot below overlays an average testing set sample (in blue) and a rather extreme sample (in red) with the PCA distances from the training set.</p>
+<p><img src="bookclub-tmwr_files/figure-html/trust-pca-two-class-test-1.png" width="672" /></p>
+<p>Let’s use the <code>{applicable}</code> package! (We’ll include more features this time around.)</p>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="model-applicability.html#cb374-1"></a>pca_stat &lt;-<span class="st"> </span><span class="kw">apd_pca</span>(<span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> trn <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">where</span>(is.numeric)), <span class="dt">threshold =</span> <span class="fl">0.99</span>)</span>
+<span id="cb374-2"><a href="model-applicability.html#cb374-2"></a>pca_stat</span></code></pre></div>
+<pre><code>## # Predictors:
+##    7
+## # Principal Components:
+##    5 components were needed
+##    to capture at least 99% of the
+##    total variation in the predictors.</code></pre>
+<p>We can plot a CDF looking thing with our computed distances.</p>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="model-applicability.html#cb376-1"></a><span class="kw">autoplot</span>(pca_stat, distance)</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/trust-ref-dist-1.png" width="672" /></p>
+<p>Observe that a strange observation gets a very high <code>distance</code> and 100 <code>distance_pctl</code>.</p>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="model-applicability.html#cb377-1"></a><span class="kw">score</span>(</span>
+<span id="cb377-2"><a href="model-applicability.html#cb377-2"></a>  pca_stat,</span>
+<span id="cb377-3"><a href="model-applicability.html#cb377-3"></a>  <span class="kw">bind_rows</span>(</span>
+<span id="cb377-4"><a href="model-applicability.html#cb377-4"></a>    <span class="kw">tibble</span>(</span>
+<span id="cb377-5"><a href="model-applicability.html#cb377-5"></a>      <span class="co"># set these to pretty average values</span></span>
+<span id="cb377-6"><a href="model-applicability.html#cb377-6"></a>      <span class="dt">spi1 =</span> <span class="dv">40</span>, <span class="dt">spi2 =</span> <span class="dv">40</span>, <span class="dt">importance1 =</span> <span class="dv">100</span><span class="op">/</span><span class="dv">3</span>, <span class="dt">importance2 =</span> <span class="dv">100</span><span class="op">/</span><span class="dv">3</span>,</span>
+<span id="cb377-7"><a href="model-applicability.html#cb377-7"></a>      <span class="co"># set these to weird values</span></span>
+<span id="cb377-8"><a href="model-applicability.html#cb377-8"></a>      <span class="dt">prob1 =</span> <span class="fl">0.1</span>, <span class="dt">prob2 =</span> <span class="fl">0.1</span>, <span class="dt">probtie =</span> <span class="fl">0.8</span></span>
+<span id="cb377-9"><a href="model-applicability.html#cb377-9"></a>    ),</span>
+<span id="cb377-10"><a href="model-applicability.html#cb377-10"></a>    tst</span>
+<span id="cb377-11"><a href="model-applicability.html#cb377-11"></a>  )</span>
+<span id="cb377-12"><a href="model-applicability.html#cb377-12"></a>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb377-13"><a href="model-applicability.html#cb377-13"></a><span class="st">  </span><span class="kw">select</span>(<span class="kw">starts_with</span>(<span class="st">&quot;distance&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 476 × 2
+##    distance distance_pctl
+##       &lt;dbl&gt;         &lt;dbl&gt;
+##  1   14.9           1    
+##  2    1.93         39.6  
+##  3    3.27         84.1  
+##  4    5.31         96.6  
+##  5    3.04         80.4  
+##  6    0.569         0.772
+##  7    1.05          6.62 
+##  8    1.57         22.6  
+##  9    2.56         67.2  
+## 10    5.76         98.1  
+## # … with 466 more rows</code></pre>
+
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="inferential-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="slide-2-title-3.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="equivocal-results.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ensemble-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -482,7 +557,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/21-inferential_analysis.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/19-when_should_you_trust_predictions.Rmd",
 "text": "Edit"
 },
 "history": {
