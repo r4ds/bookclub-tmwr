@@ -1,13 +1,426 @@
+```{r setup-19, include=F, echo=F}
+knitr::opts_chunk$set(
+  # collapse = TRUE
+  warning = FALSE,
+  message = FALSE
+)
+library(details)
+```
+
 # When should you trust predictions?
 
 **Learning objectives:**
 
-- Jon will prefill these.
+- Use the `{probably}` package to create an **equivocal zone** to improve model accuracy.
+  - Describe the trade-off between **accuracy** and **reportability**.
+- Use the `{applicable}` package to **quantify how applicable a model is to new data.**
 
-## Slide 1 Title
+## Equivocal Results
 
-Put the content of your slide here.
+What the heck is this? Loosely, equivacol results are a range of results indicating that the prediction should not be reported.
 
-## Slide 2 Title
+Let's take a soccer example. (Data courtesy of 538.)
 
-Put the content of your second slide here.
+```{r trust-setup, echo=F}
+library(tidyverse)
+library(tidymodels)
+library(applicable)
+library(probably)
+library(here)
+library(patchwork)
+theme_set(theme_minimal(base_size = 14))
+```
+
+```{r trust-df}
+df <- 
+  here::here('data', 'spi_matches_latest.csv') %>% 
+  read_csv() %>% 
+  drop_na(score1) %>% 
+  mutate(w1 = ifelse(score1 > score2, 'yes', 'no') %>% factor()) %>% 
+  select(
+    w1, season, matches('(team|spi|prob|importance)[12]'), probtie
+  ) %>% 
+  # we need this as  feature, so it can't be NA
+  drop_na(importance1)
+```
+
+```{r trust-split}
+# much more data in 2021 season than in older seasons, so use older seasons as test set
+trn <- df %>% filter(season == 2021) %>% select(-season)
+tst <- df %>% filter(season != 2021) %>% select(-season)
+trn %>% count(w1)
+tst %>% count(w1)
+```
+
+```{r trust-fit}
+fit <-
+  logistic_reg() %>% 
+  set_engine('glm') %>% 
+  # 2 variables cuz dumb humans like 2-D plots
+  fit(w1 ~ spi1 + importance1, data = trn)
+fit %>% tidy()
+```
+
+```{r trust-preds_tst}
+predict_stuff <- function(fit, set) {
+  bind_cols(
+    fit %>% 
+      predict(set),
+    fit %>% 
+      predict(set, type = 'prob'),
+    fit %>% 
+      predict(set, type = 'conf_int', std_error = TRUE),
+    set
+  )
+}
+
+preds_tst <- fit %>% predict_stuff(tst)
+```
+
+How's the model accuracy?
+
+```{r trust-mets}
+preds_tst %>% 
+  accuracy(estimate = .pred_class, truth = w1)
+```
+
+Seems reasonable... so maybe modeling soccer match outcomes with 2 variables ain't so bad, eh?
+
+Observe the fitted class boundary. (Confidence intervals shown instead of prediction intervals because I didn't want to use stan... Max please forgive me.)
+
+```{r trust-tst_grid, echo=F, fig.align='center'}
+tst_grid <-
+  crossing(
+    spi1 = seq(0, 100, length = 101),
+    importance1 = seq(0, 100, length = 101)
+  )
+
+preds_tst_grid <- fit %>% predict_stuff(tst_grid)
+
+preds_tst_grid %>% 
+  ggplot() +
+  aes(x = spi1, y = importance1) +
+  geom_raster(aes(fill = .pred_yes)) +
+  geom_point(
+    data = tst,
+    aes(color = w1),
+    # show.legend = FALSE,
+    alpha = 0.75,
+    size = 2
+  ) +
+  guides(
+    color = guide_legend('Team 1 Won', override.aes = list(size = 3))
+  ) +
+  scale_color_manual(values = c('dodgerblue', 'indianred')) +
+  geom_contour(
+    aes(z = .pred_yes),
+    breaks = 0.5,
+    color = 'black',
+    linetype = 2
+  ) +
+  # coord_equal() +
+  scale_fill_gradient2(
+    low = '#af8dc3',
+    mid = '#f7f7f7',
+    high = '#7fbf7b',
+    midpoint = 0.5
+  ) +
+  guides(
+    fill = guide_legend('P(Team 1 Wins)')
+  ) +
+  theme(
+    legend.position = 'top'
+  ) +
+  labs(
+    x = 'Team 1 SPI',
+    y = 'Importance of Match to Team 1'
+  )
+```
+
+Use the `{probably}` package!
+
+```{r trust-make_two_class_pred}
+lvls <- levels(preds_tst$w1)
+
+preds_tst_eqz <- 
+  preds_tst %>% 
+  mutate(.pred_with_eqz = make_two_class_pred(.pred_yes, lvls, buffer = 0.025))
+
+preds_tst_eqz %>% count(.pred_with_eqz)
+```
+
+Look at how `make_two_class_pred` changes our confusion matrix.
+
+```{r trust-cmat}
+# All data
+preds_tst_eqz %>% conf_mat(w1, .pred_class) %>% autoplot('heatmap')
+# Reportable results only
+preds_tst_eqz %>% conf_mat(w1, .pred_with_eqz) %>% autoplot('heatmap')
+```
+
+Does the equivocal zone help improve accuracy? How sensitive is accuracy and our reportable rate to the width of the buffer?
+
+```{r trust-sens_to_buffer}
+eq_zone_results <- function(buffer) {
+  preds_tst_eqz <- 
+    preds_tst %>% 
+    mutate(.pred_with_eqz = make_two_class_pred(.pred_no, lvls, buffer = buffer))
+  acc <- preds_tst_eqz %>% accuracy(w1, .pred_with_eqz)
+  rep_rate <- reportable_rate(preds_tst_eqz$.pred_with_eqz)
+  tibble(accuracy = acc$.estimate, reportable = rep_rate, buffer = buffer)
+}
+
+map_dfr(seq(0, 0.15, length.out = 40), eq_zone_results) %>% 
+  pivot_longer(c(-buffer)) %>% 
+  ggplot(aes(x = buffer, y = value, col = name)) + 
+  geom_step(size = 1.2, alpha = 0.8) + 
+  labs(y = NULL)
+```
+
+How does the standard error look across the feature space
+
+```{r trust-other1, echo=F}
+pal <- c(
+  '#fef0d9',
+  '#fdcc8a',
+  '#fc8d59',
+  '#e34a33',
+  '#b30000'
+)
+preds_tst_grid %>% 
+  ggplot() +
+  aes(x = spi1, y = importance1) +
+  geom_raster(aes(fill = .std_error), alpha = 0.5) + 
+  scale_fill_gradientn(colours = pal) +
+  guides(fill = guide_legend('')) +
+  geom_point(
+    data = tst,
+    aes(color = w1),
+    # show.legend = FALSE,
+    alpha = 0.75,
+    size = 2
+  ) +
+  guides(
+    color = guide_legend('Team 1 Won', override.aes = list(size = 3))
+  ) +
+  scale_color_manual(values = c('dodgerblue', 'indianred')) +
+  coord_equal() + 
+  theme(
+    legend.position = 'top'
+  ) +
+  labs(
+    x = 'Team 1 SPI',
+    y = 'Importance of Match to Team 1'
+  )
+```
+
+Makes sense... we're more uncertain for cases outside of the normal boundary of our data.
+
+## Model Applicability
+
+Let's stress-test a model, seeing how it might work on some unusual observations.
+
+For this, we fit a new model with pre-game team 1 probability of winning (`prob1`) and pre-game probability of a draw (`probtie`). (We can better illustrate an extreme example with these features.)
+
+```{r trust-fit2}
+fit2 <-
+  logistic_reg() %>% 
+  set_engine('glm') %>% 
+  fit(w1 ~ prob1 + probtie, data = trn)
+fit2 %>% tidy()
+```
+
+How's the accuracy looking?
+
+```{r trust-preds_tst2}
+preds_tst2 <- fit2 %>% predict_stuff(tst)
+
+preds_tst2 %>% 
+  accuracy(estimate = .pred_class, truth = w1)
+
+preds_tst2 %>% conf_mat(w1, .pred_class) %>% autoplot('heatmap')
+```
+
+Not bad... but is it deceiving in some extreme cases?
+
+```{r trust-other2, echo=F}
+tst_grid2 <-
+  crossing(
+    prob1 = seq(0, 1, length = 101),
+    probtie = seq(0, 1, length = 101)
+  ) %>% 
+  filter((prob1 + probtie) <= 1)
+
+preds_tst_grid2 <- fit2 %>% predict_stuff(tst_grid2)
+
+preds_tst_grid2 %>% 
+  ggplot() +
+  aes(x = prob1, y = probtie) +
+  geom_raster(aes(fill = .pred_yes)) +
+  geom_contour(
+    aes(z = .pred_yes),
+    breaks = 0.5,
+    color = 'black',
+    linetype = 2
+  ) +
+  xlim(0, 1) +
+  ylim(0, 1) +
+  scale_fill_gradient2(
+    low = '#af8dc3',
+    mid = '#f7f7f7',
+    high = '#7fbf7b',
+    midpoint = 0.5
+  ) +
+  guides(
+    fill = guide_legend('P(Team 1 Wins)')
+  ) +
+  theme(
+    legend.position = 'top'
+  ) +
+  labs(
+    x = 'Pre-Match P(Team 1 Wins)',
+    y = 'Pre-Match P(Draw)'
+  )
+```
+
+Note that this model is pretty confident even for weird combinations like `probtie = 0.5` and `prob1 = 0.5` (implying that the other team has 0% chance of winning).
+
+Can we identify how applicable the model is for any new prediction (a.k.a the model's applicability domain)?
+
+Let's use PCA to do so.
+
+```{r trust-pca-two-class-train, echo = FALSE, out.width = "100%"}
+pca_rec <- recipe(~ ., data = trn %>% select(prob1, probtie)) %>% 
+  step_normalize(all_numeric_predictors()) %>% 
+  step_pca(all_numeric_predictors(), num_comp = 2) %>% 
+  prep()
+training_pca <- bake(pca_rec, new_data = NULL)
+pca_center <- 
+  training_pca %>% 
+  select(PC1, PC2) %>% 
+  summarize(PC1_mean = mean(PC1), PC2_mean = mean(PC2))
+training_pca <- 
+  cbind(pca_center, training_pca) %>% 
+  mutate(
+    distance = (PC1 - PC1_mean)^2 + (PC2 - PC2_mean)^2,
+    distance = sqrt(distance)
+  )
+testing_pca <- 
+  # choose a pretty average test set obs
+  bake(pca_rec, tst %>% mutate(z = abs(spi1 - 40) + abs(importance1 - 100/3)) %>% filter(z == min(z)) %>% slice(1)) %>% 
+  cbind(pca_center) %>% 
+  mutate(
+    distance = (PC1 - PC1_mean)^2 + (PC2 - PC2_mean)^2,
+    distance = sqrt(distance)
+  )
+testing_pctl <- round(mean(training_pca$distance <= testing_pca$distance) * 100, 1)
+new_pca <- 
+  # choose a pretty extreme train set obs
+  bake(pca_rec, trn %>% arrange(desc(importance1 + 100 * spi1)) %>% slice(1)) %>% 
+  cbind(pca_center) %>% 
+  mutate(
+    distance = (PC1 - PC1_mean)^2 + (PC2 - PC2_mean)^2,
+    distance = sqrt(distance)
+  )
+new_pctl <- round(mean(training_pca$distance <= new_pca$distance) * 100, 1)
+tr_plot <- 
+  tst %>% 
+  ggplot(aes(x = prob1, y = probtie)) + 
+  geom_point(alpha = .25, size = .3) + 
+  # coord_equal() + 
+  labs(title = "(a) Training Set") + 
+  theme(plot.title = element_text(size=9))
+pca_plot <- training_pca %>% 
+  ggplot(aes(x = PC1, y = PC2)) + 
+  geom_point(alpha = .25, size = .3) + 
+  coord_obs_pred() + 
+  labs(x = "Component 1", y = "Component 2", title = "(b) Training Set PCA Scores") +
+  theme(plot.title = element_text(size = 9))
+pca_dist <- 
+  training_pca %>% 
+  ggplot() + 
+  geom_segment(aes(x = PC1_mean, y = PC2_mean,
+                   xend = PC1, yend = PC2), alpha = .1)  + 
+  coord_obs_pred() + 
+  labs(x = "Component 1", y = "Component 2", title = "(c) Distances to Center") +
+  theme(plot.title = element_text(size = 9))
+dist_hist <-
+  training_pca %>%
+  ggplot(aes(x = distance)) +
+  geom_histogram(bins = 30, col = "white") +
+  labs(x = "Distance to Training Set Center", title = "(d) Reference Distribution") +
+  theme(plot.title = element_text(size = 9))
+
+tr_plot + pca_plot + pca_dist + dist_hist
+```
+
+The PCA scores for the training set are shown in panel (b). Next, using these results, we measure the distance of each training set point to the center of the PCA data (panel (c)). We can then use this reference distribution (panel (d)) to estimate how far away a data point is from the mainstream of the training data.
+
+So, how can we use this PCA suff? Well, we can compute distances and percentiles based on those distances.
+
+The plot below overlays an average testing set sample (in blue) and a rather extreme sample (in red) with the PCA distances from the training set.
+
+```{r trust-pca-two-class-test, echo=F}
+test_pca_dist <- 
+  training_pca %>% 
+  ggplot() + 
+  geom_segment(
+    aes(x = PC1_mean, y = PC2_mean, xend = PC1, yend = PC2), 
+    alpha = .05
+  )  + 
+  geom_segment(
+    data = testing_pca,
+    aes(x = PC1_mean, y = PC2_mean, xend = PC1, yend = PC2), 
+    col = "cyan"
+  )  + 
+  geom_segment(
+    data = new_pca,
+    aes(x = PC1_mean, y = PC2_mean, xend = PC1, yend = PC2), 
+    col = "red"
+  )  + 
+  geom_point(data = testing_pca, aes(x = PC1, y = PC2), col = "cyan")   + 
+  geom_point(data = new_pca, aes(x = PC1, y = PC2), col = "red") +
+  coord_obs_pred() + 
+  labs(x = "Component 1", y = "Component 2", title = "Distances to Training Set Center") + 
+  theme_bw() + 
+  theme(legend.position = "top")
+test_dist_hist <- 
+  training_pca %>% 
+  ggplot(aes(x = distance)) + 
+  geom_histogram(bins = 30, col = "white", alpha = .5) + 
+  geom_vline(xintercept = testing_pca$distance, col = "cyan")  + 
+  geom_vline(xintercept = new_pca$distance, col = "red") +
+  xlab("Distance to Training Set Center")
+test_pca_dist + test_dist_hist
+```
+
+Let's use the `{applicable}` package! (We'll include more features this time around.)
+
+```{r trust-apd-pca}
+pca_stat <- apd_pca(~ ., data = trn %>% select(where(is.numeric)), threshold = 0.99)
+pca_stat
+```
+
+We can plot a CDF looking thing with our computed distances.
+
+```{r trust-ref-dist}
+autoplot(pca_stat, distance)
+```
+
+Observe that a strange observation gets a very high `distance` and 100 `distance_pctl`.
+
+```{r trust-outlier}
+score(
+  pca_stat,
+  bind_rows(
+    tibble(
+      # set these to pretty average values
+      spi1 = 40, spi2 = 40, importance1 = 100/3, importance2 = 100/3,
+      # set these to weird values
+      prob1 = 0.1, prob2 = 0.1, probtie = 0.8
+    ),
+    tst
+  )
+) %>% 
+  select(starts_with("distance"))
+```

@@ -9,6 +9,7 @@ Depends:
     R (>= 3.1.0)
 Imports: 
     AmesHousing,
+    applicable,
     baguette,
     beans,
     bestNormalize,
@@ -16,6 +17,8 @@ Imports:
     broom.mixed,
     corrplot,
     corrr,
+    DALEX,
+    DALEXtra,
     details,
     DiagrammeR,
     doMC,
@@ -30,6 +33,7 @@ Imports:
     ggfortify,
     glmnet,
     here,
+    iBreakDown,
     janitor,
     kableExtra,
     kernlab,
@@ -54,9 +58,7 @@ Imports:
     tufte,
     tweetrmd,
     workflowsets,
-    DALEX,
-    DALEXtra,
-    iBreakDown
+    probably
 Remotes: 
     hadley/emo,
     gadenbuie/tweetrmd,
