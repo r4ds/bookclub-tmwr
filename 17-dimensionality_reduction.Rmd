@@ -266,7 +266,7 @@ PCA is a part of PLS, in the meaning that in addition to PCA, PLS makes use of t
 
 
 ```{r echo=FALSE, fig.align='center', fig.cap='[credits: PARTIAL LEAST-SQUARES REGRESSION: A TUTORIAL](http://home.mit.bme.hu/~horvath/IDA/1-s2.0-0003267086800289-main.pdf)', out.width='100%'}
-knitr::include_graphics(here::here('images/pls.png'))
+knitr::include_graphics("images/pls.png")
 ```
 
 - Supervised PCA
