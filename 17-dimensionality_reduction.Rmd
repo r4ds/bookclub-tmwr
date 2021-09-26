@@ -607,7 +607,7 @@ This is the first part of the workflow:
 
 
 ```{r workflow_image,echo=FALSE, fig.align='center', fig.cap='bean_res: workflow', out.width='100%'}
-knitr::include_graphics(here::here('images/17-workflow.png'))
+knitr::include_graphics("images/17-workflow.png")
 ```
 
 **Estimation of the model metrics**
