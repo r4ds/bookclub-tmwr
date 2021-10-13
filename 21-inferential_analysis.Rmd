@@ -2,7 +2,10 @@
 
 **Learning objectives:**
 
-- Jon will prefill these.
+- Use `broom::tidy()` to interpret the results of hypothesis tests.
+- Use the `{infer}` package to test hypotheses.
+- Use `rsample::reg_intervals` to compute bootstrap confidence intervals.
+- Use `dplyr::mutate()` and `purrr::map()` to analyze parameter importance.
 
 ## Slide 1 Title
 
