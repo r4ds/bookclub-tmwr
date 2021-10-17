@@ -17,23 +17,19 @@ We also:
 - Apply the techniques to a model
 
 
-## Unsupervised and Surpervised learning
 
-
-```{r message=FALSE, warning=FALSE, paged.print=FALSE}
+```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
 library(tidyverse)
 library(tidymodels)
 library(ggforce)
 library(embed)
 library(corrplot)
-#library(learntidymodels)
+library(learntidymodels)
 library(baguette)
 library(discrim)
 library(uwot)
-library(doMC)
 library(patchwork)
 library(beans)
-registerDoMC(cores = parallel::detectCores())
 tidymodels_prefer()
 
 library(beans)
@@ -201,6 +197,15 @@ plot_validation_results <-
 }
 ```
 
+## Unsupervised and Surpervised learning
+
+In this section we see four dimentionality reduction techniques:
+1. PCA - Principal Component Analysis
+2. PLS - Partial Least Squares
+3. ICA - Independent Component Analysis
+4. UMAP - Uniform Manifold Approximation and Projection
+
+
 
 ### PCA - Principal Component Analysis
 
@@ -266,7 +271,7 @@ PCA is a part of PLS, in the meaning that in addition to PCA, PLS makes use of t
 
 
 ```{r echo=FALSE, fig.align='center', fig.cap='[credits: PARTIAL LEAST-SQUARES REGRESSION: A TUTORIAL](http://home.mit.bme.hu/~horvath/IDA/1-s2.0-0003267086800289-main.pdf)', out.width='100%'}
-knitr::include_graphics("images/pls.png")
+knitr::include_graphics("images/17-pls.png")
 ```
 
 - Supervised PCA
@@ -323,7 +328,7 @@ It uses an iteration method, calculating:
 PLS algo:
 
 ```{r echo=FALSE, fig.align='center', fig.cap='[credits: PARTIAL LEAST-SQUARES REGRESSION: A TUTORIAL](http://home.mit.bme.hu/~horvath/IDA/1-s2.0-0003267086800289-main.pdf)', out.width='100%'}
-knitr::include_graphics("images/pls_algo.png")
+knitr::include_graphics("images/17-pls_algo.png")
 ```
 
 
@@ -335,9 +340,12 @@ pls_val <- bean_rec_trained %>%
   ggtitle("Partial Least Squares")
 ```
 
+
+
 ```{r, out.width='100%'}
 grid.arrange(pca_val,pls_val)
 ```
+
 
 
 
@@ -374,6 +382,43 @@ pls <- bean_rec_trained %>%
 
 ```
 
+
+The book foresee the use of {[mixOmics](/packages/release/bioc/html/mixOmics.html)} package, which proposes several sparse multivariate models.
+
+In particular, `mixOmics` offers a wide range of multivariate methods for the exploration and integration of biological datasets with a particular focus on variable selection.
+The methods implemented in mixOmics` can also handle missing values without having to delete entire rows with missing data.
+
+
+```{r eval=FALSE, include=T}
+# BiocManager::install("mixOmics")
+# browseVignettes("mixOmics")
+```
+
+This is the block to compare the components:
+
+```{r,cache=TRUE}
+pls <- bean_rec_trained %>%
+  recipes::step_pls(all_numeric_predictors(), outcome = "class", num_comp = 4) %>% 
+  prep() %>% 
+  tidy(number=4) %>%
+  filter(component%in% paste0("PLS",1:4)) %>%
+  group_by(component) %>%
+  slice_max(abs(value),n=5) %>%
+  ungroup() %>%
+  ggplot(aes(abs(value),terms,fill=value>0))+
+  geom_col(alpha=0.8)+
+  facet_wrap(vars(component),scales="free_y") +
+  labs(fill="PLS Positive?",
+       x="Abs. contribution to component",
+       y="")+
+  theme_bw()+
+  theme(legend.position = "top")
+
+
+```
+
+
+
 ```{r,cache=TRUE}
 library(gridExtra)
 
@@ -389,6 +434,8 @@ The analysis continue with some **other dimensionality reduction techniques**.
 - "It can be thought of as [maximizing the “non-Gaussianity”](https://www.sciencedirect.com/topics/engineering/non-gaussianity) of the ICA components", which is included in the features of nonlinearity, and nonstationarity in many practical signals processing methods. It generally means non-linearity.
 
 These two packages are needed: {dimRed}, {fastICA}
+
+
 
 ```{r, cache=TRUE}
 bean_rec_trained %>%
@@ -483,6 +530,7 @@ The book explores different models:
 library(baguette)
 library(discrim)
 ```
+ 
  
 The first step is to build the **Parsnip Model Objects** for our models:
  
@@ -586,21 +634,15 @@ bean_res <-
 
 Save the models in a `.rda` file to save time.
 
-
-```{r eval=FALSE, include=T}
-saveRDS(bean_res,here::here("data","17-bean_res.RDS"))
-```
-
-
+    saveRDS(bean_res,"data/bean_res.RDS")
 
 Then read it back, to have it again as a variable in the environment, and to be able to impute further work on it. In case of any crash of the system such as pausing times, you can always reload the models information without re-run the workflow which is time consuming.
 
-We do not actually read this back in these notes as the `.rda` file is too big for loading it.
 
-```{r file_read,eval=FALSE, include=T}
-# load(file = "data/bean_res.rda")
-# data(bean_res)
-```
+We do not actually read this back in these notes as the `.rda` file is too big for loading it, but you can use these commands on your machine:
+
+    bean_res <- readRDS(file = "data/bean_res.rda")
+    bean_res
 
 
 This is the first part of the workflow:
@@ -621,37 +663,35 @@ rankings <-
   mutate(method = map_chr(wflow_id, ~ str_split(.x, "_", simplify = TRUE)[1])) 
 ```
 
-Save the `rankings` results as .RDS file:
+Save the `rankings` results as .RDS file and then read it back, with these commands:
 
-```{r save_ranking, eval=FALSE, include=T}
-saveRDS(rankings,here::here("data","17-rankings.RDS"))
+    saveRDS(rankings,"data/rankings.RDS")
+    rankings <- readRDS(file ="data/rankings.RDS")
 
-```
-
-Then read it back, this file is saved in the file `data`
-
-```{r rankings_file}
-rankings <- readRDS(file =here::here("data","17-rankings.RDS"))
-rankings
-```
 
 Select the information you want to see:
 
-```{r}
+```{r metricselection, eval=FALSE, include=T}
 tidymodels_prefer()
 
 filter(rankings, rank <= 5) %>% 
   dplyr::select(rank, mean, model, method)
 ```
 
+```{r metricselection_image,echo=FALSE, fig.align='center', fig.cap='bean_res: workflow', out.width='100%'}
+knitr::include_graphics("images/17-metricselection_image.png")
+```
+
 Finally, see the reults of the metrics ranking:
 
-```{r ranking_plot,out.width='100%'}
+```{r ranking_plot, eval=FALSE, include=T, out.width='100%'}
 rankings %>% 
   ggplot(aes(x = rank, y = mean, pch = method, col = model)) + 
   geom_point(cex = 3) + 
   theme(legend.position = "right") +
   labs(y = "ROC AUC")
+
+knitr::include_graphics("images/17-model_ranks.png")
 ```
 
 
