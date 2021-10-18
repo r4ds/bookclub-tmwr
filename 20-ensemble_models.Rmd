@@ -7,13 +7,118 @@
 - Fit the **member models** using `fit_members()`.
 - Test the results of an ensemble model.
 
-## Slide 1 Title
+## Ensembling
 
-Put the content of your slide here.
+- Aggregating predictions of multiple models together to make one prediction.
+- We've already seen some ensembling within 1 type of model:
+  - Random forest
+  - Bagging & boosting
+  
+- **Model stacking** allows for aggregating many different types of models (lm + rf + svm, ...), to assemble a new model, which generates a new prediction, informed by its *members*.
 
-## Slide 2 Title
+## Ensembling with `stacks`!
 
-Put the content of your second slide here.
+![](https://raw.githubusercontent.com/tidymodels/stacks/main/man/figures/logo.png){width=25%}
+
+https://stacks.tidymodels.org/articles/basics.html
+
+Model stacking process:
+
+1. Define some models, using all the knowledge we have from this book. We call them *candidate models/members*.
+2. Initialize the ensemble with `stacks::stacks()`, and add the members to it, using `stacks::add_members()`
+3. Blend the predictions of the members, using `stacks::blend_predictions()` (linear combination of each member's predictions)
+4. Now that we know how to blend members, `fit` the members one more time on the whole training set, and `predict` on testing set.
+
+## Define some models
+
+- Ensembles are formed from model definitions, which are `workflow`s that contain model recipe & spec (that has been tuned or fit_resample'd).
+- The book recommends the racing tuning method.
+
+![](images/20_model-definitions.PNG)
+
+- You’ll need to save the assessment set predictions and workflow utilized in your `tune_grid()`, or `fit_resamples()` objects by setting the control arguments `save_pred = TRUE` and `save_workflow = TRUE`. 
+
+- If a model has hyperparameters, then you'd be creating multiple candidate models.
+
+![](images/20_model-definitions-hyperparameters.PNG)
+
+## Initialize and add members to stack.
+
+- Data stacks are tibbles (with some extra attributes) that contain the response value as the first column, and the assessment set predictions for each candidate ensemble member.
+
+![](images/20_model-stack.PNG)
+
+```{r 20-stack_setup, eval=FALSE}
+tree_frogs_model_st <- # example from stacks vignette
+  stacks() %>%
+  add_candidates(knn_res) %>%
+  add_candidates(lin_reg_res) %>%
+  add_candidates(svm_res)
+
+tree_frogs_model_st
+#> # A data stack with 3 model definitions and 11 candidate members:
+#> #   knn_res: 4 model configurations
+#> #   lin_reg_res: 1 model configuration
+#> #   svm_res: 6 model configurations
+#> # Outcome: latency (numeric)
+
+as_tibble(tree_frogs_model_st)
+#> # A tibble: 429 x 12
+#>    latency knn_res_1_1 knn_res_1_2 knn_res_1_3 knn_res_1_4 lin_reg_res_1_1
+#>      <dbl>       <dbl>       <dbl>       <dbl>       <dbl>           <dbl>
+#>  1     142      -0.496      -0.478      -0.492      -0.494           114. 
+#>  2      79      -0.381      -0.446      -0.542      -0.553            78.6
+#>  3      50      -0.311      -0.352      -0.431      -0.438            81.5
+#>  4      68      -0.312      -0.368      -0.463      -0.473            78.6
+#>  5      64      -0.496      -0.478      -0.492      -0.494            36.5
+#>  6      52      -0.391      -0.412      -0.473      -0.482           124. 
+#>  7      39      -0.523      -0.549      -0.581      -0.587            35.2
+#>  8      46      -0.523      -0.549      -0.581      -0.587            37.1
+#>  9     137      -0.287      -0.352      -0.447      -0.456            78.8
+#> 10      73      -0.523      -0.549      -0.581      -0.587            38.8
+#> # … with 419 more rows, and 6 more variables: svm_res_1_1 <dbl>,
+#> #   svm_res_1_4 <dbl>, svm_res_1_3 <dbl>, svm_res_1_5 <dbl>, svm_res_1_2 <dbl>,
+#> #   svm_res_1_6 <dbl>
+```
+
+## Blend, fit, predict
+
+- `blend_predictions()` performs LASSO regularization to combine the outputs from the stack members to come up with one final prediction.
+- Candidates with non-zero coefficients are kept.
+
+```{r 20-stack_blend, eval=FALSE}
+tree_frogs_model_st <-
+  tree_frogs_data_st %>%
+  blend_predictions()
+```
+
+- There's an `autoplot()` function available, to see what's going on.
+- If you don't like what you're seeing, you can try `blend_predictions()` again, and setting your own penalty argument.
+
+![](images/20_autoplot.PNG)
+
+- Essentially, what you have, is a linear combination of each member's prediction, to create one final prediction.
+
+![](images/20_weights.PNG)
+
+- With this "instruction" on how to combine candidate models, we fit the whole training set
+
+```{r 20-stack_fit_members, eval=FALSE}
+tree_frogs_model_st <-
+  tree_frogs_model_st %>%
+  fit_members()
+```
+
+![](images/20_blend_predictions.PNG)
+
+- And predict on testing set
+
+```{r 20-stack_predict, eval=FALSE}
+tree_frogs_test <- 
+  tree_frogs_test %>%
+  bind_cols(predict(tree_frogs_model_st, .))
+```
+
 
 ## Meeting Videos
 
