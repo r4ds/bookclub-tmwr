@@ -219,10 +219,13 @@ when-should-you-trust-predictions
 equivocal-results
 model-applicability
 ensemble-models
-slide-1-title-1
-slide-2-title-1
+ensembling
+ensembling-with-stacks
+define-some-models
+initialize-and-add-members-to-stack.
+blend-fit-predict
 meeting-videos-19
 cohort-1-18
 inferential-analysis
-slide-1-title-2
-slide-2-title-2
+slide-1-title-1
+slide-2-title-1
