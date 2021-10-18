@@ -48,8 +48,8 @@ Model stacking process:
 
 ![](images/20_model-stack.PNG)
 
-```{r eval=FALSE}
-tree_frogs_model_st <- 
+```{r 20-stack_setup, eval=FALSE}
+tree_frogs_model_st <- # example from stacks vignette
   stacks() %>%
   add_candidates(knn_res) %>%
   add_candidates(lin_reg_res) %>%
@@ -86,7 +86,7 @@ as_tibble(tree_frogs_model_st)
 - `blend_predictions()` performs LASSO regularization to combine the outputs from the stack members to come up with one final prediction.
 - Candidates with non-zero coefficients are kept.
 
-```{r eval=FALSE}
+```{r 20-stack_blend, eval=FALSE}
 tree_frogs_model_st <-
   tree_frogs_data_st %>%
   blend_predictions()
@@ -103,7 +103,7 @@ tree_frogs_model_st <-
 
 - With this "instruction" on how to combine candidate models, we fit the whole training set
 
-```{r eval=FALSE}
+```{r 20-stack_fit_members, eval=FALSE}
 tree_frogs_model_st <-
   tree_frogs_model_st %>%
   fit_members()
@@ -113,7 +113,7 @@ tree_frogs_model_st <-
 
 - And predict on testing set
 
-```{r eval=FALSE}
+```{r 20-stack_predict, eval=FALSE}
 tree_frogs_test <- 
   tree_frogs_test %>%
   bind_cols(predict(tree_frogs_model_st, .))
