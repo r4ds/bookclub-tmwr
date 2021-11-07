@@ -7,10 +7,287 @@
 - Use `rsample::reg_intervals` to compute bootstrap confidence intervals.
 - Use `dplyr::mutate()` and `purrr::map()` to analyze parameter importance.
 
-## Slide 1 Title
+## Dataset for inference
 
-Put the content of your slide here.
+I will use TidyTuesday dataset on ultra trail running races.
 
-## Slide 2 Title
+The data comes from [Benjamin Nowak](https://twitter.com/BjnNowak) by way of [International Trail Running Association (ITRA)](https://itra.run/Races/FindRaceResults). Their original repo is available on [GitHub](https://github.com/BjnNowak/UltraTrailRunning).
 
-Put the content of your second slide here.
+```{r 21-setup, echo=FALSE,message=FALSE,warning=FALSE}
+library(tidyverse)
+library(tidymodels)
+tidymodels_prefer()
+```
+
+```{r 21-create-demo-dat}
+race <- read_csv("data/21_race.csv", show_col_types = FALSE)
+ranking <- read_csv("data/21_ultra_rankings.csv", show_col_types = FALSE)
+
+best_results <- ranking %>%
+  filter(rank <= 10) %>%
+  group_by(race_year_id) %>%
+  summarise(time_in_seconds = mean(time_in_seconds), top_10 = n()) %>%
+  filter(top_10 == 10) %>%
+  select(-top_10)
+
+race_top_results <- race %>%
+  filter(participation == "solo" || participation == "Solo") %>%
+  inner_join(best_results, by = "race_year_id") %>%
+  mutate(avg_elevation_gain = elevation_gain / distance, avg_velocity = distance / time_in_seconds * 3600) %>%
+  filter(distance > 0)
+
+glimpse(race_top_results)
+```
+
+```{r 21-set-seed}
+set.seed(345129)
+```
+
+## Tidy method from the {broom} package
+
+- predictable outcome for many different models and statistical tests
+- most useful for analysing / visualizing multiple models/tests
+- also used internally by higher level functions in tidymodels packages
+- other packages also provide tidy methods for their own data structures
+
+You can get the same outcome from many different input formats.
+
+```{r 21-visualize-simple-lm-model}
+race_top_results %>%
+  ggplot(aes(avg_elevation_gain, avg_velocity)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = "lm") +
+  expand_limits(y = 0)
+```
+
+```{r 21-tidy-fit-workflow}
+lm_spec <- linear_reg() %>% set_engine("lm")
+
+wf <- workflow() %>%
+  add_model(lm_spec) %>%
+  add_formula(avg_velocity ~ avg_elevation_gain + distance)
+
+fitted_wf <- wf %>%
+  fit(race_top_results)
+
+fitted_wf %>% tidy()
+```
+
+```{r 21-tidy-parsnip-model-fit}
+lm_spec %>%
+  fit(avg_velocity ~ avg_elevation_gain + distance, data = race_top_results) %>%
+  tidy()
+```
+
+
+```{r 21-tidy-bare-lm}
+fitted_wf %>% extract_fit_engine() %>% tidy()
+
+lm(avg_velocity ~ avg_elevation_gain + distance, data = race_top_results) %>%
+  tidy()
+```
+
+```{r 21-tidy-tests}
+cor.test(race_top_results$avg_velocity, race_top_results$avg_elevation_gain) %>%
+  tidy()
+
+t.test(
+  race_top_results %>% filter(date > '2015-01-01') %>% pull(avg_velocity),
+  race_top_results %>% filter(date <= '2015-01-01') %>% pull(avg_velocity)
+) %>%
+  tidy()
+```
+
+## {infer} for simple, high level hypothesis testing
+
+### p value for idependence based on simulation with permutation
+
+```{r 21-infer-independence-p}
+observed <- race_top_results %>%
+  specify(avg_velocity ~ avg_elevation_gain) %>%
+  calculate(stat = "correlation")
+
+observed
+
+permuted <- race_top_results %>%
+  specify(avg_velocity ~ avg_elevation_gain) %>%
+  hypothesise(null = "independence") %>%
+  generate(reps = 1000, type = "permute") %>%
+  calculate(stat = "correlation")
+
+permuted
+
+permuted %>%
+  visualize() +
+  shade_p_value(observed, direction = "two_sided")
+
+get_p_value(permuted, observed, direction = "two_sided")
+```
+
+### Confidence interval for correlation based on simulation with bootstrapping
+
+```{r 21-infer-correlation-ci}
+bootstrapped <- race_top_results %>%
+  specify(avg_velocity ~ avg_elevation_gain) %>%
+  generate(reps = 1000, type = "bootstrap") %>%
+  calculate(stat = "correlation")
+
+bootstrapped %>%
+  visualize() +
+  shade_confidence_interval(get_confidence_interval(bootstrapped))
+```
+
+### Use theory instead of simulation
+
+```{r 21-infer-t-mu}
+observed_t <- race_top_results %>%
+  specify(response = avg_velocity) %>%
+  hypothesise(null = "point", mu = 7) %>%
+  calculate(stat = "t")
+
+race_top_results %>%
+  specify(response = avg_velocity) %>%
+  assume("t") %>%
+  visualize() +
+  shade_p_value(observed_t, direction = "two_sided")
+
+race_top_results %>%
+  specify(response = avg_velocity) %>%
+  assume("t") %>%
+  get_p_value(observed_t, "two_sided")
+```
+
+### Linear models with multiple explanatory variables
+
+```{r 21-infer-fit}
+my_formula <- as.formula(avg_velocity ~ aid_stations + participants)
+
+observed_fit <- race_top_results %>%
+  specify(my_formula) %>%
+  fit()
+
+observed_fit
+```
+
+
+```{r 21-infer-fit-simulate, eval=FALSE}
+permuted_fits <- race_top_results %>%
+  specify(my_formula) %>%
+  hypothesise(null = "independence") %>%
+  generate(reps = 1000, type = "permute", variables = c(aid_stations, participants)) %>%
+  fit()
+
+bootstrapped_fits <- race_top_results %>%
+  specify(my_formula) %>%
+  generate(reps = 2000, type = "bootstrap") %>%
+  fit()
+```
+
+```{r 21-infer-fit-read, echo=FALSE}
+permuted_fits <- read_rds("data/21_permuted_fits.rds")
+bootstrapped_fits <- read_rds("data/21_bootstrapped_fits.rds")
+```
+
+```{r 21-infer-fit-permute-eval}
+permuted_fits %>% get_p_value(observed_fit, "two_sided")
+
+visualize(permuted_fits) +
+  shade_p_value(observed_fit, "two_sided")
+```
+
+```{r 21-infer-fit-bootstrap_eval}
+bootstrapped_fits %>%
+  get_confidence_interval(type = "percentile", point_estimate = observed_fit)
+```
+
+## reg_intervals from {rsample}
+
+Similar purpose as {infer} package, few supported models and interval types
+
+```{r 21-reg-intervals, eval=FALSE}
+reg_intervals(
+  my_formula,
+  race_top_results,
+  model_fn = "glm",
+  times = 2000,
+  type = "percentile",
+  keep_reps = TRUE
+)
+```
+
+```{r 21-reg-intervals-eval, echo=FALSE}
+read_rds("data/21_reg_intervals.rds")
+```
+
+## Inference with lower level helpers
+
+Most useful for models not supported by anova, or parsnip, etc or you want to have more control.
+
+```{r 21-infer-lm}
+formulas <- list(
+  "full" = as.formula(avg_velocity ~ avg_elevation_gain + distance + aid_stations),
+  "partial" = as.formula(avg_velocity ~ avg_elevation_gain + distance),
+  "minimal" = as.formula(avg_velocity ~ avg_elevation_gain)
+)
+
+lm_spec <- linear_reg() %>% set_engine("lm")
+
+AICs <- map(formulas, function(formula) {
+  lm_spec %>%
+    fit(formula, data = race_top_results) %>%
+    extract_fit_engine() %>%
+    AIC()
+})
+AICs
+```
+
+```{r 21-many-models, eval=FALSE}
+velocity_model_summaries <- race_top_results %>%
+  bootstraps(times = 1000, apparent = TRUE) %>%
+  mutate(
+    full_aic = map_dbl(splits, ~ fit(lm_spec, formulas[["full"]], data = analysis(.x)) %>% extract_fit_engine() %>% AIC()),
+    partial_aic = map_dbl(splits, ~ fit(lm_spec, formulas[["partial"]], data = analysis(.x)) %>% extract_fit_engine() %>% AIC()),
+    minimal_aic = map_dbl(splits, ~ fit(lm_spec, formulas[["minimal"]], data = analysis(.x)) %>% extract_fit_engine() %>% AIC())
+  ) %>% 
+  select(full_aic, partial_aic, minimal_aic)
+```
+
+```{r 21-many-models-read, echo=FALSE}
+velocity_model_summaries <- read_rds("data/21_velocity_model_summaries.rds")
+```
+
+
+```{r 21-aic-compare}
+velocity_model_summaries %>%
+  pivot_longer(c(full_aic, partial_aic, minimal_aic)) %>%
+  ggplot(aes(x = name, y = value)) +
+  geom_boxplot()
+
+velocity_model_summaries %>%
+  summarize(
+    full_vs_partial = mean(full_aic < partial_aic),
+    partial_vs_minimal = mean(partial_aic < minimal_aic)
+  )
+
+```
+
+```{r 21-model-coeffs}
+velocity_model_summaries %>%
+  unnest(full_coeffs) %>%
+  ggplot(aes(x = estimate)) +
+  geom_histogram(bins = 5) +
+  facet_wrap(~term, scales = "free_x") +
+  geom_vline(xintercept = 0, col = "green")
+```
+
+Small reps used for speed
+
+```{r 21-model-coef-ci}
+race_top_results %>%
+  bootstraps(times = 20) %>%
+  mutate(
+    full_coeffs = map(splits, ~ fit(lm_spec, formulas[["full"]], data = analysis(.x)) %>% tidy())
+  ) %>% 
+  int_pctl(full_coeffs)
+```
+
