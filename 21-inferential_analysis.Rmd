@@ -7,7 +7,7 @@
 - Use `rsample::reg_intervals` to compute bootstrap confidence intervals.
 - Use `dplyr::mutate()` and `purrr::map()` to analyze parameter importance.
 
-## Dataset for inference
+## Dataset used for demonstrating inference
 
 I will use TidyTuesday dataset on ultra trail running races.
 
@@ -39,6 +39,8 @@ race_top_results <- race %>%
 glimpse(race_top_results)
 ```
 
+We will work with races with non-0 distance, solo participation and at least 10 participants. For each race, the avg velocity is calculated from the velocity of the top 10 racers.
+
 ```{r 21-set-seed}
 set.seed(345129)
 ```
@@ -46,9 +48,13 @@ set.seed(345129)
 ## Tidy method from the {broom} package
 
 - predictable outcome for many different models and statistical tests
+  - always a tibble
+  - consistent column names
 - most useful for analysing / visualizing multiple models/tests
+  - easier to combine results (no rownames)
 - also used internally by higher level functions in tidymodels packages
 - other packages also provide tidy methods for their own data structures
+- different models, tests will have different structures based on what makes sense, but use as similar structure as possible
 
 You can get the same outcome from many different input formats.
 
@@ -59,6 +65,8 @@ race_top_results %>%
   geom_smooth(method = "lm") +
   expand_limits(y = 0)
 ```
+
+As makes sense intuitively, higher elevation gain per mile results in lower velocity.
 
 ```{r 21-tidy-fit-workflow}
 lm_spec <- linear_reg() %>% set_engine("lm")
@@ -79,6 +87,7 @@ lm_spec %>%
   tidy()
 ```
 
+{broom} existed before {tidymodels}, it works for base R lm model object as well.
 
 ```{r 21-tidy-bare-lm}
 fitted_wf %>% extract_fit_engine() %>% tidy()
@@ -86,6 +95,8 @@ fitted_wf %>% extract_fit_engine() %>% tidy()
 lm(avg_velocity ~ avg_elevation_gain + distance, data = race_top_results) %>%
   tidy()
 ```
+
+In addition to models, we can tidy the result of tests such as correlation test or t-test.
 
 ```{r 21-tidy-tests}
 cor.test(race_top_results$avg_velocity, race_top_results$avg_elevation_gain) %>%
@@ -99,6 +110,10 @@ t.test(
 ```
 
 ## {infer} for simple, high level hypothesis testing
+
+- specify relationship and optionally hypothesis
+- calculate statistics from simulation or based on theoretical distributions
+- many common tests are supported for continuous and discreet variables as well
 
 ### p value for idependence based on simulation with permutation
 
@@ -202,7 +217,7 @@ bootstrapped_fits %>%
 
 ## reg_intervals from {rsample}
 
-Similar purpose as {infer} package, few supported models and interval types
+Similar purpose (?) as {infer} package, few supported models and interval types
 
 ```{r 21-reg-intervals, eval=FALSE}
 reg_intervals(
@@ -221,7 +236,7 @@ read_rds("data/21_reg_intervals.rds")
 
 ## Inference with lower level helpers
 
-Most useful for models not supported by anova, or parsnip, etc or you want to have more control.
+Most useful for models not supported by anova, or parsnip, etc or when you want to have more control.
 
 ```{r 21-infer-lm}
 formulas <- list(
@@ -240,6 +255,8 @@ AICs <- map(formulas, function(formula) {
 })
 AICs
 ```
+
+How to determine whether these differences are significant? One possible solution is bootstrapping which can also be used when there are no nice theoretical properties.
 
 ```{r 21-many-models, eval=FALSE}
 velocity_model_summaries <- race_top_results %>%
@@ -290,4 +307,4 @@ race_top_results %>%
   ) %>% 
   int_pctl(full_coeffs)
 ```
-
+The key components are `bootstraps()` and `mutate + map` which give you quite a bit of flexibility to compute many statistics.
