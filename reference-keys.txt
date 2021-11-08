@@ -227,5 +227,12 @@ blend-fit-predict
 meeting-videos-19
 cohort-1-18
 inferential-analysis
-slide-1-title-1
-slide-2-title-1
+dataset-used-for-demonstrating-inference
+tidy-method-from-the-broom-package
+infer-for-simple-high-level-hypothesis-testing
+p-value-for-idependence-based-on-simulation-with-permutation
+confidence-interval-for-correlation-based-on-simulation-with-bootstrapping
+use-theory-instead-of-simulation
+linear-models-with-multiple-explanatory-variables
+reg_intervals-from-rsample
+inference-with-lower-level-helpers

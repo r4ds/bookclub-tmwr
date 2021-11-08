@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>21.2 Slide 2 Title | Tidy Modeling with R Book Club</title>
+  <title>21.5 Inference with lower level helpers | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="21.2 Slide 2 Title | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="21.5 Inference with lower level helpers | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="21.2 Slide 2 Title | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="21.5 Inference with lower level helpers | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -24,14 +24,14 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-10-18" />
+<meta name="date" content="2021-11-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="slide-1-title-1.html"/>
+<link rel="prev" href="reg_intervals-from-rsample.html"/>
 
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -421,8 +421,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="21" data-path="inferential-analysis.html"><a href="inferential-analysis.html"><i class="fa fa-check"></i><b>21</b> Inferential analysis</a><ul>
-<li class="chapter" data-level="21.1" data-path="slide-1-title-1.html"><a href="slide-1-title-1.html"><i class="fa fa-check"></i><b>21.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="21.2" data-path="slide-2-title-1.html"><a href="slide-2-title-1.html"><i class="fa fa-check"></i><b>21.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="21.1" data-path="dataset-used-for-demonstrating-inference.html"><a href="dataset-used-for-demonstrating-inference.html"><i class="fa fa-check"></i><b>21.1</b> Dataset used for demonstrating inference</a></li>
+<li class="chapter" data-level="21.2" data-path="tidy-method-from-the-broom-package.html"><a href="tidy-method-from-the-broom-package.html"><i class="fa fa-check"></i><b>21.2</b> Tidy method from the {broom} package</a></li>
+<li class="chapter" data-level="21.3" data-path="infer-for-simple-high-level-hypothesis-testing.html"><a href="infer-for-simple-high-level-hypothesis-testing.html"><i class="fa fa-check"></i><b>21.3</b> {infer} for simple, high level hypothesis testing</a><ul>
+<li class="chapter" data-level="21.3.1" data-path="infer-for-simple-high-level-hypothesis-testing.html"><a href="infer-for-simple-high-level-hypothesis-testing.html#p-value-for-idependence-based-on-simulation-with-permutation"><i class="fa fa-check"></i><b>21.3.1</b> p value for idependence based on simulation with permutation</a></li>
+<li class="chapter" data-level="21.3.2" data-path="infer-for-simple-high-level-hypothesis-testing.html"><a href="infer-for-simple-high-level-hypothesis-testing.html#confidence-interval-for-correlation-based-on-simulation-with-bootstrapping"><i class="fa fa-check"></i><b>21.3.2</b> Confidence interval for correlation based on simulation with bootstrapping</a></li>
+<li class="chapter" data-level="21.3.3" data-path="infer-for-simple-high-level-hypothesis-testing.html"><a href="infer-for-simple-high-level-hypothesis-testing.html#use-theory-instead-of-simulation"><i class="fa fa-check"></i><b>21.3.3</b> Use theory instead of simulation</a></li>
+<li class="chapter" data-level="21.3.4" data-path="infer-for-simple-high-level-hypothesis-testing.html"><a href="infer-for-simple-high-level-hypothesis-testing.html#linear-models-with-multiple-explanatory-variables"><i class="fa fa-check"></i><b>21.3.4</b> Linear models with multiple explanatory variables</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="reg_intervals-from-rsample.html"><a href="reg_intervals-from-rsample.html"><i class="fa fa-check"></i><b>21.4</b> reg_intervals from {rsample}</a></li>
+<li class="chapter" data-level="21.5" data-path="inference-with-lower-level-helpers.html"><a href="inference-with-lower-level-helpers.html"><i class="fa fa-check"></i><b>21.5</b> Inference with lower level helpers</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -444,9 +452,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="slide-2-title-1" class="section level2">
-<h2><span class="header-section-number">21.2</span> Slide 2 Title</h2>
-<p>Put the content of your second slide here.</p>
+<div id="inference-with-lower-level-helpers" class="section level2">
+<h2><span class="header-section-number">21.5</span> Inference with lower level helpers</h2>
+<p>Most useful for models not supported by anova, or parsnip, etc or when you want to have more control.</p>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="inference-with-lower-level-helpers.html#cb421-1"></a>formulas &lt;-<span class="st"> </span><span class="kw">list</span>(</span>
+<span id="cb421-2"><a href="inference-with-lower-level-helpers.html#cb421-2"></a>  <span class="st">&quot;full&quot;</span> =<span class="st"> </span><span class="kw">as.formula</span>(avg_velocity <span class="op">~</span><span class="st"> </span>avg_elevation_gain <span class="op">+</span><span class="st"> </span>distance <span class="op">+</span><span class="st"> </span>aid_stations),</span>
+<span id="cb421-3"><a href="inference-with-lower-level-helpers.html#cb421-3"></a>  <span class="st">&quot;partial&quot;</span> =<span class="st"> </span><span class="kw">as.formula</span>(avg_velocity <span class="op">~</span><span class="st"> </span>avg_elevation_gain <span class="op">+</span><span class="st"> </span>distance),</span>
+<span id="cb421-4"><a href="inference-with-lower-level-helpers.html#cb421-4"></a>  <span class="st">&quot;minimal&quot;</span> =<span class="st"> </span><span class="kw">as.formula</span>(avg_velocity <span class="op">~</span><span class="st"> </span>avg_elevation_gain)</span>
+<span id="cb421-5"><a href="inference-with-lower-level-helpers.html#cb421-5"></a>)</span>
+<span id="cb421-6"><a href="inference-with-lower-level-helpers.html#cb421-6"></a></span>
+<span id="cb421-7"><a href="inference-with-lower-level-helpers.html#cb421-7"></a>lm_spec &lt;-<span class="st"> </span><span class="kw">linear_reg</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">set_engine</span>(<span class="st">&quot;lm&quot;</span>)</span>
+<span id="cb421-8"><a href="inference-with-lower-level-helpers.html#cb421-8"></a></span>
+<span id="cb421-9"><a href="inference-with-lower-level-helpers.html#cb421-9"></a>AICs &lt;-<span class="st"> </span><span class="kw">map</span>(formulas, <span class="cf">function</span>(formula) {</span>
+<span id="cb421-10"><a href="inference-with-lower-level-helpers.html#cb421-10"></a>  lm_spec <span class="op">%&gt;%</span></span>
+<span id="cb421-11"><a href="inference-with-lower-level-helpers.html#cb421-11"></a><span class="st">    </span><span class="kw">fit</span>(formula, <span class="dt">data =</span> race_top_results) <span class="op">%&gt;%</span></span>
+<span id="cb421-12"><a href="inference-with-lower-level-helpers.html#cb421-12"></a><span class="st">    </span><span class="kw">extract_fit_engine</span>() <span class="op">%&gt;%</span></span>
+<span id="cb421-13"><a href="inference-with-lower-level-helpers.html#cb421-13"></a><span class="st">    </span><span class="kw">AIC</span>()</span>
+<span id="cb421-14"><a href="inference-with-lower-level-helpers.html#cb421-14"></a>})</span>
+<span id="cb421-15"><a href="inference-with-lower-level-helpers.html#cb421-15"></a>AICs</span></code></pre></div>
+<pre><code>## $full
+## [1] 3123.333
+## 
+## $partial
+## [1] 3122.497
+## 
+## $minimal
+## [1] 3148.007</code></pre>
+<p>How to determine whether these differences are significant? One possible solution is bootstrapping which can also be used when there are no nice theoretical properties.</p>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="inference-with-lower-level-helpers.html#cb423-1"></a>velocity_model_summaries &lt;-<span class="st"> </span>race_top_results <span class="op">%&gt;%</span></span>
+<span id="cb423-2"><a href="inference-with-lower-level-helpers.html#cb423-2"></a><span class="st">  </span><span class="kw">bootstraps</span>(<span class="dt">times =</span> <span class="dv">1000</span>, <span class="dt">apparent =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb423-3"><a href="inference-with-lower-level-helpers.html#cb423-3"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb423-4"><a href="inference-with-lower-level-helpers.html#cb423-4"></a>    <span class="dt">full_aic =</span> <span class="kw">map_dbl</span>(splits, <span class="op">~</span><span class="st"> </span><span class="kw">fit</span>(lm_spec, formulas[[<span class="st">&quot;full&quot;</span>]], <span class="dt">data =</span> <span class="kw">analysis</span>(.x)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">extract_fit_engine</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">AIC</span>()),</span>
+<span id="cb423-5"><a href="inference-with-lower-level-helpers.html#cb423-5"></a>    <span class="dt">partial_aic =</span> <span class="kw">map_dbl</span>(splits, <span class="op">~</span><span class="st"> </span><span class="kw">fit</span>(lm_spec, formulas[[<span class="st">&quot;partial&quot;</span>]], <span class="dt">data =</span> <span class="kw">analysis</span>(.x)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">extract_fit_engine</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">AIC</span>()),</span>
+<span id="cb423-6"><a href="inference-with-lower-level-helpers.html#cb423-6"></a>    <span class="dt">minimal_aic =</span> <span class="kw">map_dbl</span>(splits, <span class="op">~</span><span class="st"> </span><span class="kw">fit</span>(lm_spec, formulas[[<span class="st">&quot;minimal&quot;</span>]], <span class="dt">data =</span> <span class="kw">analysis</span>(.x)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">extract_fit_engine</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">AIC</span>())</span>
+<span id="cb423-7"><a href="inference-with-lower-level-helpers.html#cb423-7"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb423-8"><a href="inference-with-lower-level-helpers.html#cb423-8"></a><span class="st">  </span><span class="kw">select</span>(full_aic, partial_aic, minimal_aic)</span></code></pre></div>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="inference-with-lower-level-helpers.html#cb424-1"></a>velocity_model_summaries <span class="op">%&gt;%</span></span>
+<span id="cb424-2"><a href="inference-with-lower-level-helpers.html#cb424-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="kw">c</span>(full_aic, partial_aic, minimal_aic)) <span class="op">%&gt;%</span></span>
+<span id="cb424-3"><a href="inference-with-lower-level-helpers.html#cb424-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> name, <span class="dt">y =</span> value)) <span class="op">+</span></span>
+<span id="cb424-4"><a href="inference-with-lower-level-helpers.html#cb424-4"></a><span class="st">  </span><span class="kw">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/21-aic-compare-1.png" width="672" /></p>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="inference-with-lower-level-helpers.html#cb425-1"></a>velocity_model_summaries <span class="op">%&gt;%</span></span>
+<span id="cb425-2"><a href="inference-with-lower-level-helpers.html#cb425-2"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb425-3"><a href="inference-with-lower-level-helpers.html#cb425-3"></a>    <span class="dt">full_vs_partial =</span> <span class="kw">mean</span>(full_aic <span class="op">&lt;</span><span class="st"> </span>partial_aic),</span>
+<span id="cb425-4"><a href="inference-with-lower-level-helpers.html#cb425-4"></a>    <span class="dt">partial_vs_minimal =</span> <span class="kw">mean</span>(partial_aic <span class="op">&lt;</span><span class="st"> </span>minimal_aic)</span>
+<span id="cb425-5"><a href="inference-with-lower-level-helpers.html#cb425-5"></a>  )</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 2
+##   full_vs_partial partial_vs_minimal
+##             &lt;dbl&gt;              &lt;dbl&gt;
+## 1           0.377              0.916</code></pre>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="inference-with-lower-level-helpers.html#cb427-1"></a>velocity_model_summaries <span class="op">%&gt;%</span></span>
+<span id="cb427-2"><a href="inference-with-lower-level-helpers.html#cb427-2"></a><span class="st">  </span><span class="kw">unnest</span>(full_coeffs) <span class="op">%&gt;%</span></span>
+<span id="cb427-3"><a href="inference-with-lower-level-helpers.html#cb427-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> estimate)) <span class="op">+</span></span>
+<span id="cb427-4"><a href="inference-with-lower-level-helpers.html#cb427-4"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">5</span>) <span class="op">+</span></span>
+<span id="cb427-5"><a href="inference-with-lower-level-helpers.html#cb427-5"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>term, <span class="dt">scales =</span> <span class="st">&quot;free_x&quot;</span>) <span class="op">+</span></span>
+<span id="cb427-6"><a href="inference-with-lower-level-helpers.html#cb427-6"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>, <span class="dt">col =</span> <span class="st">&quot;green&quot;</span>)</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/21-model-coeffs-1.png" width="672" /></p>
+<p>Small reps used for speed</p>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="inference-with-lower-level-helpers.html#cb428-1"></a>race_top_results <span class="op">%&gt;%</span></span>
+<span id="cb428-2"><a href="inference-with-lower-level-helpers.html#cb428-2"></a><span class="st">  </span><span class="kw">bootstraps</span>(<span class="dt">times =</span> <span class="dv">20</span>) <span class="op">%&gt;%</span></span>
+<span id="cb428-3"><a href="inference-with-lower-level-helpers.html#cb428-3"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb428-4"><a href="inference-with-lower-level-helpers.html#cb428-4"></a>    <span class="dt">full_coeffs =</span> <span class="kw">map</span>(splits, <span class="op">~</span><span class="st"> </span><span class="kw">fit</span>(lm_spec, formulas[[<span class="st">&quot;full&quot;</span>]], <span class="dt">data =</span> <span class="kw">analysis</span>(.x)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tidy</span>())</span>
+<span id="cb428-5"><a href="inference-with-lower-level-helpers.html#cb428-5"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb428-6"><a href="inference-with-lower-level-helpers.html#cb428-6"></a><span class="st">  </span><span class="kw">int_pctl</span>(full_coeffs)</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 6
+##   term                .lower .estimate   .upper .alpha .method   
+##   &lt;chr&gt;                &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;     
+## 1 (Intercept)         9.89    12.9     15.5       0.05 percentile
+## 2 aid_stations       -0.0139  -0.00512  0.00607   0.05 percentile
+## 3 avg_elevation_gain -0.0554  -0.0515  -0.0465    0.05 percentile
+## 4 distance           -0.0430  -0.0261  -0.00765   0.05 percentile</code></pre>
+<p>The key components are <code>bootstraps()</code> and <code>mutate + map</code> which give you quite a bit of flexibility to compute many statistics.</p>
 
 </div>
 <!-- </div> -->
@@ -462,7 +538,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="slide-1-title-1.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="reg_intervals-from-rsample.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>

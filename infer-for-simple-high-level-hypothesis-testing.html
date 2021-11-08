@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>21.1 Slide 1 Title | Tidy Modeling with R Book Club</title>
+  <title>21.3 {infer} for simple, high level hypothesis testing | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="21.1 Slide 1 Title | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="21.3 {infer} for simple, high level hypothesis testing | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="21.1 Slide 1 Title | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="21.3 {infer} for simple, high level hypothesis testing | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -24,15 +24,15 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-10-18" />
+<meta name="date" content="2021-11-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="inferential-analysis.html"/>
-<link rel="next" href="slide-2-title-1.html"/>
+<link rel="prev" href="tidy-method-from-the-broom-package.html"/>
+<link rel="next" href="reg_intervals-from-rsample.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -421,8 +421,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="21" data-path="inferential-analysis.html"><a href="inferential-analysis.html"><i class="fa fa-check"></i><b>21</b> Inferential analysis</a><ul>
-<li class="chapter" data-level="21.1" data-path="slide-1-title-1.html"><a href="slide-1-title-1.html"><i class="fa fa-check"></i><b>21.1</b> Slide 1 Title</a></li>
-<li class="chapter" data-level="21.2" data-path="slide-2-title-1.html"><a href="slide-2-title-1.html"><i class="fa fa-check"></i><b>21.2</b> Slide 2 Title</a></li>
+<li class="chapter" data-level="21.1" data-path="dataset-used-for-demonstrating-inference.html"><a href="dataset-used-for-demonstrating-inference.html"><i class="fa fa-check"></i><b>21.1</b> Dataset used for demonstrating inference</a></li>
+<li class="chapter" data-level="21.2" data-path="tidy-method-from-the-broom-package.html"><a href="tidy-method-from-the-broom-package.html"><i class="fa fa-check"></i><b>21.2</b> Tidy method from the {broom} package</a></li>
+<li class="chapter" data-level="21.3" data-path="infer-for-simple-high-level-hypothesis-testing.html"><a href="infer-for-simple-high-level-hypothesis-testing.html"><i class="fa fa-check"></i><b>21.3</b> {infer} for simple, high level hypothesis testing</a><ul>
+<li class="chapter" data-level="21.3.1" data-path="infer-for-simple-high-level-hypothesis-testing.html"><a href="infer-for-simple-high-level-hypothesis-testing.html#p-value-for-idependence-based-on-simulation-with-permutation"><i class="fa fa-check"></i><b>21.3.1</b> p value for idependence based on simulation with permutation</a></li>
+<li class="chapter" data-level="21.3.2" data-path="infer-for-simple-high-level-hypothesis-testing.html"><a href="infer-for-simple-high-level-hypothesis-testing.html#confidence-interval-for-correlation-based-on-simulation-with-bootstrapping"><i class="fa fa-check"></i><b>21.3.2</b> Confidence interval for correlation based on simulation with bootstrapping</a></li>
+<li class="chapter" data-level="21.3.3" data-path="infer-for-simple-high-level-hypothesis-testing.html"><a href="infer-for-simple-high-level-hypothesis-testing.html#use-theory-instead-of-simulation"><i class="fa fa-check"></i><b>21.3.3</b> Use theory instead of simulation</a></li>
+<li class="chapter" data-level="21.3.4" data-path="infer-for-simple-high-level-hypothesis-testing.html"><a href="infer-for-simple-high-level-hypothesis-testing.html#linear-models-with-multiple-explanatory-variables"><i class="fa fa-check"></i><b>21.3.4</b> Linear models with multiple explanatory variables</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="reg_intervals-from-rsample.html"><a href="reg_intervals-from-rsample.html"><i class="fa fa-check"></i><b>21.4</b> reg_intervals from {rsample}</a></li>
+<li class="chapter" data-level="21.5" data-path="inference-with-lower-level-helpers.html"><a href="inference-with-lower-level-helpers.html"><i class="fa fa-check"></i><b>21.5</b> Inference with lower level helpers</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -444,17 +452,146 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="slide-1-title-1" class="section level2">
-<h2><span class="header-section-number">21.1</span> Slide 1 Title</h2>
-<p>Put the content of your slide here.</p>
+<div id="infer-for-simple-high-level-hypothesis-testing" class="section level2">
+<h2><span class="header-section-number">21.3</span> {infer} for simple, high level hypothesis testing</h2>
+<ul>
+<li>specify relationship and optionally hypothesis</li>
+<li>calculate statistics from simulation or based on theoretical distributions</li>
+<li>many common tests are supported for continuous and discreet variables as well</li>
+</ul>
+<div id="p-value-for-idependence-based-on-simulation-with-permutation" class="section level3">
+<h3><span class="header-section-number">21.3.1</span> p value for idependence based on simulation with permutation</h3>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb400-1"></a>observed &lt;-<span class="st"> </span>race_top_results <span class="op">%&gt;%</span></span>
+<span id="cb400-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb400-2"></a><span class="st">  </span><span class="kw">specify</span>(avg_velocity <span class="op">~</span><span class="st"> </span>avg_elevation_gain) <span class="op">%&gt;%</span></span>
+<span id="cb400-3"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb400-3"></a><span class="st">  </span><span class="kw">calculate</span>(<span class="dt">stat =</span> <span class="st">&quot;correlation&quot;</span>)</span>
+<span id="cb400-4"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb400-4"></a></span>
+<span id="cb400-5"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb400-5"></a>observed</span></code></pre></div>
+<pre><code>## Response: avg_velocity (numeric)
+## Explanatory: avg_elevation_gain (numeric)
+## # A tibble: 1 × 1
+##     stat
+##    &lt;dbl&gt;
+## 1 -0.561</code></pre>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb402-1"></a>permuted &lt;-<span class="st"> </span>race_top_results <span class="op">%&gt;%</span></span>
+<span id="cb402-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb402-2"></a><span class="st">  </span><span class="kw">specify</span>(avg_velocity <span class="op">~</span><span class="st"> </span>avg_elevation_gain) <span class="op">%&gt;%</span></span>
+<span id="cb402-3"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb402-3"></a><span class="st">  </span><span class="kw">hypothesise</span>(<span class="dt">null =</span> <span class="st">&quot;independence&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb402-4"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb402-4"></a><span class="st">  </span><span class="kw">generate</span>(<span class="dt">reps =</span> <span class="dv">1000</span>, <span class="dt">type =</span> <span class="st">&quot;permute&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb402-5"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb402-5"></a><span class="st">  </span><span class="kw">calculate</span>(<span class="dt">stat =</span> <span class="st">&quot;correlation&quot;</span>)</span>
+<span id="cb402-6"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb402-6"></a></span>
+<span id="cb402-7"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb402-7"></a>permuted</span></code></pre></div>
+<pre><code>## Response: avg_velocity (numeric)
+## Explanatory: avg_elevation_gain (numeric)
+## Null Hypothesis: independence
+## # A tibble: 1,000 × 2
+##    replicate     stat
+##        &lt;int&gt;    &lt;dbl&gt;
+##  1         1 -0.0108 
+##  2         2  0.0193 
+##  3         3 -0.00134
+##  4         4 -0.0564 
+##  5         5 -0.0386 
+##  6         6 -0.0142 
+##  7         7 -0.0359 
+##  8         8 -0.0313 
+##  9         9 -0.00306
+## 10        10 -0.0488 
+## # … with 990 more rows</code></pre>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb404-1"></a>permuted <span class="op">%&gt;%</span></span>
+<span id="cb404-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb404-2"></a><span class="st">  </span><span class="kw">visualize</span>() <span class="op">+</span></span>
+<span id="cb404-3"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb404-3"></a><span class="st">  </span><span class="kw">shade_p_value</span>(observed, <span class="dt">direction =</span> <span class="st">&quot;two_sided&quot;</span>)</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/21-infer-independence-p-1.png" width="672" /></p>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb405-1"></a><span class="kw">get_p_value</span>(permuted, observed, <span class="dt">direction =</span> <span class="st">&quot;two_sided&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 1
+##   p_value
+##     &lt;dbl&gt;
+## 1       0</code></pre>
+</div>
+<div id="confidence-interval-for-correlation-based-on-simulation-with-bootstrapping" class="section level3">
+<h3><span class="header-section-number">21.3.2</span> Confidence interval for correlation based on simulation with bootstrapping</h3>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb407-1"></a>bootstrapped &lt;-<span class="st"> </span>race_top_results <span class="op">%&gt;%</span></span>
+<span id="cb407-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb407-2"></a><span class="st">  </span><span class="kw">specify</span>(avg_velocity <span class="op">~</span><span class="st"> </span>avg_elevation_gain) <span class="op">%&gt;%</span></span>
+<span id="cb407-3"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb407-3"></a><span class="st">  </span><span class="kw">generate</span>(<span class="dt">reps =</span> <span class="dv">1000</span>, <span class="dt">type =</span> <span class="st">&quot;bootstrap&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb407-4"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb407-4"></a><span class="st">  </span><span class="kw">calculate</span>(<span class="dt">stat =</span> <span class="st">&quot;correlation&quot;</span>)</span>
+<span id="cb407-5"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb407-5"></a></span>
+<span id="cb407-6"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb407-6"></a>bootstrapped <span class="op">%&gt;%</span></span>
+<span id="cb407-7"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb407-7"></a><span class="st">  </span><span class="kw">visualize</span>() <span class="op">+</span></span>
+<span id="cb407-8"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb407-8"></a><span class="st">  </span><span class="kw">shade_confidence_interval</span>(<span class="kw">get_confidence_interval</span>(bootstrapped))</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/21-infer-correlation-ci-1.png" width="672" /></p>
+</div>
+<div id="use-theory-instead-of-simulation" class="section level3">
+<h3><span class="header-section-number">21.3.3</span> Use theory instead of simulation</h3>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb408-1"></a>observed_t &lt;-<span class="st"> </span>race_top_results <span class="op">%&gt;%</span></span>
+<span id="cb408-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb408-2"></a><span class="st">  </span><span class="kw">specify</span>(<span class="dt">response =</span> avg_velocity) <span class="op">%&gt;%</span></span>
+<span id="cb408-3"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb408-3"></a><span class="st">  </span><span class="kw">hypothesise</span>(<span class="dt">null =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">mu =</span> <span class="dv">7</span>) <span class="op">%&gt;%</span></span>
+<span id="cb408-4"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb408-4"></a><span class="st">  </span><span class="kw">calculate</span>(<span class="dt">stat =</span> <span class="st">&quot;t&quot;</span>)</span>
+<span id="cb408-5"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb408-5"></a></span>
+<span id="cb408-6"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb408-6"></a>race_top_results <span class="op">%&gt;%</span></span>
+<span id="cb408-7"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb408-7"></a><span class="st">  </span><span class="kw">specify</span>(<span class="dt">response =</span> avg_velocity) <span class="op">%&gt;%</span></span>
+<span id="cb408-8"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb408-8"></a><span class="st">  </span><span class="kw">assume</span>(<span class="st">&quot;t&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb408-9"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb408-9"></a><span class="st">  </span><span class="kw">visualize</span>() <span class="op">+</span></span>
+<span id="cb408-10"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb408-10"></a><span class="st">  </span><span class="kw">shade_p_value</span>(observed_t, <span class="dt">direction =</span> <span class="st">&quot;two_sided&quot;</span>)</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/21-infer-t-mu-1.png" width="672" /></p>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb409-1"></a>race_top_results <span class="op">%&gt;%</span></span>
+<span id="cb409-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb409-2"></a><span class="st">  </span><span class="kw">specify</span>(<span class="dt">response =</span> avg_velocity) <span class="op">%&gt;%</span></span>
+<span id="cb409-3"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb409-3"></a><span class="st">  </span><span class="kw">assume</span>(<span class="st">&quot;t&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb409-4"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb409-4"></a><span class="st">  </span><span class="kw">get_p_value</span>(observed_t, <span class="st">&quot;two_sided&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 1
+##   p_value
+##     &lt;dbl&gt;
+## 1  0.0150</code></pre>
+</div>
+<div id="linear-models-with-multiple-explanatory-variables" class="section level3">
+<h3><span class="header-section-number">21.3.4</span> Linear models with multiple explanatory variables</h3>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb411-1"></a>my_formula &lt;-<span class="st"> </span><span class="kw">as.formula</span>(avg_velocity <span class="op">~</span><span class="st"> </span>aid_stations <span class="op">+</span><span class="st"> </span>participants)</span>
+<span id="cb411-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb411-2"></a></span>
+<span id="cb411-3"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb411-3"></a>observed_fit &lt;-<span class="st"> </span>race_top_results <span class="op">%&gt;%</span></span>
+<span id="cb411-4"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb411-4"></a><span class="st">  </span><span class="kw">specify</span>(my_formula) <span class="op">%&gt;%</span></span>
+<span id="cb411-5"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb411-5"></a><span class="st">  </span><span class="kw">fit</span>()</span>
+<span id="cb411-6"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb411-6"></a></span>
+<span id="cb411-7"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb411-7"></a>observed_fit</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 2
+##   term          estimate
+##   &lt;chr&gt;            &lt;dbl&gt;
+## 1 intercept     6.93    
+## 2 aid_stations -0.0127  
+## 3 participants  0.000432</code></pre>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb413-1"></a>permuted_fits &lt;-<span class="st"> </span>race_top_results <span class="op">%&gt;%</span></span>
+<span id="cb413-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb413-2"></a><span class="st">  </span><span class="kw">specify</span>(my_formula) <span class="op">%&gt;%</span></span>
+<span id="cb413-3"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb413-3"></a><span class="st">  </span><span class="kw">hypothesise</span>(<span class="dt">null =</span> <span class="st">&quot;independence&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb413-4"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb413-4"></a><span class="st">  </span><span class="kw">generate</span>(<span class="dt">reps =</span> <span class="dv">1000</span>, <span class="dt">type =</span> <span class="st">&quot;permute&quot;</span>, <span class="dt">variables =</span> <span class="kw">c</span>(aid_stations, participants)) <span class="op">%&gt;%</span></span>
+<span id="cb413-5"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb413-5"></a><span class="st">  </span><span class="kw">fit</span>()</span>
+<span id="cb413-6"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb413-6"></a></span>
+<span id="cb413-7"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb413-7"></a>bootstrapped_fits &lt;-<span class="st"> </span>race_top_results <span class="op">%&gt;%</span></span>
+<span id="cb413-8"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb413-8"></a><span class="st">  </span><span class="kw">specify</span>(my_formula) <span class="op">%&gt;%</span></span>
+<span id="cb413-9"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb413-9"></a><span class="st">  </span><span class="kw">generate</span>(<span class="dt">reps =</span> <span class="dv">2000</span>, <span class="dt">type =</span> <span class="st">&quot;bootstrap&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb413-10"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb413-10"></a><span class="st">  </span><span class="kw">fit</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb414-1"></a>permuted_fits <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">get_p_value</span>(observed_fit, <span class="st">&quot;two_sided&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 2
+##   term         p_value
+##   &lt;chr&gt;          &lt;dbl&gt;
+## 1 aid_stations   0.058
+## 2 intercept      0.412
+## 3 participants   0.004</code></pre>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb416-1"></a><span class="kw">visualize</span>(permuted_fits) <span class="op">+</span></span>
+<span id="cb416-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb416-2"></a><span class="st">  </span><span class="kw">shade_p_value</span>(observed_fit, <span class="st">&quot;two_sided&quot;</span>)</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/21-infer-fit-permute-eval-1.png" width="672" /></p>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb417-1"></a>bootstrapped_fits <span class="op">%&gt;%</span></span>
+<span id="cb417-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb417-2"></a><span class="st">  </span><span class="kw">get_confidence_interval</span>(<span class="dt">type =</span> <span class="st">&quot;percentile&quot;</span>, <span class="dt">point_estimate =</span> observed_fit)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##   term          lower_ci upper_ci
+##   &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;
+## 1 aid_stations -0.0278   0.00223 
+## 2 intercept     6.80     7.07    
+## 3 participants  0.000123 0.000890</code></pre>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="inferential-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="slide-2-title-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="tidy-method-from-the-broom-package.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="reg_intervals-from-rsample.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
