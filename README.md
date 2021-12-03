@@ -93,8 +93,42 @@ If you would like to present, please add your name next to a chapter using the [
 
 - 2021-10-18: Chapter 20: Ensembles of models: Jiwan Heo
 
-<hr>
 
+*Cohort 4: Friday, 8:00am CST - facilitated by Federica Gazzelloni*
+
+<details>
+  <summary> Past Meetings </summary>
+  	
+2021-12-03	0. Hello World - Book_club Intro: Federica Gazzelloni
+2021-12-10	1. Software for modeling	
+2021-12-17	2. A tidyverse primer	
+2021-12-24	NO MEETING	
+2021-12-31	NO MEETING	
+2022-01-07	3. A review of R modeling fundamentals	
+	Basics	
+2022-01-14	4. The Ames housing data	
+2022-01-21	5. Spending our data	
+2022-01-28	6. Fitting models with parsnip	
+2022-02-04	7. A model workflow	
+2022-02-11	8. Feature engineering with recipes	
+2022-02-18	9. Judging model effectiveness	
+	Tools for creating effective models	
+2022-02-25	10. Resampling for evaluating performance	
+2022-03-04	11. Comparing models with resampling	
+2022-03-11	12. Model tuning and the danger of overfitting	
+2022-03-18	13. Grid search	
+2022-03-25	14. Iterative search	
+2022-04-01	15. Screening many models	
+	Other topics	
+2022-04-08	16. Encoding categorical data	
+2022-04-15	17. Dimensionality reduction	
+2022-04-22	18. Explaining models and predictions	
+2022-04-29	19. When should you trust you predictions	
+2022-05-06	20. Ensembles of models	
+2022-05-13	21. Inferential analysis	
+	              Appendix	
+  
+<hr>  
 
 ## How to Present
 
