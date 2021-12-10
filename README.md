@@ -31,11 +31,9 @@ If you would like to present, please add your name next to a chapter using the [
 - 2021-04-06: Chapter 13: Grid search: Jim Gruman
 - 2021-04-13: Chapter 14: Iterative search: Asmae Toumi
 - 2021-04-20: Chapter 15: Screening many models: Tony ElHabr
-
-</details>
-
 - 2021-05-11: What we missed about {workflowsets}
 - 2021-05-18: Q&A with authors Max Kuhn & Julia Silge: Chapters 10-15
+</details>
 
 
 *Cohort 2: Sundays, 1pm CDT - facilitated by Stephen Holsenbeck*
@@ -55,14 +53,12 @@ If you would like to present, please add your name next to a chapter using the [
 - 2021-04-25: Chapter 8: A model workflow: Kevin Kent
 - 2021-05-02: Chapter 10: Resampling for evaluating performance: Rahul Bahadur
 - 2021-05-09: Chapter 11: Comparing models with resampling: Graeme Davidson
-
-</details>
-
 - **2021-05-16: Chapter 12: Model tuning and the dangers of overfitting: Shamsuddeen Hassan Muhammad**
 - 2021-05-23: Chapter 13: Grid search: Stephen Holsenbeck
 - 2021-05-30: Appendix A: Recommended preoprocessing
 - 2021-06-06: Chapter 14: Iterative search
 - 2021-06-13: Chapter 15: Screening many models
+</details>
 
 
 *Cohort 3: Mondays, 11:00am CDT - facilitated by Ildiko Czeller*
@@ -88,45 +84,41 @@ If you would like to present, please add your name next to a chapter using the [
 - 2021-09-20: Chapter 17: Dimensionality reduction: Ildiko Czeller & Federica Gazzelloni
 - 2021-09-27: Chapter 18: Explaining models and predictions: Ildiko Czeller & Federica Gazzelloni  
 - 2021-10-04: Chapter 19: When should you trust your predictions?: Ildiko Czeller & Federica Gazzelloni  
-
+- 2021-10-18: Chapter 20: Ensembles of models: Jiwan Heo
 </details>
 
-- 2021-10-18: Chapter 20: Ensembles of models: Jiwan Heo
 
-
-*Cohort 4: Friday, 8:00am CST - facilitated by Federica Gazzelloni*
+*Cohort 4: Fridays, 8:00am CST - facilitated by Federica Gazzelloni*
 
 <details>
   <summary> Past Meetings </summary>
   	
-2021-12-03	0. Hello World - Book_club Intro: Federica Gazzelloni
-2021-12-10	1. Software for modeling	
-2021-12-17	2. A tidyverse primer	
-2021-12-24	NO MEETING	
-2021-12-31	NO MEETING	
-2022-01-07	3. A review of R modeling fundamentals	
-	Basics	
-2022-01-14	4. The Ames housing data	
-2022-01-21	5. Spending our data	
-2022-01-28	6. Fitting models with parsnip	
-2022-02-04	7. A model workflow	
-2022-02-11	8. Feature engineering with recipes	
-2022-02-18	9. Judging model effectiveness	
-	Tools for creating effective models	
-2022-02-25	10. Resampling for evaluating performance	
-2022-03-04	11. Comparing models with resampling	
-2022-03-11	12. Model tuning and the danger of overfitting	
-2022-03-18	13. Grid search	
-2022-03-25	14. Iterative search	
-2022-04-01	15. Screening many models	
-	Other topics	
-2022-04-08	16. Encoding categorical data	
-2022-04-15	17. Dimensionality reduction	
-2022-04-22	18. Explaining models and predictions	
-2022-04-29	19. When should you trust you predictions	
-2022-05-06	20. Ensembles of models	
-2022-05-13	21. Inferential analysis	
-	              Appendix	
+- 2021-12-03	0. Hello World - Book_club Intro: Federica Gazzelloni
+</details>
+
+- 2021-12-10	1. Software for modeling	
+- 2021-12-17	2. A tidyverse primer	
+- 2021-12-24	NO MEETING	
+- 2021-12-31	NO MEETING	
+- 2022-01-07	3. A review of R modeling fundamentals	
+- 2022-01-14	4. The Ames housing data	
+- 2022-01-21	5. Spending our data	
+- 2022-01-28	6. Fitting models with parsnip	
+- 2022-02-04	7. A model workflow	
+- 2022-02-11	8. Feature engineering with recipes	
+- 2022-02-18	9. Judging model effectiveness	
+- 2022-02-25	10. Resampling for evaluating performance	
+- 2022-03-04	11. Comparing models with resampling	
+- 2022-03-11	12. Model tuning and the danger of overfitting	
+- 2022-03-18	13. Grid search	
+- 2022-03-25	14. Iterative search	
+- 2022-04-01	15. Screening many models	
+- 2022-04-08	16. Encoding categorical data	
+- 2022-04-15	17. Dimensionality reduction	
+- 2022-04-22	18. Explaining models and predictions	
+- 2022-04-29	19. When should you trust you predictions	
+- 2022-05-06	20. Ensembles of models	
+- 2022-05-13	21. Inferential analysis	
   
 <hr>  
 
