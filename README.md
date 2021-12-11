@@ -95,6 +95,9 @@ If you would like to present, please add your name next to a chapter using the [
   	
 - 2021-12-03	0. Hello World - Book_club Intro: Federica Gazzelloni
 - 2021-12-10	1. Software for modeling: Federica Gazzelloni	
+
+</details>
+
 - 2021-12-17	2. A tidyverse primer: Brandon Hurr	
 - 2021-12-24	NO MEETING	
 - 2021-12-31	NO MEETING	
@@ -117,7 +120,6 @@ If you would like to present, please add your name next to a chapter using the [
 - 2022-04-29	19. When should you trust you predictions	
 - 2022-05-06	20. Ensembles of models	
 - 2022-05-13	21. Inferential analysis	
-</details>
 
 <hr>  
 
