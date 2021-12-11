@@ -94,16 +94,17 @@ If you would like to present, please add your name next to a chapter using the [
   <summary> Past Meetings </summary>
   	
 - 2021-12-03	0. Hello World - Book_club Intro: Federica Gazzelloni
+- 2021-12-10	1. Software for modeling: Federica Gazzelloni	
+
 </details>
 
-- 2021-12-10	1. Software for modeling	
-- 2021-12-17	2. A tidyverse primer	
+- 2021-12-17	2. A tidyverse primer: Brandon Hurr	
 - 2021-12-24	NO MEETING	
 - 2021-12-31	NO MEETING	
-- 2022-01-07	3. A review of R modeling fundamentals	
+- 2022-01-07	3. A review of R modeling fundamentals: Esmeralda	
 - 2022-01-14	4. The Ames housing data	
-- 2022-01-21	5. Spending our data	
-- 2022-01-28	6. Fitting models with parsnip	
+- 2022-01-21	5. Spending our data: AL Brown	
+- 2022-01-28	6. Fitting models with parsnip: Laura Rose	
 - 2022-02-04	7. A model workflow	
 - 2022-02-11	8. Feature engineering with recipes	
 - 2022-02-18	9. Judging model effectiveness	
@@ -119,7 +120,7 @@ If you would like to present, please add your name next to a chapter using the [
 - 2022-04-29	19. When should you trust you predictions	
 - 2022-05-06	20. Ensembles of models	
 - 2022-05-13	21. Inferential analysis	
-  
+
 <hr>  
 
 ## How to Present
