@@ -101,7 +101,7 @@ If you would like to present, please add your name next to a chapter using the [
 - 2021-12-17	2. A tidyverse primer: Brandon Hurr	
 - 2021-12-24	NO MEETING	
 - 2021-12-31	NO MEETING	
-- 2022-01-07	3. A review of R modeling fundamentals: Esmeralda	
+- 2022-01-07	3. A review of R modeling fundamentals: AL Brown	
 - 2022-01-14	4. The Ames housing data	
 - 2022-01-21	5. Spending our data: AL Brown	
 - 2022-01-28	6. Fitting models with parsnip: Laura Rose	
