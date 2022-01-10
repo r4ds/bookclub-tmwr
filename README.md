@@ -102,11 +102,11 @@ If you would like to present, please add your name next to a chapter using the [
 - 2021-12-24	NO MEETING	
 - 2021-12-31	NO MEETING	
 - 2022-01-07	3. A review of R modeling fundamentals: AL Brown	
-- 2022-01-14	4. The Ames housing data	
+- 2022-01-14	4. The Ames housing data: Laura Prado	
 - 2022-01-21	5. Spending our data: AL Brown	
 - 2022-01-28	6. Fitting models with parsnip: Laura Rose	
-- 2022-02-04	7. A model workflow	
-- 2022-02-11	8. Feature engineering with recipes	
+- 2022-02-04	7. A model workflow: Isabella	
+- 2022-02-11	8. Feature engineering with recipes: Federica Gazzelloni	
 - 2022-02-18	9. Judging model effectiveness	
 - 2022-02-25	10. Resampling for evaluating performance	
 - 2022-03-04	11. Comparing models with resampling	
