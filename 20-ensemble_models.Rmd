@@ -194,7 +194,7 @@ beepr::beep(8)
 `r knitr::include_url("https://www.youtube.com/embed/j2jWX8_1tYY")`
 
 <details>
-  <summary> Meetin chat log: SLICED Discussion </summary>
+  <summary> Meeting chat log: SLICED Discussion </summary>
 ```
 00:37:14	Bryan Shalloway:	Curious if test set is a random sample? Or if it is segment time?
 ```
