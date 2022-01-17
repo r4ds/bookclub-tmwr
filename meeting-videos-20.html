@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>12.4 What Metric Should We Use? | Tidy Modeling with R Book Club</title>
+  <title>19.3 Meeting Videos | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="12.4 What Metric Should We Use? | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="19.3 Meeting Videos | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="12.4 What Metric Should We Use? | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="19.3 Meeting Videos | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="decisions-decisions.html"/>
-<link rel="next" href="can-we-make-our-model-too-good.html"/>
+<link rel="prev" href="model-applicability.html"/>
+<link rel="next" href="ensemble-models.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -487,66 +487,69 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="what-metric-should-we-use" class="section level2">
-<h2><span class="header-section-number">12.4</span> What Metric Should We Use?</h2>
-<p>Which link function should we use…does it matter?</p>
-<ul>
-<li>logistic regression using a logit</li>
-<li>probit</li>
-<li>complementary log-log</li>
-</ul>
-<table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-<span id="tab:llhood-12">Table 12.1: </span>Likelihood Statistics
-</caption>
-<thead>
-<tr>
-<th style="text-align:right;">
-logLik
-</th>
-<th style="text-align:left;">
-link
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right;">
--380.0873
-</td>
-<td style="text-align:left;">
-logit
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
--381.7535
-</td>
-<td style="text-align:left;">
-probit
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
--389.0645
-</td>
-<td style="text-align:left;">
-c-log-log
-</td>
-</tr>
-</tbody>
-</table>
-<p>If we just look at the log-likelihood statistic, the logistic link function appears to be statistically (significantly) better than the probit and complementary log-log link functions.</p>
-<p>However, if we use the area under the ROC curve, we see that there is no significant difference between the three link functions. When we plot the three link functions, we also see that they are not substantially different in predicting whether a house has central air.</p>
-<p><img src="bookclub-tmwr_files/figure-html/plots-12-1.png" width="672" /></p>
+<div id="meeting-videos-20" class="section level2">
+<h2><span class="header-section-number">19.3</span> Meeting Videos</h2>
+<div id="cohort-1-19" class="section level3">
+<h3><span class="header-section-number">19.3.1</span> Cohort 1</h3>
+<iframe src="https://www.youtube.com/embed/BMLlExQYjHU" width="100%" height="400px" data-external="1">
+</iframe>
 </div>
+<div id="cohort-3-17" class="section level3">
+<h3><span class="header-section-number">19.3.2</span> Cohort 3</h3>
+<iframe src="https://www.youtube.com/embed/J7pXWGeHfJY" width="100%" height="400px" data-external="1">
+</iframe>
+<details>
+<p><summary> Meeting chat log </summary></p>
+<pre><code>00:12:14    Daniel Chen:    here isn&#39;t an echo on my end. not relaly
+00:26:36    Daniel Chen:    so far we&#39;ve created a simulated set of values with random noise right?
+00:26:52    Ildiko Czeller: yes
+00:27:13    Ildiko Czeller: for a classification problem
+00:27:13    Daniel Chen:    and now we&#39;re fitting a Bayesian model on data? am I following that correctly?
+00:27:33    Daniel Chen:    so the packages mentioned in the beginning is for Bayesian stuff?
+00:27:53    Ildiko Czeller: yes, i think stan does bayesian prediction.
+00:28:24    Ildiko Czeller: probably will compute tthe equivocal zones later if you mean that by the package mentioned in the beginning
+00:28:32    Daniel Chen:    i mean this chapter as a whole is using Bayesian models to see how much we should &quot;trust&quot; predictions
+00:28:52    Daniel Chen:    yeah. ok. so this is all Bayesian specific stuff?
+yes stan is for Bayesian stuff
+00:29:18    Ildiko Czeller: equivocal zones can be calculated for non bayesian models as well I think
+00:29:45    Daniel Chen:    what&#39;s the data_grid? i think i just missed it
+00:30:58    Ildiko Czeller: i think it is just your simulated dataset with x, y as predictors, isn&#39;t it?
+00:31:29    Daniel Chen:    oh it looks like the predicted values? classes and probablilties. similar to inputs used for yardstick
+00:31:33    Ildiko Czeller: the equivocal zones they are not so sophisticated for bayesian models in my understanding
+00:31:44    Daniel Chen:    oh no. yeah it looks like simulated data
+00:32:16    Ildiko Czeller: I meant for NON bayesian models they are less sophisticated
+01:02:56    Daniel Chen:    can you go back to what the pca_stat value is when being compared to the Chicago data?
+01:11:23    Daniel Chen:    what&#39;s the pca stat values?
+01:11:36    Daniel Chen:    why is it 1 column of values when you have multiple PCs?
+01:13:00    Daniel Chen:    this is in the score function call.
+01:13:43    Daniel Chen:    oh it&#39;s distance from center
+01:15:00    Daniel Chen:    oooh it&#39;s all 9
+01:15:14    Daniel Chen:    ok that part makes sense that&#39;s regular PCA results
+01:15:45    Daniel Chen:    yeah that&#39;s good.
+01:16:39    Daniel Chen:    i might be moving next 2 weeks.
+01:16:45    Daniel Chen:    so i might not be availviale
+01:17:11    Federica Gazzelloni:    thanks</code></pre>
+</details>
+</div>
+<div id="cohort-4-18" class="section level3">
+<h3><span class="header-section-number">19.3.3</span> Cohort 4</h3>
+<iframe src="https://www.youtube.com/embed/URL" width="100%" height="400px" data-external="1">
+</iframe>
+<details>
+<p><summary> Meeting chat log </summary></p>
+<pre><code>LOG</code></pre>
+</details>
+
+</div>
+</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="decisions-decisions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="can-we-make-our-model-too-good.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="model-applicability.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ensemble-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -577,7 +580,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/12-model_tuning_and_the_dangers_of_overfitting.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/19-when_should_you_trust_predictions.Rmd",
 "text": "Edit"
 },
 "history": {

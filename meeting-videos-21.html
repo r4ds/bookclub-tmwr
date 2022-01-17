@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>12.4 What Metric Should We Use? | Tidy Modeling with R Book Club</title>
+  <title>20.6 Meeting Videos | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="12.4 What Metric Should We Use? | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="20.6 Meeting Videos | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="12.4 What Metric Should We Use? | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="20.6 Meeting Videos | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="decisions-decisions.html"/>
-<link rel="next" href="can-we-make-our-model-too-good.html"/>
+<link rel="prev" href="blend-fit-predict.html"/>
+<link rel="next" href="inferential-analysis.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -487,66 +487,118 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="what-metric-should-we-use" class="section level2">
-<h2><span class="header-section-number">12.4</span> What Metric Should We Use?</h2>
-<p>Which link function should we use…does it matter?</p>
-<ul>
-<li>logistic regression using a logit</li>
-<li>probit</li>
-<li>complementary log-log</li>
-</ul>
-<table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-<span id="tab:llhood-12">Table 12.1: </span>Likelihood Statistics
-</caption>
-<thead>
-<tr>
-<th style="text-align:right;">
-logLik
-</th>
-<th style="text-align:left;">
-link
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right;">
--380.0873
-</td>
-<td style="text-align:left;">
-logit
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
--381.7535
-</td>
-<td style="text-align:left;">
-probit
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
--389.0645
-</td>
-<td style="text-align:left;">
-c-log-log
-</td>
-</tr>
-</tbody>
-</table>
-<p>If we just look at the log-likelihood statistic, the logistic link function appears to be statistically (significantly) better than the probit and complementary log-log link functions.</p>
-<p>However, if we use the area under the ROC curve, we see that there is no significant difference between the three link functions. When we plot the three link functions, we also see that they are not substantially different in predicting whether a house has central air.</p>
-<p><img src="bookclub-tmwr_files/figure-html/plots-12-1.png" width="672" /></p>
+<div id="meeting-videos-21" class="section level2">
+<h2><span class="header-section-number">20.6</span> Meeting Videos</h2>
+<div id="cohort-1-20" class="section level3">
+<h3><span class="header-section-number">20.6.1</span> Cohort 1</h3>
+<iframe src="https://www.youtube.com/embed/J8rZ1u4PhM8" width="100%" height="400px" data-external="1">
+</iframe>
+<iframe src="https://www.youtube.com/embed/Pdm9G8nfR1g" width="100%" height="400px" data-external="1">
+</iframe>
+<iframe src="https://www.youtube.com/embed/bUECbzZuIDY" width="100%" height="400px" data-external="1">
+</iframe>
+<details>
+<p><summary> Meeting chat log </summary></p>
+<pre><code># 2021-05-25 Preview with Asmae Toumi
+00:07:45    tan-iphone: timed with an audience
+00:08:00    tan-iphone: did you get the cursive IDE set up?
+00:11:00    Tony ElHabr:    yup! victor mono is the secret
+00:18:44    tan-iphone: foreach
+00:18:47    tan-iphone: or future or something
+00:18:53    Marschall Furman (he/him):  parallel package
+00:19:55    Jim Gruman: all_cores &lt;- parallelly::availableCores(omit = 1)
+future::plan(&quot;multisession&quot;, workers = all_cores) # on Windows
+00:47:55    tan-iphone: &quot;you&#39;ll learn when you grow up&quot;
+
+# 2021-06-01 Preview with Tony ElHabr
+00:08:56    Jon Harmon: Like tensorflow but very few insane installation issues: https://github.com/mlverse/torch
+00:23:46    Daryn Ramsden:  Is it multinom_reg because there’s a logistic regression under the hood?
+00:25:18    Jon Harmon: I think so, as far as google is telling me.
+00:27:19    Asmae Toumi:    Max’s quote: “One other note that is in the upcoming ensemble chapter about racing and stacking... the stack can only use the candidates that had the complete set of resamples done. With racing, it works fast by avoiding using all of the resamples for candidates that show poor performance. If the racing method quickly gets down to one tuning parameter set, that is the only candidate that can be added to the data stack (since it has the whole set of resamples.”
+00:27:26    Pavitra:    Why is there a rank jump from 2  to 12?
+00:27:51    Jon Harmon: By model. It&#39;s showing the top 2 of each.
+00:28:00    Daryn Ramsden:  ohhhh
+00:28:35    Jon Harmon: Er not by model per se but by... some combo....
+00:28:41    Daryn Ramsden:  So models ranked 3-11 are also rf?
+00:31:58    Asmae Toumi:    i’d be curious to see the stacks results without tune race anova
+00:33:16    Jon Harmon: beepr always reminds me of this silliness that I had running a year and a half ago or so when Max had mentioned {tune} somewhere but the repo was still private... and it exactly solved something I was working on so I wanted to know as soon as it was public:
+tune_check &lt;- httr::GET(
+  url = &quot;https://github.com/tidymodels/tune&quot;
+)
+while (httr::status_code(tune_check) == 404) {
+  Sys.sleep(15*60)
+  tune_check &lt;- httr::GET(
+    url = &quot;https://github.com/tidymodels/tune&quot;
+  )
+}
+beepr::beep(8)
+00:58:21    Asmae Toumi:    Tony hive forever
+00:58:48    Asmae Toumi:    Can you send the code and data? I want to understand it better too
+01:00:11    Pavitra:    Ledell
+01:00:13    Asmae Toumi:    Erin LeDell is a legend
+01:00:22    Asmae Toumi:    It was so funny
+01:01:53    Pavitra:    Thank you Tony!! This was awesome
+01:01:54    Jim Gruman: thank you!!
+01:02:00    Andrew G. Farina:   Thank you Tony!
+
+# 2021-10-05 Presentation with Simon Couch
+00:18:39    Jon Harmon (jonthegeek):    It&#39;s fun watching Simon&#39;s reactions to Asmae&#39;s presentation
+00:25:40    Tony ElHabr:    “the literature says” = max says
+00:26:00    tan:    &quot;the tidyverse says&quot; = Hadley says
+00:29:06    Jon Harmon (jonthegeek):    Current {stacks} version has elasticnet as default, not just lasso, Max! &lt;- note to the future
+00:49:53    Simon Couch:    https://github.com/tidymodels/stacks/issues/91
+00:52:28    Bryan Shalloway:    There is parsnip::null_model() that you can use for comparing against the mean... not sure if it&#39;s possible to specify something *slightly* more sophisticated there...
+00:52:47    tan:    itsmesleepknee
+00:52:55    Jim Gruman: thank you Asmae and Simon!!!
+00:54:47    Tony ElHabr:    See y’all next time… whenever that is
+00:56:55    Pavitra-Dallas: Thanks asmae and Simon 🤗🤗🤗
+00:59:13    tan:    thanks folks!</code></pre>
+</details>
+<iframe src="https://www.youtube.com/embed/j2jWX8_1tYY" width="100%" height="400px" data-external="1">
+</iframe>
+<details>
+<p><summary> Meetin chat log: SLICED Discussion </summary></p>
+<pre><code>00:37:14    Bryan Shalloway:    Curious if test set is a random sample? Or if it is segment time?</code></pre>
+</details>
 </div>
+<div id="cohort-3-18" class="section level3">
+<h3><span class="header-section-number">20.6.2</span> Cohort 3</h3>
+<iframe src="https://www.youtube.com/embed/SBl2ccerzwo" width="100%" height="400px" data-external="1">
+</iframe>
+<details>
+<p><summary> Meeting chat log </summary></p>
+<pre><code>00:11:22    Daniel Chen:    hi. sorry i&#39;m late
+00:12:14    Federica Gazzelloni:    hello
+00:14:27    Daniel Chen:    it&#39;s retraining all the indibidual models again?
+00:14:32    Daniel Chen:    before adding the weights?
+00:19:51    Federica Gazzelloni:    hello Jiwan you are stack 🙂
+00:45:17    Daniel Chen:    lm_form_fit %&gt;% extract_fit_engine() %&gt;% vcov()
+#&gt;             (Intercept)  Longitude   Latitude
+#&gt; (Intercept)     212.621  1.6113032 -1.4686377
+#&gt; Longitude         1.611  0.0168166 -0.0008695
+#&gt; Latitude         -1.469 -0.0008695  0.0330019
+00:45:23    Daniel Chen:    https://www.tmwr.org/models.html#use-the-model-results</code></pre>
+</details>
+</div>
+<div id="cohort-4-19" class="section level3">
+<h3><span class="header-section-number">20.6.3</span> Cohort 4</h3>
+<iframe src="https://www.youtube.com/embed/URL" width="100%" height="400px" data-external="1">
+</iframe>
+<details>
+<p><summary> Meeting chat log </summary></p>
+<pre><code>LOG</code></pre>
+</details>
+
+</div>
+</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="decisions-decisions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="can-we-make-our-model-too-good.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="blend-fit-predict.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="inferential-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -577,7 +629,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/12-model_tuning_and_the_dangers_of_overfitting.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/20-ensemble_models.Rmd",
 "text": "Edit"
 },
 "history": {

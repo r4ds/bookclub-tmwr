@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>12.4 What Metric Should We Use? | Tidy Modeling with R Book Club</title>
+  <title>21.6 Meeting Videos | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="12.4 What Metric Should We Use? | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="21.6 Meeting Videos | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="12.4 What Metric Should We Use? | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="21.6 Meeting Videos | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="decisions-decisions.html"/>
-<link rel="next" href="can-we-make-our-model-too-good.html"/>
+<link rel="prev" href="inference-with-lower-level-helpers.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -487,66 +487,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="what-metric-should-we-use" class="section level2">
-<h2><span class="header-section-number">12.4</span> What Metric Should We Use?</h2>
-<p>Which link function should we use…does it matter?</p>
-<ul>
-<li>logistic regression using a logit</li>
-<li>probit</li>
-<li>complementary log-log</li>
-</ul>
-<table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-<span id="tab:llhood-12">Table 12.1: </span>Likelihood Statistics
-</caption>
-<thead>
-<tr>
-<th style="text-align:right;">
-logLik
-</th>
-<th style="text-align:left;">
-link
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right;">
--380.0873
-</td>
-<td style="text-align:left;">
-logit
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
--381.7535
-</td>
-<td style="text-align:left;">
-probit
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
--389.0645
-</td>
-<td style="text-align:left;">
-c-log-log
-</td>
-</tr>
-</tbody>
-</table>
-<p>If we just look at the log-likelihood statistic, the logistic link function appears to be statistically (significantly) better than the probit and complementary log-log link functions.</p>
-<p>However, if we use the area under the ROC curve, we see that there is no significant difference between the three link functions. When we plot the three link functions, we also see that they are not substantially different in predicting whether a house has central air.</p>
-<p><img src="bookclub-tmwr_files/figure-html/plots-12-1.png" width="672" /></p>
+<div id="meeting-videos-22" class="section level2">
+<h2><span class="header-section-number">21.6</span> Meeting Videos</h2>
+<div id="cohort-3-19" class="section level3">
+<h3><span class="header-section-number">21.6.1</span> Cohort 3</h3>
+<iframe src="https://www.youtube.com/embed/p7CyaalpUNI" width="100%" height="400px" data-external="1">
+</iframe>
+<details>
+<p><summary> Meeting chat log </summary></p>
+<pre><code>00:17:29    Federica Gazzelloni:    tidy function if you google it, this is what it pops up at first: https://www.rdocumentation.org/packages/broom/versions/0.3.4/topics/tidy
+00:53:19    Federica Gazzelloni:    calculate function: https://www.rdocumentation.org/packages/infer/versions/0.5.4/topics/calculate</code></pre>
+</details>
 </div>
+<div id="cohort-4-20" class="section level3">
+<h3><span class="header-section-number">21.6.2</span> Cohort 4</h3>
+<iframe src="https://www.youtube.com/embed/URL" width="100%" height="400px" data-external="1">
+</iframe>
+<details>
+<p><summary> Meeting chat log </summary></p>
+<pre><code>LOG</code></pre>
+</details>
+
+</div>
+</div>
+<!-- </div> -->
+
+
+
+
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="decisions-decisions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="can-we-make-our-model-too-good.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="inference-with-lower-level-helpers.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -577,7 +555,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/12-model_tuning_and_the_dangers_of_overfitting.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/21-inferential_analysis.Rmd",
 "text": "Edit"
 },
 "history": {
