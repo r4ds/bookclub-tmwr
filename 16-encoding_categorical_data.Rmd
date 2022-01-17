@@ -13,3 +13,15 @@ Put the content of your slide here.
 ## Slide 2 Title
 
 Put the content of your second slide here.
+
+### Cohort 4
+
+`r knitr::include_url("https://www.youtube.com/embed/URL")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+LOG
+```
+</details>

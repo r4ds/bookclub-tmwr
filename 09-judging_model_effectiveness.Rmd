@@ -294,3 +294,15 @@ best_models_binary %>%
 01:01:41	Toryn Schafer (she/her):	https://adv-r.hadley.nz/fp.html
 ```
 </details>
+
+### Cohort 4
+
+`r knitr::include_url("https://www.youtube.com/embed/URL")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+LOG
+```
+</details>

@@ -540,3 +540,15 @@ p_preds
 01:11:28	Daniel Chen (he/him):	i have conference stuff next 2 weeks so i'm +1 for break
 ```
 </details>
+
+### Cohort 4
+
+`r knitr::include_url("https://www.youtube.com/embed/URL")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+LOG
+```
+</details>

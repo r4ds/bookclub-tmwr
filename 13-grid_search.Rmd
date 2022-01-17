@@ -763,3 +763,15 @@ Grid search is computationally expensive, but thoughtful choices in the experime
 00:52:32	jiwan:	https://juliasilge.com/blog/shelter-animals/
 ```
 </details>
+
+### Cohort 4
+
+`r knitr::include_url("https://www.youtube.com/embed/URL")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+LOG
+```
+</details>

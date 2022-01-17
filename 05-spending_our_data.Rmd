@@ -390,3 +390,14 @@ We will learn more about how to remedy certain issues such as class imbalance, b
 ```
 </details>
 
+### Cohort 4
+
+`r knitr::include_url("https://www.youtube.com/embed/URL")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+LOG
+```
+</details>

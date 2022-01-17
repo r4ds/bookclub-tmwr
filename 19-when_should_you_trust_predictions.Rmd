@@ -424,3 +424,61 @@ score(
 ) %>% 
   select(starts_with("distance"))
 ```
+
+## Meeting Videos
+
+### Cohort 1
+
+`r knitr::include_url("https://www.youtube.com/embed/BMLlExQYjHU")`
+
+### Cohort 3
+
+`r knitr::include_url("https://www.youtube.com/embed/J7pXWGeHfJY")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:12:14	Daniel Chen:	here isn't an echo on my end. not relaly
+00:26:36	Daniel Chen:	so far we've created a simulated set of values with random noise right?
+00:26:52	Ildiko Czeller:	yes
+00:27:13	Ildiko Czeller:	for a classification problem
+00:27:13	Daniel Chen:	and now we're fitting a Bayesian model on data? am I following that correctly?
+00:27:33	Daniel Chen:	so the packages mentioned in the beginning is for Bayesian stuff?
+00:27:53	Ildiko Czeller:	yes, i think stan does bayesian prediction.
+00:28:24	Ildiko Czeller:	probably will compute tthe equivocal zones later if you mean that by the package mentioned in the beginning
+00:28:32	Daniel Chen:	i mean this chapter as a whole is using Bayesian models to see how much we should "trust" predictions
+00:28:52	Daniel Chen:	yeah. ok. so this is all Bayesian specific stuff?
+yes stan is for Bayesian stuff
+00:29:18	Ildiko Czeller:	equivocal zones can be calculated for non bayesian models as well I think
+00:29:45	Daniel Chen:	what's the data_grid? i think i just missed it
+00:30:58	Ildiko Czeller:	i think it is just your simulated dataset with x, y as predictors, isn't it?
+00:31:29	Daniel Chen:	oh it looks like the predicted values? classes and probablilties. similar to inputs used for yardstick
+00:31:33	Ildiko Czeller:	the equivocal zones they are not so sophisticated for bayesian models in my understanding
+00:31:44	Daniel Chen:	oh no. yeah it looks like simulated data
+00:32:16	Ildiko Czeller:	I meant for NON bayesian models they are less sophisticated
+01:02:56	Daniel Chen:	can you go back to what the pca_stat value is when being compared to the Chicago data?
+01:11:23	Daniel Chen:	what's the pca stat values?
+01:11:36	Daniel Chen:	why is it 1 column of values when you have multiple PCs?
+01:13:00	Daniel Chen:	this is in the score function call.
+01:13:43	Daniel Chen:	oh it's distance from center
+01:15:00	Daniel Chen:	oooh it's all 9
+01:15:14	Daniel Chen:	ok that part makes sense that's regular PCA results
+01:15:45	Daniel Chen:	yeah that's good.
+01:16:39	Daniel Chen:	i might be moving next 2 weeks.
+01:16:45	Daniel Chen:	so i might not be availviale
+01:17:11	Federica Gazzelloni:	thanks
+```
+</details>
+
+### Cohort 4
+
+`r knitr::include_url("https://www.youtube.com/embed/URL")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+LOG
+```
+</details>

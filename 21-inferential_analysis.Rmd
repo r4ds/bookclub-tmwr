@@ -308,3 +308,30 @@ race_top_results %>%
   int_pctl(full_coeffs)
 ```
 The key components are `bootstraps()` and `mutate + map` which give you quite a bit of flexibility to compute many statistics.
+
+## Meeting Videos
+
+### Cohort 3
+
+`r knitr::include_url("https://www.youtube.com/embed/p7CyaalpUNI")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:17:29	Federica Gazzelloni:	tidy function if you google it, this is what it pops up at first: https://www.rdocumentation.org/packages/broom/versions/0.3.4/topics/tidy
+00:53:19	Federica Gazzelloni:	calculate function: https://www.rdocumentation.org/packages/infer/versions/0.5.4/topics/calculate
+```
+</details>
+
+### Cohort 4
+
+`r knitr::include_url("https://www.youtube.com/embed/URL")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+LOG
+```
+</details>

@@ -511,3 +511,21 @@ objects named with a preceding period are considered "hidden". they won't show u
 01:04:24	Ildiko Czeller:	I think data.frame is only "preferred" if your script relies on one of the behaviors that tibble "corrects"
 ```
 </details>
+
+### Cohort 4
+
+`r knitr::include_url("https://www.youtube.com/embed/d2Wva4Vhk1I")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:01:48	Isabella Velásquez:	Morning everybody. Eating breakfast 🙂
+00:18:29	Federica Gazzelloni:	nest and unnest: https://tidyr.tidyverse.org/reference/nest.html
+00:25:55	Isabella Velásquez:	I had a similar question about library(package) and install.packages(“package”)… but I don’t remember the answer so I did not internalize the learning 🙃
+00:55:38	Esmeralda Cruz:	oh yes, that happen with group bye and then summarize
+00:58:10	Anna-Leigh Brown:	mtcars %>% rownames_to_column('car') %>% group_by(cyl,gear) %>% mutate(disp_mean = mean(disp))
+01:00:38	Isabella Velásquez:	Thanks all - I got to drop off ^_^ Great walkthrough, Brandon!
+01:01:09	Esmeralda Cruz:	Thanks and Meery christmas
+```
+</details>
