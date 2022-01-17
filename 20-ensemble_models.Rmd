@@ -128,6 +128,8 @@ tree_frogs_test <-
 
 `r knitr::include_url("https://www.youtube.com/embed/Pdm9G8nfR1g")`
 
+`r knitr::include_url("https://www.youtube.com/embed/bUECbzZuIDY")`
+
 <details>
   <summary> Meeting chat log </summary>
   
@@ -174,6 +176,60 @@ beepr::beep(8)
 01:01:54	Jim Gruman:	thank you!!
 01:02:00	Andrew G. Farina:	Thank you Tony!
 
+# 2021-10-05 Presentation with Simon Couch
+00:18:39	Jon Harmon (jonthegeek):	It's fun watching Simon's reactions to Asmae's presentation
+00:25:40	Tony ElHabr:	“the literature says” = max says
+00:26:00	tan:	"the tidyverse says" = Hadley says
+00:29:06	Jon Harmon (jonthegeek):	Current {stacks} version has elasticnet as default, not just lasso, Max! <- note to the future
+00:49:53	Simon Couch:	https://github.com/tidymodels/stacks/issues/91
+00:52:28	Bryan Shalloway:	There is parsnip::null_model() that you can use for comparing against the mean... not sure if it's possible to specify something *slightly* more sophisticated there...
+00:52:47	tan:	itsmesleepknee
+00:52:55	Jim Gruman:	thank you Asmae and Simon!!!
+00:54:47	Tony ElHabr:	See y’all next time… whenever that is
+00:56:55	Pavitra-Dallas:	Thanks asmae and Simon 🤗🤗🤗
+00:59:13	tan:	thanks folks!
 ```
 </details>
 
+`r knitr::include_url("https://www.youtube.com/embed/j2jWX8_1tYY")`
+
+<details>
+  <summary> Meetin chat log: SLICED Discussion </summary>
+```
+00:37:14	Bryan Shalloway:	Curious if test set is a random sample? Or if it is segment time?
+```
+</details>
+
+### Cohort 3
+
+`r knitr::include_url("https://www.youtube.com/embed/SBl2ccerzwo")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:11:22	Daniel Chen:	hi. sorry i'm late
+00:12:14	Federica Gazzelloni:	hello
+00:14:27	Daniel Chen:	it's retraining all the indibidual models again?
+00:14:32	Daniel Chen:	before adding the weights?
+00:19:51	Federica Gazzelloni:	hello Jiwan you are stack 🙂
+00:45:17	Daniel Chen:	lm_form_fit %>% extract_fit_engine() %>% vcov()
+#>             (Intercept)  Longitude   Latitude
+#> (Intercept)     212.621  1.6113032 -1.4686377
+#> Longitude         1.611  0.0168166 -0.0008695
+#> Latitude         -1.469 -0.0008695  0.0330019
+00:45:23	Daniel Chen:	https://www.tmwr.org/models.html#use-the-model-results
+```
+</details>
+
+### Cohort 4
+
+`r knitr::include_url("https://www.youtube.com/embed/URL")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+LOG
+```
+</details>

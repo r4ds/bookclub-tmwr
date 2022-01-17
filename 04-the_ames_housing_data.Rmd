@@ -223,3 +223,19 @@ You can check out the EDA script presented by Jiwan Heo [here](./data/04-the_ame
 ```
   
 </details>
+
+### Cohort 4
+
+`r knitr::include_url("https://www.youtube.com/embed/ikeiX0W7Xuc")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:23:01	Federica Gazzelloni:	book club notes: https://r4ds.github.io/bookclub-tmwr/the-ames-housing-data.html
+00:50:24	Laura Prado de Assis:	here's what's in the book reg_ames <- lm(Sale_Price ~ Neighborhood, ames)
+00:50:38	Laura Prado de Assis:	sorry, I said lat+long, but it was neighborhood
+00:51:05	Laura Prado de Assis:	ames <- ames %>% mutate(Sale_Price = log10(Sale_Price))
+01:01:56	Stephen Charlesworth:	I have to drop off, too, thanks all!
+```
+</details>

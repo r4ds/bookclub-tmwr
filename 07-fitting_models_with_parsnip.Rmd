@@ -418,3 +418,15 @@ but it makes the column names consistent so you can combine tables
 00:54:29	Daniel Chen:	bye all!
 ```
 </details>
+
+### Cohort 4
+
+`r knitr::include_url("https://www.youtube.com/embed/URL")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+LOG
+```
+</details>

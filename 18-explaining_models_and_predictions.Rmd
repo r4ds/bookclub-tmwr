@@ -162,3 +162,59 @@ dev.off()
 [Exploratory Model Anaylsis](https://ema.drwhy.ai/)
 
 ![](images/18_dalex_contents.png)
+
+## Meeting Videos
+
+### Cohort 1
+
+`r knitr::include_url("https://www.youtube.com/embed/jk6hHNyrcSo")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:03:12	tan_iphone:	Hullo!
+00:05:15	tan_iphone:	I seem to have influenced the ballot ok tho!
+00:06:20	tan_iphone:	Boaty mc boat dog
+00:13:56	Jon Harmon (jonthegeek):	https://cran.r-project.org/package=nflfastR
+00:17:17	Tony ElHabr:	Acronyms are my fav
+00:17:21	Tony ElHabr:	*bacronyms
+00:17:31	Jon Harmon (jonthegeek):	I think it stands for "I'm a Doctor Who fan."
+00:17:59	Jordan Krogmann:	they have the death bots as the logo
+00:18:10	Jordan Krogmann:	or whatever... I am a casual doctor fan
+00:18:28	Jon Harmon (jonthegeek):	https://dalex.drwhy.ai/
+00:24:26	Jon Harmon (jonthegeek):	Rowers in a boat is the explanation I've heard a lot. You can't just be the fastest, you need to also be in sync with the other rowers.
+00:24:52	Tony ElHabr:	Is the default shapley? Or is it permutation? And what’s the difference?
+00:31:19	Jon Harmon (jonthegeek):	Dunno about anybody else but I had to look up what that meant: ceteris paribus = "all other things being equal."
+00:31:38	Tony ElHabr:	This is the same as partial dependence plots?
+00:32:45	Tony ElHabr:	Oh, CP is the instance-level equivalent of PDP (used for data-set level)
+00:33:46	Jon Harmon (jonthegeek):	"A profile showing how an individual observation’s prediction changes as a function of a given feature is called an ICE (individual conditional expectation) profile or a CP (ceteris paribus) profile."
+Yeah, they never definitively explain PDP vs these other terms. I hate to make them rebuild this monster chapter but I think I have thoughts about making some stuff in here clearer!
+00:37:52	Tony ElHabr:	i don’t think vip supports catboost 😢
+00:39:04	Jon Harmon (jonthegeek):	Wait, do you pronounce it "vip" or "V I P"?
+00:39:20	Tony ElHabr:	Yeah v i p
+00:39:46	tan_iphone:	very important predictor
+00:40:04	tan_iphone:	But wait is there a prequel?
+00:40:56	Tony ElHabr:	meme (tweet) for the day: https://twitter.com/benbbaldwin/status/1431300791516663816?s=20
+00:42:08	Jon Harmon (jonthegeek):	Dude, you can't send something that requires audio in the middle of a meeting 🙃
+01:05:41	tan_iphone:	Lmaoooo I have not nearly read enough of the book to do it
+01:05:47	tan_iphone:	Currently at the gym :) cheers folks
+
+```
+</details>
+
+### Cohort 3
+
+`r knitr::include_url("https://www.youtube.com/embed/WXZ5DKaK5mQ")`
+
+### Cohort 4
+
+`r knitr::include_url("https://www.youtube.com/embed/URL")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+LOG
+```
+</details>

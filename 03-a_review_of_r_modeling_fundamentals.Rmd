@@ -572,3 +572,19 @@ given that our starting girth is 8.3, the dV/dH should be positive even if we ha
 01:04:10	Ildiko Czeller:	thank you Toryn, makes sense!
 ```
 </details>
+
+### Cohort 4
+
+`r knitr::include_url("https://www.youtube.com/embed/FbPjR_Iimwk")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:12:59	Isabella Velásquez:	Hi everybody, getting my headphones ready.
+00:13:15	Federica Gazzelloni:	Hi Isabella
+00:42:56	Laura Rose:	I need to jump off for another meeting. Nice explanations, AL! See you all next week.
+00:46:44	Isabella Velásquez:	Such a good quotation!!! https://twitter.com/fermatslibrary/status/1235582404388982785?lang=en
+00:48:25	Isabella Velásquez:	dat all the way 😄
+```
+</details>

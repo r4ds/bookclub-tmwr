@@ -258,3 +258,15 @@ https://thatdatatho.com/tutorial-about-magrittrs-pipe-operator-and-placeholders/
 01:01:52	jiwan:	?step_normalize(
 ```
 </details>
+
+### Cohort 4
+
+`r knitr::include_url("https://www.youtube.com/embed/URL")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+LOG
+```
+</details>

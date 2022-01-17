@@ -264,3 +264,32 @@ How does the significance of the model's variables play into the above? Let's ta
 01:02:58	Daniel Chen:	see/talk to everyone on slack :)
 ```
 </details>
+
+### Cohort 4
+
+`r knitr::include_url("https://www.youtube.com/embed/93MbbtczA7M")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:32:07	Federica Gazzelloni:	https://www.tmwr.org/index.html
+00:32:34	Federica Gazzelloni:	https://www.tidymodels.org/
+00:34:44	Federica Gazzelloni:	https://www.youtube.com/c/JuliaSilge
+00:37:03	Federica Gazzelloni:	https://github.com/r4ds/bookclub-tmwr
+```
+</details>
+
+`r knitr::include_url("https://www.youtube.com/embed/U8-Lj0AKgZw")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:09:51	Brandon Hurr:	https://docs.google.com/spreadsheets/d/1-S1UbKWay_TeR5n9LkztZY2XXrMjZr3snl1srPvTvH4/edit#gid=0
+00:45:33	Ryan Metcalf:	What if we were to augment / change / modify the current variables and then repredict?
+00:46:12	Brandon Hurr:	Happens all the time in my world. You try and explain with the least amount of variables as you can and then dig more when you don’t cover all the variation in the data that you want.
+00:46:36	Brandon Hurr:	Even the imperfect models are considered “mechanistic”
+01:03:01	Isabella Velásquez:	And I’m in the US ! In Central time right now but will be in Pacific time soon - thank you so much for pushing back the time a bit 🙌
+```
+</details>

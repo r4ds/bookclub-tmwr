@@ -33,6 +33,13 @@ If you would like to present, please add your name next to a chapter using the [
 - 2021-04-20: Chapter 15: Screening many models: Tony ElHabr
 - 2021-05-11: What we missed about {workflowsets}
 - 2021-05-18: Q&A with authors Max Kuhn & Julia Silge: Chapters 10-15
+- 2021-05-25: Stacks: Asmae Toumi
+- 2021-06-01: More Stacks: Tony ElHabr
+- 2021-08-31: Chapter 17: Dimensionality reduction: Jon Harmon
+- 2021-09-07: Chapter 18: Explaining models and predictions: Joe Sydlowski
+- 2021-09-14: Chapter 19: When should you trust your predictions?: Tony ElHabr
+- 2021-10-05: Chapter 20: Ensembles of models: Asmae Toumi and Simon Couch
+- 2021-10-19: SLICED finale exploration: Tony ElHabr
 </details>
 
 
@@ -53,11 +60,10 @@ If you would like to present, please add your name next to a chapter using the [
 - 2021-04-25: Chapter 8: A model workflow: Kevin Kent
 - 2021-05-02: Chapter 10: Resampling for evaluating performance: Rahul Bahadur
 - 2021-05-09: Chapter 11: Comparing models with resampling: Graeme Davidson
-- **2021-05-16: Chapter 12: Model tuning and the dangers of overfitting: Shamsuddeen Hassan Muhammad**
+- 2021-05-16: Chapter 12: Model tuning and the dangers of overfitting: Janita
 - 2021-05-23: Chapter 13: Grid search: Stephen Holsenbeck
-- 2021-05-30: Appendix A: Recommended preoprocessing
-- 2021-06-06: Chapter 14: Iterative search
-- 2021-06-13: Chapter 15: Screening many models
+- 2021-05-30: Chapter 14: Iterative search: Stephen Holsenbeck
+- 2021-06-06: Chapter 15: Screening many models: Luke Shaw
 </details>
 
 
@@ -85,6 +91,7 @@ If you would like to present, please add your name next to a chapter using the [
 - 2021-09-27: Chapter 18: Explaining models and predictions: Ildiko Czeller & Federica Gazzelloni  
 - 2021-10-04: Chapter 19: When should you trust your predictions?: Ildiko Czeller & Federica Gazzelloni  
 - 2021-10-18: Chapter 20: Ensembles of models: Jiwan Heo
+- 2021-11-08: Chapter 21: Inferential analysis: Ildiko Czeller
 </details>
 
 
@@ -93,16 +100,14 @@ If you would like to present, please add your name next to a chapter using the [
 <details>
   <summary> Past Meetings </summary>
   	
-- 2021-12-03	0. Hello World - Book_club Intro: Federica Gazzelloni
+- 2021-12-03	0. Hello World - Book club Intro: Federica Gazzelloni
 - 2021-12-10	1. Software for modeling: Federica Gazzelloni	
+- 2021-12-17	2. A tidyverse primer: Brandon Hurr	
+- 2022-01-07	3. A review of R modeling fundamentals: AL Brown	
+- 2022-01-14	4. The Ames housing data: Laura Prado	
 
 </details>
 
-- 2021-12-17	2. A tidyverse primer: Brandon Hurr	
-- 2021-12-24	NO MEETING	
-- 2021-12-31	NO MEETING	
-- 2022-01-07	3. A review of R modeling fundamentals: AL Brown	
-- 2022-01-14	4. The Ames housing data: Laura Prado	
 - 2022-01-21	5. Spending our data: AL Brown	
 - 2022-01-28	6. Fitting models with parsnip: Laura Rose	
 - 2022-02-04	7. A model workflow: Isabella	

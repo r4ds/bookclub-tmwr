@@ -183,3 +183,37 @@ rankings %>%
 ```
 </details>
 
+### Cohort 3
+
+`r knitr::include_url("https://www.youtube.com/embed/pldNcyb4kMg")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:39:34	Ildiko Czeller:	do you know from where the function name plot_top_loadings comes? I have not heard the term loading in the context of PCA before. As far as I understand it plots top most contributing variables/features in each PCA component
+00:40:00	Jiwan Heo:	loading is the "weights" in PCA
+00:40:46	Jiwan Heo:	the coefficient of the linear combination of variables
+00:40:56	Ildiko Czeller:	ahh, makes sense, thanks!
+00:56:04	Ildiko Czeller:	I guess difference between PCA and PLS would be bigger if there were some rubbish features as well with high variance but without much predicting power
+00:56:21	Jiwan Heo:	PLS is supervised, PCA is unsupervised
+00:56:25	Ildiko Czeller:	the first 2 components seem to be basically mirror images of each other
+00:57:38	Jiwan Heo:	rubbish features would not get picked up, i'd imagine. If it doesn't impact the outcome
+00:58:30	Ildiko Czeller:	yeah, I think that they would not be picked in PLS at all, but might be picked up by PCA because it is unsupervised (?)
+00:59:15	Jiwan Heo:	I think so. PCA just picks up any large variance, but in PLS, it has to also move the outcome in some way
+01:04:16	Jiwan Heo:	sorry I have to jump off! Thank you for the presentation :)
+01:05:45	Ildiko Czeller:	To build an intuition about UMAP i found this interactive website very useful: https://pair-code.github.io/understanding-umap/
+```
+</details>
+
+### Cohort 4
+
+`r knitr::include_url("https://www.youtube.com/embed/URL")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+LOG
+```
+</details>

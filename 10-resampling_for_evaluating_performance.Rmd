@@ -437,3 +437,15 @@ where they save the model results.
 00:21:50	Ildiko Czeller:	https://stats.stackexchange.com/a/386608 about why boostrap resample is pessimistic
 ```
 </details>
+
+### Cohort 4
+
+`r knitr::include_url("https://www.youtube.com/embed/URL")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+LOG
+```
+</details>

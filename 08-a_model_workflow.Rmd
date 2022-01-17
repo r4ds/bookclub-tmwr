@@ -319,3 +319,15 @@ tree_predictions %>%
 01:09:07	Ildiko Czeller:	https://tidymodels.github.io/model-implementation-principles/
 ```
 </details>
+
+### Cohort 4
+
+`r knitr::include_url("https://www.youtube.com/embed/URL")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+LOG
+```
+</details>
