@@ -1,4 +1,4 @@
-# Ensemble models
+# Ensembles of models
 
 **Learning objectives:**
 
