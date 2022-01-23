@@ -392,12 +392,24 @@ We will learn more about how to remedy certain issues such as class imbalance, b
 
 ### Cohort 4
 
-`r knitr::include_url("https://www.youtube.com/embed/URL")`
+`r knitr::include_url("https://www.youtube.com/embed/tdMUrdEKZWc")`
 
 <details>
   <summary> Meeting chat log </summary>
   
 ```
-LOG
+00:17:06	Isabella Velásquez:	Need an R2Cobalt package...
+00:17:16	Laura Rose:	yes!
+00:28:03	Isabella Velásquez:	https://juliasilge.com/blog/
+00:29:36	Isabella Velásquez:	Supervised Machine Learning for Text Analysis in R: https://smltar.com/
+00:29:45	Isabella Velásquez:	ISLR tidymodels Labs: https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/index.html
+00:31:46	Isabella Velásquez:	A couple more posts! https://www.danielphadley.com/bootstrap_tutto/
+00:31:51	Isabella Velásquez:	https://www.rebeccabarter.com/blog/2020-03-25_machine_learning/
+00:32:10	Stephen Charlesworth:	Here’s a spreadsheet w/ different tidymodels uses: https://docs.google.com/spreadsheets/d/1PzbtanwieCCpaUt9G6XMhKXQ_0cBWfq_9xG9bH33Occ/edit#gid=652338894
+00:33:34	Federica Gazzelloni:	https://www.tidymodels.org/
+00:52:38	Stephen Charlesworth:	https://twitter.com/towards_ai/status/1332567246011555840
+00:53:06	Laura Rose:	😆
+00:55:13	Isabella Velásquez:	https://en.wikipedia.org/wiki/Pareto_principle
+01:05:39	Laura Rose:	cross validation using modeltime https://cran.r-project.org/web/packages/modeltime.resample/vignettes/getting-started.html
 ```
 </details>
