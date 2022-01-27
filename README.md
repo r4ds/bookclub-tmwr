@@ -112,7 +112,7 @@ If you would like to present, please add your name next to a chapter using the [
 - 2022-01-28	6. Fitting models with parsnip: Laura Rose	
 - 2022-02-04	7. A model workflow: Isabella	
 - 2022-02-11	8. Feature engineering with recipes: Federica Gazzelloni	
-- 2022-02-18	9. Judging model effectiveness	
+- 2022-02-18	9. Judging model effectiveness: Steve Charlesworth	
 - 2022-02-25	10. Resampling for evaluating performance	
 - 2022-03-04	11. Comparing models with resampling	
 - 2022-03-11	12. Model tuning and the danger of overfitting	
