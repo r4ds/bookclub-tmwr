@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-01-23" />
+<meta name="date" content="2022-01-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -527,14 +527,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb170-7"><a href="managing-many-workflows.html#cb170-7"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">rmse =</span> <span class="kw">rmse_vec</span>(trees_testing<span class="op">$</span>diam, pred<span class="op">$</span>.pred))</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 7
 ## # Rowwise: 
-##   wflow_id          info             option    result     fitted_wf  pred   rmse
-##   &lt;chr&gt;             &lt;list&gt;           &lt;list&gt;    &lt;list&gt;     &lt;list&gt;     &lt;lis&gt; &lt;dbl&gt;
-## 1 variables_lm      &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt; &lt;workflow&gt; &lt;tib… 0.367
-## 2 variables_rf      &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt; &lt;workflow&gt; &lt;tib… 0.311
-## 3 simple_formula_lm &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt; &lt;workflow&gt; &lt;tib… 0.356
-## 4 simple_formula_rf &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt; &lt;workflow&gt; &lt;tib… 0.341
-## 5 trees_recipe_lm   &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt; &lt;workflow&gt; &lt;tib… 0.316
-## 6 trees_recipe_rf   &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt; &lt;workflow&gt; &lt;tib… 0.321</code></pre>
+##   wflow_id          info             option    result fitted_wf  pred      rmse
+##   &lt;chr&gt;             &lt;list&gt;           &lt;list&gt;    &lt;list&gt; &lt;list&gt;     &lt;list&gt;   &lt;dbl&gt;
+## 1 variables_lm      &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list&gt; &lt;workflow&gt; &lt;tibble&gt; 0.367
+## 2 variables_rf      &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list&gt; &lt;workflow&gt; &lt;tibble&gt; 0.311
+## 3 simple_formula_lm &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list&gt; &lt;workflow&gt; &lt;tibble&gt; 0.356
+## 4 simple_formula_rf &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list&gt; &lt;workflow&gt; &lt;tibble&gt; 0.341
+## 5 trees_recipe_lm   &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list&gt; &lt;workflow&gt; &lt;tibble&gt; 0.316
+## 6 trees_recipe_rf   &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list&gt; &lt;workflow&gt; &lt;tibble&gt; 0.321</code></pre>
 </div>
             </section>
 
