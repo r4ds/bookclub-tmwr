@@ -44,7 +44,6 @@ Imports:
     remotes,
     rmarkdown,
     rsample,
-    rstanarm,
     rules,
     skimr,
     stacks,
