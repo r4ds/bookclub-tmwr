@@ -27,6 +27,326 @@
 - Use `tidy()` to **examine a recipe** and its steps.
 - Refer to columns with **roles** other than `"predictor"` or `"outcome"`.
 
+## In summary
+
+![](images/08-recipe.png)
+
+
+
+- Preprocessing data
+- How to use `recipe()` function
+- What are the `step_<>()` functions
+
+### Intoduction
+
+Preprocessing data is a very important step of modeling, "to combine different **feature engineering** tasks". In this chapter we will see how to preprocess our data using {tidymodles} meta package.
+
+
+## A SIMPLE RECIPE FOR THE AMES HOUSING DATA
+
+[A Recommended preprocessing](A Recommended preprocessing)
+
+```{r 08-model-step,echo=FALSE, fig.align='center', fig.cap='Models preprocessing steps',fig.width=10}
+knitr::include_graphics("images/08-preproc.png")
+```
+
+
+```{r 08-libs,message=FALSE, warning=FALSE, paged.print=FALSE}
+library(tidyverse)
+library(tidymodels)
+tidymodels_prefer()
+```
+
+
+```{r 08-data}
+data(ames)
+```
+
+
+```{r 08-mod1}
+fit <- lm(Sale_Price ~ Neighborhood + log10(Gr_Liv_Area) + Year_Built + Bldg_Type, 
+   data = ames)
+
+head(broom::tidy(fit),3)
+```
+
+
+
+```{r 08-Tmod1}
+set.seed(1234)
+split<-initial_split(ames, strata = Sale_Price)
+ames_train<-training(split)
+ames_test<-testing(split)
+
+simple_ames <- 
+  recipe(Sale_Price ~ Neighborhood + Gr_Liv_Area + Year_Built + Bldg_Type,
+         data = ames_train) %>%
+  step_log(Gr_Liv_Area, base = 10) %>% 
+  step_dummy(all_nominal_predictors())
+
+simple_ames
+```
+
+
+
+## USING RECIPES
+
+Preprocessing is part of a modeling **workflow**
+
+
+```{r 08-wfl1, message=FALSE, warning=FALSE, paged.print=FALSE}
+lm_model<-linear_reg() %>% 
+  set_engine("lm")
+
+lm_wflow<- workflow()%>%
+  add_model(lm_model)
+
+lm_wflow <- 
+  lm_wflow %>% 
+  add_formula(Sale_Price ~ Longitude + Latitude)
+
+# lm_wflow %>% 
+#   add_recipe(simple_ames)
+  
+lm_wflow <- lm_wflow %>% 
+  remove_variables()%>%
+  add_recipe(simple_ames)
+```
+
+
+
+```{r 08-fit1, message=FALSE, warning=FALSE, paged.print=FALSE}
+lm_fit <- fit(lm_wflow, ames_train)
+predict(lm_fit, ames_test %>% slice(1:3))
+```
+
+```{r 08-extract, message=FALSE, warning=FALSE, paged.print=FALSE}
+lm_fit %>% 
+  extract_recipe(estimated = TRUE)
+```
+
+```{r 08-extract_fit_parsnip, message=FALSE, warning=FALSE, paged.print=FALSE}
+lm_fit %>% 
+  # This returns the parsnip object:
+  extract_fit_parsnip() %>% 
+  # Now tidy the linear model object:
+  tidy() %>% 
+  slice(1:5)
+```
+
+
+## HOW DATA ARE USED BY THE RECIPE
+
+### EXAMPLES OF RECIPE STEPS:
+
+1.  **ENCODING QUALITATIVE DATA IN A NUMERIC FORMAT**
+
+  - step_unknown()  change missing values to a dedicated factor level
+  
+  - step_novel()  a new factor level may be encountered in future data
+  
+  - step_other() to analyze the frequencies of the factor levels
+  
+  the bottom 1% of the neighborhoods will be lumped into a new level called “other”
+  
+        step_other(Neighborhood, threshold = 0.01)
+
+  - step_dummy() for converting a factor predictor to a numeric format (*one_hot* argument to include the reference variable)
+
+```{r 08-steps, message=FALSE, warning=FALSE, paged.print=FALSE}
+simple_ames <- 
+  recipe(Sale_Price ~ Neighborhood + Gr_Liv_Area + Year_Built + Bldg_Type,
+         data = ames_train) %>%
+  step_log(Gr_Liv_Area, base = 10) %>% 
+  step_other(Neighborhood, threshold = 0.01) %>% 
+  step_dummy(all_nominal_predictors())
+```
+
+2.  **INTERACTION TERMS**
+
+  - step_interact(~ interaction terms)
+
+> one predictor has an effect on the outcome that is contingent on one or more other predictors
+
+Numerically, an interaction term between predictors is encoded as their product. 
+
+```{r 08-plot1, message=FALSE, warning=FALSE, paged.print=FALSE}
+ggplot(ames_train, aes(x = Gr_Liv_Area, y = Sale_Price)) + 
+  geom_point(alpha = .2) + 
+  facet_wrap(~ Bldg_Type) + 
+  geom_smooth(method = lm, formula = y ~ x, se = FALSE, color = "lightblue") + 
+  scale_x_log10() + 
+  scale_y_log10() + 
+  labs(x = "Gross Living Area", y = "Sale Price (USD)")
+```
+
+
+
+    Sale_Price ~ Neighborhood + log10(Gr_Liv_Area) + Bldg_Type + log10(Gr_Liv_Area):Bldg_Type
+    
+or
+    
+    Sale_Price ~ Neighborhood + log10(Gr_Liv_Area) * Bldg_Type 
+
+```{r 08-interaction, message=FALSE, warning=FALSE, paged.print=FALSE}
+simple_ames <- 
+  recipe(Sale_Price ~ Neighborhood + Gr_Liv_Area + Year_Built + Bldg_Type,
+         data = ames_train) %>%
+  step_log(Gr_Liv_Area, base = 10) %>% 
+  step_other(Neighborhood, threshold = 0.01) %>% 
+  step_dummy(all_nominal_predictors()) %>% 
+  # Gr_Liv_Area is on the log scale from a previous step
+  step_interact( ~ Gr_Liv_Area:starts_with("Bldg_Type_") )
+```
+
+Additional interactions can be specified in this formula by separating them by +
+
+
+3. **SPLINE FUNCTIONS**
+
+  - step_ns() for non-linear relationships
+
+> Splines replace the existing numeric predictor with a set of columns that allow a model to emulate a flexible, non-linear relationship
+
+
+```{r 08-plot2, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(patchwork)
+library(splines)
+
+plot_smoother <- function(deg_free) {
+  ggplot(ames_train, aes(x = Latitude, y = Sale_Price)) + 
+    geom_point(alpha = .2) + 
+    scale_y_log10() +
+    geom_smooth(
+      method = lm,
+      formula = y ~ ns(x, df = deg_free),
+      color = "lightblue",
+      se = FALSE
+    ) +
+    labs(title = paste(deg_free, "Spline Terms"),
+         y = "Sale Price (USD)")
+}
+
+( plot_smoother(2) + plot_smoother(5) ) / ( plot_smoother(20) + plot_smoother(100) )
+
+```
+
+```{r 08-ns, message=FALSE, warning=FALSE, paged.print=FALSE}
+recipe(Sale_Price ~ Neighborhood + Gr_Liv_Area + Year_Built + Bldg_Type + Latitude,
+         data = ames_train) %>%
+  step_log(Gr_Liv_Area, base = 10) %>% 
+  step_other(Neighborhood, threshold = 0.01) %>% 
+  step_dummy(all_nominal_predictors()) %>% 
+  step_interact( ~ Gr_Liv_Area:starts_with("Bldg_Type_") ) %>% 
+  step_ns(Latitude, deg_free = 20)
+```
+
+4.  **FEATURE EXTRACTION**
+
+  - step_normalize() center and scale each column
+  
+  - step_pca() principal component analysis, it extracts as much of the original information in the predictor set as possible using a smaller number of features,reducing the correlation between predictors.
+  
+      
+      step_pca(matches("(SF$)|(Gr_Liv)"))
+      
+
+  - step_ica() independent component analysis
+  
+  - step_umap() uniform manifold approximation and projection
+
+5.  **ROW SAMPLING STEPS**
+
+- Downsampling ({themis} package)
+
+    step_downsample(outcome_column_name)
+    
+- Upsampling
+
+- Hybrid methods
+
+step_filter(), step_sample(), step_slice(), and step_arrange() ...
+
+6.  **GENERAL TRANSFORMATIONS**
+
+  - step_mutate()
+
+7.  **NATURAL LANGUAGE PROCESSING**
+
+can apply natural language processing methods to the data
+
+## SKIPPING STEPS FOR NEW DATA
+
+> subsampling process should not be applied to the data being predicted.
+
+skip that, when set to TRUE, will be ignored by the predict()
+
+    step_<>(...,skip=TRUE)
+
+## TIDY A RECIPE
+
+`tidy()` method for recipes
+
+```{r 08-tidy, message=FALSE, warning=FALSE, paged.print=FALSE}
+ames_rec <- 
+  recipe(Sale_Price ~ Neighborhood + Gr_Liv_Area + Year_Built + Bldg_Type + 
+           Latitude + Longitude, data = ames_train) %>%
+  step_log(Gr_Liv_Area, base = 10) %>% 
+  step_other(Neighborhood, threshold = 0.01) %>% 
+  step_dummy(all_nominal_predictors()) %>% 
+  step_interact( ~ Gr_Liv_Area:starts_with("Bldg_Type_") ) %>% 
+  step_ns(Latitude, Longitude, deg_free = 20)
+
+tidy(ames_rec)
+```
+
+we add the `id = "my_id"` in the `step_other()`
+```{r 08-tidy2, message=FALSE, warning=FALSE, paged.print=FALSE}
+ames_rec <- 
+  recipe(Sale_Price ~ Neighborhood + Gr_Liv_Area + Year_Built + Bldg_Type + 
+           Latitude + Longitude, data = ames_train) %>%
+  step_log(Gr_Liv_Area, base = 10) %>% 
+  step_other(Neighborhood, threshold = 0.01, id = "my_id") %>% 
+  step_dummy(all_nominal_predictors()) %>% 
+  step_interact( ~ Gr_Liv_Area:starts_with("Bldg_Type_") ) %>% 
+  step_ns(Latitude, Longitude, deg_free = 20)
+
+
+lm_wflow <- 
+  workflow() %>% 
+  add_model(lm_model) %>% 
+  add_recipe(ames_rec)
+
+lm_fit <- fit(lm_wflow, ames_train)
+```
+
+```{r 08-tidy3, message=FALSE, warning=FALSE, paged.print=FALSE}
+estimated_recipe <- 
+  lm_fit %>% 
+  extract_recipe(estimated = TRUE)
+
+tidy(estimated_recipe, id = "my_id")
+```
+
+```{r 08-tidy4, message=FALSE, warning=FALSE, paged.print=FALSE}
+tidy(estimated_recipe, number = 2)
+```
+
+## COLUMN ROLES
+
+add_role(), remove_role(), and update_role()
+
+
+    ames_rec %>% update_role(address, new_role = "street address")
+
+## Resources
+
+- [All possible recipes](https://www.tidymodels.org/find/)
+
+- [Develop recipes](https://www.tidymodels.org/learn/develop/recipes/)
+
+
+
 ## Meeting Videos
 
 ### Cohort 1
