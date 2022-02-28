@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-02-05" />
+<meta name="date" content="2022-02-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -283,12 +283,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="feature-engineering-with-recipes.html"><a href="feature-engineering-with-recipes.html"><i class="fa fa-check"></i><b>8</b> Feature engineering with recipes</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html"><i class="fa fa-check"></i><b>8.1</b> Meeting Videos</a>
+<li class="chapter" data-level="8.1" data-path="in-summary.html"><a href="in-summary.html"><i class="fa fa-check"></i><b>8.1</b> In summary</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-1-7"><i class="fa fa-check"></i><b>8.1.1</b> Cohort 1</a></li>
-<li class="chapter" data-level="8.1.2" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-2-8"><i class="fa fa-check"></i><b>8.1.2</b> Cohort 2</a></li>
-<li class="chapter" data-level="8.1.3" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-3-7"><i class="fa fa-check"></i><b>8.1.3</b> Cohort 3</a></li>
-<li class="chapter" data-level="8.1.4" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-4-7"><i class="fa fa-check"></i><b>8.1.4</b> Cohort 4</a></li>
+<li class="chapter" data-level="8.1.1" data-path="in-summary.html"><a href="in-summary.html#intoduction"><i class="fa fa-check"></i><b>8.1.1</b> Intoduction</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="a-simple-recipe-for-the-ames-housing-data.html"><a href="a-simple-recipe-for-the-ames-housing-data.html"><i class="fa fa-check"></i><b>8.2</b> A SIMPLE RECIPE FOR THE AMES HOUSING DATA</a></li>
+<li class="chapter" data-level="8.3" data-path="using-recipes.html"><a href="using-recipes.html"><i class="fa fa-check"></i><b>8.3</b> USING RECIPES</a></li>
+<li class="chapter" data-level="8.4" data-path="how-data-are-used-by-the-recipe.html"><a href="how-data-are-used-by-the-recipe.html"><i class="fa fa-check"></i><b>8.4</b> HOW DATA ARE USED BY THE RECIPE</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="how-data-are-used-by-the-recipe.html"><a href="how-data-are-used-by-the-recipe.html#examples-of-recipe-steps"><i class="fa fa-check"></i><b>8.4.1</b> EXAMPLES OF RECIPE STEPS:</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="skipping-steps-for-new-data.html"><a href="skipping-steps-for-new-data.html"><i class="fa fa-check"></i><b>8.5</b> SKIPPING STEPS FOR NEW DATA</a></li>
+<li class="chapter" data-level="8.6" data-path="tidy-a-recipe.html"><a href="tidy-a-recipe.html"><i class="fa fa-check"></i><b>8.6</b> TIDY A RECIPE</a></li>
+<li class="chapter" data-level="8.7" data-path="column-roles.html"><a href="column-roles.html"><i class="fa fa-check"></i><b>8.7</b> COLUMN ROLES</a></li>
+<li class="chapter" data-level="8.8" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>8.8</b> Resources</a></li>
+<li class="chapter" data-level="8.9" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html"><i class="fa fa-check"></i><b>8.9</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-1-7"><i class="fa fa-check"></i><b>8.9.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="8.9.2" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-2-8"><i class="fa fa-check"></i><b>8.9.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="8.9.3" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-3-7"><i class="fa fa-check"></i><b>8.9.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="8.9.4" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-4-7"><i class="fa fa-check"></i><b>8.9.4</b> Cohort 4</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="judging-model-effectiveness.html"><a href="judging-model-effectiveness.html"><i class="fa fa-check"></i><b>9</b> Judging model effectiveness</a>
@@ -553,75 +567,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">10.2</span> Resubstitution approach</h2>
 <p>In chapter 8, we fit a linear model to the training set. This is
 candidate model #1.</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="resubstitution-approach.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb190-2"><a href="resubstitution-approach.html#cb190-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ames)</span>
-<span id="cb190-3"><a href="resubstitution-approach.html#cb190-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb190-4"><a href="resubstitution-approach.html#cb190-4" aria-hidden="true" tabindex="-1"></a>ames <span class="ot">&lt;-</span> <span class="fu">mutate</span>(ames, <span class="at">Sale_Price =</span> <span class="fu">log10</span>(Sale_Price))</span>
-<span id="cb190-5"><a href="resubstitution-approach.html#cb190-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb190-6"><a href="resubstitution-approach.html#cb190-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb190-7"><a href="resubstitution-approach.html#cb190-7" aria-hidden="true" tabindex="-1"></a>ames_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(ames, <span class="at">prop =</span> <span class="fl">0.80</span>, <span class="at">strata =</span> Sale_Price)</span>
-<span id="cb190-8"><a href="resubstitution-approach.html#cb190-8" aria-hidden="true" tabindex="-1"></a>ames_train <span class="ot">&lt;-</span> <span class="fu">training</span>(ames_split)</span>
-<span id="cb190-9"><a href="resubstitution-approach.html#cb190-9" aria-hidden="true" tabindex="-1"></a>ames_test  <span class="ot">&lt;-</span>  <span class="fu">testing</span>(ames_split)</span>
-<span id="cb190-10"><a href="resubstitution-approach.html#cb190-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb190-11"><a href="resubstitution-approach.html#cb190-11" aria-hidden="true" tabindex="-1"></a>ames_rec <span class="ot">&lt;-</span> </span>
-<span id="cb190-12"><a href="resubstitution-approach.html#cb190-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(Sale_Price <span class="sc">~</span> Neighborhood <span class="sc">+</span> Gr_Liv_Area <span class="sc">+</span> Year_Built <span class="sc">+</span> Bldg_Type <span class="sc">+</span> </span>
-<span id="cb190-13"><a href="resubstitution-approach.html#cb190-13" aria-hidden="true" tabindex="-1"></a>           Latitude <span class="sc">+</span> Longitude, <span class="at">data =</span> ames_train) <span class="sc">%&gt;%</span></span>
-<span id="cb190-14"><a href="resubstitution-approach.html#cb190-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_log</span>(Gr_Liv_Area, <span class="at">base =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb190-15"><a href="resubstitution-approach.html#cb190-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_other</span>(Neighborhood, <span class="at">threshold =</span> <span class="fl">0.01</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb190-16"><a href="resubstitution-approach.html#cb190-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb190-17"><a href="resubstitution-approach.html#cb190-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_interact</span>( <span class="sc">~</span> Gr_Liv_Area<span class="sc">:</span><span class="fu">starts_with</span>(<span class="st">&quot;Bldg_Type_&quot;</span>) ) <span class="sc">%&gt;%</span> </span>
-<span id="cb190-18"><a href="resubstitution-approach.html#cb190-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_ns</span>(Latitude, Longitude, <span class="at">deg_free =</span> <span class="dv">20</span>)</span>
-<span id="cb190-19"><a href="resubstitution-approach.html#cb190-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb190-20"><a href="resubstitution-approach.html#cb190-20" aria-hidden="true" tabindex="-1"></a>lm_model <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span> <span class="fu">set_engine</span>(<span class="st">&quot;lm&quot;</span>)</span>
-<span id="cb190-21"><a href="resubstitution-approach.html#cb190-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb190-22"><a href="resubstitution-approach.html#cb190-22" aria-hidden="true" tabindex="-1"></a>lm_wflow <span class="ot">&lt;-</span> </span>
-<span id="cb190-23"><a href="resubstitution-approach.html#cb190-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb190-24"><a href="resubstitution-approach.html#cb190-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lm_model) <span class="sc">%&gt;%</span> </span>
-<span id="cb190-25"><a href="resubstitution-approach.html#cb190-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(ames_rec)</span>
-<span id="cb190-26"><a href="resubstitution-approach.html#cb190-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb190-27"><a href="resubstitution-approach.html#cb190-27" aria-hidden="true" tabindex="-1"></a>lm_fit <span class="ot">&lt;-</span> <span class="fu">fit</span>(lm_wflow, ames_train)</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="resubstitution-approach.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb221-2"><a href="resubstitution-approach.html#cb221-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ames)</span>
+<span id="cb221-3"><a href="resubstitution-approach.html#cb221-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-4"><a href="resubstitution-approach.html#cb221-4" aria-hidden="true" tabindex="-1"></a>ames <span class="ot">&lt;-</span> <span class="fu">mutate</span>(ames, <span class="at">Sale_Price =</span> <span class="fu">log10</span>(Sale_Price))</span>
+<span id="cb221-5"><a href="resubstitution-approach.html#cb221-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-6"><a href="resubstitution-approach.html#cb221-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb221-7"><a href="resubstitution-approach.html#cb221-7" aria-hidden="true" tabindex="-1"></a>ames_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(ames, <span class="at">prop =</span> <span class="fl">0.80</span>, <span class="at">strata =</span> Sale_Price)</span>
+<span id="cb221-8"><a href="resubstitution-approach.html#cb221-8" aria-hidden="true" tabindex="-1"></a>ames_train <span class="ot">&lt;-</span> <span class="fu">training</span>(ames_split)</span>
+<span id="cb221-9"><a href="resubstitution-approach.html#cb221-9" aria-hidden="true" tabindex="-1"></a>ames_test  <span class="ot">&lt;-</span>  <span class="fu">testing</span>(ames_split)</span>
+<span id="cb221-10"><a href="resubstitution-approach.html#cb221-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-11"><a href="resubstitution-approach.html#cb221-11" aria-hidden="true" tabindex="-1"></a>ames_rec <span class="ot">&lt;-</span> </span>
+<span id="cb221-12"><a href="resubstitution-approach.html#cb221-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(Sale_Price <span class="sc">~</span> Neighborhood <span class="sc">+</span> Gr_Liv_Area <span class="sc">+</span> Year_Built <span class="sc">+</span> Bldg_Type <span class="sc">+</span> </span>
+<span id="cb221-13"><a href="resubstitution-approach.html#cb221-13" aria-hidden="true" tabindex="-1"></a>           Latitude <span class="sc">+</span> Longitude, <span class="at">data =</span> ames_train) <span class="sc">%&gt;%</span></span>
+<span id="cb221-14"><a href="resubstitution-approach.html#cb221-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_log</span>(Gr_Liv_Area, <span class="at">base =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb221-15"><a href="resubstitution-approach.html#cb221-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_other</span>(Neighborhood, <span class="at">threshold =</span> <span class="fl">0.01</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb221-16"><a href="resubstitution-approach.html#cb221-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb221-17"><a href="resubstitution-approach.html#cb221-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_interact</span>( <span class="sc">~</span> Gr_Liv_Area<span class="sc">:</span><span class="fu">starts_with</span>(<span class="st">&quot;Bldg_Type_&quot;</span>) ) <span class="sc">%&gt;%</span> </span>
+<span id="cb221-18"><a href="resubstitution-approach.html#cb221-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_ns</span>(Latitude, Longitude, <span class="at">deg_free =</span> <span class="dv">20</span>)</span>
+<span id="cb221-19"><a href="resubstitution-approach.html#cb221-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-20"><a href="resubstitution-approach.html#cb221-20" aria-hidden="true" tabindex="-1"></a>lm_model <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span> <span class="fu">set_engine</span>(<span class="st">&quot;lm&quot;</span>)</span>
+<span id="cb221-21"><a href="resubstitution-approach.html#cb221-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-22"><a href="resubstitution-approach.html#cb221-22" aria-hidden="true" tabindex="-1"></a>lm_wflow <span class="ot">&lt;-</span> </span>
+<span id="cb221-23"><a href="resubstitution-approach.html#cb221-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb221-24"><a href="resubstitution-approach.html#cb221-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lm_model) <span class="sc">%&gt;%</span> </span>
+<span id="cb221-25"><a href="resubstitution-approach.html#cb221-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(ames_rec)</span>
+<span id="cb221-26"><a href="resubstitution-approach.html#cb221-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-27"><a href="resubstitution-approach.html#cb221-27" aria-hidden="true" tabindex="-1"></a>lm_fit <span class="ot">&lt;-</span> <span class="fu">fit</span>(lm_wflow, ames_train)</span></code></pre></div>
 <p>We can fit a random forest model the training data, and this random
 forest model will be candidate #2.</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="resubstitution-approach.html#cb191-1" aria-hidden="true" tabindex="-1"></a>rf_model <span class="ot">&lt;-</span> </span>
-<span id="cb191-2"><a href="resubstitution-approach.html#cb191-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rand_forest</span>(<span class="at">trees =</span> <span class="dv">1000</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb191-3"><a href="resubstitution-approach.html#cb191-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;ranger&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb191-4"><a href="resubstitution-approach.html#cb191-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">&quot;regression&quot;</span>)</span>
-<span id="cb191-5"><a href="resubstitution-approach.html#cb191-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb191-6"><a href="resubstitution-approach.html#cb191-6" aria-hidden="true" tabindex="-1"></a>rf_wflow <span class="ot">&lt;-</span> </span>
-<span id="cb191-7"><a href="resubstitution-approach.html#cb191-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb191-8"><a href="resubstitution-approach.html#cb191-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(</span>
-<span id="cb191-9"><a href="resubstitution-approach.html#cb191-9" aria-hidden="true" tabindex="-1"></a>    Sale_Price <span class="sc">~</span> Neighborhood <span class="sc">+</span> Gr_Liv_Area <span class="sc">+</span> Year_Built <span class="sc">+</span> Bldg_Type <span class="sc">+</span> </span>
-<span id="cb191-10"><a href="resubstitution-approach.html#cb191-10" aria-hidden="true" tabindex="-1"></a>      Latitude <span class="sc">+</span> Longitude) <span class="sc">%&gt;%</span> </span>
-<span id="cb191-11"><a href="resubstitution-approach.html#cb191-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(rf_model) </span>
-<span id="cb191-12"><a href="resubstitution-approach.html#cb191-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb191-13"><a href="resubstitution-approach.html#cb191-13" aria-hidden="true" tabindex="-1"></a>rf_fit <span class="ot">&lt;-</span> rf_wflow <span class="sc">%&gt;%</span> <span class="fu">fit</span>(<span class="at">data =</span> ames_train)</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="resubstitution-approach.html#cb222-1" aria-hidden="true" tabindex="-1"></a>rf_model <span class="ot">&lt;-</span> </span>
+<span id="cb222-2"><a href="resubstitution-approach.html#cb222-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rand_forest</span>(<span class="at">trees =</span> <span class="dv">1000</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb222-3"><a href="resubstitution-approach.html#cb222-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;ranger&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb222-4"><a href="resubstitution-approach.html#cb222-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">&quot;regression&quot;</span>)</span>
+<span id="cb222-5"><a href="resubstitution-approach.html#cb222-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb222-6"><a href="resubstitution-approach.html#cb222-6" aria-hidden="true" tabindex="-1"></a>rf_wflow <span class="ot">&lt;-</span> </span>
+<span id="cb222-7"><a href="resubstitution-approach.html#cb222-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb222-8"><a href="resubstitution-approach.html#cb222-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(</span>
+<span id="cb222-9"><a href="resubstitution-approach.html#cb222-9" aria-hidden="true" tabindex="-1"></a>    Sale_Price <span class="sc">~</span> Neighborhood <span class="sc">+</span> Gr_Liv_Area <span class="sc">+</span> Year_Built <span class="sc">+</span> Bldg_Type <span class="sc">+</span> </span>
+<span id="cb222-10"><a href="resubstitution-approach.html#cb222-10" aria-hidden="true" tabindex="-1"></a>      Latitude <span class="sc">+</span> Longitude) <span class="sc">%&gt;%</span> </span>
+<span id="cb222-11"><a href="resubstitution-approach.html#cb222-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(rf_model) </span>
+<span id="cb222-12"><a href="resubstitution-approach.html#cb222-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb222-13"><a href="resubstitution-approach.html#cb222-13" aria-hidden="true" tabindex="-1"></a>rf_fit <span class="ot">&lt;-</span> rf_wflow <span class="sc">%&gt;%</span> <span class="fu">fit</span>(<span class="at">data =</span> ames_train)</span></code></pre></div>
 <p>We can compare the performance of these two candidate models by</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="resubstitution-approach.html#cb192-1" aria-hidden="true" tabindex="-1"></a>estimate_perf <span class="ot">&lt;-</span> <span class="cf">function</span>(model, dat) {</span>
-<span id="cb192-2"><a href="resubstitution-approach.html#cb192-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Capture the names of the objects used</span></span>
-<span id="cb192-3"><a href="resubstitution-approach.html#cb192-3" aria-hidden="true" tabindex="-1"></a>  cl <span class="ot">&lt;-</span> <span class="fu">match.call</span>()</span>
-<span id="cb192-4"><a href="resubstitution-approach.html#cb192-4" aria-hidden="true" tabindex="-1"></a>  obj_name <span class="ot">&lt;-</span> <span class="fu">as.character</span>(cl<span class="sc">$</span>model)</span>
-<span id="cb192-5"><a href="resubstitution-approach.html#cb192-5" aria-hidden="true" tabindex="-1"></a>  data_name <span class="ot">&lt;-</span> <span class="fu">as.character</span>(cl<span class="sc">$</span>dat)</span>
-<span id="cb192-6"><a href="resubstitution-approach.html#cb192-6" aria-hidden="true" tabindex="-1"></a>  data_name <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;ames_&quot;</span>, <span class="st">&quot;&quot;</span>, data_name)</span>
-<span id="cb192-7"><a href="resubstitution-approach.html#cb192-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb192-8"><a href="resubstitution-approach.html#cb192-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Estimate these metrics:</span></span>
-<span id="cb192-9"><a href="resubstitution-approach.html#cb192-9" aria-hidden="true" tabindex="-1"></a>  reg_metrics <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(rmse, rsq)</span>
-<span id="cb192-10"><a href="resubstitution-approach.html#cb192-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb192-11"><a href="resubstitution-approach.html#cb192-11" aria-hidden="true" tabindex="-1"></a>  model <span class="sc">%&gt;%</span> </span>
-<span id="cb192-12"><a href="resubstitution-approach.html#cb192-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">predict</span>(dat) <span class="sc">%&gt;%</span> </span>
-<span id="cb192-13"><a href="resubstitution-approach.html#cb192-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bind_cols</span>(dat <span class="sc">%&gt;%</span> <span class="fu">select</span>(Sale_Price)) <span class="sc">%&gt;%</span> </span>
-<span id="cb192-14"><a href="resubstitution-approach.html#cb192-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">reg_metrics</span>(Sale_Price, .pred) <span class="sc">%&gt;%</span> </span>
-<span id="cb192-15"><a href="resubstitution-approach.html#cb192-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>.estimator) <span class="sc">%&gt;%</span> </span>
-<span id="cb192-16"><a href="resubstitution-approach.html#cb192-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">object =</span> obj_name, <span class="at">data =</span> data_name)</span>
-<span id="cb192-17"><a href="resubstitution-approach.html#cb192-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="resubstitution-approach.html#cb223-1" aria-hidden="true" tabindex="-1"></a>estimate_perf <span class="ot">&lt;-</span> <span class="cf">function</span>(model, dat) {</span>
+<span id="cb223-2"><a href="resubstitution-approach.html#cb223-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Capture the names of the objects used</span></span>
+<span id="cb223-3"><a href="resubstitution-approach.html#cb223-3" aria-hidden="true" tabindex="-1"></a>  cl <span class="ot">&lt;-</span> <span class="fu">match.call</span>()</span>
+<span id="cb223-4"><a href="resubstitution-approach.html#cb223-4" aria-hidden="true" tabindex="-1"></a>  obj_name <span class="ot">&lt;-</span> <span class="fu">as.character</span>(cl<span class="sc">$</span>model)</span>
+<span id="cb223-5"><a href="resubstitution-approach.html#cb223-5" aria-hidden="true" tabindex="-1"></a>  data_name <span class="ot">&lt;-</span> <span class="fu">as.character</span>(cl<span class="sc">$</span>dat)</span>
+<span id="cb223-6"><a href="resubstitution-approach.html#cb223-6" aria-hidden="true" tabindex="-1"></a>  data_name <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;ames_&quot;</span>, <span class="st">&quot;&quot;</span>, data_name)</span>
+<span id="cb223-7"><a href="resubstitution-approach.html#cb223-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb223-8"><a href="resubstitution-approach.html#cb223-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Estimate these metrics:</span></span>
+<span id="cb223-9"><a href="resubstitution-approach.html#cb223-9" aria-hidden="true" tabindex="-1"></a>  reg_metrics <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(rmse, rsq)</span>
+<span id="cb223-10"><a href="resubstitution-approach.html#cb223-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb223-11"><a href="resubstitution-approach.html#cb223-11" aria-hidden="true" tabindex="-1"></a>  model <span class="sc">%&gt;%</span> </span>
+<span id="cb223-12"><a href="resubstitution-approach.html#cb223-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">predict</span>(dat) <span class="sc">%&gt;%</span> </span>
+<span id="cb223-13"><a href="resubstitution-approach.html#cb223-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bind_cols</span>(dat <span class="sc">%&gt;%</span> <span class="fu">select</span>(Sale_Price)) <span class="sc">%&gt;%</span> </span>
+<span id="cb223-14"><a href="resubstitution-approach.html#cb223-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">reg_metrics</span>(Sale_Price, .pred) <span class="sc">%&gt;%</span> </span>
+<span id="cb223-15"><a href="resubstitution-approach.html#cb223-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>.estimator) <span class="sc">%&gt;%</span> </span>
+<span id="cb223-16"><a href="resubstitution-approach.html#cb223-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">object =</span> obj_name, <span class="at">data =</span> data_name)</span>
+<span id="cb223-17"><a href="resubstitution-approach.html#cb223-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Resubstitution errors for the linear model:</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="resubstitution-approach.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_perf</span>(lm_fit, ames_train)</span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="resubstitution-approach.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_perf</span>(lm_fit, ames_train)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 4
 ##   .metric .estimate object data 
 ##   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;
 ## 1 rmse       0.0751 lm_fit train
 ## 2 rsq        0.819  lm_fit train</code></pre>
 <p>Resubstitution errors for the random forest model:</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="resubstitution-approach.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_perf</span>(rf_fit, ames_train)</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="resubstitution-approach.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_perf</span>(rf_fit, ames_train)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 4
 ##   .metric .estimate object data 
 ##   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;
@@ -630,7 +644,7 @@ forest model will be candidate #2.</p>
 <p>We can see that the random forest model performs significantly better
 (2+ times as better). We can choose the random forest model as our only
 candidate model. We can test its performance on the test set:</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="resubstitution-approach.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_perf</span>(rf_fit, ames_test)</span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="resubstitution-approach.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_perf</span>(rf_fit, ames_test)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 4
 ##   .metric .estimate object data 
 ##   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;

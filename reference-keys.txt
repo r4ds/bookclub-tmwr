@@ -1,4 +1,5 @@
 tab:skim-05
+fig:08-model-step
 tab:llhood-12
 tab:15-setup
 tab:18-load-data
@@ -94,6 +95,16 @@ cohort-2-7
 cohort-3-6
 cohort-4-6
 feature-engineering-with-recipes
+in-summary
+intoduction
+a-simple-recipe-for-the-ames-housing-data
+using-recipes
+how-data-are-used-by-the-recipe
+examples-of-recipe-steps
+skipping-steps-for-new-data
+tidy-a-recipe
+column-roles
+resources
 meeting-videos-8
 cohort-1-7
 cohort-2-8

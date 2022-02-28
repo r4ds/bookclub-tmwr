@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-02-05" />
+<meta name="date" content="2022-02-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -283,12 +283,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="feature-engineering-with-recipes.html"><a href="feature-engineering-with-recipes.html"><i class="fa fa-check"></i><b>8</b> Feature engineering with recipes</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html"><i class="fa fa-check"></i><b>8.1</b> Meeting Videos</a>
+<li class="chapter" data-level="8.1" data-path="in-summary.html"><a href="in-summary.html"><i class="fa fa-check"></i><b>8.1</b> In summary</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-1-7"><i class="fa fa-check"></i><b>8.1.1</b> Cohort 1</a></li>
-<li class="chapter" data-level="8.1.2" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-2-8"><i class="fa fa-check"></i><b>8.1.2</b> Cohort 2</a></li>
-<li class="chapter" data-level="8.1.3" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-3-7"><i class="fa fa-check"></i><b>8.1.3</b> Cohort 3</a></li>
-<li class="chapter" data-level="8.1.4" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-4-7"><i class="fa fa-check"></i><b>8.1.4</b> Cohort 4</a></li>
+<li class="chapter" data-level="8.1.1" data-path="in-summary.html"><a href="in-summary.html#intoduction"><i class="fa fa-check"></i><b>8.1.1</b> Intoduction</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="a-simple-recipe-for-the-ames-housing-data.html"><a href="a-simple-recipe-for-the-ames-housing-data.html"><i class="fa fa-check"></i><b>8.2</b> A SIMPLE RECIPE FOR THE AMES HOUSING DATA</a></li>
+<li class="chapter" data-level="8.3" data-path="using-recipes.html"><a href="using-recipes.html"><i class="fa fa-check"></i><b>8.3</b> USING RECIPES</a></li>
+<li class="chapter" data-level="8.4" data-path="how-data-are-used-by-the-recipe.html"><a href="how-data-are-used-by-the-recipe.html"><i class="fa fa-check"></i><b>8.4</b> HOW DATA ARE USED BY THE RECIPE</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="how-data-are-used-by-the-recipe.html"><a href="how-data-are-used-by-the-recipe.html#examples-of-recipe-steps"><i class="fa fa-check"></i><b>8.4.1</b> EXAMPLES OF RECIPE STEPS:</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="skipping-steps-for-new-data.html"><a href="skipping-steps-for-new-data.html"><i class="fa fa-check"></i><b>8.5</b> SKIPPING STEPS FOR NEW DATA</a></li>
+<li class="chapter" data-level="8.6" data-path="tidy-a-recipe.html"><a href="tidy-a-recipe.html"><i class="fa fa-check"></i><b>8.6</b> TIDY A RECIPE</a></li>
+<li class="chapter" data-level="8.7" data-path="column-roles.html"><a href="column-roles.html"><i class="fa fa-check"></i><b>8.7</b> COLUMN ROLES</a></li>
+<li class="chapter" data-level="8.8" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>8.8</b> Resources</a></li>
+<li class="chapter" data-level="8.9" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html"><i class="fa fa-check"></i><b>8.9</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-1-7"><i class="fa fa-check"></i><b>8.9.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="8.9.2" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-2-8"><i class="fa fa-check"></i><b>8.9.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="8.9.3" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-3-7"><i class="fa fa-check"></i><b>8.9.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="8.9.4" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-4-7"><i class="fa fa-check"></i><b>8.9.4</b> Cohort 4</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="judging-model-effectiveness.html"><a href="judging-model-effectiveness.html"><i class="fa fa-check"></i><b>9</b> Judging model effectiveness</a>
@@ -552,43 +566,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="finalizing-the-model-1" class="section level2" number="15.4">
 <h2><span class="header-section-number">15.4</span> Finalizing the model</h2>
 <p>Now we can finalize our choice of model.</p>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="finalizing-the-model-1.html#cb349-1" aria-hidden="true" tabindex="-1"></a>wflow_id_best <span class="ot">&lt;-</span> </span>
-<span id="cb349-2"><a href="finalizing-the-model-1.html#cb349-2" aria-hidden="true" tabindex="-1"></a>  res_ranks <span class="sc">%&gt;%</span> </span>
-<span id="cb349-3"><a href="finalizing-the-model-1.html#cb349-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_min</span>(rank, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb349-4"><a href="finalizing-the-model-1.html#cb349-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(wflow_id)</span>
-<span id="cb349-5"><a href="finalizing-the-model-1.html#cb349-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb349-6"><a href="finalizing-the-model-1.html#cb349-6" aria-hidden="true" tabindex="-1"></a>wf_best <span class="ot">&lt;-</span></span>
-<span id="cb349-7"><a href="finalizing-the-model-1.html#cb349-7" aria-hidden="true" tabindex="-1"></a>  res_grid <span class="sc">%&gt;%</span> </span>
-<span id="cb349-8"><a href="finalizing-the-model-1.html#cb349-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_workflow_set_result</span>(wflow_id_best) <span class="sc">%&gt;%</span> </span>
-<span id="cb349-9"><a href="finalizing-the-model-1.html#cb349-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_best</span>(<span class="at">metric =</span> <span class="st">&#39;rmse&#39;</span>)</span>
-<span id="cb349-10"><a href="finalizing-the-model-1.html#cb349-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb349-11"><a href="finalizing-the-model-1.html#cb349-11" aria-hidden="true" tabindex="-1"></a>fit_best <span class="ot">&lt;-</span></span>
-<span id="cb349-12"><a href="finalizing-the-model-1.html#cb349-12" aria-hidden="true" tabindex="-1"></a>  res_grid <span class="sc">%&gt;%</span> </span>
-<span id="cb349-13"><a href="finalizing-the-model-1.html#cb349-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_workflow</span>(wflow_id_best) <span class="sc">%&gt;%</span> </span>
-<span id="cb349-14"><a href="finalizing-the-model-1.html#cb349-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_workflow</span>(wf_best) <span class="sc">%&gt;%</span> </span>
-<span id="cb349-15"><a href="finalizing-the-model-1.html#cb349-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">last_fit</span>(<span class="at">split =</span> split)</span>
-<span id="cb349-16"><a href="finalizing-the-model-1.html#cb349-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb349-17"><a href="finalizing-the-model-1.html#cb349-17" aria-hidden="true" tabindex="-1"></a>metrics_best <span class="ot">&lt;-</span></span>
-<span id="cb349-18"><a href="finalizing-the-model-1.html#cb349-18" aria-hidden="true" tabindex="-1"></a>  fit_best <span class="sc">%&gt;%</span> </span>
-<span id="cb349-19"><a href="finalizing-the-model-1.html#cb349-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>()</span>
-<span id="cb349-20"><a href="finalizing-the-model-1.html#cb349-20" aria-hidden="true" tabindex="-1"></a>metrics_best</span></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="finalizing-the-model-1.html#cb380-1" aria-hidden="true" tabindex="-1"></a>wflow_id_best <span class="ot">&lt;-</span> </span>
+<span id="cb380-2"><a href="finalizing-the-model-1.html#cb380-2" aria-hidden="true" tabindex="-1"></a>  res_ranks <span class="sc">%&gt;%</span> </span>
+<span id="cb380-3"><a href="finalizing-the-model-1.html#cb380-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_min</span>(rank, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb380-4"><a href="finalizing-the-model-1.html#cb380-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(wflow_id)</span>
+<span id="cb380-5"><a href="finalizing-the-model-1.html#cb380-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb380-6"><a href="finalizing-the-model-1.html#cb380-6" aria-hidden="true" tabindex="-1"></a>wf_best <span class="ot">&lt;-</span></span>
+<span id="cb380-7"><a href="finalizing-the-model-1.html#cb380-7" aria-hidden="true" tabindex="-1"></a>  res_grid <span class="sc">%&gt;%</span> </span>
+<span id="cb380-8"><a href="finalizing-the-model-1.html#cb380-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_workflow_set_result</span>(wflow_id_best) <span class="sc">%&gt;%</span> </span>
+<span id="cb380-9"><a href="finalizing-the-model-1.html#cb380-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_best</span>(<span class="at">metric =</span> <span class="st">&#39;rmse&#39;</span>)</span>
+<span id="cb380-10"><a href="finalizing-the-model-1.html#cb380-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb380-11"><a href="finalizing-the-model-1.html#cb380-11" aria-hidden="true" tabindex="-1"></a>fit_best <span class="ot">&lt;-</span></span>
+<span id="cb380-12"><a href="finalizing-the-model-1.html#cb380-12" aria-hidden="true" tabindex="-1"></a>  res_grid <span class="sc">%&gt;%</span> </span>
+<span id="cb380-13"><a href="finalizing-the-model-1.html#cb380-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_workflow</span>(wflow_id_best) <span class="sc">%&gt;%</span> </span>
+<span id="cb380-14"><a href="finalizing-the-model-1.html#cb380-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_workflow</span>(wf_best) <span class="sc">%&gt;%</span> </span>
+<span id="cb380-15"><a href="finalizing-the-model-1.html#cb380-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">last_fit</span>(<span class="at">split =</span> split)</span>
+<span id="cb380-16"><a href="finalizing-the-model-1.html#cb380-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb380-17"><a href="finalizing-the-model-1.html#cb380-17" aria-hidden="true" tabindex="-1"></a>metrics_best <span class="ot">&lt;-</span></span>
+<span id="cb380-18"><a href="finalizing-the-model-1.html#cb380-18" aria-hidden="true" tabindex="-1"></a>  fit_best <span class="sc">%&gt;%</span> </span>
+<span id="cb380-19"><a href="finalizing-the-model-1.html#cb380-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>()</span>
+<span id="cb380-20"><a href="finalizing-the-model-1.html#cb380-20" aria-hidden="true" tabindex="-1"></a>metrics_best</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 4
 ##   .metric .estimator .estimate .config             
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
 ## 1 rmse    standard       0.514 Preprocessor1_Model1
 ## 2 rsq     standard       0.816 Preprocessor1_Model1</code></pre>
 <p>Finally, the canonical observed vs. predicted scatter plot.</p>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="finalizing-the-model-1.html#cb351-1" aria-hidden="true" tabindex="-1"></a>p_preds <span class="ot">&lt;-</span></span>
-<span id="cb351-2"><a href="finalizing-the-model-1.html#cb351-2" aria-hidden="true" tabindex="-1"></a>  fit_best <span class="sc">%&gt;%</span> </span>
-<span id="cb351-3"><a href="finalizing-the-model-1.html#cb351-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_predictions</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb351-4"><a href="finalizing-the-model-1.html#cb351-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb351-5"><a href="finalizing-the-model-1.html#cb351-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> <span class="sc">!!</span>col_y_sym, <span class="at">y =</span> .pred) <span class="sc">+</span></span>
-<span id="cb351-6"><a href="finalizing-the-model-1.html#cb351-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb351-7"><a href="finalizing-the-model-1.html#cb351-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Big cuz we don&#39;t have that many points.</span></span>
-<span id="cb351-8"><a href="finalizing-the-model-1.html#cb351-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb351-9"><a href="finalizing-the-model-1.html#cb351-9" aria-hidden="true" tabindex="-1"></a>  tune<span class="sc">::</span><span class="fu">coord_obs_pred</span>() <span class="sc">+</span></span>
-<span id="cb351-10"><a href="finalizing-the-model-1.html#cb351-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;observed&#39;</span>, <span class="at">y =</span> <span class="st">&#39;predicted&#39;</span>)</span>
-<span id="cb351-11"><a href="finalizing-the-model-1.html#cb351-11" aria-hidden="true" tabindex="-1"></a>p_preds</span></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="finalizing-the-model-1.html#cb382-1" aria-hidden="true" tabindex="-1"></a>p_preds <span class="ot">&lt;-</span></span>
+<span id="cb382-2"><a href="finalizing-the-model-1.html#cb382-2" aria-hidden="true" tabindex="-1"></a>  fit_best <span class="sc">%&gt;%</span> </span>
+<span id="cb382-3"><a href="finalizing-the-model-1.html#cb382-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_predictions</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb382-4"><a href="finalizing-the-model-1.html#cb382-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb382-5"><a href="finalizing-the-model-1.html#cb382-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> <span class="sc">!!</span>col_y_sym, <span class="at">y =</span> .pred) <span class="sc">+</span></span>
+<span id="cb382-6"><a href="finalizing-the-model-1.html#cb382-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb382-7"><a href="finalizing-the-model-1.html#cb382-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Big cuz we don&#39;t have that many points.</span></span>
+<span id="cb382-8"><a href="finalizing-the-model-1.html#cb382-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb382-9"><a href="finalizing-the-model-1.html#cb382-9" aria-hidden="true" tabindex="-1"></a>  tune<span class="sc">::</span><span class="fu">coord_obs_pred</span>() <span class="sc">+</span></span>
+<span id="cb382-10"><a href="finalizing-the-model-1.html#cb382-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;observed&#39;</span>, <span class="at">y =</span> <span class="st">&#39;predicted&#39;</span>)</span>
+<span id="cb382-11"><a href="finalizing-the-model-1.html#cb382-11" aria-hidden="true" tabindex="-1"></a>p_preds</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/15-preds-1.png" width="672" /></p>
 </div>
             </section>

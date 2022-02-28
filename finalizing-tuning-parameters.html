@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-02-05" />
+<meta name="date" content="2022-02-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -283,12 +283,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="feature-engineering-with-recipes.html"><a href="feature-engineering-with-recipes.html"><i class="fa fa-check"></i><b>8</b> Feature engineering with recipes</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html"><i class="fa fa-check"></i><b>8.1</b> Meeting Videos</a>
+<li class="chapter" data-level="8.1" data-path="in-summary.html"><a href="in-summary.html"><i class="fa fa-check"></i><b>8.1</b> In summary</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-1-7"><i class="fa fa-check"></i><b>8.1.1</b> Cohort 1</a></li>
-<li class="chapter" data-level="8.1.2" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-2-8"><i class="fa fa-check"></i><b>8.1.2</b> Cohort 2</a></li>
-<li class="chapter" data-level="8.1.3" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-3-7"><i class="fa fa-check"></i><b>8.1.3</b> Cohort 3</a></li>
-<li class="chapter" data-level="8.1.4" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-4-7"><i class="fa fa-check"></i><b>8.1.4</b> Cohort 4</a></li>
+<li class="chapter" data-level="8.1.1" data-path="in-summary.html"><a href="in-summary.html#intoduction"><i class="fa fa-check"></i><b>8.1.1</b> Intoduction</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="a-simple-recipe-for-the-ames-housing-data.html"><a href="a-simple-recipe-for-the-ames-housing-data.html"><i class="fa fa-check"></i><b>8.2</b> A SIMPLE RECIPE FOR THE AMES HOUSING DATA</a></li>
+<li class="chapter" data-level="8.3" data-path="using-recipes.html"><a href="using-recipes.html"><i class="fa fa-check"></i><b>8.3</b> USING RECIPES</a></li>
+<li class="chapter" data-level="8.4" data-path="how-data-are-used-by-the-recipe.html"><a href="how-data-are-used-by-the-recipe.html"><i class="fa fa-check"></i><b>8.4</b> HOW DATA ARE USED BY THE RECIPE</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="how-data-are-used-by-the-recipe.html"><a href="how-data-are-used-by-the-recipe.html#examples-of-recipe-steps"><i class="fa fa-check"></i><b>8.4.1</b> EXAMPLES OF RECIPE STEPS:</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="skipping-steps-for-new-data.html"><a href="skipping-steps-for-new-data.html"><i class="fa fa-check"></i><b>8.5</b> SKIPPING STEPS FOR NEW DATA</a></li>
+<li class="chapter" data-level="8.6" data-path="tidy-a-recipe.html"><a href="tidy-a-recipe.html"><i class="fa fa-check"></i><b>8.6</b> TIDY A RECIPE</a></li>
+<li class="chapter" data-level="8.7" data-path="column-roles.html"><a href="column-roles.html"><i class="fa fa-check"></i><b>8.7</b> COLUMN ROLES</a></li>
+<li class="chapter" data-level="8.8" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>8.8</b> Resources</a></li>
+<li class="chapter" data-level="8.9" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html"><i class="fa fa-check"></i><b>8.9</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-1-7"><i class="fa fa-check"></i><b>8.9.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="8.9.2" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-2-8"><i class="fa fa-check"></i><b>8.9.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="8.9.3" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-3-7"><i class="fa fa-check"></i><b>8.9.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="8.9.4" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-4-7"><i class="fa fa-check"></i><b>8.9.4</b> Cohort 4</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="judging-model-effectiveness.html"><a href="judging-model-effectiveness.html"><i class="fa fa-check"></i><b>9</b> Judging model effectiveness</a>
@@ -552,13 +566,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="finalizing-tuning-parameters" class="section level2" number="12.12">
 <h2><span class="header-section-number">12.12</span> Finalizing tuning parameters:</h2>
 <p>The update function may not be useful if a recipe is attached to a workflow that adjusts the number of columns. Instead of <code>update()</code> we can use the <code>finalize()</code> function.</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="finalizing-tuning-parameters.html#cb238-1" aria-hidden="true" tabindex="-1"></a>updated_params <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb238-2"><a href="finalizing-tuning-parameters.html#cb238-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(rf_spec_tuned) <span class="sc">%&gt;%</span> </span>
-<span id="cb238-3"><a href="finalizing-tuning-parameters.html#cb238-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(ames_recipe) <span class="sc">%&gt;%</span> </span>
-<span id="cb238-4"><a href="finalizing-tuning-parameters.html#cb238-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">parameters</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb238-5"><a href="finalizing-tuning-parameters.html#cb238-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize</span>(ames_train)</span>
-<span id="cb238-6"><a href="finalizing-tuning-parameters.html#cb238-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb238-7"><a href="finalizing-tuning-parameters.html#cb238-7" aria-hidden="true" tabindex="-1"></a>updated_params</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="finalizing-tuning-parameters.html#cb269-1" aria-hidden="true" tabindex="-1"></a>updated_params <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb269-2"><a href="finalizing-tuning-parameters.html#cb269-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(rf_spec_tuned) <span class="sc">%&gt;%</span> </span>
+<span id="cb269-3"><a href="finalizing-tuning-parameters.html#cb269-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(ames_recipe) <span class="sc">%&gt;%</span> </span>
+<span id="cb269-4"><a href="finalizing-tuning-parameters.html#cb269-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">parameters</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb269-5"><a href="finalizing-tuning-parameters.html#cb269-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize</span>(ames_train)</span>
+<span id="cb269-6"><a href="finalizing-tuning-parameters.html#cb269-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb269-7"><a href="finalizing-tuning-parameters.html#cb269-7" aria-hidden="true" tabindex="-1"></a>updated_params</span></code></pre></div>
 <pre><code>## Collection of 3 parameters for tuning
 ## 
 ##  identifier                  type    object
@@ -566,7 +580,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##       min_n                 min_n nparam[+]
 ##         reg regularization.factor nparam[+]</code></pre>
 <p>With the <code>finalize()</code> function, mtry was completed based on the number of predictors in the training dataset</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="finalizing-tuning-parameters.html#cb240-1" aria-hidden="true" tabindex="-1"></a>updated_params <span class="sc">%&gt;%</span> <span class="fu">pull_dials_object</span>(<span class="st">&quot;mtry&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="finalizing-tuning-parameters.html#cb271-1" aria-hidden="true" tabindex="-1"></a>updated_params <span class="sc">%&gt;%</span> <span class="fu">pull_dials_object</span>(<span class="st">&quot;mtry&quot;</span>)</span></code></pre></div>
 <pre><code>## # Randomly Selected Predictors (quantitative)
 ## Range: [1, 74]</code></pre>
 </div>

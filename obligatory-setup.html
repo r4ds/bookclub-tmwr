@@ -24,7 +24,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-02-05" />
+<meta name="date" content="2022-02-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -283,12 +283,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="feature-engineering-with-recipes.html"><a href="feature-engineering-with-recipes.html"><i class="fa fa-check"></i><b>8</b> Feature engineering with recipes</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html"><i class="fa fa-check"></i><b>8.1</b> Meeting Videos</a>
+<li class="chapter" data-level="8.1" data-path="in-summary.html"><a href="in-summary.html"><i class="fa fa-check"></i><b>8.1</b> In summary</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-1-7"><i class="fa fa-check"></i><b>8.1.1</b> Cohort 1</a></li>
-<li class="chapter" data-level="8.1.2" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-2-8"><i class="fa fa-check"></i><b>8.1.2</b> Cohort 2</a></li>
-<li class="chapter" data-level="8.1.3" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-3-7"><i class="fa fa-check"></i><b>8.1.3</b> Cohort 3</a></li>
-<li class="chapter" data-level="8.1.4" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-4-7"><i class="fa fa-check"></i><b>8.1.4</b> Cohort 4</a></li>
+<li class="chapter" data-level="8.1.1" data-path="in-summary.html"><a href="in-summary.html#intoduction"><i class="fa fa-check"></i><b>8.1.1</b> Intoduction</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="a-simple-recipe-for-the-ames-housing-data.html"><a href="a-simple-recipe-for-the-ames-housing-data.html"><i class="fa fa-check"></i><b>8.2</b> A SIMPLE RECIPE FOR THE AMES HOUSING DATA</a></li>
+<li class="chapter" data-level="8.3" data-path="using-recipes.html"><a href="using-recipes.html"><i class="fa fa-check"></i><b>8.3</b> USING RECIPES</a></li>
+<li class="chapter" data-level="8.4" data-path="how-data-are-used-by-the-recipe.html"><a href="how-data-are-used-by-the-recipe.html"><i class="fa fa-check"></i><b>8.4</b> HOW DATA ARE USED BY THE RECIPE</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="how-data-are-used-by-the-recipe.html"><a href="how-data-are-used-by-the-recipe.html#examples-of-recipe-steps"><i class="fa fa-check"></i><b>8.4.1</b> EXAMPLES OF RECIPE STEPS:</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="skipping-steps-for-new-data.html"><a href="skipping-steps-for-new-data.html"><i class="fa fa-check"></i><b>8.5</b> SKIPPING STEPS FOR NEW DATA</a></li>
+<li class="chapter" data-level="8.6" data-path="tidy-a-recipe.html"><a href="tidy-a-recipe.html"><i class="fa fa-check"></i><b>8.6</b> TIDY A RECIPE</a></li>
+<li class="chapter" data-level="8.7" data-path="column-roles.html"><a href="column-roles.html"><i class="fa fa-check"></i><b>8.7</b> COLUMN ROLES</a></li>
+<li class="chapter" data-level="8.8" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>8.8</b> Resources</a></li>
+<li class="chapter" data-level="8.9" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html"><i class="fa fa-check"></i><b>8.9</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-1-7"><i class="fa fa-check"></i><b>8.9.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="8.9.2" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-2-8"><i class="fa fa-check"></i><b>8.9.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="8.9.3" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-3-7"><i class="fa fa-check"></i><b>8.9.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="8.9.4" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-4-7"><i class="fa fa-check"></i><b>8.9.4</b> Cohort 4</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="judging-model-effectiveness.html"><a href="judging-model-effectiveness.html"><i class="fa fa-check"></i><b>9</b> Judging model effectiveness</a>
@@ -562,16 +576,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </summary>
 <p><img src="images/15-woody-stare.jpg" /></p>
 </details>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="obligatory-setup.html#cb327-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb327-2"><a href="obligatory-setup.html#cb327-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb327-3"><a href="obligatory-setup.html#cb327-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">16</span>))</span>
-<span id="cb327-4"><a href="obligatory-setup.html#cb327-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb327-5"><a href="obligatory-setup.html#cb327-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> </span>
-<span id="cb327-6"><a href="obligatory-setup.html#cb327-6" aria-hidden="true" tabindex="-1"></a>  here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&#39;data&#39;</span>, <span class="st">&#39;world-happiness-report-2021.csv&#39;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb327-7"><a href="obligatory-setup.html#cb327-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb327-8"><a href="obligatory-setup.html#cb327-8" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span>
-<span id="cb327-9"><a href="obligatory-setup.html#cb327-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb327-10"><a href="obligatory-setup.html#cb327-10" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> skimr<span class="sc">::</span><span class="fu">skim</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="obligatory-setup.html#cb358-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb358-2"><a href="obligatory-setup.html#cb358-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb358-3"><a href="obligatory-setup.html#cb358-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">16</span>))</span>
+<span id="cb358-4"><a href="obligatory-setup.html#cb358-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb358-5"><a href="obligatory-setup.html#cb358-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> </span>
+<span id="cb358-6"><a href="obligatory-setup.html#cb358-6" aria-hidden="true" tabindex="-1"></a>  here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&#39;data&#39;</span>, <span class="st">&#39;world-happiness-report-2021.csv&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb358-7"><a href="obligatory-setup.html#cb358-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb358-8"><a href="obligatory-setup.html#cb358-8" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span>
+<span id="cb358-9"><a href="obligatory-setup.html#cb358-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb358-10"><a href="obligatory-setup.html#cb358-10" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> skimr<span class="sc">::</span><span class="fu">skim</span>()</span></code></pre></div>
 <table style="width: auto;" class="table table-condensed">
 <caption>
 <span id="tab:15-setup">Table 15.1: </span>Data summary
@@ -1413,31 +1427,31 @@ dystopia_residual
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="obligatory-setup.html#cb328-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrr)</span>
-<span id="cb328-2"><a href="obligatory-setup.html#cb328-2" aria-hidden="true" tabindex="-1"></a>df_selected <span class="ot">&lt;-</span></span>
-<span id="cb328-3"><a href="obligatory-setup.html#cb328-3" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">%&gt;%</span></span>
-<span id="cb328-4"><a href="obligatory-setup.html#cb328-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb328-5"><a href="obligatory-setup.html#cb328-5" aria-hidden="true" tabindex="-1"></a>    ladder_score,</span>
-<span id="cb328-6"><a href="obligatory-setup.html#cb328-6" aria-hidden="true" tabindex="-1"></a>    logged_gdp_per_capita,</span>
-<span id="cb328-7"><a href="obligatory-setup.html#cb328-7" aria-hidden="true" tabindex="-1"></a>    social_support,</span>
-<span id="cb328-8"><a href="obligatory-setup.html#cb328-8" aria-hidden="true" tabindex="-1"></a>    healthy_life_expectancy,</span>
-<span id="cb328-9"><a href="obligatory-setup.html#cb328-9" aria-hidden="true" tabindex="-1"></a>    freedom_to_make_life_choices,</span>
-<span id="cb328-10"><a href="obligatory-setup.html#cb328-10" aria-hidden="true" tabindex="-1"></a>    generosity,</span>
-<span id="cb328-11"><a href="obligatory-setup.html#cb328-11" aria-hidden="true" tabindex="-1"></a>    perceptions_of_corruption</span>
-<span id="cb328-12"><a href="obligatory-setup.html#cb328-12" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb328-13"><a href="obligatory-setup.html#cb328-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb328-14"><a href="obligatory-setup.html#cb328-14" aria-hidden="true" tabindex="-1"></a>cors <span class="ot">&lt;-</span></span>
-<span id="cb328-15"><a href="obligatory-setup.html#cb328-15" aria-hidden="true" tabindex="-1"></a>  df_selected <span class="sc">%&gt;%</span> </span>
-<span id="cb328-16"><a href="obligatory-setup.html#cb328-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">%&gt;%</span> </span>
-<span id="cb328-17"><a href="obligatory-setup.html#cb328-17" aria-hidden="true" tabindex="-1"></a>  corrr<span class="sc">::</span><span class="fu">correlate</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb328-18"><a href="obligatory-setup.html#cb328-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">col1 =</span> term) <span class="sc">%&gt;%</span> </span>
-<span id="cb328-19"><a href="obligatory-setup.html#cb328-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb328-20"><a href="obligatory-setup.html#cb328-20" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span>col1,</span>
-<span id="cb328-21"><a href="obligatory-setup.html#cb328-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">&#39;col2&#39;</span>,</span>
-<span id="cb328-22"><a href="obligatory-setup.html#cb328-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&#39;cor&#39;</span></span>
-<span id="cb328-23"><a href="obligatory-setup.html#cb328-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb328-24"><a href="obligatory-setup.html#cb328-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">abs</span>(cor)))</span>
-<span id="cb328-25"><a href="obligatory-setup.html#cb328-25" aria-hidden="true" tabindex="-1"></a>cors <span class="sc">%&gt;%</span> <span class="fu">filter</span>(col1 <span class="sc">==</span> <span class="st">&#39;ladder_score&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="obligatory-setup.html#cb359-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrr)</span>
+<span id="cb359-2"><a href="obligatory-setup.html#cb359-2" aria-hidden="true" tabindex="-1"></a>df_selected <span class="ot">&lt;-</span></span>
+<span id="cb359-3"><a href="obligatory-setup.html#cb359-3" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">%&gt;%</span></span>
+<span id="cb359-4"><a href="obligatory-setup.html#cb359-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb359-5"><a href="obligatory-setup.html#cb359-5" aria-hidden="true" tabindex="-1"></a>    ladder_score,</span>
+<span id="cb359-6"><a href="obligatory-setup.html#cb359-6" aria-hidden="true" tabindex="-1"></a>    logged_gdp_per_capita,</span>
+<span id="cb359-7"><a href="obligatory-setup.html#cb359-7" aria-hidden="true" tabindex="-1"></a>    social_support,</span>
+<span id="cb359-8"><a href="obligatory-setup.html#cb359-8" aria-hidden="true" tabindex="-1"></a>    healthy_life_expectancy,</span>
+<span id="cb359-9"><a href="obligatory-setup.html#cb359-9" aria-hidden="true" tabindex="-1"></a>    freedom_to_make_life_choices,</span>
+<span id="cb359-10"><a href="obligatory-setup.html#cb359-10" aria-hidden="true" tabindex="-1"></a>    generosity,</span>
+<span id="cb359-11"><a href="obligatory-setup.html#cb359-11" aria-hidden="true" tabindex="-1"></a>    perceptions_of_corruption</span>
+<span id="cb359-12"><a href="obligatory-setup.html#cb359-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb359-13"><a href="obligatory-setup.html#cb359-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb359-14"><a href="obligatory-setup.html#cb359-14" aria-hidden="true" tabindex="-1"></a>cors <span class="ot">&lt;-</span></span>
+<span id="cb359-15"><a href="obligatory-setup.html#cb359-15" aria-hidden="true" tabindex="-1"></a>  df_selected <span class="sc">%&gt;%</span> </span>
+<span id="cb359-16"><a href="obligatory-setup.html#cb359-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">%&gt;%</span> </span>
+<span id="cb359-17"><a href="obligatory-setup.html#cb359-17" aria-hidden="true" tabindex="-1"></a>  corrr<span class="sc">::</span><span class="fu">correlate</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb359-18"><a href="obligatory-setup.html#cb359-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">col1 =</span> term) <span class="sc">%&gt;%</span> </span>
+<span id="cb359-19"><a href="obligatory-setup.html#cb359-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb359-20"><a href="obligatory-setup.html#cb359-20" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span>col1,</span>
+<span id="cb359-21"><a href="obligatory-setup.html#cb359-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">&#39;col2&#39;</span>,</span>
+<span id="cb359-22"><a href="obligatory-setup.html#cb359-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&#39;cor&#39;</span></span>
+<span id="cb359-23"><a href="obligatory-setup.html#cb359-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb359-24"><a href="obligatory-setup.html#cb359-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">abs</span>(cor)))</span>
+<span id="cb359-25"><a href="obligatory-setup.html#cb359-25" aria-hidden="true" tabindex="-1"></a>cors <span class="sc">%&gt;%</span> <span class="fu">filter</span>(col1 <span class="sc">==</span> <span class="st">&#39;ladder_score&#39;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 7 × 3
 ##   col1         col2                             cor
 ##   &lt;chr&gt;        &lt;chr&gt;                          &lt;dbl&gt;
@@ -1448,21 +1462,21 @@ dystopia_residual
 ## 5 ladder_score perceptions_of_corruption    -0.421 
 ## 6 ladder_score generosity                   -0.0178
 ## 7 ladder_score ladder_score                 NA</code></pre>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="obligatory-setup.html#cb330-1" aria-hidden="true" tabindex="-1"></a>p_cors <span class="ot">&lt;-</span></span>
-<span id="cb330-2"><a href="obligatory-setup.html#cb330-2" aria-hidden="true" tabindex="-1"></a>  cors <span class="sc">%&gt;%</span> </span>
-<span id="cb330-3"><a href="obligatory-setup.html#cb330-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(col1 <span class="sc">&lt;</span> col2) <span class="sc">%&gt;%</span> </span>
-<span id="cb330-4"><a href="obligatory-setup.html#cb330-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb330-5"><a href="obligatory-setup.html#cb330-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> col1, <span class="at">y =</span> col2) <span class="sc">+</span></span>
-<span id="cb330-6"><a href="obligatory-setup.html#cb330-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> cor), <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb330-7"><a href="obligatory-setup.html#cb330-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">number</span>(cor, <span class="at">accuracy =</span> <span class="fl">0.1</span>))) <span class="sc">+</span></span>
-<span id="cb330-8"><a href="obligatory-setup.html#cb330-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
-<span id="cb330-9"><a href="obligatory-setup.html#cb330-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">&#39;E&#39;</span>, <span class="at">direction =</span> <span class="dv">1</span>, <span class="at">begin =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb330-10"><a href="obligatory-setup.html#cb330-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb330-11"><a href="obligatory-setup.html#cb330-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb330-12"><a href="obligatory-setup.html#cb330-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb330-13"><a href="obligatory-setup.html#cb330-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb330-14"><a href="obligatory-setup.html#cb330-14" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb330-15"><a href="obligatory-setup.html#cb330-15" aria-hidden="true" tabindex="-1"></a>p_cors</span></code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="obligatory-setup.html#cb361-1" aria-hidden="true" tabindex="-1"></a>p_cors <span class="ot">&lt;-</span></span>
+<span id="cb361-2"><a href="obligatory-setup.html#cb361-2" aria-hidden="true" tabindex="-1"></a>  cors <span class="sc">%&gt;%</span> </span>
+<span id="cb361-3"><a href="obligatory-setup.html#cb361-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(col1 <span class="sc">&lt;</span> col2) <span class="sc">%&gt;%</span> </span>
+<span id="cb361-4"><a href="obligatory-setup.html#cb361-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb361-5"><a href="obligatory-setup.html#cb361-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> col1, <span class="at">y =</span> col2) <span class="sc">+</span></span>
+<span id="cb361-6"><a href="obligatory-setup.html#cb361-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> cor), <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb361-7"><a href="obligatory-setup.html#cb361-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">number</span>(cor, <span class="at">accuracy =</span> <span class="fl">0.1</span>))) <span class="sc">+</span></span>
+<span id="cb361-8"><a href="obligatory-setup.html#cb361-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb361-9"><a href="obligatory-setup.html#cb361-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">&#39;E&#39;</span>, <span class="at">direction =</span> <span class="dv">1</span>, <span class="at">begin =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb361-10"><a href="obligatory-setup.html#cb361-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb361-11"><a href="obligatory-setup.html#cb361-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb361-12"><a href="obligatory-setup.html#cb361-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb361-13"><a href="obligatory-setup.html#cb361-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb361-14"><a href="obligatory-setup.html#cb361-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb361-15"><a href="obligatory-setup.html#cb361-15" aria-hidden="true" tabindex="-1"></a>p_cors</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/15-corrr-1.png" width="672" /></p>
 </div>
             </section>
