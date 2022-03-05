@@ -114,9 +114,9 @@ If you would like to present, please add your name next to a chapter using the [
 - 2022-02-11	8. Feature engineering with recipes: Federica Gazzelloni	
 - 2022-02-18	9. Judging model effectiveness: Steve Charlesworth	
 - 2022-02-25	10. Resampling for evaluating performance: Brandon Hurr	
-- 2022-03-04	11. Comparing models with resampling: TBD	
-- 2022-03-11	12. Model tuning and the danger of overfitting: TBD	
-- 2022-03-18	13. Grid search: TBD	
+- 2022-03-04	11. Comparing models with resampling: All	
+- 2022-03-11	12. Model tuning and the danger of overfitting: Ryan Metcalf	
+- 2022-03-18	13. Grid search: Laura Rose	
 - 2022-03-25	14. Iterative search: TBD	
 - 2022-04-01	15. Screening many models: TBD	
 - 2022-04-08	16. Encoding categorical data: Federica Gazzelloni	
