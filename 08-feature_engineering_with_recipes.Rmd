@@ -581,12 +581,18 @@ https://thatdatatho.com/tutorial-about-magrittrs-pipe-operator-and-placeholders/
 
 ### Cohort 4
 
-`r knitr::include_url("https://www.youtube.com/embed/URL")`
+`r knitr::include_url("https://www.youtube.com/embed/ecOWidSqsAQ")`
 
 <details>
   <summary> Meeting chat log </summary>
   
 ```
-LOG
+00:38:40	Ryan Metcalf:	After loading tidy models package, I ran `recipes::step` and reviewed the drop downs. This doesn’t directly answer your question….but may give some breadcrumbs for further reading. Maybe?
+00:39:08	Ryan Metcalf:	@Laura, what was the other package you mentioned? GAM?
+00:39:20	Laura Rose:	thanks. I wonder if it's not integrated with tidymodels...the s() function that is
+00:39:28	Laura Rose:	yeah there's mgcv and gam
+00:39:33	Laura Rose:	I think
+00:39:44	Laura Rose:	maybe it's mcgv
+00:48:19	Isabella Velásquez:	Thank you!
 ```
 </details>

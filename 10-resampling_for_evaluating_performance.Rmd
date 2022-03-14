@@ -440,12 +440,18 @@ where they save the model results.
 
 ### Cohort 4
 
-`r knitr::include_url("https://www.youtube.com/embed/URL")`
+`r knitr::include_url("https://www.youtube.com/embed/6t11D9uSJE8")`
 
 <details>
   <summary> Meeting chat log </summary>
   
 ```
-LOG
+00:48:26	Federica Gazzelloni:	laura
+00:50:36	Federica Gazzelloni:	Hi @priyanka!
+00:51:44	priyanka gagneja:	Hi Federica, I was interested in topic particularly.. so I decided to jump in :) for one off calls ..hope that's ok
+00:51:52	Federica Gazzelloni:	thanks!
+00:52:08	Federica Gazzelloni:	sure of course!
+00:52:38	Ryan Metcalf:	Rolling Forecasting would be similar to Weather Prediction, correct? Using time series data. I’m imagining the radar prediction into the future.
+00:52:50	Federica Gazzelloni:	yep
 ```
 </details>

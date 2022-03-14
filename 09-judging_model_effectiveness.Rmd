@@ -297,12 +297,12 @@ best_models_binary %>%
 
 ### Cohort 4
 
-`r knitr::include_url("https://www.youtube.com/embed/URL")`
+`r knitr::include_url("https://www.youtube.com/embed/NjYQJ7_HvRQ")`
 
 <details>
   <summary> Meeting chat log </summary>
   
 ```
-LOG
+00:08:59	Isabella Velásquez:	https://twitter.com/WeAreRLadies
 ```
 </details>
