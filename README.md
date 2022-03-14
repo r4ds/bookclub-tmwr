@@ -105,9 +105,6 @@ If you would like to present, please add your name next to a chapter using the [
 - 2021-12-17	2. A tidyverse primer: Brandon Hurr	
 - 2022-01-07	3. A review of R modeling fundamentals: AL Brown	
 - 2022-01-14	4. The Ames housing data: Laura Prado	
-
-</details>
-
 - 2022-01-21	5. Spending our data: AL Brown	
 - 2022-01-28	6. Fitting models with parsnip: Laura Rose	
 - 2022-02-04	7. A model workflow: Isabella	
@@ -116,6 +113,9 @@ If you would like to present, please add your name next to a chapter using the [
 - 2022-02-25	10. Resampling for evaluating performance: Brandon Hurr	
 - 2022-03-04	11. Comparing models with resampling: TBD	
 - 2022-03-11	12. Model tuning and the danger of overfitting: TBD	
+
+</details>
+
 - 2022-03-18	13. Grid search: TBD	
 - 2022-03-25	14. Iterative search: TBD	
 - 2022-04-01	15. Screening many models: TBD	
