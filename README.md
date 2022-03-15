@@ -117,7 +117,7 @@ If you would like to present, please add your name next to a chapter using the [
 </details>
 
 - 2022-03-18	13. Grid search: Laura Rose	
-- 2022-03-25	14. Iterative search: TBD	
+- 2022-03-25	14. Iterative search: Steve Charlesworth
 - 2022-04-01	15. Screening many models: TBD	
 - 2022-04-08	16. Encoding categorical data: Federica Gazzelloni	
 - 2022-04-15	17. Dimensionality reduction: TBD	
