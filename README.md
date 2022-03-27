@@ -125,7 +125,7 @@ If you would like to present, please add your name next to a chapter using the [
 - 2022-05-06	18. Explaining models and predictions: TBD
 - 2022-05-13	19. When should you trust your predictions: TBD
 - 2022-05-20	20. Ensembles of models: TBD
-- 2022-05-27	21. Inferential analysis	Federica Gazzelloni
+- 2022-05-27	21. Inferential analysis: Federica Gazzelloni
 
 <hr>  
 
