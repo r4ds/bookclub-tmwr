@@ -44,8 +44,16 @@ A previous Tidy Tuesday dataset is used for demonstration. References:
 - [Tidy Tuesday description](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-01-28/readme.md)
 - [Data source](https://data.sfgov.org/City-Infrastructure/Street-Tree-List/tkzw-k3nq)
 
+```{r 07_cache_sf_trees, include = FALSE}
+# saveRDS(sf_trees, here::here("data", "07_sf_trees.rds"))
+sf_trees <- readRDS(here::here("data", "07_sf_trees.rds"))
+```
+
 ```{r 08_read_sf_trees}
 sf_trees <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-28/sf_trees.csv')
+```
+
+```{r 08_head_sf_trees}
 kableExtra::kable(head(sf_trees, 10)) %>% kableExtra::scroll_box(width = '100%')
 ```
 

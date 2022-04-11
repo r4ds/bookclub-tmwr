@@ -49,11 +49,20 @@ In many instances, random splitting is not suitable. This includes datasets that
 
 Splitting methods suited for datasets containing class imbalance should be considered. Let's consider a #Tidytuesday dataset on [Himalayan expedition members](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-09-22/readme.md), which Julia Silge recently explored [here](https://juliasilge.com/blog/himalayan-climbing/) using **{tidymodels}**. 
 
-```{r skim-05, message=FALSE}
+```{r 05-load-members, include = FALSE}
+library(tidyverse)
+library(skimr)
+# saveRDS(members, here::here("data", "05_members.rds"))
+members <- readRDS(here::here("data", "05_members.rds"))
+```
+
+```{r skim-05a, message=FALSE, eval = FALSE}
 library(tidyverse)
 library(skimr)
 members <- read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-09-22/members.csv") 
+```
 
+```{r skim-05b, message = FALSE}
 skim(members)
 ```
 
