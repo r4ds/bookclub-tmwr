@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>21.3 {infer} for simple, high level hypothesis testing | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="21.3 {infer} for simple, high level hypothesis testing | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
@@ -24,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-03-14" />
+<meta name="date" content="2022-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="tidy-method-from-the-broom-package.html"/>
 <link rel="next" href="reg_intervals-from-rsample.html"/>
-<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -573,24 +571,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div id="p-value-for-idependence-based-on-simulation-with-permutation" class="section level3 hasAnchor" number="21.3.1">
 <h3><span class="header-section-number">21.3.1</span> p value for idependence based on simulation with permutation<a href="infer-for-simple-high-level-hypothesis-testing.html#p-value-for-idependence-based-on-simulation-with-permutation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb454-1" aria-hidden="true" tabindex="-1"></a>observed <span class="ot">&lt;-</span> race_top_results <span class="sc">%&gt;%</span></span>
-<span id="cb454-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb454-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(avg_velocity <span class="sc">~</span> avg_elevation_gain) <span class="sc">%&gt;%</span></span>
-<span id="cb454-3"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb454-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">&quot;correlation&quot;</span>)</span>
-<span id="cb454-4"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb454-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb454-5"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb454-5" aria-hidden="true" tabindex="-1"></a>observed</span></code></pre></div>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb456-1" aria-hidden="true" tabindex="-1"></a>observed <span class="ot">&lt;-</span> race_top_results <span class="sc">%&gt;%</span></span>
+<span id="cb456-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb456-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(avg_velocity <span class="sc">~</span> avg_elevation_gain) <span class="sc">%&gt;%</span></span>
+<span id="cb456-3"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb456-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">&quot;correlation&quot;</span>)</span>
+<span id="cb456-4"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb456-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb456-5"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb456-5" aria-hidden="true" tabindex="-1"></a>observed</span></code></pre></div>
 <pre><code>## Response: avg_velocity (numeric)
 ## Explanatory: avg_elevation_gain (numeric)
 ## # A tibble: 1 × 1
 ##     stat
 ##    &lt;dbl&gt;
 ## 1 -0.561</code></pre>
-<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb456-1" aria-hidden="true" tabindex="-1"></a>permuted <span class="ot">&lt;-</span> race_top_results <span class="sc">%&gt;%</span></span>
-<span id="cb456-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb456-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(avg_velocity <span class="sc">~</span> avg_elevation_gain) <span class="sc">%&gt;%</span></span>
-<span id="cb456-3"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb456-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesise</span>(<span class="at">null =</span> <span class="st">&quot;independence&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb456-4"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb456-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">&quot;permute&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb456-5"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb456-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">&quot;correlation&quot;</span>)</span>
-<span id="cb456-6"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb456-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb456-7"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb456-7" aria-hidden="true" tabindex="-1"></a>permuted</span></code></pre></div>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb458-1" aria-hidden="true" tabindex="-1"></a>permuted <span class="ot">&lt;-</span> race_top_results <span class="sc">%&gt;%</span></span>
+<span id="cb458-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb458-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(avg_velocity <span class="sc">~</span> avg_elevation_gain) <span class="sc">%&gt;%</span></span>
+<span id="cb458-3"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb458-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesise</span>(<span class="at">null =</span> <span class="st">&quot;independence&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb458-4"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb458-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">&quot;permute&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb458-5"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb458-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">&quot;correlation&quot;</span>)</span>
+<span id="cb458-6"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb458-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb458-7"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb458-7" aria-hidden="true" tabindex="-1"></a>permuted</span></code></pre></div>
 <pre><code>## Response: avg_velocity (numeric)
 ## Explanatory: avg_elevation_gain (numeric)
 ## Null Hypothesis: independence
@@ -608,11 +606,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9         9 -0.00306
 ## 10        10 -0.0488 
 ## # … with 990 more rows</code></pre>
-<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb458-1" aria-hidden="true" tabindex="-1"></a>permuted <span class="sc">%&gt;%</span></span>
-<span id="cb458-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb458-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">visualize</span>() <span class="sc">+</span></span>
-<span id="cb458-3"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb458-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_p_value</span>(observed, <span class="at">direction =</span> <span class="st">&quot;two_sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb460-1" aria-hidden="true" tabindex="-1"></a>permuted <span class="sc">%&gt;%</span></span>
+<span id="cb460-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb460-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">visualize</span>() <span class="sc">+</span></span>
+<span id="cb460-3"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb460-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_p_value</span>(observed, <span class="at">direction =</span> <span class="st">&quot;two_sided&quot;</span>)</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/21-infer-independence-p-1.png" width="672" /></p>
-<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb459-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_p_value</span>(permuted, observed, <span class="at">direction =</span> <span class="st">&quot;two_sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb461-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_p_value</span>(permuted, observed, <span class="at">direction =</span> <span class="st">&quot;two_sided&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
 ##   p_value
 ##     &lt;dbl&gt;
@@ -620,33 +618,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="confidence-interval-for-correlation-based-on-simulation-with-bootstrapping" class="section level3 hasAnchor" number="21.3.2">
 <h3><span class="header-section-number">21.3.2</span> Confidence interval for correlation based on simulation with bootstrapping<a href="infer-for-simple-high-level-hypothesis-testing.html#confidence-interval-for-correlation-based-on-simulation-with-bootstrapping" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb461-1" aria-hidden="true" tabindex="-1"></a>bootstrapped <span class="ot">&lt;-</span> race_top_results <span class="sc">%&gt;%</span></span>
-<span id="cb461-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb461-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(avg_velocity <span class="sc">~</span> avg_elevation_gain) <span class="sc">%&gt;%</span></span>
-<span id="cb461-3"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb461-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">&quot;bootstrap&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb461-4"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb461-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">&quot;correlation&quot;</span>)</span>
-<span id="cb461-5"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb461-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb461-6"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb461-6" aria-hidden="true" tabindex="-1"></a>bootstrapped <span class="sc">%&gt;%</span></span>
-<span id="cb461-7"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb461-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">visualize</span>() <span class="sc">+</span></span>
-<span id="cb461-8"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb461-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_confidence_interval</span>(<span class="fu">get_confidence_interval</span>(bootstrapped))</span></code></pre></div>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb463-1" aria-hidden="true" tabindex="-1"></a>bootstrapped <span class="ot">&lt;-</span> race_top_results <span class="sc">%&gt;%</span></span>
+<span id="cb463-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb463-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(avg_velocity <span class="sc">~</span> avg_elevation_gain) <span class="sc">%&gt;%</span></span>
+<span id="cb463-3"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb463-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">&quot;bootstrap&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb463-4"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb463-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">&quot;correlation&quot;</span>)</span>
+<span id="cb463-5"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb463-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb463-6"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb463-6" aria-hidden="true" tabindex="-1"></a>bootstrapped <span class="sc">%&gt;%</span></span>
+<span id="cb463-7"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb463-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">visualize</span>() <span class="sc">+</span></span>
+<span id="cb463-8"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb463-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_confidence_interval</span>(<span class="fu">get_confidence_interval</span>(bootstrapped))</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/21-infer-correlation-ci-1.png" width="672" /></p>
 </div>
 <div id="use-theory-instead-of-simulation" class="section level3 hasAnchor" number="21.3.3">
 <h3><span class="header-section-number">21.3.3</span> Use theory instead of simulation<a href="infer-for-simple-high-level-hypothesis-testing.html#use-theory-instead-of-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb462-1" aria-hidden="true" tabindex="-1"></a>observed_t <span class="ot">&lt;-</span> race_top_results <span class="sc">%&gt;%</span></span>
-<span id="cb462-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb462-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> avg_velocity) <span class="sc">%&gt;%</span></span>
-<span id="cb462-3"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb462-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesise</span>(<span class="at">null =</span> <span class="st">&quot;point&quot;</span>, <span class="at">mu =</span> <span class="dv">7</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb462-4"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb462-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">&quot;t&quot;</span>)</span>
-<span id="cb462-5"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb462-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb462-6"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb462-6" aria-hidden="true" tabindex="-1"></a>race_top_results <span class="sc">%&gt;%</span></span>
-<span id="cb462-7"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb462-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> avg_velocity) <span class="sc">%&gt;%</span></span>
-<span id="cb462-8"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb462-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">assume</span>(<span class="st">&quot;t&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb462-9"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb462-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">visualize</span>() <span class="sc">+</span></span>
-<span id="cb462-10"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb462-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_p_value</span>(observed_t, <span class="at">direction =</span> <span class="st">&quot;two_sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb464-1" aria-hidden="true" tabindex="-1"></a>observed_t <span class="ot">&lt;-</span> race_top_results <span class="sc">%&gt;%</span></span>
+<span id="cb464-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb464-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> avg_velocity) <span class="sc">%&gt;%</span></span>
+<span id="cb464-3"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb464-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesise</span>(<span class="at">null =</span> <span class="st">&quot;point&quot;</span>, <span class="at">mu =</span> <span class="dv">7</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb464-4"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb464-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">&quot;t&quot;</span>)</span>
+<span id="cb464-5"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb464-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb464-6"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb464-6" aria-hidden="true" tabindex="-1"></a>race_top_results <span class="sc">%&gt;%</span></span>
+<span id="cb464-7"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb464-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> avg_velocity) <span class="sc">%&gt;%</span></span>
+<span id="cb464-8"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb464-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">assume</span>(<span class="st">&quot;t&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb464-9"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb464-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">visualize</span>() <span class="sc">+</span></span>
+<span id="cb464-10"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb464-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_p_value</span>(observed_t, <span class="at">direction =</span> <span class="st">&quot;two_sided&quot;</span>)</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/21-infer-t-mu-1.png" width="672" /></p>
-<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb463-1" aria-hidden="true" tabindex="-1"></a>race_top_results <span class="sc">%&gt;%</span></span>
-<span id="cb463-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb463-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> avg_velocity) <span class="sc">%&gt;%</span></span>
-<span id="cb463-3"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb463-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">assume</span>(<span class="st">&quot;t&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb463-4"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb463-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_p_value</span>(observed_t, <span class="st">&quot;two_sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb465-1" aria-hidden="true" tabindex="-1"></a>race_top_results <span class="sc">%&gt;%</span></span>
+<span id="cb465-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb465-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> avg_velocity) <span class="sc">%&gt;%</span></span>
+<span id="cb465-3"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb465-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">assume</span>(<span class="st">&quot;t&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb465-4"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb465-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_p_value</span>(observed_t, <span class="st">&quot;two_sided&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
 ##   p_value
 ##     &lt;dbl&gt;
@@ -654,41 +652,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="linear-models-with-multiple-explanatory-variables" class="section level3 hasAnchor" number="21.3.4">
 <h3><span class="header-section-number">21.3.4</span> Linear models with multiple explanatory variables<a href="infer-for-simple-high-level-hypothesis-testing.html#linear-models-with-multiple-explanatory-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb465-1" aria-hidden="true" tabindex="-1"></a>my_formula <span class="ot">&lt;-</span> <span class="fu">as.formula</span>(avg_velocity <span class="sc">~</span> aid_stations <span class="sc">+</span> participants)</span>
-<span id="cb465-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb465-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb465-3"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb465-3" aria-hidden="true" tabindex="-1"></a>observed_fit <span class="ot">&lt;-</span> race_top_results <span class="sc">%&gt;%</span></span>
-<span id="cb465-4"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb465-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(my_formula) <span class="sc">%&gt;%</span></span>
-<span id="cb465-5"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb465-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>()</span>
-<span id="cb465-6"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb465-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb465-7"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb465-7" aria-hidden="true" tabindex="-1"></a>observed_fit</span></code></pre></div>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb467-1" aria-hidden="true" tabindex="-1"></a>my_formula <span class="ot">&lt;-</span> <span class="fu">as.formula</span>(avg_velocity <span class="sc">~</span> aid_stations <span class="sc">+</span> participants)</span>
+<span id="cb467-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb467-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb467-3"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb467-3" aria-hidden="true" tabindex="-1"></a>observed_fit <span class="ot">&lt;-</span> race_top_results <span class="sc">%&gt;%</span></span>
+<span id="cb467-4"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb467-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(my_formula) <span class="sc">%&gt;%</span></span>
+<span id="cb467-5"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb467-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>()</span>
+<span id="cb467-6"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb467-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb467-7"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb467-7" aria-hidden="true" tabindex="-1"></a>observed_fit</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 2
 ##   term          estimate
 ##   &lt;chr&gt;            &lt;dbl&gt;
 ## 1 intercept     6.93    
 ## 2 aid_stations -0.0127  
 ## 3 participants  0.000432</code></pre>
-<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb467-1" aria-hidden="true" tabindex="-1"></a>permuted_fits <span class="ot">&lt;-</span> race_top_results <span class="sc">%&gt;%</span></span>
-<span id="cb467-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb467-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(my_formula) <span class="sc">%&gt;%</span></span>
-<span id="cb467-3"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb467-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesise</span>(<span class="at">null =</span> <span class="st">&quot;independence&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb467-4"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb467-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">&quot;permute&quot;</span>, <span class="at">variables =</span> <span class="fu">c</span>(aid_stations, participants)) <span class="sc">%&gt;%</span></span>
-<span id="cb467-5"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb467-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>()</span>
-<span id="cb467-6"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb467-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb467-7"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb467-7" aria-hidden="true" tabindex="-1"></a>bootstrapped_fits <span class="ot">&lt;-</span> race_top_results <span class="sc">%&gt;%</span></span>
-<span id="cb467-8"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb467-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(my_formula) <span class="sc">%&gt;%</span></span>
-<span id="cb467-9"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb467-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">2000</span>, <span class="at">type =</span> <span class="st">&quot;bootstrap&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb467-10"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb467-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>()</span></code></pre></div>
-<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb468-1" aria-hidden="true" tabindex="-1"></a>permuted_fits <span class="sc">%&gt;%</span> <span class="fu">get_p_value</span>(observed_fit, <span class="st">&quot;two_sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb469-1" aria-hidden="true" tabindex="-1"></a>permuted_fits <span class="ot">&lt;-</span> race_top_results <span class="sc">%&gt;%</span></span>
+<span id="cb469-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb469-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(my_formula) <span class="sc">%&gt;%</span></span>
+<span id="cb469-3"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb469-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesise</span>(<span class="at">null =</span> <span class="st">&quot;independence&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb469-4"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb469-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">&quot;permute&quot;</span>, <span class="at">variables =</span> <span class="fu">c</span>(aid_stations, participants)) <span class="sc">%&gt;%</span></span>
+<span id="cb469-5"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb469-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>()</span>
+<span id="cb469-6"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb469-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb469-7"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb469-7" aria-hidden="true" tabindex="-1"></a>bootstrapped_fits <span class="ot">&lt;-</span> race_top_results <span class="sc">%&gt;%</span></span>
+<span id="cb469-8"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb469-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(my_formula) <span class="sc">%&gt;%</span></span>
+<span id="cb469-9"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb469-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">2000</span>, <span class="at">type =</span> <span class="st">&quot;bootstrap&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb469-10"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb469-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb470-1" aria-hidden="true" tabindex="-1"></a>permuted_fits <span class="sc">%&gt;%</span> <span class="fu">get_p_value</span>(observed_fit, <span class="st">&quot;two_sided&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 2
 ##   term         p_value
 ##   &lt;chr&gt;          &lt;dbl&gt;
 ## 1 aid_stations   0.058
 ## 2 intercept      0.412
 ## 3 participants   0.004</code></pre>
-<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb470-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(permuted_fits) <span class="sc">+</span></span>
-<span id="cb470-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb470-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_p_value</span>(observed_fit, <span class="st">&quot;two_sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb472-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(permuted_fits) <span class="sc">+</span></span>
+<span id="cb472-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb472-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_p_value</span>(observed_fit, <span class="st">&quot;two_sided&quot;</span>)</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/21-infer-fit-permute-eval-1.png" width="672" /></p>
-<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb471-1" aria-hidden="true" tabindex="-1"></a>bootstrapped_fits <span class="sc">%&gt;%</span></span>
-<span id="cb471-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb471-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_confidence_interval</span>(<span class="at">type =</span> <span class="st">&quot;percentile&quot;</span>, <span class="at">point_estimate =</span> observed_fit)</span></code></pre></div>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb473-1" aria-hidden="true" tabindex="-1"></a>bootstrapped_fits <span class="sc">%&gt;%</span></span>
+<span id="cb473-2"><a href="infer-for-simple-high-level-hypothesis-testing.html#cb473-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_confidence_interval</span>(<span class="at">type =</span> <span class="st">&quot;percentile&quot;</span>, <span class="at">point_estimate =</span> observed_fit)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 3
 ##   term          lower_ci upper_ci
 ##   &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;

@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>13.3 Finalizing the model | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="13.3 Finalizing the model | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
@@ -24,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-03-14" />
+<meta name="date" content="2022-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="evaluating-the-grid.html"/>
 <link rel="next" href="tools-for-efficient-grid-search.html"/>
-<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -572,52 +570,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>manually choose parameters, or</p></li>
 <li><p><code>select_best()</code></p></li>
 </ul>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="finalizing-the-model.html#cb309-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select_best</span>(mlp_sfd_tune, <span class="at">metric =</span> <span class="st">&quot;iic&quot;</span>)</span>
-<span id="cb309-2"><a href="finalizing-the-model.html#cb309-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb309-3"><a href="finalizing-the-model.html#cb309-3" aria-hidden="true" tabindex="-1"></a><span class="co"># or, a manual selection that corresponds to the regular method</span></span>
-<span id="cb309-4"><a href="finalizing-the-model.html#cb309-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb309-5"><a href="finalizing-the-model.html#cb309-5" aria-hidden="true" tabindex="-1"></a>reg_param <span class="ot">&lt;-</span> </span>
-<span id="cb309-6"><a href="finalizing-the-model.html#cb309-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
-<span id="cb309-7"><a href="finalizing-the-model.html#cb309-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">num_comp =</span> <span class="dv">0</span>,</span>
-<span id="cb309-8"><a href="finalizing-the-model.html#cb309-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">epochs =</span> <span class="dv">200</span>,</span>
-<span id="cb309-9"><a href="finalizing-the-model.html#cb309-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">hidden_units =</span> <span class="dv">5</span>,</span>
-<span id="cb309-10"><a href="finalizing-the-model.html#cb309-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">penalty =</span> <span class="dv">1</span>   <span class="co"># log10</span></span>
-<span id="cb309-11"><a href="finalizing-the-model.html#cb309-11" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="finalizing-the-model.html#cb311-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select_best</span>(mlp_sfd_tune, <span class="at">metric =</span> <span class="st">&quot;iic&quot;</span>)</span>
+<span id="cb311-2"><a href="finalizing-the-model.html#cb311-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb311-3"><a href="finalizing-the-model.html#cb311-3" aria-hidden="true" tabindex="-1"></a><span class="co"># or, a manual selection that corresponds to the regular method</span></span>
+<span id="cb311-4"><a href="finalizing-the-model.html#cb311-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb311-5"><a href="finalizing-the-model.html#cb311-5" aria-hidden="true" tabindex="-1"></a>reg_param <span class="ot">&lt;-</span> </span>
+<span id="cb311-6"><a href="finalizing-the-model.html#cb311-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb311-7"><a href="finalizing-the-model.html#cb311-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">num_comp =</span> <span class="dv">0</span>,</span>
+<span id="cb311-8"><a href="finalizing-the-model.html#cb311-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">epochs =</span> <span class="dv">200</span>,</span>
+<span id="cb311-9"><a href="finalizing-the-model.html#cb311-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">hidden_units =</span> <span class="dv">5</span>,</span>
+<span id="cb311-10"><a href="finalizing-the-model.html#cb311-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">penalty =</span> <span class="dv">1</span>   <span class="co"># log10</span></span>
+<span id="cb311-11"><a href="finalizing-the-model.html#cb311-11" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <pre><code># A tibble: 1 x 5
   hidden_units penalty epochs num_comp .config              
          &lt;int&gt;   &lt;dbl&gt;  &lt;int&gt;    &lt;int&gt; &lt;chr&gt;                
 1            9 0.00780    158       14 Preprocessor06_Model1</code></pre>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="finalizing-the-model.html#cb311-1" aria-hidden="true" tabindex="-1"></a>final_sfd_wflow <span class="ot">&lt;-</span> </span>
-<span id="cb311-2"><a href="finalizing-the-model.html#cb311-2" aria-hidden="true" tabindex="-1"></a>  mlp_wflow <span class="sc">%&gt;%</span> </span>
-<span id="cb311-3"><a href="finalizing-the-model.html#cb311-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_workflow</span>(<span class="fu">select_best</span>(mlp_sfd_tune, <span class="at">metric =</span> <span class="st">&quot;rmse&quot;</span>)) </span></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="finalizing-the-model.html#cb313-1" aria-hidden="true" tabindex="-1"></a>final_sfd_wflow <span class="ot">&lt;-</span> </span>
+<span id="cb313-2"><a href="finalizing-the-model.html#cb313-2" aria-hidden="true" tabindex="-1"></a>  mlp_wflow <span class="sc">%&gt;%</span> </span>
+<span id="cb313-3"><a href="finalizing-the-model.html#cb313-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_workflow</span>(<span class="fu">select_best</span>(mlp_sfd_tune, <span class="at">metric =</span> <span class="st">&quot;rmse&quot;</span>)) </span></code></pre></div>
 <p>Now the model can fit the <em>entire training</em> set:</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="finalizing-the-model.html#cb312-1" aria-hidden="true" tabindex="-1"></a>final_sfd_fit <span class="ot">&lt;-</span> </span>
-<span id="cb312-2"><a href="finalizing-the-model.html#cb312-2" aria-hidden="true" tabindex="-1"></a>  final_sfd_wflow <span class="sc">%&gt;%</span> </span>
-<span id="cb312-3"><a href="finalizing-the-model.html#cb312-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(Chicago_train)</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="finalizing-the-model.html#cb314-1" aria-hidden="true" tabindex="-1"></a>final_sfd_fit <span class="ot">&lt;-</span> </span>
+<span id="cb314-2"><a href="finalizing-the-model.html#cb314-2" aria-hidden="true" tabindex="-1"></a>  final_sfd_wflow <span class="sc">%&gt;%</span> </span>
+<span id="cb314-3"><a href="finalizing-the-model.html#cb314-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(Chicago_train)</span></code></pre></div>
 <p>This object can now be used to make future predictions on new data.</p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="finalizing-the-model.html#cb313-1" aria-hidden="true" tabindex="-1"></a>final_sfd_fit <span class="sc">%&gt;%</span> </span>
-<span id="cb313-2"><a href="finalizing-the-model.html#cb313-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">predict</span>(<span class="at">new_data =</span> Chicago_test) <span class="sc">%&gt;%</span> </span>
-<span id="cb313-3"><a href="finalizing-the-model.html#cb313-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">bind_cols</span>(Chicago_test) <span class="sc">%&gt;%</span> </span>
-<span id="cb313-4"><a href="finalizing-the-model.html#cb313-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">rmse</span>(<span class="at">truth =</span> ridership, <span class="at">estimate =</span> .pred)</span></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="finalizing-the-model.html#cb315-1" aria-hidden="true" tabindex="-1"></a>final_sfd_fit <span class="sc">%&gt;%</span> </span>
+<span id="cb315-2"><a href="finalizing-the-model.html#cb315-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">predict</span>(<span class="at">new_data =</span> Chicago_test) <span class="sc">%&gt;%</span> </span>
+<span id="cb315-3"><a href="finalizing-the-model.html#cb315-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">bind_cols</span>(Chicago_test) <span class="sc">%&gt;%</span> </span>
+<span id="cb315-4"><a href="finalizing-the-model.html#cb315-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">rmse</span>(<span class="at">truth =</span> ridership, <span class="at">estimate =</span> .pred)</span></code></pre></div>
 <pre><code># A tibble: 1 x 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 1 rmse    standard        3.01</code></pre>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="finalizing-the-model.html#cb315-1" aria-hidden="true" tabindex="-1"></a>final_sfd_fit <span class="sc">%&gt;%</span> </span>
-<span id="cb315-2"><a href="finalizing-the-model.html#cb315-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">predict</span>(<span class="at">new_data =</span> Chicago_test) <span class="sc">%&gt;%</span> </span>
-<span id="cb315-3"><a href="finalizing-the-model.html#cb315-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">bind_cols</span>(Chicago_test) <span class="sc">%&gt;%</span> </span>
-<span id="cb315-4"><a href="finalizing-the-model.html#cb315-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">weekday =</span> <span class="fu">wday</span>(date, </span>
-<span id="cb315-5"><a href="finalizing-the-model.html#cb315-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">label =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb315-6"><a href="finalizing-the-model.html#cb315-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ggplot</span>(<span class="fu">aes</span>(ridership, </span>
-<span id="cb315-7"><a href="finalizing-the-model.html#cb315-7" aria-hidden="true" tabindex="-1"></a>              .pred, </span>
-<span id="cb315-8"><a href="finalizing-the-model.html#cb315-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> weekday)) <span class="sc">+</span></span>
-<span id="cb315-9"><a href="finalizing-the-model.html#cb315-9" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb315-10"><a href="finalizing-the-model.html#cb315-10" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_abline</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb315-11"><a href="finalizing-the-model.html#cb315-11" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>) <span class="sc">+</span></span>
-<span id="cb315-12"><a href="finalizing-the-model.html#cb315-12" aria-hidden="true" tabindex="-1"></a>   <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
-<span id="cb315-13"><a href="finalizing-the-model.html#cb315-13" aria-hidden="true" tabindex="-1"></a>   <span class="fu">expand_limits</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">0</span>)</span>
-<span id="cb315-14"><a href="finalizing-the-model.html#cb315-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb315-15"><a href="finalizing-the-model.html#cb315-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;images/13_test_performance.png&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="finalizing-the-model.html#cb317-1" aria-hidden="true" tabindex="-1"></a>final_sfd_fit <span class="sc">%&gt;%</span> </span>
+<span id="cb317-2"><a href="finalizing-the-model.html#cb317-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">predict</span>(<span class="at">new_data =</span> Chicago_test) <span class="sc">%&gt;%</span> </span>
+<span id="cb317-3"><a href="finalizing-the-model.html#cb317-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">bind_cols</span>(Chicago_test) <span class="sc">%&gt;%</span> </span>
+<span id="cb317-4"><a href="finalizing-the-model.html#cb317-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">weekday =</span> <span class="fu">wday</span>(date, </span>
+<span id="cb317-5"><a href="finalizing-the-model.html#cb317-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">label =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb317-6"><a href="finalizing-the-model.html#cb317-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ggplot</span>(<span class="fu">aes</span>(ridership, </span>
+<span id="cb317-7"><a href="finalizing-the-model.html#cb317-7" aria-hidden="true" tabindex="-1"></a>              .pred, </span>
+<span id="cb317-8"><a href="finalizing-the-model.html#cb317-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> weekday)) <span class="sc">+</span></span>
+<span id="cb317-9"><a href="finalizing-the-model.html#cb317-9" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb317-10"><a href="finalizing-the-model.html#cb317-10" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_abline</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb317-11"><a href="finalizing-the-model.html#cb317-11" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>) <span class="sc">+</span></span>
+<span id="cb317-12"><a href="finalizing-the-model.html#cb317-12" aria-hidden="true" tabindex="-1"></a>   <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb317-13"><a href="finalizing-the-model.html#cb317-13" aria-hidden="true" tabindex="-1"></a>   <span class="fu">expand_limits</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">0</span>)</span>
+<span id="cb317-14"><a href="finalizing-the-model.html#cb317-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb317-15"><a href="finalizing-the-model.html#cb317-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;images/13_test_performance.png&quot;</span>)</span></code></pre></div>
 <p><img src="images/13_test_performance.png" /></p>
 <p>I learned here that the <strong>recipe</strong> must exclude the dependent variable for the <code>predict()</code> to run on test data.</p>
 </div>

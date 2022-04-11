@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>11.1 Calculate performance statistics | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="11.1 Calculate performance statistics | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
@@ -24,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-03-14" />
+<meta name="date" content="2022-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="comparing-models-with-resampling.html"/>
 <link rel="next" href="calculate-performance-statistics-workflowsets.html"/>
-<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -566,15 +564,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="calculate-performance-statistics" class="section level2 hasAnchor" number="11.1">
 <h2><span class="header-section-number">11.1</span> Calculate performance statistics<a href="calculate-performance-statistics.html#calculate-performance-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="calculate-performance-statistics.html#cb245-1" aria-hidden="true" tabindex="-1"></a>my_cool_model_rsq <span class="ot">&lt;-</span> my_cool_model <span class="sc">%&gt;%</span> </span>
-<span id="cb245-2"><a href="calculate-performance-statistics.html#cb245-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>(<span class="at">summarize =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb245-3"><a href="calculate-performance-statistics.html#cb245-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">&quot;rsq&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb245-4"><a href="calculate-performance-statistics.html#cb245-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, <span class="at">my_cool_model =</span> .estimate)</span>
-<span id="cb245-5"><a href="calculate-performance-statistics.html#cb245-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb245-6"><a href="calculate-performance-statistics.html#cb245-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Repeat that for more models, then:</span></span>
-<span id="cb245-7"><a href="calculate-performance-statistics.html#cb245-7" aria-hidden="true" tabindex="-1"></a>rsq_estimates <span class="ot">&lt;-</span> my_cool_model_rsq <span class="sc">%&gt;%</span> </span>
-<span id="cb245-8"><a href="calculate-performance-statistics.html#cb245-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(my_other_model_rsq) <span class="sc">%&gt;%</span> </span>
-<span id="cb245-9"><a href="calculate-performance-statistics.html#cb245-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(my_other_other_model_rsq)</span></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="calculate-performance-statistics.html#cb247-1" aria-hidden="true" tabindex="-1"></a>my_cool_model_rsq <span class="ot">&lt;-</span> my_cool_model <span class="sc">%&gt;%</span> </span>
+<span id="cb247-2"><a href="calculate-performance-statistics.html#cb247-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>(<span class="at">summarize =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb247-3"><a href="calculate-performance-statistics.html#cb247-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">&quot;rsq&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb247-4"><a href="calculate-performance-statistics.html#cb247-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, <span class="at">my_cool_model =</span> .estimate)</span>
+<span id="cb247-5"><a href="calculate-performance-statistics.html#cb247-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb247-6"><a href="calculate-performance-statistics.html#cb247-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Repeat that for more models, then:</span></span>
+<span id="cb247-7"><a href="calculate-performance-statistics.html#cb247-7" aria-hidden="true" tabindex="-1"></a>rsq_estimates <span class="ot">&lt;-</span> my_cool_model_rsq <span class="sc">%&gt;%</span> </span>
+<span id="cb247-8"><a href="calculate-performance-statistics.html#cb247-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(my_other_model_rsq) <span class="sc">%&gt;%</span> </span>
+<span id="cb247-9"><a href="calculate-performance-statistics.html#cb247-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(my_other_other_model_rsq)</span></code></pre></div>
 </div>
             </section>
 

@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>18.6 Global Explanations from Local Explanations | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="18.6 Global Explanations from Local Explanations | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
@@ -24,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-03-14" />
+<meta name="date" content="2022-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="global-explanations.html"/>
 <link rel="next" href="references-3.html"/>
-<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -575,14 +573,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <img src="images/18_boost_profile.png" /></li>
 </ul>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="global-explanations-from-local-explanations.html#cb400-1" aria-hidden="true" tabindex="-1"></a>boost_profile <span class="ot">&lt;-</span> <span class="fu">model_profile</span>(explainer_boost,</span>
-<span id="cb400-2"><a href="global-explanations-from-local-explanations.html#cb400-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">N =</span> <span class="dv">1000</span>, </span>
-<span id="cb400-3"><a href="global-explanations-from-local-explanations.html#cb400-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">variables =</span> <span class="st">&quot;rusher_age&quot;</span>, </span>
-<span id="cb400-4"><a href="global-explanations-from-local-explanations.html#cb400-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">groups =</span> <span class="st">&quot;position&quot;</span>)</span>
-<span id="cb400-5"><a href="global-explanations-from-local-explanations.html#cb400-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb400-6"><a href="global-explanations-from-local-explanations.html#cb400-6" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="st">&quot;images/18_boost_profile.png&quot;</span>)</span>
-<span id="cb400-7"><a href="global-explanations-from-local-explanations.html#cb400-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(boost_profile)</span>
-<span id="cb400-8"><a href="global-explanations-from-local-explanations.html#cb400-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="global-explanations-from-local-explanations.html#cb402-1" aria-hidden="true" tabindex="-1"></a>boost_profile <span class="ot">&lt;-</span> <span class="fu">model_profile</span>(explainer_boost,</span>
+<span id="cb402-2"><a href="global-explanations-from-local-explanations.html#cb402-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">N =</span> <span class="dv">1000</span>, </span>
+<span id="cb402-3"><a href="global-explanations-from-local-explanations.html#cb402-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">variables =</span> <span class="st">&quot;rusher_age&quot;</span>, </span>
+<span id="cb402-4"><a href="global-explanations-from-local-explanations.html#cb402-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">groups =</span> <span class="st">&quot;position&quot;</span>)</span>
+<span id="cb402-5"><a href="global-explanations-from-local-explanations.html#cb402-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb402-6"><a href="global-explanations-from-local-explanations.html#cb402-6" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="st">&quot;images/18_boost_profile.png&quot;</span>)</span>
+<span id="cb402-7"><a href="global-explanations-from-local-explanations.html#cb402-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(boost_profile)</span>
+<span id="cb402-8"><a href="global-explanations-from-local-explanations.html#cb402-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 </div>
             </section>
 

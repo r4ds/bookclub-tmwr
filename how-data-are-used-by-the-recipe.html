@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.4 HOW DATA ARE USED BY THE RECIPE | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.4 HOW DATA ARE USED BY THE RECIPE | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
@@ -24,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-03-14" />
+<meta name="date" content="2022-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="using-recipes.html"/>
 <link rel="next" href="skipping-steps-for-new-data.html"/>
-<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -581,12 +579,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>step_dummy() for converting a factor predictor to a numeric format (<em>one_hot</em> argument to include the reference variable)</li>
 </ul>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="how-data-are-used-by-the-recipe.html#cb189-1" aria-hidden="true" tabindex="-1"></a>simple_ames <span class="ot">&lt;-</span> </span>
-<span id="cb189-2"><a href="how-data-are-used-by-the-recipe.html#cb189-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(Sale_Price <span class="sc">~</span> Neighborhood <span class="sc">+</span> Gr_Liv_Area <span class="sc">+</span> Year_Built <span class="sc">+</span> Bldg_Type,</span>
-<span id="cb189-3"><a href="how-data-are-used-by-the-recipe.html#cb189-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> ames_train) <span class="sc">%&gt;%</span></span>
-<span id="cb189-4"><a href="how-data-are-used-by-the-recipe.html#cb189-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_log</span>(Gr_Liv_Area, <span class="at">base =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb189-5"><a href="how-data-are-used-by-the-recipe.html#cb189-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_other</span>(Neighborhood, <span class="at">threshold =</span> <span class="fl">0.01</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb189-6"><a href="how-data-are-used-by-the-recipe.html#cb189-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="how-data-are-used-by-the-recipe.html#cb191-1" aria-hidden="true" tabindex="-1"></a>simple_ames <span class="ot">&lt;-</span> </span>
+<span id="cb191-2"><a href="how-data-are-used-by-the-recipe.html#cb191-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(Sale_Price <span class="sc">~</span> Neighborhood <span class="sc">+</span> Gr_Liv_Area <span class="sc">+</span> Year_Built <span class="sc">+</span> Bldg_Type,</span>
+<span id="cb191-3"><a href="how-data-are-used-by-the-recipe.html#cb191-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> ames_train) <span class="sc">%&gt;%</span></span>
+<span id="cb191-4"><a href="how-data-are-used-by-the-recipe.html#cb191-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_log</span>(Gr_Liv_Area, <span class="at">base =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb191-5"><a href="how-data-are-used-by-the-recipe.html#cb191-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_other</span>(Neighborhood, <span class="at">threshold =</span> <span class="fl">0.01</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb191-6"><a href="how-data-are-used-by-the-recipe.html#cb191-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>())</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li><strong>INTERACTION TERMS</strong></li>
 </ol>
@@ -597,25 +595,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>one predictor has an effect on the outcome that is contingent on one or more other predictors</p>
 </blockquote>
 <p>Numerically, an interaction term between predictors is encoded as their product.</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="how-data-are-used-by-the-recipe.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ames_train, <span class="fu">aes</span>(<span class="at">x =</span> Gr_Liv_Area, <span class="at">y =</span> Sale_Price)) <span class="sc">+</span> </span>
-<span id="cb190-2"><a href="how-data-are-used-by-the-recipe.html#cb190-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> .<span class="dv">2</span>) <span class="sc">+</span> </span>
-<span id="cb190-3"><a href="how-data-are-used-by-the-recipe.html#cb190-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Bldg_Type) <span class="sc">+</span> </span>
-<span id="cb190-4"><a href="how-data-are-used-by-the-recipe.html#cb190-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;lightblue&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb190-5"><a href="how-data-are-used-by-the-recipe.html#cb190-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> </span>
-<span id="cb190-6"><a href="how-data-are-used-by-the-recipe.html#cb190-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span> </span>
-<span id="cb190-7"><a href="how-data-are-used-by-the-recipe.html#cb190-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Gross Living Area&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Sale Price (USD)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="how-data-are-used-by-the-recipe.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ames_train, <span class="fu">aes</span>(<span class="at">x =</span> Gr_Liv_Area, <span class="at">y =</span> Sale_Price)) <span class="sc">+</span> </span>
+<span id="cb192-2"><a href="how-data-are-used-by-the-recipe.html#cb192-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> .<span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb192-3"><a href="how-data-are-used-by-the-recipe.html#cb192-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Bldg_Type) <span class="sc">+</span> </span>
+<span id="cb192-4"><a href="how-data-are-used-by-the-recipe.html#cb192-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;lightblue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb192-5"><a href="how-data-are-used-by-the-recipe.html#cb192-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> </span>
+<span id="cb192-6"><a href="how-data-are-used-by-the-recipe.html#cb192-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span> </span>
+<span id="cb192-7"><a href="how-data-are-used-by-the-recipe.html#cb192-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Gross Living Area&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Sale Price (USD)&quot;</span>)</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/08-plot1-1.png" width="672" /></p>
 <pre><code>Sale_Price ~ Neighborhood + log10(Gr_Liv_Area) + Bldg_Type + log10(Gr_Liv_Area):Bldg_Type</code></pre>
 <p>or</p>
 <pre><code>Sale_Price ~ Neighborhood + log10(Gr_Liv_Area) * Bldg_Type </code></pre>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="how-data-are-used-by-the-recipe.html#cb193-1" aria-hidden="true" tabindex="-1"></a>simple_ames <span class="ot">&lt;-</span> </span>
-<span id="cb193-2"><a href="how-data-are-used-by-the-recipe.html#cb193-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(Sale_Price <span class="sc">~</span> Neighborhood <span class="sc">+</span> Gr_Liv_Area <span class="sc">+</span> Year_Built <span class="sc">+</span> Bldg_Type,</span>
-<span id="cb193-3"><a href="how-data-are-used-by-the-recipe.html#cb193-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> ames_train) <span class="sc">%&gt;%</span></span>
-<span id="cb193-4"><a href="how-data-are-used-by-the-recipe.html#cb193-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_log</span>(Gr_Liv_Area, <span class="at">base =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb193-5"><a href="how-data-are-used-by-the-recipe.html#cb193-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_other</span>(Neighborhood, <span class="at">threshold =</span> <span class="fl">0.01</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb193-6"><a href="how-data-are-used-by-the-recipe.html#cb193-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb193-7"><a href="how-data-are-used-by-the-recipe.html#cb193-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Gr_Liv_Area is on the log scale from a previous step</span></span>
-<span id="cb193-8"><a href="how-data-are-used-by-the-recipe.html#cb193-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_interact</span>( <span class="sc">~</span> Gr_Liv_Area<span class="sc">:</span><span class="fu">starts_with</span>(<span class="st">&quot;Bldg_Type_&quot;</span>) )</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="how-data-are-used-by-the-recipe.html#cb195-1" aria-hidden="true" tabindex="-1"></a>simple_ames <span class="ot">&lt;-</span> </span>
+<span id="cb195-2"><a href="how-data-are-used-by-the-recipe.html#cb195-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(Sale_Price <span class="sc">~</span> Neighborhood <span class="sc">+</span> Gr_Liv_Area <span class="sc">+</span> Year_Built <span class="sc">+</span> Bldg_Type,</span>
+<span id="cb195-3"><a href="how-data-are-used-by-the-recipe.html#cb195-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> ames_train) <span class="sc">%&gt;%</span></span>
+<span id="cb195-4"><a href="how-data-are-used-by-the-recipe.html#cb195-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_log</span>(Gr_Liv_Area, <span class="at">base =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb195-5"><a href="how-data-are-used-by-the-recipe.html#cb195-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_other</span>(Neighborhood, <span class="at">threshold =</span> <span class="fl">0.01</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb195-6"><a href="how-data-are-used-by-the-recipe.html#cb195-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb195-7"><a href="how-data-are-used-by-the-recipe.html#cb195-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Gr_Liv_Area is on the log scale from a previous step</span></span>
+<span id="cb195-8"><a href="how-data-are-used-by-the-recipe.html#cb195-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_interact</span>( <span class="sc">~</span> Gr_Liv_Area<span class="sc">:</span><span class="fu">starts_with</span>(<span class="st">&quot;Bldg_Type_&quot;</span>) )</span></code></pre></div>
 <p>Additional interactions can be specified in this formula by separating them by +</p>
 <ol start="3" style="list-style-type: decimal">
 <li><strong>SPLINE FUNCTIONS</strong></li>
@@ -626,32 +624,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>Splines replace the existing numeric predictor with a set of columns that allow a model to emulate a flexible, non-linear relationship</p>
 </blockquote>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="how-data-are-used-by-the-recipe.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb194-2"><a href="how-data-are-used-by-the-recipe.html#cb194-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(splines)</span>
-<span id="cb194-3"><a href="how-data-are-used-by-the-recipe.html#cb194-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb194-4"><a href="how-data-are-used-by-the-recipe.html#cb194-4" aria-hidden="true" tabindex="-1"></a>plot_smoother <span class="ot">&lt;-</span> <span class="cf">function</span>(deg_free) {</span>
-<span id="cb194-5"><a href="how-data-are-used-by-the-recipe.html#cb194-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(ames_train, <span class="fu">aes</span>(<span class="at">x =</span> Latitude, <span class="at">y =</span> Sale_Price)) <span class="sc">+</span> </span>
-<span id="cb194-6"><a href="how-data-are-used-by-the-recipe.html#cb194-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> .<span class="dv">2</span>) <span class="sc">+</span> </span>
-<span id="cb194-7"><a href="how-data-are-used-by-the-recipe.html#cb194-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
-<span id="cb194-8"><a href="how-data-are-used-by-the-recipe.html#cb194-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(</span>
-<span id="cb194-9"><a href="how-data-are-used-by-the-recipe.html#cb194-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> lm,</span>
-<span id="cb194-10"><a href="how-data-are-used-by-the-recipe.html#cb194-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">ns</span>(x, <span class="at">df =</span> deg_free),</span>
-<span id="cb194-11"><a href="how-data-are-used-by-the-recipe.html#cb194-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">&quot;lightblue&quot;</span>,</span>
-<span id="cb194-12"><a href="how-data-are-used-by-the-recipe.html#cb194-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">se =</span> <span class="cn">FALSE</span></span>
-<span id="cb194-13"><a href="how-data-are-used-by-the-recipe.html#cb194-13" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb194-14"><a href="how-data-are-used-by-the-recipe.html#cb194-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(deg_free, <span class="st">&quot;Spline Terms&quot;</span>),</span>
-<span id="cb194-15"><a href="how-data-are-used-by-the-recipe.html#cb194-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Sale Price (USD)&quot;</span>)</span>
-<span id="cb194-16"><a href="how-data-are-used-by-the-recipe.html#cb194-16" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb194-17"><a href="how-data-are-used-by-the-recipe.html#cb194-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb194-18"><a href="how-data-are-used-by-the-recipe.html#cb194-18" aria-hidden="true" tabindex="-1"></a>( <span class="fu">plot_smoother</span>(<span class="dv">2</span>) <span class="sc">+</span> <span class="fu">plot_smoother</span>(<span class="dv">5</span>) ) <span class="sc">/</span> ( <span class="fu">plot_smoother</span>(<span class="dv">20</span>) <span class="sc">+</span> <span class="fu">plot_smoother</span>(<span class="dv">100</span>) )</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="how-data-are-used-by-the-recipe.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb196-2"><a href="how-data-are-used-by-the-recipe.html#cb196-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(splines)</span>
+<span id="cb196-3"><a href="how-data-are-used-by-the-recipe.html#cb196-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb196-4"><a href="how-data-are-used-by-the-recipe.html#cb196-4" aria-hidden="true" tabindex="-1"></a>plot_smoother <span class="ot">&lt;-</span> <span class="cf">function</span>(deg_free) {</span>
+<span id="cb196-5"><a href="how-data-are-used-by-the-recipe.html#cb196-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(ames_train, <span class="fu">aes</span>(<span class="at">x =</span> Latitude, <span class="at">y =</span> Sale_Price)) <span class="sc">+</span> </span>
+<span id="cb196-6"><a href="how-data-are-used-by-the-recipe.html#cb196-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> .<span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb196-7"><a href="how-data-are-used-by-the-recipe.html#cb196-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb196-8"><a href="how-data-are-used-by-the-recipe.html#cb196-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(</span>
+<span id="cb196-9"><a href="how-data-are-used-by-the-recipe.html#cb196-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> lm,</span>
+<span id="cb196-10"><a href="how-data-are-used-by-the-recipe.html#cb196-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">ns</span>(x, <span class="at">df =</span> deg_free),</span>
+<span id="cb196-11"><a href="how-data-are-used-by-the-recipe.html#cb196-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">&quot;lightblue&quot;</span>,</span>
+<span id="cb196-12"><a href="how-data-are-used-by-the-recipe.html#cb196-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">se =</span> <span class="cn">FALSE</span></span>
+<span id="cb196-13"><a href="how-data-are-used-by-the-recipe.html#cb196-13" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb196-14"><a href="how-data-are-used-by-the-recipe.html#cb196-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(deg_free, <span class="st">&quot;Spline Terms&quot;</span>),</span>
+<span id="cb196-15"><a href="how-data-are-used-by-the-recipe.html#cb196-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Sale Price (USD)&quot;</span>)</span>
+<span id="cb196-16"><a href="how-data-are-used-by-the-recipe.html#cb196-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb196-17"><a href="how-data-are-used-by-the-recipe.html#cb196-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb196-18"><a href="how-data-are-used-by-the-recipe.html#cb196-18" aria-hidden="true" tabindex="-1"></a>( <span class="fu">plot_smoother</span>(<span class="dv">2</span>) <span class="sc">+</span> <span class="fu">plot_smoother</span>(<span class="dv">5</span>) ) <span class="sc">/</span> ( <span class="fu">plot_smoother</span>(<span class="dv">20</span>) <span class="sc">+</span> <span class="fu">plot_smoother</span>(<span class="dv">100</span>) )</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/08-plot2-1.png" width="672" /></p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="how-data-are-used-by-the-recipe.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="fu">recipe</span>(Sale_Price <span class="sc">~</span> Neighborhood <span class="sc">+</span> Gr_Liv_Area <span class="sc">+</span> Year_Built <span class="sc">+</span> Bldg_Type <span class="sc">+</span> Latitude,</span>
-<span id="cb195-2"><a href="how-data-are-used-by-the-recipe.html#cb195-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> ames_train) <span class="sc">%&gt;%</span></span>
-<span id="cb195-3"><a href="how-data-are-used-by-the-recipe.html#cb195-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_log</span>(Gr_Liv_Area, <span class="at">base =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb195-4"><a href="how-data-are-used-by-the-recipe.html#cb195-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_other</span>(Neighborhood, <span class="at">threshold =</span> <span class="fl">0.01</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb195-5"><a href="how-data-are-used-by-the-recipe.html#cb195-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb195-6"><a href="how-data-are-used-by-the-recipe.html#cb195-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_interact</span>( <span class="sc">~</span> Gr_Liv_Area<span class="sc">:</span><span class="fu">starts_with</span>(<span class="st">&quot;Bldg_Type_&quot;</span>) ) <span class="sc">%&gt;%</span> </span>
-<span id="cb195-7"><a href="how-data-are-used-by-the-recipe.html#cb195-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_ns</span>(Latitude, <span class="at">deg_free =</span> <span class="dv">20</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="how-data-are-used-by-the-recipe.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="fu">recipe</span>(Sale_Price <span class="sc">~</span> Neighborhood <span class="sc">+</span> Gr_Liv_Area <span class="sc">+</span> Year_Built <span class="sc">+</span> Bldg_Type <span class="sc">+</span> Latitude,</span>
+<span id="cb197-2"><a href="how-data-are-used-by-the-recipe.html#cb197-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> ames_train) <span class="sc">%&gt;%</span></span>
+<span id="cb197-3"><a href="how-data-are-used-by-the-recipe.html#cb197-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_log</span>(Gr_Liv_Area, <span class="at">base =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb197-4"><a href="how-data-are-used-by-the-recipe.html#cb197-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_other</span>(Neighborhood, <span class="at">threshold =</span> <span class="fl">0.01</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb197-5"><a href="how-data-are-used-by-the-recipe.html#cb197-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb197-6"><a href="how-data-are-used-by-the-recipe.html#cb197-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_interact</span>( <span class="sc">~</span> Gr_Liv_Area<span class="sc">:</span><span class="fu">starts_with</span>(<span class="st">&quot;Bldg_Type_&quot;</span>) ) <span class="sc">%&gt;%</span> </span>
+<span id="cb197-7"><a href="how-data-are-used-by-the-recipe.html#cb197-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_ns</span>(Latitude, <span class="at">deg_free =</span> <span class="dv">20</span>)</span></code></pre></div>
 <pre><code>## Recipe
 ## 
 ## Inputs:

@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.2 Demonstration | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.2 Demonstration | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
@@ -24,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-03-14" />
+<meta name="date" content="2022-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="workflows.html"/>
 <link rel="next" href="modeling-with-workflows.html"/>
-<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -566,17 +564,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="demonstration" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> Demonstration<a href="demonstration.html#demonstration" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="demonstration.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb147-2"><a href="demonstration.html#cb147-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb147-3"><a href="demonstration.html#cb147-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tidymodels_prefer</span>()</span>
-<span id="cb147-4"><a href="demonstration.html#cb147-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="demonstration.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb148-2"><a href="demonstration.html#cb148-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb148-3"><a href="demonstration.html#cb148-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tidymodels_prefer</span>()</span>
+<span id="cb148-4"><a href="demonstration.html#cb148-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span></code></pre></div>
 <p>A previous Tidy Tuesday dataset is used for demonstration. References:</p>
 <ul>
 <li><a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-01-28/readme.md">Tidy Tuesday description</a></li>
 <li><a href="https://data.sfgov.org/City-Infrastructure/Street-Tree-List/tkzw-k3nq">Data source</a></li>
 </ul>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="demonstration.html#cb148-1" aria-hidden="true" tabindex="-1"></a>sf_trees <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-28/sf_trees.csv&#39;</span>)</span>
-<span id="cb148-2"><a href="demonstration.html#cb148-2" aria-hidden="true" tabindex="-1"></a>kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(sf_trees, <span class="dv">10</span>)) <span class="sc">%&gt;%</span> kableExtra<span class="sc">::</span><span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">&#39;100%&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="demonstration.html#cb149-1" aria-hidden="true" tabindex="-1"></a>sf_trees <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-28/sf_trees.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="demonstration.html#cb150-1" aria-hidden="true" tabindex="-1"></a>kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(sf_trees, <span class="dv">10</span>)) <span class="sc">%&gt;%</span> kableExtra<span class="sc">::</span><span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">&#39;100%&#39;</span>)</span></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table>
 <thead>
@@ -1006,7 +1004,7 @@ NA
 <p>The goal will be to predict dbh which means diameter at breast height.</p>
 <div id="some-data-exploration-and-cleaning" class="section level3 hasAnchor" number="7.2.1">
 <h3><span class="header-section-number">7.2.1</span> Some data exploration and cleaning<a href="demonstration.html#some-data-exploration-and-cleaning" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="demonstration.html#cb149-1" aria-hidden="true" tabindex="-1"></a>kableExtra<span class="sc">::</span><span class="fu">kable</span>(skimr<span class="sc">::</span><span class="fu">skim</span>(sf_trees)) <span class="sc">%&gt;%</span> kableExtra<span class="sc">::</span><span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">&#39;100%&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="demonstration.html#cb151-1" aria-hidden="true" tabindex="-1"></a>kableExtra<span class="sc">::</span><span class="fu">kable</span>(skimr<span class="sc">::</span><span class="fu">skim</span>(sf_trees)) <span class="sc">%&gt;%</span> kableExtra<span class="sc">::</span><span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">&#39;100%&#39;</span>)</span></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table>
 <thead>
@@ -1860,17 +1858,17 @@ NA
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="demonstration.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DataExplorer::create_report(sf_trees)</span></span></code></pre></div>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="demonstration.html#cb151-1" aria-hidden="true" tabindex="-1"></a>trees_cleaned <span class="ot">&lt;-</span> sf_trees <span class="sc">%&gt;%</span></span>
-<span id="cb151-2"><a href="demonstration.html#cb151-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">diam =</span> dbh, <span class="at">date_planted =</span> date) <span class="sc">%&gt;%</span></span>
-<span id="cb151-3"><a href="demonstration.html#cb151-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(diam)) <span class="sc">%&gt;%</span></span>
-<span id="cb151-4"><a href="demonstration.html#cb151-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(legal_status)) <span class="sc">%&gt;%</span></span>
-<span id="cb151-5"><a href="demonstration.html#cb151-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(latitude <span class="sc">&lt;=</span> <span class="dv">40</span> <span class="sc">&amp;</span> longitude <span class="sc">&gt;=</span> <span class="sc">-</span><span class="dv">125</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb151-6"><a href="demonstration.html#cb151-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(diam <span class="sc">&lt;=</span> <span class="dv">100</span> <span class="sc">&amp;</span> diam <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb151-7"><a href="demonstration.html#cb151-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(site_order <span class="sc">&gt;=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb151-8"><a href="demonstration.html#cb151-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>plot_size)</span>
-<span id="cb151-9"><a href="demonstration.html#cb151-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb151-10"><a href="demonstration.html#cb151-10" aria-hidden="true" tabindex="-1"></a>kableExtra<span class="sc">::</span><span class="fu">kable</span>(skimr<span class="sc">::</span><span class="fu">skim</span>(trees_cleaned)) <span class="sc">%&gt;%</span> kableExtra<span class="sc">::</span><span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">&#39;100%&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="demonstration.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DataExplorer::create_report(sf_trees)</span></span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="demonstration.html#cb153-1" aria-hidden="true" tabindex="-1"></a>trees_cleaned <span class="ot">&lt;-</span> sf_trees <span class="sc">%&gt;%</span></span>
+<span id="cb153-2"><a href="demonstration.html#cb153-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">diam =</span> dbh, <span class="at">date_planted =</span> date) <span class="sc">%&gt;%</span></span>
+<span id="cb153-3"><a href="demonstration.html#cb153-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(diam)) <span class="sc">%&gt;%</span></span>
+<span id="cb153-4"><a href="demonstration.html#cb153-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(legal_status)) <span class="sc">%&gt;%</span></span>
+<span id="cb153-5"><a href="demonstration.html#cb153-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(latitude <span class="sc">&lt;=</span> <span class="dv">40</span> <span class="sc">&amp;</span> longitude <span class="sc">&gt;=</span> <span class="sc">-</span><span class="dv">125</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb153-6"><a href="demonstration.html#cb153-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(diam <span class="sc">&lt;=</span> <span class="dv">100</span> <span class="sc">&amp;</span> diam <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb153-7"><a href="demonstration.html#cb153-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(site_order <span class="sc">&gt;=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb153-8"><a href="demonstration.html#cb153-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>plot_size)</span>
+<span id="cb153-9"><a href="demonstration.html#cb153-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-10"><a href="demonstration.html#cb153-10" aria-hidden="true" tabindex="-1"></a>kableExtra<span class="sc">::</span><span class="fu">kable</span>(skimr<span class="sc">::</span><span class="fu">skim</span>(trees_cleaned)) <span class="sc">%&gt;%</span> kableExtra<span class="sc">::</span><span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">&#39;100%&#39;</span>)</span></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table>
 <thead>
@@ -2659,13 +2657,13 @@ NA
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="demonstration.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(trees_cleaned, <span class="fu">aes</span>(<span class="at">x =</span> diam)) <span class="sc">+</span></span>
-<span id="cb152-2"><a href="demonstration.html#cb152-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
-<span id="cb152-3"><a href="demonstration.html#cb152-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="demonstration.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(trees_cleaned, <span class="fu">aes</span>(<span class="at">x =</span> diam)) <span class="sc">+</span></span>
+<span id="cb154-2"><a href="demonstration.html#cb154-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb154-3"><a href="demonstration.html#cb154-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/sf_trees_eda_plots-1.png" width="672" /></p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="demonstration.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(trees_cleaned, <span class="fu">aes</span>(<span class="at">x =</span> date_planted, <span class="at">y =</span> diam)) <span class="sc">+</span></span>
-<span id="cb153-2"><a href="demonstration.html#cb153-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bin2d</span>() <span class="sc">+</span></span>
-<span id="cb153-3"><a href="demonstration.html#cb153-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="demonstration.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(trees_cleaned, <span class="fu">aes</span>(<span class="at">x =</span> date_planted, <span class="at">y =</span> diam)) <span class="sc">+</span></span>
+<span id="cb155-2"><a href="demonstration.html#cb155-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bin2d</span>() <span class="sc">+</span></span>
+<span id="cb155-3"><a href="demonstration.html#cb155-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/sf_trees_eda_plots-2.png" width="672" /></p>
 </div>
 </div>

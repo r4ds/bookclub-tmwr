@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.2 A SIMPLE RECIPE FOR THE AMES HOUSING DATA | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.2 A SIMPLE RECIPE FOR THE AMES HOUSING DATA | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
@@ -24,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-03-14" />
+<meta name="date" content="2022-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="in-summary.html"/>
 <link rel="next" href="using-recipes.html"/>
-<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -573,32 +571,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Figure 8.1: Models preprocessing steps
 </p>
 </div>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb175-2"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb175-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb175-3"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb175-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tidymodels_prefer</span>()</span></code></pre></div>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ames)</span></code></pre></div>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb177-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sale_Price <span class="sc">~</span> Neighborhood <span class="sc">+</span> <span class="fu">log10</span>(Gr_Liv_Area) <span class="sc">+</span> Year_Built <span class="sc">+</span> Bldg_Type, </span>
-<span id="cb177-2"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb177-2" aria-hidden="true" tabindex="-1"></a>   <span class="at">data =</span> ames)</span>
-<span id="cb177-3"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb177-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb177-4"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb177-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(broom<span class="sc">::</span><span class="fu">tidy</span>(fit),<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb177-2"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb177-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb177-3"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb177-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tidymodels_prefer</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ames)</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb179-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sale_Price <span class="sc">~</span> Neighborhood <span class="sc">+</span> <span class="fu">log10</span>(Gr_Liv_Area) <span class="sc">+</span> Year_Built <span class="sc">+</span> Bldg_Type, </span>
+<span id="cb179-2"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb179-2" aria-hidden="true" tabindex="-1"></a>   <span class="at">data =</span> ames)</span>
+<span id="cb179-3"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb179-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb179-4"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb179-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(broom<span class="sc">::</span><span class="fu">tidy</span>(fit),<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 5
 ##   term                       estimate std.error statistic   p.value
 ##   &lt;chr&gt;                         &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
 ## 1 (Intercept)               -2320382.   101509.   -22.9   1.84e-106
 ## 2 NeighborhoodCollege_Creek     6361.     3602.     1.77  7.75e-  2
 ## 3 NeighborhoodOld_Town          1485.     3673.     0.404 6.86e-  1</code></pre>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb179-2"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb179-2" aria-hidden="true" tabindex="-1"></a>split<span class="ot">&lt;-</span><span class="fu">initial_split</span>(ames, <span class="at">strata =</span> Sale_Price)</span>
-<span id="cb179-3"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb179-3" aria-hidden="true" tabindex="-1"></a>ames_train<span class="ot">&lt;-</span><span class="fu">training</span>(split)</span>
-<span id="cb179-4"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb179-4" aria-hidden="true" tabindex="-1"></a>ames_test<span class="ot">&lt;-</span><span class="fu">testing</span>(split)</span>
-<span id="cb179-5"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb179-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb179-6"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb179-6" aria-hidden="true" tabindex="-1"></a>simple_ames <span class="ot">&lt;-</span> </span>
-<span id="cb179-7"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb179-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(Sale_Price <span class="sc">~</span> Neighborhood <span class="sc">+</span> Gr_Liv_Area <span class="sc">+</span> Year_Built <span class="sc">+</span> Bldg_Type,</span>
-<span id="cb179-8"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb179-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> ames_train) <span class="sc">%&gt;%</span></span>
-<span id="cb179-9"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb179-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_log</span>(Gr_Liv_Area, <span class="at">base =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb179-10"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb179-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>())</span>
-<span id="cb179-11"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb179-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb179-12"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb179-12" aria-hidden="true" tabindex="-1"></a>simple_ames</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb181-2"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb181-2" aria-hidden="true" tabindex="-1"></a>split<span class="ot">&lt;-</span><span class="fu">initial_split</span>(ames, <span class="at">strata =</span> Sale_Price)</span>
+<span id="cb181-3"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb181-3" aria-hidden="true" tabindex="-1"></a>ames_train<span class="ot">&lt;-</span><span class="fu">training</span>(split)</span>
+<span id="cb181-4"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb181-4" aria-hidden="true" tabindex="-1"></a>ames_test<span class="ot">&lt;-</span><span class="fu">testing</span>(split)</span>
+<span id="cb181-5"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb181-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb181-6"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb181-6" aria-hidden="true" tabindex="-1"></a>simple_ames <span class="ot">&lt;-</span> </span>
+<span id="cb181-7"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb181-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(Sale_Price <span class="sc">~</span> Neighborhood <span class="sc">+</span> Gr_Liv_Area <span class="sc">+</span> Year_Built <span class="sc">+</span> Bldg_Type,</span>
+<span id="cb181-8"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb181-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> ames_train) <span class="sc">%&gt;%</span></span>
+<span id="cb181-9"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb181-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_log</span>(Gr_Liv_Area, <span class="at">base =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb181-10"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb181-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>())</span>
+<span id="cb181-11"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb181-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb181-12"><a href="a-simple-recipe-for-the-ames-housing-data.html#cb181-12" aria-hidden="true" tabindex="-1"></a>simple_ames</span></code></pre></div>
 <pre><code>## Recipe
 ## 
 ## Inputs:

@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5.4 Continuous outcome data | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5.4 Continuous outcome data | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
@@ -24,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-03-14" />
+<meta name="date" content="2022-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="class-imbalance.html"/>
 <link rel="next" href="time-series-data.html"/>
-<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -567,10 +565,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="continuous-outcome-data" class="section level2 hasAnchor" number="5.4">
 <h2><span class="header-section-number">5.4</span> Continuous outcome data<a href="continuous-outcome-data.html#continuous-outcome-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>For continuous outcome data (e.g. costs), a stratified random sampling approach would involve conducting a 80/20 split within each quartile and then pool the results together. For the <a href="https://www.tmwr.org/ames.html">Ames housing dataset</a>, the call would look like this:</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="continuous-outcome-data.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb116-2"><a href="continuous-outcome-data.html#cb116-2" aria-hidden="true" tabindex="-1"></a>ames_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(ames, <span class="at">prop =</span> <span class="fl">0.80</span>, <span class="at">strata =</span> Sale_Price)</span>
-<span id="cb116-3"><a href="continuous-outcome-data.html#cb116-3" aria-hidden="true" tabindex="-1"></a>ames_train <span class="ot">&lt;-</span> <span class="fu">training</span>(ames_split)</span>
-<span id="cb116-4"><a href="continuous-outcome-data.html#cb116-4" aria-hidden="true" tabindex="-1"></a>ames_test  <span class="ot">&lt;-</span> <span class="fu">testing</span>(ames_split)</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="continuous-outcome-data.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb117-2"><a href="continuous-outcome-data.html#cb117-2" aria-hidden="true" tabindex="-1"></a>ames_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(ames, <span class="at">prop =</span> <span class="fl">0.80</span>, <span class="at">strata =</span> Sale_Price)</span>
+<span id="cb117-3"><a href="continuous-outcome-data.html#cb117-3" aria-hidden="true" tabindex="-1"></a>ames_train <span class="ot">&lt;-</span> <span class="fu">training</span>(ames_split)</span>
+<span id="cb117-4"><a href="continuous-outcome-data.html#cb117-4" aria-hidden="true" tabindex="-1"></a>ames_test  <span class="ot">&lt;-</span> <span class="fu">testing</span>(ames_split)</span></code></pre></div>
 </div>
             </section>
 

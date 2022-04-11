@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>16.5 Uniform Manifold Approximation and Projection (UMAP) | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="16.5 Uniform Manifold Approximation and Projection (UMAP) | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
@@ -24,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-03-14" />
+<meta name="date" content="2022-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="independent-component-anysis-ica.html"/>
 <link rel="next" href="modeling.html"/>
-<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -571,11 +569,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Relationships saved as directed graph w/most points not connected.</li>
 <li>Create smaller feature set such that graph is well approximated.</li>
 </ul>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="uniform-manifold-approximation-and-projection-umap.html#cb388-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(embed)</span>
-<span id="cb388-2"><a href="uniform-manifold-approximation-and-projection-umap.html#cb388-2" aria-hidden="true" tabindex="-1"></a>bean_rec_trained <span class="sc">%&gt;%</span></span>
-<span id="cb388-3"><a href="uniform-manifold-approximation-and-projection-umap.html#cb388-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_umap</span>(<span class="fu">all_numeric_predictors</span>(), <span class="at">outcome =</span> <span class="st">&quot;class&quot;</span>, <span class="at">num_comp =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb388-4"><a href="uniform-manifold-approximation-and-projection-umap.html#cb388-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_validation_results</span>() <span class="sc">+</span></span>
-<span id="cb388-5"><a href="uniform-manifold-approximation-and-projection-umap.html#cb388-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Uniform Manifold Approximation and Projection (supervised)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="uniform-manifold-approximation-and-projection-umap.html#cb390-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(embed)</span>
+<span id="cb390-2"><a href="uniform-manifold-approximation-and-projection-umap.html#cb390-2" aria-hidden="true" tabindex="-1"></a>bean_rec_trained <span class="sc">%&gt;%</span></span>
+<span id="cb390-3"><a href="uniform-manifold-approximation-and-projection-umap.html#cb390-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_umap</span>(<span class="fu">all_numeric_predictors</span>(), <span class="at">outcome =</span> <span class="st">&quot;class&quot;</span>, <span class="at">num_comp =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb390-4"><a href="uniform-manifold-approximation-and-projection-umap.html#cb390-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_validation_results</span>() <span class="sc">+</span></span>
+<span id="cb390-5"><a href="uniform-manifold-approximation-and-projection-umap.html#cb390-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Uniform Manifold Approximation and Projection (supervised)&quot;</span>)</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/17-umap-1.png" width="672" /></p>
 </div>
             </section>

@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>11.5 Simple Comparison | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="11.5 Simple Comparison | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
@@ -24,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-03-14" />
+<meta name="date" content="2022-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="practical-effect-size.html"/>
 <link rel="next" href="bayesian-methods.html"/>
-<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -567,12 +565,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="simple-comparison" class="section level2 hasAnchor" number="11.5">
 <h2><span class="header-section-number">11.5</span> Simple Comparison<a href="simple-comparison.html#simple-comparison" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Use difference to cancel out the resample-to-resample effect.</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="simple-comparison.html#cb247-1" aria-hidden="true" tabindex="-1"></a>compare_lm <span class="ot">&lt;-</span> rsq_estimates <span class="sc">%&gt;%</span> </span>
-<span id="cb247-2"><a href="simple-comparison.html#cb247-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">difference =</span> <span class="st">`</span><span class="at">with splines</span><span class="st">`</span> <span class="sc">-</span> <span class="st">`</span><span class="at">no splines</span><span class="st">`</span>)</span>
-<span id="cb247-3"><a href="simple-comparison.html#cb247-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb247-4"><a href="simple-comparison.html#cb247-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(difference <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> compare_lm) <span class="sc">%&gt;%</span> </span>
-<span id="cb247-5"><a href="simple-comparison.html#cb247-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>(<span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb247-6"><a href="simple-comparison.html#cb247-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(estimate, p.value, <span class="fu">starts_with</span>(<span class="st">&quot;conf&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="simple-comparison.html#cb249-1" aria-hidden="true" tabindex="-1"></a>compare_lm <span class="ot">&lt;-</span> rsq_estimates <span class="sc">%&gt;%</span> </span>
+<span id="cb249-2"><a href="simple-comparison.html#cb249-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">difference =</span> <span class="st">`</span><span class="at">with splines</span><span class="st">`</span> <span class="sc">-</span> <span class="st">`</span><span class="at">no splines</span><span class="st">`</span>)</span>
+<span id="cb249-3"><a href="simple-comparison.html#cb249-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb249-4"><a href="simple-comparison.html#cb249-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(difference <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> compare_lm) <span class="sc">%&gt;%</span> </span>
+<span id="cb249-5"><a href="simple-comparison.html#cb249-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>(<span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb249-6"><a href="simple-comparison.html#cb249-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(estimate, p.value, <span class="fu">starts_with</span>(<span class="st">&quot;conf&quot;</span>))</span></code></pre></div>
 </div>
             </section>
 

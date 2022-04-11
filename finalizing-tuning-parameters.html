@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>12.12 Finalizing tuning parameters: | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="12.12 Finalizing tuning parameters: | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
@@ -24,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-03-14" />
+<meta name="date" content="2022-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="updating-tuning-parameters.html"/>
 <link rel="next" href="what-is-next.html"/>
-<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -567,13 +565,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="finalizing-tuning-parameters" class="section level2 hasAnchor" number="12.12">
 <h2><span class="header-section-number">12.12</span> Finalizing tuning parameters:<a href="finalizing-tuning-parameters.html#finalizing-tuning-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The update function may not be useful if a recipe is attached to a workflow that adjusts the number of columns. Instead of <code>update()</code> we can use the <code>finalize()</code> function.</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="finalizing-tuning-parameters.html#cb267-1" aria-hidden="true" tabindex="-1"></a>updated_params <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb267-2"><a href="finalizing-tuning-parameters.html#cb267-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(rf_spec_tuned) <span class="sc">%&gt;%</span> </span>
-<span id="cb267-3"><a href="finalizing-tuning-parameters.html#cb267-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(ames_recipe) <span class="sc">%&gt;%</span> </span>
-<span id="cb267-4"><a href="finalizing-tuning-parameters.html#cb267-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">parameters</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb267-5"><a href="finalizing-tuning-parameters.html#cb267-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize</span>(ames_train)</span>
-<span id="cb267-6"><a href="finalizing-tuning-parameters.html#cb267-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb267-7"><a href="finalizing-tuning-parameters.html#cb267-7" aria-hidden="true" tabindex="-1"></a>updated_params</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="finalizing-tuning-parameters.html#cb269-1" aria-hidden="true" tabindex="-1"></a>updated_params <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb269-2"><a href="finalizing-tuning-parameters.html#cb269-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(rf_spec_tuned) <span class="sc">%&gt;%</span> </span>
+<span id="cb269-3"><a href="finalizing-tuning-parameters.html#cb269-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(ames_recipe) <span class="sc">%&gt;%</span> </span>
+<span id="cb269-4"><a href="finalizing-tuning-parameters.html#cb269-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">parameters</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb269-5"><a href="finalizing-tuning-parameters.html#cb269-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize</span>(ames_train)</span>
+<span id="cb269-6"><a href="finalizing-tuning-parameters.html#cb269-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb269-7"><a href="finalizing-tuning-parameters.html#cb269-7" aria-hidden="true" tabindex="-1"></a>updated_params</span></code></pre></div>
 <pre><code>## Collection of 3 parameters for tuning
 ## 
 ##  identifier                  type    object
@@ -581,7 +579,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##       min_n                 min_n nparam[+]
 ##         reg regularization.factor nparam[+]</code></pre>
 <p>With the <code>finalize()</code> function, mtry was completed based on the number of predictors in the training dataset</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="finalizing-tuning-parameters.html#cb269-1" aria-hidden="true" tabindex="-1"></a>updated_params <span class="sc">%&gt;%</span> <span class="fu">pull_dials_object</span>(<span class="st">&quot;mtry&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="finalizing-tuning-parameters.html#cb271-1" aria-hidden="true" tabindex="-1"></a>updated_params <span class="sc">%&gt;%</span> <span class="fu">pull_dials_object</span>(<span class="st">&quot;mtry&quot;</span>)</span></code></pre></div>
 <pre><code>## # Randomly Selected Predictors (quantitative)
 ## Range: [1, 74]</code></pre>
 </div>

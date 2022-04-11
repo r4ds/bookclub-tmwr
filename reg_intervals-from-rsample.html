@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>21.4 reg_intervals from {rsample} | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="21.4 reg_intervals from {rsample} | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
@@ -24,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-03-14" />
+<meta name="date" content="2022-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="infer-for-simple-high-level-hypothesis-testing.html"/>
 <link rel="next" href="inference-with-lower-level-helpers.html"/>
-<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -567,14 +565,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="reg_intervals-from-rsample" class="section level2 hasAnchor" number="21.4">
 <h2><span class="header-section-number">21.4</span> reg_intervals from {rsample}<a href="reg_intervals-from-rsample.html#reg_intervals-from-rsample" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Similar purpose (?) as {infer} package, few supported models and interval types</p>
-<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="reg_intervals-from-rsample.html#cb473-1" aria-hidden="true" tabindex="-1"></a><span class="fu">reg_intervals</span>(</span>
-<span id="cb473-2"><a href="reg_intervals-from-rsample.html#cb473-2" aria-hidden="true" tabindex="-1"></a>  my_formula,</span>
-<span id="cb473-3"><a href="reg_intervals-from-rsample.html#cb473-3" aria-hidden="true" tabindex="-1"></a>  race_top_results,</span>
-<span id="cb473-4"><a href="reg_intervals-from-rsample.html#cb473-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">model_fn =</span> <span class="st">&quot;glm&quot;</span>,</span>
-<span id="cb473-5"><a href="reg_intervals-from-rsample.html#cb473-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">2000</span>,</span>
-<span id="cb473-6"><a href="reg_intervals-from-rsample.html#cb473-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;percentile&quot;</span>,</span>
-<span id="cb473-7"><a href="reg_intervals-from-rsample.html#cb473-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">keep_reps =</span> <span class="cn">TRUE</span></span>
-<span id="cb473-8"><a href="reg_intervals-from-rsample.html#cb473-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="reg_intervals-from-rsample.html#cb475-1" aria-hidden="true" tabindex="-1"></a><span class="fu">reg_intervals</span>(</span>
+<span id="cb475-2"><a href="reg_intervals-from-rsample.html#cb475-2" aria-hidden="true" tabindex="-1"></a>  my_formula,</span>
+<span id="cb475-3"><a href="reg_intervals-from-rsample.html#cb475-3" aria-hidden="true" tabindex="-1"></a>  race_top_results,</span>
+<span id="cb475-4"><a href="reg_intervals-from-rsample.html#cb475-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">model_fn =</span> <span class="st">&quot;glm&quot;</span>,</span>
+<span id="cb475-5"><a href="reg_intervals-from-rsample.html#cb475-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">2000</span>,</span>
+<span id="cb475-6"><a href="reg_intervals-from-rsample.html#cb475-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;percentile&quot;</span>,</span>
+<span id="cb475-7"><a href="reg_intervals-from-rsample.html#cb475-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">keep_reps =</span> <span class="cn">TRUE</span></span>
+<span id="cb475-8"><a href="reg_intervals-from-rsample.html#cb475-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 7
 ##   term            .lower .estimate   .upper .alpha .method           .replicates
 ##   &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;list&lt;tibble[,2]&gt;&gt;

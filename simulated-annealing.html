@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>14.3 Simulated annealing | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="14.3 Simulated annealing | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
@@ -24,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-03-14" />
+<meta name="date" content="2022-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="bayesian-optimization.html"/>
 <link rel="next" href="references-2.html"/>
-<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -616,21 +614,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>cooling_coef</code>: dictates how quickly the acceptance probability decreases as the we go through iterations. Larger coefficient values means the probability of accepting a bad result will decrease.</p></li>
 </ul>
 <p>Implemention is very similar to grid search and Bayesian optimization. We can print out the best results, and have visual assessments of our search went across iterations.</p>
-<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="simulated-annealing.html#cb348-1" aria-hidden="true" tabindex="-1"></a>ctrl_sa <span class="ot">&lt;-</span> <span class="fu">control_sim_anneal</span>(<span class="at">verbose =</span> <span class="cn">TRUE</span>, <span class="at">no_improve =</span> 10L)</span>
-<span id="cb348-2"><a href="simulated-annealing.html#cb348-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb348-3"><a href="simulated-annealing.html#cb348-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb348-4"><a href="simulated-annealing.html#cb348-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb348-5"><a href="simulated-annealing.html#cb348-5" aria-hidden="true" tabindex="-1"></a>svm_sa <span class="ot">&lt;-</span></span>
-<span id="cb348-6"><a href="simulated-annealing.html#cb348-6" aria-hidden="true" tabindex="-1"></a>  svm_wflow <span class="sc">%&gt;%</span></span>
-<span id="cb348-7"><a href="simulated-annealing.html#cb348-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_sim_anneal</span>(</span>
-<span id="cb348-8"><a href="simulated-annealing.html#cb348-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">resamples =</span> penguins_folds,</span>
-<span id="cb348-9"><a href="simulated-annealing.html#cb348-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">metrics =</span> roc_res,</span>
-<span id="cb348-10"><a href="simulated-annealing.html#cb348-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">initial =</span> svm_initial,</span>
-<span id="cb348-11"><a href="simulated-annealing.html#cb348-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">param_info =</span> svm_param,</span>
-<span id="cb348-12"><a href="simulated-annealing.html#cb348-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">iter =</span> <span class="dv">50</span>,</span>
-<span id="cb348-13"><a href="simulated-annealing.html#cb348-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> ctrl_sa</span>
-<span id="cb348-14"><a href="simulated-annealing.html#cb348-14" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="simulated-annealing.html#cb349-1" aria-hidden="true" tabindex="-1"></a><span class="fu">show_best</span>(svm_sa)</span></code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="simulated-annealing.html#cb350-1" aria-hidden="true" tabindex="-1"></a>ctrl_sa <span class="ot">&lt;-</span> <span class="fu">control_sim_anneal</span>(<span class="at">verbose =</span> <span class="cn">TRUE</span>, <span class="at">no_improve =</span> 10L)</span>
+<span id="cb350-2"><a href="simulated-annealing.html#cb350-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb350-3"><a href="simulated-annealing.html#cb350-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb350-4"><a href="simulated-annealing.html#cb350-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb350-5"><a href="simulated-annealing.html#cb350-5" aria-hidden="true" tabindex="-1"></a>svm_sa <span class="ot">&lt;-</span></span>
+<span id="cb350-6"><a href="simulated-annealing.html#cb350-6" aria-hidden="true" tabindex="-1"></a>  svm_wflow <span class="sc">%&gt;%</span></span>
+<span id="cb350-7"><a href="simulated-annealing.html#cb350-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_sim_anneal</span>(</span>
+<span id="cb350-8"><a href="simulated-annealing.html#cb350-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">resamples =</span> penguins_folds,</span>
+<span id="cb350-9"><a href="simulated-annealing.html#cb350-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">metrics =</span> roc_res,</span>
+<span id="cb350-10"><a href="simulated-annealing.html#cb350-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">initial =</span> svm_initial,</span>
+<span id="cb350-11"><a href="simulated-annealing.html#cb350-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">param_info =</span> svm_param,</span>
+<span id="cb350-12"><a href="simulated-annealing.html#cb350-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">iter =</span> <span class="dv">50</span>,</span>
+<span id="cb350-13"><a href="simulated-annealing.html#cb350-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> ctrl_sa</span>
+<span id="cb350-14"><a href="simulated-annealing.html#cb350-14" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="simulated-annealing.html#cb351-1" aria-hidden="true" tabindex="-1"></a><span class="fu">show_best</span>(svm_sa)</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 9
 ##    cost rbf_sigma .metric .estimator  mean     n std_err .config .iter
 ##   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;int&gt;

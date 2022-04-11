@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>11.6 Bayesian methods | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="11.6 Bayesian methods | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
@@ -24,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-03-14" />
+<meta name="date" content="2022-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="simple-comparison.html"/>
 <link rel="next" href="meeting-videos-12.html"/>
-<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -566,29 +564,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="bayesian-methods" class="section level2 hasAnchor" number="11.6">
 <h2><span class="header-section-number">11.6</span> Bayesian methods<a href="bayesian-methods.html#bayesian-methods" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="bayesian-methods.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyposterior)</span>
-<span id="cb248-2"><a href="bayesian-methods.html#cb248-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstanarm)</span>
-<span id="cb248-3"><a href="bayesian-methods.html#cb248-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb248-4"><a href="bayesian-methods.html#cb248-4" aria-hidden="true" tabindex="-1"></a>rqs_diff <span class="ot">&lt;-</span> ames_folds <span class="sc">%&gt;%</span> </span>
-<span id="cb248-5"><a href="bayesian-methods.html#cb248-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(rsq_estimates <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(id) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>id)) <span class="sc">%&gt;%</span> </span>
-<span id="cb248-6"><a href="bayesian-methods.html#cb248-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">perf_mod</span>(</span>
-<span id="cb248-7"><a href="bayesian-methods.html#cb248-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">prior_intercept =</span> <span class="fu">student_t</span>(<span class="at">df =</span> <span class="dv">1</span>),</span>
-<span id="cb248-8"><a href="bayesian-methods.html#cb248-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">chains =</span> <span class="dv">4</span>,</span>
-<span id="cb248-9"><a href="bayesian-methods.html#cb248-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">iter =</span> <span class="dv">5000</span>,</span>
-<span id="cb248-10"><a href="bayesian-methods.html#cb248-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">seed =</span> <span class="dv">2</span></span>
-<span id="cb248-11"><a href="bayesian-methods.html#cb248-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb248-12"><a href="bayesian-methods.html#cb248-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">contrast_models</span>(</span>
-<span id="cb248-13"><a href="bayesian-methods.html#cb248-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">list_1 =</span> <span class="st">&quot;with splines&quot;</span>,</span>
-<span id="cb248-14"><a href="bayesian-methods.html#cb248-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">list_2 =</span> <span class="st">&quot;no splines&quot;</span>,</span>
-<span id="cb248-15"><a href="bayesian-methods.html#cb248-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">seed =</span> <span class="dv">36</span></span>
-<span id="cb248-16"><a href="bayesian-methods.html#cb248-16" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb248-17"><a href="bayesian-methods.html#cb248-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb248-18"><a href="bayesian-methods.html#cb248-18" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(rqs_diff, <span class="at">size =</span> <span class="fl">0.02</span>) <span class="sc">%&gt;%</span> <span class="co"># 0.02 is our practical effect size.</span></span>
-<span id="cb248-19"><a href="bayesian-methods.html#cb248-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(contrast, <span class="fu">starts_with</span>(<span class="st">&quot;pract&quot;</span>))</span>
-<span id="cb248-20"><a href="bayesian-methods.html#cb248-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 x 4</span></span>
-<span id="cb248-21"><a href="bayesian-methods.html#cb248-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   contrast                   pract_neg pract_equiv pract_pos</span></span>
-<span id="cb248-22"><a href="bayesian-methods.html#cb248-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                          &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;</span></span>
-<span id="cb248-23"><a href="bayesian-methods.html#cb248-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 with splines vs no splines         0       0.989    0.0113</span></span></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="bayesian-methods.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyposterior)</span>
+<span id="cb250-2"><a href="bayesian-methods.html#cb250-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstanarm)</span>
+<span id="cb250-3"><a href="bayesian-methods.html#cb250-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb250-4"><a href="bayesian-methods.html#cb250-4" aria-hidden="true" tabindex="-1"></a>rqs_diff <span class="ot">&lt;-</span> ames_folds <span class="sc">%&gt;%</span> </span>
+<span id="cb250-5"><a href="bayesian-methods.html#cb250-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(rsq_estimates <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(id) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>id)) <span class="sc">%&gt;%</span> </span>
+<span id="cb250-6"><a href="bayesian-methods.html#cb250-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">perf_mod</span>(</span>
+<span id="cb250-7"><a href="bayesian-methods.html#cb250-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">prior_intercept =</span> <span class="fu">student_t</span>(<span class="at">df =</span> <span class="dv">1</span>),</span>
+<span id="cb250-8"><a href="bayesian-methods.html#cb250-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">chains =</span> <span class="dv">4</span>,</span>
+<span id="cb250-9"><a href="bayesian-methods.html#cb250-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">iter =</span> <span class="dv">5000</span>,</span>
+<span id="cb250-10"><a href="bayesian-methods.html#cb250-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">seed =</span> <span class="dv">2</span></span>
+<span id="cb250-11"><a href="bayesian-methods.html#cb250-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb250-12"><a href="bayesian-methods.html#cb250-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">contrast_models</span>(</span>
+<span id="cb250-13"><a href="bayesian-methods.html#cb250-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">list_1 =</span> <span class="st">&quot;with splines&quot;</span>,</span>
+<span id="cb250-14"><a href="bayesian-methods.html#cb250-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">list_2 =</span> <span class="st">&quot;no splines&quot;</span>,</span>
+<span id="cb250-15"><a href="bayesian-methods.html#cb250-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">seed =</span> <span class="dv">36</span></span>
+<span id="cb250-16"><a href="bayesian-methods.html#cb250-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb250-17"><a href="bayesian-methods.html#cb250-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb250-18"><a href="bayesian-methods.html#cb250-18" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(rqs_diff, <span class="at">size =</span> <span class="fl">0.02</span>) <span class="sc">%&gt;%</span> <span class="co"># 0.02 is our practical effect size.</span></span>
+<span id="cb250-19"><a href="bayesian-methods.html#cb250-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(contrast, <span class="fu">starts_with</span>(<span class="st">&quot;pract&quot;</span>))</span>
+<span id="cb250-20"><a href="bayesian-methods.html#cb250-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 x 4</span></span>
+<span id="cb250-21"><a href="bayesian-methods.html#cb250-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   contrast                   pract_neg pract_equiv pract_pos</span></span>
+<span id="cb250-22"><a href="bayesian-methods.html#cb250-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                          &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb250-23"><a href="bayesian-methods.html#cb250-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 with splines vs no splines         0       0.989    0.0113</span></span></code></pre></div>
 </div>
             </section>
 

@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>15.3 Ranking models | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="15.3 Ranking models | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
@@ -24,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-03-14" />
+<meta name="date" content="2022-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="creating-workflow_sets.html"/>
 <link rel="next" href="finalizing-the-model-1.html"/>
-<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -567,30 +565,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="ranking-models" class="section level2 hasAnchor" number="15.3">
 <h2><span class="header-section-number">15.3</span> Ranking models<a href="ranking-models.html#ranking-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s look at our results</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="ranking-models.html#cb372-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How many models are there?</span></span>
-<span id="cb372-2"><a href="ranking-models.html#cb372-2" aria-hidden="true" tabindex="-1"></a>n_model <span class="ot">&lt;-</span></span>
-<span id="cb372-3"><a href="ranking-models.html#cb372-3" aria-hidden="true" tabindex="-1"></a>  res_grid <span class="sc">%&gt;%</span> </span>
-<span id="cb372-4"><a href="ranking-models.html#cb372-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>(<span class="at">summarize =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb372-5"><a href="ranking-models.html#cb372-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>()</span>
-<span id="cb372-6"><a href="ranking-models.html#cb372-6" aria-hidden="true" tabindex="-1"></a>n_model</span></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="ranking-models.html#cb374-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How many models are there?</span></span>
+<span id="cb374-2"><a href="ranking-models.html#cb374-2" aria-hidden="true" tabindex="-1"></a>n_model <span class="ot">&lt;-</span></span>
+<span id="cb374-3"><a href="ranking-models.html#cb374-3" aria-hidden="true" tabindex="-1"></a>  res_grid <span class="sc">%&gt;%</span> </span>
+<span id="cb374-4"><a href="ranking-models.html#cb374-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>(<span class="at">summarize =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb374-5"><a href="ranking-models.html#cb374-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>()</span>
+<span id="cb374-6"><a href="ranking-models.html#cb374-6" aria-hidden="true" tabindex="-1"></a>n_model</span></code></pre></div>
 <pre><code>## [1] 3000</code></pre>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="ranking-models.html#cb374-1" aria-hidden="true" tabindex="-1"></a>res_grid_filt <span class="ot">&lt;-</span></span>
-<span id="cb374-2"><a href="ranking-models.html#cb374-2" aria-hidden="true" tabindex="-1"></a>  res_grid <span class="sc">%&gt;%</span> </span>
-<span id="cb374-3"><a href="ranking-models.html#cb374-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># &#39;cart_bag&#39; has &lt;rsmp[+]&gt; in the `results` column, so it won&#39;t work with `rank_results()`</span></span>
-<span id="cb374-4"><a href="ranking-models.html#cb374-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(wflow_id <span class="sc">!=</span> <span class="st">&#39;cart_bag&#39;</span>)</span>
-<span id="cb374-5"><a href="ranking-models.html#cb374-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb374-6"><a href="ranking-models.html#cb374-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that xgboost sucks if you don&#39;t have good parameters</span></span>
-<span id="cb374-7"><a href="ranking-models.html#cb374-7" aria-hidden="true" tabindex="-1"></a>res_ranks <span class="ot">&lt;-</span></span>
-<span id="cb374-8"><a href="ranking-models.html#cb374-8" aria-hidden="true" tabindex="-1"></a>  res_grid_filt <span class="sc">%&gt;%</span> </span>
-<span id="cb374-9"><a href="ranking-models.html#cb374-9" aria-hidden="true" tabindex="-1"></a>  workflowsets<span class="sc">::</span><span class="fu">rank_results</span>(<span class="st">&#39;rmse&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb374-10"><a href="ranking-models.html#cb374-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Why this no filter out rsquared already?</span></span>
-<span id="cb374-11"><a href="ranking-models.html#cb374-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">&#39;rmse&#39;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb374-12"><a href="ranking-models.html#cb374-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(wflow_id, model, .config, <span class="at">rmse =</span> mean, rank) <span class="sc">%&gt;%</span> </span>
-<span id="cb374-13"><a href="ranking-models.html#cb374-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(wflow_id) <span class="sc">%&gt;%</span> </span>
-<span id="cb374-14"><a href="ranking-models.html#cb374-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_min</span>(rank, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb374-15"><a href="ranking-models.html#cb374-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb374-16"><a href="ranking-models.html#cb374-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(rank)</span>
-<span id="cb374-17"><a href="ranking-models.html#cb374-17" aria-hidden="true" tabindex="-1"></a>res_ranks</span></code></pre></div>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="ranking-models.html#cb376-1" aria-hidden="true" tabindex="-1"></a>res_grid_filt <span class="ot">&lt;-</span></span>
+<span id="cb376-2"><a href="ranking-models.html#cb376-2" aria-hidden="true" tabindex="-1"></a>  res_grid <span class="sc">%&gt;%</span> </span>
+<span id="cb376-3"><a href="ranking-models.html#cb376-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># &#39;cart_bag&#39; has &lt;rsmp[+]&gt; in the `results` column, so it won&#39;t work with `rank_results()`</span></span>
+<span id="cb376-4"><a href="ranking-models.html#cb376-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(wflow_id <span class="sc">!=</span> <span class="st">&#39;cart_bag&#39;</span>)</span>
+<span id="cb376-5"><a href="ranking-models.html#cb376-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb376-6"><a href="ranking-models.html#cb376-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that xgboost sucks if you don&#39;t have good parameters</span></span>
+<span id="cb376-7"><a href="ranking-models.html#cb376-7" aria-hidden="true" tabindex="-1"></a>res_ranks <span class="ot">&lt;-</span></span>
+<span id="cb376-8"><a href="ranking-models.html#cb376-8" aria-hidden="true" tabindex="-1"></a>  res_grid_filt <span class="sc">%&gt;%</span> </span>
+<span id="cb376-9"><a href="ranking-models.html#cb376-9" aria-hidden="true" tabindex="-1"></a>  workflowsets<span class="sc">::</span><span class="fu">rank_results</span>(<span class="st">&#39;rmse&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb376-10"><a href="ranking-models.html#cb376-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Why this no filter out rsquared already?</span></span>
+<span id="cb376-11"><a href="ranking-models.html#cb376-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">&#39;rmse&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb376-12"><a href="ranking-models.html#cb376-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(wflow_id, model, .config, <span class="at">rmse =</span> mean, rank) <span class="sc">%&gt;%</span> </span>
+<span id="cb376-13"><a href="ranking-models.html#cb376-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(wflow_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb376-14"><a href="ranking-models.html#cb376-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_min</span>(rank, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb376-15"><a href="ranking-models.html#cb376-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb376-16"><a href="ranking-models.html#cb376-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(rank)</span>
+<span id="cb376-17"><a href="ranking-models.html#cb376-17" aria-hidden="true" tabindex="-1"></a>res_ranks</span></code></pre></div>
 <pre><code>## # A tibble: 11 × 5
 ##    wflow_id         model            .config               rmse  rank
 ##    &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;                &lt;dbl&gt; &lt;int&gt;
@@ -608,11 +606,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Plot the ranks with standard errors.</p>
 <p><img src="bookclub-tmwr_files/figure-html/15-plots-1.png" width="672" /></p>
 <p>If we wanted to look at the sub-models for a given <code>wflow_id</code>, we could do that with <code>autoplot()</code>.</p>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="ranking-models.html#cb376-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(</span>
-<span id="cb376-2"><a href="ranking-models.html#cb376-2" aria-hidden="true" tabindex="-1"></a>  res_grid, </span>
-<span id="cb376-3"><a href="ranking-models.html#cb376-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="st">&#39;norm_svm_p&#39;</span>, </span>
-<span id="cb376-4"><a href="ranking-models.html#cb376-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">metric =</span> <span class="st">&#39;rmse&#39;</span></span>
-<span id="cb376-5"><a href="ranking-models.html#cb376-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="ranking-models.html#cb378-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(</span>
+<span id="cb378-2"><a href="ranking-models.html#cb378-2" aria-hidden="true" tabindex="-1"></a>  res_grid, </span>
+<span id="cb378-3"><a href="ranking-models.html#cb378-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="st">&#39;norm_svm_p&#39;</span>, </span>
+<span id="cb378-4"><a href="ranking-models.html#cb378-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">metric =</span> <span class="st">&#39;rmse&#39;</span></span>
+<span id="cb378-5"><a href="ranking-models.html#cb378-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/15-autoplot-1.png" width="672" /></p>
 <details>
 <summary>

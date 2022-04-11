@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.3 Make Predictions | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.3 Make Predictions | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
@@ -24,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-03-14" />
+<meta name="date" content="2022-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="use-model-results.html"/>
 <link rel="next" href="tidymodels-adjacent-packages.html"/>
-<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -578,12 +576,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="make-predictions.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create example test set</span></span>
-<span id="cb139-2"><a href="make-predictions.html#cb139-2" aria-hidden="true" tabindex="-1"></a>ames_test_small <span class="ot">&lt;-</span> ames_test <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
-<span id="cb139-3"><a href="make-predictions.html#cb139-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb139-4"><a href="make-predictions.html#cb139-4" aria-hidden="true" tabindex="-1"></a><span class="co"># predict on test set</span></span>
-<span id="cb139-5"><a href="make-predictions.html#cb139-5" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(lm_form_fit, <span class="at">new_data =</span> ames_test_small) <span class="sc">%&gt;%</span> </span>
-<span id="cb139-6"><a href="make-predictions.html#cb139-6" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="make-predictions.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create example test set</span></span>
+<span id="cb140-2"><a href="make-predictions.html#cb140-2" aria-hidden="true" tabindex="-1"></a>ames_test_small <span class="ot">&lt;-</span> ames_test <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb140-3"><a href="make-predictions.html#cb140-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-4"><a href="make-predictions.html#cb140-4" aria-hidden="true" tabindex="-1"></a><span class="co"># predict on test set</span></span>
+<span id="cb140-5"><a href="make-predictions.html#cb140-5" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(lm_form_fit, <span class="at">new_data =</span> ames_test_small) <span class="sc">%&gt;%</span> </span>
+<span id="cb140-6"><a href="make-predictions.html#cb140-6" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -612,13 +610,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Combining <code>bind_cols</code> with our predict function we can merge our predictions back to the test set.</li>
 </ul>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="make-predictions.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add predictions together with actuals</span></span>
-<span id="cb140-2"><a href="make-predictions.html#cb140-2" aria-hidden="true" tabindex="-1"></a>ames_test_small <span class="sc">%&gt;%</span></span>
-<span id="cb140-3"><a href="make-predictions.html#cb140-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Sale_Price) <span class="sc">%&gt;%</span></span>
-<span id="cb140-4"><a href="make-predictions.html#cb140-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(<span class="fu">predict</span>(lm_form_fit, ames_test_small)) <span class="sc">%&gt;%</span></span>
-<span id="cb140-5"><a href="make-predictions.html#cb140-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add 95% prediction intervals to the results:</span></span>
-<span id="cb140-6"><a href="make-predictions.html#cb140-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(<span class="fu">predict</span>(lm_form_fit, ames_test_small, <span class="at">type =</span> <span class="st">&quot;pred_int&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb140-7"><a href="make-predictions.html#cb140-7" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="make-predictions.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add predictions together with actuals</span></span>
+<span id="cb141-2"><a href="make-predictions.html#cb141-2" aria-hidden="true" tabindex="-1"></a>ames_test_small <span class="sc">%&gt;%</span></span>
+<span id="cb141-3"><a href="make-predictions.html#cb141-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Sale_Price) <span class="sc">%&gt;%</span></span>
+<span id="cb141-4"><a href="make-predictions.html#cb141-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(<span class="fu">predict</span>(lm_form_fit, ames_test_small)) <span class="sc">%&gt;%</span></span>
+<span id="cb141-5"><a href="make-predictions.html#cb141-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add 95% prediction intervals to the results:</span></span>
+<span id="cb141-6"><a href="make-predictions.html#cb141-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(<span class="fu">predict</span>(lm_form_fit, ames_test_small, <span class="at">type =</span> <span class="st">&quot;pred_int&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb141-7"><a href="make-predictions.html#cb141-7" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">

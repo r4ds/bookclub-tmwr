@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>16.2 Principal Component Analysis (PCA) | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="16.2 Principal Component Analysis (PCA) | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
@@ -24,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-03-14" />
+<meta name="date" content="2022-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="recipes-without-workflows.html"/>
 <link rel="next" href="partial-least-squares-pls.html"/>
-<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -569,10 +567,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>PCA = unsupervised method, finds up to N new features (where N = # features) to explain variation.</li>
 </ul>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="principal-component-analysis-pca.html#cb385-1" aria-hidden="true" tabindex="-1"></a>bean_rec_trained <span class="sc">%&gt;%</span></span>
-<span id="cb385-2"><a href="principal-component-analysis-pca.html#cb385-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_pca</span>(<span class="fu">all_numeric_predictors</span>(), <span class="at">num_comp =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb385-3"><a href="principal-component-analysis-pca.html#cb385-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_validation_results</span>() <span class="sc">+</span> </span>
-<span id="cb385-4"><a href="principal-component-analysis-pca.html#cb385-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Principal Component Analysis&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="principal-component-analysis-pca.html#cb387-1" aria-hidden="true" tabindex="-1"></a>bean_rec_trained <span class="sc">%&gt;%</span></span>
+<span id="cb387-2"><a href="principal-component-analysis-pca.html#cb387-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_pca</span>(<span class="fu">all_numeric_predictors</span>(), <span class="at">num_comp =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb387-3"><a href="principal-component-analysis-pca.html#cb387-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_validation_results</span>() <span class="sc">+</span> </span>
+<span id="cb387-4"><a href="principal-component-analysis-pca.html#cb387-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Principal Component Analysis&quot;</span>)</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/17-pca-1.png" width="672" /></p>
 </div>
             </section>

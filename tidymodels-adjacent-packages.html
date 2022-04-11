@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.4 {tidymodels}-Adjacent Packages | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.4 {tidymodels}-Adjacent Packages | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
@@ -24,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-03-14" />
+<meta name="date" content="2022-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="make-predictions.html"/>
 <link rel="next" href="summary-1.html"/>
-<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -575,33 +573,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="tidymodels-adjacent-packages.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="co"># devtools::install_github(&quot;tidymodels/discrim&quot;) # to install</span></span>
-<span id="cb141-2"><a href="tidymodels-adjacent-packages.html#cb141-2" aria-hidden="true" tabindex="-1"></a><span class="co"># load package</span></span>
-<span id="cb141-3"><a href="tidymodels-adjacent-packages.html#cb141-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(discrim)</span>
-<span id="cb141-4"><a href="tidymodels-adjacent-packages.html#cb141-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb141-5"><a href="tidymodels-adjacent-packages.html#cb141-5" aria-hidden="true" tabindex="-1"></a><span class="co"># create dummy data</span></span>
-<span id="cb141-6"><a href="tidymodels-adjacent-packages.html#cb141-6" aria-hidden="true" tabindex="-1"></a>parabolic_grid <span class="ot">&lt;-</span></span>
-<span id="cb141-7"><a href="tidymodels-adjacent-packages.html#cb141-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand.grid</span>(<span class="at">X1 =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length =</span> <span class="dv">100</span>),</span>
-<span id="cb141-8"><a href="tidymodels-adjacent-packages.html#cb141-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">X2 =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length =</span> <span class="dv">100</span>))</span>
-<span id="cb141-9"><a href="tidymodels-adjacent-packages.html#cb141-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb141-10"><a href="tidymodels-adjacent-packages.html#cb141-10" aria-hidden="true" tabindex="-1"></a><span class="co"># fit model from discrim</span></span>
-<span id="cb141-11"><a href="tidymodels-adjacent-packages.html#cb141-11" aria-hidden="true" tabindex="-1"></a>fda_mod <span class="ot">&lt;-</span></span>
-<span id="cb141-12"><a href="tidymodels-adjacent-packages.html#cb141-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">discrim_flexible</span>(<span class="at">num_terms =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb141-13"><a href="tidymodels-adjacent-packages.html#cb141-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;earth&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb141-14"><a href="tidymodels-adjacent-packages.html#cb141-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(class <span class="sc">~</span> ., <span class="at">data =</span> parabolic)</span>
-<span id="cb141-15"><a href="tidymodels-adjacent-packages.html#cb141-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb141-16"><a href="tidymodels-adjacent-packages.html#cb141-16" aria-hidden="true" tabindex="-1"></a><span class="co"># assigning predictions to data frame</span></span>
-<span id="cb141-17"><a href="tidymodels-adjacent-packages.html#cb141-17" aria-hidden="true" tabindex="-1"></a>parabolic_grid<span class="sc">$</span>fda <span class="ot">&lt;-</span></span>
-<span id="cb141-18"><a href="tidymodels-adjacent-packages.html#cb141-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(fda_mod, parabolic_grid, <span class="at">type =</span> <span class="st">&quot;prob&quot;</span>)<span class="sc">$</span>.pred_Class1</span>
-<span id="cb141-19"><a href="tidymodels-adjacent-packages.html#cb141-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb141-20"><a href="tidymodels-adjacent-packages.html#cb141-20" aria-hidden="true" tabindex="-1"></a><span class="co"># plotting prediction</span></span>
-<span id="cb141-21"><a href="tidymodels-adjacent-packages.html#cb141-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb141-22"><a href="tidymodels-adjacent-packages.html#cb141-22" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(parabolic, <span class="fu">aes</span>(<span class="at">x =</span> X1, <span class="at">y =</span> X2)) <span class="sc">+</span></span>
-<span id="cb141-23"><a href="tidymodels-adjacent-packages.html#cb141-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">col =</span> class), <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb141-24"><a href="tidymodels-adjacent-packages.html#cb141-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_contour</span>(<span class="at">data =</span> parabolic_grid, <span class="fu">aes</span>(<span class="at">z =</span> fda), <span class="at">col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">breaks =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb141-25"><a href="tidymodels-adjacent-packages.html#cb141-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb141-26"><a href="tidymodels-adjacent-packages.html#cb141-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>) <span class="sc">+</span></span>
-<span id="cb141-27"><a href="tidymodels-adjacent-packages.html#cb141-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="tidymodels-adjacent-packages.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="co"># devtools::install_github(&quot;tidymodels/discrim&quot;) # to install</span></span>
+<span id="cb142-2"><a href="tidymodels-adjacent-packages.html#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="co"># load package</span></span>
+<span id="cb142-3"><a href="tidymodels-adjacent-packages.html#cb142-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(discrim)</span>
+<span id="cb142-4"><a href="tidymodels-adjacent-packages.html#cb142-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb142-5"><a href="tidymodels-adjacent-packages.html#cb142-5" aria-hidden="true" tabindex="-1"></a><span class="co"># create dummy data</span></span>
+<span id="cb142-6"><a href="tidymodels-adjacent-packages.html#cb142-6" aria-hidden="true" tabindex="-1"></a>parabolic_grid <span class="ot">&lt;-</span></span>
+<span id="cb142-7"><a href="tidymodels-adjacent-packages.html#cb142-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand.grid</span>(<span class="at">X1 =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length =</span> <span class="dv">100</span>),</span>
+<span id="cb142-8"><a href="tidymodels-adjacent-packages.html#cb142-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">X2 =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length =</span> <span class="dv">100</span>))</span>
+<span id="cb142-9"><a href="tidymodels-adjacent-packages.html#cb142-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb142-10"><a href="tidymodels-adjacent-packages.html#cb142-10" aria-hidden="true" tabindex="-1"></a><span class="co"># fit model from discrim</span></span>
+<span id="cb142-11"><a href="tidymodels-adjacent-packages.html#cb142-11" aria-hidden="true" tabindex="-1"></a>fda_mod <span class="ot">&lt;-</span></span>
+<span id="cb142-12"><a href="tidymodels-adjacent-packages.html#cb142-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">discrim_flexible</span>(<span class="at">num_terms =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb142-13"><a href="tidymodels-adjacent-packages.html#cb142-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;earth&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb142-14"><a href="tidymodels-adjacent-packages.html#cb142-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(class <span class="sc">~</span> ., <span class="at">data =</span> parabolic)</span>
+<span id="cb142-15"><a href="tidymodels-adjacent-packages.html#cb142-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb142-16"><a href="tidymodels-adjacent-packages.html#cb142-16" aria-hidden="true" tabindex="-1"></a><span class="co"># assigning predictions to data frame</span></span>
+<span id="cb142-17"><a href="tidymodels-adjacent-packages.html#cb142-17" aria-hidden="true" tabindex="-1"></a>parabolic_grid<span class="sc">$</span>fda <span class="ot">&lt;-</span></span>
+<span id="cb142-18"><a href="tidymodels-adjacent-packages.html#cb142-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(fda_mod, parabolic_grid, <span class="at">type =</span> <span class="st">&quot;prob&quot;</span>)<span class="sc">$</span>.pred_Class1</span>
+<span id="cb142-19"><a href="tidymodels-adjacent-packages.html#cb142-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb142-20"><a href="tidymodels-adjacent-packages.html#cb142-20" aria-hidden="true" tabindex="-1"></a><span class="co"># plotting prediction</span></span>
+<span id="cb142-21"><a href="tidymodels-adjacent-packages.html#cb142-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb142-22"><a href="tidymodels-adjacent-packages.html#cb142-22" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(parabolic, <span class="fu">aes</span>(<span class="at">x =</span> X1, <span class="at">y =</span> X2)) <span class="sc">+</span></span>
+<span id="cb142-23"><a href="tidymodels-adjacent-packages.html#cb142-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">col =</span> class), <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb142-24"><a href="tidymodels-adjacent-packages.html#cb142-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_contour</span>(<span class="at">data =</span> parabolic_grid, <span class="fu">aes</span>(<span class="at">z =</span> fda), <span class="at">col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">breaks =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb142-25"><a href="tidymodels-adjacent-packages.html#cb142-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb142-26"><a href="tidymodels-adjacent-packages.html#cb142-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>) <span class="sc">+</span></span>
+<span id="cb142-27"><a href="tidymodels-adjacent-packages.html#cb142-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>()</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/adjacent-packages-1.png" width="672" /></p>
 </div>
 <div class="footnotes">

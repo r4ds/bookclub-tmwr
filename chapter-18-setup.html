@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>18.1 Chapter 18 Setup | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="18.1 Chapter 18 Setup | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
@@ -24,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-03-14" />
+<meta name="date" content="2022-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="explaining-models-and-predictions.html"/>
 <link rel="next" href="overview.html"/>
-<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -567,16 +565,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="chapter-18-setup" class="section level2 hasAnchor" number="18.1">
 <h2><span class="header-section-number">18.1</span> Chapter 18 Setup<a href="chapter-18-setup.html#chapter-18-setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Load in the data and set up explainer</p>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="chapter-18-setup.html#cb394-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb394-2"><a href="chapter-18-setup.html#cb394-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
-<span id="cb394-3"><a href="chapter-18-setup.html#cb394-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DALEX)</span>
-<span id="cb394-4"><a href="chapter-18-setup.html#cb394-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DALEXtra)</span>
-<span id="cb394-5"><a href="chapter-18-setup.html#cb394-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iBreakDown)</span>
-<span id="cb394-6"><a href="chapter-18-setup.html#cb394-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb394-7"><a href="chapter-18-setup.html#cb394-7" aria-hidden="true" tabindex="-1"></a>rush_model <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;18-fit_rush_yards.RDS&quot;</span>))</span>
-<span id="cb394-8"><a href="chapter-18-setup.html#cb394-8" aria-hidden="true" tabindex="-1"></a>rush_df <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;18-nfl_rush_df.RDS&quot;</span>))</span>
-<span id="cb394-9"><a href="chapter-18-setup.html#cb394-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb394-10"><a href="chapter-18-setup.html#cb394-10" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(rush_df)</span></code></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="chapter-18-setup.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb396-2"><a href="chapter-18-setup.html#cb396-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb396-3"><a href="chapter-18-setup.html#cb396-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DALEX)</span>
+<span id="cb396-4"><a href="chapter-18-setup.html#cb396-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DALEXtra)</span>
+<span id="cb396-5"><a href="chapter-18-setup.html#cb396-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iBreakDown)</span>
+<span id="cb396-6"><a href="chapter-18-setup.html#cb396-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb396-7"><a href="chapter-18-setup.html#cb396-7" aria-hidden="true" tabindex="-1"></a>rush_model <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;18-fit_rush_yards.RDS&quot;</span>))</span>
+<span id="cb396-8"><a href="chapter-18-setup.html#cb396-8" aria-hidden="true" tabindex="-1"></a>rush_df <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;18-nfl_rush_df.RDS&quot;</span>))</span>
+<span id="cb396-9"><a href="chapter-18-setup.html#cb396-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb396-10"><a href="chapter-18-setup.html#cb396-10" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(rush_df)</span></code></pre></div>
 <table style="width: auto;" class="table table-condensed">
 <caption>
 <span id="tab:18-load-data">Table 18.1: </span>Data summary
@@ -1865,13 +1863,13 @@ total_line
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="chapter-18-setup.html#cb395-1" aria-hidden="true" tabindex="-1"></a>explainer_boost <span class="ot">&lt;-</span> </span>
-<span id="cb395-2"><a href="chapter-18-setup.html#cb395-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">explain_tidymodels</span>(</span>
-<span id="cb395-3"><a href="chapter-18-setup.html#cb395-3" aria-hidden="true" tabindex="-1"></a>    rush_model, </span>
-<span id="cb395-4"><a href="chapter-18-setup.html#cb395-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> rush_df,</span>
-<span id="cb395-5"><a href="chapter-18-setup.html#cb395-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> rush_df<span class="sc">$</span>rushing_yards,</span>
-<span id="cb395-6"><a href="chapter-18-setup.html#cb395-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
-<span id="cb395-7"><a href="chapter-18-setup.html#cb395-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="chapter-18-setup.html#cb397-1" aria-hidden="true" tabindex="-1"></a>explainer_boost <span class="ot">&lt;-</span> </span>
+<span id="cb397-2"><a href="chapter-18-setup.html#cb397-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">explain_tidymodels</span>(</span>
+<span id="cb397-3"><a href="chapter-18-setup.html#cb397-3" aria-hidden="true" tabindex="-1"></a>    rush_model, </span>
+<span id="cb397-4"><a href="chapter-18-setup.html#cb397-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> rush_df,</span>
+<span id="cb397-5"><a href="chapter-18-setup.html#cb397-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> rush_df<span class="sc">$</span>rushing_yards,</span>
+<span id="cb397-6"><a href="chapter-18-setup.html#cb397-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
+<span id="cb397-7"><a href="chapter-18-setup.html#cb397-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <pre><code>## Preparation of a new explainer is initiated
 ##   -&gt; model label       :  workflow  ( [33m default [39m )
 ##   -&gt; data              :  95186  rows  40  cols 
@@ -1879,7 +1877,7 @@ total_line
 ##   -&gt; target variable   :  95186  values 
 ##   -&gt; predict function  :  yhat.workflow  will be used ( [33m default [39m )
 ##   -&gt; predicted values  :  No value for predict function target column. ( [33m default [39m )
-##   -&gt; model_info        :  package tidymodels , ver. 0.1.4 , task regression ( [33m default [39m ) 
+##   -&gt; model_info        :  package tidymodels , ver. 0.2.0 , task regression ( [33m default [39m ) 
 ##   -&gt; predicted values  :  the predict_function returns an error when executed ( [31m WARNING [39m ) 
 ##   -&gt; residual function :  difference between y and yhat ( [33m default [39m )
 ##   -&gt; residuals         :  the residual_function returns an error when executed ( [31m WARNING [39m ) 

@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.4 Managing many workflows | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.4 Managing many workflows | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
@@ -24,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-03-14" />
+<meta name="date" content="2022-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="modeling-with-workflows.html"/>
 <link rel="next" href="notes.html"/>
-<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -566,26 +564,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="managing-many-workflows" class="section level2 hasAnchor" number="7.4">
 <h2><span class="header-section-number">7.4</span> Managing many workflows<a href="managing-many-workflows.html#managing-many-workflows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="managing-many-workflows.html#cb168-1" aria-hidden="true" tabindex="-1"></a>rand_forest_spec <span class="ot">&lt;-</span> <span class="fu">rand_forest</span>(</span>
-<span id="cb168-2"><a href="managing-many-workflows.html#cb168-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">mode =</span> <span class="st">&#39;regression&#39;</span>,</span>
-<span id="cb168-3"><a href="managing-many-workflows.html#cb168-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mtry =</span> <span class="dv">2</span>,</span>
-<span id="cb168-4"><a href="managing-many-workflows.html#cb168-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">trees =</span> <span class="dv">25</span>,</span>
-<span id="cb168-5"><a href="managing-many-workflows.html#cb168-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_n =</span> <span class="dv">10</span></span>
-<span id="cb168-6"><a href="managing-many-workflows.html#cb168-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
-<span id="cb168-7"><a href="managing-many-workflows.html#cb168-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&#39;ranger&#39;</span>)</span>
-<span id="cb168-8"><a href="managing-many-workflows.html#cb168-8" aria-hidden="true" tabindex="-1"></a>tree_workflows <span class="ot">&lt;-</span> <span class="fu">workflow_set</span>(</span>
-<span id="cb168-9"><a href="managing-many-workflows.html#cb168-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">preproc =</span> <span class="fu">list</span>(</span>
-<span id="cb168-10"><a href="managing-many-workflows.html#cb168-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;variables&quot;</span> <span class="ot">=</span> <span class="fu">workflow_variables</span>(diam, <span class="fu">c</span>(longitude, latitude, site_order)),</span>
-<span id="cb168-11"><a href="managing-many-workflows.html#cb168-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;simple_formula&quot;</span> <span class="ot">=</span> diam <span class="sc">~</span> <span class="fu">is.na</span>(date_planted) <span class="sc">+</span> longitude <span class="sc">+</span> latitude,</span>
-<span id="cb168-12"><a href="managing-many-workflows.html#cb168-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;trees_recipe&quot;</span> <span class="ot">=</span> trees_recipe</span>
-<span id="cb168-13"><a href="managing-many-workflows.html#cb168-13" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb168-14"><a href="managing-many-workflows.html#cb168-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">models =</span> <span class="fu">list</span>(</span>
-<span id="cb168-15"><a href="managing-many-workflows.html#cb168-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;lm&quot;</span> <span class="ot">=</span> linear_model_spec,</span>
-<span id="cb168-16"><a href="managing-many-workflows.html#cb168-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;rf&quot;</span> <span class="ot">=</span> rand_forest_spec</span>
-<span id="cb168-17"><a href="managing-many-workflows.html#cb168-17" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb168-18"><a href="managing-many-workflows.html#cb168-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb168-19"><a href="managing-many-workflows.html#cb168-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb168-20"><a href="managing-many-workflows.html#cb168-20" aria-hidden="true" tabindex="-1"></a>tree_workflows</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="managing-many-workflows.html#cb170-1" aria-hidden="true" tabindex="-1"></a>rand_forest_spec <span class="ot">&lt;-</span> <span class="fu">rand_forest</span>(</span>
+<span id="cb170-2"><a href="managing-many-workflows.html#cb170-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">mode =</span> <span class="st">&#39;regression&#39;</span>,</span>
+<span id="cb170-3"><a href="managing-many-workflows.html#cb170-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mtry =</span> <span class="dv">2</span>,</span>
+<span id="cb170-4"><a href="managing-many-workflows.html#cb170-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">trees =</span> <span class="dv">25</span>,</span>
+<span id="cb170-5"><a href="managing-many-workflows.html#cb170-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_n =</span> <span class="dv">10</span></span>
+<span id="cb170-6"><a href="managing-many-workflows.html#cb170-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb170-7"><a href="managing-many-workflows.html#cb170-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&#39;ranger&#39;</span>)</span>
+<span id="cb170-8"><a href="managing-many-workflows.html#cb170-8" aria-hidden="true" tabindex="-1"></a>tree_workflows <span class="ot">&lt;-</span> <span class="fu">workflow_set</span>(</span>
+<span id="cb170-9"><a href="managing-many-workflows.html#cb170-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">preproc =</span> <span class="fu">list</span>(</span>
+<span id="cb170-10"><a href="managing-many-workflows.html#cb170-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;variables&quot;</span> <span class="ot">=</span> <span class="fu">workflow_variables</span>(diam, <span class="fu">c</span>(longitude, latitude, site_order)),</span>
+<span id="cb170-11"><a href="managing-many-workflows.html#cb170-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;simple_formula&quot;</span> <span class="ot">=</span> diam <span class="sc">~</span> <span class="fu">is.na</span>(date_planted) <span class="sc">+</span> longitude <span class="sc">+</span> latitude,</span>
+<span id="cb170-12"><a href="managing-many-workflows.html#cb170-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;trees_recipe&quot;</span> <span class="ot">=</span> trees_recipe</span>
+<span id="cb170-13"><a href="managing-many-workflows.html#cb170-13" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb170-14"><a href="managing-many-workflows.html#cb170-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">models =</span> <span class="fu">list</span>(</span>
+<span id="cb170-15"><a href="managing-many-workflows.html#cb170-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;lm&quot;</span> <span class="ot">=</span> linear_model_spec,</span>
+<span id="cb170-16"><a href="managing-many-workflows.html#cb170-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;rf&quot;</span> <span class="ot">=</span> rand_forest_spec</span>
+<span id="cb170-17"><a href="managing-many-workflows.html#cb170-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb170-18"><a href="managing-many-workflows.html#cb170-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb170-19"><a href="managing-many-workflows.html#cb170-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb170-20"><a href="managing-many-workflows.html#cb170-20" aria-hidden="true" tabindex="-1"></a>tree_workflows</span></code></pre></div>
 <pre><code>## # A workflow set/tibble: 6 × 4
 ##   wflow_id          info             option    result    
 ##   &lt;chr&gt;             &lt;list&gt;           &lt;list&gt;    &lt;list&gt;    
@@ -595,13 +593,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 simple_formula_rf &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
 ## 5 trees_recipe_lm   &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
 ## 6 trees_recipe_rf   &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;</code></pre>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="managing-many-workflows.html#cb170-1" aria-hidden="true" tabindex="-1"></a>tree_predictions <span class="ot">&lt;-</span> tree_workflows <span class="sc">%&gt;%</span></span>
-<span id="cb170-2"><a href="managing-many-workflows.html#cb170-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb170-3"><a href="managing-many-workflows.html#cb170-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fitted_wf =</span> <span class="fu">list</span>(<span class="fu">fit</span>(info<span class="sc">$</span>workflow[[<span class="dv">1</span>]], trees_training))) <span class="sc">%&gt;%</span></span>
-<span id="cb170-4"><a href="managing-many-workflows.html#cb170-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pred =</span> <span class="fu">list</span>(<span class="fu">predict</span>(fitted_wf, trees_testing)))</span>
-<span id="cb170-5"><a href="managing-many-workflows.html#cb170-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb170-6"><a href="managing-many-workflows.html#cb170-6" aria-hidden="true" tabindex="-1"></a>tree_predictions <span class="sc">%&gt;%</span></span>
-<span id="cb170-7"><a href="managing-many-workflows.html#cb170-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rmse =</span> <span class="fu">rmse_vec</span>(trees_testing<span class="sc">$</span>diam, pred<span class="sc">$</span>.pred))</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="managing-many-workflows.html#cb172-1" aria-hidden="true" tabindex="-1"></a>tree_predictions <span class="ot">&lt;-</span> tree_workflows <span class="sc">%&gt;%</span></span>
+<span id="cb172-2"><a href="managing-many-workflows.html#cb172-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb172-3"><a href="managing-many-workflows.html#cb172-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fitted_wf =</span> <span class="fu">list</span>(<span class="fu">fit</span>(info<span class="sc">$</span>workflow[[<span class="dv">1</span>]], trees_training))) <span class="sc">%&gt;%</span></span>
+<span id="cb172-4"><a href="managing-many-workflows.html#cb172-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pred =</span> <span class="fu">list</span>(<span class="fu">predict</span>(fitted_wf, trees_testing)))</span>
+<span id="cb172-5"><a href="managing-many-workflows.html#cb172-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-6"><a href="managing-many-workflows.html#cb172-6" aria-hidden="true" tabindex="-1"></a>tree_predictions <span class="sc">%&gt;%</span></span>
+<span id="cb172-7"><a href="managing-many-workflows.html#cb172-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rmse =</span> <span class="fu">rmse_vec</span>(trees_testing<span class="sc">$</span>diam, pred<span class="sc">$</span>.pred))</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 7
 ## # Rowwise: 
 ##   wflow_id          info             option    result fitted_wf  pred      rmse

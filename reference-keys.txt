@@ -1,4 +1,4 @@
-tab:skim-05
+tab:skim-05b
 fig:08-model-step
 tab:llhood-12
 tab:15-setup

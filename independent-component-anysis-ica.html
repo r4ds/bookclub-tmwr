@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>16.4 Independent Component Anysis (ICA) | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="16.4 Independent Component Anysis (ICA) | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
@@ -24,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-03-14" />
+<meta name="date" content="2022-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="partial-least-squares-pls.html"/>
 <link rel="next" href="uniform-manifold-approximation-and-projection-umap.html"/>
-<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -570,11 +568,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>“As statistically independent from one another as possible.”</li>
 <li>“It can be thought of as maximizing the ‘non-Gaussianity’ of the ICA components.</li>
 </ul>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="independent-component-anysis-ica.html#cb387-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: ICA requires the &quot;dimRed&quot; and &quot;fastICA&quot; packages.</span></span>
-<span id="cb387-2"><a href="independent-component-anysis-ica.html#cb387-2" aria-hidden="true" tabindex="-1"></a>bean_rec_trained <span class="sc">%&gt;%</span></span>
-<span id="cb387-3"><a href="independent-component-anysis-ica.html#cb387-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_ica</span>(<span class="fu">all_numeric_predictors</span>(), <span class="at">num_comp =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb387-4"><a href="independent-component-anysis-ica.html#cb387-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_validation_results</span>() <span class="sc">+</span> </span>
-<span id="cb387-5"><a href="independent-component-anysis-ica.html#cb387-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Independent Component Analysis&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="independent-component-anysis-ica.html#cb389-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: ICA requires the &quot;dimRed&quot; and &quot;fastICA&quot; packages.</span></span>
+<span id="cb389-2"><a href="independent-component-anysis-ica.html#cb389-2" aria-hidden="true" tabindex="-1"></a>bean_rec_trained <span class="sc">%&gt;%</span></span>
+<span id="cb389-3"><a href="independent-component-anysis-ica.html#cb389-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_ica</span>(<span class="fu">all_numeric_predictors</span>(), <span class="at">num_comp =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb389-4"><a href="independent-component-anysis-ica.html#cb389-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_validation_results</span>() <span class="sc">+</span> </span>
+<span id="cb389-5"><a href="independent-component-anysis-ica.html#cb389-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Independent Component Analysis&quot;</span>)</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/17-ica-1.png" width="672" /></p>
 </div>
             </section>

@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.3 USING RECIPES | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.3 USING RECIPES | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
@@ -24,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-03-14" />
+<meta name="date" content="2022-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="a-simple-recipe-for-the-ames-housing-data.html"/>
 <link rel="next" href="how-data-are-used-by-the-recipe.html"/>
-<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -567,32 +565,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="using-recipes" class="section level2 hasAnchor" number="8.3">
 <h2><span class="header-section-number">8.3</span> USING RECIPES<a href="using-recipes.html#using-recipes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Preprocessing is part of a modeling <strong>workflow</strong></p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="using-recipes.html#cb181-1" aria-hidden="true" tabindex="-1"></a>lm_model<span class="ot">&lt;-</span><span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb181-2"><a href="using-recipes.html#cb181-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;lm&quot;</span>)</span>
-<span id="cb181-3"><a href="using-recipes.html#cb181-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb181-4"><a href="using-recipes.html#cb181-4" aria-hidden="true" tabindex="-1"></a>lm_wflow<span class="ot">&lt;-</span> <span class="fu">workflow</span>()<span class="sc">%&gt;%</span></span>
-<span id="cb181-5"><a href="using-recipes.html#cb181-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lm_model)</span>
-<span id="cb181-6"><a href="using-recipes.html#cb181-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb181-7"><a href="using-recipes.html#cb181-7" aria-hidden="true" tabindex="-1"></a>lm_wflow <span class="ot">&lt;-</span> </span>
-<span id="cb181-8"><a href="using-recipes.html#cb181-8" aria-hidden="true" tabindex="-1"></a>  lm_wflow <span class="sc">%&gt;%</span> </span>
-<span id="cb181-9"><a href="using-recipes.html#cb181-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(Sale_Price <span class="sc">~</span> Longitude <span class="sc">+</span> Latitude)</span>
-<span id="cb181-10"><a href="using-recipes.html#cb181-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb181-11"><a href="using-recipes.html#cb181-11" aria-hidden="true" tabindex="-1"></a><span class="co"># lm_wflow %&gt;% </span></span>
-<span id="cb181-12"><a href="using-recipes.html#cb181-12" aria-hidden="true" tabindex="-1"></a><span class="co">#   add_recipe(simple_ames)</span></span>
-<span id="cb181-13"><a href="using-recipes.html#cb181-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb181-14"><a href="using-recipes.html#cb181-14" aria-hidden="true" tabindex="-1"></a>lm_wflow <span class="ot">&lt;-</span> lm_wflow <span class="sc">%&gt;%</span> </span>
-<span id="cb181-15"><a href="using-recipes.html#cb181-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">remove_variables</span>()<span class="sc">%&gt;%</span></span>
-<span id="cb181-16"><a href="using-recipes.html#cb181-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(simple_ames)</span></code></pre></div>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="using-recipes.html#cb182-1" aria-hidden="true" tabindex="-1"></a>lm_fit <span class="ot">&lt;-</span> <span class="fu">fit</span>(lm_wflow, ames_train)</span>
-<span id="cb182-2"><a href="using-recipes.html#cb182-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(lm_fit, ames_test <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="using-recipes.html#cb183-1" aria-hidden="true" tabindex="-1"></a>lm_model<span class="ot">&lt;-</span><span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb183-2"><a href="using-recipes.html#cb183-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;lm&quot;</span>)</span>
+<span id="cb183-3"><a href="using-recipes.html#cb183-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb183-4"><a href="using-recipes.html#cb183-4" aria-hidden="true" tabindex="-1"></a>lm_wflow<span class="ot">&lt;-</span> <span class="fu">workflow</span>()<span class="sc">%&gt;%</span></span>
+<span id="cb183-5"><a href="using-recipes.html#cb183-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lm_model)</span>
+<span id="cb183-6"><a href="using-recipes.html#cb183-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb183-7"><a href="using-recipes.html#cb183-7" aria-hidden="true" tabindex="-1"></a>lm_wflow <span class="ot">&lt;-</span> </span>
+<span id="cb183-8"><a href="using-recipes.html#cb183-8" aria-hidden="true" tabindex="-1"></a>  lm_wflow <span class="sc">%&gt;%</span> </span>
+<span id="cb183-9"><a href="using-recipes.html#cb183-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(Sale_Price <span class="sc">~</span> Longitude <span class="sc">+</span> Latitude)</span>
+<span id="cb183-10"><a href="using-recipes.html#cb183-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb183-11"><a href="using-recipes.html#cb183-11" aria-hidden="true" tabindex="-1"></a><span class="co"># lm_wflow %&gt;% </span></span>
+<span id="cb183-12"><a href="using-recipes.html#cb183-12" aria-hidden="true" tabindex="-1"></a><span class="co">#   add_recipe(simple_ames)</span></span>
+<span id="cb183-13"><a href="using-recipes.html#cb183-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb183-14"><a href="using-recipes.html#cb183-14" aria-hidden="true" tabindex="-1"></a>lm_wflow <span class="ot">&lt;-</span> lm_wflow <span class="sc">%&gt;%</span> </span>
+<span id="cb183-15"><a href="using-recipes.html#cb183-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">remove_variables</span>()<span class="sc">%&gt;%</span></span>
+<span id="cb183-16"><a href="using-recipes.html#cb183-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(simple_ames)</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="using-recipes.html#cb184-1" aria-hidden="true" tabindex="-1"></a>lm_fit <span class="ot">&lt;-</span> <span class="fu">fit</span>(lm_wflow, ames_train)</span>
+<span id="cb184-2"><a href="using-recipes.html#cb184-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(lm_fit, ames_test <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 1
 ##     .pred
 ##     &lt;dbl&gt;
 ## 1 154932.
 ## 2 192414.
 ## 3 262260.</code></pre>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="using-recipes.html#cb184-1" aria-hidden="true" tabindex="-1"></a>lm_fit <span class="sc">%&gt;%</span> </span>
-<span id="cb184-2"><a href="using-recipes.html#cb184-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_recipe</span>(<span class="at">estimated =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="using-recipes.html#cb186-1" aria-hidden="true" tabindex="-1"></a>lm_fit <span class="sc">%&gt;%</span> </span>
+<span id="cb186-2"><a href="using-recipes.html#cb186-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_recipe</span>(<span class="at">estimated =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Recipe
 ## 
 ## Inputs:
@@ -607,12 +605,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Log transformation on Gr_Liv_Area [trained]
 ## Dummy variables from Neighborhood, Bldg_Type [trained]</code></pre>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="using-recipes.html#cb186-1" aria-hidden="true" tabindex="-1"></a>lm_fit <span class="sc">%&gt;%</span> </span>
-<span id="cb186-2"><a href="using-recipes.html#cb186-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This returns the parsnip object:</span></span>
-<span id="cb186-3"><a href="using-recipes.html#cb186-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_parsnip</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb186-4"><a href="using-recipes.html#cb186-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Now tidy the linear model object:</span></span>
-<span id="cb186-5"><a href="using-recipes.html#cb186-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb186-6"><a href="using-recipes.html#cb186-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="using-recipes.html#cb188-1" aria-hidden="true" tabindex="-1"></a>lm_fit <span class="sc">%&gt;%</span> </span>
+<span id="cb188-2"><a href="using-recipes.html#cb188-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This returns the parsnip object:</span></span>
+<span id="cb188-3"><a href="using-recipes.html#cb188-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_parsnip</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb188-4"><a href="using-recipes.html#cb188-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Now tidy the linear model object:</span></span>
+<span id="cb188-5"><a href="using-recipes.html#cb188-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb188-6"><a href="using-recipes.html#cb188-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 5
 ##   term                        estimate std.error statistic   p.value
 ##   &lt;chr&gt;                          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;

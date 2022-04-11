@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>12.10 Add tuning parameters: | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="12.10 Add tuning parameters: | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
@@ -24,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-03-14" />
+<meta name="date" content="2022-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="build-our-random-forest-model.html"/>
 <link rel="next" href="updating-tuning-parameters.html"/>
-<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -567,11 +565,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="add-tuning-parameters" class="section level2 hasAnchor" number="12.10">
 <h2><span class="header-section-number">12.10</span> Add tuning parameters:<a href="add-tuning-parameters.html#add-tuning-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We can add main arguments (mtry, min_n) and engine specific arguments (regularization.factor)</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="add-tuning-parameters.html#cb258-1" aria-hidden="true" tabindex="-1"></a>rf_spec_tuned <span class="ot">&lt;-</span> <span class="fu">rand_forest</span>(<span class="at">mtry =</span> <span class="fu">tune</span>(), <span class="at">trees =</span> <span class="dv">2000</span>, <span class="at">min_n =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb258-2"><a href="add-tuning-parameters.html#cb258-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;ranger&quot;</span>, <span class="at">regularization.factor =</span> <span class="fu">tune</span>(<span class="st">&quot;reg&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb258-3"><a href="add-tuning-parameters.html#cb258-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">&quot;regression&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="add-tuning-parameters.html#cb260-1" aria-hidden="true" tabindex="-1"></a>rf_spec_tuned <span class="ot">&lt;-</span> <span class="fu">rand_forest</span>(<span class="at">mtry =</span> <span class="fu">tune</span>(), <span class="at">trees =</span> <span class="dv">2000</span>, <span class="at">min_n =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb260-2"><a href="add-tuning-parameters.html#cb260-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;ranger&quot;</span>, <span class="at">regularization.factor =</span> <span class="fu">tune</span>(<span class="st">&quot;reg&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb260-3"><a href="add-tuning-parameters.html#cb260-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">&quot;regression&quot;</span>) </span></code></pre></div>
 <p><code>tune()</code> returns an expression. This tags the parameters for optimization within the tidymodels framework</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="add-tuning-parameters.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parameters</span>(rf_spec_tuned)</span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="add-tuning-parameters.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parameters</span>(rf_spec_tuned)</span></code></pre></div>
 <pre><code>## Collection of 3 parameters for tuning
 ## 
 ##  identifier                  type    object

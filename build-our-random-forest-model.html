@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>12.9 Build our random forest model: | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="12.9 Build our random forest model: | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
@@ -24,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-03-14" />
+<meta name="date" content="2022-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="lets-try-an-example.html"/>
 <link rel="next" href="add-tuning-parameters.html"/>
-<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -567,16 +565,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="build-our-random-forest-model" class="section level2 hasAnchor" number="12.9">
 <h2><span class="header-section-number">12.9</span> Build our random forest model:<a href="build-our-random-forest-model.html#build-our-random-forest-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>random forest model</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="build-our-random-forest-model.html#cb254-1" aria-hidden="true" tabindex="-1"></a>rf_spec <span class="ot">&lt;-</span> <span class="fu">rand_forest</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb254-2"><a href="build-our-random-forest-model.html#cb254-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;ranger&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb254-3"><a href="build-our-random-forest-model.html#cb254-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">&quot;regression&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="build-our-random-forest-model.html#cb256-1" aria-hidden="true" tabindex="-1"></a>rf_spec <span class="ot">&lt;-</span> <span class="fu">rand_forest</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb256-2"><a href="build-our-random-forest-model.html#cb256-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;ranger&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb256-3"><a href="build-our-random-forest-model.html#cb256-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">&quot;regression&quot;</span>) </span></code></pre></div>
 <p>Main Arguments <code>args()</code>:</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="build-our-random-forest-model.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="fu">args</span>(rand_forest)</span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="build-our-random-forest-model.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="fu">args</span>(rand_forest)</span></code></pre></div>
 <pre><code>## function (mode = &quot;unknown&quot;, engine = &quot;ranger&quot;, mtry = NULL, trees = NULL, 
 ##     min_n = NULL) 
 ## NULL</code></pre>
 <p>engine specific arguments:</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="build-our-random-forest-model.html#cb257-1" aria-hidden="true" tabindex="-1"></a>?ranger<span class="sc">::</span><span class="fu">ranger</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="build-our-random-forest-model.html#cb259-1" aria-hidden="true" tabindex="-1"></a>?ranger<span class="sc">::</span><span class="fu">ranger</span>()</span></code></pre></div>
 </div>
             </section>
 

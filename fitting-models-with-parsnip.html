@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Fitting models with parsnip | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Fitting models with parsnip | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
@@ -24,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-03-14" />
+<meta name="date" content="2022-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="meeting-videos-4.html"/>
 <link rel="next" href="create-a-model.html"/>
-<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -587,21 +585,21 @@ Modeling Map
 <ul>
 <li><strong>Chapter Setup Below</strong></li>
 </ul>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="fitting-models-with-parsnip.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load parsnip, recipes, rsample, broom...</span></span>
-<span id="cb127-2"><a href="fitting-models-with-parsnip.html#cb127-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb127-3"><a href="fitting-models-with-parsnip.html#cb127-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AmesHousing)</span>
-<span id="cb127-4"><a href="fitting-models-with-parsnip.html#cb127-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb127-5"><a href="fitting-models-with-parsnip.html#cb127-5" aria-hidden="true" tabindex="-1"></a><span class="co"># attach data</span></span>
-<span id="cb127-6"><a href="fitting-models-with-parsnip.html#cb127-6" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ames)</span>
-<span id="cb127-7"><a href="fitting-models-with-parsnip.html#cb127-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb127-8"><a href="fitting-models-with-parsnip.html#cb127-8" aria-hidden="true" tabindex="-1"></a><span class="co"># log scale price</span></span>
-<span id="cb127-9"><a href="fitting-models-with-parsnip.html#cb127-9" aria-hidden="true" tabindex="-1"></a>ames <span class="ot">&lt;-</span> <span class="fu">mutate</span>(ames, <span class="at">Sale_Price =</span> <span class="fu">log10</span>(Sale_Price))</span>
-<span id="cb127-10"><a href="fitting-models-with-parsnip.html#cb127-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb127-11"><a href="fitting-models-with-parsnip.html#cb127-11" aria-hidden="true" tabindex="-1"></a><span class="co"># train/test</span></span>
-<span id="cb127-12"><a href="fitting-models-with-parsnip.html#cb127-12" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb127-13"><a href="fitting-models-with-parsnip.html#cb127-13" aria-hidden="true" tabindex="-1"></a>ames_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(ames, <span class="at">prob =</span> <span class="fl">0.80</span>, <span class="at">strata =</span> Sale_Price)</span>
-<span id="cb127-14"><a href="fitting-models-with-parsnip.html#cb127-14" aria-hidden="true" tabindex="-1"></a>ames_train <span class="ot">&lt;-</span> <span class="fu">training</span>(ames_split)</span>
-<span id="cb127-15"><a href="fitting-models-with-parsnip.html#cb127-15" aria-hidden="true" tabindex="-1"></a>ames_test  <span class="ot">&lt;-</span>  <span class="fu">testing</span>(ames_split)</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="fitting-models-with-parsnip.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load parsnip, recipes, rsample, broom...</span></span>
+<span id="cb128-2"><a href="fitting-models-with-parsnip.html#cb128-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb128-3"><a href="fitting-models-with-parsnip.html#cb128-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AmesHousing)</span>
+<span id="cb128-4"><a href="fitting-models-with-parsnip.html#cb128-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-5"><a href="fitting-models-with-parsnip.html#cb128-5" aria-hidden="true" tabindex="-1"></a><span class="co"># attach data</span></span>
+<span id="cb128-6"><a href="fitting-models-with-parsnip.html#cb128-6" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ames)</span>
+<span id="cb128-7"><a href="fitting-models-with-parsnip.html#cb128-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-8"><a href="fitting-models-with-parsnip.html#cb128-8" aria-hidden="true" tabindex="-1"></a><span class="co"># log scale price</span></span>
+<span id="cb128-9"><a href="fitting-models-with-parsnip.html#cb128-9" aria-hidden="true" tabindex="-1"></a>ames <span class="ot">&lt;-</span> <span class="fu">mutate</span>(ames, <span class="at">Sale_Price =</span> <span class="fu">log10</span>(Sale_Price))</span>
+<span id="cb128-10"><a href="fitting-models-with-parsnip.html#cb128-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-11"><a href="fitting-models-with-parsnip.html#cb128-11" aria-hidden="true" tabindex="-1"></a><span class="co"># train/test</span></span>
+<span id="cb128-12"><a href="fitting-models-with-parsnip.html#cb128-12" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb128-13"><a href="fitting-models-with-parsnip.html#cb128-13" aria-hidden="true" tabindex="-1"></a>ames_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(ames, <span class="at">prob =</span> <span class="fl">0.80</span>, <span class="at">strata =</span> Sale_Price)</span>
+<span id="cb128-14"><a href="fitting-models-with-parsnip.html#cb128-14" aria-hidden="true" tabindex="-1"></a>ames_train <span class="ot">&lt;-</span> <span class="fu">training</span>(ames_split)</span>
+<span id="cb128-15"><a href="fitting-models-with-parsnip.html#cb128-15" aria-hidden="true" tabindex="-1"></a>ames_test  <span class="ot">&lt;-</span>  <span class="fu">testing</span>(ames_split)</span></code></pre></div>
 </details>
 <p><br></p>
 </div>
