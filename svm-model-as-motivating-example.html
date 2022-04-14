@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-04-11" />
+<meta name="date" content="2022-04-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -597,11 +597,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Let’s zoom in on the default parameter values for our two tuning parameters:</p>
 <div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="svm-model-as-motivating-example.html#cb338-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cost</span>()</span></code></pre></div>
 <pre><code>## Cost (quantitative)
-## Transformer:  log-2 
+## Transformer: log-2 [1e-100, Inf]
 ## Range (transformed scale): [-10, 5]</code></pre>
 <div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="svm-model-as-motivating-example.html#cb340-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rbf_sigma</span>()</span></code></pre></div>
 <pre><code>## Radial Basis Function sigma (quantitative)
-## Transformer:  log-10 
+## Transformer: log-10 [1e-100, Inf]
 ## Range (transformed scale): [-10, 0]</code></pre>
 <p>We can change them:</p>
 <div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="svm-model-as-motivating-example.html#cb342-1" aria-hidden="true" tabindex="-1"></a>svm_param <span class="ot">&lt;-</span> </span>

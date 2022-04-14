@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-04-11" />
+<meta name="date" content="2022-04-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -584,7 +584,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Range: [1, 10]</code></pre>
 <div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="regular-and-non-regular-grids.html#cb279-1" aria-hidden="true" tabindex="-1"></a>mlp_param <span class="sc">%&gt;%</span> <span class="fu">pull_dials_object</span>(<span class="st">&quot;penalty&quot;</span>)</span></code></pre></div>
 <pre><code>## Amount of Regularization (quantitative)
-## Transformer:  log-10 
+## Transformer: log-10 [1e-100, Inf]
 ## Range (transformed scale): [-10, 0]</code></pre>
 <blockquote>
 <p>For <code>penalty</code>, the random numbers are uniform on the log (base 10) scale. The values in the grid are in their natural units.</p>

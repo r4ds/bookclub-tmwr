@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-04-11" />
+<meta name="date" content="2022-04-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -628,7 +628,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb196-2"><a href="how-data-are-used-by-the-recipe.html#cb196-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(splines)</span>
 <span id="cb196-3"><a href="how-data-are-used-by-the-recipe.html#cb196-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb196-4"><a href="how-data-are-used-by-the-recipe.html#cb196-4" aria-hidden="true" tabindex="-1"></a>plot_smoother <span class="ot">&lt;-</span> <span class="cf">function</span>(deg_free) {</span>
-<span id="cb196-5"><a href="how-data-are-used-by-the-recipe.html#cb196-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(ames_train, <span class="fu">aes</span>(<span class="at">x =</span> Latitude, <span class="at">y =</span> Sale_Price)) <span class="sc">+</span> </span>
+<span id="cb196-5"><a href="how-data-are-used-by-the-recipe.html#cb196-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(ames_train, <span class="fu">aes</span>(<span class="at">x =</span> Latitude, <span class="at">y =</span> <span class="dv">10</span><span class="sc">^</span>Sale_Price)) <span class="sc">+</span> </span>
 <span id="cb196-6"><a href="how-data-are-used-by-the-recipe.html#cb196-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> .<span class="dv">2</span>) <span class="sc">+</span> </span>
 <span id="cb196-7"><a href="how-data-are-used-by-the-recipe.html#cb196-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
 <span id="cb196-8"><a href="how-data-are-used-by-the-recipe.html#cb196-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(</span>
