@@ -174,7 +174,7 @@ spec_cart <-
   f_set()
 
 spec_cart_bag <- 
-  baguette::bag_tree() %>% 
+  bag_tree() %>% 
   set_engine('rpart', times = 50L) %>% 
   f_set()
 
@@ -196,7 +196,7 @@ spec_xgb <-
   f_set()
 
 spec_cube <- 
-  rules::cubist_rules(committees = tune(), neighbors = tune()) %>% 
+  cubist_rules(committees = tune(), neighbors = tune()) %>% 
   set_engine('Cubist')
 ```
 

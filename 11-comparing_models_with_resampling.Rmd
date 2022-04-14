@@ -187,12 +187,4 @@ A logical: should all combinations of the preprocessors and models be used to cr
 
 ### Cohort 4
 
-`r knitr::include_url("https://www.youtube.com/embed/URL")`
-
-<details>
-  <summary> Meeting chat log </summary>
-  
-```
-LOG
-```
-</details>
+`r knitr::include_url("https://www.youtube.com/embed/KjfCvPVU-Eo")`

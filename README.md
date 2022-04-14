@@ -105,26 +105,27 @@ If you would like to present, please add your name next to a chapter using the [
 - 2021-12-17	2. A tidyverse primer: Brandon Hurr	
 - 2022-01-07	3. A review of R modeling fundamentals: AL Brown	
 - 2022-01-14	4. The Ames housing data: Laura Prado	
-
-</details>
-
 - 2022-01-21	5. Spending our data: AL Brown	
 - 2022-01-28	6. Fitting models with parsnip: Laura Rose	
 - 2022-02-04	7. A model workflow: Isabella	
 - 2022-02-11	8. Feature engineering with recipes: Federica Gazzelloni	
 - 2022-02-18	9. Judging model effectiveness: Steve Charlesworth	
 - 2022-02-25	10. Resampling for evaluating performance: Brandon Hurr	
-- 2022-03-04	11. Comparing models with resampling: TBD	
-- 2022-03-11	12. Model tuning and the danger of overfitting: TBD	
-- 2022-03-18	13. Grid search: TBD	
-- 2022-03-25	14. Iterative search: TBD	
-- 2022-04-01	15. Screening many models: TBD	
-- 2022-04-08	16. Encoding categorical data: Federica Gazzelloni	
-- 2022-04-15	17. Dimensionality reduction: TBD	
-- 2022-04-22	18. Explaining models and predictions: TBD	
-- 2022-04-29	19. When should you trust you predictions: TBD	
-- 2022-05-06	20. Ensembles of models: TBD	
-- 2022-05-13	21. Inferential analysis: Federica Gazzelloni	
+- 2022-03-04	11. Comparing models with resampling: All
+- 2022-03-11	12. Model tuning and the danger of overfitting: Ryan Metcalf	
+
+</details>
+
+- 2022-03-18	13. Grid search: Laura Rose	
+- 2022-04-01	13. Grid search part two:	Laura Rose
+- 2022-04-08	14. Iterative search:	Steve Charlesworth
+- 2022-04-15	15. Screening many models: TBD	
+- 2022-04-22	16. Encoding categorical data:	Federica Gazzelloni
+- 2022-04-29	17. Dimensionality reduction: TBD	
+- 2022-05-06	18. Explaining models and predictions: TBD
+- 2022-05-13	19. When should you trust your predictions: TBD
+- 2022-05-20	20. Ensembles of models: TBD
+- 2022-05-27	21. Inferential analysis: Federica Gazzelloni
 
 <hr>  
 

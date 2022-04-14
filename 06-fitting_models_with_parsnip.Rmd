@@ -421,12 +421,15 @@ but it makes the column names consistent so you can combine tables
 
 ### Cohort 4
 
-`r knitr::include_url("https://www.youtube.com/embed/URL")`
+`r knitr::include_url("https://www.youtube.com/embed/JSQsTfdIB_U")`
 
 <details>
   <summary> Meeting chat log </summary>
   
 ```
-LOG
+00:56:18	Laura Rose:	https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/linear-model-selection-and-regularization.html#forward-and-backward-stepwise-selection
+00:58:07	Ryan Metcalf:	https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/index.html
+00:58:52	Ryan Metcalf:	https://avehtari.github.io/ROS-Examples/
+01:01:31	Federica Gazzelloni:	https://arxiv.org/pdf/1502.06988.pdf
 ```
 </details>
