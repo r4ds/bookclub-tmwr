@@ -4,15 +4,91 @@
 
 **Learning objectives:**
 
-- Jon will prefill these.
+- transformation to a numeric representation for categorical data
+- options for encoding categorical predictors
+- when is encoding data necessary?
 
-## Slide 1 Title
 
-Put the content of your slide here.
+## Effect of Encoding
 
-## Slide 2 Title
+We use the {embed} and {textrecipes} packages for transformation of the categorical data to a numeric version.
 
-Put the content of your second slide here.
+*Tree based models* and *Naive Bayes models* deal with categorical data making the encoding.
+
+Methods for encoding categorical variables into numerical can be done by applying *polynomial* transformations. 
+
+In tidymodels there are some step_*functions* such as:
+
+- step_unorder()
+- step_ordinalscore()
+
+used for assigning to each order in the categorical vector a specific numerical value.
+
+Categorical variables can be ordered and unordered, when in presence of a high number of categories, fundamental is the categorization of the levels and this can be challenging, for the result of predictions.
+In particular, issues arise when infinite values, invalid values, NA, too many categorical levels, rare categorical levels, or new categorical levels, are the values we want to encode. [^1]
+
+[^1]: Source: [Processor for Predictive Modeling](https://arxiv.org/abs/1611.09477)
+
+## Encoding methods:
+
+ 1.  **Effect or likelihood encodings** ----> **No Pooling** and **Partial Pooling**
+ 
+> "you create an effect encoding for your categorical variable"
+
+This can be seen when the transformation happens between the levels of the categorical variable and another numerical variable in the set. 
+
+An example would be:
+```{r eval=FALSE, include=FALSE}
+ames%>%
+  group_by(..categorical..) %>%
+  summarize(..numerical predictor..)
+  ggplot(aes(x=)) ....
+```
+
+> "These steps use a **generalized linear model** to estimate the effect of each level in a categorical predictor on the outcome."
+
+*lencode* stands for *linear encoding*
+
+- step_lencode_glm()   ----> *mixed or hierarchical generalized linear model*
+- step_lencode_mixed() ----> *partial pooling*
+- step_lencode_bayes() ----> *Bayesian hierarchical model*
+
+The [{embed}](https://embed.tidymodels.org/) package documentation provides some more detailed information about different types of step_<function> that can be used. 
+
+ pooling ---> we shrink the effect estimates toward the mean
+
+2.  **Feature hashing**
+
+Create dummy variables, but only consider the value of the category to assign it to a predefined pool of dummy variables.
+It is for text data and high cardinality.
+
+- rlang::hash()
+
+    mutate(Hash = map_chr(..categorical.., hash))
+
+Neighborhoods are called the “keys”, while the outputs are the “hashes”.
+The number of possible hashes can be customized as it is a hyperparameter.
+
+- strtoi() ----> *Convert Strings to Integers*
+
+    mutate(Hash = strtoi(substr(Hash, 26, 32), base = 16L), 
+           Hash = Hash %% 16)
+
+3.  **Entity embeddings**
+
+To transform a categorical variable with many levels to a set of lower-dimensional vectors.
+
+Embeddings is learned via a TensorFlow neural network.
+
+- step_embed() ----> *TensorFlow neural network*
+- step_woe()   ----> *weight of evidence transformation-Bayes factor*
+
+
+
+
+
+
+------------
 
 ### Cohort 4
 
