@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8.6 TIDY A RECIPE | Tidy Modeling with R Book Club</title>
+  <title>17.1 Effect of Encoding | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8.6 TIDY A RECIPE | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="17.1 Effect of Encoding | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8.6 TIDY A RECIPE | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="17.1 Effect of Encoding | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="skipping-steps-for-new-data.html"/>
-<link rel="next" href="column-roles.html"/>
+<link rel="prev" href="encoding-categorical-data.html"/>
+<link rel="next" href="encoding-methods.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -562,86 +562,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="tidy-a-recipe" class="section level2 hasAnchor" number="8.6">
-<h2><span class="header-section-number">8.6</span> TIDY A RECIPE<a href="tidy-a-recipe.html#tidy-a-recipe" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><code>tidy()</code> method for recipes</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="tidy-a-recipe.html#cb200-1" aria-hidden="true" tabindex="-1"></a>ames_rec <span class="ot">&lt;-</span> </span>
-<span id="cb200-2"><a href="tidy-a-recipe.html#cb200-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(Sale_Price <span class="sc">~</span> Neighborhood <span class="sc">+</span> Gr_Liv_Area <span class="sc">+</span> Year_Built <span class="sc">+</span> Bldg_Type <span class="sc">+</span> </span>
-<span id="cb200-3"><a href="tidy-a-recipe.html#cb200-3" aria-hidden="true" tabindex="-1"></a>           Latitude <span class="sc">+</span> Longitude, <span class="at">data =</span> ames_train) <span class="sc">%&gt;%</span></span>
-<span id="cb200-4"><a href="tidy-a-recipe.html#cb200-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_log</span>(Gr_Liv_Area, <span class="at">base =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb200-5"><a href="tidy-a-recipe.html#cb200-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_other</span>(Neighborhood, <span class="at">threshold =</span> <span class="fl">0.01</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb200-6"><a href="tidy-a-recipe.html#cb200-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb200-7"><a href="tidy-a-recipe.html#cb200-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_interact</span>( <span class="sc">~</span> Gr_Liv_Area<span class="sc">:</span><span class="fu">starts_with</span>(<span class="st">&quot;Bldg_Type_&quot;</span>) ) <span class="sc">%&gt;%</span> </span>
-<span id="cb200-8"><a href="tidy-a-recipe.html#cb200-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_ns</span>(Latitude, Longitude, <span class="at">deg_free =</span> <span class="dv">20</span>)</span>
-<span id="cb200-9"><a href="tidy-a-recipe.html#cb200-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb200-10"><a href="tidy-a-recipe.html#cb200-10" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(ames_rec)</span></code></pre></div>
-<pre><code>## # A tibble: 5 × 6
-##   number operation type     trained skip  id            
-##    &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;    &lt;lgl&gt;   &lt;lgl&gt; &lt;chr&gt;         
-## 1      1 step      log      FALSE   FALSE log_qfevz     
-## 2      2 step      other    FALSE   FALSE other_92ULm   
-## 3      3 step      dummy    FALSE   FALSE dummy_4lh10   
-## 4      4 step      interact FALSE   FALSE interact_DFf9K
-## 5      5 step      ns       FALSE   FALSE ns_EvmMV</code></pre>
-<p>we add the <code>id = "my_id"</code> in the <code>step_other()</code></p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="tidy-a-recipe.html#cb202-1" aria-hidden="true" tabindex="-1"></a>ames_rec <span class="ot">&lt;-</span> </span>
-<span id="cb202-2"><a href="tidy-a-recipe.html#cb202-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(Sale_Price <span class="sc">~</span> Neighborhood <span class="sc">+</span> Gr_Liv_Area <span class="sc">+</span> Year_Built <span class="sc">+</span> Bldg_Type <span class="sc">+</span> </span>
-<span id="cb202-3"><a href="tidy-a-recipe.html#cb202-3" aria-hidden="true" tabindex="-1"></a>           Latitude <span class="sc">+</span> Longitude, <span class="at">data =</span> ames_train) <span class="sc">%&gt;%</span></span>
-<span id="cb202-4"><a href="tidy-a-recipe.html#cb202-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_log</span>(Gr_Liv_Area, <span class="at">base =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb202-5"><a href="tidy-a-recipe.html#cb202-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_other</span>(Neighborhood, <span class="at">threshold =</span> <span class="fl">0.01</span>, <span class="at">id =</span> <span class="st">&quot;my_id&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb202-6"><a href="tidy-a-recipe.html#cb202-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb202-7"><a href="tidy-a-recipe.html#cb202-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_interact</span>( <span class="sc">~</span> Gr_Liv_Area<span class="sc">:</span><span class="fu">starts_with</span>(<span class="st">&quot;Bldg_Type_&quot;</span>) ) <span class="sc">%&gt;%</span> </span>
-<span id="cb202-8"><a href="tidy-a-recipe.html#cb202-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_ns</span>(Latitude, Longitude, <span class="at">deg_free =</span> <span class="dv">20</span>)</span>
-<span id="cb202-9"><a href="tidy-a-recipe.html#cb202-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb202-10"><a href="tidy-a-recipe.html#cb202-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb202-11"><a href="tidy-a-recipe.html#cb202-11" aria-hidden="true" tabindex="-1"></a>lm_wflow <span class="ot">&lt;-</span> </span>
-<span id="cb202-12"><a href="tidy-a-recipe.html#cb202-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb202-13"><a href="tidy-a-recipe.html#cb202-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lm_model) <span class="sc">%&gt;%</span> </span>
-<span id="cb202-14"><a href="tidy-a-recipe.html#cb202-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(ames_rec)</span>
-<span id="cb202-15"><a href="tidy-a-recipe.html#cb202-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb202-16"><a href="tidy-a-recipe.html#cb202-16" aria-hidden="true" tabindex="-1"></a>lm_fit <span class="ot">&lt;-</span> <span class="fu">fit</span>(lm_wflow, ames_train)</span></code></pre></div>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="tidy-a-recipe.html#cb203-1" aria-hidden="true" tabindex="-1"></a>estimated_recipe <span class="ot">&lt;-</span> </span>
-<span id="cb203-2"><a href="tidy-a-recipe.html#cb203-2" aria-hidden="true" tabindex="-1"></a>  lm_fit <span class="sc">%&gt;%</span> </span>
-<span id="cb203-3"><a href="tidy-a-recipe.html#cb203-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_recipe</span>(<span class="at">estimated =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb203-4"><a href="tidy-a-recipe.html#cb203-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb203-5"><a href="tidy-a-recipe.html#cb203-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(estimated_recipe, <span class="at">id =</span> <span class="st">&quot;my_id&quot;</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 21 × 3
-##    terms        retained           id   
-##    &lt;chr&gt;        &lt;chr&gt;              &lt;chr&gt;
-##  1 Neighborhood North_Ames         my_id
-##  2 Neighborhood College_Creek      my_id
-##  3 Neighborhood Old_Town           my_id
-##  4 Neighborhood Edwards            my_id
-##  5 Neighborhood Somerset           my_id
-##  6 Neighborhood Northridge_Heights my_id
-##  7 Neighborhood Gilbert            my_id
-##  8 Neighborhood Sawyer             my_id
-##  9 Neighborhood Northwest_Ames     my_id
-## 10 Neighborhood Sawyer_West        my_id
-## # … with 11 more rows</code></pre>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="tidy-a-recipe.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(estimated_recipe, <span class="at">number =</span> <span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 21 × 3
-##    terms        retained           id   
-##    &lt;chr&gt;        &lt;chr&gt;              &lt;chr&gt;
-##  1 Neighborhood North_Ames         my_id
-##  2 Neighborhood College_Creek      my_id
-##  3 Neighborhood Old_Town           my_id
-##  4 Neighborhood Edwards            my_id
-##  5 Neighborhood Somerset           my_id
-##  6 Neighborhood Northridge_Heights my_id
-##  7 Neighborhood Gilbert            my_id
-##  8 Neighborhood Sawyer             my_id
-##  9 Neighborhood Northwest_Ames     my_id
-## 10 Neighborhood Sawyer_West        my_id
-## # … with 11 more rows</code></pre>
+<div id="effect-of-encoding" class="section level2 hasAnchor" number="17.1">
+<h2><span class="header-section-number">17.1</span> Effect of Encoding<a href="effect-of-encoding.html#effect-of-encoding" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We use the {embed} and {textrecipes} packages for transformation of the categorical data to a numeric version.</p>
+<p><em>Tree based models</em> and <em>Naive Bayes models</em> deal with categorical data making the encoding.</p>
+<p>Methods for encoding categorical variables into numerical can be done by applying <em>polynomial</em> transformations.</p>
+<p>In tidymodels there are some step_<em>functions</em> such as:</p>
+<ul>
+<li>step_unorder()</li>
+<li>step_ordinalscore()</li>
+</ul>
+<p>used for assigning to each order in the categorical vector a specific numerical value.</p>
+<p>Categorical variables can be ordered and unordered, when in presence of a high number of categories, fundamental is the categorization of the levels and this can be challenging, for the result of predictions.
+In particular, issues arise when infinite values, invalid values, NA, too many categorical levels, rare categorical levels, or new categorical levels, are the values we want to encode. <a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="3">
+<li id="fn3"><p>Source: <a href="https://arxiv.org/abs/1611.09477">Processor for Predictive Modeling</a><a href="effect-of-encoding.html#fnref3" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="skipping-steps-for-new-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="column-roles.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="encoding-categorical-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="encoding-methods.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -672,7 +619,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/08-feature_engineering_with_recipes.Rmd",
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/17-encoding_categorical_data.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -233,8 +233,8 @@ cohort-1-17
 cohort-3-15
 cohort-4-15
 encoding-categorical-data
-slide-1-title
-slide-2-title
+effect-of-encoding
+encoding-methods
 cohort-4-16
 explaining-models-and-predictions
 chapter-18-setup
