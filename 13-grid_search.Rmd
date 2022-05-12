@@ -766,12 +766,28 @@ Grid search is computationally expensive, but thoughtful choices in the experime
 
 ### Cohort 4
 
-`r knitr::include_url("https://www.youtube.com/embed/URL")`
+`r knitr::include_url("https://www.youtube.com/embed/dQBu1n6xxWk")`
 
 <details>
   <summary> Meeting chat log </summary>
   
 ```
-LOG
+00:15:43	Ryan Metcalf:	Quick comment on Neural Networks and Perceptrons. Check out Professor Geoffrey Hinton, University of Toronto. I’m still looking for my book reference.
+00:21:32	Ryan Metcalf:	Perceptrons by By Marvin Minsky and Seymour A. Papert, https://mitpress.mit.edu/books/perceptrons
+00:39:47	Isabella Velásquez:	https://www.tidyverse.org/blog/2022/03/usemodels-0-2-0/
+00:59:46	Steve:	Gotta go, sorry
+00:59:48	Steve:	Thanks!
+```
+</details>
+
+`r knitr::include_url("https://www.youtube.com/embed/WIqEiChlzFg")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:11:54	Brandon Hurr:	https://stackoverflow.com/questions/58962748/opencv-with-multiple-webcams-how-to-tell-which-camera-is-which-in-code
+00:23:54	Ryan Metcalf:	https://www.rdocumentation.org/packages/rlang/versions/0.1.6/topics/quosure
+00:33:42	Federica Gazzelloni:	https://recipes.tidymodels.org/reference/step_spatialsign.html
 ```
 </details>

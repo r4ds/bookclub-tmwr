@@ -208,12 +208,13 @@ rankings %>%
 
 ### Cohort 4
 
-`r knitr::include_url("https://www.youtube.com/embed/URL")`
+`r knitr::include_url("https://www.youtube.com/embed/GcWRYbAVCTc")`
 
 <details>
   <summary> Meeting chat log </summary>
   
 ```
-LOG
+01:10:50	Isabella Velásquez:	Gotta go, but thank you!
+01:12:12	Federica Gazzelloni:	https://docs.google.com/spreadsheets/d/1-S1UbKWay_TeR5n9LkztZY2XXrMjZr3snl1srPvTvH4/edit#gid=0
 ```
 </details>

@@ -84,20 +84,17 @@ Embeddings is learned via a TensorFlow neural network.
 - step_woe()   ----> *weight of evidence transformation-Bayes factor*
 
 
-
-
-
-
-------------
-
 ### Cohort 4
 
-`r knitr::include_url("https://www.youtube.com/embed/URL")`
+`r knitr::include_url("https://www.youtube.com/embed/8zS__TYK82o")`
 
 <details>
   <summary> Meeting chat log </summary>
   
 ```
-LOG
+00:44:41	Stephen.Charlesworth:	https://www.amazon.com/Machine-Learning-Design-Patterns-Preparation/dp/1098115783
+00:50:20	Federica Gazzelloni:	https://dl.acm.org/doi/10.1145/507533.507538
+00:52:42	Federica Gazzelloni:	https://arxiv.org/abs/1611.09477
+00:53:26	Stephen.Charlesworth:	https://community.tibco.com/feed-items/comparison-different-encoding-methods-using-tibco-data-science
 ```
 </details>
