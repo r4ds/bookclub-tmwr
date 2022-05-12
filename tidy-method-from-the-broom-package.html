@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-05-08" />
+<meta name="date" content="2022-05-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -579,32 +579,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>different models, tests will have different structures based on what makes sense, but use as similar structure as possible</li>
 </ul>
 <p>You can get the same outcome from many different input formats.</p>
-<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="tidy-method-from-the-broom-package.html#cb443-1" aria-hidden="true" tabindex="-1"></a>race_top_results <span class="sc">%&gt;%</span></span>
-<span id="cb443-2"><a href="tidy-method-from-the-broom-package.html#cb443-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(avg_elevation_gain, avg_velocity)) <span class="sc">+</span></span>
-<span id="cb443-3"><a href="tidy-method-from-the-broom-package.html#cb443-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb443-4"><a href="tidy-method-from-the-broom-package.html#cb443-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
-<span id="cb443-5"><a href="tidy-method-from-the-broom-package.html#cb443-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_limits</span>(<span class="at">y =</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="tidy-method-from-the-broom-package.html#cb444-1" aria-hidden="true" tabindex="-1"></a>race_top_results <span class="sc">%&gt;%</span></span>
+<span id="cb444-2"><a href="tidy-method-from-the-broom-package.html#cb444-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(avg_elevation_gain, avg_velocity)) <span class="sc">+</span></span>
+<span id="cb444-3"><a href="tidy-method-from-the-broom-package.html#cb444-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb444-4"><a href="tidy-method-from-the-broom-package.html#cb444-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb444-5"><a href="tidy-method-from-the-broom-package.html#cb444-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_limits</span>(<span class="at">y =</span> <span class="dv">0</span>)</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/21-visualize-simple-lm-model-1.png" width="672" /></p>
 <p>As makes sense intuitively, higher elevation gain per mile results in lower velocity.</p>
-<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="tidy-method-from-the-broom-package.html#cb444-1" aria-hidden="true" tabindex="-1"></a>lm_spec <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span> <span class="fu">set_engine</span>(<span class="st">&quot;lm&quot;</span>)</span>
-<span id="cb444-2"><a href="tidy-method-from-the-broom-package.html#cb444-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb444-3"><a href="tidy-method-from-the-broom-package.html#cb444-3" aria-hidden="true" tabindex="-1"></a>wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb444-4"><a href="tidy-method-from-the-broom-package.html#cb444-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lm_spec) <span class="sc">%&gt;%</span></span>
-<span id="cb444-5"><a href="tidy-method-from-the-broom-package.html#cb444-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(avg_velocity <span class="sc">~</span> avg_elevation_gain <span class="sc">+</span> distance)</span>
-<span id="cb444-6"><a href="tidy-method-from-the-broom-package.html#cb444-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb444-7"><a href="tidy-method-from-the-broom-package.html#cb444-7" aria-hidden="true" tabindex="-1"></a>fitted_wf <span class="ot">&lt;-</span> wf <span class="sc">%&gt;%</span></span>
-<span id="cb444-8"><a href="tidy-method-from-the-broom-package.html#cb444-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(race_top_results)</span>
-<span id="cb444-9"><a href="tidy-method-from-the-broom-package.html#cb444-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb444-10"><a href="tidy-method-from-the-broom-package.html#cb444-10" aria-hidden="true" tabindex="-1"></a>fitted_wf <span class="sc">%&gt;%</span> <span class="fu">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="tidy-method-from-the-broom-package.html#cb445-1" aria-hidden="true" tabindex="-1"></a>lm_spec <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span> <span class="fu">set_engine</span>(<span class="st">&quot;lm&quot;</span>)</span>
+<span id="cb445-2"><a href="tidy-method-from-the-broom-package.html#cb445-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb445-3"><a href="tidy-method-from-the-broom-package.html#cb445-3" aria-hidden="true" tabindex="-1"></a>wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb445-4"><a href="tidy-method-from-the-broom-package.html#cb445-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lm_spec) <span class="sc">%&gt;%</span></span>
+<span id="cb445-5"><a href="tidy-method-from-the-broom-package.html#cb445-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(avg_velocity <span class="sc">~</span> avg_elevation_gain <span class="sc">+</span> distance)</span>
+<span id="cb445-6"><a href="tidy-method-from-the-broom-package.html#cb445-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb445-7"><a href="tidy-method-from-the-broom-package.html#cb445-7" aria-hidden="true" tabindex="-1"></a>fitted_wf <span class="ot">&lt;-</span> wf <span class="sc">%&gt;%</span></span>
+<span id="cb445-8"><a href="tidy-method-from-the-broom-package.html#cb445-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(race_top_results)</span>
+<span id="cb445-9"><a href="tidy-method-from-the-broom-package.html#cb445-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb445-10"><a href="tidy-method-from-the-broom-package.html#cb445-10" aria-hidden="true" tabindex="-1"></a>fitted_wf <span class="sc">%&gt;%</span> <span class="fu">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 5
 ##   term               estimate std.error statistic  p.value
 ##   &lt;chr&gt;                 &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept)         12.7      0.760       16.7  2.95e-55
 ## 2 avg_elevation_gain  -0.0518   0.00248    -20.9  2.34e-80
 ## 3 distance            -0.0247   0.00469     -5.27 1.64e- 7</code></pre>
-<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="tidy-method-from-the-broom-package.html#cb446-1" aria-hidden="true" tabindex="-1"></a>lm_spec <span class="sc">%&gt;%</span></span>
-<span id="cb446-2"><a href="tidy-method-from-the-broom-package.html#cb446-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(avg_velocity <span class="sc">~</span> avg_elevation_gain <span class="sc">+</span> distance, <span class="at">data =</span> race_top_results) <span class="sc">%&gt;%</span></span>
-<span id="cb446-3"><a href="tidy-method-from-the-broom-package.html#cb446-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="tidy-method-from-the-broom-package.html#cb447-1" aria-hidden="true" tabindex="-1"></a>lm_spec <span class="sc">%&gt;%</span></span>
+<span id="cb447-2"><a href="tidy-method-from-the-broom-package.html#cb447-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(avg_velocity <span class="sc">~</span> avg_elevation_gain <span class="sc">+</span> distance, <span class="at">data =</span> race_top_results) <span class="sc">%&gt;%</span></span>
+<span id="cb447-3"><a href="tidy-method-from-the-broom-package.html#cb447-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 5
 ##   term               estimate std.error statistic  p.value
 ##   &lt;chr&gt;                 &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
@@ -612,15 +612,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2 avg_elevation_gain  -0.0518   0.00248    -20.9  2.34e-80
 ## 3 distance            -0.0247   0.00469     -5.27 1.64e- 7</code></pre>
 <p>{broom} existed before {tidymodels}, it works for base R lm model object as well.</p>
-<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="tidy-method-from-the-broom-package.html#cb448-1" aria-hidden="true" tabindex="-1"></a>fitted_wf <span class="sc">%&gt;%</span> <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span> <span class="fu">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="tidy-method-from-the-broom-package.html#cb449-1" aria-hidden="true" tabindex="-1"></a>fitted_wf <span class="sc">%&gt;%</span> <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span> <span class="fu">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 5
 ##   term               estimate std.error statistic  p.value
 ##   &lt;chr&gt;                 &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept)         12.7      0.760       16.7  2.95e-55
 ## 2 avg_elevation_gain  -0.0518   0.00248    -20.9  2.34e-80
 ## 3 distance            -0.0247   0.00469     -5.27 1.64e- 7</code></pre>
-<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="tidy-method-from-the-broom-package.html#cb450-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(avg_velocity <span class="sc">~</span> avg_elevation_gain <span class="sc">+</span> distance, <span class="at">data =</span> race_top_results) <span class="sc">%&gt;%</span></span>
-<span id="cb450-2"><a href="tidy-method-from-the-broom-package.html#cb450-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="tidy-method-from-the-broom-package.html#cb451-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(avg_velocity <span class="sc">~</span> avg_elevation_gain <span class="sc">+</span> distance, <span class="at">data =</span> race_top_results) <span class="sc">%&gt;%</span></span>
+<span id="cb451-2"><a href="tidy-method-from-the-broom-package.html#cb451-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 5
 ##   term               estimate std.error statistic  p.value
 ##   &lt;chr&gt;                 &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
@@ -628,17 +628,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2 avg_elevation_gain  -0.0518   0.00248    -20.9  2.34e-80
 ## 3 distance            -0.0247   0.00469     -5.27 1.64e- 7</code></pre>
 <p>In addition to models, we can tidy the result of tests such as correlation test or t-test.</p>
-<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="tidy-method-from-the-broom-package.html#cb452-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(race_top_results<span class="sc">$</span>avg_velocity, race_top_results<span class="sc">$</span>avg_elevation_gain) <span class="sc">%&gt;%</span></span>
-<span id="cb452-2"><a href="tidy-method-from-the-broom-package.html#cb452-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="tidy-method-from-the-broom-package.html#cb453-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(race_top_results<span class="sc">$</span>avg_velocity, race_top_results<span class="sc">$</span>avg_elevation_gain) <span class="sc">%&gt;%</span></span>
+<span id="cb453-2"><a href="tidy-method-from-the-broom-package.html#cb453-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 8
 ##   estimate statistic  p.value parameter conf.low conf.high method    alternative
 ##      &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;      
 ## 1   -0.561     -21.2 4.01e-82       974   -0.603    -0.517 Pearson&#39;… two.sided</code></pre>
-<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="tidy-method-from-the-broom-package.html#cb454-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(</span>
-<span id="cb454-2"><a href="tidy-method-from-the-broom-package.html#cb454-2" aria-hidden="true" tabindex="-1"></a>  race_top_results <span class="sc">%&gt;%</span> <span class="fu">filter</span>(date <span class="sc">&gt;</span> <span class="st">&#39;2015-01-01&#39;</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(avg_velocity),</span>
-<span id="cb454-3"><a href="tidy-method-from-the-broom-package.html#cb454-3" aria-hidden="true" tabindex="-1"></a>  race_top_results <span class="sc">%&gt;%</span> <span class="fu">filter</span>(date <span class="sc">&lt;=</span> <span class="st">&#39;2015-01-01&#39;</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(avg_velocity)</span>
-<span id="cb454-4"><a href="tidy-method-from-the-broom-package.html#cb454-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb454-5"><a href="tidy-method-from-the-broom-package.html#cb454-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="tidy-method-from-the-broom-package.html#cb455-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(</span>
+<span id="cb455-2"><a href="tidy-method-from-the-broom-package.html#cb455-2" aria-hidden="true" tabindex="-1"></a>  race_top_results <span class="sc">%&gt;%</span> <span class="fu">filter</span>(date <span class="sc">&gt;</span> <span class="st">&#39;2015-01-01&#39;</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(avg_velocity),</span>
+<span id="cb455-3"><a href="tidy-method-from-the-broom-package.html#cb455-3" aria-hidden="true" tabindex="-1"></a>  race_top_results <span class="sc">%&gt;%</span> <span class="fu">filter</span>(date <span class="sc">&lt;=</span> <span class="st">&#39;2015-01-01&#39;</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(avg_velocity)</span>
+<span id="cb455-4"><a href="tidy-method-from-the-broom-package.html#cb455-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb455-5"><a href="tidy-method-from-the-broom-package.html#cb455-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 10
 ##   estimate estimate1 estimate2 statistic   p.value parameter conf.low conf.high
 ##      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;

@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-05-08" />
+<meta name="date" content="2022-05-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -573,11 +573,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <img src="images/18_boost_vip.png" /></li>
 </ul>
-<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="global-explanations.html#cb401-1" aria-hidden="true" tabindex="-1"></a>boost_vip <span class="ot">&lt;-</span> <span class="fu">model_parts</span>(explainer_boost, <span class="at">loss_function =</span> loss_root_mean_square)</span>
-<span id="cb401-2"><a href="global-explanations.html#cb401-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb401-3"><a href="global-explanations.html#cb401-3" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="st">&quot;images/18_boost_vip.png&quot;</span>)</span>
-<span id="cb401-4"><a href="global-explanations.html#cb401-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(boost_vip, <span class="at">max_featuers =</span> <span class="dv">10</span>)</span>
-<span id="cb401-5"><a href="global-explanations.html#cb401-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="global-explanations.html#cb402-1" aria-hidden="true" tabindex="-1"></a>boost_vip <span class="ot">&lt;-</span> <span class="fu">model_parts</span>(explainer_boost, <span class="at">loss_function =</span> loss_root_mean_square)</span>
+<span id="cb402-2"><a href="global-explanations.html#cb402-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb402-3"><a href="global-explanations.html#cb402-3" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="st">&quot;images/18_boost_vip.png&quot;</span>)</span>
+<span id="cb402-4"><a href="global-explanations.html#cb402-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(boost_vip, <span class="at">max_featuers =</span> <span class="dv">10</span>)</span>
+<span id="cb402-5"><a href="global-explanations.html#cb402-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 </div>
             </section>
 

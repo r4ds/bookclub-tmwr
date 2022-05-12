@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-05-08" />
+<meta name="date" content="2022-05-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -568,36 +568,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Data stacks are tibbles (with some extra attributes) that contain the response value as the first column, and the assessment set predictions for each candidate ensemble member.</li>
 </ul>
 <p><img src="images/20_model-stack.PNG" /></p>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="initialize-and-add-members-to-stack..html#cb432-1" aria-hidden="true" tabindex="-1"></a>tree_frogs_model_st <span class="ot">&lt;-</span> <span class="co"># example from stacks vignette</span></span>
-<span id="cb432-2"><a href="initialize-and-add-members-to-stack..html#cb432-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stacks</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb432-3"><a href="initialize-and-add-members-to-stack..html#cb432-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_candidates</span>(knn_res) <span class="sc">%&gt;%</span></span>
-<span id="cb432-4"><a href="initialize-and-add-members-to-stack..html#cb432-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_candidates</span>(lin_reg_res) <span class="sc">%&gt;%</span></span>
-<span id="cb432-5"><a href="initialize-and-add-members-to-stack..html#cb432-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_candidates</span>(svm_res)</span>
-<span id="cb432-6"><a href="initialize-and-add-members-to-stack..html#cb432-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb432-7"><a href="initialize-and-add-members-to-stack..html#cb432-7" aria-hidden="true" tabindex="-1"></a>tree_frogs_model_st</span>
-<span id="cb432-8"><a href="initialize-and-add-members-to-stack..html#cb432-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A data stack with 3 model definitions and 11 candidate members:</span></span>
-<span id="cb432-9"><a href="initialize-and-add-members-to-stack..html#cb432-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   knn_res: 4 model configurations</span></span>
-<span id="cb432-10"><a href="initialize-and-add-members-to-stack..html#cb432-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   lin_reg_res: 1 model configuration</span></span>
-<span id="cb432-11"><a href="initialize-and-add-members-to-stack..html#cb432-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   svm_res: 6 model configurations</span></span>
-<span id="cb432-12"><a href="initialize-and-add-members-to-stack..html#cb432-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # Outcome: latency (numeric)</span></span>
-<span id="cb432-13"><a href="initialize-and-add-members-to-stack..html#cb432-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb432-14"><a href="initialize-and-add-members-to-stack..html#cb432-14" aria-hidden="true" tabindex="-1"></a><span class="fu">as_tibble</span>(tree_frogs_model_st)</span>
-<span id="cb432-15"><a href="initialize-and-add-members-to-stack..html#cb432-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 429 x 12</span></span>
-<span id="cb432-16"><a href="initialize-and-add-members-to-stack..html#cb432-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    latency knn_res_1_1 knn_res_1_2 knn_res_1_3 knn_res_1_4 lin_reg_res_1_1</span></span>
-<span id="cb432-17"><a href="initialize-and-add-members-to-stack..html#cb432-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;           &lt;dbl&gt;</span></span>
-<span id="cb432-18"><a href="initialize-and-add-members-to-stack..html#cb432-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1     142      -0.496      -0.478      -0.492      -0.494           114. </span></span>
-<span id="cb432-19"><a href="initialize-and-add-members-to-stack..html#cb432-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2      79      -0.381      -0.446      -0.542      -0.553            78.6</span></span>
-<span id="cb432-20"><a href="initialize-and-add-members-to-stack..html#cb432-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3      50      -0.311      -0.352      -0.431      -0.438            81.5</span></span>
-<span id="cb432-21"><a href="initialize-and-add-members-to-stack..html#cb432-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4      68      -0.312      -0.368      -0.463      -0.473            78.6</span></span>
-<span id="cb432-22"><a href="initialize-and-add-members-to-stack..html#cb432-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5      64      -0.496      -0.478      -0.492      -0.494            36.5</span></span>
-<span id="cb432-23"><a href="initialize-and-add-members-to-stack..html#cb432-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6      52      -0.391      -0.412      -0.473      -0.482           124. </span></span>
-<span id="cb432-24"><a href="initialize-and-add-members-to-stack..html#cb432-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7      39      -0.523      -0.549      -0.581      -0.587            35.2</span></span>
-<span id="cb432-25"><a href="initialize-and-add-members-to-stack..html#cb432-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8      46      -0.523      -0.549      -0.581      -0.587            37.1</span></span>
-<span id="cb432-26"><a href="initialize-and-add-members-to-stack..html#cb432-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9     137      -0.287      -0.352      -0.447      -0.456            78.8</span></span>
-<span id="cb432-27"><a href="initialize-and-add-members-to-stack..html#cb432-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10      73      -0.523      -0.549      -0.581      -0.587            38.8</span></span>
-<span id="cb432-28"><a href="initialize-and-add-members-to-stack..html#cb432-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 419 more rows, and 6 more variables: svm_res_1_1 &lt;dbl&gt;,</span></span>
-<span id="cb432-29"><a href="initialize-and-add-members-to-stack..html#cb432-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   svm_res_1_4 &lt;dbl&gt;, svm_res_1_3 &lt;dbl&gt;, svm_res_1_5 &lt;dbl&gt;, svm_res_1_2 &lt;dbl&gt;,</span></span>
-<span id="cb432-30"><a href="initialize-and-add-members-to-stack..html#cb432-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   svm_res_1_6 &lt;dbl&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="initialize-and-add-members-to-stack..html#cb433-1" aria-hidden="true" tabindex="-1"></a>tree_frogs_model_st <span class="ot">&lt;-</span> <span class="co"># example from stacks vignette</span></span>
+<span id="cb433-2"><a href="initialize-and-add-members-to-stack..html#cb433-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stacks</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb433-3"><a href="initialize-and-add-members-to-stack..html#cb433-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_candidates</span>(knn_res) <span class="sc">%&gt;%</span></span>
+<span id="cb433-4"><a href="initialize-and-add-members-to-stack..html#cb433-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_candidates</span>(lin_reg_res) <span class="sc">%&gt;%</span></span>
+<span id="cb433-5"><a href="initialize-and-add-members-to-stack..html#cb433-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_candidates</span>(svm_res)</span>
+<span id="cb433-6"><a href="initialize-and-add-members-to-stack..html#cb433-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb433-7"><a href="initialize-and-add-members-to-stack..html#cb433-7" aria-hidden="true" tabindex="-1"></a>tree_frogs_model_st</span>
+<span id="cb433-8"><a href="initialize-and-add-members-to-stack..html#cb433-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A data stack with 3 model definitions and 11 candidate members:</span></span>
+<span id="cb433-9"><a href="initialize-and-add-members-to-stack..html#cb433-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   knn_res: 4 model configurations</span></span>
+<span id="cb433-10"><a href="initialize-and-add-members-to-stack..html#cb433-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   lin_reg_res: 1 model configuration</span></span>
+<span id="cb433-11"><a href="initialize-and-add-members-to-stack..html#cb433-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   svm_res: 6 model configurations</span></span>
+<span id="cb433-12"><a href="initialize-and-add-members-to-stack..html#cb433-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # Outcome: latency (numeric)</span></span>
+<span id="cb433-13"><a href="initialize-and-add-members-to-stack..html#cb433-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb433-14"><a href="initialize-and-add-members-to-stack..html#cb433-14" aria-hidden="true" tabindex="-1"></a><span class="fu">as_tibble</span>(tree_frogs_model_st)</span>
+<span id="cb433-15"><a href="initialize-and-add-members-to-stack..html#cb433-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 429 x 12</span></span>
+<span id="cb433-16"><a href="initialize-and-add-members-to-stack..html#cb433-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    latency knn_res_1_1 knn_res_1_2 knn_res_1_3 knn_res_1_4 lin_reg_res_1_1</span></span>
+<span id="cb433-17"><a href="initialize-and-add-members-to-stack..html#cb433-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;           &lt;dbl&gt;</span></span>
+<span id="cb433-18"><a href="initialize-and-add-members-to-stack..html#cb433-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1     142      -0.496      -0.478      -0.492      -0.494           114. </span></span>
+<span id="cb433-19"><a href="initialize-and-add-members-to-stack..html#cb433-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2      79      -0.381      -0.446      -0.542      -0.553            78.6</span></span>
+<span id="cb433-20"><a href="initialize-and-add-members-to-stack..html#cb433-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3      50      -0.311      -0.352      -0.431      -0.438            81.5</span></span>
+<span id="cb433-21"><a href="initialize-and-add-members-to-stack..html#cb433-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4      68      -0.312      -0.368      -0.463      -0.473            78.6</span></span>
+<span id="cb433-22"><a href="initialize-and-add-members-to-stack..html#cb433-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5      64      -0.496      -0.478      -0.492      -0.494            36.5</span></span>
+<span id="cb433-23"><a href="initialize-and-add-members-to-stack..html#cb433-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6      52      -0.391      -0.412      -0.473      -0.482           124. </span></span>
+<span id="cb433-24"><a href="initialize-and-add-members-to-stack..html#cb433-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7      39      -0.523      -0.549      -0.581      -0.587            35.2</span></span>
+<span id="cb433-25"><a href="initialize-and-add-members-to-stack..html#cb433-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8      46      -0.523      -0.549      -0.581      -0.587            37.1</span></span>
+<span id="cb433-26"><a href="initialize-and-add-members-to-stack..html#cb433-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9     137      -0.287      -0.352      -0.447      -0.456            78.8</span></span>
+<span id="cb433-27"><a href="initialize-and-add-members-to-stack..html#cb433-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10      73      -0.523      -0.549      -0.581      -0.587            38.8</span></span>
+<span id="cb433-28"><a href="initialize-and-add-members-to-stack..html#cb433-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 419 more rows, and 6 more variables: svm_res_1_1 &lt;dbl&gt;,</span></span>
+<span id="cb433-29"><a href="initialize-and-add-members-to-stack..html#cb433-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   svm_res_1_4 &lt;dbl&gt;, svm_res_1_3 &lt;dbl&gt;, svm_res_1_5 &lt;dbl&gt;, svm_res_1_2 &lt;dbl&gt;,</span></span>
+<span id="cb433-30"><a href="initialize-and-add-members-to-stack..html#cb433-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   svm_res_1_6 &lt;dbl&gt;</span></span></code></pre></div>
 </div>
             </section>
 

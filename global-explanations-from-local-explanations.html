@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-05-08" />
+<meta name="date" content="2022-05-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -573,14 +573,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <img src="images/18_boost_profile.png" /></li>
 </ul>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="global-explanations-from-local-explanations.html#cb402-1" aria-hidden="true" tabindex="-1"></a>boost_profile <span class="ot">&lt;-</span> <span class="fu">model_profile</span>(explainer_boost,</span>
-<span id="cb402-2"><a href="global-explanations-from-local-explanations.html#cb402-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">N =</span> <span class="dv">1000</span>, </span>
-<span id="cb402-3"><a href="global-explanations-from-local-explanations.html#cb402-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">variables =</span> <span class="st">&quot;rusher_age&quot;</span>, </span>
-<span id="cb402-4"><a href="global-explanations-from-local-explanations.html#cb402-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">groups =</span> <span class="st">&quot;position&quot;</span>)</span>
-<span id="cb402-5"><a href="global-explanations-from-local-explanations.html#cb402-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb402-6"><a href="global-explanations-from-local-explanations.html#cb402-6" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="st">&quot;images/18_boost_profile.png&quot;</span>)</span>
-<span id="cb402-7"><a href="global-explanations-from-local-explanations.html#cb402-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(boost_profile)</span>
-<span id="cb402-8"><a href="global-explanations-from-local-explanations.html#cb402-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="global-explanations-from-local-explanations.html#cb403-1" aria-hidden="true" tabindex="-1"></a>boost_profile <span class="ot">&lt;-</span> <span class="fu">model_profile</span>(explainer_boost,</span>
+<span id="cb403-2"><a href="global-explanations-from-local-explanations.html#cb403-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">N =</span> <span class="dv">1000</span>, </span>
+<span id="cb403-3"><a href="global-explanations-from-local-explanations.html#cb403-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">variables =</span> <span class="st">&quot;rusher_age&quot;</span>, </span>
+<span id="cb403-4"><a href="global-explanations-from-local-explanations.html#cb403-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">groups =</span> <span class="st">&quot;position&quot;</span>)</span>
+<span id="cb403-5"><a href="global-explanations-from-local-explanations.html#cb403-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb403-6"><a href="global-explanations-from-local-explanations.html#cb403-6" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="st">&quot;images/18_boost_profile.png&quot;</span>)</span>
+<span id="cb403-7"><a href="global-explanations-from-local-explanations.html#cb403-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(boost_profile)</span>
+<span id="cb403-8"><a href="global-explanations-from-local-explanations.html#cb403-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 </div>
             </section>
 

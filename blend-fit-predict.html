@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-05-08" />
+<meta name="date" content="2022-05-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -568,9 +568,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>blend_predictions()</code> performs LASSO regularization to combine the outputs from the stack members to come up with one final prediction.</li>
 <li>Candidates with non-zero coefficients are kept.</li>
 </ul>
-<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="blend-fit-predict.html#cb433-1" aria-hidden="true" tabindex="-1"></a>tree_frogs_model_st <span class="ot">&lt;-</span></span>
-<span id="cb433-2"><a href="blend-fit-predict.html#cb433-2" aria-hidden="true" tabindex="-1"></a>  tree_frogs_data_st <span class="sc">%&gt;%</span></span>
-<span id="cb433-3"><a href="blend-fit-predict.html#cb433-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">blend_predictions</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="blend-fit-predict.html#cb434-1" aria-hidden="true" tabindex="-1"></a>tree_frogs_model_st <span class="ot">&lt;-</span></span>
+<span id="cb434-2"><a href="blend-fit-predict.html#cb434-2" aria-hidden="true" tabindex="-1"></a>  tree_frogs_data_st <span class="sc">%&gt;%</span></span>
+<span id="cb434-3"><a href="blend-fit-predict.html#cb434-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">blend_predictions</span>()</span></code></pre></div>
 <ul>
 <li>There’s an <code>autoplot()</code> function available, to see what’s going on.</li>
 <li>If you don’t like what you’re seeing, you can try <code>blend_predictions()</code> again, and setting your own penalty argument.</li>
@@ -583,16 +583,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>With this “instruction” on how to combine candidate models, we fit the whole training set</li>
 </ul>
-<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="blend-fit-predict.html#cb434-1" aria-hidden="true" tabindex="-1"></a>tree_frogs_model_st <span class="ot">&lt;-</span></span>
-<span id="cb434-2"><a href="blend-fit-predict.html#cb434-2" aria-hidden="true" tabindex="-1"></a>  tree_frogs_model_st <span class="sc">%&gt;%</span></span>
-<span id="cb434-3"><a href="blend-fit-predict.html#cb434-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit_members</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="blend-fit-predict.html#cb435-1" aria-hidden="true" tabindex="-1"></a>tree_frogs_model_st <span class="ot">&lt;-</span></span>
+<span id="cb435-2"><a href="blend-fit-predict.html#cb435-2" aria-hidden="true" tabindex="-1"></a>  tree_frogs_model_st <span class="sc">%&gt;%</span></span>
+<span id="cb435-3"><a href="blend-fit-predict.html#cb435-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit_members</span>()</span></code></pre></div>
 <p><img src="images/20_blend_predictions.PNG" /></p>
 <ul>
 <li>And predict on testing set</li>
 </ul>
-<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="blend-fit-predict.html#cb435-1" aria-hidden="true" tabindex="-1"></a>tree_frogs_test <span class="ot">&lt;-</span> </span>
-<span id="cb435-2"><a href="blend-fit-predict.html#cb435-2" aria-hidden="true" tabindex="-1"></a>  tree_frogs_test <span class="sc">%&gt;%</span></span>
-<span id="cb435-3"><a href="blend-fit-predict.html#cb435-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(<span class="fu">predict</span>(tree_frogs_model_st, .))</span></code></pre></div>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="blend-fit-predict.html#cb436-1" aria-hidden="true" tabindex="-1"></a>tree_frogs_test <span class="ot">&lt;-</span> </span>
+<span id="cb436-2"><a href="blend-fit-predict.html#cb436-2" aria-hidden="true" tabindex="-1"></a>  tree_frogs_test <span class="sc">%&gt;%</span></span>
+<span id="cb436-3"><a href="blend-fit-predict.html#cb436-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(<span class="fu">predict</span>(tree_frogs_model_st, .))</span></code></pre></div>
 </div>
             </section>
 

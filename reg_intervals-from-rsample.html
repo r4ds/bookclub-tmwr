@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-05-08" />
+<meta name="date" content="2022-05-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -565,14 +565,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="reg_intervals-from-rsample" class="section level2 hasAnchor" number="21.4">
 <h2><span class="header-section-number">21.4</span> reg_intervals from {rsample}<a href="reg_intervals-from-rsample.html#reg_intervals-from-rsample" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Similar purpose (?) as {infer} package, few supported models and interval types</p>
-<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="reg_intervals-from-rsample.html#cb475-1" aria-hidden="true" tabindex="-1"></a><span class="fu">reg_intervals</span>(</span>
-<span id="cb475-2"><a href="reg_intervals-from-rsample.html#cb475-2" aria-hidden="true" tabindex="-1"></a>  my_formula,</span>
-<span id="cb475-3"><a href="reg_intervals-from-rsample.html#cb475-3" aria-hidden="true" tabindex="-1"></a>  race_top_results,</span>
-<span id="cb475-4"><a href="reg_intervals-from-rsample.html#cb475-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">model_fn =</span> <span class="st">&quot;glm&quot;</span>,</span>
-<span id="cb475-5"><a href="reg_intervals-from-rsample.html#cb475-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">2000</span>,</span>
-<span id="cb475-6"><a href="reg_intervals-from-rsample.html#cb475-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;percentile&quot;</span>,</span>
-<span id="cb475-7"><a href="reg_intervals-from-rsample.html#cb475-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">keep_reps =</span> <span class="cn">TRUE</span></span>
-<span id="cb475-8"><a href="reg_intervals-from-rsample.html#cb475-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="reg_intervals-from-rsample.html#cb476-1" aria-hidden="true" tabindex="-1"></a><span class="fu">reg_intervals</span>(</span>
+<span id="cb476-2"><a href="reg_intervals-from-rsample.html#cb476-2" aria-hidden="true" tabindex="-1"></a>  my_formula,</span>
+<span id="cb476-3"><a href="reg_intervals-from-rsample.html#cb476-3" aria-hidden="true" tabindex="-1"></a>  race_top_results,</span>
+<span id="cb476-4"><a href="reg_intervals-from-rsample.html#cb476-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">model_fn =</span> <span class="st">&quot;glm&quot;</span>,</span>
+<span id="cb476-5"><a href="reg_intervals-from-rsample.html#cb476-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">2000</span>,</span>
+<span id="cb476-6"><a href="reg_intervals-from-rsample.html#cb476-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;percentile&quot;</span>,</span>
+<span id="cb476-7"><a href="reg_intervals-from-rsample.html#cb476-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">keep_reps =</span> <span class="cn">TRUE</span></span>
+<span id="cb476-8"><a href="reg_intervals-from-rsample.html#cb476-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 7
 ##   term            .lower .estimate   .upper .alpha .method           .replicates
 ##   &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;list&lt;tibble[,2]&gt;&gt;

@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-05-08" />
+<meta name="date" content="2022-05-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -567,10 +567,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>PCA = unsupervised method, finds up to N new features (where N = # features) to explain variation.</li>
 </ul>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="principal-component-analysis-pca.html#cb387-1" aria-hidden="true" tabindex="-1"></a>bean_rec_trained <span class="sc">%&gt;%</span></span>
-<span id="cb387-2"><a href="principal-component-analysis-pca.html#cb387-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_pca</span>(<span class="fu">all_numeric_predictors</span>(), <span class="at">num_comp =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb387-3"><a href="principal-component-analysis-pca.html#cb387-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_validation_results</span>() <span class="sc">+</span> </span>
-<span id="cb387-4"><a href="principal-component-analysis-pca.html#cb387-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Principal Component Analysis&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="principal-component-analysis-pca.html#cb388-1" aria-hidden="true" tabindex="-1"></a>bean_rec_trained <span class="sc">%&gt;%</span></span>
+<span id="cb388-2"><a href="principal-component-analysis-pca.html#cb388-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_pca</span>(<span class="fu">all_numeric_predictors</span>(), <span class="at">num_comp =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb388-3"><a href="principal-component-analysis-pca.html#cb388-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_validation_results</span>() <span class="sc">+</span> </span>
+<span id="cb388-4"><a href="principal-component-analysis-pca.html#cb388-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Principal Component Analysis&quot;</span>)</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/17-pca-1.png" width="672" /></p>
 </div>
             </section>

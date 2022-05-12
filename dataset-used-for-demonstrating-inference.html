@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-05-08" />
+<meta name="date" content="2022-05-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -566,23 +566,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">21.1</span> Dataset used for demonstrating inference<a href="dataset-used-for-demonstrating-inference.html#dataset-used-for-demonstrating-inference" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>I will use TidyTuesday dataset on ultra trail running races.</p>
 <p>The data comes from <a href="https://twitter.com/BjnNowak">Benjamin Nowak</a> by way of <a href="https://itra.run/Races/FindRaceResults">International Trail Running Association (ITRA)</a>. Their original repo is available on <a href="https://github.com/BjnNowak/UltraTrailRunning">GitHub</a>.</p>
-<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="dataset-used-for-demonstrating-inference.html#cb440-1" aria-hidden="true" tabindex="-1"></a>race <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/21_race.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb440-2"><a href="dataset-used-for-demonstrating-inference.html#cb440-2" aria-hidden="true" tabindex="-1"></a>ranking <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/21_ultra_rankings.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb440-3"><a href="dataset-used-for-demonstrating-inference.html#cb440-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb440-4"><a href="dataset-used-for-demonstrating-inference.html#cb440-4" aria-hidden="true" tabindex="-1"></a>best_results <span class="ot">&lt;-</span> ranking <span class="sc">%&gt;%</span></span>
-<span id="cb440-5"><a href="dataset-used-for-demonstrating-inference.html#cb440-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rank <span class="sc">&lt;=</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb440-6"><a href="dataset-used-for-demonstrating-inference.html#cb440-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(race_year_id) <span class="sc">%&gt;%</span></span>
-<span id="cb440-7"><a href="dataset-used-for-demonstrating-inference.html#cb440-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">time_in_seconds =</span> <span class="fu">mean</span>(time_in_seconds), <span class="at">top_10 =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb440-8"><a href="dataset-used-for-demonstrating-inference.html#cb440-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(top_10 <span class="sc">==</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb440-9"><a href="dataset-used-for-demonstrating-inference.html#cb440-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>top_10)</span>
-<span id="cb440-10"><a href="dataset-used-for-demonstrating-inference.html#cb440-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb440-11"><a href="dataset-used-for-demonstrating-inference.html#cb440-11" aria-hidden="true" tabindex="-1"></a>race_top_results <span class="ot">&lt;-</span> race <span class="sc">%&gt;%</span></span>
-<span id="cb440-12"><a href="dataset-used-for-demonstrating-inference.html#cb440-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(participation <span class="sc">==</span> <span class="st">&quot;solo&quot;</span> <span class="sc">||</span> participation <span class="sc">==</span> <span class="st">&quot;Solo&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb440-13"><a href="dataset-used-for-demonstrating-inference.html#cb440-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(best_results, <span class="at">by =</span> <span class="st">&quot;race_year_id&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb440-14"><a href="dataset-used-for-demonstrating-inference.html#cb440-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">avg_elevation_gain =</span> elevation_gain <span class="sc">/</span> distance, <span class="at">avg_velocity =</span> distance <span class="sc">/</span> time_in_seconds <span class="sc">*</span> <span class="dv">3600</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb440-15"><a href="dataset-used-for-demonstrating-inference.html#cb440-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(distance <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
-<span id="cb440-16"><a href="dataset-used-for-demonstrating-inference.html#cb440-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb440-17"><a href="dataset-used-for-demonstrating-inference.html#cb440-17" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(race_top_results)</span></code></pre></div>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="dataset-used-for-demonstrating-inference.html#cb441-1" aria-hidden="true" tabindex="-1"></a>race <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/21_race.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb441-2"><a href="dataset-used-for-demonstrating-inference.html#cb441-2" aria-hidden="true" tabindex="-1"></a>ranking <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/21_ultra_rankings.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb441-3"><a href="dataset-used-for-demonstrating-inference.html#cb441-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb441-4"><a href="dataset-used-for-demonstrating-inference.html#cb441-4" aria-hidden="true" tabindex="-1"></a>best_results <span class="ot">&lt;-</span> ranking <span class="sc">%&gt;%</span></span>
+<span id="cb441-5"><a href="dataset-used-for-demonstrating-inference.html#cb441-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rank <span class="sc">&lt;=</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb441-6"><a href="dataset-used-for-demonstrating-inference.html#cb441-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(race_year_id) <span class="sc">%&gt;%</span></span>
+<span id="cb441-7"><a href="dataset-used-for-demonstrating-inference.html#cb441-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">time_in_seconds =</span> <span class="fu">mean</span>(time_in_seconds), <span class="at">top_10 =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb441-8"><a href="dataset-used-for-demonstrating-inference.html#cb441-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(top_10 <span class="sc">==</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb441-9"><a href="dataset-used-for-demonstrating-inference.html#cb441-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>top_10)</span>
+<span id="cb441-10"><a href="dataset-used-for-demonstrating-inference.html#cb441-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb441-11"><a href="dataset-used-for-demonstrating-inference.html#cb441-11" aria-hidden="true" tabindex="-1"></a>race_top_results <span class="ot">&lt;-</span> race <span class="sc">%&gt;%</span></span>
+<span id="cb441-12"><a href="dataset-used-for-demonstrating-inference.html#cb441-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(participation <span class="sc">==</span> <span class="st">&quot;solo&quot;</span> <span class="sc">||</span> participation <span class="sc">==</span> <span class="st">&quot;Solo&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb441-13"><a href="dataset-used-for-demonstrating-inference.html#cb441-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(best_results, <span class="at">by =</span> <span class="st">&quot;race_year_id&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb441-14"><a href="dataset-used-for-demonstrating-inference.html#cb441-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">avg_elevation_gain =</span> elevation_gain <span class="sc">/</span> distance, <span class="at">avg_velocity =</span> distance <span class="sc">/</span> time_in_seconds <span class="sc">*</span> <span class="dv">3600</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb441-15"><a href="dataset-used-for-demonstrating-inference.html#cb441-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(distance <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb441-16"><a href="dataset-used-for-demonstrating-inference.html#cb441-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb441-17"><a href="dataset-used-for-demonstrating-inference.html#cb441-17" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(race_top_results)</span></code></pre></div>
 <pre><code>## Rows: 976
 ## Columns: 16
 ## $ race_year_id       &lt;dbl&gt; 68140, 72496, 69855, 67856, 70469, 66887, 67851, 68…
@@ -602,7 +602,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## $ avg_elevation_gain &lt;dbl&gt; 27.0820851, 58.1722320, 59.7604790, 45.6707317, 0.6…
 ## $ avg_velocity       &lt;dbl&gt; 5.284721, 7.741409, 5.835018, 6.501014, 7.206120, 5…</code></pre>
 <p>We will work with races with non-0 distance, solo participation and at least 10 participants. For each race, the avg velocity is calculated from the velocity of the top 10 racers.</p>
-<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="dataset-used-for-demonstrating-inference.html#cb442-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">345129</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="dataset-used-for-demonstrating-inference.html#cb443-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">345129</span>)</span></code></pre></div>
 </div>
             </section>
 

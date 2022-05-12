@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-05-08" />
+<meta name="date" content="2022-05-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -573,18 +573,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="images/18_boost_paribus.png" /></p>
 <p><img src="images/18_boost_paribus2.png" /></p></li>
 </ul>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="local-explanations-for-interactions.html#cb400-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Ceterus Paribus</span></span>
-<span id="cb400-2"><a href="local-explanations-for-interactions.html#cb400-2" aria-hidden="true" tabindex="-1"></a>boost_paribus <span class="ot">&lt;-</span> <span class="fu">predict_profile</span>(<span class="at">explainer =</span> explainer_boost,</span>
-<span id="cb400-3"><a href="local-explanations-for-interactions.html#cb400-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">new_observation =</span> <span class="fu">sample_n</span>(rush_df,<span class="dv">1</span>),</span>
-<span id="cb400-4"><a href="local-explanations-for-interactions.html#cb400-4" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">variables =</span> <span class="fu">c</span>(<span class="st">&quot;rusher_age&quot;</span>, <span class="st">&quot;yardline_100&quot;</span>))</span>
-<span id="cb400-5"><a href="local-explanations-for-interactions.html#cb400-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb400-6"><a href="local-explanations-for-interactions.html#cb400-6" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="st">&quot;images/18_boost_paribus.png&quot;</span>)</span>
-<span id="cb400-7"><a href="local-explanations-for-interactions.html#cb400-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(boost_paribus, <span class="at">variables =</span> <span class="fu">c</span>(<span class="st">&quot;rusher_age&quot;</span>))</span>
-<span id="cb400-8"><a href="local-explanations-for-interactions.html#cb400-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
-<span id="cb400-9"><a href="local-explanations-for-interactions.html#cb400-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb400-10"><a href="local-explanations-for-interactions.html#cb400-10" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="st">&quot;images/18_boost_paribus2.png&quot;</span>)</span>
-<span id="cb400-11"><a href="local-explanations-for-interactions.html#cb400-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(boost_paribus, <span class="at">variables =</span> <span class="fu">c</span>(<span class="st">&quot;yardline_100&quot;</span>))</span>
-<span id="cb400-12"><a href="local-explanations-for-interactions.html#cb400-12" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="local-explanations-for-interactions.html#cb401-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Ceterus Paribus</span></span>
+<span id="cb401-2"><a href="local-explanations-for-interactions.html#cb401-2" aria-hidden="true" tabindex="-1"></a>boost_paribus <span class="ot">&lt;-</span> <span class="fu">predict_profile</span>(<span class="at">explainer =</span> explainer_boost,</span>
+<span id="cb401-3"><a href="local-explanations-for-interactions.html#cb401-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">new_observation =</span> <span class="fu">sample_n</span>(rush_df,<span class="dv">1</span>),</span>
+<span id="cb401-4"><a href="local-explanations-for-interactions.html#cb401-4" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">variables =</span> <span class="fu">c</span>(<span class="st">&quot;rusher_age&quot;</span>, <span class="st">&quot;yardline_100&quot;</span>))</span>
+<span id="cb401-5"><a href="local-explanations-for-interactions.html#cb401-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb401-6"><a href="local-explanations-for-interactions.html#cb401-6" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="st">&quot;images/18_boost_paribus.png&quot;</span>)</span>
+<span id="cb401-7"><a href="local-explanations-for-interactions.html#cb401-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(boost_paribus, <span class="at">variables =</span> <span class="fu">c</span>(<span class="st">&quot;rusher_age&quot;</span>))</span>
+<span id="cb401-8"><a href="local-explanations-for-interactions.html#cb401-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb401-9"><a href="local-explanations-for-interactions.html#cb401-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb401-10"><a href="local-explanations-for-interactions.html#cb401-10" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="st">&quot;images/18_boost_paribus2.png&quot;</span>)</span>
+<span id="cb401-11"><a href="local-explanations-for-interactions.html#cb401-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(boost_paribus, <span class="at">variables =</span> <span class="fu">c</span>(<span class="st">&quot;yardline_100&quot;</span>))</span>
+<span id="cb401-12"><a href="local-explanations-for-interactions.html#cb401-12" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 </div>
             </section>
 

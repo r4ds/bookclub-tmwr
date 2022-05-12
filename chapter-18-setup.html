@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-05-08" />
+<meta name="date" content="2022-05-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -565,16 +565,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="chapter-18-setup" class="section level2 hasAnchor" number="18.1">
 <h2><span class="header-section-number">18.1</span> Chapter 18 Setup<a href="chapter-18-setup.html#chapter-18-setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Load in the data and set up explainer</p>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="chapter-18-setup.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb396-2"><a href="chapter-18-setup.html#cb396-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
-<span id="cb396-3"><a href="chapter-18-setup.html#cb396-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DALEX)</span>
-<span id="cb396-4"><a href="chapter-18-setup.html#cb396-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DALEXtra)</span>
-<span id="cb396-5"><a href="chapter-18-setup.html#cb396-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iBreakDown)</span>
-<span id="cb396-6"><a href="chapter-18-setup.html#cb396-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb396-7"><a href="chapter-18-setup.html#cb396-7" aria-hidden="true" tabindex="-1"></a>rush_model <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;18-fit_rush_yards.RDS&quot;</span>))</span>
-<span id="cb396-8"><a href="chapter-18-setup.html#cb396-8" aria-hidden="true" tabindex="-1"></a>rush_df <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;18-nfl_rush_df.RDS&quot;</span>))</span>
-<span id="cb396-9"><a href="chapter-18-setup.html#cb396-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb396-10"><a href="chapter-18-setup.html#cb396-10" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(rush_df)</span></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="chapter-18-setup.html#cb397-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb397-2"><a href="chapter-18-setup.html#cb397-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb397-3"><a href="chapter-18-setup.html#cb397-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DALEX)</span>
+<span id="cb397-4"><a href="chapter-18-setup.html#cb397-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DALEXtra)</span>
+<span id="cb397-5"><a href="chapter-18-setup.html#cb397-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iBreakDown)</span>
+<span id="cb397-6"><a href="chapter-18-setup.html#cb397-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb397-7"><a href="chapter-18-setup.html#cb397-7" aria-hidden="true" tabindex="-1"></a>rush_model <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;18-fit_rush_yards.RDS&quot;</span>))</span>
+<span id="cb397-8"><a href="chapter-18-setup.html#cb397-8" aria-hidden="true" tabindex="-1"></a>rush_df <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;18-nfl_rush_df.RDS&quot;</span>))</span>
+<span id="cb397-9"><a href="chapter-18-setup.html#cb397-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb397-10"><a href="chapter-18-setup.html#cb397-10" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(rush_df)</span></code></pre></div>
 <table style="width: auto;" class="table table-condensed">
 <caption>
 <span id="tab:18-load-data">Table 18.1: </span>Data summary
@@ -1855,13 +1855,13 @@ total_line
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="chapter-18-setup.html#cb397-1" aria-hidden="true" tabindex="-1"></a>explainer_boost <span class="ot">&lt;-</span> </span>
-<span id="cb397-2"><a href="chapter-18-setup.html#cb397-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">explain_tidymodels</span>(</span>
-<span id="cb397-3"><a href="chapter-18-setup.html#cb397-3" aria-hidden="true" tabindex="-1"></a>    rush_model, </span>
-<span id="cb397-4"><a href="chapter-18-setup.html#cb397-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> rush_df,</span>
-<span id="cb397-5"><a href="chapter-18-setup.html#cb397-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> rush_df<span class="sc">$</span>rushing_yards,</span>
-<span id="cb397-6"><a href="chapter-18-setup.html#cb397-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
-<span id="cb397-7"><a href="chapter-18-setup.html#cb397-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="chapter-18-setup.html#cb398-1" aria-hidden="true" tabindex="-1"></a>explainer_boost <span class="ot">&lt;-</span> </span>
+<span id="cb398-2"><a href="chapter-18-setup.html#cb398-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">explain_tidymodels</span>(</span>
+<span id="cb398-3"><a href="chapter-18-setup.html#cb398-3" aria-hidden="true" tabindex="-1"></a>    rush_model, </span>
+<span id="cb398-4"><a href="chapter-18-setup.html#cb398-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> rush_df,</span>
+<span id="cb398-5"><a href="chapter-18-setup.html#cb398-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> rush_df<span class="sc">$</span>rushing_yards,</span>
+<span id="cb398-6"><a href="chapter-18-setup.html#cb398-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
+<span id="cb398-7"><a href="chapter-18-setup.html#cb398-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <pre><code>## Preparation of a new explainer is initiated
 ##   -&gt; model label       :  workflow  (  default  )
 ##   -&gt; data              :  95186  rows  40  cols 

@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-05-08" />
+<meta name="date" content="2022-05-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -592,32 +592,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 <p><img src="images/18_boost_breakdown3.png" /></p>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="local-explanations.html#cb399-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Break-down</span></span>
-<span id="cb399-2"><a href="local-explanations.html#cb399-2" aria-hidden="true" tabindex="-1"></a>boost_breakdown <span class="ot">&lt;-</span> <span class="fu">predict_parts</span>(<span class="at">explainer =</span> explainer_boost,</span>
-<span id="cb399-3"><a href="local-explanations.html#cb399-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">new_observation =</span> <span class="fu">sample_n</span>(rush_df,<span class="dv">1</span>))</span>
-<span id="cb399-4"><a href="local-explanations.html#cb399-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb399-5"><a href="local-explanations.html#cb399-5" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="st">&quot;images/18_boost_breakdown.png&quot;</span>, <span class="at">width =</span> <span class="dv">600</span>)</span>
-<span id="cb399-6"><a href="local-explanations.html#cb399-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(boost_breakdown)</span>
-<span id="cb399-7"><a href="local-explanations.html#cb399-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
-<span id="cb399-8"><a href="local-explanations.html#cb399-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb399-9"><a href="local-explanations.html#cb399-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb399-10"><a href="local-explanations.html#cb399-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Break-dwon Interactions</span></span>
-<span id="cb399-11"><a href="local-explanations.html#cb399-11" aria-hidden="true" tabindex="-1"></a>boost_breakdown2 <span class="ot">&lt;-</span> <span class="fu">predict_parts</span>(<span class="at">explainer =</span> explainer_boost,</span>
-<span id="cb399-12"><a href="local-explanations.html#cb399-12" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">new_observation =</span> <span class="fu">sample_n</span>(rush_df,<span class="dv">1</span>),</span>
-<span id="cb399-13"><a href="local-explanations.html#cb399-13" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">type =</span> <span class="st">&quot;break_down_interactions&quot;</span>)</span>
-<span id="cb399-14"><a href="local-explanations.html#cb399-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb399-15"><a href="local-explanations.html#cb399-15" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="st">&quot;images/18_boost_breakdown2.png&quot;</span>, <span class="at">width =</span> <span class="dv">600</span>)</span>
-<span id="cb399-16"><a href="local-explanations.html#cb399-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(boost_breakdown2)</span>
-<span id="cb399-17"><a href="local-explanations.html#cb399-17" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
-<span id="cb399-18"><a href="local-explanations.html#cb399-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb399-19"><a href="local-explanations.html#cb399-19" aria-hidden="true" tabindex="-1"></a><span class="co">#SHAP</span></span>
-<span id="cb399-20"><a href="local-explanations.html#cb399-20" aria-hidden="true" tabindex="-1"></a>boost_breakdown3 <span class="ot">&lt;-</span> <span class="fu">predict_parts</span>(<span class="at">explainer =</span> explainer_boost,</span>
-<span id="cb399-21"><a href="local-explanations.html#cb399-21" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">new_observation =</span> <span class="fu">sample_n</span>(rush_df,<span class="dv">1</span>),</span>
-<span id="cb399-22"><a href="local-explanations.html#cb399-22" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">type =</span> <span class="st">&quot;shap&quot;</span>)</span>
-<span id="cb399-23"><a href="local-explanations.html#cb399-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb399-24"><a href="local-explanations.html#cb399-24" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="st">&quot;images/18_boost_breakdown3.png&quot;</span>, <span class="at">width =</span> <span class="dv">600</span>)</span>
-<span id="cb399-25"><a href="local-explanations.html#cb399-25" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(boost_breakdown3)</span>
-<span id="cb399-26"><a href="local-explanations.html#cb399-26" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="local-explanations.html#cb400-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Break-down</span></span>
+<span id="cb400-2"><a href="local-explanations.html#cb400-2" aria-hidden="true" tabindex="-1"></a>boost_breakdown <span class="ot">&lt;-</span> <span class="fu">predict_parts</span>(<span class="at">explainer =</span> explainer_boost,</span>
+<span id="cb400-3"><a href="local-explanations.html#cb400-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">new_observation =</span> <span class="fu">sample_n</span>(rush_df,<span class="dv">1</span>))</span>
+<span id="cb400-4"><a href="local-explanations.html#cb400-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb400-5"><a href="local-explanations.html#cb400-5" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="st">&quot;images/18_boost_breakdown.png&quot;</span>, <span class="at">width =</span> <span class="dv">600</span>)</span>
+<span id="cb400-6"><a href="local-explanations.html#cb400-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(boost_breakdown)</span>
+<span id="cb400-7"><a href="local-explanations.html#cb400-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb400-8"><a href="local-explanations.html#cb400-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb400-9"><a href="local-explanations.html#cb400-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb400-10"><a href="local-explanations.html#cb400-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Break-dwon Interactions</span></span>
+<span id="cb400-11"><a href="local-explanations.html#cb400-11" aria-hidden="true" tabindex="-1"></a>boost_breakdown2 <span class="ot">&lt;-</span> <span class="fu">predict_parts</span>(<span class="at">explainer =</span> explainer_boost,</span>
+<span id="cb400-12"><a href="local-explanations.html#cb400-12" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">new_observation =</span> <span class="fu">sample_n</span>(rush_df,<span class="dv">1</span>),</span>
+<span id="cb400-13"><a href="local-explanations.html#cb400-13" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">type =</span> <span class="st">&quot;break_down_interactions&quot;</span>)</span>
+<span id="cb400-14"><a href="local-explanations.html#cb400-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb400-15"><a href="local-explanations.html#cb400-15" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="st">&quot;images/18_boost_breakdown2.png&quot;</span>, <span class="at">width =</span> <span class="dv">600</span>)</span>
+<span id="cb400-16"><a href="local-explanations.html#cb400-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(boost_breakdown2)</span>
+<span id="cb400-17"><a href="local-explanations.html#cb400-17" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb400-18"><a href="local-explanations.html#cb400-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb400-19"><a href="local-explanations.html#cb400-19" aria-hidden="true" tabindex="-1"></a><span class="co">#SHAP</span></span>
+<span id="cb400-20"><a href="local-explanations.html#cb400-20" aria-hidden="true" tabindex="-1"></a>boost_breakdown3 <span class="ot">&lt;-</span> <span class="fu">predict_parts</span>(<span class="at">explainer =</span> explainer_boost,</span>
+<span id="cb400-21"><a href="local-explanations.html#cb400-21" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">new_observation =</span> <span class="fu">sample_n</span>(rush_df,<span class="dv">1</span>),</span>
+<span id="cb400-22"><a href="local-explanations.html#cb400-22" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">type =</span> <span class="st">&quot;shap&quot;</span>)</span>
+<span id="cb400-23"><a href="local-explanations.html#cb400-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb400-24"><a href="local-explanations.html#cb400-24" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="st">&quot;images/18_boost_breakdown3.png&quot;</span>, <span class="at">width =</span> <span class="dv">600</span>)</span>
+<span id="cb400-25"><a href="local-explanations.html#cb400-25" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(boost_breakdown3)</span>
+<span id="cb400-26"><a href="local-explanations.html#cb400-26" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 </div>
             </section>
 

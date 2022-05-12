@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-05-08" />
+<meta name="date" content="2022-05-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -568,11 +568,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>“As statistically independent from one another as possible.”</li>
 <li>“It can be thought of as maximizing the ‘non-Gaussianity’ of the ICA components.</li>
 </ul>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="independent-component-anysis-ica.html#cb389-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: ICA requires the &quot;dimRed&quot; and &quot;fastICA&quot; packages.</span></span>
-<span id="cb389-2"><a href="independent-component-anysis-ica.html#cb389-2" aria-hidden="true" tabindex="-1"></a>bean_rec_trained <span class="sc">%&gt;%</span></span>
-<span id="cb389-3"><a href="independent-component-anysis-ica.html#cb389-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_ica</span>(<span class="fu">all_numeric_predictors</span>(), <span class="at">num_comp =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb389-4"><a href="independent-component-anysis-ica.html#cb389-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_validation_results</span>() <span class="sc">+</span> </span>
-<span id="cb389-5"><a href="independent-component-anysis-ica.html#cb389-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Independent Component Analysis&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="independent-component-anysis-ica.html#cb390-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: ICA requires the &quot;dimRed&quot; and &quot;fastICA&quot; packages.</span></span>
+<span id="cb390-2"><a href="independent-component-anysis-ica.html#cb390-2" aria-hidden="true" tabindex="-1"></a>bean_rec_trained <span class="sc">%&gt;%</span></span>
+<span id="cb390-3"><a href="independent-component-anysis-ica.html#cb390-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_ica</span>(<span class="fu">all_numeric_predictors</span>(), <span class="at">num_comp =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb390-4"><a href="independent-component-anysis-ica.html#cb390-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_validation_results</span>() <span class="sc">+</span> </span>
+<span id="cb390-5"><a href="independent-component-anysis-ica.html#cb390-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Independent Component Analysis&quot;</span>)</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/17-ica-1.png" width="672" /></p>
 </div>
             </section>
