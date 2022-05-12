@@ -543,12 +543,19 @@ p_preds
 
 ### Cohort 4
 
-`r knitr::include_url("https://www.youtube.com/embed/URL")`
+`r knitr::include_url("https://www.youtube.com/embed/Jp2FYvNR7zA")`
 
 <details>
   <summary> Meeting chat log </summary>
   
 ```
-LOG
+00:23:21	Federica Gazzelloni:	https://www.tidymodels.org/find/#search-parsnip-models
+00:23:27	Federica Gazzelloni:	https://baguette.tidymodels.org/
+00:23:57	Federica Gazzelloni:	mars Multivariate adaptive regression spline
+00:25:21	Ryan Metcalf:	[SubModel Optimization](https://www.tmwr.org/grid-search.html#submodel-trick)
+00:39:01	Steve C:	https://cran.r-project.org/web/packages/Cubist/vignettes/cubist.html
+00:39:05	Steve C:	cubist
+00:57:32	Brandon Hurr:	https://stats.oarc.ucla.edu/other/mult-pkg/whatstat/
+01:10:12	Isabella Velásquez:	Thank you!!
 ```
 </details>

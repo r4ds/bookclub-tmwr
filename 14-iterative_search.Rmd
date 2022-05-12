@@ -403,12 +403,13 @@ Voilààà!
 
 ### Cohort 4
 
-`r knitr::include_url("https://www.youtube.com/embed/URL")`
+`r knitr::include_url("https://www.youtube.com/embed/OefbbZN8WT0")`
 
 <details>
   <summary> Meeting chat log </summary>
   
 ```
-LOG
+00:30:17	Stephen Charlesworth:	https://www.youtube.com/watch?v=FyyVbuLZav8
+00:30:37	Stephen Charlesworth:	https://www.youtube.com/embed/enNgiWuIHAo
 ```
 </details>
