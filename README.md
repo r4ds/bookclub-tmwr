@@ -103,9 +103,11 @@ If you would like to present, please add your name next to a chapter using the [
 - 2021-12-03	0. Hello World - Book club Intro: Federica Gazzelloni
 - 2021-12-10	1. Software for modeling: Federica Gazzelloni	
 - 2021-12-17	2. A tidyverse primer: Brandon Hurr	
+- 2021-12-24	NO MEETING
+- 2021-12-31	NO MEETING
 - 2022-01-07	3. A review of R modeling fundamentals: AL Brown	
 - 2022-01-14	4. The Ames housing data: Laura Prado	
-- 2022-01-21	5. Spending our data: AL Brown	
+- 2022-01-21	5. Spending our data: All	
 - 2022-01-28	6. Fitting models with parsnip: Laura Rose	
 - 2022-02-04	7. A model workflow: Isabella	
 - 2022-02-11	8. Feature engineering with recipes: Federica Gazzelloni	
@@ -116,16 +118,19 @@ If you would like to present, please add your name next to a chapter using the [
 
 </details>
 
-- 2022-03-18	13. Grid search: Laura Rose	
+- 2022-03-18	NO MEETING
+- 2022-03-25  13. Grid search part one: Laura Rose	
 - 2022-04-01	13. Grid search part two:	Laura Rose
 - 2022-04-08	14. Iterative search:	Steve Charlesworth
-- 2022-04-15	15. Screening many models: TBD	
-- 2022-04-22	16. Encoding categorical data:	Federica Gazzelloni
-- 2022-04-29	17. Dimensionality reduction: TBD	
-- 2022-05-06	18. Explaining models and predictions: TBD
-- 2022-05-13	19. When should you trust your predictions: TBD
-- 2022-05-20	20. Ensembles of models: TBD
-- 2022-05-27	21. Inferential analysis: Federica Gazzelloni
+- 2022-04-15  NO MEETING
+- 2022-04-22	15. Screening many models: All - Brandon is the Tour Guide	
+- 2022-04-29	16. Dimensionality reduction: Federica Gazzelloni	
+- 2022-05-06	17. Encoding categorical data:	All
+- 2022-05-13	18. Explaining models and predictions: Steve Charlesworth
+- 2022-05-20	19. When should you trust your predictions: Isabella
+- 2022-05-27	20. Ensembles of models: All
+- 2022-06-03	21. Inferential analysis: Federica Gazzelloni
+- 2022-06-10  Final discussion and Q&A: All
 
 <hr>  
 
