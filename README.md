@@ -115,9 +115,6 @@ If you would like to present, please add your name next to a chapter using the [
 - 2022-02-25	10. Resampling for evaluating performance: Brandon Hurr	
 - 2022-03-04	11. Comparing models with resampling: All
 - 2022-03-11	12. Model tuning and the danger of overfitting: Ryan Metcalf	
-
-</details>
-
 - 2022-03-18	NO MEETING
 - 2022-03-25  13. Grid search part one: Laura Rose	
 - 2022-04-01	13. Grid search part two:	Laura Rose
@@ -127,6 +124,9 @@ If you would like to present, please add your name next to a chapter using the [
 - 2022-04-29	16. Dimensionality reduction: Federica Gazzelloni	
 - 2022-05-06	17. Encoding categorical data:	All
 - 2022-05-13	18. Explaining models and predictions: Steve Charlesworth
+
+</details>
+
 - 2022-05-20	19. When should you trust your predictions: Isabella
 - 2022-05-27	20. Ensembles of models: All
 - 2022-06-03	21. Inferential analysis: Federica Gazzelloni
