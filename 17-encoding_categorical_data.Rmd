@@ -83,7 +83,6 @@ Embeddings is learned via a TensorFlow neural network.
 - step_embed() ----> *TensorFlow neural network*
 - step_woe()   ----> *weight of evidence transformation-Bayes factor*
 
-
 ### Cohort 4
 
 `r knitr::include_url("https://www.youtube.com/embed/8zS__TYK82o")`
