@@ -8,12 +8,12 @@ As we read, we are producing [notes about the book](https://r4ds.github.io/bookc
 
 ## Meeting Schedule
 
-If you would like to present, please see the sign-up sheet for your cohort (linked below, and pinned in the [#book_club-tmwr](https://rfordatascience.slack.com/archives/BOOKCHANNELID) channel on Slack)!
+If you would like to present, please see the sign-up sheet for your cohort (linked below, and pinned in the [#book_club-tmwr](https://rfordatascience.slack.com/archives/C01H9SLA48M) channel on Slack)!
 
 - Cohort 1 (started 2021-01-05, ended 2021-10-19): [meeting videos](https://www.youtube.com/playlist?list=PL3x6DOfs2NGgP7y2sOGcYNGFd_9pORpYG)
 - Cohort 2 (started 2021-02-07, ended 2021-06-06): [meeting videos](https://www.youtube.com/playlist?list=PL3x6DOfs2NGggq4ssmi3KnOMwODhGz33W)
 - Cohort 3 (started 2021-03-29, ended 2021-11-08): [meeting videos](https://www.youtube.com/playlist?list=PL3x6DOfs2NGiAi_0odUkLGxz0ZpFlugg-)
-- [Cohort 4](https://docs.google.com/spreadsheets/d/1-S1UbKWay_TeR5n9LkztZY2XXrMjZr3snl1srPvTvH4/edit#gid=0) (started 2021-12-03): [Fridays, 8:30am CST/CDT](https://www.timeanddate.com/worldclock/converter.html?iso=20211203T140000&p1=24) | [meeting videos](https://www.youtube.com/playlist?list=PL3x6DOfs2NGgb6mnvCMUVWEQ4AtLsIxwS)
+- Cohort 4 (started 2021-12-03, ended 2022-07-01): [meeting videos](https://www.youtube.com/playlist?list=PL3x6DOfs2NGgb6mnvCMUVWEQ4AtLsIxwS)
 
 
 <hr>  
