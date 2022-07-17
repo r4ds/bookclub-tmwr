@@ -326,12 +326,28 @@ The key components are `bootstraps()` and `mutate + map` which give you quite a 
 
 ### Cohort 4
 
-`r knitr::include_url("https://www.youtube.com/embed/URL")`
+`r knitr::include_url("https://www.youtube.com/embed/7BkLFznRko8")`
 
 <details>
   <summary> Meeting chat log </summary>
   
 ```
-LOG
+00:33:49	Brandon Hurr:	P-value 🤏
+00:43:07	Federica Gazzelloni:	moderndive.com
+00:43:17	Federica Gazzelloni:	https://infer.tidymodels.org/
+00:57:16	Federica Gazzelloni:	https://juliasilge.com/blog/rstats-vignettes/
+```
+</details>
+
+`r knitr::include_url("https://www.youtube.com/embed/2TgtJXNrk_c")`
+
+<details>
+  <summary> Meeting chat log </summary>
+  
+```
+00:23:14	Federica Gazzelloni:	total # of parameters: H(P+1)+H+1
+00:24:15	Federica Gazzelloni:	“For this type of network model and P predictors, there are a total of H(P + 1) + H + 1 total parameters being estimated, which quickly becomes large as P increases. (APM pg.143)"
+00:25:39	Federica Gazzelloni:	The name neural network originally derived from thinking of these hidden units as analogous to neurons in the brain (ISLR pg 405)
+00:46:35	Stephen.Charlesworth:	I'm installing rTools right now :)
 ```
 </details>

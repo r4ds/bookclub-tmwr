@@ -95,10 +95,10 @@ Preprocessing is part of a modeling **workflow**
 
 
 ```{r 08-wfl1, message=FALSE, warning=FALSE, paged.print=FALSE}
-lm_model<-linear_reg() %>% 
+lm_model <- linear_reg() %>% 
   set_engine("lm")
 
-lm_wflow<- workflow()%>%
+lm_wflow <- workflow() %>%
   add_model(lm_model)
 
 lm_wflow <- 
@@ -109,7 +109,7 @@ lm_wflow <-
 #   add_recipe(simple_ames)
   
 lm_wflow <- lm_wflow %>% 
-  remove_variables()%>%
+  workflows::remove_formula() %>%
   add_recipe(simple_ames)
 ```
 

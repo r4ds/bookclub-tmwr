@@ -209,12 +209,14 @@ Yeah, they never definitively explain PDP vs these other terms. I hate to make t
 
 ### Cohort 4
 
-`r knitr::include_url("https://www.youtube.com/embed/URL")`
+`r knitr::include_url("https://www.youtube.com/embed/XCtHncZwDB0")`
 
 <details>
   <summary> Meeting chat log </summary>
   
 ```
-LOG
+00:22:02	Federica Gazzelloni:	this is interesting: “ game theory techniques like SHAP are able to provide insight into how much crime is “good,” and how much is “too much.” (https://geophy.com/insights/whats-the-shap-how-crime-influences-property-value/)
+00:26:51	Federica Gazzelloni:	example of using shap:
+00:26:56	Federica Gazzelloni:	https://juliasilge.com/blog/board-games/
 ```
 </details>

@@ -57,7 +57,5 @@ Imports:
 Remotes: 
     hadley/emo,
     gadenbuie/tweetrmd,
-    tidymodels/embed,
-    tidymodels/finetune,
     tidymodels/learntidymodels
 biocViews: mixOmics

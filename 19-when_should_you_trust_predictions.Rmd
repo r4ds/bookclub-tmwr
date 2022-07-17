@@ -473,12 +473,12 @@ yes stan is for Bayesian stuff
 
 ### Cohort 4
 
-`r knitr::include_url("https://www.youtube.com/embed/URL")`
+`r knitr::include_url("https://www.youtube.com/embed/3DJKuMNztVg")`
 
 <details>
   <summary> Meeting chat log </summary>
   
 ```
-LOG
+00:26:35	Federica Gazzelloni:	The reportable rate is calculated as (n_not_equivocal / n).
 ```
 </details>
