@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5.2 Common methods for splitting data | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5.2 Common methods for splitting data | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-06-13" />
+<meta name="date" content="2022-07-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -571,7 +571,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb104-3"><a href="common-methods-for-splitting-data.html#cb104-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ames)</span>
 <span id="cb104-4"><a href="common-methods-for-splitting-data.html#cb104-4" aria-hidden="true" tabindex="-1"></a>ames_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(ames, <span class="at">prop =</span> <span class="fl">0.80</span>)</span>
 <span id="cb104-5"><a href="common-methods-for-splitting-data.html#cb104-5" aria-hidden="true" tabindex="-1"></a>ames_split</span></code></pre></div>
-<pre><code>## &lt;Analysis/Assess/Total&gt;
+<pre><code>## &lt;Training/Testing/Total&gt;
 ## &lt;2344/586/2930&gt;</code></pre>
 <p>The object <code>ames_split</code> is an <code>rsplit</code> object. To get the training and test results you can call on <code>training()</code> and <code>test()</code>:</p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="common-methods-for-splitting-data.html#cb106-1" aria-hidden="true" tabindex="-1"></a>ames_train <span class="ot">&lt;-</span> <span class="fu">training</span>(ames_split)</span>
