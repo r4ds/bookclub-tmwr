@@ -224,12 +224,14 @@ beepr::beep(8)
 
 ### Cohort 4
 
-`r knitr::include_url("https://www.youtube.com/embed/URL")`
+`r knitr::include_url("https://www.youtube.com/embed/GT-ZlDra8jk")`
 
 <details>
   <summary> Meeting chat log </summary>
   
 ```
-LOG
+00:39:59	Federica Gazzelloni:	https://www.sciencedirect.com/topics/computer-science/ensemble-modeling#:~:text=Ensemble%20modeling%20is%20a%20process,prediction%20for%20the%20unseen%20data.
+00:44:04	Federica Gazzelloni:	https://towardsdatascience.com/ensemble-models-5a62d4f4cb0c
+00:45:25	Isabella Velásquez:	Ship it!
 ```
 </details>

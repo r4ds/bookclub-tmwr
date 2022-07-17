@@ -27,3 +27,9 @@ This companion follows the [R4DS Online Learning Community Code of Conduct](http
 - Presentations will usually consist of a review of the material, a discussion, and/or a demonstration of the principles presented in that chapter.
 - More information about how to present is available in the [github repo](https://github.com/r4ds/bookclub-tmwr).
 - Presentations will be recorded, and will be available on the [R4DS Online Learning Community YouTube Channel](https://r4ds.io/youtube).
+
+```{r set-conflict-prefs, include=FALSE}
+# There are some conflicts that can come up easily. Let's handle them up front.
+conflicted::conflict_prefer("filter", "dplyr")
+conflicted::conflict_prefer("penguins", "palmerpenguins")
+```
