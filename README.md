@@ -14,6 +14,7 @@ If you would like to present, please see the sign-up sheet for your cohort (link
 - Cohort 2 (started 2021-02-07, ended 2021-06-06): [meeting videos](https://www.youtube.com/playlist?list=PL3x6DOfs2NGggq4ssmi3KnOMwODhGz33W)
 - Cohort 3 (started 2021-03-29, ended 2021-11-08): [meeting videos](https://www.youtube.com/playlist?list=PL3x6DOfs2NGiAi_0odUkLGxz0ZpFlugg-)
 - Cohort 4 (started 2021-12-03, ended 2022-07-01): [meeting videos](https://www.youtube.com/playlist?list=PL3x6DOfs2NGgb6mnvCMUVWEQ4AtLsIxwS)
+- [Cohort 5]() (started 2023-04-04, facilitated by Federica Gazzelloni): [Tuesdays, 8:00AM CST/CDT](https://www.timeanddate.com/worldclock/converter.html?iso=20230404T130000&p1=24&p2=1440&p3=215) | [meeting videos](https://youtube.com/playlist?list=PL3x6DOfs2NGgSt6vIGQWtLwZXS2Q7WZlE)
 
 
 <hr>  
