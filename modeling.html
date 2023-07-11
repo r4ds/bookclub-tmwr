@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>16.6 Modeling | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="16.6 Modeling | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-07-17" />
+<meta name="date" content="2023-07-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,7 +52,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/twitter-widget-0.0.1/widgets.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -95,7 +94,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -108,7 +107,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -122,6 +121,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -565,32 +568,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="modeling" class="section level2 hasAnchor" number="16.6">
 <h2><span class="header-section-number">16.6</span> Modeling<a href="modeling.html#modeling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>(This is slow so I don’t actually run it here.)</p>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="modeling.html#cb392-1" aria-hidden="true" tabindex="-1"></a>ctrl <span class="ot">&lt;-</span> <span class="fu">control_grid</span>(<span class="at">parallel_over =</span> <span class="st">&quot;everything&quot;</span>)</span>
-<span id="cb392-2"><a href="modeling.html#cb392-2" aria-hidden="true" tabindex="-1"></a>bean_res <span class="ot">&lt;-</span> </span>
-<span id="cb392-3"><a href="modeling.html#cb392-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow_set</span>(</span>
-<span id="cb392-4"><a href="modeling.html#cb392-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">preproc =</span> <span class="fu">list</span>(<span class="at">basic =</span> class <span class="sc">~</span>., <span class="at">pls =</span> pls_rec, <span class="at">umap =</span> umap_rec), </span>
-<span id="cb392-5"><a href="modeling.html#cb392-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">models =</span> <span class="fu">list</span>(<span class="at">bayes =</span> bayes_spec, <span class="at">fda =</span> fda_spec,</span>
-<span id="cb392-6"><a href="modeling.html#cb392-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">rda =</span> rda_spec, <span class="at">bag =</span> bagging_pec,</span>
-<span id="cb392-7"><a href="modeling.html#cb392-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">mlp =</span> mlp_spec)</span>
-<span id="cb392-8"><a href="modeling.html#cb392-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb392-9"><a href="modeling.html#cb392-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow_map</span>(</span>
-<span id="cb392-10"><a href="modeling.html#cb392-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb392-11"><a href="modeling.html#cb392-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">seed =</span> <span class="dv">1703</span>,</span>
-<span id="cb392-12"><a href="modeling.html#cb392-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">resamples =</span> bean_val,</span>
-<span id="cb392-13"><a href="modeling.html#cb392-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">grid =</span> <span class="dv">10</span>,</span>
-<span id="cb392-14"><a href="modeling.html#cb392-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">metrics =</span> <span class="fu">metric_set</span>(roc_auc)</span>
-<span id="cb392-15"><a href="modeling.html#cb392-15" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb392-16"><a href="modeling.html#cb392-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb392-17"><a href="modeling.html#cb392-17" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> </span>
-<span id="cb392-18"><a href="modeling.html#cb392-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rank_results</span>(bean_res, <span class="at">select_best =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb392-19"><a href="modeling.html#cb392-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">method =</span> <span class="fu">map_chr</span>(wflow_id, <span class="sc">~</span> <span class="fu">str_split</span>(.x, <span class="st">&quot;_&quot;</span>, <span class="at">simplify =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span>])) </span>
-<span id="cb392-20"><a href="modeling.html#cb392-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb392-21"><a href="modeling.html#cb392-21" aria-hidden="true" tabindex="-1"></a>rankings <span class="sc">%&gt;%</span> </span>
-<span id="cb392-22"><a href="modeling.html#cb392-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> rank, <span class="at">y =</span> mean, <span class="at">pch =</span> method, <span class="at">col =</span> model)) <span class="sc">+</span> </span>
-<span id="cb392-23"><a href="modeling.html#cb392-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">cex =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
-<span id="cb392-24"><a href="modeling.html#cb392-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>) <span class="sc">+</span></span>
-<span id="cb392-25"><a href="modeling.html#cb392-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;ROC AUC&quot;</span>) <span class="sc">+</span></span>
-<span id="cb392-26"><a href="modeling.html#cb392-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="modeling.html#cb388-1" aria-hidden="true" tabindex="-1"></a>ctrl <span class="ot">&lt;-</span> <span class="fu">control_grid</span>(<span class="at">parallel_over =</span> <span class="st">&quot;everything&quot;</span>)</span>
+<span id="cb388-2"><a href="modeling.html#cb388-2" aria-hidden="true" tabindex="-1"></a>bean_res <span class="ot">&lt;-</span> </span>
+<span id="cb388-3"><a href="modeling.html#cb388-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow_set</span>(</span>
+<span id="cb388-4"><a href="modeling.html#cb388-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">preproc =</span> <span class="fu">list</span>(<span class="at">basic =</span> class <span class="sc">~</span>., <span class="at">pls =</span> pls_rec, <span class="at">umap =</span> umap_rec), </span>
+<span id="cb388-5"><a href="modeling.html#cb388-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">models =</span> <span class="fu">list</span>(<span class="at">bayes =</span> bayes_spec, <span class="at">fda =</span> fda_spec,</span>
+<span id="cb388-6"><a href="modeling.html#cb388-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">rda =</span> rda_spec, <span class="at">bag =</span> bagging_pec,</span>
+<span id="cb388-7"><a href="modeling.html#cb388-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">mlp =</span> mlp_spec)</span>
+<span id="cb388-8"><a href="modeling.html#cb388-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb388-9"><a href="modeling.html#cb388-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow_map</span>(</span>
+<span id="cb388-10"><a href="modeling.html#cb388-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb388-11"><a href="modeling.html#cb388-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">seed =</span> <span class="dv">1703</span>,</span>
+<span id="cb388-12"><a href="modeling.html#cb388-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">resamples =</span> bean_val,</span>
+<span id="cb388-13"><a href="modeling.html#cb388-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">grid =</span> <span class="dv">10</span>,</span>
+<span id="cb388-14"><a href="modeling.html#cb388-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">metrics =</span> <span class="fu">metric_set</span>(roc_auc)</span>
+<span id="cb388-15"><a href="modeling.html#cb388-15" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb388-16"><a href="modeling.html#cb388-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb388-17"><a href="modeling.html#cb388-17" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> </span>
+<span id="cb388-18"><a href="modeling.html#cb388-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rank_results</span>(bean_res, <span class="at">select_best =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb388-19"><a href="modeling.html#cb388-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">method =</span> <span class="fu">map_chr</span>(wflow_id, <span class="sc">~</span> <span class="fu">str_split</span>(.x, <span class="st">&quot;_&quot;</span>, <span class="at">simplify =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span>])) </span>
+<span id="cb388-20"><a href="modeling.html#cb388-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb388-21"><a href="modeling.html#cb388-21" aria-hidden="true" tabindex="-1"></a>rankings <span class="sc">%&gt;%</span> </span>
+<span id="cb388-22"><a href="modeling.html#cb388-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> rank, <span class="at">y =</span> mean, <span class="at">pch =</span> method, <span class="at">col =</span> model)) <span class="sc">+</span> </span>
+<span id="cb388-23"><a href="modeling.html#cb388-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">cex =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb388-24"><a href="modeling.html#cb388-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>) <span class="sc">+</span></span>
+<span id="cb388-25"><a href="modeling.html#cb388-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;ROC AUC&quot;</span>) <span class="sc">+</span></span>
+<span id="cb388-26"><a href="modeling.html#cb388-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span></code></pre></div>
 <p><img src="images/17-model_ranks.png" /></p>
 </div>
             </section>
@@ -659,7 +662,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

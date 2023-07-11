@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>15.2 Creating workflow_sets | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="15.2 Creating workflow_sets | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-07-17" />
+<meta name="date" content="2023-07-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,7 +52,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/twitter-widget-0.0.1/widgets.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -95,7 +94,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -108,7 +107,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -122,6 +121,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -564,19 +567,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="creating-workflow_sets" class="section level2 hasAnchor" number="15.2">
 <h2><span class="header-section-number">15.2</span> Creating <code>workflow_set</code>s<a href="creating-workflow_sets.html#creating-workflow_sets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="creating-workflow_sets.html#cb362-1" aria-hidden="true" tabindex="-1"></a>seed <span class="ot">&lt;-</span> <span class="dv">2021</span></span>
-<span id="cb362-2"><a href="creating-workflow_sets.html#cb362-2" aria-hidden="true" tabindex="-1"></a>col_y <span class="ot">&lt;-</span> <span class="st">&#39;ladder_score&#39;</span></span>
-<span id="cb362-3"><a href="creating-workflow_sets.html#cb362-3" aria-hidden="true" tabindex="-1"></a>col_y_sym <span class="ot">&lt;-</span> col_y <span class="sc">%&gt;%</span> <span class="fu">sym</span>()</span>
-<span id="cb362-4"><a href="creating-workflow_sets.html#cb362-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb362-5"><a href="creating-workflow_sets.html#cb362-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(seed)</span>
-<span id="cb362-6"><a href="creating-workflow_sets.html#cb362-6" aria-hidden="true" tabindex="-1"></a>split <span class="ot">&lt;-</span> df_selected <span class="sc">%&gt;%</span> <span class="fu">initial_split</span>(<span class="at">strata =</span> <span class="sc">!!</span>col_y_sym)</span>
-<span id="cb362-7"><a href="creating-workflow_sets.html#cb362-7" aria-hidden="true" tabindex="-1"></a>df_trn <span class="ot">&lt;-</span> split <span class="sc">%&gt;%</span> <span class="fu">training</span>()</span>
-<span id="cb362-8"><a href="creating-workflow_sets.html#cb362-8" aria-hidden="true" tabindex="-1"></a>df_tst  <span class="ot">&lt;-</span> split <span class="sc">%&gt;%</span> <span class="fu">testing</span>()</span>
-<span id="cb362-9"><a href="creating-workflow_sets.html#cb362-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb362-10"><a href="creating-workflow_sets.html#cb362-10" aria-hidden="true" tabindex="-1"></a>folds <span class="ot">&lt;-</span></span>
-<span id="cb362-11"><a href="creating-workflow_sets.html#cb362-11" aria-hidden="true" tabindex="-1"></a>  df_trn <span class="sc">%&gt;%</span> </span>
-<span id="cb362-12"><a href="creating-workflow_sets.html#cb362-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vfold_cv</span>(<span class="at">strata =</span> <span class="sc">!!</span>col_y_sym, <span class="at">repeats =</span> <span class="dv">5</span>)</span>
-<span id="cb362-13"><a href="creating-workflow_sets.html#cb362-13" aria-hidden="true" tabindex="-1"></a>folds</span></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="creating-workflow_sets.html#cb359-1" aria-hidden="true" tabindex="-1"></a>seed <span class="ot">&lt;-</span> <span class="dv">2021</span></span>
+<span id="cb359-2"><a href="creating-workflow_sets.html#cb359-2" aria-hidden="true" tabindex="-1"></a>col_y <span class="ot">&lt;-</span> <span class="st">&#39;ladder_score&#39;</span></span>
+<span id="cb359-3"><a href="creating-workflow_sets.html#cb359-3" aria-hidden="true" tabindex="-1"></a>col_y_sym <span class="ot">&lt;-</span> col_y <span class="sc">%&gt;%</span> <span class="fu">sym</span>()</span>
+<span id="cb359-4"><a href="creating-workflow_sets.html#cb359-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb359-5"><a href="creating-workflow_sets.html#cb359-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(seed)</span>
+<span id="cb359-6"><a href="creating-workflow_sets.html#cb359-6" aria-hidden="true" tabindex="-1"></a>split <span class="ot">&lt;-</span> df_selected <span class="sc">%&gt;%</span> <span class="fu">initial_split</span>(<span class="at">strata =</span> <span class="sc">!!</span>col_y_sym)</span>
+<span id="cb359-7"><a href="creating-workflow_sets.html#cb359-7" aria-hidden="true" tabindex="-1"></a>df_trn <span class="ot">&lt;-</span> split <span class="sc">%&gt;%</span> <span class="fu">training</span>()</span>
+<span id="cb359-8"><a href="creating-workflow_sets.html#cb359-8" aria-hidden="true" tabindex="-1"></a>df_tst  <span class="ot">&lt;-</span> split <span class="sc">%&gt;%</span> <span class="fu">testing</span>()</span>
+<span id="cb359-9"><a href="creating-workflow_sets.html#cb359-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb359-10"><a href="creating-workflow_sets.html#cb359-10" aria-hidden="true" tabindex="-1"></a>folds <span class="ot">&lt;-</span></span>
+<span id="cb359-11"><a href="creating-workflow_sets.html#cb359-11" aria-hidden="true" tabindex="-1"></a>  df_trn <span class="sc">%&gt;%</span> </span>
+<span id="cb359-12"><a href="creating-workflow_sets.html#cb359-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vfold_cv</span>(<span class="at">strata =</span> <span class="sc">!!</span>col_y_sym, <span class="at">repeats =</span> <span class="dv">5</span>)</span>
+<span id="cb359-13"><a href="creating-workflow_sets.html#cb359-13" aria-hidden="true" tabindex="-1"></a>folds</span></code></pre></div>
 <pre><code>## #  10-fold cross-validation repeated 5 times using stratification 
 ## # A tibble: 50 × 3
 ##    splits          id      id2   
@@ -591,101 +594,88 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 &lt;split [100/9]&gt; Repeat1 Fold08
 ##  9 &lt;split [101/8]&gt; Repeat1 Fold09
 ## 10 &lt;split [101/8]&gt; Repeat1 Fold10
-## # … with 40 more rows</code></pre>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="creating-workflow_sets.html#cb364-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My weird way of creating formulas sometimes, which can be helpful if you&#39;re experimenting with different response variables.</span></span>
-<span id="cb364-2"><a href="creating-workflow_sets.html#cb364-2" aria-hidden="true" tabindex="-1"></a>form <span class="ot">&lt;-</span> <span class="fu">paste0</span>(col_y, <span class="st">&#39;~ .&#39;</span>) <span class="sc">%&gt;%</span> <span class="fu">as.formula</span>()</span>
-<span id="cb364-3"><a href="creating-workflow_sets.html#cb364-3" aria-hidden="true" tabindex="-1"></a>rec_norm <span class="ot">&lt;-</span></span>
-<span id="cb364-4"><a href="creating-workflow_sets.html#cb364-4" aria-hidden="true" tabindex="-1"></a>  df_trn <span class="sc">%&gt;%</span> </span>
-<span id="cb364-5"><a href="creating-workflow_sets.html#cb364-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(form, <span class="at">data =</span> .) <span class="sc">%&gt;%</span> </span>
-<span id="cb364-6"><a href="creating-workflow_sets.html#cb364-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_predictors</span>())</span>
-<span id="cb364-7"><a href="creating-workflow_sets.html#cb364-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb364-8"><a href="creating-workflow_sets.html#cb364-8" aria-hidden="true" tabindex="-1"></a>rec_poly <span class="ot">&lt;-</span></span>
-<span id="cb364-9"><a href="creating-workflow_sets.html#cb364-9" aria-hidden="true" tabindex="-1"></a>  rec_norm <span class="sc">%&gt;%</span> </span>
-<span id="cb364-10"><a href="creating-workflow_sets.html#cb364-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_poly</span>(<span class="fu">all_predictors</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb364-11"><a href="creating-workflow_sets.html#cb364-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_interact</span>(<span class="sc">~</span> <span class="fu">all_predictors</span>()<span class="sc">:</span><span class="fu">all_predictors</span>())</span>
-<span id="cb364-12"><a href="creating-workflow_sets.html#cb364-12" aria-hidden="true" tabindex="-1"></a>rec_poly</span></code></pre></div>
-<pre><code>## Recipe
-## 
-## Inputs:
-## 
-##       role #variables
-##    outcome          1
-##  predictor          6
-## 
-## Operations:
-## 
-## Centering and scaling for all_predictors()
-## Orthogonal polynomials on all_predictors()
-## Interactions with all_predictors():all_predictors()</code></pre>
+## # ℹ 40 more rows</code></pre>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="creating-workflow_sets.html#cb361-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My weird way of creating formulas sometimes, which can be helpful if you&#39;re experimenting with different response variables.</span></span>
+<span id="cb361-2"><a href="creating-workflow_sets.html#cb361-2" aria-hidden="true" tabindex="-1"></a>form <span class="ot">&lt;-</span> <span class="fu">paste0</span>(col_y, <span class="st">&#39;~ .&#39;</span>) <span class="sc">%&gt;%</span> <span class="fu">as.formula</span>()</span>
+<span id="cb361-3"><a href="creating-workflow_sets.html#cb361-3" aria-hidden="true" tabindex="-1"></a>rec_norm <span class="ot">&lt;-</span></span>
+<span id="cb361-4"><a href="creating-workflow_sets.html#cb361-4" aria-hidden="true" tabindex="-1"></a>  df_trn <span class="sc">%&gt;%</span> </span>
+<span id="cb361-5"><a href="creating-workflow_sets.html#cb361-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(form, <span class="at">data =</span> .) <span class="sc">%&gt;%</span> </span>
+<span id="cb361-6"><a href="creating-workflow_sets.html#cb361-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_predictors</span>())</span>
+<span id="cb361-7"><a href="creating-workflow_sets.html#cb361-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb361-8"><a href="creating-workflow_sets.html#cb361-8" aria-hidden="true" tabindex="-1"></a>rec_poly <span class="ot">&lt;-</span></span>
+<span id="cb361-9"><a href="creating-workflow_sets.html#cb361-9" aria-hidden="true" tabindex="-1"></a>  rec_norm <span class="sc">%&gt;%</span> </span>
+<span id="cb361-10"><a href="creating-workflow_sets.html#cb361-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_poly</span>(<span class="fu">all_predictors</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb361-11"><a href="creating-workflow_sets.html#cb361-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_interact</span>(<span class="sc">~</span> <span class="fu">all_predictors</span>()<span class="sc">:</span><span class="fu">all_predictors</span>())</span>
+<span id="cb361-12"><a href="creating-workflow_sets.html#cb361-12" aria-hidden="true" tabindex="-1"></a>rec_poly</span></code></pre></div>
 <details>
 <summary>
 <p>Code for recipes…</p>
 </summary>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="creating-workflow_sets.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rules)</span>
-<span id="cb366-2"><a href="creating-workflow_sets.html#cb366-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(baguette)</span>
-<span id="cb366-3"><a href="creating-workflow_sets.html#cb366-3" aria-hidden="true" tabindex="-1"></a>f_set <span class="ot">&lt;-</span> <span class="cf">function</span>(spec) {</span>
-<span id="cb366-4"><a href="creating-workflow_sets.html#cb366-4" aria-hidden="true" tabindex="-1"></a>  spec <span class="sc">%&gt;%</span> </span>
-<span id="cb366-5"><a href="creating-workflow_sets.html#cb366-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_mode</span>(<span class="st">&#39;regression&#39;</span>)</span>
-<span id="cb366-6"><a href="creating-workflow_sets.html#cb366-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb366-7"><a href="creating-workflow_sets.html#cb366-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb366-8"><a href="creating-workflow_sets.html#cb366-8" aria-hidden="true" tabindex="-1"></a>spec_lr <span class="ot">&lt;-</span> </span>
-<span id="cb366-9"><a href="creating-workflow_sets.html#cb366-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">linear_reg</span>(<span class="at">penalty =</span> <span class="fu">tune</span>(), <span class="at">mixture =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb366-10"><a href="creating-workflow_sets.html#cb366-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&#39;glmnet&#39;</span>)</span>
-<span id="cb366-11"><a href="creating-workflow_sets.html#cb366-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb366-12"><a href="creating-workflow_sets.html#cb366-12" aria-hidden="true" tabindex="-1"></a>spec_mars <span class="ot">&lt;-</span> </span>
-<span id="cb366-13"><a href="creating-workflow_sets.html#cb366-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mars</span>(<span class="at">prod_degree =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb366-14"><a href="creating-workflow_sets.html#cb366-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&#39;earth&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb366-15"><a href="creating-workflow_sets.html#cb366-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">f_set</span>()</span>
-<span id="cb366-16"><a href="creating-workflow_sets.html#cb366-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb366-17"><a href="creating-workflow_sets.html#cb366-17" aria-hidden="true" tabindex="-1"></a>spec_svm_r <span class="ot">&lt;-</span> </span>
-<span id="cb366-18"><a href="creating-workflow_sets.html#cb366-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">svm_rbf</span>(<span class="at">cost =</span> <span class="fu">tune</span>(), <span class="at">rbf_sigma =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb366-19"><a href="creating-workflow_sets.html#cb366-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&#39;kernlab&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb366-20"><a href="creating-workflow_sets.html#cb366-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">f_set</span>()</span>
-<span id="cb366-21"><a href="creating-workflow_sets.html#cb366-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb366-22"><a href="creating-workflow_sets.html#cb366-22" aria-hidden="true" tabindex="-1"></a>spec_svm_p <span class="ot">&lt;-</span> </span>
-<span id="cb366-23"><a href="creating-workflow_sets.html#cb366-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">svm_poly</span>(<span class="at">cost =</span> <span class="fu">tune</span>(), <span class="at">degree =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb366-24"><a href="creating-workflow_sets.html#cb366-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&#39;kernlab&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb366-25"><a href="creating-workflow_sets.html#cb366-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">f_set</span>()</span>
-<span id="cb366-26"><a href="creating-workflow_sets.html#cb366-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb366-27"><a href="creating-workflow_sets.html#cb366-27" aria-hidden="true" tabindex="-1"></a>spec_knn <span class="ot">&lt;-</span> </span>
-<span id="cb366-28"><a href="creating-workflow_sets.html#cb366-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nearest_neighbor</span>(</span>
-<span id="cb366-29"><a href="creating-workflow_sets.html#cb366-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">neighbors =</span> <span class="fu">tune</span>(), </span>
-<span id="cb366-30"><a href="creating-workflow_sets.html#cb366-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">dist_power =</span> <span class="fu">tune</span>(), </span>
-<span id="cb366-31"><a href="creating-workflow_sets.html#cb366-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">weight_func =</span> <span class="fu">tune</span>()</span>
-<span id="cb366-32"><a href="creating-workflow_sets.html#cb366-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb366-33"><a href="creating-workflow_sets.html#cb366-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&#39;kknn&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb366-34"><a href="creating-workflow_sets.html#cb366-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">f_set</span>()</span>
-<span id="cb366-35"><a href="creating-workflow_sets.html#cb366-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb366-36"><a href="creating-workflow_sets.html#cb366-36" aria-hidden="true" tabindex="-1"></a>spec_cart <span class="ot">&lt;-</span> </span>
-<span id="cb366-37"><a href="creating-workflow_sets.html#cb366-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">decision_tree</span>(<span class="at">cost_complexity =</span> <span class="fu">tune</span>(), <span class="at">min_n =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb366-38"><a href="creating-workflow_sets.html#cb366-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&#39;rpart&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb366-39"><a href="creating-workflow_sets.html#cb366-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">f_set</span>()</span>
-<span id="cb366-40"><a href="creating-workflow_sets.html#cb366-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb366-41"><a href="creating-workflow_sets.html#cb366-41" aria-hidden="true" tabindex="-1"></a>spec_cart_bag <span class="ot">&lt;-</span> </span>
-<span id="cb366-42"><a href="creating-workflow_sets.html#cb366-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bag_tree</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb366-43"><a href="creating-workflow_sets.html#cb366-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&#39;rpart&#39;</span>, <span class="at">times =</span> 50L) <span class="sc">%&gt;%</span> </span>
-<span id="cb366-44"><a href="creating-workflow_sets.html#cb366-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">f_set</span>()</span>
-<span id="cb366-45"><a href="creating-workflow_sets.html#cb366-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb366-46"><a href="creating-workflow_sets.html#cb366-46" aria-hidden="true" tabindex="-1"></a>spec_rf <span class="ot">&lt;-</span> </span>
-<span id="cb366-47"><a href="creating-workflow_sets.html#cb366-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rand_forest</span>(<span class="at">mtry =</span> <span class="fu">tune</span>(), <span class="at">min_n =</span> <span class="fu">tune</span>(), <span class="at">trees =</span> 200L) <span class="sc">%&gt;%</span> </span>
-<span id="cb366-48"><a href="creating-workflow_sets.html#cb366-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&#39;ranger&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb366-49"><a href="creating-workflow_sets.html#cb366-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">f_set</span>()</span>
-<span id="cb366-50"><a href="creating-workflow_sets.html#cb366-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb366-51"><a href="creating-workflow_sets.html#cb366-51" aria-hidden="true" tabindex="-1"></a>spec_xgb <span class="ot">&lt;-</span> </span>
-<span id="cb366-52"><a href="creating-workflow_sets.html#cb366-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">boost_tree</span>(</span>
-<span id="cb366-53"><a href="creating-workflow_sets.html#cb366-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">tree_depth =</span> <span class="fu">tune</span>(),</span>
-<span id="cb366-54"><a href="creating-workflow_sets.html#cb366-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">learn_rate =</span> <span class="fu">tune</span>(), </span>
-<span id="cb366-55"><a href="creating-workflow_sets.html#cb366-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">loss_reduction =</span> <span class="fu">tune</span>(), </span>
-<span id="cb366-56"><a href="creating-workflow_sets.html#cb366-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_n =</span> <span class="fu">tune</span>(), </span>
-<span id="cb366-57"><a href="creating-workflow_sets.html#cb366-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample_size =</span> <span class="fu">tune</span>(), </span>
-<span id="cb366-58"><a href="creating-workflow_sets.html#cb366-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">trees =</span> 200L</span>
-<span id="cb366-59"><a href="creating-workflow_sets.html#cb366-59" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb366-60"><a href="creating-workflow_sets.html#cb366-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&#39;xgboost&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb366-61"><a href="creating-workflow_sets.html#cb366-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">f_set</span>()</span>
-<span id="cb366-62"><a href="creating-workflow_sets.html#cb366-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb366-63"><a href="creating-workflow_sets.html#cb366-63" aria-hidden="true" tabindex="-1"></a>spec_cube <span class="ot">&lt;-</span> </span>
-<span id="cb366-64"><a href="creating-workflow_sets.html#cb366-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cubist_rules</span>(<span class="at">committees =</span> <span class="fu">tune</span>(), <span class="at">neighbors =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb366-65"><a href="creating-workflow_sets.html#cb366-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&#39;Cubist&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="creating-workflow_sets.html#cb362-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rules)</span>
+<span id="cb362-2"><a href="creating-workflow_sets.html#cb362-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(baguette)</span>
+<span id="cb362-3"><a href="creating-workflow_sets.html#cb362-3" aria-hidden="true" tabindex="-1"></a>f_set <span class="ot">&lt;-</span> <span class="cf">function</span>(spec) {</span>
+<span id="cb362-4"><a href="creating-workflow_sets.html#cb362-4" aria-hidden="true" tabindex="-1"></a>  spec <span class="sc">%&gt;%</span> </span>
+<span id="cb362-5"><a href="creating-workflow_sets.html#cb362-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_mode</span>(<span class="st">&#39;regression&#39;</span>)</span>
+<span id="cb362-6"><a href="creating-workflow_sets.html#cb362-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb362-7"><a href="creating-workflow_sets.html#cb362-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb362-8"><a href="creating-workflow_sets.html#cb362-8" aria-hidden="true" tabindex="-1"></a>spec_lr <span class="ot">&lt;-</span> </span>
+<span id="cb362-9"><a href="creating-workflow_sets.html#cb362-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">linear_reg</span>(<span class="at">penalty =</span> <span class="fu">tune</span>(), <span class="at">mixture =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb362-10"><a href="creating-workflow_sets.html#cb362-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&#39;glmnet&#39;</span>)</span>
+<span id="cb362-11"><a href="creating-workflow_sets.html#cb362-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb362-12"><a href="creating-workflow_sets.html#cb362-12" aria-hidden="true" tabindex="-1"></a>spec_mars <span class="ot">&lt;-</span> </span>
+<span id="cb362-13"><a href="creating-workflow_sets.html#cb362-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mars</span>(<span class="at">prod_degree =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb362-14"><a href="creating-workflow_sets.html#cb362-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&#39;earth&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb362-15"><a href="creating-workflow_sets.html#cb362-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">f_set</span>()</span>
+<span id="cb362-16"><a href="creating-workflow_sets.html#cb362-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb362-17"><a href="creating-workflow_sets.html#cb362-17" aria-hidden="true" tabindex="-1"></a>spec_svm_r <span class="ot">&lt;-</span> </span>
+<span id="cb362-18"><a href="creating-workflow_sets.html#cb362-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">svm_rbf</span>(<span class="at">cost =</span> <span class="fu">tune</span>(), <span class="at">rbf_sigma =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb362-19"><a href="creating-workflow_sets.html#cb362-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&#39;kernlab&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb362-20"><a href="creating-workflow_sets.html#cb362-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">f_set</span>()</span>
+<span id="cb362-21"><a href="creating-workflow_sets.html#cb362-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb362-22"><a href="creating-workflow_sets.html#cb362-22" aria-hidden="true" tabindex="-1"></a>spec_svm_p <span class="ot">&lt;-</span> </span>
+<span id="cb362-23"><a href="creating-workflow_sets.html#cb362-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">svm_poly</span>(<span class="at">cost =</span> <span class="fu">tune</span>(), <span class="at">degree =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb362-24"><a href="creating-workflow_sets.html#cb362-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&#39;kernlab&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb362-25"><a href="creating-workflow_sets.html#cb362-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">f_set</span>()</span>
+<span id="cb362-26"><a href="creating-workflow_sets.html#cb362-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb362-27"><a href="creating-workflow_sets.html#cb362-27" aria-hidden="true" tabindex="-1"></a>spec_knn <span class="ot">&lt;-</span> </span>
+<span id="cb362-28"><a href="creating-workflow_sets.html#cb362-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nearest_neighbor</span>(</span>
+<span id="cb362-29"><a href="creating-workflow_sets.html#cb362-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">neighbors =</span> <span class="fu">tune</span>(), </span>
+<span id="cb362-30"><a href="creating-workflow_sets.html#cb362-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">dist_power =</span> <span class="fu">tune</span>(), </span>
+<span id="cb362-31"><a href="creating-workflow_sets.html#cb362-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">weight_func =</span> <span class="fu">tune</span>()</span>
+<span id="cb362-32"><a href="creating-workflow_sets.html#cb362-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb362-33"><a href="creating-workflow_sets.html#cb362-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&#39;kknn&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb362-34"><a href="creating-workflow_sets.html#cb362-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">f_set</span>()</span>
+<span id="cb362-35"><a href="creating-workflow_sets.html#cb362-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb362-36"><a href="creating-workflow_sets.html#cb362-36" aria-hidden="true" tabindex="-1"></a>spec_cart <span class="ot">&lt;-</span> </span>
+<span id="cb362-37"><a href="creating-workflow_sets.html#cb362-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">decision_tree</span>(<span class="at">cost_complexity =</span> <span class="fu">tune</span>(), <span class="at">min_n =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb362-38"><a href="creating-workflow_sets.html#cb362-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&#39;rpart&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb362-39"><a href="creating-workflow_sets.html#cb362-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">f_set</span>()</span>
+<span id="cb362-40"><a href="creating-workflow_sets.html#cb362-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb362-41"><a href="creating-workflow_sets.html#cb362-41" aria-hidden="true" tabindex="-1"></a>spec_cart_bag <span class="ot">&lt;-</span> </span>
+<span id="cb362-42"><a href="creating-workflow_sets.html#cb362-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bag_tree</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb362-43"><a href="creating-workflow_sets.html#cb362-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&#39;rpart&#39;</span>, <span class="at">times =</span> 50L) <span class="sc">%&gt;%</span> </span>
+<span id="cb362-44"><a href="creating-workflow_sets.html#cb362-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">f_set</span>()</span>
+<span id="cb362-45"><a href="creating-workflow_sets.html#cb362-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb362-46"><a href="creating-workflow_sets.html#cb362-46" aria-hidden="true" tabindex="-1"></a>spec_rf <span class="ot">&lt;-</span> </span>
+<span id="cb362-47"><a href="creating-workflow_sets.html#cb362-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rand_forest</span>(<span class="at">mtry =</span> <span class="fu">tune</span>(), <span class="at">min_n =</span> <span class="fu">tune</span>(), <span class="at">trees =</span> 200L) <span class="sc">%&gt;%</span> </span>
+<span id="cb362-48"><a href="creating-workflow_sets.html#cb362-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&#39;ranger&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb362-49"><a href="creating-workflow_sets.html#cb362-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">f_set</span>()</span>
+<span id="cb362-50"><a href="creating-workflow_sets.html#cb362-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb362-51"><a href="creating-workflow_sets.html#cb362-51" aria-hidden="true" tabindex="-1"></a>spec_xgb <span class="ot">&lt;-</span> </span>
+<span id="cb362-52"><a href="creating-workflow_sets.html#cb362-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">boost_tree</span>(</span>
+<span id="cb362-53"><a href="creating-workflow_sets.html#cb362-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">tree_depth =</span> <span class="fu">tune</span>(),</span>
+<span id="cb362-54"><a href="creating-workflow_sets.html#cb362-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">learn_rate =</span> <span class="fu">tune</span>(), </span>
+<span id="cb362-55"><a href="creating-workflow_sets.html#cb362-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">loss_reduction =</span> <span class="fu">tune</span>(), </span>
+<span id="cb362-56"><a href="creating-workflow_sets.html#cb362-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_n =</span> <span class="fu">tune</span>(), </span>
+<span id="cb362-57"><a href="creating-workflow_sets.html#cb362-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample_size =</span> <span class="fu">tune</span>(), </span>
+<span id="cb362-58"><a href="creating-workflow_sets.html#cb362-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">trees =</span> 200L</span>
+<span id="cb362-59"><a href="creating-workflow_sets.html#cb362-59" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb362-60"><a href="creating-workflow_sets.html#cb362-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&#39;xgboost&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb362-61"><a href="creating-workflow_sets.html#cb362-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">f_set</span>()</span>
+<span id="cb362-62"><a href="creating-workflow_sets.html#cb362-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb362-63"><a href="creating-workflow_sets.html#cb362-63" aria-hidden="true" tabindex="-1"></a>spec_cube <span class="ot">&lt;-</span> </span>
+<span id="cb362-64"><a href="creating-workflow_sets.html#cb362-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cubist_rules</span>(<span class="at">committees =</span> <span class="fu">tune</span>(), <span class="at">neighbors =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb362-65"><a href="creating-workflow_sets.html#cb362-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&#39;Cubist&#39;</span>)</span></code></pre></div>
 </details>
 <details>
 <summary>
@@ -694,18 +684,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="images/15-recipes-relieved.jfif" /></p>
 </details>
 <p>We can create <code>workflow_set</code>s, combining the recipes that standardizes the predictors with the non-linear models that work best when predictors are all on the same scale.</p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="creating-workflow_sets.html#cb367-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(workflowsets)</span>
-<span id="cb367-2"><a href="creating-workflow_sets.html#cb367-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb367-3"><a href="creating-workflow_sets.html#cb367-3" aria-hidden="true" tabindex="-1"></a>sets_norm <span class="ot">&lt;-</span> </span>
-<span id="cb367-4"><a href="creating-workflow_sets.html#cb367-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow_set</span>(</span>
-<span id="cb367-5"><a href="creating-workflow_sets.html#cb367-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">preproc =</span> <span class="fu">list</span>(<span class="at">norm =</span> rec_norm), </span>
-<span id="cb367-6"><a href="creating-workflow_sets.html#cb367-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">models =</span> <span class="fu">list</span>(</span>
-<span id="cb367-7"><a href="creating-workflow_sets.html#cb367-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">svm_r =</span> spec_svm_r, </span>
-<span id="cb367-8"><a href="creating-workflow_sets.html#cb367-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">svm_p =</span> spec_svm_p, </span>
-<span id="cb367-9"><a href="creating-workflow_sets.html#cb367-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">knn =</span> spec_knn</span>
-<span id="cb367-10"><a href="creating-workflow_sets.html#cb367-10" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb367-11"><a href="creating-workflow_sets.html#cb367-11" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb367-12"><a href="creating-workflow_sets.html#cb367-12" aria-hidden="true" tabindex="-1"></a>sets_norm</span></code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="creating-workflow_sets.html#cb363-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(workflowsets)</span>
+<span id="cb363-2"><a href="creating-workflow_sets.html#cb363-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb363-3"><a href="creating-workflow_sets.html#cb363-3" aria-hidden="true" tabindex="-1"></a>sets_norm <span class="ot">&lt;-</span> </span>
+<span id="cb363-4"><a href="creating-workflow_sets.html#cb363-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow_set</span>(</span>
+<span id="cb363-5"><a href="creating-workflow_sets.html#cb363-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">preproc =</span> <span class="fu">list</span>(<span class="at">norm =</span> rec_norm), </span>
+<span id="cb363-6"><a href="creating-workflow_sets.html#cb363-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">models =</span> <span class="fu">list</span>(</span>
+<span id="cb363-7"><a href="creating-workflow_sets.html#cb363-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">svm_r =</span> spec_svm_r, </span>
+<span id="cb363-8"><a href="creating-workflow_sets.html#cb363-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">svm_p =</span> spec_svm_p, </span>
+<span id="cb363-9"><a href="creating-workflow_sets.html#cb363-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">knn =</span> spec_knn</span>
+<span id="cb363-10"><a href="creating-workflow_sets.html#cb363-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb363-11"><a href="creating-workflow_sets.html#cb363-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb363-12"><a href="creating-workflow_sets.html#cb363-12" aria-hidden="true" tabindex="-1"></a>sets_norm</span></code></pre></div>
 <pre><code>## # A workflow set/tibble: 3 × 4
 ##   wflow_id   info             option    result    
 ##   &lt;chr&gt;      &lt;list&gt;           &lt;list&gt;    &lt;list&gt;    
@@ -713,26 +703,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2 norm_svm_p &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
 ## 3 norm_knn   &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;</code></pre>
 <p>Let’s apply the quadratic pre-processing to models where it is most applicable.</p>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="creating-workflow_sets.html#cb369-1" aria-hidden="true" tabindex="-1"></a>sets_poly <span class="ot">&lt;-</span> </span>
-<span id="cb369-2"><a href="creating-workflow_sets.html#cb369-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow_set</span>(</span>
-<span id="cb369-3"><a href="creating-workflow_sets.html#cb369-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">preproc =</span> <span class="fu">list</span>(<span class="at">poly =</span> rec_poly), </span>
-<span id="cb369-4"><a href="creating-workflow_sets.html#cb369-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">models =</span> <span class="fu">list</span>(<span class="at">lr =</span> spec_lr, <span class="at">knn =</span> spec_knn)</span>
-<span id="cb369-5"><a href="creating-workflow_sets.html#cb369-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="creating-workflow_sets.html#cb365-1" aria-hidden="true" tabindex="-1"></a>sets_poly <span class="ot">&lt;-</span> </span>
+<span id="cb365-2"><a href="creating-workflow_sets.html#cb365-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow_set</span>(</span>
+<span id="cb365-3"><a href="creating-workflow_sets.html#cb365-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">preproc =</span> <span class="fu">list</span>(<span class="at">poly =</span> rec_poly), </span>
+<span id="cb365-4"><a href="creating-workflow_sets.html#cb365-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">models =</span> <span class="fu">list</span>(<span class="at">lr =</span> spec_lr, <span class="at">knn =</span> spec_knn)</span>
+<span id="cb365-5"><a href="creating-workflow_sets.html#cb365-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <p>Finally, there are several recipes that don’t really need pre-processing. Nonetheless, we need to have a <code>preproc</code> step, so we can use <code>workflowsets::workflow_variables()</code> for a dummy pre-processing step.</p>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="creating-workflow_sets.html#cb370-1" aria-hidden="true" tabindex="-1"></a>sets_simple <span class="ot">&lt;-</span> </span>
-<span id="cb370-2"><a href="creating-workflow_sets.html#cb370-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow_set</span>(</span>
-<span id="cb370-3"><a href="creating-workflow_sets.html#cb370-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">preproc =</span> <span class="fu">list</span>(form),</span>
-<span id="cb370-4"><a href="creating-workflow_sets.html#cb370-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">models =</span> </span>
-<span id="cb370-5"><a href="creating-workflow_sets.html#cb370-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
-<span id="cb370-6"><a href="creating-workflow_sets.html#cb370-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">mars =</span> spec_mars, </span>
-<span id="cb370-7"><a href="creating-workflow_sets.html#cb370-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">cart =</span> spec_cart, </span>
-<span id="cb370-8"><a href="creating-workflow_sets.html#cb370-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">cart_bag =</span> spec_cart_bag,</span>
-<span id="cb370-9"><a href="creating-workflow_sets.html#cb370-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">rf =</span> spec_rf, </span>
-<span id="cb370-10"><a href="creating-workflow_sets.html#cb370-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">gb =</span> spec_xgb, </span>
-<span id="cb370-11"><a href="creating-workflow_sets.html#cb370-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">cube =</span> spec_cube</span>
-<span id="cb370-12"><a href="creating-workflow_sets.html#cb370-12" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb370-13"><a href="creating-workflow_sets.html#cb370-13" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb370-14"><a href="creating-workflow_sets.html#cb370-14" aria-hidden="true" tabindex="-1"></a>sets_simple</span></code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="creating-workflow_sets.html#cb366-1" aria-hidden="true" tabindex="-1"></a>sets_simple <span class="ot">&lt;-</span> </span>
+<span id="cb366-2"><a href="creating-workflow_sets.html#cb366-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow_set</span>(</span>
+<span id="cb366-3"><a href="creating-workflow_sets.html#cb366-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">preproc =</span> <span class="fu">list</span>(form),</span>
+<span id="cb366-4"><a href="creating-workflow_sets.html#cb366-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">models =</span> </span>
+<span id="cb366-5"><a href="creating-workflow_sets.html#cb366-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
+<span id="cb366-6"><a href="creating-workflow_sets.html#cb366-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">mars =</span> spec_mars, </span>
+<span id="cb366-7"><a href="creating-workflow_sets.html#cb366-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">cart =</span> spec_cart, </span>
+<span id="cb366-8"><a href="creating-workflow_sets.html#cb366-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">cart_bag =</span> spec_cart_bag,</span>
+<span id="cb366-9"><a href="creating-workflow_sets.html#cb366-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">rf =</span> spec_rf, </span>
+<span id="cb366-10"><a href="creating-workflow_sets.html#cb366-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">gb =</span> spec_xgb, </span>
+<span id="cb366-11"><a href="creating-workflow_sets.html#cb366-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">cube =</span> spec_cube</span>
+<span id="cb366-12"><a href="creating-workflow_sets.html#cb366-12" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb366-13"><a href="creating-workflow_sets.html#cb366-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb366-14"><a href="creating-workflow_sets.html#cb366-14" aria-hidden="true" tabindex="-1"></a>sets_simple</span></code></pre></div>
 <pre><code>## # A workflow set/tibble: 6 × 4
 ##   wflow_id         info             option    result    
 ##   &lt;chr&gt;            &lt;list&gt;           &lt;list&gt;    &lt;list&gt;    
@@ -743,10 +733,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 formula_gb       &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
 ## 6 formula_cube     &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;</code></pre>
 <p>We can bind all of our <code>workflow_set</code>s together.</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="creating-workflow_sets.html#cb372-1" aria-hidden="true" tabindex="-1"></a>sets <span class="ot">&lt;-</span></span>
-<span id="cb372-2"><a href="creating-workflow_sets.html#cb372-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(sets_norm, sets_poly, sets_simple) <span class="sc">%&gt;%</span> </span>
-<span id="cb372-3"><a href="creating-workflow_sets.html#cb372-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(wflow_id, <span class="sc">~</span><span class="fu">str_remove</span>(.x, <span class="st">&#39;^simple_&#39;</span>)))</span>
-<span id="cb372-4"><a href="creating-workflow_sets.html#cb372-4" aria-hidden="true" tabindex="-1"></a>sets</span></code></pre></div>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="creating-workflow_sets.html#cb368-1" aria-hidden="true" tabindex="-1"></a>sets <span class="ot">&lt;-</span></span>
+<span id="cb368-2"><a href="creating-workflow_sets.html#cb368-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(sets_norm, sets_poly, sets_simple) <span class="sc">%&gt;%</span> </span>
+<span id="cb368-3"><a href="creating-workflow_sets.html#cb368-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(wflow_id, <span class="sc">~</span><span class="fu">str_remove</span>(.x, <span class="st">&#39;^simple_&#39;</span>)))</span>
+<span id="cb368-4"><a href="creating-workflow_sets.html#cb368-4" aria-hidden="true" tabindex="-1"></a>sets</span></code></pre></div>
 <pre><code>## # A workflow set/tibble: 11 × 4
 ##    wflow_id         info             option    result    
 ##    &lt;chr&gt;            &lt;list&gt;           &lt;list&gt;    &lt;list&gt;    
@@ -762,22 +752,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 formula_gb       &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
 ## 11 formula_cube     &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;</code></pre>
 <p>And do the thing! (Observe the elegance.)</p>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="creating-workflow_sets.html#cb374-1" aria-hidden="true" tabindex="-1"></a>ctrl_grid <span class="ot">&lt;-</span></span>
-<span id="cb374-2"><a href="creating-workflow_sets.html#cb374-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">control_grid</span>(</span>
-<span id="cb374-3"><a href="creating-workflow_sets.html#cb374-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">save_pred =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb374-4"><a href="creating-workflow_sets.html#cb374-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">parallel_over =</span> <span class="st">&#39;everything&#39;</span>,</span>
-<span id="cb374-5"><a href="creating-workflow_sets.html#cb374-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">save_workflow =</span> <span class="cn">TRUE</span></span>
-<span id="cb374-6"><a href="creating-workflow_sets.html#cb374-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb374-7"><a href="creating-workflow_sets.html#cb374-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb374-8"><a href="creating-workflow_sets.html#cb374-8" aria-hidden="true" tabindex="-1"></a>res_grid <span class="ot">&lt;-</span></span>
-<span id="cb374-9"><a href="creating-workflow_sets.html#cb374-9" aria-hidden="true" tabindex="-1"></a>  sets <span class="sc">%&gt;%</span></span>
-<span id="cb374-10"><a href="creating-workflow_sets.html#cb374-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow_map</span>(</span>
-<span id="cb374-11"><a href="creating-workflow_sets.html#cb374-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">seed =</span> seed,</span>
-<span id="cb374-12"><a href="creating-workflow_sets.html#cb374-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">resamples =</span> folds,</span>
-<span id="cb374-13"><a href="creating-workflow_sets.html#cb374-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">grid =</span> <span class="dv">3</span>,</span>
-<span id="cb374-14"><a href="creating-workflow_sets.html#cb374-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> ctrl_grid,</span>
-<span id="cb374-15"><a href="creating-workflow_sets.html#cb374-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
-<span id="cb374-16"><a href="creating-workflow_sets.html#cb374-16" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="creating-workflow_sets.html#cb370-1" aria-hidden="true" tabindex="-1"></a>ctrl_grid <span class="ot">&lt;-</span></span>
+<span id="cb370-2"><a href="creating-workflow_sets.html#cb370-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">control_grid</span>(</span>
+<span id="cb370-3"><a href="creating-workflow_sets.html#cb370-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">save_pred =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb370-4"><a href="creating-workflow_sets.html#cb370-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">parallel_over =</span> <span class="st">&#39;everything&#39;</span>,</span>
+<span id="cb370-5"><a href="creating-workflow_sets.html#cb370-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">save_workflow =</span> <span class="cn">TRUE</span></span>
+<span id="cb370-6"><a href="creating-workflow_sets.html#cb370-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb370-7"><a href="creating-workflow_sets.html#cb370-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb370-8"><a href="creating-workflow_sets.html#cb370-8" aria-hidden="true" tabindex="-1"></a>res_grid <span class="ot">&lt;-</span></span>
+<span id="cb370-9"><a href="creating-workflow_sets.html#cb370-9" aria-hidden="true" tabindex="-1"></a>  sets <span class="sc">%&gt;%</span></span>
+<span id="cb370-10"><a href="creating-workflow_sets.html#cb370-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow_map</span>(</span>
+<span id="cb370-11"><a href="creating-workflow_sets.html#cb370-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">seed =</span> seed,</span>
+<span id="cb370-12"><a href="creating-workflow_sets.html#cb370-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">resamples =</span> folds,</span>
+<span id="cb370-13"><a href="creating-workflow_sets.html#cb370-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">grid =</span> <span class="dv">3</span>,</span>
+<span id="cb370-14"><a href="creating-workflow_sets.html#cb370-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> ctrl_grid,</span>
+<span id="cb370-15"><a href="creating-workflow_sets.html#cb370-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
+<span id="cb370-16"><a href="creating-workflow_sets.html#cb370-16" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <details>
 <summary>
 <p>How I felt waiting for this to finish running</p>
@@ -851,7 +841,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

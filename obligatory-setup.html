@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>15.1 Obligatory Setup | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="15.1 Obligatory Setup | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-07-17" />
+<meta name="date" content="2023-07-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,7 +52,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/twitter-widget-0.0.1/widgets.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -95,7 +94,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -108,7 +107,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -122,6 +121,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -575,16 +578,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </summary>
 <p><img src="images/15-woody-stare.jpg" /></p>
 </details>
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="obligatory-setup.html#cb358-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb358-2"><a href="obligatory-setup.html#cb358-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb358-3"><a href="obligatory-setup.html#cb358-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">16</span>))</span>
-<span id="cb358-4"><a href="obligatory-setup.html#cb358-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb358-5"><a href="obligatory-setup.html#cb358-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> </span>
-<span id="cb358-6"><a href="obligatory-setup.html#cb358-6" aria-hidden="true" tabindex="-1"></a>  here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&#39;data&#39;</span>, <span class="st">&#39;world-happiness-report-2021.csv&#39;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb358-7"><a href="obligatory-setup.html#cb358-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb358-8"><a href="obligatory-setup.html#cb358-8" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span>
-<span id="cb358-9"><a href="obligatory-setup.html#cb358-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb358-10"><a href="obligatory-setup.html#cb358-10" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> skimr<span class="sc">::</span><span class="fu">skim</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="obligatory-setup.html#cb355-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb355-2"><a href="obligatory-setup.html#cb355-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb355-3"><a href="obligatory-setup.html#cb355-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">16</span>))</span>
+<span id="cb355-4"><a href="obligatory-setup.html#cb355-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb355-5"><a href="obligatory-setup.html#cb355-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> </span>
+<span id="cb355-6"><a href="obligatory-setup.html#cb355-6" aria-hidden="true" tabindex="-1"></a>  here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&#39;data&#39;</span>, <span class="st">&#39;world-happiness-report-2021.csv&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb355-7"><a href="obligatory-setup.html#cb355-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb355-8"><a href="obligatory-setup.html#cb355-8" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span>
+<span id="cb355-9"><a href="obligatory-setup.html#cb355-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb355-10"><a href="obligatory-setup.html#cb355-10" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> skimr<span class="sc">::</span><span class="fu">skim</span>()</span></code></pre></div>
 <table style="width: auto;" class="table table-condensed">
 <caption>
 <span id="tab:15-setup">Table 15.1: </span>Data summary
@@ -1418,31 +1421,31 @@ dystopia_residual
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="obligatory-setup.html#cb359-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrr)</span>
-<span id="cb359-2"><a href="obligatory-setup.html#cb359-2" aria-hidden="true" tabindex="-1"></a>df_selected <span class="ot">&lt;-</span></span>
-<span id="cb359-3"><a href="obligatory-setup.html#cb359-3" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">%&gt;%</span></span>
-<span id="cb359-4"><a href="obligatory-setup.html#cb359-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb359-5"><a href="obligatory-setup.html#cb359-5" aria-hidden="true" tabindex="-1"></a>    ladder_score,</span>
-<span id="cb359-6"><a href="obligatory-setup.html#cb359-6" aria-hidden="true" tabindex="-1"></a>    logged_gdp_per_capita,</span>
-<span id="cb359-7"><a href="obligatory-setup.html#cb359-7" aria-hidden="true" tabindex="-1"></a>    social_support,</span>
-<span id="cb359-8"><a href="obligatory-setup.html#cb359-8" aria-hidden="true" tabindex="-1"></a>    healthy_life_expectancy,</span>
-<span id="cb359-9"><a href="obligatory-setup.html#cb359-9" aria-hidden="true" tabindex="-1"></a>    freedom_to_make_life_choices,</span>
-<span id="cb359-10"><a href="obligatory-setup.html#cb359-10" aria-hidden="true" tabindex="-1"></a>    generosity,</span>
-<span id="cb359-11"><a href="obligatory-setup.html#cb359-11" aria-hidden="true" tabindex="-1"></a>    perceptions_of_corruption</span>
-<span id="cb359-12"><a href="obligatory-setup.html#cb359-12" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb359-13"><a href="obligatory-setup.html#cb359-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb359-14"><a href="obligatory-setup.html#cb359-14" aria-hidden="true" tabindex="-1"></a>cors <span class="ot">&lt;-</span></span>
-<span id="cb359-15"><a href="obligatory-setup.html#cb359-15" aria-hidden="true" tabindex="-1"></a>  df_selected <span class="sc">%&gt;%</span> </span>
-<span id="cb359-16"><a href="obligatory-setup.html#cb359-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">%&gt;%</span> </span>
-<span id="cb359-17"><a href="obligatory-setup.html#cb359-17" aria-hidden="true" tabindex="-1"></a>  corrr<span class="sc">::</span><span class="fu">correlate</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb359-18"><a href="obligatory-setup.html#cb359-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">col1 =</span> term) <span class="sc">%&gt;%</span> </span>
-<span id="cb359-19"><a href="obligatory-setup.html#cb359-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb359-20"><a href="obligatory-setup.html#cb359-20" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span>col1,</span>
-<span id="cb359-21"><a href="obligatory-setup.html#cb359-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">&#39;col2&#39;</span>,</span>
-<span id="cb359-22"><a href="obligatory-setup.html#cb359-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&#39;cor&#39;</span></span>
-<span id="cb359-23"><a href="obligatory-setup.html#cb359-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb359-24"><a href="obligatory-setup.html#cb359-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">abs</span>(cor)))</span>
-<span id="cb359-25"><a href="obligatory-setup.html#cb359-25" aria-hidden="true" tabindex="-1"></a>cors <span class="sc">%&gt;%</span> <span class="fu">filter</span>(col1 <span class="sc">==</span> <span class="st">&#39;ladder_score&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="obligatory-setup.html#cb356-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrr)</span>
+<span id="cb356-2"><a href="obligatory-setup.html#cb356-2" aria-hidden="true" tabindex="-1"></a>df_selected <span class="ot">&lt;-</span></span>
+<span id="cb356-3"><a href="obligatory-setup.html#cb356-3" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">%&gt;%</span></span>
+<span id="cb356-4"><a href="obligatory-setup.html#cb356-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb356-5"><a href="obligatory-setup.html#cb356-5" aria-hidden="true" tabindex="-1"></a>    ladder_score,</span>
+<span id="cb356-6"><a href="obligatory-setup.html#cb356-6" aria-hidden="true" tabindex="-1"></a>    logged_gdp_per_capita,</span>
+<span id="cb356-7"><a href="obligatory-setup.html#cb356-7" aria-hidden="true" tabindex="-1"></a>    social_support,</span>
+<span id="cb356-8"><a href="obligatory-setup.html#cb356-8" aria-hidden="true" tabindex="-1"></a>    healthy_life_expectancy,</span>
+<span id="cb356-9"><a href="obligatory-setup.html#cb356-9" aria-hidden="true" tabindex="-1"></a>    freedom_to_make_life_choices,</span>
+<span id="cb356-10"><a href="obligatory-setup.html#cb356-10" aria-hidden="true" tabindex="-1"></a>    generosity,</span>
+<span id="cb356-11"><a href="obligatory-setup.html#cb356-11" aria-hidden="true" tabindex="-1"></a>    perceptions_of_corruption</span>
+<span id="cb356-12"><a href="obligatory-setup.html#cb356-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb356-13"><a href="obligatory-setup.html#cb356-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb356-14"><a href="obligatory-setup.html#cb356-14" aria-hidden="true" tabindex="-1"></a>cors <span class="ot">&lt;-</span></span>
+<span id="cb356-15"><a href="obligatory-setup.html#cb356-15" aria-hidden="true" tabindex="-1"></a>  df_selected <span class="sc">%&gt;%</span> </span>
+<span id="cb356-16"><a href="obligatory-setup.html#cb356-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">%&gt;%</span> </span>
+<span id="cb356-17"><a href="obligatory-setup.html#cb356-17" aria-hidden="true" tabindex="-1"></a>  corrr<span class="sc">::</span><span class="fu">correlate</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb356-18"><a href="obligatory-setup.html#cb356-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">col1 =</span> term) <span class="sc">%&gt;%</span> </span>
+<span id="cb356-19"><a href="obligatory-setup.html#cb356-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb356-20"><a href="obligatory-setup.html#cb356-20" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span>col1,</span>
+<span id="cb356-21"><a href="obligatory-setup.html#cb356-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">&#39;col2&#39;</span>,</span>
+<span id="cb356-22"><a href="obligatory-setup.html#cb356-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&#39;cor&#39;</span></span>
+<span id="cb356-23"><a href="obligatory-setup.html#cb356-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb356-24"><a href="obligatory-setup.html#cb356-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">abs</span>(cor)))</span>
+<span id="cb356-25"><a href="obligatory-setup.html#cb356-25" aria-hidden="true" tabindex="-1"></a>cors <span class="sc">%&gt;%</span> <span class="fu">filter</span>(col1 <span class="sc">==</span> <span class="st">&#39;ladder_score&#39;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 7 × 3
 ##   col1         col2                             cor
 ##   &lt;chr&gt;        &lt;chr&gt;                          &lt;dbl&gt;
@@ -1453,21 +1456,21 @@ dystopia_residual
 ## 5 ladder_score perceptions_of_corruption    -0.421 
 ## 6 ladder_score generosity                   -0.0178
 ## 7 ladder_score ladder_score                 NA</code></pre>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="obligatory-setup.html#cb361-1" aria-hidden="true" tabindex="-1"></a>p_cors <span class="ot">&lt;-</span></span>
-<span id="cb361-2"><a href="obligatory-setup.html#cb361-2" aria-hidden="true" tabindex="-1"></a>  cors <span class="sc">%&gt;%</span> </span>
-<span id="cb361-3"><a href="obligatory-setup.html#cb361-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(col1 <span class="sc">&lt;</span> col2) <span class="sc">%&gt;%</span> </span>
-<span id="cb361-4"><a href="obligatory-setup.html#cb361-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb361-5"><a href="obligatory-setup.html#cb361-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> col1, <span class="at">y =</span> col2) <span class="sc">+</span></span>
-<span id="cb361-6"><a href="obligatory-setup.html#cb361-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> cor), <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb361-7"><a href="obligatory-setup.html#cb361-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">number</span>(cor, <span class="at">accuracy =</span> <span class="fl">0.1</span>))) <span class="sc">+</span></span>
-<span id="cb361-8"><a href="obligatory-setup.html#cb361-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
-<span id="cb361-9"><a href="obligatory-setup.html#cb361-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">&#39;E&#39;</span>, <span class="at">direction =</span> <span class="dv">1</span>, <span class="at">begin =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb361-10"><a href="obligatory-setup.html#cb361-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb361-11"><a href="obligatory-setup.html#cb361-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb361-12"><a href="obligatory-setup.html#cb361-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb361-13"><a href="obligatory-setup.html#cb361-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb361-14"><a href="obligatory-setup.html#cb361-14" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb361-15"><a href="obligatory-setup.html#cb361-15" aria-hidden="true" tabindex="-1"></a>p_cors</span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="obligatory-setup.html#cb358-1" aria-hidden="true" tabindex="-1"></a>p_cors <span class="ot">&lt;-</span></span>
+<span id="cb358-2"><a href="obligatory-setup.html#cb358-2" aria-hidden="true" tabindex="-1"></a>  cors <span class="sc">%&gt;%</span> </span>
+<span id="cb358-3"><a href="obligatory-setup.html#cb358-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(col1 <span class="sc">&lt;</span> col2) <span class="sc">%&gt;%</span> </span>
+<span id="cb358-4"><a href="obligatory-setup.html#cb358-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb358-5"><a href="obligatory-setup.html#cb358-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> col1, <span class="at">y =</span> col2) <span class="sc">+</span></span>
+<span id="cb358-6"><a href="obligatory-setup.html#cb358-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> cor), <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb358-7"><a href="obligatory-setup.html#cb358-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">number</span>(cor, <span class="at">accuracy =</span> <span class="fl">0.1</span>))) <span class="sc">+</span></span>
+<span id="cb358-8"><a href="obligatory-setup.html#cb358-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb358-9"><a href="obligatory-setup.html#cb358-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">&#39;E&#39;</span>, <span class="at">direction =</span> <span class="dv">1</span>, <span class="at">begin =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb358-10"><a href="obligatory-setup.html#cb358-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb358-11"><a href="obligatory-setup.html#cb358-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb358-12"><a href="obligatory-setup.html#cb358-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb358-13"><a href="obligatory-setup.html#cb358-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb358-14"><a href="obligatory-setup.html#cb358-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb358-15"><a href="obligatory-setup.html#cb358-15" aria-hidden="true" tabindex="-1"></a>p_cors</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/15-corrr-1.png" width="672" /></p>
 </div>
             </section>
@@ -1536,7 +1539,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

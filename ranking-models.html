@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>15.3 Ranking models | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="15.3 Ranking models | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-07-17" />
+<meta name="date" content="2023-07-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,7 +52,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/twitter-widget-0.0.1/widgets.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -95,7 +94,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -108,7 +107,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -122,6 +121,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -565,30 +568,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="ranking-models" class="section level2 hasAnchor" number="15.3">
 <h2><span class="header-section-number">15.3</span> Ranking models<a href="ranking-models.html#ranking-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s look at our results</p>
-<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="ranking-models.html#cb375-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How many models are there?</span></span>
-<span id="cb375-2"><a href="ranking-models.html#cb375-2" aria-hidden="true" tabindex="-1"></a>n_model <span class="ot">&lt;-</span></span>
-<span id="cb375-3"><a href="ranking-models.html#cb375-3" aria-hidden="true" tabindex="-1"></a>  res_grid <span class="sc">%&gt;%</span> </span>
-<span id="cb375-4"><a href="ranking-models.html#cb375-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>(<span class="at">summarize =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb375-5"><a href="ranking-models.html#cb375-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>()</span>
-<span id="cb375-6"><a href="ranking-models.html#cb375-6" aria-hidden="true" tabindex="-1"></a>n_model</span></code></pre></div>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="ranking-models.html#cb371-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How many models are there?</span></span>
+<span id="cb371-2"><a href="ranking-models.html#cb371-2" aria-hidden="true" tabindex="-1"></a>n_model <span class="ot">&lt;-</span></span>
+<span id="cb371-3"><a href="ranking-models.html#cb371-3" aria-hidden="true" tabindex="-1"></a>  res_grid <span class="sc">%&gt;%</span> </span>
+<span id="cb371-4"><a href="ranking-models.html#cb371-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>(<span class="at">summarize =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb371-5"><a href="ranking-models.html#cb371-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>()</span>
+<span id="cb371-6"><a href="ranking-models.html#cb371-6" aria-hidden="true" tabindex="-1"></a>n_model</span></code></pre></div>
 <pre><code>## [1] 3000</code></pre>
-<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="ranking-models.html#cb377-1" aria-hidden="true" tabindex="-1"></a>res_grid_filt <span class="ot">&lt;-</span></span>
-<span id="cb377-2"><a href="ranking-models.html#cb377-2" aria-hidden="true" tabindex="-1"></a>  res_grid <span class="sc">%&gt;%</span> </span>
-<span id="cb377-3"><a href="ranking-models.html#cb377-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># &#39;cart_bag&#39; has &lt;rsmp[+]&gt; in the `results` column, so it won&#39;t work with `rank_results()`</span></span>
-<span id="cb377-4"><a href="ranking-models.html#cb377-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(wflow_id <span class="sc">!=</span> <span class="st">&#39;cart_bag&#39;</span>)</span>
-<span id="cb377-5"><a href="ranking-models.html#cb377-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb377-6"><a href="ranking-models.html#cb377-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that xgboost sucks if you don&#39;t have good parameters</span></span>
-<span id="cb377-7"><a href="ranking-models.html#cb377-7" aria-hidden="true" tabindex="-1"></a>res_ranks <span class="ot">&lt;-</span></span>
-<span id="cb377-8"><a href="ranking-models.html#cb377-8" aria-hidden="true" tabindex="-1"></a>  res_grid_filt <span class="sc">%&gt;%</span> </span>
-<span id="cb377-9"><a href="ranking-models.html#cb377-9" aria-hidden="true" tabindex="-1"></a>  workflowsets<span class="sc">::</span><span class="fu">rank_results</span>(<span class="st">&#39;rmse&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb377-10"><a href="ranking-models.html#cb377-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Why this no filter out rsquared already?</span></span>
-<span id="cb377-11"><a href="ranking-models.html#cb377-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">&#39;rmse&#39;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb377-12"><a href="ranking-models.html#cb377-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(wflow_id, model, .config, <span class="at">rmse =</span> mean, rank) <span class="sc">%&gt;%</span> </span>
-<span id="cb377-13"><a href="ranking-models.html#cb377-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(wflow_id) <span class="sc">%&gt;%</span> </span>
-<span id="cb377-14"><a href="ranking-models.html#cb377-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_min</span>(rank, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb377-15"><a href="ranking-models.html#cb377-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb377-16"><a href="ranking-models.html#cb377-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(rank)</span>
-<span id="cb377-17"><a href="ranking-models.html#cb377-17" aria-hidden="true" tabindex="-1"></a>res_ranks</span></code></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="ranking-models.html#cb373-1" aria-hidden="true" tabindex="-1"></a>res_grid_filt <span class="ot">&lt;-</span></span>
+<span id="cb373-2"><a href="ranking-models.html#cb373-2" aria-hidden="true" tabindex="-1"></a>  res_grid <span class="sc">%&gt;%</span> </span>
+<span id="cb373-3"><a href="ranking-models.html#cb373-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># &#39;cart_bag&#39; has &lt;rsmp[+]&gt; in the `results` column, so it won&#39;t work with `rank_results()`</span></span>
+<span id="cb373-4"><a href="ranking-models.html#cb373-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(wflow_id <span class="sc">!=</span> <span class="st">&#39;cart_bag&#39;</span>)</span>
+<span id="cb373-5"><a href="ranking-models.html#cb373-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb373-6"><a href="ranking-models.html#cb373-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that xgboost sucks if you don&#39;t have good parameters</span></span>
+<span id="cb373-7"><a href="ranking-models.html#cb373-7" aria-hidden="true" tabindex="-1"></a>res_ranks <span class="ot">&lt;-</span></span>
+<span id="cb373-8"><a href="ranking-models.html#cb373-8" aria-hidden="true" tabindex="-1"></a>  res_grid_filt <span class="sc">%&gt;%</span> </span>
+<span id="cb373-9"><a href="ranking-models.html#cb373-9" aria-hidden="true" tabindex="-1"></a>  workflowsets<span class="sc">::</span><span class="fu">rank_results</span>(<span class="st">&#39;rmse&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb373-10"><a href="ranking-models.html#cb373-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Why this no filter out rsquared already?</span></span>
+<span id="cb373-11"><a href="ranking-models.html#cb373-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">&#39;rmse&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb373-12"><a href="ranking-models.html#cb373-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(wflow_id, model, .config, <span class="at">rmse =</span> mean, rank) <span class="sc">%&gt;%</span> </span>
+<span id="cb373-13"><a href="ranking-models.html#cb373-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(wflow_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb373-14"><a href="ranking-models.html#cb373-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_min</span>(rank, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb373-15"><a href="ranking-models.html#cb373-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb373-16"><a href="ranking-models.html#cb373-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(rank)</span>
+<span id="cb373-17"><a href="ranking-models.html#cb373-17" aria-hidden="true" tabindex="-1"></a>res_ranks</span></code></pre></div>
 <pre><code>## # A tibble: 11 × 5
 ##    wflow_id         model            .config               rmse  rank
 ##    &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;                &lt;dbl&gt; &lt;int&gt;
@@ -606,11 +609,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Plot the ranks with standard errors.</p>
 <p><img src="bookclub-tmwr_files/figure-html/15-plots-1.png" width="672" /></p>
 <p>If we wanted to look at the sub-models for a given <code>wflow_id</code>, we could do that with <code>autoplot()</code>.</p>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="ranking-models.html#cb379-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(</span>
-<span id="cb379-2"><a href="ranking-models.html#cb379-2" aria-hidden="true" tabindex="-1"></a>  res_grid, </span>
-<span id="cb379-3"><a href="ranking-models.html#cb379-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="st">&#39;norm_svm_p&#39;</span>, </span>
-<span id="cb379-4"><a href="ranking-models.html#cb379-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">metric =</span> <span class="st">&#39;rmse&#39;</span></span>
-<span id="cb379-5"><a href="ranking-models.html#cb379-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="ranking-models.html#cb375-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(</span>
+<span id="cb375-2"><a href="ranking-models.html#cb375-2" aria-hidden="true" tabindex="-1"></a>  res_grid, </span>
+<span id="cb375-3"><a href="ranking-models.html#cb375-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="st">&#39;norm_svm_p&#39;</span>, </span>
+<span id="cb375-4"><a href="ranking-models.html#cb375-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">metric =</span> <span class="st">&#39;rmse&#39;</span></span>
+<span id="cb375-5"><a href="ranking-models.html#cb375-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/15-autoplot-1.png" width="672" /></p>
 <details>
 <summary>
@@ -686,7 +689,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

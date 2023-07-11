@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.6 TIDY A RECIPE | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.6 TIDY A RECIPE | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-07-17" />
+<meta name="date" content="2023-07-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,7 +52,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/twitter-widget-0.0.1/widgets.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -95,7 +94,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -108,7 +107,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -122,6 +121,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -565,16 +568,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="tidy-a-recipe" class="section level2 hasAnchor" number="8.6">
 <h2><span class="header-section-number">8.6</span> TIDY A RECIPE<a href="tidy-a-recipe.html#tidy-a-recipe" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>tidy()</code> method for recipes</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="tidy-a-recipe.html#cb200-1" aria-hidden="true" tabindex="-1"></a>ames_rec <span class="ot">&lt;-</span> </span>
-<span id="cb200-2"><a href="tidy-a-recipe.html#cb200-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(Sale_Price <span class="sc">~</span> Neighborhood <span class="sc">+</span> Gr_Liv_Area <span class="sc">+</span> Year_Built <span class="sc">+</span> Bldg_Type <span class="sc">+</span> </span>
-<span id="cb200-3"><a href="tidy-a-recipe.html#cb200-3" aria-hidden="true" tabindex="-1"></a>           Latitude <span class="sc">+</span> Longitude, <span class="at">data =</span> ames_train) <span class="sc">%&gt;%</span></span>
-<span id="cb200-4"><a href="tidy-a-recipe.html#cb200-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_log</span>(Gr_Liv_Area, <span class="at">base =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb200-5"><a href="tidy-a-recipe.html#cb200-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_other</span>(Neighborhood, <span class="at">threshold =</span> <span class="fl">0.01</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb200-6"><a href="tidy-a-recipe.html#cb200-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb200-7"><a href="tidy-a-recipe.html#cb200-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_interact</span>( <span class="sc">~</span> Gr_Liv_Area<span class="sc">:</span><span class="fu">starts_with</span>(<span class="st">&quot;Bldg_Type_&quot;</span>) ) <span class="sc">%&gt;%</span> </span>
-<span id="cb200-8"><a href="tidy-a-recipe.html#cb200-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_ns</span>(Latitude, Longitude, <span class="at">deg_free =</span> <span class="dv">20</span>)</span>
-<span id="cb200-9"><a href="tidy-a-recipe.html#cb200-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb200-10"><a href="tidy-a-recipe.html#cb200-10" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(ames_rec)</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="tidy-a-recipe.html#cb197-1" aria-hidden="true" tabindex="-1"></a>ames_rec <span class="ot">&lt;-</span> </span>
+<span id="cb197-2"><a href="tidy-a-recipe.html#cb197-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(Sale_Price <span class="sc">~</span> Neighborhood <span class="sc">+</span> Gr_Liv_Area <span class="sc">+</span> Year_Built <span class="sc">+</span> Bldg_Type <span class="sc">+</span> </span>
+<span id="cb197-3"><a href="tidy-a-recipe.html#cb197-3" aria-hidden="true" tabindex="-1"></a>           Latitude <span class="sc">+</span> Longitude, <span class="at">data =</span> ames_train) <span class="sc">%&gt;%</span></span>
+<span id="cb197-4"><a href="tidy-a-recipe.html#cb197-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_log</span>(Gr_Liv_Area, <span class="at">base =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb197-5"><a href="tidy-a-recipe.html#cb197-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_other</span>(Neighborhood, <span class="at">threshold =</span> <span class="fl">0.01</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb197-6"><a href="tidy-a-recipe.html#cb197-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb197-7"><a href="tidy-a-recipe.html#cb197-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_interact</span>( <span class="sc">~</span> Gr_Liv_Area<span class="sc">:</span><span class="fu">starts_with</span>(<span class="st">&quot;Bldg_Type_&quot;</span>) ) <span class="sc">%&gt;%</span> </span>
+<span id="cb197-8"><a href="tidy-a-recipe.html#cb197-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_ns</span>(Latitude, Longitude, <span class="at">deg_free =</span> <span class="dv">20</span>)</span>
+<span id="cb197-9"><a href="tidy-a-recipe.html#cb197-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb197-10"><a href="tidy-a-recipe.html#cb197-10" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(ames_rec)</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 6
 ##   number operation type     trained skip  id            
 ##    &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;    &lt;lgl&gt;   &lt;lgl&gt; &lt;chr&gt;         
@@ -584,27 +587,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4      4 step      interact FALSE   FALSE interact_DFf9K
 ## 5      5 step      ns       FALSE   FALSE ns_EvmMV</code></pre>
 <p>we add the <code>id = "my_id"</code> in the <code>step_other()</code></p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="tidy-a-recipe.html#cb202-1" aria-hidden="true" tabindex="-1"></a>ames_rec <span class="ot">&lt;-</span> </span>
-<span id="cb202-2"><a href="tidy-a-recipe.html#cb202-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(Sale_Price <span class="sc">~</span> Neighborhood <span class="sc">+</span> Gr_Liv_Area <span class="sc">+</span> Year_Built <span class="sc">+</span> Bldg_Type <span class="sc">+</span> </span>
-<span id="cb202-3"><a href="tidy-a-recipe.html#cb202-3" aria-hidden="true" tabindex="-1"></a>           Latitude <span class="sc">+</span> Longitude, <span class="at">data =</span> ames_train) <span class="sc">%&gt;%</span></span>
-<span id="cb202-4"><a href="tidy-a-recipe.html#cb202-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_log</span>(Gr_Liv_Area, <span class="at">base =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb202-5"><a href="tidy-a-recipe.html#cb202-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_other</span>(Neighborhood, <span class="at">threshold =</span> <span class="fl">0.01</span>, <span class="at">id =</span> <span class="st">&quot;my_id&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb202-6"><a href="tidy-a-recipe.html#cb202-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb202-7"><a href="tidy-a-recipe.html#cb202-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_interact</span>( <span class="sc">~</span> Gr_Liv_Area<span class="sc">:</span><span class="fu">starts_with</span>(<span class="st">&quot;Bldg_Type_&quot;</span>) ) <span class="sc">%&gt;%</span> </span>
-<span id="cb202-8"><a href="tidy-a-recipe.html#cb202-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_ns</span>(Latitude, Longitude, <span class="at">deg_free =</span> <span class="dv">20</span>)</span>
-<span id="cb202-9"><a href="tidy-a-recipe.html#cb202-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb202-10"><a href="tidy-a-recipe.html#cb202-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb202-11"><a href="tidy-a-recipe.html#cb202-11" aria-hidden="true" tabindex="-1"></a>lm_wflow <span class="ot">&lt;-</span> </span>
-<span id="cb202-12"><a href="tidy-a-recipe.html#cb202-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb202-13"><a href="tidy-a-recipe.html#cb202-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lm_model) <span class="sc">%&gt;%</span> </span>
-<span id="cb202-14"><a href="tidy-a-recipe.html#cb202-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(ames_rec)</span>
-<span id="cb202-15"><a href="tidy-a-recipe.html#cb202-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb202-16"><a href="tidy-a-recipe.html#cb202-16" aria-hidden="true" tabindex="-1"></a>lm_fit <span class="ot">&lt;-</span> <span class="fu">fit</span>(lm_wflow, ames_train)</span></code></pre></div>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="tidy-a-recipe.html#cb203-1" aria-hidden="true" tabindex="-1"></a>estimated_recipe <span class="ot">&lt;-</span> </span>
-<span id="cb203-2"><a href="tidy-a-recipe.html#cb203-2" aria-hidden="true" tabindex="-1"></a>  lm_fit <span class="sc">%&gt;%</span> </span>
-<span id="cb203-3"><a href="tidy-a-recipe.html#cb203-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_recipe</span>(<span class="at">estimated =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb203-4"><a href="tidy-a-recipe.html#cb203-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb203-5"><a href="tidy-a-recipe.html#cb203-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(estimated_recipe, <span class="at">id =</span> <span class="st">&quot;my_id&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="tidy-a-recipe.html#cb199-1" aria-hidden="true" tabindex="-1"></a>ames_rec <span class="ot">&lt;-</span> </span>
+<span id="cb199-2"><a href="tidy-a-recipe.html#cb199-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(Sale_Price <span class="sc">~</span> Neighborhood <span class="sc">+</span> Gr_Liv_Area <span class="sc">+</span> Year_Built <span class="sc">+</span> Bldg_Type <span class="sc">+</span> </span>
+<span id="cb199-3"><a href="tidy-a-recipe.html#cb199-3" aria-hidden="true" tabindex="-1"></a>           Latitude <span class="sc">+</span> Longitude, <span class="at">data =</span> ames_train) <span class="sc">%&gt;%</span></span>
+<span id="cb199-4"><a href="tidy-a-recipe.html#cb199-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_log</span>(Gr_Liv_Area, <span class="at">base =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb199-5"><a href="tidy-a-recipe.html#cb199-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_other</span>(Neighborhood, <span class="at">threshold =</span> <span class="fl">0.01</span>, <span class="at">id =</span> <span class="st">&quot;my_id&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb199-6"><a href="tidy-a-recipe.html#cb199-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb199-7"><a href="tidy-a-recipe.html#cb199-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_interact</span>( <span class="sc">~</span> Gr_Liv_Area<span class="sc">:</span><span class="fu">starts_with</span>(<span class="st">&quot;Bldg_Type_&quot;</span>) ) <span class="sc">%&gt;%</span> </span>
+<span id="cb199-8"><a href="tidy-a-recipe.html#cb199-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_ns</span>(Latitude, Longitude, <span class="at">deg_free =</span> <span class="dv">20</span>)</span>
+<span id="cb199-9"><a href="tidy-a-recipe.html#cb199-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb199-10"><a href="tidy-a-recipe.html#cb199-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb199-11"><a href="tidy-a-recipe.html#cb199-11" aria-hidden="true" tabindex="-1"></a>lm_wflow <span class="ot">&lt;-</span> </span>
+<span id="cb199-12"><a href="tidy-a-recipe.html#cb199-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb199-13"><a href="tidy-a-recipe.html#cb199-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lm_model) <span class="sc">%&gt;%</span> </span>
+<span id="cb199-14"><a href="tidy-a-recipe.html#cb199-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(ames_rec)</span>
+<span id="cb199-15"><a href="tidy-a-recipe.html#cb199-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb199-16"><a href="tidy-a-recipe.html#cb199-16" aria-hidden="true" tabindex="-1"></a>lm_fit <span class="ot">&lt;-</span> <span class="fu">fit</span>(lm_wflow, ames_train)</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="tidy-a-recipe.html#cb200-1" aria-hidden="true" tabindex="-1"></a>estimated_recipe <span class="ot">&lt;-</span> </span>
+<span id="cb200-2"><a href="tidy-a-recipe.html#cb200-2" aria-hidden="true" tabindex="-1"></a>  lm_fit <span class="sc">%&gt;%</span> </span>
+<span id="cb200-3"><a href="tidy-a-recipe.html#cb200-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_recipe</span>(<span class="at">estimated =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb200-4"><a href="tidy-a-recipe.html#cb200-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb200-5"><a href="tidy-a-recipe.html#cb200-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(estimated_recipe, <span class="at">id =</span> <span class="st">&quot;my_id&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 21 × 3
 ##    terms        retained           id   
 ##    &lt;chr&gt;        &lt;chr&gt;              &lt;chr&gt;
@@ -618,8 +621,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Neighborhood Sawyer             my_id
 ##  9 Neighborhood Northwest_Ames     my_id
 ## 10 Neighborhood Sawyer_West        my_id
-## # … with 11 more rows</code></pre>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="tidy-a-recipe.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(estimated_recipe, <span class="at">number =</span> <span class="dv">2</span>)</span></code></pre></div>
+## # ℹ 11 more rows</code></pre>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="tidy-a-recipe.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(estimated_recipe, <span class="at">number =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 21 × 3
 ##    terms        retained           id   
 ##    &lt;chr&gt;        &lt;chr&gt;              &lt;chr&gt;
@@ -633,7 +636,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Neighborhood Sawyer             my_id
 ##  9 Neighborhood Northwest_Ames     my_id
 ## 10 Neighborhood Sawyer_West        my_id
-## # … with 11 more rows</code></pre>
+## # ℹ 11 more rows</code></pre>
 </div>
             </section>
 
@@ -701,7 +704,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

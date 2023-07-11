@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>10.3 Resampling methods | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="10.3 Resampling methods | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-07-17" />
+<meta name="date" content="2023-07-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,7 +52,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/twitter-widget-0.0.1/widgets.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -95,7 +94,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -108,7 +107,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -122,6 +121,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -604,9 +607,9 @@ exactly equal) and that the assessment set for each fold is 2/3 of the
 training data. Max and Julia note that while 3-fold CV is good to use
 for illustrative purposed, it is not good in practice - in practice,
 rather 5- or 10- fold CV is preferred.</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="resampling-methods.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">55</span>)</span>
-<span id="cb231-2"><a href="resampling-methods.html#cb231-2" aria-hidden="true" tabindex="-1"></a>ames_folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(ames_train, <span class="at">v =</span> <span class="dv">10</span>)</span>
-<span id="cb231-3"><a href="resampling-methods.html#cb231-3" aria-hidden="true" tabindex="-1"></a>ames_folds</span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="resampling-methods.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">55</span>)</span>
+<span id="cb228-2"><a href="resampling-methods.html#cb228-2" aria-hidden="true" tabindex="-1"></a>ames_folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(ames_train, <span class="at">v =</span> <span class="dv">10</span>)</span>
+<span id="cb228-3"><a href="resampling-methods.html#cb228-3" aria-hidden="true" tabindex="-1"></a>ames_folds</span></code></pre></div>
 <pre><code>## #  10-fold cross-validation 
 ## # A tibble: 10 × 2
 ##    splits             id    
@@ -636,7 +639,7 @@ averages over more than <em>V</em> statistics may be more appropriate to reduce
 the noise. This technique is repeated cross-validation, where we create
 <em>R</em> repeats of V-fold CV. Instead of averaging over V statistics, we are
 now averaging over <em>V x R</em> statistics:</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="resampling-methods.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vfold_cv</span>(ames_train, <span class="at">v =</span> <span class="dv">10</span>, <span class="at">repeats =</span> <span class="dv">5</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="resampling-methods.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vfold_cv</span>(ames_train, <span class="at">v =</span> <span class="dv">10</span>, <span class="at">repeats =</span> <span class="dv">5</span>) </span></code></pre></div>
 <pre><code>## #  10-fold cross-validation repeated 5 times 
 ## # A tibble: 50 × 3
 ##    splits             id      id2   
@@ -651,7 +654,7 @@ now averaging over <em>V x R</em> statistics:</p>
 ##  8 &lt;split [2108/234]&gt; Repeat1 Fold08
 ##  9 &lt;split [2108/234]&gt; Repeat1 Fold09
 ## 10 &lt;split [2108/234]&gt; Repeat1 Fold10
-## # … with 40 more rows</code></pre>
+## # ℹ 40 more rows</code></pre>
 </div>
 <div id="leave-one-out-cross-validation" class="section level4 hasAnchor" number="10.3.1.3">
 <h4><span class="header-section-number">10.3.1.3</span> Leave-one-out cross validation<a href="resampling-methods.html#leave-one-out-cross-validation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -663,7 +666,7 @@ now averaging over <em>V x R</em> statistics:</p>
 assessment set with some fixed proportion. The difference is the
 resampling objects generated by MCCV are not mutually exclusive as the
 same data points can appear in the assessment set multiple times.</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="resampling-methods.html#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mc_cv</span>(ames_train, <span class="at">prop =</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">10</span>, <span class="at">times =</span> <span class="dv">20</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="resampling-methods.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mc_cv</span>(ames_train, <span class="at">prop =</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">10</span>, <span class="at">times =</span> <span class="dv">20</span>)</span></code></pre></div>
 <pre><code>## # Monte Carlo cross-validation (0.9/0.1) with 20 resamples  
 ## # A tibble: 20 × 2
 ##    splits             id        
@@ -700,9 +703,9 @@ shows, the validation set is independent of the training data.</p>
 <p>You can create your validation set by calling on <code>validation_split()</code>
 and setting the proportion desired. There is also a <code>strata</code> argument to
 conduct stratified sampling.</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="resampling-methods.html#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12</span>)</span>
-<span id="cb237-2"><a href="resampling-methods.html#cb237-2" aria-hidden="true" tabindex="-1"></a>val_set <span class="ot">&lt;-</span> <span class="fu">validation_split</span>(ames_train, <span class="at">prop =</span> <span class="dv">3</span><span class="sc">/</span><span class="dv">4</span>)</span>
-<span id="cb237-3"><a href="resampling-methods.html#cb237-3" aria-hidden="true" tabindex="-1"></a>val_set</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="resampling-methods.html#cb234-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12</span>)</span>
+<span id="cb234-2"><a href="resampling-methods.html#cb234-2" aria-hidden="true" tabindex="-1"></a>val_set <span class="ot">&lt;-</span> <span class="fu">validation_split</span>(ames_train, <span class="at">prop =</span> <span class="dv">3</span><span class="sc">/</span><span class="dv">4</span>)</span>
+<span id="cb234-3"><a href="resampling-methods.html#cb234-3" aria-hidden="true" tabindex="-1"></a>val_set</span></code></pre></div>
 <pre><code>## # Validation Set Split (0.75/0.25)  
 ## # A tibble: 1 × 2
 ##   splits             id        
@@ -725,7 +728,7 @@ call <code>bootstraps()</code>.</p>
 bootstrap resampling involves specifying the number of bootstrap samples
 via the <code>times</code> argument. There is also a <code>strata</code> argument for
 conducting stratified sampling.</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="resampling-methods.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bootstraps</span>(ames_train, <span class="at">times =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="resampling-methods.html#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bootstraps</span>(ames_train, <span class="at">times =</span> <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## # Bootstrap sampling 
 ## # A tibble: 5 × 2
 ##   splits             id        
@@ -751,7 +754,7 @@ the number of samples used for each assessment resample with <code>assess</code>
 and <code>cumulative</code> set to true if you want the analysis resample to grow
 beyong the size specified with <code>initial</code>. Additional arguments include
 the <code>skip</code> and <code>lag</code>.</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="resampling-methods.html#cb241-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rolling_origin</span>(data, <span class="at">initial =</span> <span class="dv">5</span>, <span class="at">assess =</span> <span class="dv">1</span>, <span class="at">cumulative =</span> <span class="cn">TRUE</span>, <span class="at">skip =</span> <span class="dv">0</span>, <span class="at">lag =</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="resampling-methods.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rolling_origin</span>(data, <span class="at">initial =</span> <span class="dv">5</span>, <span class="at">assess =</span> <span class="dv">1</span>, <span class="at">cumulative =</span> <span class="cn">TRUE</span>, <span class="at">skip =</span> <span class="dv">0</span>, <span class="at">lag =</span> <span class="dv">0</span>)</span></code></pre></div>
 </div>
 </div>
             </section>
@@ -820,7 +823,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

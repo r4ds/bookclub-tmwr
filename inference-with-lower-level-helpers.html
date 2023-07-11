@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>21.5 Inference with lower level helpers | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="21.5 Inference with lower level helpers | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-07-17" />
+<meta name="date" content="2023-07-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,7 +52,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/twitter-widget-0.0.1/widgets.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -95,7 +94,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -108,7 +107,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -122,6 +121,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -565,21 +568,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="inference-with-lower-level-helpers" class="section level2 hasAnchor" number="21.5">
 <h2><span class="header-section-number">21.5</span> Inference with lower level helpers<a href="inference-with-lower-level-helpers.html#inference-with-lower-level-helpers" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Most useful for models not supported by anova, or parsnip, etc or when you want to have more control.</p>
-<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="inference-with-lower-level-helpers.html#cb478-1" aria-hidden="true" tabindex="-1"></a>formulas <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb478-2"><a href="inference-with-lower-level-helpers.html#cb478-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;full&quot;</span> <span class="ot">=</span> <span class="fu">as.formula</span>(avg_velocity <span class="sc">~</span> avg_elevation_gain <span class="sc">+</span> distance <span class="sc">+</span> aid_stations),</span>
-<span id="cb478-3"><a href="inference-with-lower-level-helpers.html#cb478-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;partial&quot;</span> <span class="ot">=</span> <span class="fu">as.formula</span>(avg_velocity <span class="sc">~</span> avg_elevation_gain <span class="sc">+</span> distance),</span>
-<span id="cb478-4"><a href="inference-with-lower-level-helpers.html#cb478-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;minimal&quot;</span> <span class="ot">=</span> <span class="fu">as.formula</span>(avg_velocity <span class="sc">~</span> avg_elevation_gain)</span>
-<span id="cb478-5"><a href="inference-with-lower-level-helpers.html#cb478-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb478-6"><a href="inference-with-lower-level-helpers.html#cb478-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb478-7"><a href="inference-with-lower-level-helpers.html#cb478-7" aria-hidden="true" tabindex="-1"></a>lm_spec <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span> <span class="fu">set_engine</span>(<span class="st">&quot;lm&quot;</span>)</span>
-<span id="cb478-8"><a href="inference-with-lower-level-helpers.html#cb478-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb478-9"><a href="inference-with-lower-level-helpers.html#cb478-9" aria-hidden="true" tabindex="-1"></a>AICs <span class="ot">&lt;-</span> <span class="fu">map</span>(formulas, <span class="cf">function</span>(formula) {</span>
-<span id="cb478-10"><a href="inference-with-lower-level-helpers.html#cb478-10" aria-hidden="true" tabindex="-1"></a>  lm_spec <span class="sc">%&gt;%</span></span>
-<span id="cb478-11"><a href="inference-with-lower-level-helpers.html#cb478-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fit</span>(formula, <span class="at">data =</span> race_top_results) <span class="sc">%&gt;%</span></span>
-<span id="cb478-12"><a href="inference-with-lower-level-helpers.html#cb478-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb478-13"><a href="inference-with-lower-level-helpers.html#cb478-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">AIC</span>()</span>
-<span id="cb478-14"><a href="inference-with-lower-level-helpers.html#cb478-14" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb478-15"><a href="inference-with-lower-level-helpers.html#cb478-15" aria-hidden="true" tabindex="-1"></a>AICs</span></code></pre></div>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="inference-with-lower-level-helpers.html#cb474-1" aria-hidden="true" tabindex="-1"></a>formulas <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb474-2"><a href="inference-with-lower-level-helpers.html#cb474-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;full&quot;</span> <span class="ot">=</span> <span class="fu">as.formula</span>(avg_velocity <span class="sc">~</span> avg_elevation_gain <span class="sc">+</span> distance <span class="sc">+</span> aid_stations),</span>
+<span id="cb474-3"><a href="inference-with-lower-level-helpers.html#cb474-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;partial&quot;</span> <span class="ot">=</span> <span class="fu">as.formula</span>(avg_velocity <span class="sc">~</span> avg_elevation_gain <span class="sc">+</span> distance),</span>
+<span id="cb474-4"><a href="inference-with-lower-level-helpers.html#cb474-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;minimal&quot;</span> <span class="ot">=</span> <span class="fu">as.formula</span>(avg_velocity <span class="sc">~</span> avg_elevation_gain)</span>
+<span id="cb474-5"><a href="inference-with-lower-level-helpers.html#cb474-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb474-6"><a href="inference-with-lower-level-helpers.html#cb474-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb474-7"><a href="inference-with-lower-level-helpers.html#cb474-7" aria-hidden="true" tabindex="-1"></a>lm_spec <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span> <span class="fu">set_engine</span>(<span class="st">&quot;lm&quot;</span>)</span>
+<span id="cb474-8"><a href="inference-with-lower-level-helpers.html#cb474-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb474-9"><a href="inference-with-lower-level-helpers.html#cb474-9" aria-hidden="true" tabindex="-1"></a>AICs <span class="ot">&lt;-</span> <span class="fu">map</span>(formulas, <span class="cf">function</span>(formula) {</span>
+<span id="cb474-10"><a href="inference-with-lower-level-helpers.html#cb474-10" aria-hidden="true" tabindex="-1"></a>  lm_spec <span class="sc">%&gt;%</span></span>
+<span id="cb474-11"><a href="inference-with-lower-level-helpers.html#cb474-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fit</span>(formula, <span class="at">data =</span> race_top_results) <span class="sc">%&gt;%</span></span>
+<span id="cb474-12"><a href="inference-with-lower-level-helpers.html#cb474-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb474-13"><a href="inference-with-lower-level-helpers.html#cb474-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">AIC</span>()</span>
+<span id="cb474-14"><a href="inference-with-lower-level-helpers.html#cb474-14" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb474-15"><a href="inference-with-lower-level-helpers.html#cb474-15" aria-hidden="true" tabindex="-1"></a>AICs</span></code></pre></div>
 <pre><code>## $full
 ## [1] 3123.333
 ## 
@@ -589,42 +592,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## $minimal
 ## [1] 3148.007</code></pre>
 <p>How to determine whether these differences are significant? One possible solution is bootstrapping which can also be used when there are no nice theoretical properties.</p>
-<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="inference-with-lower-level-helpers.html#cb480-1" aria-hidden="true" tabindex="-1"></a>velocity_model_summaries <span class="ot">&lt;-</span> race_top_results <span class="sc">%&gt;%</span></span>
-<span id="cb480-2"><a href="inference-with-lower-level-helpers.html#cb480-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bootstraps</span>(<span class="at">times =</span> <span class="dv">1000</span>, <span class="at">apparent =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb480-3"><a href="inference-with-lower-level-helpers.html#cb480-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb480-4"><a href="inference-with-lower-level-helpers.html#cb480-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_aic =</span> <span class="fu">map_dbl</span>(splits, <span class="sc">~</span> <span class="fu">fit</span>(lm_spec, formulas[[<span class="st">&quot;full&quot;</span>]], <span class="at">data =</span> <span class="fu">analysis</span>(.x)) <span class="sc">%&gt;%</span> <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span> <span class="fu">AIC</span>()),</span>
-<span id="cb480-5"><a href="inference-with-lower-level-helpers.html#cb480-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">partial_aic =</span> <span class="fu">map_dbl</span>(splits, <span class="sc">~</span> <span class="fu">fit</span>(lm_spec, formulas[[<span class="st">&quot;partial&quot;</span>]], <span class="at">data =</span> <span class="fu">analysis</span>(.x)) <span class="sc">%&gt;%</span> <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span> <span class="fu">AIC</span>()),</span>
-<span id="cb480-6"><a href="inference-with-lower-level-helpers.html#cb480-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">minimal_aic =</span> <span class="fu">map_dbl</span>(splits, <span class="sc">~</span> <span class="fu">fit</span>(lm_spec, formulas[[<span class="st">&quot;minimal&quot;</span>]], <span class="at">data =</span> <span class="fu">analysis</span>(.x)) <span class="sc">%&gt;%</span> <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span> <span class="fu">AIC</span>())</span>
-<span id="cb480-7"><a href="inference-with-lower-level-helpers.html#cb480-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb480-8"><a href="inference-with-lower-level-helpers.html#cb480-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(full_aic, partial_aic, minimal_aic)</span></code></pre></div>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="inference-with-lower-level-helpers.html#cb481-1" aria-hidden="true" tabindex="-1"></a>velocity_model_summaries <span class="sc">%&gt;%</span></span>
-<span id="cb481-2"><a href="inference-with-lower-level-helpers.html#cb481-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(full_aic, partial_aic, minimal_aic)) <span class="sc">%&gt;%</span></span>
-<span id="cb481-3"><a href="inference-with-lower-level-helpers.html#cb481-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> name, <span class="at">y =</span> value)) <span class="sc">+</span></span>
-<span id="cb481-4"><a href="inference-with-lower-level-helpers.html#cb481-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="inference-with-lower-level-helpers.html#cb476-1" aria-hidden="true" tabindex="-1"></a>velocity_model_summaries <span class="ot">&lt;-</span> race_top_results <span class="sc">%&gt;%</span></span>
+<span id="cb476-2"><a href="inference-with-lower-level-helpers.html#cb476-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bootstraps</span>(<span class="at">times =</span> <span class="dv">1000</span>, <span class="at">apparent =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb476-3"><a href="inference-with-lower-level-helpers.html#cb476-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb476-4"><a href="inference-with-lower-level-helpers.html#cb476-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_aic =</span> <span class="fu">map_dbl</span>(splits, <span class="sc">~</span> <span class="fu">fit</span>(lm_spec, formulas[[<span class="st">&quot;full&quot;</span>]], <span class="at">data =</span> <span class="fu">analysis</span>(.x)) <span class="sc">%&gt;%</span> <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span> <span class="fu">AIC</span>()),</span>
+<span id="cb476-5"><a href="inference-with-lower-level-helpers.html#cb476-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">partial_aic =</span> <span class="fu">map_dbl</span>(splits, <span class="sc">~</span> <span class="fu">fit</span>(lm_spec, formulas[[<span class="st">&quot;partial&quot;</span>]], <span class="at">data =</span> <span class="fu">analysis</span>(.x)) <span class="sc">%&gt;%</span> <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span> <span class="fu">AIC</span>()),</span>
+<span id="cb476-6"><a href="inference-with-lower-level-helpers.html#cb476-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">minimal_aic =</span> <span class="fu">map_dbl</span>(splits, <span class="sc">~</span> <span class="fu">fit</span>(lm_spec, formulas[[<span class="st">&quot;minimal&quot;</span>]], <span class="at">data =</span> <span class="fu">analysis</span>(.x)) <span class="sc">%&gt;%</span> <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span> <span class="fu">AIC</span>())</span>
+<span id="cb476-7"><a href="inference-with-lower-level-helpers.html#cb476-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb476-8"><a href="inference-with-lower-level-helpers.html#cb476-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(full_aic, partial_aic, minimal_aic)</span></code></pre></div>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="inference-with-lower-level-helpers.html#cb477-1" aria-hidden="true" tabindex="-1"></a>velocity_model_summaries <span class="sc">%&gt;%</span></span>
+<span id="cb477-2"><a href="inference-with-lower-level-helpers.html#cb477-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(full_aic, partial_aic, minimal_aic)) <span class="sc">%&gt;%</span></span>
+<span id="cb477-3"><a href="inference-with-lower-level-helpers.html#cb477-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> name, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb477-4"><a href="inference-with-lower-level-helpers.html#cb477-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/21-aic-compare-1.png" width="672" /></p>
-<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="inference-with-lower-level-helpers.html#cb482-1" aria-hidden="true" tabindex="-1"></a>velocity_model_summaries <span class="sc">%&gt;%</span></span>
-<span id="cb482-2"><a href="inference-with-lower-level-helpers.html#cb482-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb482-3"><a href="inference-with-lower-level-helpers.html#cb482-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_vs_partial =</span> <span class="fu">mean</span>(full_aic <span class="sc">&lt;</span> partial_aic),</span>
-<span id="cb482-4"><a href="inference-with-lower-level-helpers.html#cb482-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">partial_vs_minimal =</span> <span class="fu">mean</span>(partial_aic <span class="sc">&lt;</span> minimal_aic)</span>
-<span id="cb482-5"><a href="inference-with-lower-level-helpers.html#cb482-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="inference-with-lower-level-helpers.html#cb478-1" aria-hidden="true" tabindex="-1"></a>velocity_model_summaries <span class="sc">%&gt;%</span></span>
+<span id="cb478-2"><a href="inference-with-lower-level-helpers.html#cb478-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb478-3"><a href="inference-with-lower-level-helpers.html#cb478-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_vs_partial =</span> <span class="fu">mean</span>(full_aic <span class="sc">&lt;</span> partial_aic),</span>
+<span id="cb478-4"><a href="inference-with-lower-level-helpers.html#cb478-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">partial_vs_minimal =</span> <span class="fu">mean</span>(partial_aic <span class="sc">&lt;</span> minimal_aic)</span>
+<span id="cb478-5"><a href="inference-with-lower-level-helpers.html#cb478-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 2
 ##   full_vs_partial partial_vs_minimal
 ##             &lt;dbl&gt;              &lt;dbl&gt;
 ## 1           0.377              0.916</code></pre>
-<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="inference-with-lower-level-helpers.html#cb484-1" aria-hidden="true" tabindex="-1"></a>velocity_model_summaries <span class="sc">%&gt;%</span></span>
-<span id="cb484-2"><a href="inference-with-lower-level-helpers.html#cb484-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(full_coeffs) <span class="sc">%&gt;%</span></span>
-<span id="cb484-3"><a href="inference-with-lower-level-helpers.html#cb484-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> estimate)) <span class="sc">+</span></span>
-<span id="cb484-4"><a href="inference-with-lower-level-helpers.html#cb484-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb484-5"><a href="inference-with-lower-level-helpers.html#cb484-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>term, <span class="at">scales =</span> <span class="st">&quot;free_x&quot;</span>) <span class="sc">+</span></span>
-<span id="cb484-6"><a href="inference-with-lower-level-helpers.html#cb484-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="inference-with-lower-level-helpers.html#cb480-1" aria-hidden="true" tabindex="-1"></a>velocity_model_summaries <span class="sc">%&gt;%</span></span>
+<span id="cb480-2"><a href="inference-with-lower-level-helpers.html#cb480-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(full_coeffs) <span class="sc">%&gt;%</span></span>
+<span id="cb480-3"><a href="inference-with-lower-level-helpers.html#cb480-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> estimate)) <span class="sc">+</span></span>
+<span id="cb480-4"><a href="inference-with-lower-level-helpers.html#cb480-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb480-5"><a href="inference-with-lower-level-helpers.html#cb480-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>term, <span class="at">scales =</span> <span class="st">&quot;free_x&quot;</span>) <span class="sc">+</span></span>
+<span id="cb480-6"><a href="inference-with-lower-level-helpers.html#cb480-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>)</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/21-model-coeffs-1.png" width="672" /></p>
 <p>Small reps used for speed</p>
-<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="inference-with-lower-level-helpers.html#cb485-1" aria-hidden="true" tabindex="-1"></a>race_top_results <span class="sc">%&gt;%</span></span>
-<span id="cb485-2"><a href="inference-with-lower-level-helpers.html#cb485-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bootstraps</span>(<span class="at">times =</span> <span class="dv">20</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb485-3"><a href="inference-with-lower-level-helpers.html#cb485-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb485-4"><a href="inference-with-lower-level-helpers.html#cb485-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_coeffs =</span> <span class="fu">map</span>(splits, <span class="sc">~</span> <span class="fu">fit</span>(lm_spec, formulas[[<span class="st">&quot;full&quot;</span>]], <span class="at">data =</span> <span class="fu">analysis</span>(.x)) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>())</span>
-<span id="cb485-5"><a href="inference-with-lower-level-helpers.html#cb485-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb485-6"><a href="inference-with-lower-level-helpers.html#cb485-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">int_pctl</span>(full_coeffs)</span></code></pre></div>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="inference-with-lower-level-helpers.html#cb481-1" aria-hidden="true" tabindex="-1"></a>race_top_results <span class="sc">%&gt;%</span></span>
+<span id="cb481-2"><a href="inference-with-lower-level-helpers.html#cb481-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bootstraps</span>(<span class="at">times =</span> <span class="dv">20</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb481-3"><a href="inference-with-lower-level-helpers.html#cb481-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb481-4"><a href="inference-with-lower-level-helpers.html#cb481-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_coeffs =</span> <span class="fu">map</span>(splits, <span class="sc">~</span> <span class="fu">fit</span>(lm_spec, formulas[[<span class="st">&quot;full&quot;</span>]], <span class="at">data =</span> <span class="fu">analysis</span>(.x)) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>())</span>
+<span id="cb481-5"><a href="inference-with-lower-level-helpers.html#cb481-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb481-6"><a href="inference-with-lower-level-helpers.html#cb481-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">int_pctl</span>(full_coeffs)</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 6
 ##   term                .lower .estimate   .upper .alpha .method   
 ##   &lt;chr&gt;                &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;     
@@ -700,7 +703,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

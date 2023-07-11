@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>19.2 Model Applicability | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="19.2 Model Applicability | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2022-07-17" />
+<meta name="date" content="2023-07-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,7 +52,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/twitter-widget-0.0.1/widgets.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -95,7 +94,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -108,7 +107,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -122,6 +121,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -566,11 +569,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">19.2</span> Model Applicability<a href="model-applicability.html#model-applicability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s stress-test a model, seeing how it might work on some unusual observations.</p>
 <p>For this, we fit a new model with pre-game team 1 probability of winning (<code>prob1</code>) and pre-game probability of a draw (<code>probtie</code>). (We can better illustrate an extreme example with these features.)</p>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="model-applicability.html#cb421-1" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span></span>
-<span id="cb421-2"><a href="model-applicability.html#cb421-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">logistic_reg</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb421-3"><a href="model-applicability.html#cb421-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&#39;glm&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb421-4"><a href="model-applicability.html#cb421-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(w1 <span class="sc">~</span> prob1 <span class="sc">+</span> probtie, <span class="at">data =</span> trn)</span>
-<span id="cb421-5"><a href="model-applicability.html#cb421-5" aria-hidden="true" tabindex="-1"></a>fit2 <span class="sc">%&gt;%</span> <span class="fu">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="model-applicability.html#cb417-1" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span></span>
+<span id="cb417-2"><a href="model-applicability.html#cb417-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">logistic_reg</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb417-3"><a href="model-applicability.html#cb417-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&#39;glm&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb417-4"><a href="model-applicability.html#cb417-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(w1 <span class="sc">~</span> prob1 <span class="sc">+</span> probtie, <span class="at">data =</span> trn)</span>
+<span id="cb417-5"><a href="model-applicability.html#cb417-5" aria-hidden="true" tabindex="-1"></a>fit2 <span class="sc">%&gt;%</span> <span class="fu">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
@@ -578,15 +581,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2 prob1          4.48      0.357   12.6    3.59e-36
 ## 3 probtie        0.116     1.36     0.0852 9.32e- 1</code></pre>
 <p>How’s the accuracy looking?</p>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="model-applicability.html#cb423-1" aria-hidden="true" tabindex="-1"></a>preds_tst2 <span class="ot">&lt;-</span> fit2 <span class="sc">%&gt;%</span> <span class="fu">predict_stuff</span>(tst)</span>
-<span id="cb423-2"><a href="model-applicability.html#cb423-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb423-3"><a href="model-applicability.html#cb423-3" aria-hidden="true" tabindex="-1"></a>preds_tst2 <span class="sc">%&gt;%</span> </span>
-<span id="cb423-4"><a href="model-applicability.html#cb423-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">accuracy</span>(<span class="at">estimate =</span> .pred_class, <span class="at">truth =</span> w1)</span></code></pre></div>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="model-applicability.html#cb419-1" aria-hidden="true" tabindex="-1"></a>preds_tst2 <span class="ot">&lt;-</span> fit2 <span class="sc">%&gt;%</span> <span class="fu">predict_stuff</span>(tst)</span>
+<span id="cb419-2"><a href="model-applicability.html#cb419-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb419-3"><a href="model-applicability.html#cb419-3" aria-hidden="true" tabindex="-1"></a>preds_tst2 <span class="sc">%&gt;%</span> </span>
+<span id="cb419-4"><a href="model-applicability.html#cb419-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">accuracy</span>(<span class="at">estimate =</span> .pred_class, <span class="at">truth =</span> w1)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
 ## 1 accuracy binary         0.604</code></pre>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="model-applicability.html#cb425-1" aria-hidden="true" tabindex="-1"></a>preds_tst2 <span class="sc">%&gt;%</span> <span class="fu">conf_mat</span>(w1, .pred_class) <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>(<span class="st">&#39;heatmap&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="model-applicability.html#cb421-1" aria-hidden="true" tabindex="-1"></a>preds_tst2 <span class="sc">%&gt;%</span> <span class="fu">conf_mat</span>(w1, .pred_class) <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>(<span class="st">&#39;heatmap&#39;</span>)</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/trust-preds_tst2-1.png" width="672" /></p>
 <p>Not bad… but is it deceiving in some extreme cases?</p>
 <p><img src="bookclub-tmwr_files/figure-html/trust-other2-1.png" width="672" /></p>
@@ -599,8 +602,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The plot below overlays an average testing set sample (in blue) and a rather extreme sample (in red) with the PCA distances from the training set.</p>
 <p><img src="bookclub-tmwr_files/figure-html/trust-pca-two-class-test-1.png" width="672" /></p>
 <p>Let’s use the <code>{applicable}</code> package! (We’ll include more features this time around.)</p>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="model-applicability.html#cb426-1" aria-hidden="true" tabindex="-1"></a>pca_stat <span class="ot">&lt;-</span> <span class="fu">apd_pca</span>(<span class="sc">~</span> ., <span class="at">data =</span> trn <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)), <span class="at">threshold =</span> <span class="fl">0.99</span>)</span>
-<span id="cb426-2"><a href="model-applicability.html#cb426-2" aria-hidden="true" tabindex="-1"></a>pca_stat</span></code></pre></div>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="model-applicability.html#cb422-1" aria-hidden="true" tabindex="-1"></a>pca_stat <span class="ot">&lt;-</span> <span class="fu">apd_pca</span>(<span class="sc">~</span> ., <span class="at">data =</span> trn <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)), <span class="at">threshold =</span> <span class="fl">0.99</span>)</span>
+<span id="cb422-2"><a href="model-applicability.html#cb422-2" aria-hidden="true" tabindex="-1"></a>pca_stat</span></code></pre></div>
 <pre><code>## # Predictors:
 ##    7
 ## # Principal Components:
@@ -608,22 +611,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##    to capture at least 99% of the
 ##    total variation in the predictors.</code></pre>
 <p>We can plot a CDF looking thing with our computed distances.</p>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="model-applicability.html#cb428-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(pca_stat, distance)</span></code></pre></div>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="model-applicability.html#cb424-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(pca_stat, distance)</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/trust-ref-dist-1.png" width="672" /></p>
 <p>Observe that a strange observation gets a very high <code>distance</code> and 100 <code>distance_pctl</code>.</p>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="model-applicability.html#cb429-1" aria-hidden="true" tabindex="-1"></a><span class="fu">score</span>(</span>
-<span id="cb429-2"><a href="model-applicability.html#cb429-2" aria-hidden="true" tabindex="-1"></a>  pca_stat,</span>
-<span id="cb429-3"><a href="model-applicability.html#cb429-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(</span>
-<span id="cb429-4"><a href="model-applicability.html#cb429-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tibble</span>(</span>
-<span id="cb429-5"><a href="model-applicability.html#cb429-5" aria-hidden="true" tabindex="-1"></a>      <span class="co"># set these to pretty average values</span></span>
-<span id="cb429-6"><a href="model-applicability.html#cb429-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">spi1 =</span> <span class="dv">40</span>, <span class="at">spi2 =</span> <span class="dv">40</span>, <span class="at">importance1 =</span> <span class="dv">100</span><span class="sc">/</span><span class="dv">3</span>, <span class="at">importance2 =</span> <span class="dv">100</span><span class="sc">/</span><span class="dv">3</span>,</span>
-<span id="cb429-7"><a href="model-applicability.html#cb429-7" aria-hidden="true" tabindex="-1"></a>      <span class="co"># set these to weird values</span></span>
-<span id="cb429-8"><a href="model-applicability.html#cb429-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">prob1 =</span> <span class="fl">0.1</span>, <span class="at">prob2 =</span> <span class="fl">0.1</span>, <span class="at">probtie =</span> <span class="fl">0.8</span></span>
-<span id="cb429-9"><a href="model-applicability.html#cb429-9" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb429-10"><a href="model-applicability.html#cb429-10" aria-hidden="true" tabindex="-1"></a>    tst</span>
-<span id="cb429-11"><a href="model-applicability.html#cb429-11" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb429-12"><a href="model-applicability.html#cb429-12" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
-<span id="cb429-13"><a href="model-applicability.html#cb429-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;distance&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="model-applicability.html#cb425-1" aria-hidden="true" tabindex="-1"></a><span class="fu">score</span>(</span>
+<span id="cb425-2"><a href="model-applicability.html#cb425-2" aria-hidden="true" tabindex="-1"></a>  pca_stat,</span>
+<span id="cb425-3"><a href="model-applicability.html#cb425-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(</span>
+<span id="cb425-4"><a href="model-applicability.html#cb425-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tibble</span>(</span>
+<span id="cb425-5"><a href="model-applicability.html#cb425-5" aria-hidden="true" tabindex="-1"></a>      <span class="co"># set these to pretty average values</span></span>
+<span id="cb425-6"><a href="model-applicability.html#cb425-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">spi1 =</span> <span class="dv">40</span>, <span class="at">spi2 =</span> <span class="dv">40</span>, <span class="at">importance1 =</span> <span class="dv">100</span><span class="sc">/</span><span class="dv">3</span>, <span class="at">importance2 =</span> <span class="dv">100</span><span class="sc">/</span><span class="dv">3</span>,</span>
+<span id="cb425-7"><a href="model-applicability.html#cb425-7" aria-hidden="true" tabindex="-1"></a>      <span class="co"># set these to weird values</span></span>
+<span id="cb425-8"><a href="model-applicability.html#cb425-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">prob1 =</span> <span class="fl">0.1</span>, <span class="at">prob2 =</span> <span class="fl">0.1</span>, <span class="at">probtie =</span> <span class="fl">0.8</span></span>
+<span id="cb425-9"><a href="model-applicability.html#cb425-9" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb425-10"><a href="model-applicability.html#cb425-10" aria-hidden="true" tabindex="-1"></a>    tst</span>
+<span id="cb425-11"><a href="model-applicability.html#cb425-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb425-12"><a href="model-applicability.html#cb425-12" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb425-13"><a href="model-applicability.html#cb425-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;distance&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 476 × 2
 ##    distance distance_pctl
 ##       &lt;dbl&gt;         &lt;dbl&gt;
@@ -637,7 +640,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8    1.57         22.6  
 ##  9    2.56         67.2  
 ## 10    5.76         98.1  
-## # … with 466 more rows</code></pre>
+## # ℹ 466 more rows</code></pre>
 </div>
             </section>
 
@@ -705,7 +708,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
