@@ -299,7 +299,8 @@ updated_params
 With the `finalize()` function, mtry was completed based on the number of predictors in the training dataset
 
 ```{r pull_dials_object-12, echo = TRUE}
-updated_params %>% pull_dials_object("mtry")
+updated_params %>%
+  extract_parameter_dials("mtry")
 ```
 
 ## What is next?
