@@ -67,15 +67,15 @@ mlp_spec <-
   set_mode("regression")
 ```
 
-The argument **trace = 0** prevents extra logging of the training process. The `parameters()` function can extract the set of arguments with unknown values and set their `dials` objects. `pull_dials_object()` gives the current range of values.
+The argument **trace = 0** prevents extra logging of the training process. The `parameters()` function can extract the set of arguments with unknown values and set their `dials` objects. `extract_parameter_dials()` gives the current range of values.
 
 ```{r 13_mlp_param_hidden_units}
 mlp_param <- parameters(mlp_spec)
-mlp_param %>% pull_dials_object("hidden_units")
+mlp_param %>% extract_parameter_dials("hidden_units")
 ```
 
 ```{r 13_mlp_param_penalty}
-mlp_param %>% pull_dials_object("penalty")
+mlp_param %>% extract_parameter_dials("penalty")
 ```
 
 > For `penalty`, the random numbers are uniform on the log (base 10) scale. The values in the grid are in their natural units.
@@ -83,7 +83,7 @@ mlp_param %>% pull_dials_object("penalty")
 ![](https://media.giphy.com/media/iRBz7kiE3HsSA/giphy.gif)
 
 ```{r 13_mlp_param_epochs}
-mlp_param %>% pull_dials_object("epochs")
+mlp_param %>% extract_parameter_dials("epochs")
 ```
 
 ### Regular Grids
