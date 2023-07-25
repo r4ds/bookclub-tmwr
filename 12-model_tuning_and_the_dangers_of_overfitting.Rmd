@@ -254,7 +254,8 @@ rf_spec_tuned <- rand_forest(mtry = tune(), trees = 2000, min_n = tune()) %>%
 `tune()` returns an expression. This tags the parameters for optimization within the tidymodels framework
 
 ```{r rf-params-12, echo = TRUE}
-parameters(rf_spec_tuned)
+rf_spec_tuned %>% 
+  extract_parameter_set_dials()
 ```
 
 The notation `nparam[+]` indicates a complete numeric parameter, `nparam[?]` indicates a missing value that needs to be addressed.
@@ -274,7 +275,8 @@ min_n()
 To update/finalize or adjust the hyperparameters we can use the `update()` function to update in-place:
 
 ```{r update-params-12, echo = TRUE}
-parameters(rf_spec_tuned) %>% 
+rf_spec_tuned %>% 
+  extract_parameter_set_dials() %>% 
   update(mtry = mtry(c(1, 4)))
 ```
 
@@ -288,7 +290,7 @@ The update function may not be useful if a recipe is attached to a workflow that
 updated_params <- workflow() %>% 
   add_model(rf_spec_tuned) %>% 
   add_recipe(ames_recipe) %>% 
-  parameters() %>% 
+  extract_parameter_set_dials() %>% 
   finalize(ames_train)
 
 updated_params
@@ -297,7 +299,8 @@ updated_params
 With the `finalize()` function, mtry was completed based on the number of predictors in the training dataset
 
 ```{r pull_dials_object-12, echo = TRUE}
-updated_params %>% pull_dials_object("mtry")
+updated_params %>%
+  extract_parameter_dials("mtry")
 ```
 
 ## What is next?

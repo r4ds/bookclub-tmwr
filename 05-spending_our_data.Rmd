@@ -178,7 +178,7 @@ Example:
 ```{r heights-05}
 # data source: http://www.bristol.ac.uk/cmm/learning/mmsoftware/data-rev.html#oxboys
 child_heights <- read_delim(here::here("data/Oxboys.txt"), col_names = FALSE, delim = " ") %>%
-  set_names(c("child_id", "age_norm", "height", "measurement_id", "season"))
+  purrr::set_names(c("child_id", "age_norm", "height", "measurement_id", "season"))
 head(child_heights)
 ```
 
@@ -197,14 +197,7 @@ For other task it might be more suitable to split along measurement id and all c
 
 ## What proportion should be used?
 
-```{r tweetrmd, include = F}
-library(tweetrmd)
-```
-
-```{r split-size-tweet, echo = F}
-include_tweet("https://twitter.com/asmae_toumi/status/1356024351720689669?s=20")
-```
-
+https://twitter.com/asmae_toumi/status/1356024351720689669?s=20
 
 ![](images/provocative_8020.jpg)
 
