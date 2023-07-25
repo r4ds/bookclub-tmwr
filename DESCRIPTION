@@ -53,7 +53,8 @@ Imports:
     tufte,
     tweetrmd,
     workflowsets,
-    probably
+    probably,
+    viridis
 Remotes: 
     hadley/emo,
     gadenbuie/tweetrmd,
