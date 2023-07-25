@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>9.2 A little Recap of previous chapters | Tidy Modeling with R Book Club</title>
+  <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="9.2 A little Recap of previous chapters | Tidy Modeling with R Book Club" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
+  <meta name="github-repo" content="r4ds/bookclub-tmwr" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="9.2 A little Recap of previous chapters | Tidy Modeling with R Book Club" />
+  
+  <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
+  
+
+<meta name="author" content="The R4DS Online Learning Community" />
+
+
+<meta name="date" content="2023-07-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="performance-metrics-and-inference.html"/>
+<link rel="next" href="functions-used-to-measure-predictive-strengths-of-a-model.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="libs/d3-3.3.8/d3.min.js"></script>
+<script src="libs/dagre-0.4.0/dagre-d3.min.js"></script>
+<link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet" />
+<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/chromatography-0.1/chromatography.js"></script>
+<script src="libs/DiagrammeR-binding-1.0.10/DiagrammeR.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Tidy Modeling with R Book Club</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="book-club-meetings.html"><a href="book-club-meetings.html"><i class="fa fa-check"></i>Book club meetings</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="software-for-modeling.html"><a href="software-for-modeling.html"><i class="fa fa-check"></i><b>1</b> Software for modeling</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="the-pit-of-success.html"><a href="the-pit-of-success.html"><i class="fa fa-check"></i><b>1.1</b> The pit of success</a></li>
+<li class="chapter" data-level="1.2" data-path="types-of-models.html"><a href="types-of-models.html"><i class="fa fa-check"></i><b>1.2</b> Types of models</a></li>
+<li class="chapter" data-level="1.3" data-path="terminology.html"><a href="terminology.html"><i class="fa fa-check"></i><b>1.3</b> Terminology</a></li>
+<li class="chapter" data-level="1.4" data-path="the-data-analysis-process.html"><a href="the-data-analysis-process.html"><i class="fa fa-check"></i><b>1.4</b> The data analysis process</a></li>
+<li class="chapter" data-level="1.5" data-path="the-modeling-process.html"><a href="the-modeling-process.html"><i class="fa fa-check"></i><b>1.5</b> The modeling process</a></li>
+<li class="chapter" data-level="1.6" data-path="meeting-videos.html"><a href="meeting-videos.html"><i class="fa fa-check"></i><b>1.6</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="meeting-videos.html"><a href="meeting-videos.html#cohort-1"><i class="fa fa-check"></i><b>1.6.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="1.6.2" data-path="meeting-videos.html"><a href="meeting-videos.html#cohort-2"><i class="fa fa-check"></i><b>1.6.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="1.6.3" data-path="meeting-videos.html"><a href="meeting-videos.html#cohort-3"><i class="fa fa-check"></i><b>1.6.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="1.6.4" data-path="meeting-videos.html"><a href="meeting-videos.html#cohort-4"><i class="fa fa-check"></i><b>1.6.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="a-tidyverse-primer.html"><a href="a-tidyverse-primer.html"><i class="fa fa-check"></i><b>2</b> A tidyverse primer</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="tidyverse-design-principles.html"><a href="tidyverse-design-principles.html"><i class="fa fa-check"></i><b>2.1</b> Tidyverse design Principles</a></li>
+<li class="chapter" data-level="2.2" data-path="design-for-humans---overview.html"><a href="design-for-humans---overview.html"><i class="fa fa-check"></i><b>2.2</b> Design for Humans - Overview</a></li>
+<li class="chapter" data-level="2.3" data-path="design-for-humans.html"><a href="design-for-humans.html"><i class="fa fa-check"></i><b>2.3</b> Design for Humans and the Tidyverse</a></li>
+<li class="chapter" data-level="2.4" data-path="reusing-existing-data-structures.html"><a href="reusing-existing-data-structures.html"><i class="fa fa-check"></i><b>2.4</b> Reusing existing data structures</a></li>
+<li class="chapter" data-level="2.5" data-path="designed-for-the-pipe.html"><a href="designed-for-the-pipe.html"><i class="fa fa-check"></i><b>2.5</b> Designed for the pipe</a></li>
+<li class="chapter" data-level="2.6" data-path="designed-for-functional-programming.html"><a href="designed-for-functional-programming.html"><i class="fa fa-check"></i><b>2.6</b> Designed for Functional Programming</a></li>
+<li class="chapter" data-level="2.7" data-path="tibbles-vs.-data-frames.html"><a href="tibbles-vs.-data-frames.html"><i class="fa fa-check"></i><b>2.7</b> Tibbles vs. Data Frames</a></li>
+<li class="chapter" data-level="2.8" data-path="how-to-read-and-wrangle-data.html"><a href="how-to-read-and-wrangle-data.html"><i class="fa fa-check"></i><b>2.8</b> How to read and wrangle data</a></li>
+<li class="chapter" data-level="2.9" data-path="further-reading.html"><a href="further-reading.html"><i class="fa fa-check"></i><b>2.9</b> Further Reading</a></li>
+<li class="chapter" data-level="2.10" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html"><i class="fa fa-check"></i><b>2.10</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-1-1"><i class="fa fa-check"></i><b>2.10.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="2.10.2" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-2-1"><i class="fa fa-check"></i><b>2.10.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="2.10.3" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-3-1"><i class="fa fa-check"></i><b>2.10.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="2.10.4" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-4-1"><i class="fa fa-check"></i><b>2.10.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="a-review-of-r-modeling-fundamentals.html"><a href="a-review-of-r-modeling-fundamentals.html"><i class="fa fa-check"></i><b>3</b> A review of R modeling fundamentals</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r-formula-syntax.html"><a href="r-formula-syntax.html"><i class="fa fa-check"></i><b>3.1</b> R formula syntax</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="r-formula-syntax.html"><a href="r-formula-syntax.html#recap"><i class="fa fa-check"></i><b>3.1.1</b> Recap</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="inspecting-and-developing-models.html"><a href="inspecting-and-developing-models.html"><i class="fa fa-check"></i><b>3.2</b> Inspecting and developing models</a></li>
+<li class="chapter" data-level="3.3" data-path="more-of-base-and-stats.html"><a href="more-of-base-and-stats.html"><i class="fa fa-check"></i><b>3.3</b> More of <code>{base}</code> and <code>{stats}</code></a></li>
+<li class="chapter" data-level="3.4" data-path="why-tidy-principles-and-tidymodels.html"><a href="why-tidy-principles-and-tidymodels.html"><i class="fa fa-check"></i><b>3.4</b> Why Tidy Principles and <code>{tidymodels}</code>?</a></li>
+<li class="chapter" data-level="3.5" data-path="meeting-videos-2.html"><a href="meeting-videos-2.html"><i class="fa fa-check"></i><b>3.5</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="meeting-videos-2.html"><a href="meeting-videos-2.html#cohort-1-2"><i class="fa fa-check"></i><b>3.5.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="3.5.2" data-path="meeting-videos-2.html"><a href="meeting-videos-2.html#cohort-2-2"><i class="fa fa-check"></i><b>3.5.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="3.5.3" data-path="meeting-videos-2.html"><a href="meeting-videos-2.html#cohort-3-2"><i class="fa fa-check"></i><b>3.5.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="3.5.4" data-path="meeting-videos-2.html"><a href="meeting-videos-2.html#cohort-4-2"><i class="fa fa-check"></i><b>3.5.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Basics</b></span></li>
+<li class="chapter" data-level="4" data-path="the-ames-housing-data.html"><a href="the-ames-housing-data.html"><i class="fa fa-check"></i><b>4</b> The Ames housing data</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="pittsburgh-a-parallel-real-world-example.html"><a href="pittsburgh-a-parallel-real-world-example.html"><i class="fa fa-check"></i><b>4.1</b> Pittsburgh: a parallel real world example</a></li>
+<li class="chapter" data-level="4.2" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html"><i class="fa fa-check"></i><b>4.2</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-1-3"><i class="fa fa-check"></i><b>4.2.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="4.2.2" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-2-3"><i class="fa fa-check"></i><b>4.2.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="4.2.3" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-3-3"><i class="fa fa-check"></i><b>4.2.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="4.2.4" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-4-3"><i class="fa fa-check"></i><b>4.2.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="spending-our-data.html"><a href="spending-our-data.html"><i class="fa fa-check"></i><b>5</b> Spending our data</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="spending-our-data-1.html"><a href="spending-our-data-1.html"><i class="fa fa-check"></i><b>5.1</b> Spending our data</a></li>
+<li class="chapter" data-level="5.2" data-path="common-methods-for-splitting-data.html"><a href="common-methods-for-splitting-data.html"><i class="fa fa-check"></i><b>5.2</b> Common methods for splitting data</a></li>
+<li class="chapter" data-level="5.3" data-path="class-imbalance.html"><a href="class-imbalance.html"><i class="fa fa-check"></i><b>5.3</b> Class imbalance</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="class-imbalance.html"><a href="class-imbalance.html#stratified-sampling-simulation"><i class="fa fa-check"></i><b>5.3.1</b> Stratified sampling simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="continuous-outcome-data.html"><a href="continuous-outcome-data.html"><i class="fa fa-check"></i><b>5.4</b> Continuous outcome data</a></li>
+<li class="chapter" data-level="5.5" data-path="time-series-data.html"><a href="time-series-data.html"><i class="fa fa-check"></i><b>5.5</b> Time series data</a></li>
+<li class="chapter" data-level="5.6" data-path="multi-level-data.html"><a href="multi-level-data.html"><i class="fa fa-check"></i><b>5.6</b> Multi-level data</a></li>
+<li class="chapter" data-level="5.7" data-path="what-proportion-should-be-used.html"><a href="what-proportion-should-be-used.html"><i class="fa fa-check"></i><b>5.7</b> What proportion should be used?</a></li>
+<li class="chapter" data-level="5.8" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>5.8</b> Summary</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="summary.html"><a href="summary.html#references"><i class="fa fa-check"></i><b>5.8.1</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html"><i class="fa fa-check"></i><b>5.9</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-1-4"><i class="fa fa-check"></i><b>5.9.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="5.9.2" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-2-4"><i class="fa fa-check"></i><b>5.9.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="5.9.3" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-3-4"><i class="fa fa-check"></i><b>5.9.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="5.9.4" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-4-4"><i class="fa fa-check"></i><b>5.9.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="fitting-models-with-parsnip.html"><a href="fitting-models-with-parsnip.html"><i class="fa fa-check"></i><b>6</b> Fitting models with parsnip</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="create-a-model.html"><a href="create-a-model.html"><i class="fa fa-check"></i><b>6.1</b> Create a Model</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="create-a-model.html"><a href="create-a-model.html#different-model-interfaces"><i class="fa fa-check"></i><b>6.1.1</b> Different Model Interfaces</a></li>
+<li class="chapter" data-level="6.1.2" data-path="create-a-model.html"><a href="create-a-model.html#model-specification"><i class="fa fa-check"></i><b>6.1.2</b> Model Specification</a></li>
+<li class="chapter" data-level="6.1.3" data-path="create-a-model.html"><a href="create-a-model.html#model-fitting"><i class="fa fa-check"></i><b>6.1.3</b> Model Fitting</a></li>
+<li class="chapter" data-level="6.1.4" data-path="create-a-model.html"><a href="create-a-model.html#generalized-model-arguments"><i class="fa fa-check"></i><b>6.1.4</b> Generalized Model Arguments</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="use-model-results.html"><a href="use-model-results.html"><i class="fa fa-check"></i><b>6.2</b> Use Model results</a></li>
+<li class="chapter" data-level="6.3" data-path="make-predictions.html"><a href="make-predictions.html"><i class="fa fa-check"></i><b>6.3</b> Make Predictions</a></li>
+<li class="chapter" data-level="6.4" data-path="tidymodels-adjacent-packages.html"><a href="tidymodels-adjacent-packages.html"><i class="fa fa-check"></i><b>6.4</b> {tidymodels}-Adjacent Packages</a></li>
+<li class="chapter" data-level="6.5" data-path="summary-1.html"><a href="summary-1.html"><i class="fa fa-check"></i><b>6.5</b> Summary</a></li>
+<li class="chapter" data-level="6.6" data-path="meeting-videos-5.html"><a href="meeting-videos-5.html"><i class="fa fa-check"></i><b>6.6</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="meeting-videos-5.html"><a href="meeting-videos-5.html#cohort-1-5"><i class="fa fa-check"></i><b>6.6.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="6.6.2" data-path="meeting-videos-5.html"><a href="meeting-videos-5.html#cohort-2-5"><i class="fa fa-check"></i><b>6.6.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="6.6.3" data-path="meeting-videos-5.html"><a href="meeting-videos-5.html#cohort-3-5"><i class="fa fa-check"></i><b>6.6.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="6.6.4" data-path="meeting-videos-5.html"><a href="meeting-videos-5.html#cohort-4-5"><i class="fa fa-check"></i><b>6.6.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ai-ethics.html"><a href="ai-ethics.html"><i class="fa fa-check"></i>AI Ethics</a>
+<ul>
+<li class="chapter" data-level="6.7" data-path="meeting-videos-6.html"><a href="meeting-videos-6.html"><i class="fa fa-check"></i><b>6.7</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="meeting-videos-6.html"><a href="meeting-videos-6.html#cohort-2-6"><i class="fa fa-check"></i><b>6.7.1</b> Cohort 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="a-model-workflow.html"><a href="a-model-workflow.html"><i class="fa fa-check"></i><b>7</b> A model workflow</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="workflows.html"><a href="workflows.html"><i class="fa fa-check"></i><b>7.1</b> Workflows</a></li>
+<li class="chapter" data-level="7.2" data-path="demonstration.html"><a href="demonstration.html"><i class="fa fa-check"></i><b>7.2</b> Demonstration</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="demonstration.html"><a href="demonstration.html#some-data-exploration-and-cleaning"><i class="fa fa-check"></i><b>7.2.1</b> Some data exploration and cleaning</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="modeling-with-workflows.html"><a href="modeling-with-workflows.html"><i class="fa fa-check"></i><b>7.3</b> Modeling with workflows</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="modeling-with-workflows.html"><a href="modeling-with-workflows.html#different-model-same-recipe"><i class="fa fa-check"></i><b>7.3.1</b> Different model, same recipe</a></li>
+<li class="chapter" data-level="7.3.2" data-path="modeling-with-workflows.html"><a href="modeling-with-workflows.html#same-model-different-preprocessing"><i class="fa fa-check"></i><b>7.3.2</b> Same model, different preprocessing</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="managing-many-workflows.html"><a href="managing-many-workflows.html"><i class="fa fa-check"></i><b>7.4</b> Managing many workflows</a></li>
+<li class="chapter" data-level="7.5" data-path="notes.html"><a href="notes.html"><i class="fa fa-check"></i><b>7.5</b> Notes</a></li>
+<li class="chapter" data-level="7.6" data-path="meeting-videos-7.html"><a href="meeting-videos-7.html"><i class="fa fa-check"></i><b>7.6</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="meeting-videos-7.html"><a href="meeting-videos-7.html#cohort-1-6"><i class="fa fa-check"></i><b>7.6.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="7.6.2" data-path="meeting-videos-7.html"><a href="meeting-videos-7.html#cohort-2-7"><i class="fa fa-check"></i><b>7.6.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="7.6.3" data-path="meeting-videos-7.html"><a href="meeting-videos-7.html#cohort-3-6"><i class="fa fa-check"></i><b>7.6.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="7.6.4" data-path="meeting-videos-7.html"><a href="meeting-videos-7.html#cohort-4-6"><i class="fa fa-check"></i><b>7.6.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="feature-engineering-with-recipes.html"><a href="feature-engineering-with-recipes.html"><i class="fa fa-check"></i><b>8</b> Feature engineering with recipes</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="in-summary.html"><a href="in-summary.html"><i class="fa fa-check"></i><b>8.1</b> In summary</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="in-summary.html"><a href="in-summary.html#intoduction"><i class="fa fa-check"></i><b>8.1.1</b> Intoduction</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="a-simple-recipe-for-the-ames-housing-data.html"><a href="a-simple-recipe-for-the-ames-housing-data.html"><i class="fa fa-check"></i><b>8.2</b> A SIMPLE RECIPE FOR THE AMES HOUSING DATA</a></li>
+<li class="chapter" data-level="8.3" data-path="using-recipes.html"><a href="using-recipes.html"><i class="fa fa-check"></i><b>8.3</b> USING RECIPES</a></li>
+<li class="chapter" data-level="8.4" data-path="how-data-are-used-by-the-recipe.html"><a href="how-data-are-used-by-the-recipe.html"><i class="fa fa-check"></i><b>8.4</b> HOW DATA ARE USED BY THE RECIPE</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="how-data-are-used-by-the-recipe.html"><a href="how-data-are-used-by-the-recipe.html#examples-of-recipe-steps"><i class="fa fa-check"></i><b>8.4.1</b> EXAMPLES OF RECIPE STEPS:</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="skipping-steps-for-new-data.html"><a href="skipping-steps-for-new-data.html"><i class="fa fa-check"></i><b>8.5</b> SKIPPING STEPS FOR NEW DATA</a></li>
+<li class="chapter" data-level="8.6" data-path="tidy-a-recipe.html"><a href="tidy-a-recipe.html"><i class="fa fa-check"></i><b>8.6</b> TIDY A RECIPE</a></li>
+<li class="chapter" data-level="8.7" data-path="column-roles.html"><a href="column-roles.html"><i class="fa fa-check"></i><b>8.7</b> COLUMN ROLES</a></li>
+<li class="chapter" data-level="8.8" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>8.8</b> Resources</a></li>
+<li class="chapter" data-level="8.9" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html"><i class="fa fa-check"></i><b>8.9</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-1-7"><i class="fa fa-check"></i><b>8.9.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="8.9.2" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-2-8"><i class="fa fa-check"></i><b>8.9.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="8.9.3" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-3-7"><i class="fa fa-check"></i><b>8.9.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="8.9.4" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-4-7"><i class="fa fa-check"></i><b>8.9.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="judging-model-effectiveness.html"><a href="judging-model-effectiveness.html"><i class="fa fa-check"></i><b>9</b> Judging model effectiveness</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="performance-metrics-and-inference.html"><a href="performance-metrics-and-inference.html"><i class="fa fa-check"></i><b>9.1</b> Performance Metrics and Inference</a></li>
+<li class="chapter" data-level="9.2" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html"><i class="fa fa-check"></i><b>9.2</b> A little Recap of previous chapters</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#case-study-1"><i class="fa fa-check"></i><b>9.2.1</b> Case Study 1</a></li>
+<li class="chapter" data-level="9.2.2" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#tidymodels-modeling-as-a-step-by-step-mode"><i class="fa fa-check"></i><b>9.2.2</b> Tidymodels: modeling as a step by step mode</a></li>
+<li class="chapter" data-level="9.2.3" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#workflow-to-combine-models-and-recipes"><i class="fa fa-check"></i><b>9.2.3</b> Workflow: to combine models and recipes</a></li>
+<li class="chapter" data-level="9.2.4" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#case-study-2"><i class="fa fa-check"></i><b>9.2.4</b> Case Study 2</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="functions-used-to-measure-predictive-strengths-of-a-model.html"><a href="functions-used-to-measure-predictive-strengths-of-a-model.html"><i class="fa fa-check"></i><b>9.3</b> Functions used to measure predictive strengths of a model</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="functions-used-to-measure-predictive-strengths-of-a-model.html"><a href="functions-used-to-measure-predictive-strengths-of-a-model.html#case-study-3"><i class="fa fa-check"></i><b>9.3.1</b> Case Study 3</a></li>
+<li class="chapter" data-level="9.3.2" data-path="functions-used-to-measure-predictive-strengths-of-a-model.html"><a href="functions-used-to-measure-predictive-strengths-of-a-model.html#conclusion"><i class="fa fa-check"></i><b>9.3.2</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="measures-of-model-fit---case-study-cohort-1.html"><a href="measures-of-model-fit---case-study-cohort-1.html"><i class="fa fa-check"></i><b>9.4</b> Measures of Model Fit - Case Study (Cohort 1)</a></li>
+<li class="chapter" data-level="9.5" data-path="disclaimers.html"><a href="disclaimers.html"><i class="fa fa-check"></i><b>9.5</b> Disclaimers</a></li>
+<li class="chapter" data-level="9.6" data-path="regression-metrics.html"><a href="regression-metrics.html"><i class="fa fa-check"></i><b>9.6</b> Regression Metrics</a></li>
+<li class="chapter" data-level="9.7" data-path="binary-classification-metrics.html"><a href="binary-classification-metrics.html"><i class="fa fa-check"></i><b>9.7</b> Binary Classification Metrics</a></li>
+<li class="chapter" data-level="9.8" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>9.8</b> References</a></li>
+<li class="chapter" data-level="9.9" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html"><i class="fa fa-check"></i><b>9.9</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="9.9.1" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-1-8"><i class="fa fa-check"></i><b>9.9.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="9.9.2" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-2-9"><i class="fa fa-check"></i><b>9.9.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="9.9.3" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-3-8"><i class="fa fa-check"></i><b>9.9.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="9.9.4" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-4-8"><i class="fa fa-check"></i><b>9.9.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="review-of-chapters-4-9.html"><a href="review-of-chapters-4-9.html"><i class="fa fa-check"></i>Review of chapters 4-9</a>
+<ul>
+<li class="chapter" data-level="9.10" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html"><i class="fa fa-check"></i><b>9.10</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="9.10.1" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html#cohort-1-9"><i class="fa fa-check"></i><b>9.10.1</b> Cohort 1</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Tools for Creating Effective Models</b></span></li>
+<li class="chapter" data-level="10" data-path="resampling-for-evaluating-performance.html"><a href="resampling-for-evaluating-performance.html"><i class="fa fa-check"></i><b>10</b> Resampling for evaluating performance</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="why.html"><a href="why.html"><i class="fa fa-check"></i><b>10.1</b> Why?</a></li>
+<li class="chapter" data-level="10.2" data-path="resubstitution-approach.html"><a href="resubstitution-approach.html"><i class="fa fa-check"></i><b>10.2</b> Resubstitution approach</a></li>
+<li class="chapter" data-level="10.3" data-path="resampling-methods.html"><a href="resampling-methods.html"><i class="fa fa-check"></i><b>10.3</b> Resampling methods</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="resampling-methods.html"><a href="resampling-methods.html#cross-validation"><i class="fa fa-check"></i><b>10.3.1</b> Cross-validation</a></li>
+<li class="chapter" data-level="10.3.2" data-path="resampling-methods.html"><a href="resampling-methods.html#validation-sets"><i class="fa fa-check"></i><b>10.3.2</b> Validation sets</a></li>
+<li class="chapter" data-level="10.3.3" data-path="resampling-methods.html"><a href="resampling-methods.html#boostrapping"><i class="fa fa-check"></i><b>10.3.3</b> Boostrapping</a></li>
+<li class="chapter" data-level="10.3.4" data-path="resampling-methods.html"><a href="resampling-methods.html#rolling-forecasting-origin-resampling"><i class="fa fa-check"></i><b>10.3.4</b> Rolling forecasting origin resampling</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="estimating-performance.html"><a href="estimating-performance.html"><i class="fa fa-check"></i><b>10.4</b> Estimating performance</a></li>
+<li class="chapter" data-level="10.5" data-path="parallel-processing.html"><a href="parallel-processing.html"><i class="fa fa-check"></i><b>10.5</b> Parallel processing</a></li>
+<li class="chapter" data-level="10.6" data-path="saving-the-resampled-objects.html"><a href="saving-the-resampled-objects.html"><i class="fa fa-check"></i><b>10.6</b> Saving the resampled objects</a></li>
+<li class="chapter" data-level="10.7" data-path="meeting-videos-11.html"><a href="meeting-videos-11.html"><i class="fa fa-check"></i><b>10.7</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="10.7.1" data-path="meeting-videos-11.html"><a href="meeting-videos-11.html#cohort-1-10"><i class="fa fa-check"></i><b>10.7.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="10.7.2" data-path="meeting-videos-11.html"><a href="meeting-videos-11.html#cohort-2-10"><i class="fa fa-check"></i><b>10.7.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="10.7.3" data-path="meeting-videos-11.html"><a href="meeting-videos-11.html#cohort-3-9"><i class="fa fa-check"></i><b>10.7.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="10.7.4" data-path="meeting-videos-11.html"><a href="meeting-videos-11.html#cohort-4-9"><i class="fa fa-check"></i><b>10.7.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="comparing-models-with-resampling.html"><a href="comparing-models-with-resampling.html"><i class="fa fa-check"></i><b>11</b> Comparing models with resampling</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="calculate-performance-statistics.html"><a href="calculate-performance-statistics.html"><i class="fa fa-check"></i><b>11.1</b> Calculate performance statistics</a></li>
+<li class="chapter" data-level="11.2" data-path="calculate-performance-statistics-workflowsets.html"><a href="calculate-performance-statistics-workflowsets.html"><i class="fa fa-check"></i><b>11.2</b> Calculate performance statistics: {workflowsets}</a></li>
+<li class="chapter" data-level="11.3" data-path="within-resample-correlation.html"><a href="within-resample-correlation.html"><i class="fa fa-check"></i><b>11.3</b> Within-resample correlation</a></li>
+<li class="chapter" data-level="11.4" data-path="practical-effect-size.html"><a href="practical-effect-size.html"><i class="fa fa-check"></i><b>11.4</b> Practical effect size</a></li>
+<li class="chapter" data-level="11.5" data-path="simple-comparison.html"><a href="simple-comparison.html"><i class="fa fa-check"></i><b>11.5</b> Simple Comparison</a></li>
+<li class="chapter" data-level="11.6" data-path="bayesian-methods.html"><a href="bayesian-methods.html"><i class="fa fa-check"></i><b>11.6</b> Bayesian methods</a></li>
+<li class="chapter" data-level="11.7" data-path="meeting-videos-12.html"><a href="meeting-videos-12.html"><i class="fa fa-check"></i><b>11.7</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="11.7.1" data-path="meeting-videos-12.html"><a href="meeting-videos-12.html#cohort-1-11"><i class="fa fa-check"></i><b>11.7.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="11.7.2" data-path="meeting-videos-12.html"><a href="meeting-videos-12.html#cohort-2-11"><i class="fa fa-check"></i><b>11.7.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="11.7.3" data-path="meeting-videos-12.html"><a href="meeting-videos-12.html#cohort-3-10"><i class="fa fa-check"></i><b>11.7.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="11.7.4" data-path="meeting-videos-12.html"><a href="meeting-videos-12.html#cohort-4-10"><i class="fa fa-check"></i><b>11.7.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="model-tuning-and-the-dangers-of-overfitting.html"><a href="model-tuning-and-the-dangers-of-overfitting.html"><i class="fa fa-check"></i><b>12</b> Model tuning and the dangers of overfitting</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="what-is-a-tuning-parameter.html"><a href="what-is-a-tuning-parameter.html"><i class="fa fa-check"></i><b>12.1</b> What is a Tuning Parameter?</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="what-is-a-tuning-parameter.html"><a href="what-is-a-tuning-parameter.html#examples"><i class="fa fa-check"></i><b>12.1.1</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="when-not-to-tune.html"><a href="when-not-to-tune.html"><i class="fa fa-check"></i><b>12.2</b> When not to tune</a></li>
+<li class="chapter" data-level="12.3" data-path="decisions-decisions.html"><a href="decisions-decisions.html"><i class="fa fa-check"></i><b>12.3</b> Decisions, Decisions…</a></li>
+<li class="chapter" data-level="12.4" data-path="what-metric-should-we-use.html"><a href="what-metric-should-we-use.html"><i class="fa fa-check"></i><b>12.4</b> What Metric Should We Use?</a></li>
+<li class="chapter" data-level="12.5" data-path="can-we-make-our-model-too-good.html"><a href="can-we-make-our-model-too-good.html"><i class="fa fa-check"></i><b>12.5</b> Can we make our model <em>too</em> good?</a></li>
+<li class="chapter" data-level="12.6" data-path="tuning-parameter-optimization-strategies.html"><a href="tuning-parameter-optimization-strategies.html"><i class="fa fa-check"></i><b>12.6</b> Tuning Parameter Optimization Strategies</a></li>
+<li class="chapter" data-level="12.7" data-path="tuning-parameters-in-tidymodels-dials.html"><a href="tuning-parameters-in-tidymodels-dials.html"><i class="fa fa-check"></i><b>12.7</b> Tuning Parameters in tidymodels <code>{dials}</code></a></li>
+<li class="chapter" data-level="12.8" data-path="lets-try-an-example.html"><a href="lets-try-an-example.html"><i class="fa fa-check"></i><b>12.8</b> Let’s try an example:</a></li>
+<li class="chapter" data-level="12.9" data-path="build-our-random-forest-model.html"><a href="build-our-random-forest-model.html"><i class="fa fa-check"></i><b>12.9</b> Build our random forest model:</a></li>
+<li class="chapter" data-level="12.10" data-path="add-tuning-parameters.html"><a href="add-tuning-parameters.html"><i class="fa fa-check"></i><b>12.10</b> Add tuning parameters:</a></li>
+<li class="chapter" data-level="12.11" data-path="updating-tuning-parameters.html"><a href="updating-tuning-parameters.html"><i class="fa fa-check"></i><b>12.11</b> Updating tuning parameters:</a></li>
+<li class="chapter" data-level="12.12" data-path="finalizing-tuning-parameters.html"><a href="finalizing-tuning-parameters.html"><i class="fa fa-check"></i><b>12.12</b> Finalizing tuning parameters:</a></li>
+<li class="chapter" data-level="12.13" data-path="what-is-next.html"><a href="what-is-next.html"><i class="fa fa-check"></i><b>12.13</b> What is next?</a></li>
+<li class="chapter" data-level="12.14" data-path="meeting-videos-13.html"><a href="meeting-videos-13.html"><i class="fa fa-check"></i><b>12.14</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="12.14.1" data-path="meeting-videos-13.html"><a href="meeting-videos-13.html#cohort-1-12"><i class="fa fa-check"></i><b>12.14.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="12.14.2" data-path="meeting-videos-13.html"><a href="meeting-videos-13.html#cohort-2-12"><i class="fa fa-check"></i><b>12.14.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="12.14.3" data-path="meeting-videos-13.html"><a href="meeting-videos-13.html#cohort-3-11"><i class="fa fa-check"></i><b>12.14.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="12.14.4" data-path="meeting-videos-13.html"><a href="meeting-videos-13.html#cohort-4-11"><i class="fa fa-check"></i><b>12.14.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="grid-search.html"><a href="grid-search.html"><i class="fa fa-check"></i><b>13</b> Grid search</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="regular-and-non-regular-grids.html"><a href="regular-and-non-regular-grids.html"><i class="fa fa-check"></i><b>13.1</b> Regular and non-regular grids</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="regular-and-non-regular-grids.html"><a href="regular-and-non-regular-grids.html#regular-grids"><i class="fa fa-check"></i><b>13.1.1</b> Regular Grids</a></li>
+<li class="chapter" data-level="13.1.2" data-path="regular-and-non-regular-grids.html"><a href="regular-and-non-regular-grids.html#irregular-grids"><i class="fa fa-check"></i><b>13.1.2</b> Irregular Grids</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="evaluating-the-grid.html"><a href="evaluating-the-grid.html"><i class="fa fa-check"></i><b>13.2</b> Evaluating the grid</a></li>
+<li class="chapter" data-level="13.3" data-path="finalizing-the-model.html"><a href="finalizing-the-model.html"><i class="fa fa-check"></i><b>13.3</b> Finalizing the model</a></li>
+<li class="chapter" data-level="13.4" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html"><i class="fa fa-check"></i><b>13.4</b> Tools for efficient grid search</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html#submodel-optimization"><i class="fa fa-check"></i><b>13.4.1</b> Submodel optimization</a></li>
+<li class="chapter" data-level="13.4.2" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html#parallel-processing-1"><i class="fa fa-check"></i><b>13.4.2</b> Parallel processing</a></li>
+<li class="chapter" data-level="13.4.3" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html#benchmarking-parallel-with-boosted-trees"><i class="fa fa-check"></i><b>13.4.3</b> Benchmarking Parallel with boosted trees</a></li>
+<li class="chapter" data-level="13.4.4" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html#racing-methods"><i class="fa fa-check"></i><b>13.4.4</b> Racing Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="chapter-summary.html"><a href="chapter-summary.html"><i class="fa fa-check"></i><b>13.5</b> Chapter Summary</a></li>
+<li class="chapter" data-level="13.6" data-path="meeting-videos-14.html"><a href="meeting-videos-14.html"><i class="fa fa-check"></i><b>13.6</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="13.6.1" data-path="meeting-videos-14.html"><a href="meeting-videos-14.html#cohort-1-13"><i class="fa fa-check"></i><b>13.6.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="13.6.2" data-path="meeting-videos-14.html"><a href="meeting-videos-14.html#cohort-2-13"><i class="fa fa-check"></i><b>13.6.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="13.6.3" data-path="meeting-videos-14.html"><a href="meeting-videos-14.html#cohort-3-12"><i class="fa fa-check"></i><b>13.6.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="13.6.4" data-path="meeting-videos-14.html"><a href="meeting-videos-14.html#cohort-4-12"><i class="fa fa-check"></i><b>13.6.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="iterative-search.html"><a href="iterative-search.html"><i class="fa fa-check"></i><b>14</b> Iterative search</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="svm-model-as-motivating-example.html"><a href="svm-model-as-motivating-example.html"><i class="fa fa-check"></i><b>14.1</b> SVM model as motivating example</a></li>
+<li class="chapter" data-level="14.2" data-path="bayesian-optimization.html"><a href="bayesian-optimization.html"><i class="fa fa-check"></i><b>14.2</b> Bayesian Optimization</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="bayesian-optimization.html"><a href="bayesian-optimization.html#gaussian-process-model-at-a-high-level"><i class="fa fa-check"></i><b>14.2.1</b> Gaussian process model, at a high level</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="simulated-annealing.html"><a href="simulated-annealing.html"><i class="fa fa-check"></i><b>14.3</b> Simulated annealing</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="simulated-annealing.html"><a href="simulated-annealing.html#how-it-works"><i class="fa fa-check"></i><b>14.3.1</b> How it works</a></li>
+<li class="chapter" data-level="14.3.2" data-path="simulated-annealing.html"><a href="simulated-annealing.html#the-tune_sim_anneal-function"><i class="fa fa-check"></i><b>14.3.2</b> The tune_sim_anneal() function</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="references-2.html"><a href="references-2.html"><i class="fa fa-check"></i><b>14.4</b> References</a></li>
+<li class="chapter" data-level="14.5" data-path="meeting-videos-15.html"><a href="meeting-videos-15.html"><i class="fa fa-check"></i><b>14.5</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="14.5.1" data-path="meeting-videos-15.html"><a href="meeting-videos-15.html#cohort-1-14"><i class="fa fa-check"></i><b>14.5.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="14.5.2" data-path="meeting-videos-15.html"><a href="meeting-videos-15.html#cohort-2-14"><i class="fa fa-check"></i><b>14.5.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="14.5.3" data-path="meeting-videos-15.html"><a href="meeting-videos-15.html#cohort-3-13"><i class="fa fa-check"></i><b>14.5.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="14.5.4" data-path="meeting-videos-15.html"><a href="meeting-videos-15.html#cohort-4-13"><i class="fa fa-check"></i><b>14.5.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="screening-many-models.html"><a href="screening-many-models.html"><i class="fa fa-check"></i><b>15</b> Screening Many Models</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="obligatory-setup.html"><a href="obligatory-setup.html"><i class="fa fa-check"></i><b>15.1</b> Obligatory Setup</a></li>
+<li class="chapter" data-level="15.2" data-path="creating-workflow_sets.html"><a href="creating-workflow_sets.html"><i class="fa fa-check"></i><b>15.2</b> Creating <code>workflow_set</code>s</a></li>
+<li class="chapter" data-level="15.3" data-path="ranking-models.html"><a href="ranking-models.html"><i class="fa fa-check"></i><b>15.3</b> Ranking models</a></li>
+<li class="chapter" data-level="15.4" data-path="finalizing-the-model-1.html"><a href="finalizing-the-model-1.html"><i class="fa fa-check"></i><b>15.4</b> Finalizing the model</a></li>
+<li class="chapter" data-level="15.5" data-path="meeting-videos-16.html"><a href="meeting-videos-16.html"><i class="fa fa-check"></i><b>15.5</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="15.5.1" data-path="meeting-videos-16.html"><a href="meeting-videos-16.html#cohort-1-15"><i class="fa fa-check"></i><b>15.5.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="15.5.2" data-path="meeting-videos-16.html"><a href="meeting-videos-16.html#cohort-2-15"><i class="fa fa-check"></i><b>15.5.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="15.5.3" data-path="meeting-videos-16.html"><a href="meeting-videos-16.html#cohort-3-14"><i class="fa fa-check"></i><b>15.5.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="15.5.4" data-path="meeting-videos-16.html"><a href="meeting-videos-16.html#cohort-4-14"><i class="fa fa-check"></i><b>15.5.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="review-of-chapters-10-15.html"><a href="review-of-chapters-10-15.html"><i class="fa fa-check"></i>Review of chapters 10-15</a>
+<ul>
+<li class="chapter" data-level="15.6" data-path="meeting-videos-17.html"><a href="meeting-videos-17.html"><i class="fa fa-check"></i><b>15.6</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="15.6.1" data-path="meeting-videos-17.html"><a href="meeting-videos-17.html#cohort-1-16"><i class="fa fa-check"></i><b>15.6.1</b> Cohort 1</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>16</b> Dimensionality reduction</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="recipes-without-workflows.html"><a href="recipes-without-workflows.html"><i class="fa fa-check"></i><b>16.1</b> {recipes} without {workflows}</a></li>
+<li class="chapter" data-level="16.2" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i><b>16.2</b> Principal Component Analysis (PCA)</a></li>
+<li class="chapter" data-level="16.3" data-path="partial-least-squares-pls.html"><a href="partial-least-squares-pls.html"><i class="fa fa-check"></i><b>16.3</b> Partial Least Squares (PLS)</a></li>
+<li class="chapter" data-level="16.4" data-path="independent-component-anysis-ica.html"><a href="independent-component-anysis-ica.html"><i class="fa fa-check"></i><b>16.4</b> Independent Component Anysis (ICA)</a></li>
+<li class="chapter" data-level="16.5" data-path="uniform-manifold-approximation-and-projection-umap.html"><a href="uniform-manifold-approximation-and-projection-umap.html"><i class="fa fa-check"></i><b>16.5</b> Uniform Manifold Approximation and Projection (UMAP)</a></li>
+<li class="chapter" data-level="16.6" data-path="modeling.html"><a href="modeling.html"><i class="fa fa-check"></i><b>16.6</b> Modeling</a></li>
+<li class="chapter" data-level="16.7" data-path="meeting-videos-18.html"><a href="meeting-videos-18.html"><i class="fa fa-check"></i><b>16.7</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="16.7.1" data-path="meeting-videos-18.html"><a href="meeting-videos-18.html#cohort-1-17"><i class="fa fa-check"></i><b>16.7.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="16.7.2" data-path="meeting-videos-18.html"><a href="meeting-videos-18.html#cohort-3-15"><i class="fa fa-check"></i><b>16.7.2</b> Cohort 3</a></li>
+<li class="chapter" data-level="16.7.3" data-path="meeting-videos-18.html"><a href="meeting-videos-18.html#cohort-4-15"><i class="fa fa-check"></i><b>16.7.3</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Other Topics</b></span></li>
+<li class="chapter" data-level="17" data-path="encoding-categorical-data.html"><a href="encoding-categorical-data.html"><i class="fa fa-check"></i><b>17</b> Encoding categorical data</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="effect-of-encoding.html"><a href="effect-of-encoding.html"><i class="fa fa-check"></i><b>17.1</b> Effect of Encoding</a></li>
+<li class="chapter" data-level="17.2" data-path="encoding-methods.html"><a href="encoding-methods.html"><i class="fa fa-check"></i><b>17.2</b> Encoding methods:</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="encoding-methods.html"><a href="encoding-methods.html#cohort-4-16"><i class="fa fa-check"></i><b>17.2.1</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="explaining-models-and-predictions.html"><a href="explaining-models-and-predictions.html"><i class="fa fa-check"></i><b>18</b> Explaining models and predictions</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="chapter-18-setup.html"><a href="chapter-18-setup.html"><i class="fa fa-check"></i><b>18.1</b> Chapter 18 Setup</a></li>
+<li class="chapter" data-level="18.2" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>18.2</b> Overview</a></li>
+<li class="chapter" data-level="18.3" data-path="local-explanations.html"><a href="local-explanations.html"><i class="fa fa-check"></i><b>18.3</b> Local Explanations</a></li>
+<li class="chapter" data-level="18.4" data-path="local-explanations-for-interactions.html"><a href="local-explanations-for-interactions.html"><i class="fa fa-check"></i><b>18.4</b> Local Explanations for Interactions</a></li>
+<li class="chapter" data-level="18.5" data-path="global-explanations.html"><a href="global-explanations.html"><i class="fa fa-check"></i><b>18.5</b> Global Explanations</a></li>
+<li class="chapter" data-level="18.6" data-path="global-explanations-from-local-explanations.html"><a href="global-explanations-from-local-explanations.html"><i class="fa fa-check"></i><b>18.6</b> Global Explanations from Local Explanations</a></li>
+<li class="chapter" data-level="18.7" data-path="references-3.html"><a href="references-3.html"><i class="fa fa-check"></i><b>18.7</b> References</a></li>
+<li class="chapter" data-level="18.8" data-path="meeting-videos-19.html"><a href="meeting-videos-19.html"><i class="fa fa-check"></i><b>18.8</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="18.8.1" data-path="meeting-videos-19.html"><a href="meeting-videos-19.html#cohort-1-18"><i class="fa fa-check"></i><b>18.8.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="18.8.2" data-path="meeting-videos-19.html"><a href="meeting-videos-19.html#cohort-3-16"><i class="fa fa-check"></i><b>18.8.2</b> Cohort 3</a></li>
+<li class="chapter" data-level="18.8.3" data-path="meeting-videos-19.html"><a href="meeting-videos-19.html#cohort-4-17"><i class="fa fa-check"></i><b>18.8.3</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="when-should-you-trust-predictions.html"><a href="when-should-you-trust-predictions.html"><i class="fa fa-check"></i><b>19</b> When should you trust predictions?</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="equivocal-results.html"><a href="equivocal-results.html"><i class="fa fa-check"></i><b>19.1</b> Equivocal Results</a></li>
+<li class="chapter" data-level="19.2" data-path="model-applicability.html"><a href="model-applicability.html"><i class="fa fa-check"></i><b>19.2</b> Model Applicability</a></li>
+<li class="chapter" data-level="19.3" data-path="meeting-videos-20.html"><a href="meeting-videos-20.html"><i class="fa fa-check"></i><b>19.3</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="19.3.1" data-path="meeting-videos-20.html"><a href="meeting-videos-20.html#cohort-1-19"><i class="fa fa-check"></i><b>19.3.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="19.3.2" data-path="meeting-videos-20.html"><a href="meeting-videos-20.html#cohort-3-17"><i class="fa fa-check"></i><b>19.3.2</b> Cohort 3</a></li>
+<li class="chapter" data-level="19.3.3" data-path="meeting-videos-20.html"><a href="meeting-videos-20.html#cohort-4-18"><i class="fa fa-check"></i><b>19.3.3</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="ensembles-of-models.html"><a href="ensembles-of-models.html"><i class="fa fa-check"></i><b>20</b> Ensembles of models</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="ensembling.html"><a href="ensembling.html"><i class="fa fa-check"></i><b>20.1</b> Ensembling</a></li>
+<li class="chapter" data-level="20.2" data-path="ensembling-with-stacks.html"><a href="ensembling-with-stacks.html"><i class="fa fa-check"></i><b>20.2</b> Ensembling with <code>stacks</code>!</a></li>
+<li class="chapter" data-level="20.3" data-path="define-some-models.html"><a href="define-some-models.html"><i class="fa fa-check"></i><b>20.3</b> Define some models</a></li>
+<li class="chapter" data-level="20.4" data-path="initialize-and-add-members-to-stack..html"><a href="initialize-and-add-members-to-stack..html"><i class="fa fa-check"></i><b>20.4</b> Initialize and add members to stack.</a></li>
+<li class="chapter" data-level="20.5" data-path="blend-fit-predict.html"><a href="blend-fit-predict.html"><i class="fa fa-check"></i><b>20.5</b> Blend, fit, predict</a></li>
+<li class="chapter" data-level="20.6" data-path="meeting-videos-21.html"><a href="meeting-videos-21.html"><i class="fa fa-check"></i><b>20.6</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="20.6.1" data-path="meeting-videos-21.html"><a href="meeting-videos-21.html#cohort-1-20"><i class="fa fa-check"></i><b>20.6.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="20.6.2" data-path="meeting-videos-21.html"><a href="meeting-videos-21.html#cohort-3-18"><i class="fa fa-check"></i><b>20.6.2</b> Cohort 3</a></li>
+<li class="chapter" data-level="20.6.3" data-path="meeting-videos-21.html"><a href="meeting-videos-21.html#cohort-4-19"><i class="fa fa-check"></i><b>20.6.3</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="inferential-analysis.html"><a href="inferential-analysis.html"><i class="fa fa-check"></i><b>21</b> Inferential analysis</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="dataset-used-for-demonstrating-inference.html"><a href="dataset-used-for-demonstrating-inference.html"><i class="fa fa-check"></i><b>21.1</b> Dataset used for demonstrating inference</a></li>
+<li class="chapter" data-level="21.2" data-path="tidy-method-from-the-broom-package.html"><a href="tidy-method-from-the-broom-package.html"><i class="fa fa-check"></i><b>21.2</b> Tidy method from the {broom} package</a></li>
+<li class="chapter" data-level="21.3" data-path="infer-for-simple-high-level-hypothesis-testing.html"><a href="infer-for-simple-high-level-hypothesis-testing.html"><i class="fa fa-check"></i><b>21.3</b> {infer} for simple, high level hypothesis testing</a>
+<ul>
+<li class="chapter" data-level="21.3.1" data-path="infer-for-simple-high-level-hypothesis-testing.html"><a href="infer-for-simple-high-level-hypothesis-testing.html#p-value-for-idependence-based-on-simulation-with-permutation"><i class="fa fa-check"></i><b>21.3.1</b> p value for idependence based on simulation with permutation</a></li>
+<li class="chapter" data-level="21.3.2" data-path="infer-for-simple-high-level-hypothesis-testing.html"><a href="infer-for-simple-high-level-hypothesis-testing.html#confidence-interval-for-correlation-based-on-simulation-with-bootstrapping"><i class="fa fa-check"></i><b>21.3.2</b> Confidence interval for correlation based on simulation with bootstrapping</a></li>
+<li class="chapter" data-level="21.3.3" data-path="infer-for-simple-high-level-hypothesis-testing.html"><a href="infer-for-simple-high-level-hypothesis-testing.html#use-theory-instead-of-simulation"><i class="fa fa-check"></i><b>21.3.3</b> Use theory instead of simulation</a></li>
+<li class="chapter" data-level="21.3.4" data-path="infer-for-simple-high-level-hypothesis-testing.html"><a href="infer-for-simple-high-level-hypothesis-testing.html#linear-models-with-multiple-explanatory-variables"><i class="fa fa-check"></i><b>21.3.4</b> Linear models with multiple explanatory variables</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="reg_intervals-from-rsample.html"><a href="reg_intervals-from-rsample.html"><i class="fa fa-check"></i><b>21.4</b> reg_intervals from {rsample}</a></li>
+<li class="chapter" data-level="21.5" data-path="inference-with-lower-level-helpers.html"><a href="inference-with-lower-level-helpers.html"><i class="fa fa-check"></i><b>21.5</b> Inference with lower level helpers</a></li>
+<li class="chapter" data-level="21.6" data-path="meeting-videos-22.html"><a href="meeting-videos-22.html"><i class="fa fa-check"></i><b>21.6</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="21.6.1" data-path="meeting-videos-22.html"><a href="meeting-videos-22.html#cohort-3-19"><i class="fa fa-check"></i><b>21.6.1</b> Cohort 3</a></li>
+<li class="chapter" data-level="21.6.2" data-path="meeting-videos-22.html"><a href="meeting-videos-22.html#cohort-4-20"><i class="fa fa-check"></i><b>21.6.2</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Tidy Modeling with R Book Club</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="a-little-recap-of-previous-chapters" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> A little Recap of previous chapters<a href="a-little-recap-of-previous-chapters.html#a-little-recap-of-previous-chapters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A useful model would include:</p>
+<ul>
+<li>parameter estimation</li>
+<li>model selection and tuning</li>
+<li>performance assessment</li>
+</ul>
+<div id="case-study-1" class="section level3 hasAnchor" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> Case Study 1<a href="a-little-recap-of-previous-chapters.html#case-study-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The construction of a model implies:</p>
+<ul>
+<li><code>check for correlation</code>; to see if predictors influence each other, and in what way. For example, the predictors correlation can influence the estimation of the outcome, this can be identified when the estimated values change sign of have very different values, if a modification in association takes place.</li>
+</ul>
+<p>Here we use the <code>crickets</code> data from <code>modeldata</code> package:</p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="a-little-recap-of-previous-chapters.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(crickets, <span class="at">package =</span> <span class="st">&quot;modeldata&quot;</span>)</span>
+<span id="cb210-2"><a href="a-little-recap-of-previous-chapters.html#cb210-2" aria-hidden="true" tabindex="-1"></a>crickets <span class="sc">%&gt;%</span> head</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+##   species           temp  rate
+##   &lt;fct&gt;            &lt;dbl&gt; &lt;dbl&gt;
+## 1 O. exclamationis  20.8  67.9
+## 2 O. exclamationis  20.8  65.1
+## 3 O. exclamationis  24    77.3
+## 4 O. exclamationis  24    78.7
+## 5 O. exclamationis  24    79.4
+## 6 O. exclamationis  24    80.4</code></pre>
+<p>In this case we check for the correlation between the response and the predictor:</p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="a-little-recap-of-previous-chapters.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(crickets<span class="sc">$</span>rate,crickets<span class="sc">$</span>temp)</span></code></pre></div>
+<pre><code>## [1] 0.9591189</code></pre>
+<p>While if we look at the correlation between predictors, which in this case one of the predictor is categorical, we need to make a transformation of the categorical predictor in order to be able to calculate the correlation.</p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="a-little-recap-of-previous-chapters.html#cb214-1" aria-hidden="true" tabindex="-1"></a>crickets<span class="sc">%&gt;%</span><span class="fu">count</span>(species)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 2
+##   species              n
+##   &lt;fct&gt;            &lt;int&gt;
+## 1 O. exclamationis    14
+## 2 O. niveus           17</code></pre>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="a-little-recap-of-previous-chapters.html#cb216-1" aria-hidden="true" tabindex="-1"></a>crickets1 <span class="ot">&lt;-</span> crickets<span class="sc">%&gt;%</span></span>
+<span id="cb216-2"><a href="a-little-recap-of-previous-chapters.html#cb216-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">species=</span><span class="fu">ifelse</span>(species<span class="sc">==</span><span class="st">&quot;O. exclamationis&quot;</span>,<span class="dv">1</span>,<span class="dv">0</span>)) </span>
+<span id="cb216-3"><a href="a-little-recap-of-previous-chapters.html#cb216-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb216-4"><a href="a-little-recap-of-previous-chapters.html#cb216-4" aria-hidden="true" tabindex="-1"></a>crickets1 <span class="sc">%&gt;%</span></span>
+<span id="cb216-5"><a href="a-little-recap-of-previous-chapters.html#cb216-5" aria-hidden="true" tabindex="-1"></a>  head</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+##   species  temp  rate
+##     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1       1  20.8  67.9
+## 2       1  20.8  65.1
+## 3       1  24    77.3
+## 4       1  24    78.7
+## 5       1  24    79.4
+## 6       1  24    80.4</code></pre>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="a-little-recap-of-previous-chapters.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(crickets1<span class="sc">$</span>species,crickets1<span class="sc">$</span>temp)</span></code></pre></div>
+<pre><code>## [1] 0.4807908</code></pre>
+<ul>
+<li><code>construction of the model</code>; <em>sample</em> data are used to make a simple linear model with the function <code>lm()</code>, and a comparison of the two models is done with <code>anova()</code> function.</li>
+</ul>
+<p>A little EDA, exploratory data analysis is done to identfy the relationship between response and predictors.</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="a-little-recap-of-previous-chapters.html#cb220-1" aria-hidden="true" tabindex="-1"></a>crickets <span class="sc">%&gt;%</span></span>
+<span id="cb220-2"><a href="a-little-recap-of-previous-chapters.html#cb220-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(temp,rate,<span class="at">color=</span>species))<span class="sc">+</span></span>
+<span id="cb220-3"><a href="a-little-recap-of-previous-chapters.html#cb220-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb220-4"><a href="a-little-recap-of-previous-chapters.html#cb220-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se=</span>F)<span class="sc">+</span></span>
+<span id="cb220-5"><a href="a-little-recap-of-previous-chapters.html#cb220-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>()</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="a-little-recap-of-previous-chapters.html#cb221-1" aria-hidden="true" tabindex="-1"></a>interaction_fit <span class="ot">&lt;-</span>  <span class="fu">lm</span>(rate <span class="sc">~</span> (temp <span class="sc">+</span> species)<span class="sc">^</span><span class="dv">2</span>, <span class="at">data =</span> crickets) </span>
+<span id="cb221-2"><a href="a-little-recap-of-previous-chapters.html#cb221-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-3"><a href="a-little-recap-of-previous-chapters.html#cb221-3" aria-hidden="true" tabindex="-1"></a>main_effect_fit <span class="ot">&lt;-</span>  <span class="fu">lm</span>(rate <span class="sc">~</span> temp <span class="sc">+</span> species, <span class="at">data =</span> crickets) </span>
+<span id="cb221-4"><a href="a-little-recap-of-previous-chapters.html#cb221-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare the two: standard two-way analysis of variance </span></span>
+<span id="cb221-5"><a href="a-little-recap-of-previous-chapters.html#cb221-5" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(main_effect_fit, interaction_fit)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: rate ~ temp + species
+## Model 2: rate ~ (temp + species)^2
+##   Res.Df    RSS Df Sum of Sq     F Pr(&gt;F)
+## 1     28 89.350                          
+## 2     27 85.074  1    4.2758 1.357 0.2542</code></pre>
+<ul>
+<li><code>estimation of the model</code>; obtained using the <code>predict()</code> function; it conducts specific calculations after the fitted model is created, in this case we test it against <em>new data</em>.</li>
+</ul>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="a-little-recap-of-previous-chapters.html#cb223-1" aria-hidden="true" tabindex="-1"></a>new_values <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">species =</span> <span class="st">&quot;O. exclamationis&quot;</span>, </span>
+<span id="cb223-2"><a href="a-little-recap-of-previous-chapters.html#cb223-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">temp =</span> <span class="dv">15</span><span class="sc">:</span><span class="dv">20</span>)</span>
+<span id="cb223-3"><a href="a-little-recap-of-previous-chapters.html#cb223-3" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(main_effect_fit, new_values)</span>
+<span id="cb223-4"><a href="a-little-recap-of-previous-chapters.html#cb223-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb223-5"><a href="a-little-recap-of-previous-chapters.html#cb223-5" aria-hidden="true" tabindex="-1"></a>prediction_values <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(new_values,<span class="at">rate=</span>pred)</span>
+<span id="cb223-6"><a href="a-little-recap-of-previous-chapters.html#cb223-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb223-7"><a href="a-little-recap-of-previous-chapters.html#cb223-7" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(crickets,prediction_values)<span class="sc">%&gt;%</span></span>
+<span id="cb223-8"><a href="a-little-recap-of-previous-chapters.html#cb223-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(temp,rate,<span class="at">color=</span>species))<span class="sc">+</span></span>
+<span id="cb223-9"><a href="a-little-recap-of-previous-chapters.html#cb223-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb223-10"><a href="a-little-recap-of-previous-chapters.html#cb223-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se=</span>F)<span class="sc">+</span></span>
+<span id="cb223-11"><a href="a-little-recap-of-previous-chapters.html#cb223-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>()</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="tidymodels-modeling-as-a-step-by-step-mode" class="section level3 hasAnchor" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> Tidymodels: modeling as a step by step mode<a href="a-little-recap-of-previous-chapters.html#tidymodels-modeling-as-a-step-by-step-mode" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The strategy of <strong>Tidymodels</strong> is to decide for a model to use on a step-by-step mode, this is the main difference than just using <code>lm()</code> or <code>glm()</code> functions and then <code>predict()</code>.</p>
+<blockquote>
+<p>When valuing a model, the fundamental is to have a clear view of the data and the type of manipulation to obtain the answer to our questions</p>
+</blockquote>
+<p>The first step is to <em>evaluate the structure of the data</em>, it needs to be balanced for deciding a smart strategy for allocating data.</p>
+<p>Smart Strategy for allocating data:</p>
+<ul>
+<li>allocate specific subsets of data for different tasks</li>
+<li>allocate the largest possible amount to the model parameter estimation only</li>
+</ul>
+<p>The second is to <em>split the data into two main parts</em> as train and test sets, sometimes a third set is valued such as the validation set.</p>
+<p>Splitting data:</p>
+<ul>
+<li><p><strong>training set</strong> (the substrate to develop the model and estimate the parameters)</p></li>
+<li><p><strong>validation set</strong> (a small set of data to measure performance as the network was trained)</p></li>
+<li><p><strong>test set</strong> (the final (unbiased) arbiter to determine the efficacy of the model)</p></li>
+</ul>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="a-little-recap-of-previous-chapters.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ames, <span class="at">package =</span> <span class="st">&quot;modeldata&quot;</span>)</span>
+<span id="cb224-2"><a href="a-little-recap-of-previous-chapters.html#cb224-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb224-3"><a href="a-little-recap-of-previous-chapters.html#cb224-3" aria-hidden="true" tabindex="-1"></a>ames_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(ames, <span class="at">prop =</span> <span class="fl">0.80</span>)</span>
+<span id="cb224-4"><a href="a-little-recap-of-previous-chapters.html#cb224-4" aria-hidden="true" tabindex="-1"></a>ames_train <span class="ot">&lt;-</span> <span class="fu">training</span>(ames_split)</span>
+<span id="cb224-5"><a href="a-little-recap-of-previous-chapters.html#cb224-5" aria-hidden="true" tabindex="-1"></a>ames_test  <span class="ot">&lt;-</span> <span class="fu">testing</span>(ames_split)</span></code></pre></div>
+<p>The step-by-step model decomposes the modeling procedure into a certain number of customized steps.</p>
+<p>Preprocessing model functions:</p>
+<ul>
+<li>recipe()</li>
+<li>prep()</li>
+<li>bake()</li>
+</ul>
+<p>Recipe objects for feature engineering and data preprocessing prior to modeling.</p>
+<p>Transformations and encoding of the data with <code>recipes::recipe()</code> help choosing the option which is the most associated with the outcome, through data preprocessing techniques applying it for different models.</p>
+<p><code>recipe()</code> defines the formula and allows for the preprocessing steps of a model with the help of the <code>step_**</code> functions</p>
+Figure <a href="a-little-recap-of-previous-chapters.html#fig:diagram1">9.1</a> Graph of the modeling steps<br />
+
+<div class="figure"><span style="display:block;" id="fig:diagram1"></span>
+<div id="htmlwidget-ede7ed3a9950f01fd946" style="width:100%;height:100%;" class="DiagrammeR html-widget "></div>
+<script type="application/json" data-for="htmlwidget-ede7ed3a9950f01fd946">{"x":{"diagram":"\ngraph LR\nA(recipe)-->B[formula for lm]\nA-->C[formula for glm]\nA-->D[formula for stan]\nB-- some step_ functions -->P(prep)\nC-- some step_ function-->P(prep)\nD-- some step_ function-->P(prep)\nP-->H(bake)\nG[recipe applys a formula]-->F[prep shows the steps in the recipe]\nF-->E[bake releases preprocessed data]\nstyle A fill:#f9f\nstyle P fill:#f9f\nstyle H fill:#f9f\nstyle F fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5\n"},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Figure 9.1: Graph of the modeling steps
+</p>
+</div>
+<p>The matrix data transformation is obtained from a data frame through the modeling procedure of preprocessing data to obtain a new designed matrix.</p>
+<div class="figure">
+<img src="images/steps.png" alt="" />
+<p class="caption">Modeling steps</p>
+</div>
+</div>
+<div id="workflow-to-combine-models-and-recipes" class="section level3 hasAnchor" number="9.2.3">
+<h3><span class="header-section-number">9.2.3</span> Workflow: to combine models and recipes<a href="a-little-recap-of-previous-chapters.html#workflow-to-combine-models-and-recipes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Once the preprocessing steps are done, data are allocated to test and training sets, and the model engine is set, the next step involves wrapping everything up into a workflow to have all the steps together.</p>
+</div>
+<div id="case-study-2" class="section level3 hasAnchor" number="9.2.4">
+<h3><span class="header-section-number">9.2.4</span> Case Study 2<a href="a-little-recap-of-previous-chapters.html#case-study-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>NYC flights</strong> data modeling</p>
+<p>Let’s see this in practice with an example taken from:
+<a href="https://www.tidymodels.org/start/recipes/" class="uri">https://www.tidymodels.org/start/recipes/</a></p>
+<p>Data are from {nycflights13} package:</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="a-little-recap-of-previous-chapters.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13) </span>
+<span id="cb225-2"><a href="a-little-recap-of-previous-chapters.html#cb225-2" aria-hidden="true" tabindex="-1"></a><span class="co"># tidy data and manipulation</span></span>
+<span id="cb225-3"><a href="a-little-recap-of-previous-chapters.html#cb225-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb225-4"><a href="a-little-recap-of-previous-chapters.html#cb225-4" aria-hidden="true" tabindex="-1"></a>flight_data <span class="ot">&lt;-</span></span>
+<span id="cb225-5"><a href="a-little-recap-of-previous-chapters.html#cb225-5" aria-hidden="true" tabindex="-1"></a>  flights <span class="sc">%&gt;%</span></span>
+<span id="cb225-6"><a href="a-little-recap-of-previous-chapters.html#cb225-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># data modification</span></span>
+<span id="cb225-7"><a href="a-little-recap-of-previous-chapters.html#cb225-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">arr_delay =</span> <span class="fu">ifelse</span>(arr_delay <span class="sc">&gt;=</span> <span class="dv">30</span>, <span class="st">&quot;late&quot;</span>, <span class="st">&quot;on_time&quot;</span>),</span>
+<span id="cb225-8"><a href="a-little-recap-of-previous-chapters.html#cb225-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">arr_delay =</span> <span class="fu">factor</span>(arr_delay),</span>
+<span id="cb225-9"><a href="a-little-recap-of-previous-chapters.html#cb225-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">date =</span> <span class="fu">as.Date</span>(time_hour)) <span class="sc">%&gt;%</span></span>
+<span id="cb225-10"><a href="a-little-recap-of-previous-chapters.html#cb225-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(weather, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;origin&quot;</span>, <span class="st">&quot;time_hour&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb225-11"><a href="a-little-recap-of-previous-chapters.html#cb225-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dep_time, flight, origin, dest, air_time, distance,</span>
+<span id="cb225-12"><a href="a-little-recap-of-previous-chapters.html#cb225-12" aria-hidden="true" tabindex="-1"></a>         carrier, date, arr_delay, time_hour) <span class="sc">%&gt;%</span></span>
+<span id="cb225-13"><a href="a-little-recap-of-previous-chapters.html#cb225-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb225-14"><a href="a-little-recap-of-previous-chapters.html#cb225-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_if</span>(is.character, as.factor)</span>
+<span id="cb225-15"><a href="a-little-recap-of-previous-chapters.html#cb225-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb225-16"><a href="a-little-recap-of-previous-chapters.html#cb225-16" aria-hidden="true" tabindex="-1"></a>flight_data <span class="sc">%&gt;%</span> head</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 10
+##   dep_time flight origin dest  air_time distance carrier date       arr_delay
+##      &lt;int&gt;  &lt;int&gt; &lt;fct&gt;  &lt;fct&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;fct&gt;   &lt;date&gt;     &lt;fct&gt;    
+## 1      517   1545 EWR    IAH        227     1400 UA      2013-01-01 on_time  
+## 2      533   1714 LGA    IAH        227     1416 UA      2013-01-01 on_time  
+## 3      542   1141 JFK    MIA        160     1089 AA      2013-01-01 late     
+## 4      544    725 JFK    BQN        183     1576 B6      2013-01-01 on_time  
+## 5      554    461 LGA    ATL        116      762 DL      2013-01-01 on_time  
+## 6      554   1696 EWR    ORD        150      719 UA      2013-01-01 on_time  
+## # ℹ 1 more variable: time_hour &lt;dttm&gt;</code></pre>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="a-little-recap-of-previous-chapters.html#cb227-1" aria-hidden="true" tabindex="-1"></a>flight_data<span class="sc">%&gt;%</span></span>
+<span id="cb227-2"><a href="a-little-recap-of-previous-chapters.html#cb227-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(arr_delay))<span class="sc">+</span></span>
+<span id="cb227-3"><a href="a-little-recap-of-previous-chapters.html#cb227-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>Spending our data:</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="a-little-recap-of-previous-chapters.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="do">## split</span></span>
+<span id="cb228-2"><a href="a-little-recap-of-previous-chapters.html#cb228-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">555</span>)</span>
+<span id="cb228-3"><a href="a-little-recap-of-previous-chapters.html#cb228-3" aria-hidden="true" tabindex="-1"></a>data_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(flight_data, <span class="at">prop =</span> <span class="dv">3</span><span class="sc">/</span><span class="dv">4</span>)</span>
+<span id="cb228-4"><a href="a-little-recap-of-previous-chapters.html#cb228-4" aria-hidden="true" tabindex="-1"></a>train_data <span class="ot">&lt;-</span> <span class="fu">training</span>(data_split)</span>
+<span id="cb228-5"><a href="a-little-recap-of-previous-chapters.html#cb228-5" aria-hidden="true" tabindex="-1"></a>test_data  <span class="ot">&lt;-</span> <span class="fu">testing</span>(data_split)</span></code></pre></div>
+<p>Apply the recipe:</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="a-little-recap-of-previous-chapters.html#cb229-1" aria-hidden="true" tabindex="-1"></a>flights_rec <span class="ot">&lt;-</span></span>
+<span id="cb229-2"><a href="a-little-recap-of-previous-chapters.html#cb229-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(arr_delay <span class="sc">~</span> ., <span class="at">data =</span> train_data) <span class="sc">%&gt;%</span></span>
+<span id="cb229-3"><a href="a-little-recap-of-previous-chapters.html#cb229-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">update_role</span>(flight, time_hour, <span class="at">new_role =</span> <span class="st">&quot;ID&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb229-4"><a href="a-little-recap-of-previous-chapters.html#cb229-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_date</span>(date, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">&quot;dow&quot;</span>, <span class="st">&quot;month&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb229-5"><a href="a-little-recap-of-previous-chapters.html#cb229-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_holiday</span>(date, <span class="at">holidays =</span> timeDate<span class="sc">::</span><span class="fu">listHolidays</span>(<span class="st">&quot;US&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb229-6"><a href="a-little-recap-of-previous-chapters.html#cb229-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_rm</span>(date) <span class="sc">%&gt;%</span></span>
+<span id="cb229-7"><a href="a-little-recap-of-previous-chapters.html#cb229-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal</span>(), <span class="sc">-</span><span class="fu">all_outcomes</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb229-8"><a href="a-little-recap-of-previous-chapters.html#cb229-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># remove columns from the data when the training</span></span>
+<span id="cb229-9"><a href="a-little-recap-of-previous-chapters.html#cb229-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set data have a single value</span></span>
+<span id="cb229-10"><a href="a-little-recap-of-previous-chapters.html#cb229-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_zv</span>(<span class="fu">all_predictors</span>())</span>
+<span id="cb229-11"><a href="a-little-recap-of-previous-chapters.html#cb229-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb229-12"><a href="a-little-recap-of-previous-chapters.html#cb229-12" aria-hidden="true" tabindex="-1"></a>flights_rec <span class="sc">%&gt;%</span></span>
+<span id="cb229-13"><a href="a-little-recap-of-previous-chapters.html#cb229-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prep</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb229-14"><a href="a-little-recap-of-previous-chapters.html#cb229-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bake</span>(<span class="at">new_data =</span> <span class="cn">NULL</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb229-15"><a href="a-little-recap-of-previous-chapters.html#cb229-15" aria-hidden="true" tabindex="-1"></a>  head</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 161
+##   dep_time flight air_time distance time_hour           arr_delay
+##      &lt;int&gt;  &lt;int&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;dttm&gt;              &lt;fct&gt;    
+## 1      656   2116       39      184 2013-02-20 07:00:00 on_time  
+## 2     2030   1465      339     2586 2013-07-25 19:00:00 late     
+## 3     1712   3448       92      589 2013-08-06 17:00:00 on_time  
+## 4      853   4087       96      645 2013-09-22 08:00:00 on_time  
+## 5     1709    652       39      200 2013-09-28 17:00:00 on_time  
+## 6     2257    608       46      273 2013-01-22 22:00:00 on_time  
+## # ℹ 155 more variables: date_USChristmasDay &lt;int&gt;, date_USColumbusDay &lt;int&gt;,
+## #   date_USCPulaskisBirthday &lt;int&gt;, date_USDecorationMemorialDay &lt;int&gt;,
+## #   date_USElectionDay &lt;int&gt;, date_USGoodFriday &lt;int&gt;,
+## #   date_USInaugurationDay &lt;int&gt;, date_USIndependenceDay &lt;int&gt;,
+## #   date_USJuneteenthNationalIndependenceDay &lt;int&gt;, date_USLaborDay &lt;int&gt;,
+## #   date_USLincolnsBirthday &lt;int&gt;, date_USMemorialDay &lt;int&gt;,
+## #   date_USMLKingsBirthday &lt;int&gt;, date_USNewYearsDay &lt;int&gt;, …</code></pre>
+<p>Fit a model with a recipe and apply the workflow:</p>
+<ol style="list-style-type: decimal">
+<li>process the recipe using the training set</li>
+<li>apply the recipe to the training set</li>
+<li>apply the recipe to the test set</li>
+</ol>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="a-little-recap-of-previous-chapters.html#cb231-1" aria-hidden="true" tabindex="-1"></a>lr_mod <span class="ot">&lt;-</span></span>
+<span id="cb231-2"><a href="a-little-recap-of-previous-chapters.html#cb231-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">logistic_reg</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb231-3"><a href="a-little-recap-of-previous-chapters.html#cb231-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;glm&quot;</span>)</span></code></pre></div>
+<p><strong>Workflow</strong>: to simplify the process a <em>parsnip object</em> pairs a model and recipe together</p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="a-little-recap-of-previous-chapters.html#cb232-1" aria-hidden="true" tabindex="-1"></a>flights_wflow <span class="ot">&lt;-</span></span>
+<span id="cb232-2"><a href="a-little-recap-of-previous-chapters.html#cb232-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb232-3"><a href="a-little-recap-of-previous-chapters.html#cb232-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lr_mod) <span class="sc">%&gt;%</span></span>
+<span id="cb232-4"><a href="a-little-recap-of-previous-chapters.html#cb232-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(flights_rec)</span>
+<span id="cb232-5"><a href="a-little-recap-of-previous-chapters.html#cb232-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb232-6"><a href="a-little-recap-of-previous-chapters.html#cb232-6" aria-hidden="true" tabindex="-1"></a>flights_wflow</span></code></pre></div>
+<pre><code>## ══ Workflow ════════════════════════════════════════════════════════════════════
+## Preprocessor: Recipe
+## Model: logistic_reg()
+## 
+## ── Preprocessor ────────────────────────────────────────────────────────────────
+## 5 Recipe Steps
+## 
+## • step_date()
+## • step_holiday()
+## • step_rm()
+## • step_dummy()
+## • step_zv()
+## 
+## ── Model ───────────────────────────────────────────────────────────────────────
+## Logistic Regression Model Specification (classification)
+## 
+## Computational engine: glm</code></pre>
+<p><strong>Fit</strong>: The function to prepare the recipe and train the model from the resulting predictors</p>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="a-little-recap-of-previous-chapters.html#cb234-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this takes a bit</span></span>
+<span id="cb234-2"><a href="a-little-recap-of-previous-chapters.html#cb234-2" aria-hidden="true" tabindex="-1"></a>flights_fit <span class="ot">&lt;-</span></span>
+<span id="cb234-3"><a href="a-little-recap-of-previous-chapters.html#cb234-3" aria-hidden="true" tabindex="-1"></a>  flights_wflow <span class="sc">%&gt;%</span></span>
+<span id="cb234-4"><a href="a-little-recap-of-previous-chapters.html#cb234-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># prepare the recipe and train the model</span></span>
+<span id="cb234-5"><a href="a-little-recap-of-previous-chapters.html#cb234-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> train_data)</span></code></pre></div>
+<p><strong>Extract</strong> the model or recipe objects from the workflow:</p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="a-little-recap-of-previous-chapters.html#cb235-1" aria-hidden="true" tabindex="-1"></a>flights_fit <span class="sc">%&gt;%</span></span>
+<span id="cb235-2"><a href="a-little-recap-of-previous-chapters.html#cb235-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># pull_workflow_fit() %&gt;%</span></span>
+<span id="cb235-3"><a href="a-little-recap-of-previous-chapters.html#cb235-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb235-4"><a href="a-little-recap-of-previous-chapters.html#cb235-4" aria-hidden="true" tabindex="-1"></a>  head</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 5
+##   term                estimate std.error statistic  p.value
+##   &lt;chr&gt;                  &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)          5.26    2.72           1.93 5.36e- 2
+## 2 dep_time            -0.00167 0.0000141   -118.   0       
+## 3 air_time            -0.0438  0.000561     -78.1  0       
+## 4 distance             0.00615 0.00150        4.10 4.12e- 5
+## 5 date_USChristmasDay  1.14    0.171          6.70 2.12e-11
+## 6 date_USColumbusDay   0.626   0.169          3.71 2.10e- 4</code></pre>
+<p>Use a trained workflow to <strong>predict</strong> following these steps:</p>
+<ol style="list-style-type: decimal">
+<li>build the model (lr_mod),</li>
+<li>create a preprocessing recipe (flights_rec),</li>
+<li>bundle the model and recipe (flights_wflow), and</li>
+<li>train the workflow using a single call to fit()</li>
+</ol>
+Figure <a href="a-little-recap-of-previous-chapters.html#fig:diagram2">9.2</a> Graph of the workflow steps<br />
+
+<div class="figure"><span style="display:block;" id="fig:diagram2"></span>
+<div id="htmlwidget-44709c577f142f54a48a" style="width:100%;height:100%;" class="DiagrammeR html-widget "></div>
+<script type="application/json" data-for="htmlwidget-44709c577f142f54a48a">{"x":{"diagram":"\ngraph TB\nA(Build the model) .->B(Create a preprocessing recipe)\nA-->E(lr_mod)\nB.->C(Bundle the model and recipe)\nB-->F(flights_rec)\nC.->D(Train the workflow using fit)\nC-->G(flights_wflow)\nD-->H(fit)\nstyle A fill:#f9f\nstyle B fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5\nstyle C fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5\nstyle D fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5\n"},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Figure 9.2: Graph of the workflow steps
+</p>
+</div>
+<p>Then use the trained workflow to predict using the <strong>test data</strong> or any other new data:</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="a-little-recap-of-previous-chapters.html#cb237-1" aria-hidden="true" tabindex="-1"></a>flights_pred <span class="ot">&lt;-</span> </span>
+<span id="cb237-2"><a href="a-little-recap-of-previous-chapters.html#cb237-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(flights_fit, test_data, <span class="at">type =</span> <span class="st">&quot;prob&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb237-3"><a href="a-little-recap-of-previous-chapters.html#cb237-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(test_data <span class="sc">%&gt;%</span> </span>
+<span id="cb237-4"><a href="a-little-recap-of-previous-chapters.html#cb237-4" aria-hidden="true" tabindex="-1"></a>              <span class="fu">select</span>(arr_delay, time_hour, flight))</span>
+<span id="cb237-5"><a href="a-little-recap-of-previous-chapters.html#cb237-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb237-6"><a href="a-little-recap-of-previous-chapters.html#cb237-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb237-7"><a href="a-little-recap-of-previous-chapters.html#cb237-7" aria-hidden="true" tabindex="-1"></a>flights_pred <span class="sc">%&gt;%</span>head</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 5
+##   .pred_late .pred_on_time arr_delay time_hour           flight
+##        &lt;dbl&gt;         &lt;dbl&gt; &lt;fct&gt;     &lt;dttm&gt;               &lt;int&gt;
+## 1     0.0183         0.982 on_time   2013-01-01 06:00:00    461
+## 2     0.0426         0.957 on_time   2013-01-01 06:00:00   5708
+## 3     0.0413         0.959 on_time   2013-01-01 06:00:00     71
+## 4     0.0253         0.975 on_time   2013-01-01 06:00:00    194
+## 5     0.0306         0.969 on_time   2013-01-01 06:00:00   1743
+## 6     0.0236         0.976 on_time   2013-01-01 06:00:00   1077</code></pre>
+Figure <a href="a-little-recap-of-previous-chapters.html#fig:diagram3">9.3</a> Graph of the workflow to predict<br />
+
+<div class="figure"><span style="display:block;" id="fig:diagram3"></span>
+<div id="htmlwidget-f0b9dfd60a56e3955bf1" style="width:100%;height:100%;" class="DiagrammeR html-widget "></div>
+<script type="application/json" data-for="htmlwidget-f0b9dfd60a56e3955bf1">{"x":{"diagram":"\n        graph LR\n        A[workflow]-->B{predict}\nstyle A fill:#f9f\nstyle B fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5\n        "},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Figure 9.3: Graph of the workflow to predict
+</p>
+</div>
+<p><strong>How will we evaluate the performance of our workflow?</strong></p>
+<p>To finally answer our question we need to check the area under the ROC curve.</p>
+<ul>
+<li><code>What is a ROC curve?</code></li>
+</ul>
+<p>It is a curve that identifies the area of credibility of our model. To calculate the curve we use two functions: <code>roc_curve()</code> and <code>roc_auc()</code>, the curve and the area under the curve, respectively.</p>
+<p>The ROC curve uses the class probability estimates to give us a sense of performance across the entire set of potential probability cutoffs.</p>
+<p>Once the predicted class of probabilities are obtained we can generate a ROC curve. Let’s see it applied in our NYC flights case study. We need late and on_time variable predictors to create the curve and apply the <code>autoplot()</code> method as shown below:</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="a-little-recap-of-previous-chapters.html#cb239-1" aria-hidden="true" tabindex="-1"></a>flights_pred <span class="sc">%&gt;%</span></span>
+<span id="cb239-2"><a href="a-little-recap-of-previous-chapters.html#cb239-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">roc_curve</span>(<span class="at">truth =</span> arr_delay, .pred_late)<span class="sc">%&gt;%</span></span>
+<span id="cb239-3"><a href="a-little-recap-of-previous-chapters.html#cb239-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">-</span>specificity,<span class="at">y=</span>sensitivity))<span class="sc">+</span></span>
+<span id="cb239-4"><a href="a-little-recap-of-previous-chapters.html#cb239-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
+<span id="cb239-5"><a href="a-little-recap-of-previous-chapters.html#cb239-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb239-6"><a href="a-little-recap-of-previous-chapters.html#cb239-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>()</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="a-little-recap-of-previous-chapters.html#cb240-1" aria-hidden="true" tabindex="-1"></a>flights_pred <span class="sc">%&gt;%</span></span>
+<span id="cb240-2"><a href="a-little-recap-of-previous-chapters.html#cb240-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">roc_curve</span>(<span class="at">truth =</span> arr_delay, .pred_late) <span class="sc">%&gt;%</span></span>
+<span id="cb240-3"><a href="a-little-recap-of-previous-chapters.html#cb240-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>()</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="a-little-recap-of-previous-chapters.html#cb241-1" aria-hidden="true" tabindex="-1"></a>flights_pred <span class="sc">%&gt;%</span> </span>
+<span id="cb241-2"><a href="a-little-recap-of-previous-chapters.html#cb241-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">roc_auc</span>(<span class="at">truth =</span> arr_delay, .pred_late)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 3
+##   .metric .estimator .estimate
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+## 1 roc_auc binary         0.761</code></pre>
+<p>In particular, below are shown the steps for different cases, and the visualization used to evaluate the credibility of a model.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="performance-metrics-and-inference.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="functions-used-to-measure-predictive-strengths-of-a-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/09-judging_model_effectiveness.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

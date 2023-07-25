@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2023-07-11" />
+<meta name="date" content="2023-07-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -54,6 +54,14 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="libs/d3-3.3.8/d3.min.js"></script>
+<script src="libs/dagre-0.4.0/dagre-d3.min.js"></script>
+<link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet" />
+<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/chromatography-0.1/chromatography.js"></script>
+<script src="libs/DiagrammeR-binding-1.0.10/DiagrammeR.js"></script>
 
 
 <style type="text/css">
@@ -309,24 +317,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="judging-model-effectiveness.html"><a href="judging-model-effectiveness.html"><i class="fa fa-check"></i><b>9</b> Judging model effectiveness</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="measures-of-model-fit.html"><a href="measures-of-model-fit.html"><i class="fa fa-check"></i><b>9.1</b> Measures of Model Fit</a></li>
-<li class="chapter" data-level="9.2" data-path="disclaimers.html"><a href="disclaimers.html"><i class="fa fa-check"></i><b>9.2</b> Disclaimers</a></li>
-<li class="chapter" data-level="9.3" data-path="regression-metrics.html"><a href="regression-metrics.html"><i class="fa fa-check"></i><b>9.3</b> Regression Metrics</a></li>
-<li class="chapter" data-level="9.4" data-path="binary-classification-metrics.html"><a href="binary-classification-metrics.html"><i class="fa fa-check"></i><b>9.4</b> Binary Classification Metrics</a></li>
-<li class="chapter" data-level="9.5" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>9.5</b> References</a></li>
-<li class="chapter" data-level="9.6" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html"><i class="fa fa-check"></i><b>9.6</b> Meeting Videos</a>
+<li class="chapter" data-level="9.1" data-path="performance-metrics-and-inference.html"><a href="performance-metrics-and-inference.html"><i class="fa fa-check"></i><b>9.1</b> Performance Metrics and Inference</a></li>
+<li class="chapter" data-level="9.2" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html"><i class="fa fa-check"></i><b>9.2</b> A little Recap of previous chapters</a>
 <ul>
-<li class="chapter" data-level="9.6.1" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-1-8"><i class="fa fa-check"></i><b>9.6.1</b> Cohort 1</a></li>
-<li class="chapter" data-level="9.6.2" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-2-9"><i class="fa fa-check"></i><b>9.6.2</b> Cohort 2</a></li>
-<li class="chapter" data-level="9.6.3" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-3-8"><i class="fa fa-check"></i><b>9.6.3</b> Cohort 3</a></li>
-<li class="chapter" data-level="9.6.4" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-4-8"><i class="fa fa-check"></i><b>9.6.4</b> Cohort 4</a></li>
+<li class="chapter" data-level="9.2.1" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#case-study-1"><i class="fa fa-check"></i><b>9.2.1</b> Case Study 1</a></li>
+<li class="chapter" data-level="9.2.2" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#tidymodels-modeling-as-a-step-by-step-mode"><i class="fa fa-check"></i><b>9.2.2</b> Tidymodels: modeling as a step by step mode</a></li>
+<li class="chapter" data-level="9.2.3" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#workflow-to-combine-models-and-recipes"><i class="fa fa-check"></i><b>9.2.3</b> Workflow: to combine models and recipes</a></li>
+<li class="chapter" data-level="9.2.4" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#case-study-2"><i class="fa fa-check"></i><b>9.2.4</b> Case Study 2</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="functions-used-to-measure-predictive-strengths-of-a-model.html"><a href="functions-used-to-measure-predictive-strengths-of-a-model.html"><i class="fa fa-check"></i><b>9.3</b> Functions used to measure predictive strengths of a model</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="functions-used-to-measure-predictive-strengths-of-a-model.html"><a href="functions-used-to-measure-predictive-strengths-of-a-model.html#case-study-3"><i class="fa fa-check"></i><b>9.3.1</b> Case Study 3</a></li>
+<li class="chapter" data-level="9.3.2" data-path="functions-used-to-measure-predictive-strengths-of-a-model.html"><a href="functions-used-to-measure-predictive-strengths-of-a-model.html#conclusion"><i class="fa fa-check"></i><b>9.3.2</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="measures-of-model-fit---case-study-cohort-1.html"><a href="measures-of-model-fit---case-study-cohort-1.html"><i class="fa fa-check"></i><b>9.4</b> Measures of Model Fit - Case Study (Cohort 1)</a></li>
+<li class="chapter" data-level="9.5" data-path="disclaimers.html"><a href="disclaimers.html"><i class="fa fa-check"></i><b>9.5</b> Disclaimers</a></li>
+<li class="chapter" data-level="9.6" data-path="regression-metrics.html"><a href="regression-metrics.html"><i class="fa fa-check"></i><b>9.6</b> Regression Metrics</a></li>
+<li class="chapter" data-level="9.7" data-path="binary-classification-metrics.html"><a href="binary-classification-metrics.html"><i class="fa fa-check"></i><b>9.7</b> Binary Classification Metrics</a></li>
+<li class="chapter" data-level="9.8" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>9.8</b> References</a></li>
+<li class="chapter" data-level="9.9" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html"><i class="fa fa-check"></i><b>9.9</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="9.9.1" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-1-8"><i class="fa fa-check"></i><b>9.9.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="9.9.2" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-2-9"><i class="fa fa-check"></i><b>9.9.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="9.9.3" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-3-8"><i class="fa fa-check"></i><b>9.9.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="9.9.4" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-4-8"><i class="fa fa-check"></i><b>9.9.4</b> Cohort 4</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="review-of-chapters-4-9.html"><a href="review-of-chapters-4-9.html"><i class="fa fa-check"></i>Review of chapters 4-9</a>
 <ul>
-<li class="chapter" data-level="9.7" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html"><i class="fa fa-check"></i><b>9.7</b> Meeting Videos</a>
+<li class="chapter" data-level="9.10" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html"><i class="fa fa-check"></i><b>9.10</b> Meeting Videos</a>
 <ul>
-<li class="chapter" data-level="9.7.1" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html#cohort-1-9"><i class="fa fa-check"></i><b>9.7.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="9.10.1" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html#cohort-1-9"><i class="fa fa-check"></i><b>9.10.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>Tools for Creating Effective Models</b></span></li>
@@ -595,32 +616,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 <p><img src="images/18_boost_breakdown3.png" /></p>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="local-explanations.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Break-down</span></span>
-<span id="cb396-2"><a href="local-explanations.html#cb396-2" aria-hidden="true" tabindex="-1"></a>boost_breakdown <span class="ot">&lt;-</span> <span class="fu">predict_parts</span>(<span class="at">explainer =</span> explainer_boost,</span>
-<span id="cb396-3"><a href="local-explanations.html#cb396-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">new_observation =</span> <span class="fu">sample_n</span>(rush_df,<span class="dv">1</span>))</span>
-<span id="cb396-4"><a href="local-explanations.html#cb396-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb396-5"><a href="local-explanations.html#cb396-5" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="st">&quot;images/18_boost_breakdown.png&quot;</span>, <span class="at">width =</span> <span class="dv">600</span>)</span>
-<span id="cb396-6"><a href="local-explanations.html#cb396-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(boost_breakdown)</span>
-<span id="cb396-7"><a href="local-explanations.html#cb396-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
-<span id="cb396-8"><a href="local-explanations.html#cb396-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb396-9"><a href="local-explanations.html#cb396-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb396-10"><a href="local-explanations.html#cb396-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Break-dwon Interactions</span></span>
-<span id="cb396-11"><a href="local-explanations.html#cb396-11" aria-hidden="true" tabindex="-1"></a>boost_breakdown2 <span class="ot">&lt;-</span> <span class="fu">predict_parts</span>(<span class="at">explainer =</span> explainer_boost,</span>
-<span id="cb396-12"><a href="local-explanations.html#cb396-12" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">new_observation =</span> <span class="fu">sample_n</span>(rush_df,<span class="dv">1</span>),</span>
-<span id="cb396-13"><a href="local-explanations.html#cb396-13" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">type =</span> <span class="st">&quot;break_down_interactions&quot;</span>)</span>
-<span id="cb396-14"><a href="local-explanations.html#cb396-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb396-15"><a href="local-explanations.html#cb396-15" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="st">&quot;images/18_boost_breakdown2.png&quot;</span>, <span class="at">width =</span> <span class="dv">600</span>)</span>
-<span id="cb396-16"><a href="local-explanations.html#cb396-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(boost_breakdown2)</span>
-<span id="cb396-17"><a href="local-explanations.html#cb396-17" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
-<span id="cb396-18"><a href="local-explanations.html#cb396-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb396-19"><a href="local-explanations.html#cb396-19" aria-hidden="true" tabindex="-1"></a><span class="co">#SHAP</span></span>
-<span id="cb396-20"><a href="local-explanations.html#cb396-20" aria-hidden="true" tabindex="-1"></a>boost_breakdown3 <span class="ot">&lt;-</span> <span class="fu">predict_parts</span>(<span class="at">explainer =</span> explainer_boost,</span>
-<span id="cb396-21"><a href="local-explanations.html#cb396-21" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">new_observation =</span> <span class="fu">sample_n</span>(rush_df,<span class="dv">1</span>),</span>
-<span id="cb396-22"><a href="local-explanations.html#cb396-22" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">type =</span> <span class="st">&quot;shap&quot;</span>)</span>
-<span id="cb396-23"><a href="local-explanations.html#cb396-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb396-24"><a href="local-explanations.html#cb396-24" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="st">&quot;images/18_boost_breakdown3.png&quot;</span>, <span class="at">width =</span> <span class="dv">600</span>)</span>
-<span id="cb396-25"><a href="local-explanations.html#cb396-25" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(boost_breakdown3)</span>
-<span id="cb396-26"><a href="local-explanations.html#cb396-26" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="local-explanations.html#cb482-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Break-down</span></span>
+<span id="cb482-2"><a href="local-explanations.html#cb482-2" aria-hidden="true" tabindex="-1"></a>boost_breakdown <span class="ot">&lt;-</span> <span class="fu">predict_parts</span>(<span class="at">explainer =</span> explainer_boost,</span>
+<span id="cb482-3"><a href="local-explanations.html#cb482-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">new_observation =</span> <span class="fu">sample_n</span>(rush_df,<span class="dv">1</span>))</span>
+<span id="cb482-4"><a href="local-explanations.html#cb482-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb482-5"><a href="local-explanations.html#cb482-5" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="st">&quot;images/18_boost_breakdown.png&quot;</span>, <span class="at">width =</span> <span class="dv">600</span>)</span>
+<span id="cb482-6"><a href="local-explanations.html#cb482-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(boost_breakdown)</span>
+<span id="cb482-7"><a href="local-explanations.html#cb482-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb482-8"><a href="local-explanations.html#cb482-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb482-9"><a href="local-explanations.html#cb482-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb482-10"><a href="local-explanations.html#cb482-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Break-dwon Interactions</span></span>
+<span id="cb482-11"><a href="local-explanations.html#cb482-11" aria-hidden="true" tabindex="-1"></a>boost_breakdown2 <span class="ot">&lt;-</span> <span class="fu">predict_parts</span>(<span class="at">explainer =</span> explainer_boost,</span>
+<span id="cb482-12"><a href="local-explanations.html#cb482-12" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">new_observation =</span> <span class="fu">sample_n</span>(rush_df,<span class="dv">1</span>),</span>
+<span id="cb482-13"><a href="local-explanations.html#cb482-13" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">type =</span> <span class="st">&quot;break_down_interactions&quot;</span>)</span>
+<span id="cb482-14"><a href="local-explanations.html#cb482-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb482-15"><a href="local-explanations.html#cb482-15" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="st">&quot;images/18_boost_breakdown2.png&quot;</span>, <span class="at">width =</span> <span class="dv">600</span>)</span>
+<span id="cb482-16"><a href="local-explanations.html#cb482-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(boost_breakdown2)</span>
+<span id="cb482-17"><a href="local-explanations.html#cb482-17" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb482-18"><a href="local-explanations.html#cb482-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb482-19"><a href="local-explanations.html#cb482-19" aria-hidden="true" tabindex="-1"></a><span class="co">#SHAP</span></span>
+<span id="cb482-20"><a href="local-explanations.html#cb482-20" aria-hidden="true" tabindex="-1"></a>boost_breakdown3 <span class="ot">&lt;-</span> <span class="fu">predict_parts</span>(<span class="at">explainer =</span> explainer_boost,</span>
+<span id="cb482-21"><a href="local-explanations.html#cb482-21" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">new_observation =</span> <span class="fu">sample_n</span>(rush_df,<span class="dv">1</span>),</span>
+<span id="cb482-22"><a href="local-explanations.html#cb482-22" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">type =</span> <span class="st">&quot;shap&quot;</span>)</span>
+<span id="cb482-23"><a href="local-explanations.html#cb482-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb482-24"><a href="local-explanations.html#cb482-24" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="st">&quot;images/18_boost_breakdown3.png&quot;</span>, <span class="at">width =</span> <span class="dv">600</span>)</span>
+<span id="cb482-25"><a href="local-explanations.html#cb482-25" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(boost_breakdown3)</span>
+<span id="cb482-26"><a href="local-explanations.html#cb482-26" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 </div>
             </section>
 

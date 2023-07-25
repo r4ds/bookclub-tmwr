@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2023-07-11" />
+<meta name="date" content="2023-07-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -54,6 +54,14 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="libs/d3-3.3.8/d3.min.js"></script>
+<script src="libs/dagre-0.4.0/dagre-d3.min.js"></script>
+<link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet" />
+<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/chromatography-0.1/chromatography.js"></script>
+<script src="libs/DiagrammeR-binding-1.0.10/DiagrammeR.js"></script>
 
 
 <style type="text/css">
@@ -309,24 +317,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="judging-model-effectiveness.html"><a href="judging-model-effectiveness.html"><i class="fa fa-check"></i><b>9</b> Judging model effectiveness</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="measures-of-model-fit.html"><a href="measures-of-model-fit.html"><i class="fa fa-check"></i><b>9.1</b> Measures of Model Fit</a></li>
-<li class="chapter" data-level="9.2" data-path="disclaimers.html"><a href="disclaimers.html"><i class="fa fa-check"></i><b>9.2</b> Disclaimers</a></li>
-<li class="chapter" data-level="9.3" data-path="regression-metrics.html"><a href="regression-metrics.html"><i class="fa fa-check"></i><b>9.3</b> Regression Metrics</a></li>
-<li class="chapter" data-level="9.4" data-path="binary-classification-metrics.html"><a href="binary-classification-metrics.html"><i class="fa fa-check"></i><b>9.4</b> Binary Classification Metrics</a></li>
-<li class="chapter" data-level="9.5" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>9.5</b> References</a></li>
-<li class="chapter" data-level="9.6" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html"><i class="fa fa-check"></i><b>9.6</b> Meeting Videos</a>
+<li class="chapter" data-level="9.1" data-path="performance-metrics-and-inference.html"><a href="performance-metrics-and-inference.html"><i class="fa fa-check"></i><b>9.1</b> Performance Metrics and Inference</a></li>
+<li class="chapter" data-level="9.2" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html"><i class="fa fa-check"></i><b>9.2</b> A little Recap of previous chapters</a>
 <ul>
-<li class="chapter" data-level="9.6.1" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-1-8"><i class="fa fa-check"></i><b>9.6.1</b> Cohort 1</a></li>
-<li class="chapter" data-level="9.6.2" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-2-9"><i class="fa fa-check"></i><b>9.6.2</b> Cohort 2</a></li>
-<li class="chapter" data-level="9.6.3" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-3-8"><i class="fa fa-check"></i><b>9.6.3</b> Cohort 3</a></li>
-<li class="chapter" data-level="9.6.4" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-4-8"><i class="fa fa-check"></i><b>9.6.4</b> Cohort 4</a></li>
+<li class="chapter" data-level="9.2.1" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#case-study-1"><i class="fa fa-check"></i><b>9.2.1</b> Case Study 1</a></li>
+<li class="chapter" data-level="9.2.2" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#tidymodels-modeling-as-a-step-by-step-mode"><i class="fa fa-check"></i><b>9.2.2</b> Tidymodels: modeling as a step by step mode</a></li>
+<li class="chapter" data-level="9.2.3" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#workflow-to-combine-models-and-recipes"><i class="fa fa-check"></i><b>9.2.3</b> Workflow: to combine models and recipes</a></li>
+<li class="chapter" data-level="9.2.4" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#case-study-2"><i class="fa fa-check"></i><b>9.2.4</b> Case Study 2</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="functions-used-to-measure-predictive-strengths-of-a-model.html"><a href="functions-used-to-measure-predictive-strengths-of-a-model.html"><i class="fa fa-check"></i><b>9.3</b> Functions used to measure predictive strengths of a model</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="functions-used-to-measure-predictive-strengths-of-a-model.html"><a href="functions-used-to-measure-predictive-strengths-of-a-model.html#case-study-3"><i class="fa fa-check"></i><b>9.3.1</b> Case Study 3</a></li>
+<li class="chapter" data-level="9.3.2" data-path="functions-used-to-measure-predictive-strengths-of-a-model.html"><a href="functions-used-to-measure-predictive-strengths-of-a-model.html#conclusion"><i class="fa fa-check"></i><b>9.3.2</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="measures-of-model-fit---case-study-cohort-1.html"><a href="measures-of-model-fit---case-study-cohort-1.html"><i class="fa fa-check"></i><b>9.4</b> Measures of Model Fit - Case Study (Cohort 1)</a></li>
+<li class="chapter" data-level="9.5" data-path="disclaimers.html"><a href="disclaimers.html"><i class="fa fa-check"></i><b>9.5</b> Disclaimers</a></li>
+<li class="chapter" data-level="9.6" data-path="regression-metrics.html"><a href="regression-metrics.html"><i class="fa fa-check"></i><b>9.6</b> Regression Metrics</a></li>
+<li class="chapter" data-level="9.7" data-path="binary-classification-metrics.html"><a href="binary-classification-metrics.html"><i class="fa fa-check"></i><b>9.7</b> Binary Classification Metrics</a></li>
+<li class="chapter" data-level="9.8" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>9.8</b> References</a></li>
+<li class="chapter" data-level="9.9" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html"><i class="fa fa-check"></i><b>9.9</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="9.9.1" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-1-8"><i class="fa fa-check"></i><b>9.9.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="9.9.2" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-2-9"><i class="fa fa-check"></i><b>9.9.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="9.9.3" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-3-8"><i class="fa fa-check"></i><b>9.9.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="9.9.4" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-4-8"><i class="fa fa-check"></i><b>9.9.4</b> Cohort 4</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="review-of-chapters-4-9.html"><a href="review-of-chapters-4-9.html"><i class="fa fa-check"></i>Review of chapters 4-9</a>
 <ul>
-<li class="chapter" data-level="9.7" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html"><i class="fa fa-check"></i><b>9.7</b> Meeting Videos</a>
+<li class="chapter" data-level="9.10" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html"><i class="fa fa-check"></i><b>9.10</b> Meeting Videos</a>
 <ul>
-<li class="chapter" data-level="9.7.1" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html#cohort-1-9"><i class="fa fa-check"></i><b>9.7.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="9.10.1" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html#cohort-1-9"><i class="fa fa-check"></i><b>9.10.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>Tools for Creating Effective Models</b></span></li>
@@ -568,16 +589,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="chapter-18-setup" class="section level2 hasAnchor" number="18.1">
 <h2><span class="header-section-number">18.1</span> Chapter 18 Setup<a href="chapter-18-setup.html#chapter-18-setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Load in the data and set up explainer</p>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="chapter-18-setup.html#cb393-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb393-2"><a href="chapter-18-setup.html#cb393-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
-<span id="cb393-3"><a href="chapter-18-setup.html#cb393-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DALEX)</span>
-<span id="cb393-4"><a href="chapter-18-setup.html#cb393-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DALEXtra)</span>
-<span id="cb393-5"><a href="chapter-18-setup.html#cb393-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iBreakDown)</span>
-<span id="cb393-6"><a href="chapter-18-setup.html#cb393-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb393-7"><a href="chapter-18-setup.html#cb393-7" aria-hidden="true" tabindex="-1"></a>rush_model <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;18-fit_rush_yards.RDS&quot;</span>))</span>
-<span id="cb393-8"><a href="chapter-18-setup.html#cb393-8" aria-hidden="true" tabindex="-1"></a>rush_df <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;18-nfl_rush_df.RDS&quot;</span>))</span>
-<span id="cb393-9"><a href="chapter-18-setup.html#cb393-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb393-10"><a href="chapter-18-setup.html#cb393-10" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(rush_df)</span></code></pre></div>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="chapter-18-setup.html#cb479-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb479-2"><a href="chapter-18-setup.html#cb479-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb479-3"><a href="chapter-18-setup.html#cb479-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DALEX)</span>
+<span id="cb479-4"><a href="chapter-18-setup.html#cb479-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DALEXtra)</span>
+<span id="cb479-5"><a href="chapter-18-setup.html#cb479-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iBreakDown)</span>
+<span id="cb479-6"><a href="chapter-18-setup.html#cb479-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb479-7"><a href="chapter-18-setup.html#cb479-7" aria-hidden="true" tabindex="-1"></a>rush_model <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;18-fit_rush_yards.RDS&quot;</span>))</span>
+<span id="cb479-8"><a href="chapter-18-setup.html#cb479-8" aria-hidden="true" tabindex="-1"></a>rush_df <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;18-nfl_rush_df.RDS&quot;</span>))</span>
+<span id="cb479-9"><a href="chapter-18-setup.html#cb479-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb479-10"><a href="chapter-18-setup.html#cb479-10" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(rush_df)</span></code></pre></div>
 <table style="width: auto;" class="table table-condensed">
 <caption>
 <span id="tab:18-load-data">Table 18.1: </span>Data summary
@@ -1858,13 +1879,13 @@ total_line
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="chapter-18-setup.html#cb394-1" aria-hidden="true" tabindex="-1"></a>explainer_boost <span class="ot">&lt;-</span> </span>
-<span id="cb394-2"><a href="chapter-18-setup.html#cb394-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">explain_tidymodels</span>(</span>
-<span id="cb394-3"><a href="chapter-18-setup.html#cb394-3" aria-hidden="true" tabindex="-1"></a>    rush_model, </span>
-<span id="cb394-4"><a href="chapter-18-setup.html#cb394-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> rush_df,</span>
-<span id="cb394-5"><a href="chapter-18-setup.html#cb394-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> rush_df<span class="sc">$</span>rushing_yards,</span>
-<span id="cb394-6"><a href="chapter-18-setup.html#cb394-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
-<span id="cb394-7"><a href="chapter-18-setup.html#cb394-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="chapter-18-setup.html#cb480-1" aria-hidden="true" tabindex="-1"></a>explainer_boost <span class="ot">&lt;-</span> </span>
+<span id="cb480-2"><a href="chapter-18-setup.html#cb480-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">explain_tidymodels</span>(</span>
+<span id="cb480-3"><a href="chapter-18-setup.html#cb480-3" aria-hidden="true" tabindex="-1"></a>    rush_model, </span>
+<span id="cb480-4"><a href="chapter-18-setup.html#cb480-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> rush_df,</span>
+<span id="cb480-5"><a href="chapter-18-setup.html#cb480-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> rush_df<span class="sc">$</span>rushing_yards,</span>
+<span id="cb480-6"><a href="chapter-18-setup.html#cb480-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
+<span id="cb480-7"><a href="chapter-18-setup.html#cb480-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <pre><code>## Preparation of a new explainer is initiated
 ##   -&gt; model label       :  workflow  (  default  )
 ##   -&gt; data              :  95186  rows  40  cols 

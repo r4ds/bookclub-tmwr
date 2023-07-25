@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>9.4 Binary Classification Metrics | Tidy Modeling with R Book Club</title>
+  <title>9.7 Binary Classification Metrics | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="9.4 Binary Classification Metrics | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="9.7 Binary Classification Metrics | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="9.4 Binary Classification Metrics | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="9.7 Binary Classification Metrics | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2023-07-11" />
+<meta name="date" content="2023-07-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -54,6 +54,14 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="libs/d3-3.3.8/d3.min.js"></script>
+<script src="libs/dagre-0.4.0/dagre-d3.min.js"></script>
+<link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet" />
+<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/chromatography-0.1/chromatography.js"></script>
+<script src="libs/DiagrammeR-binding-1.0.10/DiagrammeR.js"></script>
 
 
 <style type="text/css">
@@ -309,24 +317,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="judging-model-effectiveness.html"><a href="judging-model-effectiveness.html"><i class="fa fa-check"></i><b>9</b> Judging model effectiveness</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="measures-of-model-fit.html"><a href="measures-of-model-fit.html"><i class="fa fa-check"></i><b>9.1</b> Measures of Model Fit</a></li>
-<li class="chapter" data-level="9.2" data-path="disclaimers.html"><a href="disclaimers.html"><i class="fa fa-check"></i><b>9.2</b> Disclaimers</a></li>
-<li class="chapter" data-level="9.3" data-path="regression-metrics.html"><a href="regression-metrics.html"><i class="fa fa-check"></i><b>9.3</b> Regression Metrics</a></li>
-<li class="chapter" data-level="9.4" data-path="binary-classification-metrics.html"><a href="binary-classification-metrics.html"><i class="fa fa-check"></i><b>9.4</b> Binary Classification Metrics</a></li>
-<li class="chapter" data-level="9.5" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>9.5</b> References</a></li>
-<li class="chapter" data-level="9.6" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html"><i class="fa fa-check"></i><b>9.6</b> Meeting Videos</a>
+<li class="chapter" data-level="9.1" data-path="performance-metrics-and-inference.html"><a href="performance-metrics-and-inference.html"><i class="fa fa-check"></i><b>9.1</b> Performance Metrics and Inference</a></li>
+<li class="chapter" data-level="9.2" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html"><i class="fa fa-check"></i><b>9.2</b> A little Recap of previous chapters</a>
 <ul>
-<li class="chapter" data-level="9.6.1" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-1-8"><i class="fa fa-check"></i><b>9.6.1</b> Cohort 1</a></li>
-<li class="chapter" data-level="9.6.2" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-2-9"><i class="fa fa-check"></i><b>9.6.2</b> Cohort 2</a></li>
-<li class="chapter" data-level="9.6.3" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-3-8"><i class="fa fa-check"></i><b>9.6.3</b> Cohort 3</a></li>
-<li class="chapter" data-level="9.6.4" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-4-8"><i class="fa fa-check"></i><b>9.6.4</b> Cohort 4</a></li>
+<li class="chapter" data-level="9.2.1" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#case-study-1"><i class="fa fa-check"></i><b>9.2.1</b> Case Study 1</a></li>
+<li class="chapter" data-level="9.2.2" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#tidymodels-modeling-as-a-step-by-step-mode"><i class="fa fa-check"></i><b>9.2.2</b> Tidymodels: modeling as a step by step mode</a></li>
+<li class="chapter" data-level="9.2.3" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#workflow-to-combine-models-and-recipes"><i class="fa fa-check"></i><b>9.2.3</b> Workflow: to combine models and recipes</a></li>
+<li class="chapter" data-level="9.2.4" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#case-study-2"><i class="fa fa-check"></i><b>9.2.4</b> Case Study 2</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="functions-used-to-measure-predictive-strengths-of-a-model.html"><a href="functions-used-to-measure-predictive-strengths-of-a-model.html"><i class="fa fa-check"></i><b>9.3</b> Functions used to measure predictive strengths of a model</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="functions-used-to-measure-predictive-strengths-of-a-model.html"><a href="functions-used-to-measure-predictive-strengths-of-a-model.html#case-study-3"><i class="fa fa-check"></i><b>9.3.1</b> Case Study 3</a></li>
+<li class="chapter" data-level="9.3.2" data-path="functions-used-to-measure-predictive-strengths-of-a-model.html"><a href="functions-used-to-measure-predictive-strengths-of-a-model.html#conclusion"><i class="fa fa-check"></i><b>9.3.2</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="measures-of-model-fit---case-study-cohort-1.html"><a href="measures-of-model-fit---case-study-cohort-1.html"><i class="fa fa-check"></i><b>9.4</b> Measures of Model Fit - Case Study (Cohort 1)</a></li>
+<li class="chapter" data-level="9.5" data-path="disclaimers.html"><a href="disclaimers.html"><i class="fa fa-check"></i><b>9.5</b> Disclaimers</a></li>
+<li class="chapter" data-level="9.6" data-path="regression-metrics.html"><a href="regression-metrics.html"><i class="fa fa-check"></i><b>9.6</b> Regression Metrics</a></li>
+<li class="chapter" data-level="9.7" data-path="binary-classification-metrics.html"><a href="binary-classification-metrics.html"><i class="fa fa-check"></i><b>9.7</b> Binary Classification Metrics</a></li>
+<li class="chapter" data-level="9.8" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>9.8</b> References</a></li>
+<li class="chapter" data-level="9.9" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html"><i class="fa fa-check"></i><b>9.9</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="9.9.1" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-1-8"><i class="fa fa-check"></i><b>9.9.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="9.9.2" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-2-9"><i class="fa fa-check"></i><b>9.9.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="9.9.3" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-3-8"><i class="fa fa-check"></i><b>9.9.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="9.9.4" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-4-8"><i class="fa fa-check"></i><b>9.9.4</b> Cohort 4</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="review-of-chapters-4-9.html"><a href="review-of-chapters-4-9.html"><i class="fa fa-check"></i>Review of chapters 4-9</a>
 <ul>
-<li class="chapter" data-level="9.7" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html"><i class="fa fa-check"></i><b>9.7</b> Meeting Videos</a>
+<li class="chapter" data-level="9.10" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html"><i class="fa fa-check"></i><b>9.10</b> Meeting Videos</a>
 <ul>
-<li class="chapter" data-level="9.7.1" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html#cohort-1-9"><i class="fa fa-check"></i><b>9.7.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="9.10.1" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html#cohort-1-9"><i class="fa fa-check"></i><b>9.10.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>Tools for Creating Effective Models</b></span></li>
@@ -565,88 +586,88 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="binary-classification-metrics" class="section level2 hasAnchor" number="9.4">
-<h2><span class="header-section-number">9.4</span> Binary Classification Metrics<a href="binary-classification-metrics.html#binary-classification-metrics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="binary-classification-metrics" class="section level2 hasAnchor" number="9.7">
+<h2><span class="header-section-number">9.7</span> Binary Classification Metrics<a href="binary-classification-metrics.html#binary-classification-metrics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Note: This code might take several minutes (or longer) to run.</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="binary-classification-metrics.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Cross-fold validation</span></span>
-<span id="cb213-2"><a href="binary-classification-metrics.html#cb213-2" aria-hidden="true" tabindex="-1"></a>ames_folds_binary <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(ames, <span class="at">v =</span> <span class="dv">5</span>)</span>
-<span id="cb213-3"><a href="binary-classification-metrics.html#cb213-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb213-4"><a href="binary-classification-metrics.html#cb213-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Create Recipe</span></span>
-<span id="cb213-5"><a href="binary-classification-metrics.html#cb213-5" aria-hidden="true" tabindex="-1"></a>ames_recipe_binary <span class="ot">&lt;-</span> </span>
-<span id="cb213-6"><a href="binary-classification-metrics.html#cb213-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(<span class="at">formula =</span> under_budget <span class="sc">~</span> Gr_Liv_Area <span class="sc">+</span> Full_Bath <span class="sc">+</span> Half_Bath <span class="sc">+</span> Lot_Area <span class="sc">+</span> Neighborhood <span class="sc">+</span> Overall_Cond,</span>
-<span id="cb213-7"><a href="binary-classification-metrics.html#cb213-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> ames)</span>
-<span id="cb213-8"><a href="binary-classification-metrics.html#cb213-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb213-9"><a href="binary-classification-metrics.html#cb213-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Set the model and hyperparameters</span></span>
-<span id="cb213-10"><a href="binary-classification-metrics.html#cb213-10" aria-hidden="true" tabindex="-1"></a>ames_spec_binary <span class="ot">&lt;-</span> </span>
-<span id="cb213-11"><a href="binary-classification-metrics.html#cb213-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rand_forest</span>(<span class="at">mtry =</span> <span class="fu">tune</span>(), <span class="at">trees =</span> <span class="fu">tune</span>(), <span class="at">min_n =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb213-12"><a href="binary-classification-metrics.html#cb213-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">&quot;classification&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb213-13"><a href="binary-classification-metrics.html#cb213-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;ranger&quot;</span>)</span>
-<span id="cb213-14"><a href="binary-classification-metrics.html#cb213-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb213-15"><a href="binary-classification-metrics.html#cb213-15" aria-hidden="true" tabindex="-1"></a><span class="co">#Create workflow</span></span>
-<span id="cb213-16"><a href="binary-classification-metrics.html#cb213-16" aria-hidden="true" tabindex="-1"></a>ames_workflow_binary <span class="ot">&lt;-</span> </span>
-<span id="cb213-17"><a href="binary-classification-metrics.html#cb213-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb213-18"><a href="binary-classification-metrics.html#cb213-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(ames_recipe_binary) <span class="sc">%&gt;%</span></span>
-<span id="cb213-19"><a href="binary-classification-metrics.html#cb213-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(ames_spec_binary)</span>
-<span id="cb213-20"><a href="binary-classification-metrics.html#cb213-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb213-21"><a href="binary-classification-metrics.html#cb213-21" aria-hidden="true" tabindex="-1"></a><span class="co">#Create metric set of all binary metrics</span></span>
-<span id="cb213-22"><a href="binary-classification-metrics.html#cb213-22" aria-hidden="true" tabindex="-1"></a>ames_tune_binary <span class="ot">&lt;-</span></span>
-<span id="cb213-23"><a href="binary-classification-metrics.html#cb213-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(</span>
-<span id="cb213-24"><a href="binary-classification-metrics.html#cb213-24" aria-hidden="true" tabindex="-1"></a>    ames_workflow_binary,</span>
-<span id="cb213-25"><a href="binary-classification-metrics.html#cb213-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">metrics =</span></span>
-<span id="cb213-26"><a href="binary-classification-metrics.html#cb213-26" aria-hidden="true" tabindex="-1"></a>      <span class="fu">metric_set</span>(sens,spec,recall,precision,mcc,j_index,f_meas,accuracy,</span>
-<span id="cb213-27"><a href="binary-classification-metrics.html#cb213-27" aria-hidden="true" tabindex="-1"></a>                 kap,ppv,npv,bal_accuracy,detection_prevalence),</span>
-<span id="cb213-28"><a href="binary-classification-metrics.html#cb213-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">resamples =</span> ames_folds_binary,</span>
-<span id="cb213-29"><a href="binary-classification-metrics.html#cb213-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">grid =</span> <span class="fu">grid_regular</span>(</span>
-<span id="cb213-30"><a href="binary-classification-metrics.html#cb213-30" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mtry</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">6</span>)),</span>
-<span id="cb213-31"><a href="binary-classification-metrics.html#cb213-31" aria-hidden="true" tabindex="-1"></a>      <span class="fu">min_n</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">20</span>)),</span>
-<span id="cb213-32"><a href="binary-classification-metrics.html#cb213-32" aria-hidden="true" tabindex="-1"></a>      <span class="fu">trees</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">100</span>)),</span>
-<span id="cb213-33"><a href="binary-classification-metrics.html#cb213-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="dv">10</span></span>
-<span id="cb213-34"><a href="binary-classification-metrics.html#cb213-34" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb213-35"><a href="binary-classification-metrics.html#cb213-35" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb213-36"><a href="binary-classification-metrics.html#cb213-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb213-37"><a href="binary-classification-metrics.html#cb213-37" aria-hidden="true" tabindex="-1"></a><span class="co">#Pick the best model for each metric and pull out the predictions</span></span>
-<span id="cb213-38"><a href="binary-classification-metrics.html#cb213-38" aria-hidden="true" tabindex="-1"></a>best_models_binary <span class="ot">&lt;-</span> </span>
-<span id="cb213-39"><a href="binary-classification-metrics.html#cb213-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
-<span id="cb213-40"><a href="binary-classification-metrics.html#cb213-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">metric_name =</span> <span class="fu">c</span>(<span class="st">&#39;recall&#39;</span>,<span class="st">&#39;sens&#39;</span>,<span class="st">&#39;spec&#39;</span>, <span class="st">&#39;precision&#39;</span>,<span class="st">&#39;mcc&#39;</span>,<span class="st">&#39;j_index&#39;</span>,<span class="st">&#39;f_meas&#39;</span>,<span class="st">&#39;accuracy&#39;</span>,</span>
-<span id="cb213-41"><a href="binary-classification-metrics.html#cb213-41" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&#39;kap&#39;</span>,<span class="st">&#39;ppv&#39;</span>,<span class="st">&#39;npv&#39;</span>,<span class="st">&#39;bal_accuracy&#39;</span>,<span class="st">&#39;detection_prevalence&#39;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb213-42"><a href="binary-classification-metrics.html#cb213-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">metric_best =</span> <span class="fu">map</span>(metric_name, <span class="sc">~</span><span class="fu">select_best</span>(ames_tune_binary, .x)),</span>
-<span id="cb213-43"><a href="binary-classification-metrics.html#cb213-43" aria-hidden="true" tabindex="-1"></a>         <span class="at">wf_best =</span> <span class="fu">map</span>(metric_best, <span class="sc">~</span><span class="fu">finalize_workflow</span>(ames_workflow_binary, .x)),</span>
-<span id="cb213-44"><a href="binary-classification-metrics.html#cb213-44" aria-hidden="true" tabindex="-1"></a>         <span class="at">fit_best =</span> <span class="fu">map</span>(wf_best, <span class="sc">~</span><span class="fu">fit</span>(.x, <span class="at">data =</span> ames)),</span>
-<span id="cb213-45"><a href="binary-classification-metrics.html#cb213-45" aria-hidden="true" tabindex="-1"></a>         <span class="at">df_pred =</span> <span class="fu">map</span>(fit_best, <span class="sc">~</span>ames <span class="sc">%&gt;%</span> <span class="fu">bind_cols</span>(<span class="fu">predict</span>(.x, <span class="at">new_data =</span> ames)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(under_budget, .pred_class))) <span class="sc">%&gt;%</span></span>
-<span id="cb213-46"><a href="binary-classification-metrics.html#cb213-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(wf_best, fit_best)) <span class="sc">%&gt;%</span> </span>
-<span id="cb213-47"><a href="binary-classification-metrics.html#cb213-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(<span class="at">cols =</span> <span class="fu">c</span>(metric_name, metric_best, df_pred))</span>
-<span id="cb213-48"><a href="binary-classification-metrics.html#cb213-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb213-49"><a href="binary-classification-metrics.html#cb213-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot!</span></span>
-<span id="cb213-50"><a href="binary-classification-metrics.html#cb213-50" aria-hidden="true" tabindex="-1"></a>best_models_binary <span class="sc">%&gt;%</span></span>
-<span id="cb213-51"><a href="binary-classification-metrics.html#cb213-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">metric_desc =</span> <span class="fu">factor</span>(</span>
-<span id="cb213-52"><a href="binary-classification-metrics.html#cb213-52" aria-hidden="true" tabindex="-1"></a>    metric_name, </span>
-<span id="cb213-53"><a href="binary-classification-metrics.html#cb213-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&#39;recall&#39;</span>,<span class="st">&#39;sens&#39;</span>,<span class="st">&#39;spec&#39;</span>, <span class="st">&#39;precision&#39;</span>,<span class="st">&#39;mcc&#39;</span>,<span class="st">&#39;j_index&#39;</span>,<span class="st">&#39;f_meas&#39;</span>,<span class="st">&#39;accuracy&#39;</span>,</span>
-<span id="cb213-54"><a href="binary-classification-metrics.html#cb213-54" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;kap&#39;</span>,<span class="st">&#39;ppv&#39;</span>,<span class="st">&#39;npv&#39;</span>,<span class="st">&#39;bal_accuracy&#39;</span>,<span class="st">&#39;detection_prevalence&#39;</span>),</span>
-<span id="cb213-55"><a href="binary-classification-metrics.html#cb213-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;recall</span><span class="sc">\n</span><span class="st">how many observations out </span><span class="sc">\n</span><span class="st">of all positive observations </span><span class="sc">\n</span><span class="st">have we classified as positive&#39;</span>,</span>
-<span id="cb213-56"><a href="binary-classification-metrics.html#cb213-56" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;sens</span><span class="sc">\n</span><span class="st">how many observations out </span><span class="sc">\n</span><span class="st">of all positive observations </span><span class="sc">\n</span><span class="st">have we classified as positive&#39;</span>,</span>
-<span id="cb213-57"><a href="binary-classification-metrics.html#cb213-57" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;spec</span><span class="sc">\n</span><span class="st">how many observations out </span><span class="sc">\n</span><span class="st">of all negative observations </span><span class="sc">\n</span><span class="st">have we classified as negative&#39;</span>, </span>
-<span id="cb213-58"><a href="binary-classification-metrics.html#cb213-58" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;precision</span><span class="sc">\n</span><span class="st">how many observations </span><span class="sc">\n</span><span class="st">predicted as positive are </span><span class="sc">\n</span><span class="st">in fact positive&#39;</span>,</span>
-<span id="cb213-59"><a href="binary-classification-metrics.html#cb213-59" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;mcc</span><span class="sc">\n</span><span class="st">correlation between </span><span class="sc">\n</span><span class="st">predicted classes and ground truth&#39;</span>,</span>
-<span id="cb213-60"><a href="binary-classification-metrics.html#cb213-60" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;j_index</span><span class="sc">\n</span><span class="st">balance between </span><span class="sc">\n</span><span class="st">sensitivity and specificity&#39;</span>,</span>
-<span id="cb213-61"><a href="binary-classification-metrics.html#cb213-61" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;f_meas</span><span class="sc">\n</span><span class="st">balance between </span><span class="sc">\n</span><span class="st">precision and recall&#39;</span>,</span>
-<span id="cb213-62"><a href="binary-classification-metrics.html#cb213-62" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;accuracy</span><span class="sc">\n</span><span class="st">how many observations,</span><span class="sc">\n</span><span class="st"> both positive and negative,</span><span class="sc">\n</span><span class="st"> were correctly classified&#39;</span>,</span>
-<span id="cb213-63"><a href="binary-classification-metrics.html#cb213-63" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;kap</span><span class="sc">\n</span><span class="st">how much better is your model</span><span class="sc">\n</span><span class="st"> over the random classifier</span><span class="sc">\n</span><span class="st"> that predicts based on class frequencies&#39;</span>,</span>
-<span id="cb213-64"><a href="binary-classification-metrics.html#cb213-64" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;ppv</span><span class="sc">\n</span><span class="st">how many observations</span><span class="sc">\n</span><span class="st"> predicted as positive</span><span class="sc">\n</span><span class="st"> are in fact positive&#39;</span>,</span>
-<span id="cb213-65"><a href="binary-classification-metrics.html#cb213-65" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;npv</span><span class="sc">\n</span><span class="st">how many predictions</span><span class="sc">\n</span><span class="st"> out of all negative</span><span class="sc">\n</span><span class="st"> predictions were correct&#39;</span>,</span>
-<span id="cb213-66"><a href="binary-classification-metrics.html#cb213-66" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;bal_accuracy</span><span class="sc">\n</span><span class="st">balance between</span><span class="sc">\n</span><span class="st"> sensitivity and specificity&#39;</span>,</span>
-<span id="cb213-67"><a href="binary-classification-metrics.html#cb213-67" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;detection_prevalence</span><span class="sc">\n</span><span class="st">how many positive</span><span class="sc">\n</span><span class="st"> predictions were correct of</span><span class="sc">\n</span><span class="st"> all the predictions&#39;</span>))) <span class="sc">%&gt;%</span> </span>
-<span id="cb213-68"><a href="binary-classification-metrics.html#cb213-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(metric_desc, under_budget, .pred_class) <span class="sc">%&gt;%</span> </span>
-<span id="cb213-69"><a href="binary-classification-metrics.html#cb213-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">bin_count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb213-70"><a href="binary-classification-metrics.html#cb213-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb213-71"><a href="binary-classification-metrics.html#cb213-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> under_budget, <span class="at">y =</span> .pred_class, <span class="at">fill =</span> bin_count, <span class="at">label =</span> bin_count)) <span class="sc">+</span></span>
-<span id="cb213-72"><a href="binary-classification-metrics.html#cb213-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_binned</span>() <span class="sc">+</span></span>
-<span id="cb213-73"><a href="binary-classification-metrics.html#cb213-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
-<span id="cb213-74"><a href="binary-classification-metrics.html#cb213-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>() <span class="sc">+</span></span>
-<span id="cb213-75"><a href="binary-classification-metrics.html#cb213-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
-<span id="cb213-76"><a href="binary-classification-metrics.html#cb213-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>metric_desc, <span class="at">ncol =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb213-77"><a href="binary-classification-metrics.html#cb213-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb213-78"><a href="binary-classification-metrics.html#cb213-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.spacing =</span> <span class="fu">unit</span>(<span class="dv">2</span>, <span class="st">&quot;lines&quot;</span>),</span>
-<span id="cb213-79"><a href="binary-classification-metrics.html#cb213-79" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="binary-classification-metrics.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Cross-fold validation</span></span>
+<span id="cb299-2"><a href="binary-classification-metrics.html#cb299-2" aria-hidden="true" tabindex="-1"></a>ames_folds_binary <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(ames, <span class="at">v =</span> <span class="dv">5</span>)</span>
+<span id="cb299-3"><a href="binary-classification-metrics.html#cb299-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb299-4"><a href="binary-classification-metrics.html#cb299-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Create Recipe</span></span>
+<span id="cb299-5"><a href="binary-classification-metrics.html#cb299-5" aria-hidden="true" tabindex="-1"></a>ames_recipe_binary <span class="ot">&lt;-</span> </span>
+<span id="cb299-6"><a href="binary-classification-metrics.html#cb299-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(<span class="at">formula =</span> under_budget <span class="sc">~</span> Gr_Liv_Area <span class="sc">+</span> Full_Bath <span class="sc">+</span> Half_Bath <span class="sc">+</span> Lot_Area <span class="sc">+</span> Neighborhood <span class="sc">+</span> Overall_Cond,</span>
+<span id="cb299-7"><a href="binary-classification-metrics.html#cb299-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> ames)</span>
+<span id="cb299-8"><a href="binary-classification-metrics.html#cb299-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb299-9"><a href="binary-classification-metrics.html#cb299-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Set the model and hyperparameters</span></span>
+<span id="cb299-10"><a href="binary-classification-metrics.html#cb299-10" aria-hidden="true" tabindex="-1"></a>ames_spec_binary <span class="ot">&lt;-</span> </span>
+<span id="cb299-11"><a href="binary-classification-metrics.html#cb299-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rand_forest</span>(<span class="at">mtry =</span> <span class="fu">tune</span>(), <span class="at">trees =</span> <span class="fu">tune</span>(), <span class="at">min_n =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb299-12"><a href="binary-classification-metrics.html#cb299-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">&quot;classification&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb299-13"><a href="binary-classification-metrics.html#cb299-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;ranger&quot;</span>)</span>
+<span id="cb299-14"><a href="binary-classification-metrics.html#cb299-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb299-15"><a href="binary-classification-metrics.html#cb299-15" aria-hidden="true" tabindex="-1"></a><span class="co">#Create workflow</span></span>
+<span id="cb299-16"><a href="binary-classification-metrics.html#cb299-16" aria-hidden="true" tabindex="-1"></a>ames_workflow_binary <span class="ot">&lt;-</span> </span>
+<span id="cb299-17"><a href="binary-classification-metrics.html#cb299-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb299-18"><a href="binary-classification-metrics.html#cb299-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(ames_recipe_binary) <span class="sc">%&gt;%</span></span>
+<span id="cb299-19"><a href="binary-classification-metrics.html#cb299-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(ames_spec_binary)</span>
+<span id="cb299-20"><a href="binary-classification-metrics.html#cb299-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb299-21"><a href="binary-classification-metrics.html#cb299-21" aria-hidden="true" tabindex="-1"></a><span class="co">#Create metric set of all binary metrics</span></span>
+<span id="cb299-22"><a href="binary-classification-metrics.html#cb299-22" aria-hidden="true" tabindex="-1"></a>ames_tune_binary <span class="ot">&lt;-</span></span>
+<span id="cb299-23"><a href="binary-classification-metrics.html#cb299-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(</span>
+<span id="cb299-24"><a href="binary-classification-metrics.html#cb299-24" aria-hidden="true" tabindex="-1"></a>    ames_workflow_binary,</span>
+<span id="cb299-25"><a href="binary-classification-metrics.html#cb299-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">metrics =</span></span>
+<span id="cb299-26"><a href="binary-classification-metrics.html#cb299-26" aria-hidden="true" tabindex="-1"></a>      <span class="fu">metric_set</span>(sens,spec,recall,precision,mcc,j_index,f_meas,accuracy,</span>
+<span id="cb299-27"><a href="binary-classification-metrics.html#cb299-27" aria-hidden="true" tabindex="-1"></a>                 kap,ppv,npv,bal_accuracy,detection_prevalence),</span>
+<span id="cb299-28"><a href="binary-classification-metrics.html#cb299-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">resamples =</span> ames_folds_binary,</span>
+<span id="cb299-29"><a href="binary-classification-metrics.html#cb299-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">grid =</span> <span class="fu">grid_regular</span>(</span>
+<span id="cb299-30"><a href="binary-classification-metrics.html#cb299-30" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mtry</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">6</span>)),</span>
+<span id="cb299-31"><a href="binary-classification-metrics.html#cb299-31" aria-hidden="true" tabindex="-1"></a>      <span class="fu">min_n</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">20</span>)),</span>
+<span id="cb299-32"><a href="binary-classification-metrics.html#cb299-32" aria-hidden="true" tabindex="-1"></a>      <span class="fu">trees</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">100</span>)),</span>
+<span id="cb299-33"><a href="binary-classification-metrics.html#cb299-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="dv">10</span></span>
+<span id="cb299-34"><a href="binary-classification-metrics.html#cb299-34" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb299-35"><a href="binary-classification-metrics.html#cb299-35" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb299-36"><a href="binary-classification-metrics.html#cb299-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb299-37"><a href="binary-classification-metrics.html#cb299-37" aria-hidden="true" tabindex="-1"></a><span class="co">#Pick the best model for each metric and pull out the predictions</span></span>
+<span id="cb299-38"><a href="binary-classification-metrics.html#cb299-38" aria-hidden="true" tabindex="-1"></a>best_models_binary <span class="ot">&lt;-</span> </span>
+<span id="cb299-39"><a href="binary-classification-metrics.html#cb299-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb299-40"><a href="binary-classification-metrics.html#cb299-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">metric_name =</span> <span class="fu">c</span>(<span class="st">&#39;recall&#39;</span>,<span class="st">&#39;sens&#39;</span>,<span class="st">&#39;spec&#39;</span>, <span class="st">&#39;precision&#39;</span>,<span class="st">&#39;mcc&#39;</span>,<span class="st">&#39;j_index&#39;</span>,<span class="st">&#39;f_meas&#39;</span>,<span class="st">&#39;accuracy&#39;</span>,</span>
+<span id="cb299-41"><a href="binary-classification-metrics.html#cb299-41" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&#39;kap&#39;</span>,<span class="st">&#39;ppv&#39;</span>,<span class="st">&#39;npv&#39;</span>,<span class="st">&#39;bal_accuracy&#39;</span>,<span class="st">&#39;detection_prevalence&#39;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb299-42"><a href="binary-classification-metrics.html#cb299-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">metric_best =</span> <span class="fu">map</span>(metric_name, <span class="sc">~</span><span class="fu">select_best</span>(ames_tune_binary, .x)),</span>
+<span id="cb299-43"><a href="binary-classification-metrics.html#cb299-43" aria-hidden="true" tabindex="-1"></a>         <span class="at">wf_best =</span> <span class="fu">map</span>(metric_best, <span class="sc">~</span><span class="fu">finalize_workflow</span>(ames_workflow_binary, .x)),</span>
+<span id="cb299-44"><a href="binary-classification-metrics.html#cb299-44" aria-hidden="true" tabindex="-1"></a>         <span class="at">fit_best =</span> <span class="fu">map</span>(wf_best, <span class="sc">~</span><span class="fu">fit</span>(.x, <span class="at">data =</span> ames)),</span>
+<span id="cb299-45"><a href="binary-classification-metrics.html#cb299-45" aria-hidden="true" tabindex="-1"></a>         <span class="at">df_pred =</span> <span class="fu">map</span>(fit_best, <span class="sc">~</span>ames <span class="sc">%&gt;%</span> <span class="fu">bind_cols</span>(<span class="fu">predict</span>(.x, <span class="at">new_data =</span> ames)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(under_budget, .pred_class))) <span class="sc">%&gt;%</span></span>
+<span id="cb299-46"><a href="binary-classification-metrics.html#cb299-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(wf_best, fit_best)) <span class="sc">%&gt;%</span> </span>
+<span id="cb299-47"><a href="binary-classification-metrics.html#cb299-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(<span class="at">cols =</span> <span class="fu">c</span>(metric_name, metric_best, df_pred))</span>
+<span id="cb299-48"><a href="binary-classification-metrics.html#cb299-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb299-49"><a href="binary-classification-metrics.html#cb299-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot!</span></span>
+<span id="cb299-50"><a href="binary-classification-metrics.html#cb299-50" aria-hidden="true" tabindex="-1"></a>best_models_binary <span class="sc">%&gt;%</span></span>
+<span id="cb299-51"><a href="binary-classification-metrics.html#cb299-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">metric_desc =</span> <span class="fu">factor</span>(</span>
+<span id="cb299-52"><a href="binary-classification-metrics.html#cb299-52" aria-hidden="true" tabindex="-1"></a>    metric_name, </span>
+<span id="cb299-53"><a href="binary-classification-metrics.html#cb299-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&#39;recall&#39;</span>,<span class="st">&#39;sens&#39;</span>,<span class="st">&#39;spec&#39;</span>, <span class="st">&#39;precision&#39;</span>,<span class="st">&#39;mcc&#39;</span>,<span class="st">&#39;j_index&#39;</span>,<span class="st">&#39;f_meas&#39;</span>,<span class="st">&#39;accuracy&#39;</span>,</span>
+<span id="cb299-54"><a href="binary-classification-metrics.html#cb299-54" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;kap&#39;</span>,<span class="st">&#39;ppv&#39;</span>,<span class="st">&#39;npv&#39;</span>,<span class="st">&#39;bal_accuracy&#39;</span>,<span class="st">&#39;detection_prevalence&#39;</span>),</span>
+<span id="cb299-55"><a href="binary-classification-metrics.html#cb299-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;recall</span><span class="sc">\n</span><span class="st">how many observations out </span><span class="sc">\n</span><span class="st">of all positive observations </span><span class="sc">\n</span><span class="st">have we classified as positive&#39;</span>,</span>
+<span id="cb299-56"><a href="binary-classification-metrics.html#cb299-56" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;sens</span><span class="sc">\n</span><span class="st">how many observations out </span><span class="sc">\n</span><span class="st">of all positive observations </span><span class="sc">\n</span><span class="st">have we classified as positive&#39;</span>,</span>
+<span id="cb299-57"><a href="binary-classification-metrics.html#cb299-57" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;spec</span><span class="sc">\n</span><span class="st">how many observations out </span><span class="sc">\n</span><span class="st">of all negative observations </span><span class="sc">\n</span><span class="st">have we classified as negative&#39;</span>, </span>
+<span id="cb299-58"><a href="binary-classification-metrics.html#cb299-58" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;precision</span><span class="sc">\n</span><span class="st">how many observations </span><span class="sc">\n</span><span class="st">predicted as positive are </span><span class="sc">\n</span><span class="st">in fact positive&#39;</span>,</span>
+<span id="cb299-59"><a href="binary-classification-metrics.html#cb299-59" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;mcc</span><span class="sc">\n</span><span class="st">correlation between </span><span class="sc">\n</span><span class="st">predicted classes and ground truth&#39;</span>,</span>
+<span id="cb299-60"><a href="binary-classification-metrics.html#cb299-60" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;j_index</span><span class="sc">\n</span><span class="st">balance between </span><span class="sc">\n</span><span class="st">sensitivity and specificity&#39;</span>,</span>
+<span id="cb299-61"><a href="binary-classification-metrics.html#cb299-61" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;f_meas</span><span class="sc">\n</span><span class="st">balance between </span><span class="sc">\n</span><span class="st">precision and recall&#39;</span>,</span>
+<span id="cb299-62"><a href="binary-classification-metrics.html#cb299-62" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;accuracy</span><span class="sc">\n</span><span class="st">how many observations,</span><span class="sc">\n</span><span class="st"> both positive and negative,</span><span class="sc">\n</span><span class="st"> were correctly classified&#39;</span>,</span>
+<span id="cb299-63"><a href="binary-classification-metrics.html#cb299-63" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;kap</span><span class="sc">\n</span><span class="st">how much better is your model</span><span class="sc">\n</span><span class="st"> over the random classifier</span><span class="sc">\n</span><span class="st"> that predicts based on class frequencies&#39;</span>,</span>
+<span id="cb299-64"><a href="binary-classification-metrics.html#cb299-64" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;ppv</span><span class="sc">\n</span><span class="st">how many observations</span><span class="sc">\n</span><span class="st"> predicted as positive</span><span class="sc">\n</span><span class="st"> are in fact positive&#39;</span>,</span>
+<span id="cb299-65"><a href="binary-classification-metrics.html#cb299-65" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;npv</span><span class="sc">\n</span><span class="st">how many predictions</span><span class="sc">\n</span><span class="st"> out of all negative</span><span class="sc">\n</span><span class="st"> predictions were correct&#39;</span>,</span>
+<span id="cb299-66"><a href="binary-classification-metrics.html#cb299-66" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;bal_accuracy</span><span class="sc">\n</span><span class="st">balance between</span><span class="sc">\n</span><span class="st"> sensitivity and specificity&#39;</span>,</span>
+<span id="cb299-67"><a href="binary-classification-metrics.html#cb299-67" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;detection_prevalence</span><span class="sc">\n</span><span class="st">how many positive</span><span class="sc">\n</span><span class="st"> predictions were correct of</span><span class="sc">\n</span><span class="st"> all the predictions&#39;</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb299-68"><a href="binary-classification-metrics.html#cb299-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(metric_desc, under_budget, .pred_class) <span class="sc">%&gt;%</span> </span>
+<span id="cb299-69"><a href="binary-classification-metrics.html#cb299-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">bin_count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb299-70"><a href="binary-classification-metrics.html#cb299-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb299-71"><a href="binary-classification-metrics.html#cb299-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> under_budget, <span class="at">y =</span> .pred_class, <span class="at">fill =</span> bin_count, <span class="at">label =</span> bin_count)) <span class="sc">+</span></span>
+<span id="cb299-72"><a href="binary-classification-metrics.html#cb299-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_binned</span>() <span class="sc">+</span></span>
+<span id="cb299-73"><a href="binary-classification-metrics.html#cb299-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
+<span id="cb299-74"><a href="binary-classification-metrics.html#cb299-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>() <span class="sc">+</span></span>
+<span id="cb299-75"><a href="binary-classification-metrics.html#cb299-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb299-76"><a href="binary-classification-metrics.html#cb299-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>metric_desc, <span class="at">ncol =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb299-77"><a href="binary-classification-metrics.html#cb299-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb299-78"><a href="binary-classification-metrics.html#cb299-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.spacing =</span> <span class="fu">unit</span>(<span class="dv">2</span>, <span class="st">&quot;lines&quot;</span>),</span>
+<span id="cb299-79"><a href="binary-classification-metrics.html#cb299-79" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>))</span></code></pre></div>
 <p><img src="images/09-best_models_binary.png" /></p>
 </div>
             </section>

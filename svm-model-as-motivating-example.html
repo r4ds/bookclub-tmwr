@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2023-07-11" />
+<meta name="date" content="2023-07-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -54,6 +54,14 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="libs/d3-3.3.8/d3.min.js"></script>
+<script src="libs/dagre-0.4.0/dagre-d3.min.js"></script>
+<link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet" />
+<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/chromatography-0.1/chromatography.js"></script>
+<script src="libs/DiagrammeR-binding-1.0.10/DiagrammeR.js"></script>
 
 
 <style type="text/css">
@@ -309,24 +317,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="judging-model-effectiveness.html"><a href="judging-model-effectiveness.html"><i class="fa fa-check"></i><b>9</b> Judging model effectiveness</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="measures-of-model-fit.html"><a href="measures-of-model-fit.html"><i class="fa fa-check"></i><b>9.1</b> Measures of Model Fit</a></li>
-<li class="chapter" data-level="9.2" data-path="disclaimers.html"><a href="disclaimers.html"><i class="fa fa-check"></i><b>9.2</b> Disclaimers</a></li>
-<li class="chapter" data-level="9.3" data-path="regression-metrics.html"><a href="regression-metrics.html"><i class="fa fa-check"></i><b>9.3</b> Regression Metrics</a></li>
-<li class="chapter" data-level="9.4" data-path="binary-classification-metrics.html"><a href="binary-classification-metrics.html"><i class="fa fa-check"></i><b>9.4</b> Binary Classification Metrics</a></li>
-<li class="chapter" data-level="9.5" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>9.5</b> References</a></li>
-<li class="chapter" data-level="9.6" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html"><i class="fa fa-check"></i><b>9.6</b> Meeting Videos</a>
+<li class="chapter" data-level="9.1" data-path="performance-metrics-and-inference.html"><a href="performance-metrics-and-inference.html"><i class="fa fa-check"></i><b>9.1</b> Performance Metrics and Inference</a></li>
+<li class="chapter" data-level="9.2" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html"><i class="fa fa-check"></i><b>9.2</b> A little Recap of previous chapters</a>
 <ul>
-<li class="chapter" data-level="9.6.1" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-1-8"><i class="fa fa-check"></i><b>9.6.1</b> Cohort 1</a></li>
-<li class="chapter" data-level="9.6.2" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-2-9"><i class="fa fa-check"></i><b>9.6.2</b> Cohort 2</a></li>
-<li class="chapter" data-level="9.6.3" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-3-8"><i class="fa fa-check"></i><b>9.6.3</b> Cohort 3</a></li>
-<li class="chapter" data-level="9.6.4" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-4-8"><i class="fa fa-check"></i><b>9.6.4</b> Cohort 4</a></li>
+<li class="chapter" data-level="9.2.1" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#case-study-1"><i class="fa fa-check"></i><b>9.2.1</b> Case Study 1</a></li>
+<li class="chapter" data-level="9.2.2" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#tidymodels-modeling-as-a-step-by-step-mode"><i class="fa fa-check"></i><b>9.2.2</b> Tidymodels: modeling as a step by step mode</a></li>
+<li class="chapter" data-level="9.2.3" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#workflow-to-combine-models-and-recipes"><i class="fa fa-check"></i><b>9.2.3</b> Workflow: to combine models and recipes</a></li>
+<li class="chapter" data-level="9.2.4" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#case-study-2"><i class="fa fa-check"></i><b>9.2.4</b> Case Study 2</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="functions-used-to-measure-predictive-strengths-of-a-model.html"><a href="functions-used-to-measure-predictive-strengths-of-a-model.html"><i class="fa fa-check"></i><b>9.3</b> Functions used to measure predictive strengths of a model</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="functions-used-to-measure-predictive-strengths-of-a-model.html"><a href="functions-used-to-measure-predictive-strengths-of-a-model.html#case-study-3"><i class="fa fa-check"></i><b>9.3.1</b> Case Study 3</a></li>
+<li class="chapter" data-level="9.3.2" data-path="functions-used-to-measure-predictive-strengths-of-a-model.html"><a href="functions-used-to-measure-predictive-strengths-of-a-model.html#conclusion"><i class="fa fa-check"></i><b>9.3.2</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="measures-of-model-fit---case-study-cohort-1.html"><a href="measures-of-model-fit---case-study-cohort-1.html"><i class="fa fa-check"></i><b>9.4</b> Measures of Model Fit - Case Study (Cohort 1)</a></li>
+<li class="chapter" data-level="9.5" data-path="disclaimers.html"><a href="disclaimers.html"><i class="fa fa-check"></i><b>9.5</b> Disclaimers</a></li>
+<li class="chapter" data-level="9.6" data-path="regression-metrics.html"><a href="regression-metrics.html"><i class="fa fa-check"></i><b>9.6</b> Regression Metrics</a></li>
+<li class="chapter" data-level="9.7" data-path="binary-classification-metrics.html"><a href="binary-classification-metrics.html"><i class="fa fa-check"></i><b>9.7</b> Binary Classification Metrics</a></li>
+<li class="chapter" data-level="9.8" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>9.8</b> References</a></li>
+<li class="chapter" data-level="9.9" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html"><i class="fa fa-check"></i><b>9.9</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="9.9.1" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-1-8"><i class="fa fa-check"></i><b>9.9.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="9.9.2" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-2-9"><i class="fa fa-check"></i><b>9.9.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="9.9.3" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-3-8"><i class="fa fa-check"></i><b>9.9.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="9.9.4" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-4-8"><i class="fa fa-check"></i><b>9.9.4</b> Cohort 4</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="review-of-chapters-4-9.html"><a href="review-of-chapters-4-9.html"><i class="fa fa-check"></i>Review of chapters 4-9</a>
 <ul>
-<li class="chapter" data-level="9.7" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html"><i class="fa fa-check"></i><b>9.7</b> Meeting Videos</a>
+<li class="chapter" data-level="9.10" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html"><i class="fa fa-check"></i><b>9.10</b> Meeting Videos</a>
 <ul>
-<li class="chapter" data-level="9.7.1" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html#cohort-1-9"><i class="fa fa-check"></i><b>9.7.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="9.10.1" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html#cohort-1-9"><i class="fa fa-check"></i><b>9.10.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>Tools for Creating Effective Models</b></span></li>
@@ -568,63 +589,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="svm-model-as-motivating-example" class="section level2 hasAnchor" number="14.1">
 <h2><span class="header-section-number">14.1</span> SVM model as motivating example<a href="svm-model-as-motivating-example.html#svm-model-as-motivating-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We’re interested in developing a classification model to classify sex for the palmers penguins dataset using a radial basis function support vector machine (svm).</p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="svm-model-as-motivating-example.html#cb332-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb332-2"><a href="svm-model-as-motivating-example.html#cb332-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb332-3"><a href="svm-model-as-motivating-example.html#cb332-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb332-4"><a href="svm-model-as-motivating-example.html#cb332-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb332-5"><a href="svm-model-as-motivating-example.html#cb332-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(finetune)</span></code></pre></div>
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="svm-model-as-motivating-example.html#cb333-1" aria-hidden="true" tabindex="-1"></a>penguins_df <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
-<span id="cb333-2"><a href="svm-model-as-motivating-example.html#cb333-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">%&gt;%</span> <span class="co"># discarding NA obs</span></span>
-<span id="cb333-3"><a href="svm-model-as-motivating-example.html#cb333-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>year, <span class="sc">-</span>island) <span class="co"># not useful</span></span>
-<span id="cb333-4"><a href="svm-model-as-motivating-example.html#cb333-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb333-5"><a href="svm-model-as-motivating-example.html#cb333-5" aria-hidden="true" tabindex="-1"></a>splits <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(penguins_df, <span class="at">strata =</span> sex)</span>
-<span id="cb333-6"><a href="svm-model-as-motivating-example.html#cb333-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb333-7"><a href="svm-model-as-motivating-example.html#cb333-7" aria-hidden="true" tabindex="-1"></a>penguins_folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(<span class="fu">training</span>(splits), <span class="at">v =</span> <span class="dv">5</span>, <span class="at">strata =</span> sex)</span>
-<span id="cb333-8"><a href="svm-model-as-motivating-example.html#cb333-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb333-9"><a href="svm-model-as-motivating-example.html#cb333-9" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">420</span>)</span>
-<span id="cb333-10"><a href="svm-model-as-motivating-example.html#cb333-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb333-11"><a href="svm-model-as-motivating-example.html#cb333-11" aria-hidden="true" tabindex="-1"></a>roc_res <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(roc_auc) <span class="co"># accuracy, a classification metric</span></span></code></pre></div>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="svm-model-as-motivating-example.html#cb418-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb418-2"><a href="svm-model-as-motivating-example.html#cb418-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb418-3"><a href="svm-model-as-motivating-example.html#cb418-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb418-4"><a href="svm-model-as-motivating-example.html#cb418-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb418-5"><a href="svm-model-as-motivating-example.html#cb418-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(finetune)</span></code></pre></div>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="svm-model-as-motivating-example.html#cb419-1" aria-hidden="true" tabindex="-1"></a>penguins_df <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb419-2"><a href="svm-model-as-motivating-example.html#cb419-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">%&gt;%</span> <span class="co"># discarding NA obs</span></span>
+<span id="cb419-3"><a href="svm-model-as-motivating-example.html#cb419-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>year, <span class="sc">-</span>island) <span class="co"># not useful</span></span>
+<span id="cb419-4"><a href="svm-model-as-motivating-example.html#cb419-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb419-5"><a href="svm-model-as-motivating-example.html#cb419-5" aria-hidden="true" tabindex="-1"></a>splits <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(penguins_df, <span class="at">strata =</span> sex)</span>
+<span id="cb419-6"><a href="svm-model-as-motivating-example.html#cb419-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb419-7"><a href="svm-model-as-motivating-example.html#cb419-7" aria-hidden="true" tabindex="-1"></a>penguins_folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(<span class="fu">training</span>(splits), <span class="at">v =</span> <span class="dv">5</span>, <span class="at">strata =</span> sex)</span>
+<span id="cb419-8"><a href="svm-model-as-motivating-example.html#cb419-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb419-9"><a href="svm-model-as-motivating-example.html#cb419-9" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">420</span>)</span>
+<span id="cb419-10"><a href="svm-model-as-motivating-example.html#cb419-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb419-11"><a href="svm-model-as-motivating-example.html#cb419-11" aria-hidden="true" tabindex="-1"></a>roc_res <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(roc_auc) <span class="co"># accuracy, a classification metric</span></span></code></pre></div>
 <p>Let’s fit a radial basis function support vector machine to the palmers penguins and tune the SVM cost parameter (<code>cost()</code>) and the σ parameter in the kernel function (<code>rbf_sigma</code>):</p>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="svm-model-as-motivating-example.html#cb334-1" aria-hidden="true" tabindex="-1"></a>svm_rec <span class="ot">&lt;-</span> </span>
-<span id="cb334-2"><a href="svm-model-as-motivating-example.html#cb334-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(sex <span class="sc">~</span> ., <span class="at">data =</span> penguins_df) </span>
-<span id="cb334-3"><a href="svm-model-as-motivating-example.html#cb334-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb334-4"><a href="svm-model-as-motivating-example.html#cb334-4" aria-hidden="true" tabindex="-1"></a>svm_spec <span class="ot">&lt;-</span></span>
-<span id="cb334-5"><a href="svm-model-as-motivating-example.html#cb334-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">svm_rbf</span>(<span class="at">cost =</span> <span class="fu">tune</span>(), <span class="at">rbf_sigma =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb334-6"><a href="svm-model-as-motivating-example.html#cb334-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">&quot;classification&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb334-7"><a href="svm-model-as-motivating-example.html#cb334-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;kernlab&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="svm-model-as-motivating-example.html#cb420-1" aria-hidden="true" tabindex="-1"></a>svm_rec <span class="ot">&lt;-</span> </span>
+<span id="cb420-2"><a href="svm-model-as-motivating-example.html#cb420-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(sex <span class="sc">~</span> ., <span class="at">data =</span> penguins_df) </span>
+<span id="cb420-3"><a href="svm-model-as-motivating-example.html#cb420-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb420-4"><a href="svm-model-as-motivating-example.html#cb420-4" aria-hidden="true" tabindex="-1"></a>svm_spec <span class="ot">&lt;-</span></span>
+<span id="cb420-5"><a href="svm-model-as-motivating-example.html#cb420-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">svm_rbf</span>(<span class="at">cost =</span> <span class="fu">tune</span>(), <span class="at">rbf_sigma =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb420-6"><a href="svm-model-as-motivating-example.html#cb420-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">&quot;classification&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb420-7"><a href="svm-model-as-motivating-example.html#cb420-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;kernlab&quot;</span>)</span></code></pre></div>
 <p>Now, let’s set up our <code>workflow()</code> and feeding it our svm model</p>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="svm-model-as-motivating-example.html#cb335-1" aria-hidden="true" tabindex="-1"></a>svm_wflow <span class="ot">&lt;-</span> </span>
-<span id="cb335-2"><a href="svm-model-as-motivating-example.html#cb335-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb335-3"><a href="svm-model-as-motivating-example.html#cb335-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(svm_spec) <span class="sc">%&gt;%</span> </span>
-<span id="cb335-4"><a href="svm-model-as-motivating-example.html#cb335-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(svm_rec)</span></code></pre></div>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="svm-model-as-motivating-example.html#cb421-1" aria-hidden="true" tabindex="-1"></a>svm_wflow <span class="ot">&lt;-</span> </span>
+<span id="cb421-2"><a href="svm-model-as-motivating-example.html#cb421-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb421-3"><a href="svm-model-as-motivating-example.html#cb421-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(svm_spec) <span class="sc">%&gt;%</span> </span>
+<span id="cb421-4"><a href="svm-model-as-motivating-example.html#cb421-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(svm_rec)</span></code></pre></div>
 <p>Let’s zoom in on the default parameter values for our two tuning parameters:</p>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="svm-model-as-motivating-example.html#cb336-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cost</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="svm-model-as-motivating-example.html#cb422-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cost</span>()</span></code></pre></div>
 <pre><code>## Cost (quantitative)
 ## Transformer: log-2 [1e-100, Inf]
 ## Range (transformed scale): [-10, 5]</code></pre>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="svm-model-as-motivating-example.html#cb338-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rbf_sigma</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="svm-model-as-motivating-example.html#cb424-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rbf_sigma</span>()</span></code></pre></div>
 <pre><code>## Radial Basis Function sigma (quantitative)
 ## Transformer: log-10 [1e-100, Inf]
 ## Range (transformed scale): [-10, 0]</code></pre>
 <p>We can change them:</p>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="svm-model-as-motivating-example.html#cb340-1" aria-hidden="true" tabindex="-1"></a>svm_param <span class="ot">&lt;-</span> </span>
-<span id="cb340-2"><a href="svm-model-as-motivating-example.html#cb340-2" aria-hidden="true" tabindex="-1"></a>  svm_wflow <span class="sc">%&gt;%</span> </span>
-<span id="cb340-3"><a href="svm-model-as-motivating-example.html#cb340-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">parameters</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb340-4"><a href="svm-model-as-motivating-example.html#cb340-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">update</span>(<span class="at">rbf_sigma =</span> <span class="fu">rbf_sigma</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">7</span>, <span class="sc">-</span><span class="dv">1</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="svm-model-as-motivating-example.html#cb426-1" aria-hidden="true" tabindex="-1"></a>svm_param <span class="ot">&lt;-</span> </span>
+<span id="cb426-2"><a href="svm-model-as-motivating-example.html#cb426-2" aria-hidden="true" tabindex="-1"></a>  svm_wflow <span class="sc">%&gt;%</span> </span>
+<span id="cb426-3"><a href="svm-model-as-motivating-example.html#cb426-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">parameters</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb426-4"><a href="svm-model-as-motivating-example.html#cb426-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">update</span>(<span class="at">rbf_sigma =</span> <span class="fu">rbf_sigma</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">7</span>, <span class="sc">-</span><span class="dv">1</span>)))</span></code></pre></div>
 <p>Because the methods that we will go over later need some resampled performance statistics before proceeding, we can use <code>tune_grid()</code> function to resample these values:</p>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="svm-model-as-motivating-example.html#cb341-1" aria-hidden="true" tabindex="-1"></a>start_grid <span class="ot">&lt;-</span> </span>
-<span id="cb341-2"><a href="svm-model-as-motivating-example.html#cb341-2" aria-hidden="true" tabindex="-1"></a>  svm_param <span class="sc">%&gt;%</span> </span>
-<span id="cb341-3"><a href="svm-model-as-motivating-example.html#cb341-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">update</span>(</span>
-<span id="cb341-4"><a href="svm-model-as-motivating-example.html#cb341-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">cost =</span> <span class="fu">cost</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">6</span>, <span class="dv">1</span>)),</span>
-<span id="cb341-5"><a href="svm-model-as-motivating-example.html#cb341-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">rbf_sigma =</span> <span class="fu">rbf_sigma</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">6</span>, <span class="sc">-</span><span class="dv">4</span>))) <span class="sc">%&gt;%</span> </span>
-<span id="cb341-6"><a href="svm-model-as-motivating-example.html#cb341-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">grid_regular</span>(<span class="at">levels =</span> <span class="dv">2</span>)</span>
-<span id="cb341-7"><a href="svm-model-as-motivating-example.html#cb341-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb341-8"><a href="svm-model-as-motivating-example.html#cb341-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2</span>)</span>
-<span id="cb341-9"><a href="svm-model-as-motivating-example.html#cb341-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb341-10"><a href="svm-model-as-motivating-example.html#cb341-10" aria-hidden="true" tabindex="-1"></a>svm_initial <span class="ot">&lt;-</span> </span>
-<span id="cb341-11"><a href="svm-model-as-motivating-example.html#cb341-11" aria-hidden="true" tabindex="-1"></a>  svm_wflow <span class="sc">%&gt;%</span> </span>
-<span id="cb341-12"><a href="svm-model-as-motivating-example.html#cb341-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(<span class="at">resamples =</span> penguins_folds, <span class="at">grid =</span> start_grid, <span class="at">metrics =</span> roc_res)</span></code></pre></div>
-<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="svm-model-as-motivating-example.html#cb342-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_metrics</span>(svm_initial)</span></code></pre></div>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="svm-model-as-motivating-example.html#cb427-1" aria-hidden="true" tabindex="-1"></a>start_grid <span class="ot">&lt;-</span> </span>
+<span id="cb427-2"><a href="svm-model-as-motivating-example.html#cb427-2" aria-hidden="true" tabindex="-1"></a>  svm_param <span class="sc">%&gt;%</span> </span>
+<span id="cb427-3"><a href="svm-model-as-motivating-example.html#cb427-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">update</span>(</span>
+<span id="cb427-4"><a href="svm-model-as-motivating-example.html#cb427-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">cost =</span> <span class="fu">cost</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">6</span>, <span class="dv">1</span>)),</span>
+<span id="cb427-5"><a href="svm-model-as-motivating-example.html#cb427-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">rbf_sigma =</span> <span class="fu">rbf_sigma</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">6</span>, <span class="sc">-</span><span class="dv">4</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb427-6"><a href="svm-model-as-motivating-example.html#cb427-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">grid_regular</span>(<span class="at">levels =</span> <span class="dv">2</span>)</span>
+<span id="cb427-7"><a href="svm-model-as-motivating-example.html#cb427-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb427-8"><a href="svm-model-as-motivating-example.html#cb427-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2</span>)</span>
+<span id="cb427-9"><a href="svm-model-as-motivating-example.html#cb427-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb427-10"><a href="svm-model-as-motivating-example.html#cb427-10" aria-hidden="true" tabindex="-1"></a>svm_initial <span class="ot">&lt;-</span> </span>
+<span id="cb427-11"><a href="svm-model-as-motivating-example.html#cb427-11" aria-hidden="true" tabindex="-1"></a>  svm_wflow <span class="sc">%&gt;%</span> </span>
+<span id="cb427-12"><a href="svm-model-as-motivating-example.html#cb427-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(<span class="at">resamples =</span> penguins_folds, <span class="at">grid =</span> start_grid, <span class="at">metrics =</span> roc_res)</span></code></pre></div>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="svm-model-as-motivating-example.html#cb428-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_metrics</span>(svm_initial)</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 8
 ##     cost rbf_sigma .metric .estimator  mean     n std_err .config             
 ##    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;               

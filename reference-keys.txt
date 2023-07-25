@@ -1,5 +1,8 @@
 tab:skim-05b
 fig:08-model-step
+fig:diagram1
+fig:diagram2
+fig:diagram3
 tab:llhood-12
 tab:15-setup
 tab:18-load-data
@@ -111,7 +114,17 @@ cohort-2-8
 cohort-3-7
 cohort-4-7
 judging-model-effectiveness
-measures-of-model-fit
+performance-metrics-and-inference
+a-little-recap-of-previous-chapters
+case-study-1
+tidymodels-modeling-as-a-step-by-step-mode
+workflow-to-combine-models-and-recipes
+case-study-2
+functions-used-to-measure-predictive-strengths-of-a-model
+case-study-3
+conclusion
+resources-1
+measures-of-model-fit---case-study-cohort-1
 disclaimers
 regression-metrics
 binary-classification-metrics

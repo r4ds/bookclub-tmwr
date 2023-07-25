@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2023-07-11" />
+<meta name="date" content="2023-07-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -54,6 +54,14 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="libs/d3-3.3.8/d3.min.js"></script>
+<script src="libs/dagre-0.4.0/dagre-d3.min.js"></script>
+<link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet" />
+<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/chromatography-0.1/chromatography.js"></script>
+<script src="libs/DiagrammeR-binding-1.0.10/DiagrammeR.js"></script>
 
 
 <style type="text/css">
@@ -309,24 +317,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="judging-model-effectiveness.html"><a href="judging-model-effectiveness.html"><i class="fa fa-check"></i><b>9</b> Judging model effectiveness</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="measures-of-model-fit.html"><a href="measures-of-model-fit.html"><i class="fa fa-check"></i><b>9.1</b> Measures of Model Fit</a></li>
-<li class="chapter" data-level="9.2" data-path="disclaimers.html"><a href="disclaimers.html"><i class="fa fa-check"></i><b>9.2</b> Disclaimers</a></li>
-<li class="chapter" data-level="9.3" data-path="regression-metrics.html"><a href="regression-metrics.html"><i class="fa fa-check"></i><b>9.3</b> Regression Metrics</a></li>
-<li class="chapter" data-level="9.4" data-path="binary-classification-metrics.html"><a href="binary-classification-metrics.html"><i class="fa fa-check"></i><b>9.4</b> Binary Classification Metrics</a></li>
-<li class="chapter" data-level="9.5" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>9.5</b> References</a></li>
-<li class="chapter" data-level="9.6" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html"><i class="fa fa-check"></i><b>9.6</b> Meeting Videos</a>
+<li class="chapter" data-level="9.1" data-path="performance-metrics-and-inference.html"><a href="performance-metrics-and-inference.html"><i class="fa fa-check"></i><b>9.1</b> Performance Metrics and Inference</a></li>
+<li class="chapter" data-level="9.2" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html"><i class="fa fa-check"></i><b>9.2</b> A little Recap of previous chapters</a>
 <ul>
-<li class="chapter" data-level="9.6.1" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-1-8"><i class="fa fa-check"></i><b>9.6.1</b> Cohort 1</a></li>
-<li class="chapter" data-level="9.6.2" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-2-9"><i class="fa fa-check"></i><b>9.6.2</b> Cohort 2</a></li>
-<li class="chapter" data-level="9.6.3" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-3-8"><i class="fa fa-check"></i><b>9.6.3</b> Cohort 3</a></li>
-<li class="chapter" data-level="9.6.4" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-4-8"><i class="fa fa-check"></i><b>9.6.4</b> Cohort 4</a></li>
+<li class="chapter" data-level="9.2.1" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#case-study-1"><i class="fa fa-check"></i><b>9.2.1</b> Case Study 1</a></li>
+<li class="chapter" data-level="9.2.2" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#tidymodels-modeling-as-a-step-by-step-mode"><i class="fa fa-check"></i><b>9.2.2</b> Tidymodels: modeling as a step by step mode</a></li>
+<li class="chapter" data-level="9.2.3" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#workflow-to-combine-models-and-recipes"><i class="fa fa-check"></i><b>9.2.3</b> Workflow: to combine models and recipes</a></li>
+<li class="chapter" data-level="9.2.4" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#case-study-2"><i class="fa fa-check"></i><b>9.2.4</b> Case Study 2</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="functions-used-to-measure-predictive-strengths-of-a-model.html"><a href="functions-used-to-measure-predictive-strengths-of-a-model.html"><i class="fa fa-check"></i><b>9.3</b> Functions used to measure predictive strengths of a model</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="functions-used-to-measure-predictive-strengths-of-a-model.html"><a href="functions-used-to-measure-predictive-strengths-of-a-model.html#case-study-3"><i class="fa fa-check"></i><b>9.3.1</b> Case Study 3</a></li>
+<li class="chapter" data-level="9.3.2" data-path="functions-used-to-measure-predictive-strengths-of-a-model.html"><a href="functions-used-to-measure-predictive-strengths-of-a-model.html#conclusion"><i class="fa fa-check"></i><b>9.3.2</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="measures-of-model-fit---case-study-cohort-1.html"><a href="measures-of-model-fit---case-study-cohort-1.html"><i class="fa fa-check"></i><b>9.4</b> Measures of Model Fit - Case Study (Cohort 1)</a></li>
+<li class="chapter" data-level="9.5" data-path="disclaimers.html"><a href="disclaimers.html"><i class="fa fa-check"></i><b>9.5</b> Disclaimers</a></li>
+<li class="chapter" data-level="9.6" data-path="regression-metrics.html"><a href="regression-metrics.html"><i class="fa fa-check"></i><b>9.6</b> Regression Metrics</a></li>
+<li class="chapter" data-level="9.7" data-path="binary-classification-metrics.html"><a href="binary-classification-metrics.html"><i class="fa fa-check"></i><b>9.7</b> Binary Classification Metrics</a></li>
+<li class="chapter" data-level="9.8" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>9.8</b> References</a></li>
+<li class="chapter" data-level="9.9" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html"><i class="fa fa-check"></i><b>9.9</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="9.9.1" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-1-8"><i class="fa fa-check"></i><b>9.9.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="9.9.2" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-2-9"><i class="fa fa-check"></i><b>9.9.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="9.9.3" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-3-8"><i class="fa fa-check"></i><b>9.9.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="9.9.4" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-4-8"><i class="fa fa-check"></i><b>9.9.4</b> Cohort 4</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="review-of-chapters-4-9.html"><a href="review-of-chapters-4-9.html"><i class="fa fa-check"></i>Review of chapters 4-9</a>
 <ul>
-<li class="chapter" data-level="9.7" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html"><i class="fa fa-check"></i><b>9.7</b> Meeting Videos</a>
+<li class="chapter" data-level="9.10" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html"><i class="fa fa-check"></i><b>9.10</b> Meeting Videos</a>
 <ul>
-<li class="chapter" data-level="9.7.1" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html#cohort-1-9"><i class="fa fa-check"></i><b>9.7.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="9.10.1" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html#cohort-1-9"><i class="fa fa-check"></i><b>9.10.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>Tools for Creating Effective Models</b></span></li>
@@ -577,11 +598,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The date column corresponds to the current date.</p>
 <p>The columns with station names (Austin through California) are 14 day lag variables. There are also columns related to weather and sports team schedules.</p>
 <p><a href="http://www.feat.engineering/figures/Chicago_L_diagram_sb.png"><img src="http://www.feat.engineering/figures/Chicago_L_diagram_sb.png" alt="Chicago Transit Authority Map" /></a></p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="evaluating-the-grid.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Chicago) <span class="co"># from the modeldata package</span></span>
-<span id="cb286-2"><a href="evaluating-the-grid.html#cb286-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb286-3"><a href="evaluating-the-grid.html#cb286-3" aria-hidden="true" tabindex="-1"></a><span class="co"># also live data via RSocrata and Chicago portal</span></span>
-<span id="cb286-4"><a href="evaluating-the-grid.html#cb286-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb286-5"><a href="evaluating-the-grid.html#cb286-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(Chicago, <span class="at">width =</span> <span class="dv">5</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="evaluating-the-grid.html#cb372-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Chicago) <span class="co"># from the modeldata package</span></span>
+<span id="cb372-2"><a href="evaluating-the-grid.html#cb372-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb372-3"><a href="evaluating-the-grid.html#cb372-3" aria-hidden="true" tabindex="-1"></a><span class="co"># also live data via RSocrata and Chicago portal</span></span>
+<span id="cb372-4"><a href="evaluating-the-grid.html#cb372-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb372-5"><a href="evaluating-the-grid.html#cb372-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(Chicago, <span class="at">width =</span> <span class="dv">5</span>) </span></code></pre></div>
 <pre><code>## Rows: 5,698
 ## Columns: 50
 ## $ ridership        &lt;dbl&gt; …
@@ -635,125 +656,125 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## $ Cubs_Home        &lt;dbl&gt; …
 ## $ date             &lt;date&gt; …</code></pre>
 <p>Ridership is the dependent variable. Sorted by oldest to newest date, it matches exactly the Clark_Lake lagged by 14 days.</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="evaluating-the-grid.html#cb288-1" aria-hidden="true" tabindex="-1"></a>Chicago<span class="sc">$</span>ridership[<span class="dv">25</span><span class="sc">:</span><span class="dv">27</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="evaluating-the-grid.html#cb374-1" aria-hidden="true" tabindex="-1"></a>Chicago<span class="sc">$</span>ridership[<span class="dv">25</span><span class="sc">:</span><span class="dv">27</span>]</span></code></pre></div>
 <pre><code>## [1] 15.685 15.376  2.445</code></pre>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="evaluating-the-grid.html#cb290-1" aria-hidden="true" tabindex="-1"></a>Chicago<span class="sc">$</span>Clark_Lake[<span class="dv">39</span><span class="sc">:</span><span class="dv">41</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="evaluating-the-grid.html#cb376-1" aria-hidden="true" tabindex="-1"></a>Chicago<span class="sc">$</span>Clark_Lake[<span class="dv">39</span><span class="sc">:</span><span class="dv">41</span>]</span></code></pre></div>
 <pre><code>## [1] 15.685 15.376  2.445</code></pre>
 <p>Ridership is in thousands per day and ranges from 600 to 26,058</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="evaluating-the-grid.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Chicago<span class="sc">$</span>ridership)</span></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="evaluating-the-grid.html#cb378-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Chicago<span class="sc">$</span>ridership)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   0.601   6.173  15.902  13.619  18.931  26.058</code></pre>
 <p>Cross validation folds here are taken on a sliding window</p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="evaluating-the-grid.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33</span>)</span>
-<span id="cb294-2"><a href="evaluating-the-grid.html#cb294-2" aria-hidden="true" tabindex="-1"></a>split <span class="ot">&lt;-</span> rsample<span class="sc">::</span><span class="fu">initial_time_split</span>(Chicago) </span>
-<span id="cb294-3"><a href="evaluating-the-grid.html#cb294-3" aria-hidden="true" tabindex="-1"></a>Chicago_train <span class="ot">&lt;-</span> <span class="fu">training</span>(split)</span>
-<span id="cb294-4"><a href="evaluating-the-grid.html#cb294-4" aria-hidden="true" tabindex="-1"></a>Chicago_test <span class="ot">&lt;-</span> <span class="fu">testing</span>(split)</span>
-<span id="cb294-5"><a href="evaluating-the-grid.html#cb294-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb294-6"><a href="evaluating-the-grid.html#cb294-6" aria-hidden="true" tabindex="-1"></a>Chicago_folds <span class="ot">&lt;-</span> <span class="fu">sliding_period</span>(</span>
-<span id="cb294-7"><a href="evaluating-the-grid.html#cb294-7" aria-hidden="true" tabindex="-1"></a>  Chicago_train,</span>
-<span id="cb294-8"><a href="evaluating-the-grid.html#cb294-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">index =</span> date,</span>
-<span id="cb294-9"><a href="evaluating-the-grid.html#cb294-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">period =</span> <span class="st">&quot;year&quot;</span>,</span>
-<span id="cb294-10"><a href="evaluating-the-grid.html#cb294-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">lookback =</span> <span class="dv">3</span>,</span>
-<span id="cb294-11"><a href="evaluating-the-grid.html#cb294-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">assess_stop =</span> <span class="dv">1</span>                                </span>
-<span id="cb294-12"><a href="evaluating-the-grid.html#cb294-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="evaluating-the-grid.html#cb380-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33</span>)</span>
+<span id="cb380-2"><a href="evaluating-the-grid.html#cb380-2" aria-hidden="true" tabindex="-1"></a>split <span class="ot">&lt;-</span> rsample<span class="sc">::</span><span class="fu">initial_time_split</span>(Chicago) </span>
+<span id="cb380-3"><a href="evaluating-the-grid.html#cb380-3" aria-hidden="true" tabindex="-1"></a>Chicago_train <span class="ot">&lt;-</span> <span class="fu">training</span>(split)</span>
+<span id="cb380-4"><a href="evaluating-the-grid.html#cb380-4" aria-hidden="true" tabindex="-1"></a>Chicago_test <span class="ot">&lt;-</span> <span class="fu">testing</span>(split)</span>
+<span id="cb380-5"><a href="evaluating-the-grid.html#cb380-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb380-6"><a href="evaluating-the-grid.html#cb380-6" aria-hidden="true" tabindex="-1"></a>Chicago_folds <span class="ot">&lt;-</span> <span class="fu">sliding_period</span>(</span>
+<span id="cb380-7"><a href="evaluating-the-grid.html#cb380-7" aria-hidden="true" tabindex="-1"></a>  Chicago_train,</span>
+<span id="cb380-8"><a href="evaluating-the-grid.html#cb380-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">index =</span> date,</span>
+<span id="cb380-9"><a href="evaluating-the-grid.html#cb380-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">period =</span> <span class="st">&quot;year&quot;</span>,</span>
+<span id="cb380-10"><a href="evaluating-the-grid.html#cb380-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">lookback =</span> <span class="dv">3</span>,</span>
+<span id="cb380-11"><a href="evaluating-the-grid.html#cb380-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">assess_stop =</span> <span class="dv">1</span>                                </span>
+<span id="cb380-12"><a href="evaluating-the-grid.html#cb380-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>Training and validation data range</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="evaluating-the-grid.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(Chicago_train<span class="sc">$</span>date)</span></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="evaluating-the-grid.html#cb381-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(Chicago_train<span class="sc">$</span>date)</span></code></pre></div>
 <pre><code>## [1] &quot;2001-01-22&quot; &quot;2012-10-03&quot;</code></pre>
 <p>Testing data range</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="evaluating-the-grid.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(Chicago_test<span class="sc">$</span>date)</span></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="evaluating-the-grid.html#cb383-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(Chicago_test<span class="sc">$</span>date)</span></code></pre></div>
 <pre><code>## [1] &quot;2012-10-04&quot; &quot;2016-08-28&quot;</code></pre>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="evaluating-the-grid.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Chicago_folds <span class="sc">%&gt;%</span> <span class="fu">tidy</span>(), </span>
-<span id="cb299-2"><a href="evaluating-the-grid.html#cb299-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Resample, <span class="at">y =</span> Row, <span class="at">fill =</span> Data)) <span class="sc">+</span></span>
-<span id="cb299-3"><a href="evaluating-the-grid.html#cb299-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="evaluating-the-grid.html#cb385-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Chicago_folds <span class="sc">%&gt;%</span> <span class="fu">tidy</span>(), </span>
+<span id="cb385-2"><a href="evaluating-the-grid.html#cb385-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Resample, <span class="at">y =</span> Row, <span class="at">fill =</span> Data)) <span class="sc">+</span></span>
+<span id="cb385-3"><a href="evaluating-the-grid.html#cb385-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>() </span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/13_resample_visual-1.png" width="672" /></p>
 <p>Because of the high degree of correlation between predictors, it makes sense to use PCA feature extraction.</p>
 <blockquote>
 <p>While the resulting PCA components are technically on the same scale, the lower-rank components tend to have a wider range than the higher-rank components. For this reason, we normalize again to coerce the predictors to have the same mean and variance.</p>
 </blockquote>
 <p>The resulting recipe:</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="evaluating-the-grid.html#cb300-1" aria-hidden="true" tabindex="-1"></a>mlp_rec <span class="ot">&lt;-</span></span>
-<span id="cb300-2"><a href="evaluating-the-grid.html#cb300-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(ridership <span class="sc">~</span> ., </span>
-<span id="cb300-3"><a href="evaluating-the-grid.html#cb300-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> Chicago_train) <span class="sc">%&gt;%</span></span>
-<span id="cb300-4"><a href="evaluating-the-grid.html#cb300-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_date</span>(date, </span>
-<span id="cb300-5"><a href="evaluating-the-grid.html#cb300-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">features =</span> <span class="fu">c</span>(<span class="st">&quot;dow&quot;</span>, <span class="st">&quot;month&quot;</span>),</span>
-<span id="cb300-6"><a href="evaluating-the-grid.html#cb300-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">ordinal =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb300-7"><a href="evaluating-the-grid.html#cb300-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_rm</span>(date) <span class="sc">%&gt;%</span> </span>
-<span id="cb300-8"><a href="evaluating-the-grid.html#cb300-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric</span>(), </span>
-<span id="cb300-9"><a href="evaluating-the-grid.html#cb300-9" aria-hidden="true" tabindex="-1"></a>                 <span class="sc">-</span>ridership) <span class="sc">%&gt;%</span> <span class="co"># remove the dependent</span></span>
-<span id="cb300-10"><a href="evaluating-the-grid.html#cb300-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_pca</span>(<span class="fu">all_numeric</span>(), </span>
-<span id="cb300-11"><a href="evaluating-the-grid.html#cb300-11" aria-hidden="true" tabindex="-1"></a>           <span class="sc">-</span>ridership, </span>
-<span id="cb300-12"><a href="evaluating-the-grid.html#cb300-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">num_comp =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb300-13"><a href="evaluating-the-grid.html#cb300-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric</span>(), </span>
-<span id="cb300-14"><a href="evaluating-the-grid.html#cb300-14" aria-hidden="true" tabindex="-1"></a>                 <span class="sc">-</span>ridership) <span class="co"># remove the dependent</span></span>
-<span id="cb300-15"><a href="evaluating-the-grid.html#cb300-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb300-16"><a href="evaluating-the-grid.html#cb300-16" aria-hidden="true" tabindex="-1"></a>mlp_wflow <span class="ot">&lt;-</span> </span>
-<span id="cb300-17"><a href="evaluating-the-grid.html#cb300-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb300-18"><a href="evaluating-the-grid.html#cb300-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(mlp_spec) <span class="sc">%&gt;%</span> </span>
-<span id="cb300-19"><a href="evaluating-the-grid.html#cb300-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(mlp_rec)</span></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="evaluating-the-grid.html#cb386-1" aria-hidden="true" tabindex="-1"></a>mlp_rec <span class="ot">&lt;-</span></span>
+<span id="cb386-2"><a href="evaluating-the-grid.html#cb386-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(ridership <span class="sc">~</span> ., </span>
+<span id="cb386-3"><a href="evaluating-the-grid.html#cb386-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> Chicago_train) <span class="sc">%&gt;%</span></span>
+<span id="cb386-4"><a href="evaluating-the-grid.html#cb386-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_date</span>(date, </span>
+<span id="cb386-5"><a href="evaluating-the-grid.html#cb386-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">features =</span> <span class="fu">c</span>(<span class="st">&quot;dow&quot;</span>, <span class="st">&quot;month&quot;</span>),</span>
+<span id="cb386-6"><a href="evaluating-the-grid.html#cb386-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">ordinal =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb386-7"><a href="evaluating-the-grid.html#cb386-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_rm</span>(date) <span class="sc">%&gt;%</span> </span>
+<span id="cb386-8"><a href="evaluating-the-grid.html#cb386-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric</span>(), </span>
+<span id="cb386-9"><a href="evaluating-the-grid.html#cb386-9" aria-hidden="true" tabindex="-1"></a>                 <span class="sc">-</span>ridership) <span class="sc">%&gt;%</span> <span class="co"># remove the dependent</span></span>
+<span id="cb386-10"><a href="evaluating-the-grid.html#cb386-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_pca</span>(<span class="fu">all_numeric</span>(), </span>
+<span id="cb386-11"><a href="evaluating-the-grid.html#cb386-11" aria-hidden="true" tabindex="-1"></a>           <span class="sc">-</span>ridership, </span>
+<span id="cb386-12"><a href="evaluating-the-grid.html#cb386-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">num_comp =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb386-13"><a href="evaluating-the-grid.html#cb386-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric</span>(), </span>
+<span id="cb386-14"><a href="evaluating-the-grid.html#cb386-14" aria-hidden="true" tabindex="-1"></a>                 <span class="sc">-</span>ridership) <span class="co"># remove the dependent</span></span>
+<span id="cb386-15"><a href="evaluating-the-grid.html#cb386-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb386-16"><a href="evaluating-the-grid.html#cb386-16" aria-hidden="true" tabindex="-1"></a>mlp_wflow <span class="ot">&lt;-</span> </span>
+<span id="cb386-17"><a href="evaluating-the-grid.html#cb386-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb386-18"><a href="evaluating-the-grid.html#cb386-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(mlp_spec) <span class="sc">%&gt;%</span> </span>
+<span id="cb386-19"><a href="evaluating-the-grid.html#cb386-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(mlp_rec)</span></code></pre></div>
 <blockquote>
 <p>In <code>step_pca()</code>, using zero PCA components is a shortcut to skip the feature extraction. In this way, the original predictors can be directly compared to the results that include PCA components.</p>
 </blockquote>
 <p>Let’s create a parameter object to adjust a few of the default ranges.</p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="evaluating-the-grid.html#cb301-1" aria-hidden="true" tabindex="-1"></a>mlp_param <span class="ot">&lt;-</span> </span>
-<span id="cb301-2"><a href="evaluating-the-grid.html#cb301-2" aria-hidden="true" tabindex="-1"></a>  mlp_wflow <span class="sc">%&gt;%</span> </span>
-<span id="cb301-3"><a href="evaluating-the-grid.html#cb301-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">parameters</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb301-4"><a href="evaluating-the-grid.html#cb301-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">update</span>(</span>
-<span id="cb301-5"><a href="evaluating-the-grid.html#cb301-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">epochs =</span> <span class="fu">epochs</span>(<span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">200</span>)),</span>
-<span id="cb301-6"><a href="evaluating-the-grid.html#cb301-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">num_comp =</span> <span class="fu">num_comp</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">20</span>))</span>
-<span id="cb301-7"><a href="evaluating-the-grid.html#cb301-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb301-8"><a href="evaluating-the-grid.html#cb301-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb301-9"><a href="evaluating-the-grid.html#cb301-9" aria-hidden="true" tabindex="-1"></a>rmse_mape_rsq_iic <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(rmse, </span>
-<span id="cb301-10"><a href="evaluating-the-grid.html#cb301-10" aria-hidden="true" tabindex="-1"></a>                                mape, </span>
-<span id="cb301-11"><a href="evaluating-the-grid.html#cb301-11" aria-hidden="true" tabindex="-1"></a>                                rsq, </span>
-<span id="cb301-12"><a href="evaluating-the-grid.html#cb301-12" aria-hidden="true" tabindex="-1"></a>                                iic)</span></code></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="evaluating-the-grid.html#cb387-1" aria-hidden="true" tabindex="-1"></a>mlp_param <span class="ot">&lt;-</span> </span>
+<span id="cb387-2"><a href="evaluating-the-grid.html#cb387-2" aria-hidden="true" tabindex="-1"></a>  mlp_wflow <span class="sc">%&gt;%</span> </span>
+<span id="cb387-3"><a href="evaluating-the-grid.html#cb387-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">parameters</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb387-4"><a href="evaluating-the-grid.html#cb387-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">update</span>(</span>
+<span id="cb387-5"><a href="evaluating-the-grid.html#cb387-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">epochs =</span> <span class="fu">epochs</span>(<span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">200</span>)),</span>
+<span id="cb387-6"><a href="evaluating-the-grid.html#cb387-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">num_comp =</span> <span class="fu">num_comp</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">20</span>))</span>
+<span id="cb387-7"><a href="evaluating-the-grid.html#cb387-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb387-8"><a href="evaluating-the-grid.html#cb387-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb387-9"><a href="evaluating-the-grid.html#cb387-9" aria-hidden="true" tabindex="-1"></a>rmse_mape_rsq_iic <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(rmse, </span>
+<span id="cb387-10"><a href="evaluating-the-grid.html#cb387-10" aria-hidden="true" tabindex="-1"></a>                                mape, </span>
+<span id="cb387-11"><a href="evaluating-the-grid.html#cb387-11" aria-hidden="true" tabindex="-1"></a>                                rsq, </span>
+<span id="cb387-12"><a href="evaluating-the-grid.html#cb387-12" aria-hidden="true" tabindex="-1"></a>                                iic)</span></code></pre></div>
 <p><code>tune_grid()</code> is the primary function for conducting grid search. It resembles <code>fit_resamples()</code> from prior chapters, but adds</p>
 <ul>
 <li><p>grid: An integer or data frame. When an integer is used, the function creates a space-filling design. If specific parameter combinations exist, the grid parameter is used to pass them to the function.</p></li>
 <li><p>param_info: An optional argument for defining the parameter ranges, when grid is an integer.</p></li>
 </ul>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="evaluating-the-grid.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">99</span>)</span>
-<span id="cb302-2"><a href="evaluating-the-grid.html#cb302-2" aria-hidden="true" tabindex="-1"></a>mlp_reg_tune <span class="ot">&lt;-</span></span>
-<span id="cb302-3"><a href="evaluating-the-grid.html#cb302-3" aria-hidden="true" tabindex="-1"></a>  mlp_wflow <span class="sc">%&gt;%</span></span>
-<span id="cb302-4"><a href="evaluating-the-grid.html#cb302-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(</span>
-<span id="cb302-5"><a href="evaluating-the-grid.html#cb302-5" aria-hidden="true" tabindex="-1"></a>    Chicago_folds,</span>
-<span id="cb302-6"><a href="evaluating-the-grid.html#cb302-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">grid =</span> mlp_param <span class="sc">%&gt;%</span> <span class="fu">grid_regular</span>(<span class="at">levels =</span> <span class="dv">3</span>),</span>
-<span id="cb302-7"><a href="evaluating-the-grid.html#cb302-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">metrics =</span> rmse_mape_rsq_iic</span>
-<span id="cb302-8"><a href="evaluating-the-grid.html#cb302-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb302-9"><a href="evaluating-the-grid.html#cb302-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb302-10"><a href="evaluating-the-grid.html#cb302-10" aria-hidden="true" tabindex="-1"></a><span class="fu">write_rds</span>(mlp_reg_tune, </span>
-<span id="cb302-11"><a href="evaluating-the-grid.html#cb302-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">file =</span> <span class="st">&quot;data/13-Chicago-mlp_reg_tune.rds&quot;</span>,</span>
-<span id="cb302-12"><a href="evaluating-the-grid.html#cb302-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">compress =</span> <span class="st">&quot;gz&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="evaluating-the-grid.html#cb388-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">99</span>)</span>
+<span id="cb388-2"><a href="evaluating-the-grid.html#cb388-2" aria-hidden="true" tabindex="-1"></a>mlp_reg_tune <span class="ot">&lt;-</span></span>
+<span id="cb388-3"><a href="evaluating-the-grid.html#cb388-3" aria-hidden="true" tabindex="-1"></a>  mlp_wflow <span class="sc">%&gt;%</span></span>
+<span id="cb388-4"><a href="evaluating-the-grid.html#cb388-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(</span>
+<span id="cb388-5"><a href="evaluating-the-grid.html#cb388-5" aria-hidden="true" tabindex="-1"></a>    Chicago_folds,</span>
+<span id="cb388-6"><a href="evaluating-the-grid.html#cb388-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">grid =</span> mlp_param <span class="sc">%&gt;%</span> <span class="fu">grid_regular</span>(<span class="at">levels =</span> <span class="dv">3</span>),</span>
+<span id="cb388-7"><a href="evaluating-the-grid.html#cb388-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">metrics =</span> rmse_mape_rsq_iic</span>
+<span id="cb388-8"><a href="evaluating-the-grid.html#cb388-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb388-9"><a href="evaluating-the-grid.html#cb388-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb388-10"><a href="evaluating-the-grid.html#cb388-10" aria-hidden="true" tabindex="-1"></a><span class="fu">write_rds</span>(mlp_reg_tune, </span>
+<span id="cb388-11"><a href="evaluating-the-grid.html#cb388-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">file =</span> <span class="st">&quot;data/13-Chicago-mlp_reg_tune.rds&quot;</span>,</span>
+<span id="cb388-12"><a href="evaluating-the-grid.html#cb388-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">compress =</span> <span class="st">&quot;gz&quot;</span>)</span></code></pre></div>
 <p>There are high-level convenience functions to understand the results. First, the <code>autoplot()</code> method for regular grids shows the performance profiles across tuning parameters:</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="evaluating-the-grid.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(mlp_reg_tune) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span>
-<span id="cb303-2"><a href="evaluating-the-grid.html#cb303-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb303-3"><a href="evaluating-the-grid.html#cb303-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;images/13_mlp_reg_tune_autoplot.png&quot;</span>,</span>
-<span id="cb303-4"><a href="evaluating-the-grid.html#cb303-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">12</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="evaluating-the-grid.html#cb389-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(mlp_reg_tune) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span>
+<span id="cb389-2"><a href="evaluating-the-grid.html#cb389-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb389-3"><a href="evaluating-the-grid.html#cb389-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;images/13_mlp_reg_tune_autoplot.png&quot;</span>,</span>
+<span id="cb389-4"><a href="evaluating-the-grid.html#cb389-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">12</span>)</span></code></pre></div>
 <p><img src="images/13_mlp_reg_tune_autoplot.png" /></p>
 <p>The best model, per the <a href="https://yardstick.tidymodels.org/reference/iic.html">index of ideality of correlation</a> (iic), on the validation folds</p>
 <p>More study might be warranted to dial in the resolution of the penalty and number of pca components.</p>
 <p>To evaluate the same range using (the tune grid default) maximum entropy design with 20 candidate values:</p>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="evaluating-the-grid.html#cb304-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">99</span>)</span>
-<span id="cb304-2"><a href="evaluating-the-grid.html#cb304-2" aria-hidden="true" tabindex="-1"></a>mlp_sfd_tune <span class="ot">&lt;-</span></span>
-<span id="cb304-3"><a href="evaluating-the-grid.html#cb304-3" aria-hidden="true" tabindex="-1"></a>  mlp_wflow <span class="sc">%&gt;%</span></span>
-<span id="cb304-4"><a href="evaluating-the-grid.html#cb304-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(</span>
-<span id="cb304-5"><a href="evaluating-the-grid.html#cb304-5" aria-hidden="true" tabindex="-1"></a>    Chicago_folds,</span>
-<span id="cb304-6"><a href="evaluating-the-grid.html#cb304-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">grid =</span> <span class="dv">20</span>,</span>
-<span id="cb304-7"><a href="evaluating-the-grid.html#cb304-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Pass in the parameter object to use the appropriate range: </span></span>
-<span id="cb304-8"><a href="evaluating-the-grid.html#cb304-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">param_info =</span> mlp_param,</span>
-<span id="cb304-9"><a href="evaluating-the-grid.html#cb304-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">metrics =</span> rmse_mape_rsq_iic</span>
-<span id="cb304-10"><a href="evaluating-the-grid.html#cb304-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb304-11"><a href="evaluating-the-grid.html#cb304-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb304-12"><a href="evaluating-the-grid.html#cb304-12" aria-hidden="true" tabindex="-1"></a><span class="fu">write_rds</span>(mlp_sfd_tune, </span>
-<span id="cb304-13"><a href="evaluating-the-grid.html#cb304-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">file =</span> <span class="st">&quot;data/13-Chicago-mlp_max_entropy.rds&quot;</span>,</span>
-<span id="cb304-14"><a href="evaluating-the-grid.html#cb304-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">compress =</span> <span class="st">&quot;gz&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="evaluating-the-grid.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(mlp_sfd_tune)</span>
-<span id="cb305-2"><a href="evaluating-the-grid.html#cb305-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb305-3"><a href="evaluating-the-grid.html#cb305-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;images/13_mlp_max_entropy_plot.png&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="evaluating-the-grid.html#cb390-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">99</span>)</span>
+<span id="cb390-2"><a href="evaluating-the-grid.html#cb390-2" aria-hidden="true" tabindex="-1"></a>mlp_sfd_tune <span class="ot">&lt;-</span></span>
+<span id="cb390-3"><a href="evaluating-the-grid.html#cb390-3" aria-hidden="true" tabindex="-1"></a>  mlp_wflow <span class="sc">%&gt;%</span></span>
+<span id="cb390-4"><a href="evaluating-the-grid.html#cb390-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(</span>
+<span id="cb390-5"><a href="evaluating-the-grid.html#cb390-5" aria-hidden="true" tabindex="-1"></a>    Chicago_folds,</span>
+<span id="cb390-6"><a href="evaluating-the-grid.html#cb390-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">grid =</span> <span class="dv">20</span>,</span>
+<span id="cb390-7"><a href="evaluating-the-grid.html#cb390-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Pass in the parameter object to use the appropriate range: </span></span>
+<span id="cb390-8"><a href="evaluating-the-grid.html#cb390-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">param_info =</span> mlp_param,</span>
+<span id="cb390-9"><a href="evaluating-the-grid.html#cb390-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">metrics =</span> rmse_mape_rsq_iic</span>
+<span id="cb390-10"><a href="evaluating-the-grid.html#cb390-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb390-11"><a href="evaluating-the-grid.html#cb390-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb390-12"><a href="evaluating-the-grid.html#cb390-12" aria-hidden="true" tabindex="-1"></a><span class="fu">write_rds</span>(mlp_sfd_tune, </span>
+<span id="cb390-13"><a href="evaluating-the-grid.html#cb390-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">file =</span> <span class="st">&quot;data/13-Chicago-mlp_max_entropy.rds&quot;</span>,</span>
+<span id="cb390-14"><a href="evaluating-the-grid.html#cb390-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">compress =</span> <span class="st">&quot;gz&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="evaluating-the-grid.html#cb391-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(mlp_sfd_tune)</span>
+<span id="cb391-2"><a href="evaluating-the-grid.html#cb391-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb391-3"><a href="evaluating-the-grid.html#cb391-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;images/13_mlp_max_entropy_plot.png&quot;</span>)</span></code></pre></div>
 <p><img src="images/13_mlp_max_entropy_plot.png" /></p>
 <blockquote>
 <p>Care should be taken when examining this plot; since a regular grid is not used, the values of the other tuning parameters can affect each panel.</p>
 </blockquote>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="evaluating-the-grid.html#cb306-1" aria-hidden="true" tabindex="-1"></a><span class="fu">show_best</span>(mlp_sfd_tune, <span class="at">metric =</span> <span class="st">&quot;iic&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>.estimator)</span></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="evaluating-the-grid.html#cb392-1" aria-hidden="true" tabindex="-1"></a><span class="fu">show_best</span>(mlp_sfd_tune, <span class="at">metric =</span> <span class="st">&quot;iic&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>.estimator)</span></code></pre></div>
 <pre><code>  hidden_units  penalty epochs num_comp .metric  mean     n std_err .config      
          &lt;int&gt;    &lt;dbl&gt;  &lt;int&gt;    &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;        
 1            9 7.80e- 3    158       14 iic     0.790     8  0.0439 Preprocessor~

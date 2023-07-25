@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2023-07-11" />
+<meta name="date" content="2023-07-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -54,6 +54,14 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="libs/d3-3.3.8/d3.min.js"></script>
+<script src="libs/dagre-0.4.0/dagre-d3.min.js"></script>
+<link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet" />
+<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/chromatography-0.1/chromatography.js"></script>
+<script src="libs/DiagrammeR-binding-1.0.10/DiagrammeR.js"></script>
 
 
 <style type="text/css">
@@ -309,24 +317,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="judging-model-effectiveness.html"><a href="judging-model-effectiveness.html"><i class="fa fa-check"></i><b>9</b> Judging model effectiveness</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="measures-of-model-fit.html"><a href="measures-of-model-fit.html"><i class="fa fa-check"></i><b>9.1</b> Measures of Model Fit</a></li>
-<li class="chapter" data-level="9.2" data-path="disclaimers.html"><a href="disclaimers.html"><i class="fa fa-check"></i><b>9.2</b> Disclaimers</a></li>
-<li class="chapter" data-level="9.3" data-path="regression-metrics.html"><a href="regression-metrics.html"><i class="fa fa-check"></i><b>9.3</b> Regression Metrics</a></li>
-<li class="chapter" data-level="9.4" data-path="binary-classification-metrics.html"><a href="binary-classification-metrics.html"><i class="fa fa-check"></i><b>9.4</b> Binary Classification Metrics</a></li>
-<li class="chapter" data-level="9.5" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>9.5</b> References</a></li>
-<li class="chapter" data-level="9.6" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html"><i class="fa fa-check"></i><b>9.6</b> Meeting Videos</a>
+<li class="chapter" data-level="9.1" data-path="performance-metrics-and-inference.html"><a href="performance-metrics-and-inference.html"><i class="fa fa-check"></i><b>9.1</b> Performance Metrics and Inference</a></li>
+<li class="chapter" data-level="9.2" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html"><i class="fa fa-check"></i><b>9.2</b> A little Recap of previous chapters</a>
 <ul>
-<li class="chapter" data-level="9.6.1" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-1-8"><i class="fa fa-check"></i><b>9.6.1</b> Cohort 1</a></li>
-<li class="chapter" data-level="9.6.2" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-2-9"><i class="fa fa-check"></i><b>9.6.2</b> Cohort 2</a></li>
-<li class="chapter" data-level="9.6.3" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-3-8"><i class="fa fa-check"></i><b>9.6.3</b> Cohort 3</a></li>
-<li class="chapter" data-level="9.6.4" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-4-8"><i class="fa fa-check"></i><b>9.6.4</b> Cohort 4</a></li>
+<li class="chapter" data-level="9.2.1" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#case-study-1"><i class="fa fa-check"></i><b>9.2.1</b> Case Study 1</a></li>
+<li class="chapter" data-level="9.2.2" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#tidymodels-modeling-as-a-step-by-step-mode"><i class="fa fa-check"></i><b>9.2.2</b> Tidymodels: modeling as a step by step mode</a></li>
+<li class="chapter" data-level="9.2.3" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#workflow-to-combine-models-and-recipes"><i class="fa fa-check"></i><b>9.2.3</b> Workflow: to combine models and recipes</a></li>
+<li class="chapter" data-level="9.2.4" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#case-study-2"><i class="fa fa-check"></i><b>9.2.4</b> Case Study 2</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="functions-used-to-measure-predictive-strengths-of-a-model.html"><a href="functions-used-to-measure-predictive-strengths-of-a-model.html"><i class="fa fa-check"></i><b>9.3</b> Functions used to measure predictive strengths of a model</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="functions-used-to-measure-predictive-strengths-of-a-model.html"><a href="functions-used-to-measure-predictive-strengths-of-a-model.html#case-study-3"><i class="fa fa-check"></i><b>9.3.1</b> Case Study 3</a></li>
+<li class="chapter" data-level="9.3.2" data-path="functions-used-to-measure-predictive-strengths-of-a-model.html"><a href="functions-used-to-measure-predictive-strengths-of-a-model.html#conclusion"><i class="fa fa-check"></i><b>9.3.2</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="measures-of-model-fit---case-study-cohort-1.html"><a href="measures-of-model-fit---case-study-cohort-1.html"><i class="fa fa-check"></i><b>9.4</b> Measures of Model Fit - Case Study (Cohort 1)</a></li>
+<li class="chapter" data-level="9.5" data-path="disclaimers.html"><a href="disclaimers.html"><i class="fa fa-check"></i><b>9.5</b> Disclaimers</a></li>
+<li class="chapter" data-level="9.6" data-path="regression-metrics.html"><a href="regression-metrics.html"><i class="fa fa-check"></i><b>9.6</b> Regression Metrics</a></li>
+<li class="chapter" data-level="9.7" data-path="binary-classification-metrics.html"><a href="binary-classification-metrics.html"><i class="fa fa-check"></i><b>9.7</b> Binary Classification Metrics</a></li>
+<li class="chapter" data-level="9.8" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>9.8</b> References</a></li>
+<li class="chapter" data-level="9.9" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html"><i class="fa fa-check"></i><b>9.9</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="9.9.1" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-1-8"><i class="fa fa-check"></i><b>9.9.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="9.9.2" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-2-9"><i class="fa fa-check"></i><b>9.9.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="9.9.3" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-3-8"><i class="fa fa-check"></i><b>9.9.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="9.9.4" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-4-8"><i class="fa fa-check"></i><b>9.9.4</b> Cohort 4</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="review-of-chapters-4-9.html"><a href="review-of-chapters-4-9.html"><i class="fa fa-check"></i>Review of chapters 4-9</a>
 <ul>
-<li class="chapter" data-level="9.7" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html"><i class="fa fa-check"></i><b>9.7</b> Meeting Videos</a>
+<li class="chapter" data-level="9.10" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html"><i class="fa fa-check"></i><b>9.10</b> Meeting Videos</a>
 <ul>
-<li class="chapter" data-level="9.7.1" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html#cohort-1-9"><i class="fa fa-check"></i><b>9.7.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="9.10.1" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html#cohort-1-9"><i class="fa fa-check"></i><b>9.10.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>Tools for Creating Effective Models</b></span></li>
@@ -573,52 +594,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>manually choose parameters, or</p></li>
 <li><p><code>select_best()</code></p></li>
 </ul>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="finalizing-the-model.html#cb308-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select_best</span>(mlp_sfd_tune, <span class="at">metric =</span> <span class="st">&quot;iic&quot;</span>)</span>
-<span id="cb308-2"><a href="finalizing-the-model.html#cb308-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb308-3"><a href="finalizing-the-model.html#cb308-3" aria-hidden="true" tabindex="-1"></a><span class="co"># or, a manual selection that corresponds to the regular method</span></span>
-<span id="cb308-4"><a href="finalizing-the-model.html#cb308-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb308-5"><a href="finalizing-the-model.html#cb308-5" aria-hidden="true" tabindex="-1"></a>reg_param <span class="ot">&lt;-</span> </span>
-<span id="cb308-6"><a href="finalizing-the-model.html#cb308-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
-<span id="cb308-7"><a href="finalizing-the-model.html#cb308-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">num_comp =</span> <span class="dv">0</span>,</span>
-<span id="cb308-8"><a href="finalizing-the-model.html#cb308-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">epochs =</span> <span class="dv">200</span>,</span>
-<span id="cb308-9"><a href="finalizing-the-model.html#cb308-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">hidden_units =</span> <span class="dv">5</span>,</span>
-<span id="cb308-10"><a href="finalizing-the-model.html#cb308-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">penalty =</span> <span class="dv">1</span>   <span class="co"># log10</span></span>
-<span id="cb308-11"><a href="finalizing-the-model.html#cb308-11" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="finalizing-the-model.html#cb394-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select_best</span>(mlp_sfd_tune, <span class="at">metric =</span> <span class="st">&quot;iic&quot;</span>)</span>
+<span id="cb394-2"><a href="finalizing-the-model.html#cb394-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb394-3"><a href="finalizing-the-model.html#cb394-3" aria-hidden="true" tabindex="-1"></a><span class="co"># or, a manual selection that corresponds to the regular method</span></span>
+<span id="cb394-4"><a href="finalizing-the-model.html#cb394-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb394-5"><a href="finalizing-the-model.html#cb394-5" aria-hidden="true" tabindex="-1"></a>reg_param <span class="ot">&lt;-</span> </span>
+<span id="cb394-6"><a href="finalizing-the-model.html#cb394-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb394-7"><a href="finalizing-the-model.html#cb394-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">num_comp =</span> <span class="dv">0</span>,</span>
+<span id="cb394-8"><a href="finalizing-the-model.html#cb394-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">epochs =</span> <span class="dv">200</span>,</span>
+<span id="cb394-9"><a href="finalizing-the-model.html#cb394-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">hidden_units =</span> <span class="dv">5</span>,</span>
+<span id="cb394-10"><a href="finalizing-the-model.html#cb394-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">penalty =</span> <span class="dv">1</span>   <span class="co"># log10</span></span>
+<span id="cb394-11"><a href="finalizing-the-model.html#cb394-11" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <pre><code># A tibble: 1 x 5
   hidden_units penalty epochs num_comp .config              
          &lt;int&gt;   &lt;dbl&gt;  &lt;int&gt;    &lt;int&gt; &lt;chr&gt;                
 1            9 0.00780    158       14 Preprocessor06_Model1</code></pre>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="finalizing-the-model.html#cb310-1" aria-hidden="true" tabindex="-1"></a>final_sfd_wflow <span class="ot">&lt;-</span> </span>
-<span id="cb310-2"><a href="finalizing-the-model.html#cb310-2" aria-hidden="true" tabindex="-1"></a>  mlp_wflow <span class="sc">%&gt;%</span> </span>
-<span id="cb310-3"><a href="finalizing-the-model.html#cb310-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_workflow</span>(<span class="fu">select_best</span>(mlp_sfd_tune, <span class="at">metric =</span> <span class="st">&quot;rmse&quot;</span>)) </span></code></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="finalizing-the-model.html#cb396-1" aria-hidden="true" tabindex="-1"></a>final_sfd_wflow <span class="ot">&lt;-</span> </span>
+<span id="cb396-2"><a href="finalizing-the-model.html#cb396-2" aria-hidden="true" tabindex="-1"></a>  mlp_wflow <span class="sc">%&gt;%</span> </span>
+<span id="cb396-3"><a href="finalizing-the-model.html#cb396-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_workflow</span>(<span class="fu">select_best</span>(mlp_sfd_tune, <span class="at">metric =</span> <span class="st">&quot;rmse&quot;</span>)) </span></code></pre></div>
 <p>Now the model can fit the <em>entire training</em> set:</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="finalizing-the-model.html#cb311-1" aria-hidden="true" tabindex="-1"></a>final_sfd_fit <span class="ot">&lt;-</span> </span>
-<span id="cb311-2"><a href="finalizing-the-model.html#cb311-2" aria-hidden="true" tabindex="-1"></a>  final_sfd_wflow <span class="sc">%&gt;%</span> </span>
-<span id="cb311-3"><a href="finalizing-the-model.html#cb311-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(Chicago_train)</span></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="finalizing-the-model.html#cb397-1" aria-hidden="true" tabindex="-1"></a>final_sfd_fit <span class="ot">&lt;-</span> </span>
+<span id="cb397-2"><a href="finalizing-the-model.html#cb397-2" aria-hidden="true" tabindex="-1"></a>  final_sfd_wflow <span class="sc">%&gt;%</span> </span>
+<span id="cb397-3"><a href="finalizing-the-model.html#cb397-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(Chicago_train)</span></code></pre></div>
 <p>This object can now be used to make future predictions on new data.</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="finalizing-the-model.html#cb312-1" aria-hidden="true" tabindex="-1"></a>final_sfd_fit <span class="sc">%&gt;%</span> </span>
-<span id="cb312-2"><a href="finalizing-the-model.html#cb312-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">predict</span>(<span class="at">new_data =</span> Chicago_test) <span class="sc">%&gt;%</span> </span>
-<span id="cb312-3"><a href="finalizing-the-model.html#cb312-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">bind_cols</span>(Chicago_test) <span class="sc">%&gt;%</span> </span>
-<span id="cb312-4"><a href="finalizing-the-model.html#cb312-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">rmse</span>(<span class="at">truth =</span> ridership, <span class="at">estimate =</span> .pred)</span></code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="finalizing-the-model.html#cb398-1" aria-hidden="true" tabindex="-1"></a>final_sfd_fit <span class="sc">%&gt;%</span> </span>
+<span id="cb398-2"><a href="finalizing-the-model.html#cb398-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">predict</span>(<span class="at">new_data =</span> Chicago_test) <span class="sc">%&gt;%</span> </span>
+<span id="cb398-3"><a href="finalizing-the-model.html#cb398-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">bind_cols</span>(Chicago_test) <span class="sc">%&gt;%</span> </span>
+<span id="cb398-4"><a href="finalizing-the-model.html#cb398-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">rmse</span>(<span class="at">truth =</span> ridership, <span class="at">estimate =</span> .pred)</span></code></pre></div>
 <pre><code># A tibble: 1 x 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 1 rmse    standard        3.01</code></pre>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="finalizing-the-model.html#cb314-1" aria-hidden="true" tabindex="-1"></a>final_sfd_fit <span class="sc">%&gt;%</span> </span>
-<span id="cb314-2"><a href="finalizing-the-model.html#cb314-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">predict</span>(<span class="at">new_data =</span> Chicago_test) <span class="sc">%&gt;%</span> </span>
-<span id="cb314-3"><a href="finalizing-the-model.html#cb314-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">bind_cols</span>(Chicago_test) <span class="sc">%&gt;%</span> </span>
-<span id="cb314-4"><a href="finalizing-the-model.html#cb314-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">weekday =</span> <span class="fu">wday</span>(date, </span>
-<span id="cb314-5"><a href="finalizing-the-model.html#cb314-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">label =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb314-6"><a href="finalizing-the-model.html#cb314-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ggplot</span>(<span class="fu">aes</span>(ridership, </span>
-<span id="cb314-7"><a href="finalizing-the-model.html#cb314-7" aria-hidden="true" tabindex="-1"></a>              .pred, </span>
-<span id="cb314-8"><a href="finalizing-the-model.html#cb314-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> weekday)) <span class="sc">+</span></span>
-<span id="cb314-9"><a href="finalizing-the-model.html#cb314-9" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb314-10"><a href="finalizing-the-model.html#cb314-10" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_abline</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb314-11"><a href="finalizing-the-model.html#cb314-11" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>) <span class="sc">+</span></span>
-<span id="cb314-12"><a href="finalizing-the-model.html#cb314-12" aria-hidden="true" tabindex="-1"></a>   <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
-<span id="cb314-13"><a href="finalizing-the-model.html#cb314-13" aria-hidden="true" tabindex="-1"></a>   <span class="fu">expand_limits</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">0</span>)</span>
-<span id="cb314-14"><a href="finalizing-the-model.html#cb314-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb314-15"><a href="finalizing-the-model.html#cb314-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;images/13_test_performance.png&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="finalizing-the-model.html#cb400-1" aria-hidden="true" tabindex="-1"></a>final_sfd_fit <span class="sc">%&gt;%</span> </span>
+<span id="cb400-2"><a href="finalizing-the-model.html#cb400-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">predict</span>(<span class="at">new_data =</span> Chicago_test) <span class="sc">%&gt;%</span> </span>
+<span id="cb400-3"><a href="finalizing-the-model.html#cb400-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">bind_cols</span>(Chicago_test) <span class="sc">%&gt;%</span> </span>
+<span id="cb400-4"><a href="finalizing-the-model.html#cb400-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">weekday =</span> <span class="fu">wday</span>(date, </span>
+<span id="cb400-5"><a href="finalizing-the-model.html#cb400-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">label =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb400-6"><a href="finalizing-the-model.html#cb400-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ggplot</span>(<span class="fu">aes</span>(ridership, </span>
+<span id="cb400-7"><a href="finalizing-the-model.html#cb400-7" aria-hidden="true" tabindex="-1"></a>              .pred, </span>
+<span id="cb400-8"><a href="finalizing-the-model.html#cb400-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> weekday)) <span class="sc">+</span></span>
+<span id="cb400-9"><a href="finalizing-the-model.html#cb400-9" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb400-10"><a href="finalizing-the-model.html#cb400-10" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_abline</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb400-11"><a href="finalizing-the-model.html#cb400-11" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>) <span class="sc">+</span></span>
+<span id="cb400-12"><a href="finalizing-the-model.html#cb400-12" aria-hidden="true" tabindex="-1"></a>   <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb400-13"><a href="finalizing-the-model.html#cb400-13" aria-hidden="true" tabindex="-1"></a>   <span class="fu">expand_limits</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">0</span>)</span>
+<span id="cb400-14"><a href="finalizing-the-model.html#cb400-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb400-15"><a href="finalizing-the-model.html#cb400-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;images/13_test_performance.png&quot;</span>)</span></code></pre></div>
 <p><img src="images/13_test_performance.png" /></p>
 <p>I learned here that the <strong>recipe</strong> must exclude the dependent variable for the <code>predict()</code> to run on test data.</p>
 </div>
