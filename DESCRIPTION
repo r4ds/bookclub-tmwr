@@ -52,7 +52,9 @@ Imports:
     tidytuesdayR,
     tidyverse,
     tufte,
-    workflowsets
+    workflowsets,
+    probably,
+    viridis
 Remotes: 
     hadley/emo,
     tidymodels/learntidymodels
