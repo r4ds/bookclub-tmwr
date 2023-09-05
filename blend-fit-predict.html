@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>20.5 Blend, fit, predict | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="20.5 Blend, fit, predict | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2023-07-25" />
+<meta name="date" content="2023-09-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -485,16 +485,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>16</b> Dimensionality reduction</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="recipes-without-workflows.html"><a href="recipes-without-workflows.html"><i class="fa fa-check"></i><b>16.1</b> {recipes} without {workflows}</a></li>
-<li class="chapter" data-level="16.2" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i><b>16.2</b> Principal Component Analysis (PCA)</a></li>
-<li class="chapter" data-level="16.3" data-path="partial-least-squares-pls.html"><a href="partial-least-squares-pls.html"><i class="fa fa-check"></i><b>16.3</b> Partial Least Squares (PLS)</a></li>
-<li class="chapter" data-level="16.4" data-path="independent-component-anysis-ica.html"><a href="independent-component-anysis-ica.html"><i class="fa fa-check"></i><b>16.4</b> Independent Component Anysis (ICA)</a></li>
-<li class="chapter" data-level="16.5" data-path="uniform-manifold-approximation-and-projection-umap.html"><a href="uniform-manifold-approximation-and-projection-umap.html"><i class="fa fa-check"></i><b>16.5</b> Uniform Manifold Approximation and Projection (UMAP)</a></li>
-<li class="chapter" data-level="16.6" data-path="modeling.html"><a href="modeling.html"><i class="fa fa-check"></i><b>16.6</b> Modeling</a></li>
-<li class="chapter" data-level="16.7" data-path="meeting-videos-18.html"><a href="meeting-videos-18.html"><i class="fa fa-check"></i><b>16.7</b> Meeting Videos</a>
+<li class="chapter" data-level="16.2" data-path="why-do-dimensionality-reduction.html"><a href="why-do-dimensionality-reduction.html"><i class="fa fa-check"></i><b>16.2</b> Why do dimensionality reduction?</a></li>
+<li class="chapter" data-level="16.3" data-path="introducing-the-beans-dataset.html"><a href="introducing-the-beans-dataset.html"><i class="fa fa-check"></i><b>16.3</b> Introducing the beans dataset</a></li>
+<li class="chapter" data-level="16.4" data-path="prepare-the-beans-data-using-recipes.html"><a href="prepare-the-beans-data-using-recipes.html"><i class="fa fa-check"></i><b>16.4</b> Prepare the beans data using recipes</a></li>
+<li class="chapter" data-level="16.5" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i><b>16.5</b> Principal Component Analysis (PCA)</a></li>
+<li class="chapter" data-level="16.6" data-path="partial-least-squares-pls.html"><a href="partial-least-squares-pls.html"><i class="fa fa-check"></i><b>16.6</b> Partial Least Squares (PLS)</a></li>
+<li class="chapter" data-level="16.7" data-path="independent-component-anysis-ica.html"><a href="independent-component-anysis-ica.html"><i class="fa fa-check"></i><b>16.7</b> Independent Component Anysis (ICA)</a></li>
+<li class="chapter" data-level="16.8" data-path="uniform-manifold-approximation-and-projection-umap.html"><a href="uniform-manifold-approximation-and-projection-umap.html"><i class="fa fa-check"></i><b>16.8</b> Uniform Manifold Approximation and Projection (UMAP)</a></li>
+<li class="chapter" data-level="16.9" data-path="modeling.html"><a href="modeling.html"><i class="fa fa-check"></i><b>16.9</b> Modeling</a></li>
+<li class="chapter" data-level="16.10" data-path="meeting-videos-18.html"><a href="meeting-videos-18.html"><i class="fa fa-check"></i><b>16.10</b> Meeting Videos</a>
 <ul>
-<li class="chapter" data-level="16.7.1" data-path="meeting-videos-18.html"><a href="meeting-videos-18.html#cohort-1-17"><i class="fa fa-check"></i><b>16.7.1</b> Cohort 1</a></li>
-<li class="chapter" data-level="16.7.2" data-path="meeting-videos-18.html"><a href="meeting-videos-18.html#cohort-3-15"><i class="fa fa-check"></i><b>16.7.2</b> Cohort 3</a></li>
-<li class="chapter" data-level="16.7.3" data-path="meeting-videos-18.html"><a href="meeting-videos-18.html#cohort-4-15"><i class="fa fa-check"></i><b>16.7.3</b> Cohort 4</a></li>
+<li class="chapter" data-level="16.10.1" data-path="meeting-videos-18.html"><a href="meeting-videos-18.html#cohort-1-17"><i class="fa fa-check"></i><b>16.10.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="16.10.2" data-path="meeting-videos-18.html"><a href="meeting-videos-18.html#cohort-3-15"><i class="fa fa-check"></i><b>16.10.2</b> Cohort 3</a></li>
+<li class="chapter" data-level="16.10.3" data-path="meeting-videos-18.html"><a href="meeting-videos-18.html#cohort-4-15"><i class="fa fa-check"></i><b>16.10.3</b> Cohort 4</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>Other Topics</b></span></li>
@@ -592,9 +595,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>blend_predictions()</code> performs LASSO regularization to combine the outputs from the stack members to come up with one final prediction.</li>
 <li>Candidates with non-zero coefficients are kept.</li>
 </ul>
-<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="blend-fit-predict.html#cb516-1" aria-hidden="true" tabindex="-1"></a>tree_frogs_model_st <span class="ot">&lt;-</span></span>
-<span id="cb516-2"><a href="blend-fit-predict.html#cb516-2" aria-hidden="true" tabindex="-1"></a>  tree_frogs_data_st <span class="sc">%&gt;%</span></span>
-<span id="cb516-3"><a href="blend-fit-predict.html#cb516-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">blend_predictions</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="blend-fit-predict.html#cb525-1" aria-hidden="true" tabindex="-1"></a>tree_frogs_model_st <span class="ot">&lt;-</span></span>
+<span id="cb525-2"><a href="blend-fit-predict.html#cb525-2" aria-hidden="true" tabindex="-1"></a>  tree_frogs_data_st <span class="sc">%&gt;%</span></span>
+<span id="cb525-3"><a href="blend-fit-predict.html#cb525-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">blend_predictions</span>()</span></code></pre></div>
 <ul>
 <li>There’s an <code>autoplot()</code> function available, to see what’s going on.</li>
 <li>If you don’t like what you’re seeing, you can try <code>blend_predictions()</code> again, and setting your own penalty argument.</li>
@@ -607,16 +610,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>With this “instruction” on how to combine candidate models, we fit the whole training set</li>
 </ul>
-<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="blend-fit-predict.html#cb517-1" aria-hidden="true" tabindex="-1"></a>tree_frogs_model_st <span class="ot">&lt;-</span></span>
-<span id="cb517-2"><a href="blend-fit-predict.html#cb517-2" aria-hidden="true" tabindex="-1"></a>  tree_frogs_model_st <span class="sc">%&gt;%</span></span>
-<span id="cb517-3"><a href="blend-fit-predict.html#cb517-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit_members</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="blend-fit-predict.html#cb526-1" aria-hidden="true" tabindex="-1"></a>tree_frogs_model_st <span class="ot">&lt;-</span></span>
+<span id="cb526-2"><a href="blend-fit-predict.html#cb526-2" aria-hidden="true" tabindex="-1"></a>  tree_frogs_model_st <span class="sc">%&gt;%</span></span>
+<span id="cb526-3"><a href="blend-fit-predict.html#cb526-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit_members</span>()</span></code></pre></div>
 <p><img src="images/20_blend_predictions.PNG" /></p>
 <ul>
 <li>And predict on testing set</li>
 </ul>
-<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="blend-fit-predict.html#cb518-1" aria-hidden="true" tabindex="-1"></a>tree_frogs_test <span class="ot">&lt;-</span> </span>
-<span id="cb518-2"><a href="blend-fit-predict.html#cb518-2" aria-hidden="true" tabindex="-1"></a>  tree_frogs_test <span class="sc">%&gt;%</span></span>
-<span id="cb518-3"><a href="blend-fit-predict.html#cb518-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(<span class="fu">predict</span>(tree_frogs_model_st, .))</span></code></pre></div>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="blend-fit-predict.html#cb527-1" aria-hidden="true" tabindex="-1"></a>tree_frogs_test <span class="ot">&lt;-</span> </span>
+<span id="cb527-2"><a href="blend-fit-predict.html#cb527-2" aria-hidden="true" tabindex="-1"></a>  tree_frogs_test <span class="sc">%&gt;%</span></span>
+<span id="cb527-3"><a href="blend-fit-predict.html#cb527-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(<span class="fu">predict</span>(tree_frogs_model_st, .))</span></code></pre></div>
 </div>
             </section>
 

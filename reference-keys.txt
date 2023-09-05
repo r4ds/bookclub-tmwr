@@ -236,6 +236,9 @@ meeting-videos-17
 cohort-1-16
 dimensionality-reduction
 recipes-without-workflows
+why-do-dimensionality-reduction
+introducing-the-beans-dataset
+prepare-the-beans-data-using-recipes
 principal-component-analysis-pca
 partial-least-squares-pls
 independent-component-anysis-ica

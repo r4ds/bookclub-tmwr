@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>16.2 Principal Component Analysis (PCA) | Tidy Modeling with R Book Club</title>
+  <title>16.5 Principal Component Analysis (PCA) | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="16.2 Principal Component Analysis (PCA) | Tidy Modeling with R Book Club" />
+  <meta property="og:title" content="16.5 Principal Component Analysis (PCA) | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tmwr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="16.2 Principal Component Analysis (PCA) | Tidy Modeling with R Book Club" />
+  <meta name="twitter:title" content="16.5 Principal Component Analysis (PCA) | Tidy Modeling with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
   
@@ -23,14 +23,14 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2023-07-25" />
+<meta name="date" content="2023-09-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="recipes-without-workflows.html"/>
+<link rel="prev" href="prepare-the-beans-data-using-recipes.html"/>
 <link rel="next" href="partial-least-squares-pls.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -485,16 +485,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>16</b> Dimensionality reduction</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="recipes-without-workflows.html"><a href="recipes-without-workflows.html"><i class="fa fa-check"></i><b>16.1</b> {recipes} without {workflows}</a></li>
-<li class="chapter" data-level="16.2" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i><b>16.2</b> Principal Component Analysis (PCA)</a></li>
-<li class="chapter" data-level="16.3" data-path="partial-least-squares-pls.html"><a href="partial-least-squares-pls.html"><i class="fa fa-check"></i><b>16.3</b> Partial Least Squares (PLS)</a></li>
-<li class="chapter" data-level="16.4" data-path="independent-component-anysis-ica.html"><a href="independent-component-anysis-ica.html"><i class="fa fa-check"></i><b>16.4</b> Independent Component Anysis (ICA)</a></li>
-<li class="chapter" data-level="16.5" data-path="uniform-manifold-approximation-and-projection-umap.html"><a href="uniform-manifold-approximation-and-projection-umap.html"><i class="fa fa-check"></i><b>16.5</b> Uniform Manifold Approximation and Projection (UMAP)</a></li>
-<li class="chapter" data-level="16.6" data-path="modeling.html"><a href="modeling.html"><i class="fa fa-check"></i><b>16.6</b> Modeling</a></li>
-<li class="chapter" data-level="16.7" data-path="meeting-videos-18.html"><a href="meeting-videos-18.html"><i class="fa fa-check"></i><b>16.7</b> Meeting Videos</a>
+<li class="chapter" data-level="16.2" data-path="why-do-dimensionality-reduction.html"><a href="why-do-dimensionality-reduction.html"><i class="fa fa-check"></i><b>16.2</b> Why do dimensionality reduction?</a></li>
+<li class="chapter" data-level="16.3" data-path="introducing-the-beans-dataset.html"><a href="introducing-the-beans-dataset.html"><i class="fa fa-check"></i><b>16.3</b> Introducing the beans dataset</a></li>
+<li class="chapter" data-level="16.4" data-path="prepare-the-beans-data-using-recipes.html"><a href="prepare-the-beans-data-using-recipes.html"><i class="fa fa-check"></i><b>16.4</b> Prepare the beans data using recipes</a></li>
+<li class="chapter" data-level="16.5" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i><b>16.5</b> Principal Component Analysis (PCA)</a></li>
+<li class="chapter" data-level="16.6" data-path="partial-least-squares-pls.html"><a href="partial-least-squares-pls.html"><i class="fa fa-check"></i><b>16.6</b> Partial Least Squares (PLS)</a></li>
+<li class="chapter" data-level="16.7" data-path="independent-component-anysis-ica.html"><a href="independent-component-anysis-ica.html"><i class="fa fa-check"></i><b>16.7</b> Independent Component Anysis (ICA)</a></li>
+<li class="chapter" data-level="16.8" data-path="uniform-manifold-approximation-and-projection-umap.html"><a href="uniform-manifold-approximation-and-projection-umap.html"><i class="fa fa-check"></i><b>16.8</b> Uniform Manifold Approximation and Projection (UMAP)</a></li>
+<li class="chapter" data-level="16.9" data-path="modeling.html"><a href="modeling.html"><i class="fa fa-check"></i><b>16.9</b> Modeling</a></li>
+<li class="chapter" data-level="16.10" data-path="meeting-videos-18.html"><a href="meeting-videos-18.html"><i class="fa fa-check"></i><b>16.10</b> Meeting Videos</a>
 <ul>
-<li class="chapter" data-level="16.7.1" data-path="meeting-videos-18.html"><a href="meeting-videos-18.html#cohort-1-17"><i class="fa fa-check"></i><b>16.7.1</b> Cohort 1</a></li>
-<li class="chapter" data-level="16.7.2" data-path="meeting-videos-18.html"><a href="meeting-videos-18.html#cohort-3-15"><i class="fa fa-check"></i><b>16.7.2</b> Cohort 3</a></li>
-<li class="chapter" data-level="16.7.3" data-path="meeting-videos-18.html"><a href="meeting-videos-18.html#cohort-4-15"><i class="fa fa-check"></i><b>16.7.3</b> Cohort 4</a></li>
+<li class="chapter" data-level="16.10.1" data-path="meeting-videos-18.html"><a href="meeting-videos-18.html#cohort-1-17"><i class="fa fa-check"></i><b>16.10.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="16.10.2" data-path="meeting-videos-18.html"><a href="meeting-videos-18.html#cohort-3-15"><i class="fa fa-check"></i><b>16.10.2</b> Cohort 3</a></li>
+<li class="chapter" data-level="16.10.3" data-path="meeting-videos-18.html"><a href="meeting-videos-18.html#cohort-4-15"><i class="fa fa-check"></i><b>16.10.3</b> Cohort 4</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>Other Topics</b></span></li>
@@ -586,23 +589,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="principal-component-analysis-pca" class="section level2 hasAnchor" number="16.2">
-<h2><span class="header-section-number">16.2</span> Principal Component Analysis (PCA)<a href="principal-component-analysis-pca.html#principal-component-analysis-pca" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="principal-component-analysis-pca" class="section level2 hasAnchor" number="16.5">
+<h2><span class="header-section-number">16.5</span> Principal Component Analysis (PCA)<a href="principal-component-analysis-pca.html#principal-component-analysis-pca" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>PCA = unsupervised method, finds up to N new features (where N = # features) to explain variation.</li>
+<li>Unsupervised method: acts on the data without any regard for the outcome</li>
+<li>Finds features that try to account for as much variation as possible in the original data</li>
 </ul>
-<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="principal-component-analysis-pca.html#cb470-1" aria-hidden="true" tabindex="-1"></a>bean_rec_trained <span class="sc">%&gt;%</span></span>
-<span id="cb470-2"><a href="principal-component-analysis-pca.html#cb470-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_pca</span>(<span class="fu">all_numeric_predictors</span>(), <span class="at">num_comp =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb470-3"><a href="principal-component-analysis-pca.html#cb470-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_validation_results</span>() <span class="sc">+</span> </span>
-<span id="cb470-4"><a href="principal-component-analysis-pca.html#cb470-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Principal Component Analysis&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="principal-component-analysis-pca.html#cb476-1" aria-hidden="true" tabindex="-1"></a>bean_rec_trained <span class="sc">%&gt;%</span></span>
+<span id="cb476-2"><a href="principal-component-analysis-pca.html#cb476-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_pca</span>(<span class="fu">all_numeric_predictors</span>(), <span class="at">num_comp =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb476-3"><a href="principal-component-analysis-pca.html#cb476-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_validation_results</span>() <span class="sc">+</span> </span>
+<span id="cb476-4"><a href="principal-component-analysis-pca.html#cb476-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Principal Component Analysis&quot;</span>)</span></code></pre></div>
 <p><img src="bookclub-tmwr_files/figure-html/17-pca-1.png" width="672" /></p>
+<p>We can see the first two components separate the classes well. How do they do this?</p>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="principal-component-analysis-pca.html#cb477-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(learntidymodels)</span>
+<span id="cb477-2"><a href="principal-component-analysis-pca.html#cb477-2" aria-hidden="true" tabindex="-1"></a>bean_rec_trained <span class="sc">%&gt;%</span></span>
+<span id="cb477-3"><a href="principal-component-analysis-pca.html#cb477-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_pca</span>(<span class="fu">all_numeric_predictors</span>(), <span class="at">num_comp =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb477-4"><a href="principal-component-analysis-pca.html#cb477-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prep</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb477-5"><a href="principal-component-analysis-pca.html#cb477-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_top_loadings</span>(component_number <span class="sc">&lt;=</span> <span class="dv">4</span>, <span class="at">n =</span> <span class="dv">5</span>) <span class="sc">+</span> </span>
+<span id="cb477-6"><a href="principal-component-analysis-pca.html#cb477-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Paired&quot;</span>) <span class="sc">+</span></span>
+<span id="cb477-7"><a href="principal-component-analysis-pca.html#cb477-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Principal Component Analysis&quot;</span>)</span></code></pre></div>
+<p><img src="bookclub-tmwr_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+<p>The predictors contributing to PC1 are all related to size, while PC2 relates to measures of elongation.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="recipes-without-workflows.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="prepare-the-beans-data-using-recipes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="partial-least-squares-pls.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
