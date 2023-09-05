@@ -2,25 +2,77 @@
 
 **Learning objectives:**
 
-- Create, prep, and bake recipes outside of a workflow to test or debug the recipes.
-- Compare and contrast dimensionality reduction techniques (techniques used to create a small set of features that capture the main aspects of the original predictor set).
-- Use principal component analysis (PCA) to reduce dimensionality.
-- Use partial least squares (PLS) to reduce dimensionality.
-- Use independent component analysis (ICA) to reduce dimensionality.
-- Use uniform manifold approximation and projection (UMAP) to reduce dimensionality.
-- Use dimensionality reduction techniques in conjunction with modeling techniques.
+- **Understand recipes**
+    - Create, prep, and bake recipes outside of a workflow to test or debug the recipes.
+- **Understand dimensionality reduction techniques**
+    - Compare and contrast four dimensionality reduction techniques (techniques used to create a small set of features that capture the main aspects of the original predictor set):
+        - Principal component analysis (PCA)
+        - Partial least squares (PLS)
+        - Independent component analysis (ICA)
+        - Uniform manifold approximation and projection (UMAP)
+    - Use dimensionality reduction techniques in conjunction with modeling techniques.
 
 ## {recipes} without {workflows}
 
-![recipe() defines preprocessing, prep() calculates stats from training set, bake() applies preprocessing to new data](images/17-recipes-process.svg)
+![](images/17-recipes-process.svg)
 
-## Principal Component Analysis (PCA)
 
-```{r 17-prep, include = FALSE}
+
+## Why do dimensionality reduction?
+
+![](images/16-mario.png){height=200px}
+
+- Visualisation and exploratory data analysis: understand the structure of your data
+- Avoid having too many predictors --> improve model performance
+  - Linear regression: number of predictors should be less than the number of data points
+  - Multicollinearity: independent predictor variables are highly correlated
+
+
+## Introducing the beans dataset
+
+![Dry bean images (Koklu and Ozkan 2020)](images/16-beans.png)
+
+***
+
+- Predict bean types from images
+- Features have already been calculated from images of bean samples: `area`, `perimeter`, `eccentricity`, `roundness`, etc
+- How do these features relate to each other?
+
+```{r message = FALSE}
 library(tidymodels)
 tidymodels_prefer()
 library(beans)
-library(corrplot)
+library(corrr)
+
+beans_corr <- beans %>%
+  select(-class) %>%      # drop non-numeric cols
+  correlate() %>%         # generate a correlation matrix in data frame format
+  rearrange() %>%         # group highly correlated variables together
+  shave()                 # shave off the upper triangle
+
+# plot the correlation matrix
+beans_corr %>%
+  rplot(print_cor=TRUE) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+We can see that many features are highly correlated.
+
+## Prepare the beans data using recipes
+
+> **Get the ingredients** (`recipe()`): specify the response variable and predictor variables
+>
+> **Write the recipe** (`step_zzz()`): define the pre-processing steps, such as imputation, creating dummy variables, scaling, and more
+>
+> **Prepare the recipe** (`prep()`): provide a dataset to base each step on (e.g. if one of the steps is to remove variables that only have one unique value, then you need to give it a dataset so it can decide which variables satisfy this criteria to ensure that it is doing the same thing to every dataset you apply it to)
+>
+> **Bake the recipe** (`bake()`): apply the pre-processing steps to your datasets
+
+
+[Using the recipes package for easy pre-processing](https://www.rebeccabarter.com/blog/2019-06-06_pre_processing)
+
+
+```{r 17-prep, message = FALSE}
 library(ggforce)
 library(bestNormalize)
 library(learntidymodels)
@@ -35,24 +87,17 @@ bean_test  <- testing(bean_split)
 set.seed(1702)
 bean_val <- validation_split(bean_train, strata = class, prop = 4/5)
 bean_val$splits[[1]]
-#> <Training/Validation/Total>
-#> <8163/2044/10207>
-
-tmwr_cols <- colorRampPalette(c("#91CBD765", "#CA225E"))
-bean_train %>% 
-  # dplyr::filter(class == levels(bean_train$class)[[5]]) %>% 
-  select(-class) %>%
-  cor() %>% 
-  corrplot(col = tmwr_cols(200), tl.col = "black") +
-  ggplot2::facet_wrap(~class)
 
 bean_rec <-
   # Use the training data from the bean_val split object
+  # 1. get the ingredients
   recipe(class ~ ., data = analysis(bean_val$splits[[1]])) %>%
+  # 2. write the recipe
   step_zv(all_numeric_predictors()) %>%
   step_orderNorm(all_numeric_predictors()) %>% 
   step_normalize(all_numeric_predictors())
 
+# 3. prepare the recipe
 bean_rec_trained <- prep(bean_rec)
 
 show_variables <- 
@@ -60,6 +105,8 @@ show_variables <-
   prep(log_changes = TRUE)
 
 bean_validation <- bean_val$splits %>% pluck(1) %>% assessment()
+
+# 4. bake the recipe
 bean_val_processed <- bake(bean_rec_trained, new_data = bean_validation)
 
 plot_validation_results <- function(recipe, dat = assessment(bean_val$splits[[1]])) {
@@ -78,7 +125,20 @@ plot_validation_results <- function(recipe, dat = assessment(bean_val$splits[[1]
 }
 ```
 
-- PCA = unsupervised method, finds up to N new features (where N = # features) to explain variation.
+Some examples of recipe steps:
+
+- [step_zv()](https://recipes.tidymodels.org/reference/step_zv.html)
+
+- [step_orderNorm()](https://www.rdocumentation.org/packages/bestNormalize/versions/1.9.0/topics/step_orderNorm)
+
+- [step_normalize()](https://recipes.tidymodels.org/reference/step_normalize.html)
+
+- [step_dummy()](https://recipes.tidymodels.org/reference/step_dummy.html)
+
+## Principal Component Analysis (PCA)
+
+- Unsupervised method: acts on the data without any regard for the outcome
+- Finds features that try to account for as much variation as possible in the original data
 
 ```{r 17-pca}
 bean_rec_trained %>%
@@ -87,9 +147,24 @@ bean_rec_trained %>%
   ggtitle("Principal Component Analysis")
 ```
 
+We can see the first two components separate the classes well. How do they do this?
+
+```{r}
+library(learntidymodels)
+bean_rec_trained %>%
+  step_pca(all_numeric_predictors(), num_comp = 4) %>% 
+  prep() %>% 
+  plot_top_loadings(component_number <= 4, n = 5) + 
+  scale_fill_brewer(palette = "Paired") +
+  ggtitle("Principal Component Analysis")
+```
+
+The predictors contributing to PC1 are all related to size, while PC2 relates to measures of elongation.
+
 ## Partial Least Squares (PLS)
 
-- Supervised PCA.
+- Supervised: basically PCA, but makes use of the outcome variable
+- Tries to maximise variation in predictors, while also maximising the relationship between these components and the outcome
 
 ```{r 17-pls}
 bean_rec_trained %>%
@@ -98,10 +173,24 @@ bean_rec_trained %>%
   ggtitle("Partial Least Squares")
 ```
 
+The first two components are very similar to the first two PCA components, but the remaining components are different. Let's look at the top features for each component:
+
+```{r}
+bean_rec_trained %>%
+  step_pls(all_numeric_predictors(), outcome = "class", num_comp = 4) %>%
+  prep() %>% 
+  plot_top_loadings(component_number <= 4, n = 5, type = "pls") + 
+  scale_fill_brewer(palette = "Paired") +
+  ggtitle("Partial Least Squares")
+```
+
+Solidity and roundness are the features behind PLS3.
+
 ## Independent Component Anysis (ICA)
 
-- "As statistically independent from one another as possible."
-- "It can be thought of as maximizing the 'non-Gaussianity' of the ICA components.
+- Unsupervised
+- Finds components that are statistically independent from each other, rather than uncorrelated
+- Maximise the 'non-Gaussianity' of the ICA components - i.e. non-linear
 
 ```{r 17-ica}
 # Note: ICA requires the "dimRed" and "fastICA" packages.
@@ -111,21 +200,35 @@ bean_rec_trained %>%
   ggtitle("Independent Component Analysis")
 ```
 
+There isn't much separation between the classes in the first few components, so these independent components don't separate the bean types.
+
 ## Uniform Manifold Approximation and Projection (UMAP)
 
-- Uses distance-based nearest neighbor to find local areas where data points are more likely related.
-- Relationships saved as directed graph w/most points not connected.
-- Create smaller feature set such that graph is well approximated.
+- Non-linear, like ICA
+- Powerful: divides the group a lot
+- Uses distance-based nearest neighbor to find local areas where data points are more likely related
+- Creates smaller feature set
+- Unsupervised and supervised versions
+- Can be sensitive to tuning parameters
 
 ```{r 17-umap}
 library(embed)
 bean_rec_trained %>%
+  step_umap(all_numeric_predictors(), num_comp = 4) %>%
+  plot_validation_results() +
+  ggtitle("UMAP (unsupervised)")
+
+bean_rec_trained %>%
   step_umap(all_numeric_predictors(), outcome = "class", num_comp = 4) %>%
   plot_validation_results() +
-  ggtitle("Uniform Manifold Approximation and Projection (supervised)")
+  ggtitle("UMAP (supervised)")
 ```
 
+The supervised method looks to perform better.
+
 ## Modeling
+
+- Let's explore some different models with different dimensionality reduction techniques: single layer neural network, bagged trees, flexible discriminant analysis (FDA), naive Bayes, and regularized discriminant analysis (RDA)
 
 (This is slow so I don't actually run it here.)
 
@@ -159,6 +262,8 @@ rankings %>%
 ```
 
 ![](images/17-model_ranks.png)
+
+Most models give good performance. Regularized discriminant analysis with PLS seems the best.
 
 ## Meeting Videos
 
