@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>20.6 Case Study - Patient Risk Profiles | Tidy Modeling with R Book Club</title>
+  <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="20.6 Case Study - Patient Risk Profiles | Tidy Modeling with R Book Club" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
+  <meta name="github-repo" content="r4ds/bookclub-tmwr" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="20.6 Case Study - Patient Risk Profiles | Tidy Modeling with R Book Club" />
+  
+  <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
+  
+
+<meta name="author" content="The R4DS Online Learning Community" />
+
+
+<meta name="date" content="2023-10-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="blend-fit-predict.html"/>
+<link rel="next" href="meeting-videos-21.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="libs/d3-3.3.8/d3.min.js"></script>
+<script src="libs/dagre-0.4.0/dagre-d3.min.js"></script>
+<link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet" />
+<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/chromatography-0.1/chromatography.js"></script>
+<script src="libs/DiagrammeR-binding-1.0.10/DiagrammeR.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Tidy Modeling with R Book Club</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="book-club-meetings.html"><a href="book-club-meetings.html"><i class="fa fa-check"></i>Book club meetings</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="software-for-modeling.html"><a href="software-for-modeling.html"><i class="fa fa-check"></i><b>1</b> Software for modeling</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="the-pit-of-success.html"><a href="the-pit-of-success.html"><i class="fa fa-check"></i><b>1.1</b> The pit of success</a></li>
+<li class="chapter" data-level="1.2" data-path="types-of-models.html"><a href="types-of-models.html"><i class="fa fa-check"></i><b>1.2</b> Types of models</a></li>
+<li class="chapter" data-level="1.3" data-path="terminology.html"><a href="terminology.html"><i class="fa fa-check"></i><b>1.3</b> Terminology</a></li>
+<li class="chapter" data-level="1.4" data-path="the-data-analysis-process.html"><a href="the-data-analysis-process.html"><i class="fa fa-check"></i><b>1.4</b> The data analysis process</a></li>
+<li class="chapter" data-level="1.5" data-path="the-modeling-process.html"><a href="the-modeling-process.html"><i class="fa fa-check"></i><b>1.5</b> The modeling process</a></li>
+<li class="chapter" data-level="1.6" data-path="meeting-videos.html"><a href="meeting-videos.html"><i class="fa fa-check"></i><b>1.6</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="meeting-videos.html"><a href="meeting-videos.html#cohort-1"><i class="fa fa-check"></i><b>1.6.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="1.6.2" data-path="meeting-videos.html"><a href="meeting-videos.html#cohort-2"><i class="fa fa-check"></i><b>1.6.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="1.6.3" data-path="meeting-videos.html"><a href="meeting-videos.html#cohort-3"><i class="fa fa-check"></i><b>1.6.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="1.6.4" data-path="meeting-videos.html"><a href="meeting-videos.html#cohort-4"><i class="fa fa-check"></i><b>1.6.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="a-tidyverse-primer.html"><a href="a-tidyverse-primer.html"><i class="fa fa-check"></i><b>2</b> A tidyverse primer</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="tidyverse-design-principles.html"><a href="tidyverse-design-principles.html"><i class="fa fa-check"></i><b>2.1</b> Tidyverse design Principles</a></li>
+<li class="chapter" data-level="2.2" data-path="design-for-humans---overview.html"><a href="design-for-humans---overview.html"><i class="fa fa-check"></i><b>2.2</b> Design for Humans - Overview</a></li>
+<li class="chapter" data-level="2.3" data-path="design-for-humans.html"><a href="design-for-humans.html"><i class="fa fa-check"></i><b>2.3</b> Design for Humans and the Tidyverse</a></li>
+<li class="chapter" data-level="2.4" data-path="reusing-existing-data-structures.html"><a href="reusing-existing-data-structures.html"><i class="fa fa-check"></i><b>2.4</b> Reusing existing data structures</a></li>
+<li class="chapter" data-level="2.5" data-path="designed-for-the-pipe.html"><a href="designed-for-the-pipe.html"><i class="fa fa-check"></i><b>2.5</b> Designed for the pipe</a></li>
+<li class="chapter" data-level="2.6" data-path="designed-for-functional-programming.html"><a href="designed-for-functional-programming.html"><i class="fa fa-check"></i><b>2.6</b> Designed for Functional Programming</a></li>
+<li class="chapter" data-level="2.7" data-path="tibbles-vs.-data-frames.html"><a href="tibbles-vs.-data-frames.html"><i class="fa fa-check"></i><b>2.7</b> Tibbles vs. Data Frames</a></li>
+<li class="chapter" data-level="2.8" data-path="how-to-read-and-wrangle-data.html"><a href="how-to-read-and-wrangle-data.html"><i class="fa fa-check"></i><b>2.8</b> How to read and wrangle data</a></li>
+<li class="chapter" data-level="2.9" data-path="further-reading.html"><a href="further-reading.html"><i class="fa fa-check"></i><b>2.9</b> Further Reading</a></li>
+<li class="chapter" data-level="2.10" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html"><i class="fa fa-check"></i><b>2.10</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-1-1"><i class="fa fa-check"></i><b>2.10.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="2.10.2" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-2-1"><i class="fa fa-check"></i><b>2.10.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="2.10.3" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-3-1"><i class="fa fa-check"></i><b>2.10.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="2.10.4" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-4-1"><i class="fa fa-check"></i><b>2.10.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="a-review-of-r-modeling-fundamentals.html"><a href="a-review-of-r-modeling-fundamentals.html"><i class="fa fa-check"></i><b>3</b> A review of R modeling fundamentals</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r-formula-syntax.html"><a href="r-formula-syntax.html"><i class="fa fa-check"></i><b>3.1</b> R formula syntax</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="r-formula-syntax.html"><a href="r-formula-syntax.html#recap"><i class="fa fa-check"></i><b>3.1.1</b> Recap</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="inspecting-and-developing-models.html"><a href="inspecting-and-developing-models.html"><i class="fa fa-check"></i><b>3.2</b> Inspecting and developing models</a></li>
+<li class="chapter" data-level="3.3" data-path="more-of-base-and-stats.html"><a href="more-of-base-and-stats.html"><i class="fa fa-check"></i><b>3.3</b> More of <code>{base}</code> and <code>{stats}</code></a></li>
+<li class="chapter" data-level="3.4" data-path="why-tidy-principles-and-tidymodels.html"><a href="why-tidy-principles-and-tidymodels.html"><i class="fa fa-check"></i><b>3.4</b> Why Tidy Principles and <code>{tidymodels}</code>?</a></li>
+<li class="chapter" data-level="3.5" data-path="meeting-videos-2.html"><a href="meeting-videos-2.html"><i class="fa fa-check"></i><b>3.5</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="meeting-videos-2.html"><a href="meeting-videos-2.html#cohort-1-2"><i class="fa fa-check"></i><b>3.5.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="3.5.2" data-path="meeting-videos-2.html"><a href="meeting-videos-2.html#cohort-2-2"><i class="fa fa-check"></i><b>3.5.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="3.5.3" data-path="meeting-videos-2.html"><a href="meeting-videos-2.html#cohort-3-2"><i class="fa fa-check"></i><b>3.5.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="3.5.4" data-path="meeting-videos-2.html"><a href="meeting-videos-2.html#cohort-4-2"><i class="fa fa-check"></i><b>3.5.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Basics</b></span></li>
+<li class="chapter" data-level="4" data-path="the-ames-housing-data.html"><a href="the-ames-housing-data.html"><i class="fa fa-check"></i><b>4</b> The Ames housing data</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="pittsburgh-a-parallel-real-world-example.html"><a href="pittsburgh-a-parallel-real-world-example.html"><i class="fa fa-check"></i><b>4.1</b> Pittsburgh: a parallel real world example</a></li>
+<li class="chapter" data-level="4.2" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html"><i class="fa fa-check"></i><b>4.2</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-1-3"><i class="fa fa-check"></i><b>4.2.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="4.2.2" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-2-3"><i class="fa fa-check"></i><b>4.2.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="4.2.3" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-3-3"><i class="fa fa-check"></i><b>4.2.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="4.2.4" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-4-3"><i class="fa fa-check"></i><b>4.2.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="spending-our-data.html"><a href="spending-our-data.html"><i class="fa fa-check"></i><b>5</b> Spending our data</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="spending-our-data-1.html"><a href="spending-our-data-1.html"><i class="fa fa-check"></i><b>5.1</b> Spending our data</a></li>
+<li class="chapter" data-level="5.2" data-path="common-methods-for-splitting-data.html"><a href="common-methods-for-splitting-data.html"><i class="fa fa-check"></i><b>5.2</b> Common methods for splitting data</a></li>
+<li class="chapter" data-level="5.3" data-path="class-imbalance.html"><a href="class-imbalance.html"><i class="fa fa-check"></i><b>5.3</b> Class imbalance</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="class-imbalance.html"><a href="class-imbalance.html#stratified-sampling-simulation"><i class="fa fa-check"></i><b>5.3.1</b> Stratified sampling simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="continuous-outcome-data.html"><a href="continuous-outcome-data.html"><i class="fa fa-check"></i><b>5.4</b> Continuous outcome data</a></li>
+<li class="chapter" data-level="5.5" data-path="time-series-data.html"><a href="time-series-data.html"><i class="fa fa-check"></i><b>5.5</b> Time series data</a></li>
+<li class="chapter" data-level="5.6" data-path="multi-level-data.html"><a href="multi-level-data.html"><i class="fa fa-check"></i><b>5.6</b> Multi-level data</a></li>
+<li class="chapter" data-level="5.7" data-path="what-proportion-should-be-used.html"><a href="what-proportion-should-be-used.html"><i class="fa fa-check"></i><b>5.7</b> What proportion should be used?</a></li>
+<li class="chapter" data-level="5.8" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>5.8</b> Summary</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="summary.html"><a href="summary.html#references"><i class="fa fa-check"></i><b>5.8.1</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html"><i class="fa fa-check"></i><b>5.9</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-1-4"><i class="fa fa-check"></i><b>5.9.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="5.9.2" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-2-4"><i class="fa fa-check"></i><b>5.9.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="5.9.3" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-3-4"><i class="fa fa-check"></i><b>5.9.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="5.9.4" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-4-4"><i class="fa fa-check"></i><b>5.9.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="fitting-models-with-parsnip.html"><a href="fitting-models-with-parsnip.html"><i class="fa fa-check"></i><b>6</b> Fitting models with parsnip</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="create-a-model.html"><a href="create-a-model.html"><i class="fa fa-check"></i><b>6.1</b> Create a Model</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="create-a-model.html"><a href="create-a-model.html#different-model-interfaces"><i class="fa fa-check"></i><b>6.1.1</b> Different Model Interfaces</a></li>
+<li class="chapter" data-level="6.1.2" data-path="create-a-model.html"><a href="create-a-model.html#model-specification"><i class="fa fa-check"></i><b>6.1.2</b> Model Specification</a></li>
+<li class="chapter" data-level="6.1.3" data-path="create-a-model.html"><a href="create-a-model.html#model-fitting"><i class="fa fa-check"></i><b>6.1.3</b> Model Fitting</a></li>
+<li class="chapter" data-level="6.1.4" data-path="create-a-model.html"><a href="create-a-model.html#generalized-model-arguments"><i class="fa fa-check"></i><b>6.1.4</b> Generalized Model Arguments</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="use-model-results.html"><a href="use-model-results.html"><i class="fa fa-check"></i><b>6.2</b> Use Model results</a></li>
+<li class="chapter" data-level="6.3" data-path="make-predictions.html"><a href="make-predictions.html"><i class="fa fa-check"></i><b>6.3</b> Make Predictions</a></li>
+<li class="chapter" data-level="6.4" data-path="tidymodels-adjacent-packages.html"><a href="tidymodels-adjacent-packages.html"><i class="fa fa-check"></i><b>6.4</b> {tidymodels}-Adjacent Packages</a></li>
+<li class="chapter" data-level="6.5" data-path="summary-1.html"><a href="summary-1.html"><i class="fa fa-check"></i><b>6.5</b> Summary</a></li>
+<li class="chapter" data-level="6.6" data-path="meeting-videos-5.html"><a href="meeting-videos-5.html"><i class="fa fa-check"></i><b>6.6</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="meeting-videos-5.html"><a href="meeting-videos-5.html#cohort-1-5"><i class="fa fa-check"></i><b>6.6.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="6.6.2" data-path="meeting-videos-5.html"><a href="meeting-videos-5.html#cohort-2-5"><i class="fa fa-check"></i><b>6.6.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="6.6.3" data-path="meeting-videos-5.html"><a href="meeting-videos-5.html#cohort-3-5"><i class="fa fa-check"></i><b>6.6.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="6.6.4" data-path="meeting-videos-5.html"><a href="meeting-videos-5.html#cohort-4-5"><i class="fa fa-check"></i><b>6.6.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ai-ethics.html"><a href="ai-ethics.html"><i class="fa fa-check"></i>AI Ethics</a>
+<ul>
+<li class="chapter" data-level="6.7" data-path="meeting-videos-6.html"><a href="meeting-videos-6.html"><i class="fa fa-check"></i><b>6.7</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="meeting-videos-6.html"><a href="meeting-videos-6.html#cohort-2-6"><i class="fa fa-check"></i><b>6.7.1</b> Cohort 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="a-model-workflow.html"><a href="a-model-workflow.html"><i class="fa fa-check"></i><b>7</b> A model workflow</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="workflows.html"><a href="workflows.html"><i class="fa fa-check"></i><b>7.1</b> Workflows</a></li>
+<li class="chapter" data-level="7.2" data-path="demonstration.html"><a href="demonstration.html"><i class="fa fa-check"></i><b>7.2</b> Demonstration</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="demonstration.html"><a href="demonstration.html#some-data-exploration-and-cleaning"><i class="fa fa-check"></i><b>7.2.1</b> Some data exploration and cleaning</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="modeling-with-workflows.html"><a href="modeling-with-workflows.html"><i class="fa fa-check"></i><b>7.3</b> Modeling with workflows</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="modeling-with-workflows.html"><a href="modeling-with-workflows.html#different-model-same-recipe"><i class="fa fa-check"></i><b>7.3.1</b> Different model, same recipe</a></li>
+<li class="chapter" data-level="7.3.2" data-path="modeling-with-workflows.html"><a href="modeling-with-workflows.html#same-model-different-preprocessing"><i class="fa fa-check"></i><b>7.3.2</b> Same model, different preprocessing</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="managing-many-workflows.html"><a href="managing-many-workflows.html"><i class="fa fa-check"></i><b>7.4</b> Managing many workflows</a></li>
+<li class="chapter" data-level="7.5" data-path="notes.html"><a href="notes.html"><i class="fa fa-check"></i><b>7.5</b> Notes</a></li>
+<li class="chapter" data-level="7.6" data-path="meeting-videos-7.html"><a href="meeting-videos-7.html"><i class="fa fa-check"></i><b>7.6</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="meeting-videos-7.html"><a href="meeting-videos-7.html#cohort-1-6"><i class="fa fa-check"></i><b>7.6.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="7.6.2" data-path="meeting-videos-7.html"><a href="meeting-videos-7.html#cohort-2-7"><i class="fa fa-check"></i><b>7.6.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="7.6.3" data-path="meeting-videos-7.html"><a href="meeting-videos-7.html#cohort-3-6"><i class="fa fa-check"></i><b>7.6.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="7.6.4" data-path="meeting-videos-7.html"><a href="meeting-videos-7.html#cohort-4-6"><i class="fa fa-check"></i><b>7.6.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="feature-engineering-with-recipes.html"><a href="feature-engineering-with-recipes.html"><i class="fa fa-check"></i><b>8</b> Feature engineering with recipes</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="in-summary.html"><a href="in-summary.html"><i class="fa fa-check"></i><b>8.1</b> In summary</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="in-summary.html"><a href="in-summary.html#intoduction"><i class="fa fa-check"></i><b>8.1.1</b> Intoduction</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="a-simple-recipe-for-the-ames-housing-data.html"><a href="a-simple-recipe-for-the-ames-housing-data.html"><i class="fa fa-check"></i><b>8.2</b> A SIMPLE RECIPE FOR THE AMES HOUSING DATA</a></li>
+<li class="chapter" data-level="8.3" data-path="using-recipes.html"><a href="using-recipes.html"><i class="fa fa-check"></i><b>8.3</b> USING RECIPES</a></li>
+<li class="chapter" data-level="8.4" data-path="how-data-are-used-by-the-recipe.html"><a href="how-data-are-used-by-the-recipe.html"><i class="fa fa-check"></i><b>8.4</b> HOW DATA ARE USED BY THE RECIPE</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="how-data-are-used-by-the-recipe.html"><a href="how-data-are-used-by-the-recipe.html#examples-of-recipe-steps"><i class="fa fa-check"></i><b>8.4.1</b> EXAMPLES OF RECIPE STEPS:</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="skipping-steps-for-new-data.html"><a href="skipping-steps-for-new-data.html"><i class="fa fa-check"></i><b>8.5</b> SKIPPING STEPS FOR NEW DATA</a></li>
+<li class="chapter" data-level="8.6" data-path="tidy-a-recipe.html"><a href="tidy-a-recipe.html"><i class="fa fa-check"></i><b>8.6</b> TIDY A RECIPE</a></li>
+<li class="chapter" data-level="8.7" data-path="column-roles.html"><a href="column-roles.html"><i class="fa fa-check"></i><b>8.7</b> COLUMN ROLES</a></li>
+<li class="chapter" data-level="8.8" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>8.8</b> Resources</a></li>
+<li class="chapter" data-level="8.9" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html"><i class="fa fa-check"></i><b>8.9</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-1-7"><i class="fa fa-check"></i><b>8.9.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="8.9.2" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-2-8"><i class="fa fa-check"></i><b>8.9.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="8.9.3" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-3-7"><i class="fa fa-check"></i><b>8.9.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="8.9.4" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-4-7"><i class="fa fa-check"></i><b>8.9.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="judging-model-effectiveness.html"><a href="judging-model-effectiveness.html"><i class="fa fa-check"></i><b>9</b> Judging model effectiveness</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="performance-metrics-and-inference.html"><a href="performance-metrics-and-inference.html"><i class="fa fa-check"></i><b>9.1</b> Performance Metrics and Inference</a></li>
+<li class="chapter" data-level="9.2" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html"><i class="fa fa-check"></i><b>9.2</b> A little Recap of previous chapters</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#case-study-1"><i class="fa fa-check"></i><b>9.2.1</b> Case Study 1</a></li>
+<li class="chapter" data-level="9.2.2" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#tidymodels-modeling-as-a-step-by-step-mode"><i class="fa fa-check"></i><b>9.2.2</b> Tidymodels: modeling as a step by step mode</a></li>
+<li class="chapter" data-level="9.2.3" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#workflow-to-combine-models-and-recipes"><i class="fa fa-check"></i><b>9.2.3</b> Workflow: to combine models and recipes</a></li>
+<li class="chapter" data-level="9.2.4" data-path="a-little-recap-of-previous-chapters.html"><a href="a-little-recap-of-previous-chapters.html#case-study-2"><i class="fa fa-check"></i><b>9.2.4</b> Case Study 2</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="functions-used-to-measure-predictive-strengths-of-a-model.html"><a href="functions-used-to-measure-predictive-strengths-of-a-model.html"><i class="fa fa-check"></i><b>9.3</b> Functions used to measure predictive strengths of a model</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="functions-used-to-measure-predictive-strengths-of-a-model.html"><a href="functions-used-to-measure-predictive-strengths-of-a-model.html#case-study-3"><i class="fa fa-check"></i><b>9.3.1</b> Case Study 3</a></li>
+<li class="chapter" data-level="9.3.2" data-path="functions-used-to-measure-predictive-strengths-of-a-model.html"><a href="functions-used-to-measure-predictive-strengths-of-a-model.html#conclusion"><i class="fa fa-check"></i><b>9.3.2</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="measures-of-model-fit---case-study-cohort-1.html"><a href="measures-of-model-fit---case-study-cohort-1.html"><i class="fa fa-check"></i><b>9.4</b> Measures of Model Fit - Case Study (Cohort 1)</a></li>
+<li class="chapter" data-level="9.5" data-path="disclaimers.html"><a href="disclaimers.html"><i class="fa fa-check"></i><b>9.5</b> Disclaimers</a></li>
+<li class="chapter" data-level="9.6" data-path="regression-metrics.html"><a href="regression-metrics.html"><i class="fa fa-check"></i><b>9.6</b> Regression Metrics</a></li>
+<li class="chapter" data-level="9.7" data-path="binary-classification-metrics.html"><a href="binary-classification-metrics.html"><i class="fa fa-check"></i><b>9.7</b> Binary Classification Metrics</a></li>
+<li class="chapter" data-level="9.8" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>9.8</b> References</a></li>
+<li class="chapter" data-level="9.9" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html"><i class="fa fa-check"></i><b>9.9</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="9.9.1" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-1-8"><i class="fa fa-check"></i><b>9.9.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="9.9.2" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-2-9"><i class="fa fa-check"></i><b>9.9.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="9.9.3" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-3-8"><i class="fa fa-check"></i><b>9.9.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="9.9.4" data-path="meeting-videos-9.html"><a href="meeting-videos-9.html#cohort-4-8"><i class="fa fa-check"></i><b>9.9.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="review-of-chapters-4-9.html"><a href="review-of-chapters-4-9.html"><i class="fa fa-check"></i>Review of chapters 4-9</a>
+<ul>
+<li class="chapter" data-level="9.10" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html"><i class="fa fa-check"></i><b>9.10</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="9.10.1" data-path="meeting-videos-10.html"><a href="meeting-videos-10.html#cohort-1-9"><i class="fa fa-check"></i><b>9.10.1</b> Cohort 1</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Tools for Creating Effective Models</b></span></li>
+<li class="chapter" data-level="10" data-path="resampling-for-evaluating-performance.html"><a href="resampling-for-evaluating-performance.html"><i class="fa fa-check"></i><b>10</b> Resampling for evaluating performance</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="why.html"><a href="why.html"><i class="fa fa-check"></i><b>10.1</b> Why?</a></li>
+<li class="chapter" data-level="10.2" data-path="resubstitution-approach.html"><a href="resubstitution-approach.html"><i class="fa fa-check"></i><b>10.2</b> Resubstitution approach</a></li>
+<li class="chapter" data-level="10.3" data-path="resampling-methods.html"><a href="resampling-methods.html"><i class="fa fa-check"></i><b>10.3</b> Resampling methods</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="resampling-methods.html"><a href="resampling-methods.html#cross-validation"><i class="fa fa-check"></i><b>10.3.1</b> Cross-validation</a></li>
+<li class="chapter" data-level="10.3.2" data-path="resampling-methods.html"><a href="resampling-methods.html#validation-sets"><i class="fa fa-check"></i><b>10.3.2</b> Validation sets</a></li>
+<li class="chapter" data-level="10.3.3" data-path="resampling-methods.html"><a href="resampling-methods.html#boostrapping"><i class="fa fa-check"></i><b>10.3.3</b> Boostrapping</a></li>
+<li class="chapter" data-level="10.3.4" data-path="resampling-methods.html"><a href="resampling-methods.html#rolling-forecasting-origin-resampling"><i class="fa fa-check"></i><b>10.3.4</b> Rolling forecasting origin resampling</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="estimating-performance.html"><a href="estimating-performance.html"><i class="fa fa-check"></i><b>10.4</b> Estimating performance</a></li>
+<li class="chapter" data-level="10.5" data-path="parallel-processing.html"><a href="parallel-processing.html"><i class="fa fa-check"></i><b>10.5</b> Parallel processing</a></li>
+<li class="chapter" data-level="10.6" data-path="saving-the-resampled-objects.html"><a href="saving-the-resampled-objects.html"><i class="fa fa-check"></i><b>10.6</b> Saving the resampled objects</a></li>
+<li class="chapter" data-level="10.7" data-path="meeting-videos-11.html"><a href="meeting-videos-11.html"><i class="fa fa-check"></i><b>10.7</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="10.7.1" data-path="meeting-videos-11.html"><a href="meeting-videos-11.html#cohort-1-10"><i class="fa fa-check"></i><b>10.7.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="10.7.2" data-path="meeting-videos-11.html"><a href="meeting-videos-11.html#cohort-2-10"><i class="fa fa-check"></i><b>10.7.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="10.7.3" data-path="meeting-videos-11.html"><a href="meeting-videos-11.html#cohort-3-9"><i class="fa fa-check"></i><b>10.7.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="10.7.4" data-path="meeting-videos-11.html"><a href="meeting-videos-11.html#cohort-4-9"><i class="fa fa-check"></i><b>10.7.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="comparing-models-with-resampling.html"><a href="comparing-models-with-resampling.html"><i class="fa fa-check"></i><b>11</b> Comparing models with resampling</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="calculate-performance-statistics.html"><a href="calculate-performance-statistics.html"><i class="fa fa-check"></i><b>11.1</b> Calculate performance statistics</a></li>
+<li class="chapter" data-level="11.2" data-path="calculate-performance-statistics-workflowsets.html"><a href="calculate-performance-statistics-workflowsets.html"><i class="fa fa-check"></i><b>11.2</b> Calculate performance statistics: {workflowsets}</a></li>
+<li class="chapter" data-level="11.3" data-path="within-resample-correlation.html"><a href="within-resample-correlation.html"><i class="fa fa-check"></i><b>11.3</b> Within-resample correlation</a></li>
+<li class="chapter" data-level="11.4" data-path="practical-effect-size.html"><a href="practical-effect-size.html"><i class="fa fa-check"></i><b>11.4</b> Practical effect size</a></li>
+<li class="chapter" data-level="11.5" data-path="simple-comparison.html"><a href="simple-comparison.html"><i class="fa fa-check"></i><b>11.5</b> Simple Comparison</a></li>
+<li class="chapter" data-level="11.6" data-path="bayesian-methods.html"><a href="bayesian-methods.html"><i class="fa fa-check"></i><b>11.6</b> Bayesian methods</a></li>
+<li class="chapter" data-level="11.7" data-path="meeting-videos-12.html"><a href="meeting-videos-12.html"><i class="fa fa-check"></i><b>11.7</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="11.7.1" data-path="meeting-videos-12.html"><a href="meeting-videos-12.html#cohort-1-11"><i class="fa fa-check"></i><b>11.7.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="11.7.2" data-path="meeting-videos-12.html"><a href="meeting-videos-12.html#cohort-2-11"><i class="fa fa-check"></i><b>11.7.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="11.7.3" data-path="meeting-videos-12.html"><a href="meeting-videos-12.html#cohort-3-10"><i class="fa fa-check"></i><b>11.7.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="11.7.4" data-path="meeting-videos-12.html"><a href="meeting-videos-12.html#cohort-4-10"><i class="fa fa-check"></i><b>11.7.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="model-tuning-and-the-dangers-of-overfitting.html"><a href="model-tuning-and-the-dangers-of-overfitting.html"><i class="fa fa-check"></i><b>12</b> Model tuning and the dangers of overfitting</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="what-is-a-tuning-parameter.html"><a href="what-is-a-tuning-parameter.html"><i class="fa fa-check"></i><b>12.1</b> What is a Tuning Parameter?</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="what-is-a-tuning-parameter.html"><a href="what-is-a-tuning-parameter.html#examples"><i class="fa fa-check"></i><b>12.1.1</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="when-not-to-tune.html"><a href="when-not-to-tune.html"><i class="fa fa-check"></i><b>12.2</b> When not to tune</a></li>
+<li class="chapter" data-level="12.3" data-path="decisions-decisions.html"><a href="decisions-decisions.html"><i class="fa fa-check"></i><b>12.3</b> Decisions, Decisions…</a></li>
+<li class="chapter" data-level="12.4" data-path="what-metric-should-we-use.html"><a href="what-metric-should-we-use.html"><i class="fa fa-check"></i><b>12.4</b> What Metric Should We Use?</a></li>
+<li class="chapter" data-level="12.5" data-path="can-we-make-our-model-too-good.html"><a href="can-we-make-our-model-too-good.html"><i class="fa fa-check"></i><b>12.5</b> Can we make our model <em>too</em> good?</a></li>
+<li class="chapter" data-level="12.6" data-path="tuning-parameter-optimization-strategies.html"><a href="tuning-parameter-optimization-strategies.html"><i class="fa fa-check"></i><b>12.6</b> Tuning Parameter Optimization Strategies</a></li>
+<li class="chapter" data-level="12.7" data-path="tuning-parameters-in-tidymodels-dials.html"><a href="tuning-parameters-in-tidymodels-dials.html"><i class="fa fa-check"></i><b>12.7</b> Tuning Parameters in tidymodels <code>{dials}</code></a></li>
+<li class="chapter" data-level="12.8" data-path="lets-try-an-example.html"><a href="lets-try-an-example.html"><i class="fa fa-check"></i><b>12.8</b> Let’s try an example:</a></li>
+<li class="chapter" data-level="12.9" data-path="build-our-random-forest-model.html"><a href="build-our-random-forest-model.html"><i class="fa fa-check"></i><b>12.9</b> Build our random forest model:</a></li>
+<li class="chapter" data-level="12.10" data-path="add-tuning-parameters.html"><a href="add-tuning-parameters.html"><i class="fa fa-check"></i><b>12.10</b> Add tuning parameters:</a></li>
+<li class="chapter" data-level="12.11" data-path="updating-tuning-parameters.html"><a href="updating-tuning-parameters.html"><i class="fa fa-check"></i><b>12.11</b> Updating tuning parameters:</a></li>
+<li class="chapter" data-level="12.12" data-path="finalizing-tuning-parameters.html"><a href="finalizing-tuning-parameters.html"><i class="fa fa-check"></i><b>12.12</b> Finalizing tuning parameters:</a></li>
+<li class="chapter" data-level="12.13" data-path="what-is-next.html"><a href="what-is-next.html"><i class="fa fa-check"></i><b>12.13</b> What is next?</a></li>
+<li class="chapter" data-level="12.14" data-path="meeting-videos-13.html"><a href="meeting-videos-13.html"><i class="fa fa-check"></i><b>12.14</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="12.14.1" data-path="meeting-videos-13.html"><a href="meeting-videos-13.html#cohort-1-12"><i class="fa fa-check"></i><b>12.14.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="12.14.2" data-path="meeting-videos-13.html"><a href="meeting-videos-13.html#cohort-2-12"><i class="fa fa-check"></i><b>12.14.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="12.14.3" data-path="meeting-videos-13.html"><a href="meeting-videos-13.html#cohort-3-11"><i class="fa fa-check"></i><b>12.14.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="12.14.4" data-path="meeting-videos-13.html"><a href="meeting-videos-13.html#cohort-4-11"><i class="fa fa-check"></i><b>12.14.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="grid-search.html"><a href="grid-search.html"><i class="fa fa-check"></i><b>13</b> Grid search</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="regular-and-non-regular-grids.html"><a href="regular-and-non-regular-grids.html"><i class="fa fa-check"></i><b>13.1</b> Regular and non-regular grids</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="regular-and-non-regular-grids.html"><a href="regular-and-non-regular-grids.html#regular-grids"><i class="fa fa-check"></i><b>13.1.1</b> Regular Grids</a></li>
+<li class="chapter" data-level="13.1.2" data-path="regular-and-non-regular-grids.html"><a href="regular-and-non-regular-grids.html#irregular-grids"><i class="fa fa-check"></i><b>13.1.2</b> Irregular Grids</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="evaluating-the-grid.html"><a href="evaluating-the-grid.html"><i class="fa fa-check"></i><b>13.2</b> Evaluating the grid</a></li>
+<li class="chapter" data-level="13.3" data-path="finalizing-the-model.html"><a href="finalizing-the-model.html"><i class="fa fa-check"></i><b>13.3</b> Finalizing the model</a></li>
+<li class="chapter" data-level="13.4" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html"><i class="fa fa-check"></i><b>13.4</b> Tools for efficient grid search</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html#submodel-optimization"><i class="fa fa-check"></i><b>13.4.1</b> Submodel optimization</a></li>
+<li class="chapter" data-level="13.4.2" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html#parallel-processing-1"><i class="fa fa-check"></i><b>13.4.2</b> Parallel processing</a></li>
+<li class="chapter" data-level="13.4.3" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html#benchmarking-parallel-with-boosted-trees"><i class="fa fa-check"></i><b>13.4.3</b> Benchmarking Parallel with boosted trees</a></li>
+<li class="chapter" data-level="13.4.4" data-path="tools-for-efficient-grid-search.html"><a href="tools-for-efficient-grid-search.html#racing-methods"><i class="fa fa-check"></i><b>13.4.4</b> Racing Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="chapter-summary.html"><a href="chapter-summary.html"><i class="fa fa-check"></i><b>13.5</b> Chapter Summary</a></li>
+<li class="chapter" data-level="13.6" data-path="meeting-videos-14.html"><a href="meeting-videos-14.html"><i class="fa fa-check"></i><b>13.6</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="13.6.1" data-path="meeting-videos-14.html"><a href="meeting-videos-14.html#cohort-1-13"><i class="fa fa-check"></i><b>13.6.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="13.6.2" data-path="meeting-videos-14.html"><a href="meeting-videos-14.html#cohort-2-13"><i class="fa fa-check"></i><b>13.6.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="13.6.3" data-path="meeting-videos-14.html"><a href="meeting-videos-14.html#cohort-3-12"><i class="fa fa-check"></i><b>13.6.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="13.6.4" data-path="meeting-videos-14.html"><a href="meeting-videos-14.html#cohort-4-12"><i class="fa fa-check"></i><b>13.6.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="iterative-search.html"><a href="iterative-search.html"><i class="fa fa-check"></i><b>14</b> Iterative search</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="svm-model-as-motivating-example.html"><a href="svm-model-as-motivating-example.html"><i class="fa fa-check"></i><b>14.1</b> SVM model as motivating example</a></li>
+<li class="chapter" data-level="14.2" data-path="bayesian-optimization.html"><a href="bayesian-optimization.html"><i class="fa fa-check"></i><b>14.2</b> Bayesian Optimization</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="bayesian-optimization.html"><a href="bayesian-optimization.html#gaussian-process-model-at-a-high-level"><i class="fa fa-check"></i><b>14.2.1</b> Gaussian process model, at a high level</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="simulated-annealing.html"><a href="simulated-annealing.html"><i class="fa fa-check"></i><b>14.3</b> Simulated annealing</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="simulated-annealing.html"><a href="simulated-annealing.html#how-it-works"><i class="fa fa-check"></i><b>14.3.1</b> How it works</a></li>
+<li class="chapter" data-level="14.3.2" data-path="simulated-annealing.html"><a href="simulated-annealing.html#the-tune_sim_anneal-function"><i class="fa fa-check"></i><b>14.3.2</b> The tune_sim_anneal() function</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="references-2.html"><a href="references-2.html"><i class="fa fa-check"></i><b>14.4</b> References</a></li>
+<li class="chapter" data-level="14.5" data-path="meeting-videos-15.html"><a href="meeting-videos-15.html"><i class="fa fa-check"></i><b>14.5</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="14.5.1" data-path="meeting-videos-15.html"><a href="meeting-videos-15.html#cohort-1-14"><i class="fa fa-check"></i><b>14.5.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="14.5.2" data-path="meeting-videos-15.html"><a href="meeting-videos-15.html#cohort-2-14"><i class="fa fa-check"></i><b>14.5.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="14.5.3" data-path="meeting-videos-15.html"><a href="meeting-videos-15.html#cohort-3-13"><i class="fa fa-check"></i><b>14.5.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="14.5.4" data-path="meeting-videos-15.html"><a href="meeting-videos-15.html#cohort-4-13"><i class="fa fa-check"></i><b>14.5.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="screening-many-models.html"><a href="screening-many-models.html"><i class="fa fa-check"></i><b>15</b> Screening Many Models</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="obligatory-setup.html"><a href="obligatory-setup.html"><i class="fa fa-check"></i><b>15.1</b> Obligatory Setup</a></li>
+<li class="chapter" data-level="15.2" data-path="creating-workflow_sets.html"><a href="creating-workflow_sets.html"><i class="fa fa-check"></i><b>15.2</b> Creating <code>workflow_set</code>s</a></li>
+<li class="chapter" data-level="15.3" data-path="ranking-models.html"><a href="ranking-models.html"><i class="fa fa-check"></i><b>15.3</b> Ranking models</a></li>
+<li class="chapter" data-level="15.4" data-path="finalizing-the-model-1.html"><a href="finalizing-the-model-1.html"><i class="fa fa-check"></i><b>15.4</b> Finalizing the model</a></li>
+<li class="chapter" data-level="15.5" data-path="meeting-videos-16.html"><a href="meeting-videos-16.html"><i class="fa fa-check"></i><b>15.5</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="15.5.1" data-path="meeting-videos-16.html"><a href="meeting-videos-16.html#cohort-1-15"><i class="fa fa-check"></i><b>15.5.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="15.5.2" data-path="meeting-videos-16.html"><a href="meeting-videos-16.html#cohort-2-15"><i class="fa fa-check"></i><b>15.5.2</b> Cohort 2</a></li>
+<li class="chapter" data-level="15.5.3" data-path="meeting-videos-16.html"><a href="meeting-videos-16.html#cohort-3-14"><i class="fa fa-check"></i><b>15.5.3</b> Cohort 3</a></li>
+<li class="chapter" data-level="15.5.4" data-path="meeting-videos-16.html"><a href="meeting-videos-16.html#cohort-4-14"><i class="fa fa-check"></i><b>15.5.4</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="review-of-chapters-10-15.html"><a href="review-of-chapters-10-15.html"><i class="fa fa-check"></i>Review of chapters 10-15</a>
+<ul>
+<li class="chapter" data-level="15.6" data-path="meeting-videos-17.html"><a href="meeting-videos-17.html"><i class="fa fa-check"></i><b>15.6</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="15.6.1" data-path="meeting-videos-17.html"><a href="meeting-videos-17.html#cohort-1-16"><i class="fa fa-check"></i><b>15.6.1</b> Cohort 1</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>16</b> Dimensionality reduction</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="recipes-without-workflows.html"><a href="recipes-without-workflows.html"><i class="fa fa-check"></i><b>16.1</b> {recipes} without {workflows}</a></li>
+<li class="chapter" data-level="16.2" data-path="why-do-dimensionality-reduction.html"><a href="why-do-dimensionality-reduction.html"><i class="fa fa-check"></i><b>16.2</b> Why do dimensionality reduction?</a></li>
+<li class="chapter" data-level="16.3" data-path="introducing-the-beans-dataset.html"><a href="introducing-the-beans-dataset.html"><i class="fa fa-check"></i><b>16.3</b> Introducing the beans dataset</a></li>
+<li class="chapter" data-level="16.4" data-path="prepare-the-beans-data-using-recipes.html"><a href="prepare-the-beans-data-using-recipes.html"><i class="fa fa-check"></i><b>16.4</b> Prepare the beans data using recipes</a></li>
+<li class="chapter" data-level="16.5" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i><b>16.5</b> Principal Component Analysis (PCA)</a></li>
+<li class="chapter" data-level="16.6" data-path="partial-least-squares-pls.html"><a href="partial-least-squares-pls.html"><i class="fa fa-check"></i><b>16.6</b> Partial Least Squares (PLS)</a></li>
+<li class="chapter" data-level="16.7" data-path="independent-component-anysis-ica.html"><a href="independent-component-anysis-ica.html"><i class="fa fa-check"></i><b>16.7</b> Independent Component Anysis (ICA)</a></li>
+<li class="chapter" data-level="16.8" data-path="uniform-manifold-approximation-and-projection-umap.html"><a href="uniform-manifold-approximation-and-projection-umap.html"><i class="fa fa-check"></i><b>16.8</b> Uniform Manifold Approximation and Projection (UMAP)</a></li>
+<li class="chapter" data-level="16.9" data-path="modeling.html"><a href="modeling.html"><i class="fa fa-check"></i><b>16.9</b> Modeling</a></li>
+<li class="chapter" data-level="16.10" data-path="meeting-videos-18.html"><a href="meeting-videos-18.html"><i class="fa fa-check"></i><b>16.10</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="16.10.1" data-path="meeting-videos-18.html"><a href="meeting-videos-18.html#cohort-1-17"><i class="fa fa-check"></i><b>16.10.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="16.10.2" data-path="meeting-videos-18.html"><a href="meeting-videos-18.html#cohort-3-15"><i class="fa fa-check"></i><b>16.10.2</b> Cohort 3</a></li>
+<li class="chapter" data-level="16.10.3" data-path="meeting-videos-18.html"><a href="meeting-videos-18.html#cohort-4-15"><i class="fa fa-check"></i><b>16.10.3</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Other Topics</b></span></li>
+<li class="chapter" data-level="17" data-path="encoding-categorical-data.html"><a href="encoding-categorical-data.html"><i class="fa fa-check"></i><b>17</b> Encoding categorical data</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="effect-of-encoding.html"><a href="effect-of-encoding.html"><i class="fa fa-check"></i><b>17.1</b> Effect of Encoding</a></li>
+<li class="chapter" data-level="17.2" data-path="encoding-methods.html"><a href="encoding-methods.html"><i class="fa fa-check"></i><b>17.2</b> Encoding methods:</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="encoding-methods.html"><a href="encoding-methods.html#cohort-4-16"><i class="fa fa-check"></i><b>17.2.1</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="explaining-models-and-predictions.html"><a href="explaining-models-and-predictions.html"><i class="fa fa-check"></i><b>18</b> Explaining models and predictions</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="chapter-18-setup.html"><a href="chapter-18-setup.html"><i class="fa fa-check"></i><b>18.1</b> Chapter 18 Setup</a></li>
+<li class="chapter" data-level="18.2" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>18.2</b> Overview</a></li>
+<li class="chapter" data-level="18.3" data-path="local-explanations.html"><a href="local-explanations.html"><i class="fa fa-check"></i><b>18.3</b> Local Explanations</a></li>
+<li class="chapter" data-level="18.4" data-path="local-explanations-for-interactions.html"><a href="local-explanations-for-interactions.html"><i class="fa fa-check"></i><b>18.4</b> Local Explanations for Interactions</a></li>
+<li class="chapter" data-level="18.5" data-path="global-explanations.html"><a href="global-explanations.html"><i class="fa fa-check"></i><b>18.5</b> Global Explanations</a></li>
+<li class="chapter" data-level="18.6" data-path="global-explanations-from-local-explanations.html"><a href="global-explanations-from-local-explanations.html"><i class="fa fa-check"></i><b>18.6</b> Global Explanations from Local Explanations</a></li>
+<li class="chapter" data-level="18.7" data-path="references-3.html"><a href="references-3.html"><i class="fa fa-check"></i><b>18.7</b> References</a></li>
+<li class="chapter" data-level="18.8" data-path="meeting-videos-19.html"><a href="meeting-videos-19.html"><i class="fa fa-check"></i><b>18.8</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="18.8.1" data-path="meeting-videos-19.html"><a href="meeting-videos-19.html#cohort-1-18"><i class="fa fa-check"></i><b>18.8.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="18.8.2" data-path="meeting-videos-19.html"><a href="meeting-videos-19.html#cohort-3-16"><i class="fa fa-check"></i><b>18.8.2</b> Cohort 3</a></li>
+<li class="chapter" data-level="18.8.3" data-path="meeting-videos-19.html"><a href="meeting-videos-19.html#cohort-4-17"><i class="fa fa-check"></i><b>18.8.3</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="when-should-you-trust-predictions.html"><a href="when-should-you-trust-predictions.html"><i class="fa fa-check"></i><b>19</b> When should you trust predictions?</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="equivocal-results.html"><a href="equivocal-results.html"><i class="fa fa-check"></i><b>19.1</b> Equivocal Results</a></li>
+<li class="chapter" data-level="19.2" data-path="model-applicability.html"><a href="model-applicability.html"><i class="fa fa-check"></i><b>19.2</b> Model Applicability</a></li>
+<li class="chapter" data-level="19.3" data-path="meeting-videos-20.html"><a href="meeting-videos-20.html"><i class="fa fa-check"></i><b>19.3</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="19.3.1" data-path="meeting-videos-20.html"><a href="meeting-videos-20.html#cohort-1-19"><i class="fa fa-check"></i><b>19.3.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="19.3.2" data-path="meeting-videos-20.html"><a href="meeting-videos-20.html#cohort-3-17"><i class="fa fa-check"></i><b>19.3.2</b> Cohort 3</a></li>
+<li class="chapter" data-level="19.3.3" data-path="meeting-videos-20.html"><a href="meeting-videos-20.html#cohort-4-18"><i class="fa fa-check"></i><b>19.3.3</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="ensembles-of-models.html"><a href="ensembles-of-models.html"><i class="fa fa-check"></i><b>20</b> Ensembles of models</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="ensembling.html"><a href="ensembling.html"><i class="fa fa-check"></i><b>20.1</b> Ensembling</a></li>
+<li class="chapter" data-level="20.2" data-path="ensembling-with-stacks.html"><a href="ensembling-with-stacks.html"><i class="fa fa-check"></i><b>20.2</b> Ensembling with <code>stacks</code>!</a></li>
+<li class="chapter" data-level="20.3" data-path="define-some-models.html"><a href="define-some-models.html"><i class="fa fa-check"></i><b>20.3</b> Define some models</a></li>
+<li class="chapter" data-level="20.4" data-path="initialize-and-add-members-to-stack..html"><a href="initialize-and-add-members-to-stack..html"><i class="fa fa-check"></i><b>20.4</b> Initialize and add members to stack.</a></li>
+<li class="chapter" data-level="20.5" data-path="blend-fit-predict.html"><a href="blend-fit-predict.html"><i class="fa fa-check"></i><b>20.5</b> Blend, fit, predict</a></li>
+<li class="chapter" data-level="20.6" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html"><i class="fa fa-check"></i><b>20.6</b> Case Study - Patient Risk Profiles</a>
+<ul>
+<li class="chapter" data-level="20.6.1" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#loading-necessary-libraries"><i class="fa fa-check"></i><b>20.6.1</b> Loading necessary libraries</a></li>
+<li class="chapter" data-level="20.6.2" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#loading-data"><i class="fa fa-check"></i><b>20.6.2</b> Loading data</a></li>
+<li class="chapter" data-level="20.6.3" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#have-a-look-at-the-data"><i class="fa fa-check"></i><b>20.6.3</b> Have a look at the data</a></li>
+<li class="chapter" data-level="20.6.4" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#data-wrangling"><i class="fa fa-check"></i><b>20.6.4</b> Data wrangling</a></li>
+<li class="chapter" data-level="20.6.5" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#data-to-use-in-the-model"><i class="fa fa-check"></i><b>20.6.5</b> Data to use in the Model</a></li>
+<li class="chapter" data-level="20.6.6" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#spending-data"><i class="fa fa-check"></i><b>20.6.6</b> Spending Data</a></li>
+<li class="chapter" data-level="20.6.7" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#preprocessing-and-recipes"><i class="fa fa-check"></i><b>20.6.7</b> Preprocessing and Recipes</a></li>
+<li class="chapter" data-level="20.6.8" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#make-many-models"><i class="fa fa-check"></i><b>20.6.8</b> Make many models</a></li>
+<li class="chapter" data-level="20.6.9" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#build-the-workflow"><i class="fa fa-check"></i><b>20.6.9</b> Build the Workflow</a></li>
+<li class="chapter" data-level="20.6.10" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#tuning-grid-and-race"><i class="fa fa-check"></i><b>20.6.10</b> Tuning: Grid and Race</a></li>
+<li class="chapter" data-level="20.6.11" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#stacking-ensembles-of-models"><i class="fa fa-check"></i><b>20.6.11</b> Stacking (Ensembles of models)</a></li>
+</ul></li>
+<li class="chapter" data-level="20.7" data-path="meeting-videos-21.html"><a href="meeting-videos-21.html"><i class="fa fa-check"></i><b>20.7</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="20.7.1" data-path="meeting-videos-21.html"><a href="meeting-videos-21.html#cohort-1-20"><i class="fa fa-check"></i><b>20.7.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="20.7.2" data-path="meeting-videos-21.html"><a href="meeting-videos-21.html#cohort-3-18"><i class="fa fa-check"></i><b>20.7.2</b> Cohort 3</a></li>
+<li class="chapter" data-level="20.7.3" data-path="meeting-videos-21.html"><a href="meeting-videos-21.html#cohort-4-19"><i class="fa fa-check"></i><b>20.7.3</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="inferential-analysis.html"><a href="inferential-analysis.html"><i class="fa fa-check"></i><b>21</b> Inferential analysis</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="dataset-used-for-demonstrating-inference.html"><a href="dataset-used-for-demonstrating-inference.html"><i class="fa fa-check"></i><b>21.1</b> Dataset used for demonstrating inference</a></li>
+<li class="chapter" data-level="21.2" data-path="tidy-method-from-the-broom-package.html"><a href="tidy-method-from-the-broom-package.html"><i class="fa fa-check"></i><b>21.2</b> Tidy method from the {broom} package</a></li>
+<li class="chapter" data-level="21.3" data-path="infer-for-simple-high-level-hypothesis-testing.html"><a href="infer-for-simple-high-level-hypothesis-testing.html"><i class="fa fa-check"></i><b>21.3</b> {infer} for simple, high level hypothesis testing</a>
+<ul>
+<li class="chapter" data-level="21.3.1" data-path="infer-for-simple-high-level-hypothesis-testing.html"><a href="infer-for-simple-high-level-hypothesis-testing.html#p-value-for-idependence-based-on-simulation-with-permutation"><i class="fa fa-check"></i><b>21.3.1</b> p value for idependence based on simulation with permutation</a></li>
+<li class="chapter" data-level="21.3.2" data-path="infer-for-simple-high-level-hypothesis-testing.html"><a href="infer-for-simple-high-level-hypothesis-testing.html#confidence-interval-for-correlation-based-on-simulation-with-bootstrapping"><i class="fa fa-check"></i><b>21.3.2</b> Confidence interval for correlation based on simulation with bootstrapping</a></li>
+<li class="chapter" data-level="21.3.3" data-path="infer-for-simple-high-level-hypothesis-testing.html"><a href="infer-for-simple-high-level-hypothesis-testing.html#use-theory-instead-of-simulation"><i class="fa fa-check"></i><b>21.3.3</b> Use theory instead of simulation</a></li>
+<li class="chapter" data-level="21.3.4" data-path="infer-for-simple-high-level-hypothesis-testing.html"><a href="infer-for-simple-high-level-hypothesis-testing.html#linear-models-with-multiple-explanatory-variables"><i class="fa fa-check"></i><b>21.3.4</b> Linear models with multiple explanatory variables</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="reg_intervals-from-rsample.html"><a href="reg_intervals-from-rsample.html"><i class="fa fa-check"></i><b>21.4</b> reg_intervals from {rsample}</a></li>
+<li class="chapter" data-level="21.5" data-path="inference-with-lower-level-helpers.html"><a href="inference-with-lower-level-helpers.html"><i class="fa fa-check"></i><b>21.5</b> Inference with lower level helpers</a></li>
+<li class="chapter" data-level="21.6" data-path="meeting-videos-22.html"><a href="meeting-videos-22.html"><i class="fa fa-check"></i><b>21.6</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="21.6.1" data-path="meeting-videos-22.html"><a href="meeting-videos-22.html#cohort-3-19"><i class="fa fa-check"></i><b>21.6.1</b> Cohort 3</a></li>
+<li class="chapter" data-level="21.6.2" data-path="meeting-videos-22.html"><a href="meeting-videos-22.html#cohort-4-20"><i class="fa fa-check"></i><b>21.6.2</b> Cohort 4</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Tidy Modeling with R Book Club</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="case-study---patient-risk-profiles" class="section level2 hasAnchor" number="20.6">
+<h2><span class="header-section-number">20.6</span> Case Study - Patient Risk Profiles<a href="case-study---patient-risk-profiles.html#case-study---patient-risk-profiles" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This dataset contains 100 simulated patient’s medical history features and the predicted 1-year risk of 14 outcomes based on each patient’s medical history features. The predictions used real logistic regression models developed on a large real world healthcare dataset.</p>
+<p>This data has been made available as #TidyTuesday dataset for week 43 - 2023
+(<a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-10-24/readme.md" class="uri">https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-10-24/readme.md</a>)</p>
+<div id="loading-necessary-libraries" class="section level3 hasAnchor" number="20.6.1">
+<h3><span class="header-section-number">20.6.1</span> Loading necessary libraries<a href="case-study---patient-risk-profiles.html#loading-necessary-libraries" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="case-study---patient-risk-profiles.html#cb528-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb528-2"><a href="case-study---patient-risk-profiles.html#cb528-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb528-3"><a href="case-study---patient-risk-profiles.html#cb528-3" aria-hidden="true" tabindex="-1"></a>tidymodels<span class="sc">::</span><span class="fu">tidymodels_prefer</span>()</span></code></pre></div>
+</div>
+<div id="loading-data" class="section level3 hasAnchor" number="20.6.2">
+<h3><span class="header-section-number">20.6.2</span> Loading data<a href="case-study---patient-risk-profiles.html#loading-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="case-study---patient-risk-profiles.html#cb529-1" aria-hidden="true" tabindex="-1"></a>tuesdata <span class="ot">&lt;-</span> tidytuesdayR<span class="sc">::</span><span class="fu">tt_load</span>(<span class="st">&#39;2023-10-24&#39;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Downloading file 1 of 1: `patient_risk_profiles.csv`</code></pre>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="case-study---patient-risk-profiles.html#cb531-1" aria-hidden="true" tabindex="-1"></a>raw <span class="ot">&lt;-</span> tuesdata<span class="sc">$</span>patient_risk_profiles</span>
+<span id="cb531-2"><a href="case-study---patient-risk-profiles.html#cb531-2" aria-hidden="true" tabindex="-1"></a><span class="co"># raw%&gt;%glimpse</span></span></code></pre></div>
+<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="case-study---patient-risk-profiles.html#cb532-1" aria-hidden="true" tabindex="-1"></a>raw[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,]</span></code></pre></div>
+</div>
+<div id="have-a-look-at-the-data" class="section level3 hasAnchor" number="20.6.3">
+<h3><span class="header-section-number">20.6.3</span> Have a look at the data<a href="case-study---patient-risk-profiles.html#have-a-look-at-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Rearranging the data to have all the <code>age group</code> information as a column, then we count it to see all groups.</p>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="case-study---patient-risk-profiles.html#cb533-1" aria-hidden="true" tabindex="-1"></a>raw <span class="sc">%&gt;%</span></span>
+<span id="cb533-2"><a href="case-study---patient-risk-profiles.html#cb533-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_to_rownames</span>(<span class="st">&quot;personId&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb533-3"><a href="case-study---patient-risk-profiles.html#cb533-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">contains</span>(<span class="st">&quot;age group:&quot;</span>),</span>
+<span id="cb533-4"><a href="case-study---patient-risk-profiles.html#cb533-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;age_group_id&quot;</span>,<span class="at">values_to =</span> <span class="st">&quot;age_group&quot;</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb533-5"><a href="case-study---patient-risk-profiles.html#cb533-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>age_group<span class="sc">==</span><span class="dv">0</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb533-6"><a href="case-study---patient-risk-profiles.html#cb533-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(age_group_id)</span></code></pre></div>
+<pre><code>## # A tibble: 19 × 2
+##    age_group_id             n
+##    &lt;chr&gt;                &lt;int&gt;
+##  1 age group:   0 -   4     5
+##  2 age group:   5 -   9     4
+##  3 age group:  10 -  14     4
+##  4 age group:  15 -  19     5
+##  5 age group:  20 -  24    11
+##  6 age group:  25 -  29     4
+##  7 age group:  30 -  34     3
+##  8 age group:  35 -  39     5
+##  9 age group:  40 -  44     2
+## 10 age group:  45 -  49     9
+## 11 age group:  50 -  54     4
+## 12 age group:  55 -  59     7
+## 13 age group:  60 -  64    10
+## 14 age group:  65 -  69     3
+## 15 age group:  70 -  74     2
+## 16 age group:  75 -  79    11
+## 17 age group:  80 -  84     4
+## 18 age group:  85 -  89     4
+## 19 age group:  90 -  94     3</code></pre>
+<p>The same thing is done for the <code>predicted risk</code>.</p>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="case-study---patient-risk-profiles.html#cb535-1" aria-hidden="true" tabindex="-1"></a>raw <span class="sc">%&gt;%</span></span>
+<span id="cb535-2"><a href="case-study---patient-risk-profiles.html#cb535-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">contains</span>(<span class="st">&quot;predicted risk&quot;</span>), </span>
+<span id="cb535-3"><a href="case-study---patient-risk-profiles.html#cb535-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;predicted_risk_id&quot;</span>,</span>
+<span id="cb535-4"><a href="case-study---patient-risk-profiles.html#cb535-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;predicted_risk&quot;</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb535-5"><a href="case-study---patient-risk-profiles.html#cb535-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(predicted_risk_id)</span></code></pre></div>
+<pre><code>## # A tibble: 14 × 2
+##    predicted_risk_id                                                           n
+##    &lt;chr&gt;                                                                   &lt;int&gt;
+##  1 predicted risk of  Treatment resistant depression (TRD)                   100
+##  2 predicted risk of Acute pancreatitis, with No chronic or hereditary or…   100
+##  3 predicted risk of Ankylosing Spondylitis                                  100
+##  4 predicted risk of Autoimmune hepatitis                                    100
+##  5 predicted risk of Dementia                                                100
+##  6 predicted risk of Migraine                                                100
+##  7 predicted risk of Multiple Sclerosis                                      100
+##  8 predicted risk of Muscle weakness or injury                               100
+##  9 predicted risk of Parkinson&#39;s disease, inpatient or with 2nd diagnosis    100
+## 10 predicted risk of Pulmonary Embolism                                      100
+## 11 predicted risk of Restless Leg Syndrome                                   100
+## 12 predicted risk of Sudden Hearing Loss, No congenital anomaly or middle…   100
+## 13 predicted risk of Sudden Vision Loss, with no eye pathology causes        100
+## 14 predicted risk of Ulcerative colitis                                      100</code></pre>
+</div>
+<div id="data-wrangling" class="section level3 hasAnchor" number="20.6.4">
+<h3><span class="header-section-number">20.6.4</span> Data wrangling<a href="case-study---patient-risk-profiles.html#data-wrangling" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We transform the data into a more human-readable format, following the best practices for datasets.</p>
+<p>Ensuring that each variable has its own column, each observation has its own row, and each type of observational unit forms a table.</p>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="case-study---patient-risk-profiles.html#cb537-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> raw <span class="sc">%&gt;%</span></span>
+<span id="cb537-2"><a href="case-study---patient-risk-profiles.html#cb537-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">contains</span>(<span class="st">&quot;predicted risk&quot;</span>), </span>
+<span id="cb537-3"><a href="case-study---patient-risk-profiles.html#cb537-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;predicted_risk_id&quot;</span>,</span>
+<span id="cb537-4"><a href="case-study---patient-risk-profiles.html#cb537-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;predicted_risk&quot;</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb537-5"><a href="case-study---patient-risk-profiles.html#cb537-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">contains</span>(<span class="st">&quot;age group:&quot;</span>),</span>
+<span id="cb537-6"><a href="case-study---patient-risk-profiles.html#cb537-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;age_group_id&quot;</span>,</span>
+<span id="cb537-7"><a href="case-study---patient-risk-profiles.html#cb537-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;age_group&quot;</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb537-8"><a href="case-study---patient-risk-profiles.html#cb537-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span>age_group<span class="sc">==</span><span class="dv">0</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb537-9"><a href="case-study---patient-risk-profiles.html#cb537-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>age_group)<span class="sc">%&gt;%</span></span>
+<span id="cb537-10"><a href="case-study---patient-risk-profiles.html#cb537-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">contains</span>(<span class="st">&quot;Sex&quot;</span>), </span>
+<span id="cb537-11"><a href="case-study---patient-risk-profiles.html#cb537-11" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;Sex_id&quot;</span>,</span>
+<span id="cb537-12"><a href="case-study---patient-risk-profiles.html#cb537-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;Sex&quot;</span>) <span class="sc">%&gt;%</span><span class="co">#count(Sex_id,Sex)</span></span>
+<span id="cb537-13"><a href="case-study---patient-risk-profiles.html#cb537-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>Sex<span class="sc">==</span><span class="dv">0</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb537-14"><a href="case-study---patient-risk-profiles.html#cb537-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Sex)<span class="sc">%&gt;%</span><span class="co"># dim</span></span>
+<span id="cb537-15"><a href="case-study---patient-risk-profiles.html#cb537-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">contains</span>(<span class="st">&quot;in prior year&quot;</span>), </span>
+<span id="cb537-16"><a href="case-study---patient-risk-profiles.html#cb537-16" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;Cause_id&quot;</span>,</span>
+<span id="cb537-17"><a href="case-study---patient-risk-profiles.html#cb537-17" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;Cause&quot;</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb537-18"><a href="case-study---patient-risk-profiles.html#cb537-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>Cause<span class="sc">==</span><span class="dv">0</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb537-19"><a href="case-study---patient-risk-profiles.html#cb537-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Cause)<span class="sc">%&gt;%</span></span>
+<span id="cb537-20"><a href="case-study---patient-risk-profiles.html#cb537-20" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">age_group_id=</span><span class="fu">gsub</span>(<span class="st">&quot;age group: &quot;</span>,<span class="st">&quot;&quot;</span>,age_group_id),</span>
+<span id="cb537-21"><a href="case-study---patient-risk-profiles.html#cb537-21" aria-hidden="true" tabindex="-1"></a>         <span class="at">Sex_id=</span><span class="fu">gsub</span>(<span class="st">&quot;Sex = &quot;</span>,<span class="st">&quot;&quot;</span>,Sex_id),</span>
+<span id="cb537-22"><a href="case-study---patient-risk-profiles.html#cb537-22" aria-hidden="true" tabindex="-1"></a>         <span class="at">Cause_id=</span><span class="fu">gsub</span>(<span class="st">&quot; exposures in prior year&quot;</span>,<span class="st">&quot;&quot;</span>,Cause_id),</span>
+<span id="cb537-23"><a href="case-study---patient-risk-profiles.html#cb537-23" aria-hidden="true" tabindex="-1"></a>         <span class="at">predicted_risk_id=</span><span class="fu">gsub</span>(<span class="st">&quot;predicted risk of &quot;</span>,<span class="st">&quot;&quot;</span>,predicted_risk_id),</span>
+<span id="cb537-24"><a href="case-study---patient-risk-profiles.html#cb537-24" aria-hidden="true" tabindex="-1"></a>         )<span class="sc">%&gt;%</span></span>
+<span id="cb537-25"><a href="case-study---patient-risk-profiles.html#cb537-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">personId=</span><span class="fu">as.factor</span>(personId))</span>
+<span id="cb537-26"><a href="case-study---patient-risk-profiles.html#cb537-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb537-27"><a href="case-study---patient-risk-profiles.html#cb537-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb537-28"><a href="case-study---patient-risk-profiles.html#cb537-28" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span> head  </span></code></pre></div>
+<pre><code>## # A tibble: 6 × 6
+##   personId predicted_risk_id  predicted_risk age_group_id Sex_id Cause_id       
+##   &lt;fct&gt;    &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt;          
+## 1 1        Pulmonary Embolism     0.00000700 &quot;  5 -   9&quot;  FEMALE Acetaminophen  
+## 2 1        Pulmonary Embolism     0.00000700 &quot;  5 -   9&quot;  FEMALE Angina events …
+## 3 1        Pulmonary Embolism     0.00000700 &quot;  5 -   9&quot;  FEMALE ANTIEPILEPTICS…
+## 4 1        Pulmonary Embolism     0.00000700 &quot;  5 -   9&quot;  FEMALE Osteoarthritis…
+## 5 1        Pulmonary Embolism     0.00000700 &quot;  5 -   9&quot;  FEMALE Type 1 diabete…
+## 6 1        Pulmonary Embolism     0.00000700 &quot;  5 -   9&quot;  FEMALE Edema in prior…</code></pre>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="case-study---patient-risk-profiles.html#cb539-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
+<span id="cb539-2"><a href="case-study---patient-risk-profiles.html#cb539-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#count(predicted_risk_id)</span></span>
+<span id="cb539-3"><a href="case-study---patient-risk-profiles.html#cb539-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(predicted_risk_id,<span class="st">&quot;Dementia&quot;</span>))<span class="sc">%&gt;%</span> head</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 6
+##   personId predicted_risk_id predicted_risk age_group_id Sex_id Cause_id        
+##   &lt;fct&gt;    &lt;chr&gt;                      &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt;           
+## 1 1        Dementia               0.0000731 &quot;  5 -   9&quot;  FEMALE Acetaminophen   
+## 2 1        Dementia               0.0000731 &quot;  5 -   9&quot;  FEMALE Angina events i…
+## 3 1        Dementia               0.0000731 &quot;  5 -   9&quot;  FEMALE ANTIEPILEPTICS …
+## 4 1        Dementia               0.0000731 &quot;  5 -   9&quot;  FEMALE Osteoarthritis …
+## 5 1        Dementia               0.0000731 &quot;  5 -   9&quot;  FEMALE Type 1 diabetes…
+## 6 1        Dementia               0.0000731 &quot;  5 -   9&quot;  FEMALE Edema in prior …</code></pre>
+</div>
+<div id="data-to-use-in-the-model" class="section level3 hasAnchor" number="20.6.5">
+<h3><span class="header-section-number">20.6.5</span> Data to use in the Model<a href="case-study---patient-risk-profiles.html#data-to-use-in-the-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s use the <code>raw data</code> which provides dummy variables.</p>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="case-study---patient-risk-profiles.html#cb541-1" aria-hidden="true" tabindex="-1"></a>dementia <span class="ot">&lt;-</span> raw <span class="sc">%&gt;%</span></span>
+<span id="cb541-2"><a href="case-study---patient-risk-profiles.html#cb541-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">&quot;Dementia&quot;</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb541-3"><a href="case-study---patient-risk-profiles.html#cb541-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(raw<span class="sc">%&gt;%</span><span class="fu">select</span>(<span class="sc">!</span><span class="fu">contains</span>(<span class="st">&quot;Dementia&quot;</span>)))<span class="sc">%&gt;%</span></span>
+<span id="cb541-4"><a href="case-study---patient-risk-profiles.html#cb541-4" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span></code></pre></div>
+</div>
+<div id="spending-data" class="section level3 hasAnchor" number="20.6.6">
+<h3><span class="header-section-number">20.6.6</span> Spending Data<a href="case-study---patient-risk-profiles.html#spending-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="case-study---patient-risk-profiles.html#cb542-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">24102023</span>)</span>
+<span id="cb542-2"><a href="case-study---patient-risk-profiles.html#cb542-2" aria-hidden="true" tabindex="-1"></a>split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(dementia,<span class="at">prop =</span> <span class="fl">0.8</span>)</span>
+<span id="cb542-3"><a href="case-study---patient-risk-profiles.html#cb542-3" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> <span class="fu">training</span>(split)</span>
+<span id="cb542-4"><a href="case-study---patient-risk-profiles.html#cb542-4" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">testing</span>(split)</span>
+<span id="cb542-5"><a href="case-study---patient-risk-profiles.html#cb542-5" aria-hidden="true" tabindex="-1"></a>folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(train)</span></code></pre></div>
+</div>
+<div id="preprocessing-and-recipes" class="section level3 hasAnchor" number="20.6.7">
+<h3><span class="header-section-number">20.6.7</span> Preprocessing and Recipes<a href="case-study---patient-risk-profiles.html#preprocessing-and-recipes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="case-study---patient-risk-profiles.html#cb543-1" aria-hidden="true" tabindex="-1"></a>normalized_rec <span class="ot">&lt;-</span> <span class="fu">recipe</span>(predicted_risk_of_dementia <span class="sc">~</span> ., train) <span class="sc">%&gt;%</span></span>
+<span id="cb543-2"><a href="case-study---patient-risk-profiles.html#cb543-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">update_role</span>(<span class="st">&quot;person_id&quot;</span>,<span class="at">new_role =</span> <span class="st">&quot;id&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb543-3"><a href="case-study---patient-risk-profiles.html#cb543-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_predictors</span>()) <span class="sc">%&gt;%</span>  </span>
+<span id="cb543-4"><a href="case-study---patient-risk-profiles.html#cb543-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_corr</span>(<span class="fu">all_predictors</span>())<span class="sc">%&gt;%</span></span>
+<span id="cb543-5"><a href="case-study---patient-risk-profiles.html#cb543-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_zv</span>(<span class="fu">all_predictors</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="case-study---patient-risk-profiles.html#cb544-1" aria-hidden="true" tabindex="-1"></a>normalized_rec<span class="sc">%&gt;%</span></span>
+<span id="cb544-2"><a href="case-study---patient-risk-profiles.html#cb544-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prep</span>()<span class="sc">%&gt;%</span></span>
+<span id="cb544-3"><a href="case-study---patient-risk-profiles.html#cb544-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">juice</span>()<span class="sc">%&gt;%</span></span>
+<span id="cb544-4"><a href="case-study---patient-risk-profiles.html#cb544-4" aria-hidden="true" tabindex="-1"></a>  head</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 100
+##   person_id age_group_10_14 age_group_15_19 age_group_20_24 age_group_65_69
+##       &lt;dbl&gt;           &lt;dbl&gt;           &lt;dbl&gt;           &lt;dbl&gt;           &lt;dbl&gt;
+## 1        44          -0.159          -0.228          -0.376          -0.196
+## 2        76          -0.159          -0.228          -0.376          -0.196
+## 3        20          -0.159          -0.228          -0.376          -0.196
+## 4        70          -0.159          -0.228           2.63           -0.196
+## 5        14          -0.159           4.33           -0.376          -0.196
+## 6         8          -0.159           4.33           -0.376          -0.196
+## # ℹ 95 more variables: age_group_40_44 &lt;dbl&gt;, age_group_45_49 &lt;dbl&gt;,
+## #   age_group_55_59 &lt;dbl&gt;, age_group_85_89 &lt;dbl&gt;, age_group_75_79 &lt;dbl&gt;,
+## #   age_group_5_9 &lt;dbl&gt;, age_group_25_29 &lt;dbl&gt;, age_group_0_4 &lt;dbl&gt;,
+## #   age_group_70_74 &lt;dbl&gt;, age_group_50_54 &lt;dbl&gt;, age_group_60_64 &lt;dbl&gt;,
+## #   age_group_35_39 &lt;dbl&gt;, age_group_30_34 &lt;dbl&gt;, age_group_80_84 &lt;dbl&gt;,
+## #   age_group_90_94 &lt;dbl&gt;, sex_female &lt;dbl&gt;, sex_male &lt;dbl&gt;,
+## #   acetaminophen_exposures_in_prior_year &lt;dbl&gt;, …</code></pre>
+</div>
+<div id="make-many-models" class="section level3 hasAnchor" number="20.6.8">
+<h3><span class="header-section-number">20.6.8</span> Make many models<a href="case-study---patient-risk-profiles.html#make-many-models" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<blockquote>
+<p>Warning: All model specifications are the models used in Chapter 15. These models are not necessarily the first choice for this dataset but are used for educational purposes to build a diverse selection of different model types in order to select the best one.</p>
+</blockquote>
+<p>We use 10 models:</p>
+<p>1- Linear Regression: <code>linear_reg_spec</code>
+2- Neural Network: <code>nnet_spec</code>
+3- Mars (Motivation, Ability, Role Perception and Situational Factor): <code>mars_spec</code>
+4A- Support Vector Machine: <code>svm_r_spec</code>
+4B- Support Vector Machine poly: <code>svm_p_spec</code>
+5- K-Nearest Neighbor: <code>knn_spec</code>
+6- CART (Classification And Regression Tree): <code>cart_spec</code>
+7- Bagging CART: <code>bag_cart_spec</code>
+8- Random Forest: <code>rf_spec</code>
+9- XGBoost: <code>xgb_spec</code>
+10- Cubist: <code>cubist_spec</code></p>
+<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="case-study---patient-risk-profiles.html#cb546-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rules)</span>
+<span id="cb546-2"><a href="case-study---patient-risk-profiles.html#cb546-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(baguette)</span>
+<span id="cb546-3"><a href="case-study---patient-risk-profiles.html#cb546-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb546-4"><a href="case-study---patient-risk-profiles.html#cb546-4" aria-hidden="true" tabindex="-1"></a>linear_reg_spec <span class="ot">&lt;-</span> </span>
+<span id="cb546-5"><a href="case-study---patient-risk-profiles.html#cb546-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">linear_reg</span>(<span class="at">penalty =</span> <span class="fu">tune</span>(), </span>
+<span id="cb546-6"><a href="case-study---patient-risk-profiles.html#cb546-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">mixture =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb546-7"><a href="case-study---patient-risk-profiles.html#cb546-7" aria-hidden="true" tabindex="-1"></a>   <span class="fu">set_engine</span>(<span class="st">&quot;glmnet&quot;</span>)</span>
+<span id="cb546-8"><a href="case-study---patient-risk-profiles.html#cb546-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb546-9"><a href="case-study---patient-risk-profiles.html#cb546-9" aria-hidden="true" tabindex="-1"></a>nnet_spec <span class="ot">&lt;-</span> </span>
+<span id="cb546-10"><a href="case-study---patient-risk-profiles.html#cb546-10" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mlp</span>(<span class="at">hidden_units =</span> <span class="fu">tune</span>(), </span>
+<span id="cb546-11"><a href="case-study---patient-risk-profiles.html#cb546-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">penalty =</span> <span class="fu">tune</span>(), </span>
+<span id="cb546-12"><a href="case-study---patient-risk-profiles.html#cb546-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">epochs =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb546-13"><a href="case-study---patient-risk-profiles.html#cb546-13" aria-hidden="true" tabindex="-1"></a>   <span class="fu">set_engine</span>(<span class="st">&quot;nnet&quot;</span>, <span class="at">MaxNWts =</span> <span class="dv">2600</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb546-14"><a href="case-study---patient-risk-profiles.html#cb546-14" aria-hidden="true" tabindex="-1"></a>   <span class="fu">set_mode</span>(<span class="st">&quot;regression&quot;</span>)</span>
+<span id="cb546-15"><a href="case-study---patient-risk-profiles.html#cb546-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb546-16"><a href="case-study---patient-risk-profiles.html#cb546-16" aria-hidden="true" tabindex="-1"></a>mars_spec <span class="ot">&lt;-</span> </span>
+<span id="cb546-17"><a href="case-study---patient-risk-profiles.html#cb546-17" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mars</span>(<span class="at">prod_degree =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span>  <span class="co">#&lt;- use GCV to choose terms</span></span>
+<span id="cb546-18"><a href="case-study---patient-risk-profiles.html#cb546-18" aria-hidden="true" tabindex="-1"></a>   <span class="fu">set_engine</span>(<span class="st">&quot;earth&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb546-19"><a href="case-study---patient-risk-profiles.html#cb546-19" aria-hidden="true" tabindex="-1"></a>   <span class="fu">set_mode</span>(<span class="st">&quot;regression&quot;</span>)</span>
+<span id="cb546-20"><a href="case-study---patient-risk-profiles.html#cb546-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb546-21"><a href="case-study---patient-risk-profiles.html#cb546-21" aria-hidden="true" tabindex="-1"></a>svm_r_spec <span class="ot">&lt;-</span> </span>
+<span id="cb546-22"><a href="case-study---patient-risk-profiles.html#cb546-22" aria-hidden="true" tabindex="-1"></a>   <span class="fu">svm_rbf</span>(<span class="at">cost =</span> <span class="fu">tune</span>(), </span>
+<span id="cb546-23"><a href="case-study---patient-risk-profiles.html#cb546-23" aria-hidden="true" tabindex="-1"></a>           <span class="at">rbf_sigma =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb546-24"><a href="case-study---patient-risk-profiles.html#cb546-24" aria-hidden="true" tabindex="-1"></a>   <span class="fu">set_engine</span>(<span class="st">&quot;kernlab&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb546-25"><a href="case-study---patient-risk-profiles.html#cb546-25" aria-hidden="true" tabindex="-1"></a>   <span class="fu">set_mode</span>(<span class="st">&quot;regression&quot;</span>)</span>
+<span id="cb546-26"><a href="case-study---patient-risk-profiles.html#cb546-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb546-27"><a href="case-study---patient-risk-profiles.html#cb546-27" aria-hidden="true" tabindex="-1"></a>svm_p_spec <span class="ot">&lt;-</span> </span>
+<span id="cb546-28"><a href="case-study---patient-risk-profiles.html#cb546-28" aria-hidden="true" tabindex="-1"></a>   <span class="fu">svm_poly</span>(<span class="at">cost =</span> <span class="fu">tune</span>(), </span>
+<span id="cb546-29"><a href="case-study---patient-risk-profiles.html#cb546-29" aria-hidden="true" tabindex="-1"></a>            <span class="at">degree =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb546-30"><a href="case-study---patient-risk-profiles.html#cb546-30" aria-hidden="true" tabindex="-1"></a>   <span class="fu">set_engine</span>(<span class="st">&quot;kernlab&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb546-31"><a href="case-study---patient-risk-profiles.html#cb546-31" aria-hidden="true" tabindex="-1"></a>   <span class="fu">set_mode</span>(<span class="st">&quot;regression&quot;</span>)</span>
+<span id="cb546-32"><a href="case-study---patient-risk-profiles.html#cb546-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb546-33"><a href="case-study---patient-risk-profiles.html#cb546-33" aria-hidden="true" tabindex="-1"></a>knn_spec <span class="ot">&lt;-</span> </span>
+<span id="cb546-34"><a href="case-study---patient-risk-profiles.html#cb546-34" aria-hidden="true" tabindex="-1"></a>   <span class="fu">nearest_neighbor</span>(<span class="at">neighbors =</span> <span class="fu">tune</span>(), </span>
+<span id="cb546-35"><a href="case-study---patient-risk-profiles.html#cb546-35" aria-hidden="true" tabindex="-1"></a>                    <span class="at">dist_power =</span> <span class="fu">tune</span>(), </span>
+<span id="cb546-36"><a href="case-study---patient-risk-profiles.html#cb546-36" aria-hidden="true" tabindex="-1"></a>                    <span class="at">weight_func =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb546-37"><a href="case-study---patient-risk-profiles.html#cb546-37" aria-hidden="true" tabindex="-1"></a>   <span class="fu">set_engine</span>(<span class="st">&quot;kknn&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb546-38"><a href="case-study---patient-risk-profiles.html#cb546-38" aria-hidden="true" tabindex="-1"></a>   <span class="fu">set_mode</span>(<span class="st">&quot;regression&quot;</span>)</span>
+<span id="cb546-39"><a href="case-study---patient-risk-profiles.html#cb546-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb546-40"><a href="case-study---patient-risk-profiles.html#cb546-40" aria-hidden="true" tabindex="-1"></a>cart_spec <span class="ot">&lt;-</span> </span>
+<span id="cb546-41"><a href="case-study---patient-risk-profiles.html#cb546-41" aria-hidden="true" tabindex="-1"></a>   <span class="fu">decision_tree</span>(<span class="at">cost_complexity =</span> <span class="fu">tune</span>(), </span>
+<span id="cb546-42"><a href="case-study---patient-risk-profiles.html#cb546-42" aria-hidden="true" tabindex="-1"></a>                 <span class="at">min_n =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb546-43"><a href="case-study---patient-risk-profiles.html#cb546-43" aria-hidden="true" tabindex="-1"></a>   <span class="fu">set_engine</span>(<span class="st">&quot;rpart&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb546-44"><a href="case-study---patient-risk-profiles.html#cb546-44" aria-hidden="true" tabindex="-1"></a>   <span class="fu">set_mode</span>(<span class="st">&quot;regression&quot;</span>)</span>
+<span id="cb546-45"><a href="case-study---patient-risk-profiles.html#cb546-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb546-46"><a href="case-study---patient-risk-profiles.html#cb546-46" aria-hidden="true" tabindex="-1"></a>bag_cart_spec <span class="ot">&lt;-</span> </span>
+<span id="cb546-47"><a href="case-study---patient-risk-profiles.html#cb546-47" aria-hidden="true" tabindex="-1"></a>   <span class="fu">bag_tree</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb546-48"><a href="case-study---patient-risk-profiles.html#cb546-48" aria-hidden="true" tabindex="-1"></a>   <span class="fu">set_engine</span>(<span class="st">&quot;rpart&quot;</span>, <span class="at">times =</span> 50L) <span class="sc">%&gt;%</span> </span>
+<span id="cb546-49"><a href="case-study---patient-risk-profiles.html#cb546-49" aria-hidden="true" tabindex="-1"></a>   <span class="fu">set_mode</span>(<span class="st">&quot;regression&quot;</span>)</span>
+<span id="cb546-50"><a href="case-study---patient-risk-profiles.html#cb546-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb546-51"><a href="case-study---patient-risk-profiles.html#cb546-51" aria-hidden="true" tabindex="-1"></a>rf_spec <span class="ot">&lt;-</span> </span>
+<span id="cb546-52"><a href="case-study---patient-risk-profiles.html#cb546-52" aria-hidden="true" tabindex="-1"></a>   <span class="fu">rand_forest</span>(<span class="at">mtry =</span> <span class="fu">tune</span>(), </span>
+<span id="cb546-53"><a href="case-study---patient-risk-profiles.html#cb546-53" aria-hidden="true" tabindex="-1"></a>               <span class="at">min_n =</span> <span class="fu">tune</span>(), </span>
+<span id="cb546-54"><a href="case-study---patient-risk-profiles.html#cb546-54" aria-hidden="true" tabindex="-1"></a>               <span class="at">trees =</span> <span class="dv">1000</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb546-55"><a href="case-study---patient-risk-profiles.html#cb546-55" aria-hidden="true" tabindex="-1"></a>   <span class="fu">set_engine</span>(<span class="st">&quot;ranger&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb546-56"><a href="case-study---patient-risk-profiles.html#cb546-56" aria-hidden="true" tabindex="-1"></a>   <span class="fu">set_mode</span>(<span class="st">&quot;regression&quot;</span>)</span>
+<span id="cb546-57"><a href="case-study---patient-risk-profiles.html#cb546-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb546-58"><a href="case-study---patient-risk-profiles.html#cb546-58" aria-hidden="true" tabindex="-1"></a>xgb_spec <span class="ot">&lt;-</span> </span>
+<span id="cb546-59"><a href="case-study---patient-risk-profiles.html#cb546-59" aria-hidden="true" tabindex="-1"></a>   <span class="fu">boost_tree</span>(<span class="at">tree_depth =</span> <span class="fu">tune</span>(), </span>
+<span id="cb546-60"><a href="case-study---patient-risk-profiles.html#cb546-60" aria-hidden="true" tabindex="-1"></a>              <span class="at">learn_rate =</span> <span class="fu">tune</span>(), </span>
+<span id="cb546-61"><a href="case-study---patient-risk-profiles.html#cb546-61" aria-hidden="true" tabindex="-1"></a>              <span class="at">loss_reduction =</span> <span class="fu">tune</span>(), </span>
+<span id="cb546-62"><a href="case-study---patient-risk-profiles.html#cb546-62" aria-hidden="true" tabindex="-1"></a>              <span class="at">min_n =</span> <span class="fu">tune</span>(), </span>
+<span id="cb546-63"><a href="case-study---patient-risk-profiles.html#cb546-63" aria-hidden="true" tabindex="-1"></a>              <span class="at">sample_size =</span> <span class="fu">tune</span>(), </span>
+<span id="cb546-64"><a href="case-study---patient-risk-profiles.html#cb546-64" aria-hidden="true" tabindex="-1"></a>              <span class="at">trees =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb546-65"><a href="case-study---patient-risk-profiles.html#cb546-65" aria-hidden="true" tabindex="-1"></a>   <span class="fu">set_engine</span>(<span class="st">&quot;xgboost&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb546-66"><a href="case-study---patient-risk-profiles.html#cb546-66" aria-hidden="true" tabindex="-1"></a>   <span class="fu">set_mode</span>(<span class="st">&quot;regression&quot;</span>)</span>
+<span id="cb546-67"><a href="case-study---patient-risk-profiles.html#cb546-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb546-68"><a href="case-study---patient-risk-profiles.html#cb546-68" aria-hidden="true" tabindex="-1"></a>cubist_spec <span class="ot">&lt;-</span> </span>
+<span id="cb546-69"><a href="case-study---patient-risk-profiles.html#cb546-69" aria-hidden="true" tabindex="-1"></a>   <span class="fu">cubist_rules</span>(<span class="at">committees =</span> <span class="fu">tune</span>(), </span>
+<span id="cb546-70"><a href="case-study---patient-risk-profiles.html#cb546-70" aria-hidden="true" tabindex="-1"></a>                <span class="at">neighbors =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb546-71"><a href="case-study---patient-risk-profiles.html#cb546-71" aria-hidden="true" tabindex="-1"></a>   <span class="fu">set_engine</span>(<span class="st">&quot;Cubist&quot;</span>) </span></code></pre></div>
+<p>Here we update the nnet paramameters to a specified range.</p>
+<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="case-study---patient-risk-profiles.html#cb547-1" aria-hidden="true" tabindex="-1"></a>nnet_param <span class="ot">&lt;-</span> </span>
+<span id="cb547-2"><a href="case-study---patient-risk-profiles.html#cb547-2" aria-hidden="true" tabindex="-1"></a>   nnet_spec <span class="sc">%&gt;%</span> </span>
+<span id="cb547-3"><a href="case-study---patient-risk-profiles.html#cb547-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">extract_parameter_set_dials</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb547-4"><a href="case-study---patient-risk-profiles.html#cb547-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">update</span>(<span class="at">hidden_units =</span> <span class="fu">hidden_units</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">27</span>)))</span></code></pre></div>
+</div>
+<div id="build-the-workflow" class="section level3 hasAnchor" number="20.6.9">
+<h3><span class="header-section-number">20.6.9</span> Build the Workflow<a href="case-study---patient-risk-profiles.html#build-the-workflow" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>First <code>workflow_set</code> with the <code>normalized_rec</code>. This will be applied to part of the models.</p>
+<div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb548-1"><a href="case-study---patient-risk-profiles.html#cb548-1" aria-hidden="true" tabindex="-1"></a>normalized <span class="ot">&lt;-</span> </span>
+<span id="cb548-2"><a href="case-study---patient-risk-profiles.html#cb548-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">workflow_set</span>(</span>
+<span id="cb548-3"><a href="case-study---patient-risk-profiles.html#cb548-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">preproc =</span> <span class="fu">list</span>(<span class="at">normalized =</span> normalized_rec), </span>
+<span id="cb548-4"><a href="case-study---patient-risk-profiles.html#cb548-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">models =</span> <span class="fu">list</span>(<span class="at">SVM_radial =</span> svm_r_spec, </span>
+<span id="cb548-5"><a href="case-study---patient-risk-profiles.html#cb548-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">SVM_poly =</span> svm_p_spec, </span>
+<span id="cb548-6"><a href="case-study---patient-risk-profiles.html#cb548-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">KNN =</span> knn_spec, </span>
+<span id="cb548-7"><a href="case-study---patient-risk-profiles.html#cb548-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">neural_network =</span> nnet_spec)</span>
+<span id="cb548-8"><a href="case-study---patient-risk-profiles.html#cb548-8" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb548-9"><a href="case-study---patient-risk-profiles.html#cb548-9" aria-hidden="true" tabindex="-1"></a>normalized</span></code></pre></div>
+<pre><code>## # A workflow set/tibble: 4 × 4
+##   wflow_id                  info             option    result    
+##   &lt;chr&gt;                     &lt;list&gt;           &lt;list&gt;    &lt;list&gt;    
+## 1 normalized_SVM_radial     &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+## 2 normalized_SVM_poly       &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+## 3 normalized_KNN            &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+## 4 normalized_neural_network &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;</code></pre>
+<p>Update the <code>workflow_set</code> with the <code>nnet_param</code>.</p>
+<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb550-1"><a href="case-study---patient-risk-profiles.html#cb550-1" aria-hidden="true" tabindex="-1"></a>normalized <span class="ot">&lt;-</span> </span>
+<span id="cb550-2"><a href="case-study---patient-risk-profiles.html#cb550-2" aria-hidden="true" tabindex="-1"></a>   normalized <span class="sc">%&gt;%</span> </span>
+<span id="cb550-3"><a href="case-study---patient-risk-profiles.html#cb550-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">option_add</span>(<span class="at">param_info =</span> nnet_param, </span>
+<span id="cb550-4"><a href="case-study---patient-risk-profiles.html#cb550-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">id =</span> <span class="st">&quot;normalized_neural_network&quot;</span>)</span>
+<span id="cb550-5"><a href="case-study---patient-risk-profiles.html#cb550-5" aria-hidden="true" tabindex="-1"></a>normalized</span></code></pre></div>
+<pre><code>## # A workflow set/tibble: 4 × 4
+##   wflow_id                  info             option    result    
+##   &lt;chr&gt;                     &lt;list&gt;           &lt;list&gt;    &lt;list&gt;    
+## 1 normalized_SVM_radial     &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+## 2 normalized_SVM_poly       &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+## 3 normalized_KNN            &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+## 4 normalized_neural_network &lt;tibble [1 × 4]&gt; &lt;opts[1]&gt; &lt;list [0]&gt;</code></pre>
+<div id="add-a-no-pre-processing-recipe" class="section level4 hasAnchor" number="20.6.9.1">
+<h4><span class="header-section-number">20.6.9.1</span> Add a no pre-processing recipe<a href="case-study---patient-risk-profiles.html#add-a-no-pre-processing-recipe" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Add a simple recipe using <code>workflow_variables()</code> function to search for the response variable relationship across all predictors without preprocessing steps.</p>
+<p>Set the second <code>workflow_set</code> with the <code>no_pre_proc</code> recipe. This will be applied to the remaining part of the models.</p>
+<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb552-1"><a href="case-study---patient-risk-profiles.html#cb552-1" aria-hidden="true" tabindex="-1"></a>model_vars <span class="ot">&lt;-</span> </span>
+<span id="cb552-2"><a href="case-study---patient-risk-profiles.html#cb552-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">workflow_variables</span>(<span class="at">outcomes =</span> predicted_risk_of_dementia, </span>
+<span id="cb552-3"><a href="case-study---patient-risk-profiles.html#cb552-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">predictors =</span> <span class="fu">everything</span>())</span>
+<span id="cb552-4"><a href="case-study---patient-risk-profiles.html#cb552-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb552-5"><a href="case-study---patient-risk-profiles.html#cb552-5" aria-hidden="true" tabindex="-1"></a>no_pre_proc <span class="ot">&lt;-</span> </span>
+<span id="cb552-6"><a href="case-study---patient-risk-profiles.html#cb552-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">workflow_set</span>(</span>
+<span id="cb552-7"><a href="case-study---patient-risk-profiles.html#cb552-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">preproc =</span> <span class="fu">list</span>(<span class="at">simple =</span> model_vars), </span>
+<span id="cb552-8"><a href="case-study---patient-risk-profiles.html#cb552-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">models =</span> <span class="fu">list</span>(<span class="at">MARS =</span> mars_spec, </span>
+<span id="cb552-9"><a href="case-study---patient-risk-profiles.html#cb552-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">CART =</span> cart_spec, </span>
+<span id="cb552-10"><a href="case-study---patient-risk-profiles.html#cb552-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">CART_bagged =</span> bag_cart_spec,</span>
+<span id="cb552-11"><a href="case-study---patient-risk-profiles.html#cb552-11" aria-hidden="true" tabindex="-1"></a>                    <span class="at">RF =</span> rf_spec, </span>
+<span id="cb552-12"><a href="case-study---patient-risk-profiles.html#cb552-12" aria-hidden="true" tabindex="-1"></a>                    <span class="at">boosting =</span> xgb_spec, </span>
+<span id="cb552-13"><a href="case-study---patient-risk-profiles.html#cb552-13" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Cubist =</span> cubist_spec)</span>
+<span id="cb552-14"><a href="case-study---patient-risk-profiles.html#cb552-14" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb552-15"><a href="case-study---patient-risk-profiles.html#cb552-15" aria-hidden="true" tabindex="-1"></a>no_pre_proc</span></code></pre></div>
+<pre><code>## # A workflow set/tibble: 6 × 4
+##   wflow_id           info             option    result    
+##   &lt;chr&gt;              &lt;list&gt;           &lt;list&gt;    &lt;list&gt;    
+## 1 simple_MARS        &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+## 2 simple_CART        &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+## 3 simple_CART_bagged &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+## 4 simple_RF          &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+## 5 simple_boosting    &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+## 6 simple_Cubist      &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;</code></pre>
+</div>
+<div id="all-workflows" class="section level4 hasAnchor" number="20.6.9.2">
+<h4><span class="header-section-number">20.6.9.2</span> All Workflows<a href="case-study---patient-risk-profiles.html#all-workflows" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb554-1"><a href="case-study---patient-risk-profiles.html#cb554-1" aria-hidden="true" tabindex="-1"></a>all_workflows <span class="ot">&lt;-</span> </span>
+<span id="cb554-2"><a href="case-study---patient-risk-profiles.html#cb554-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">bind_rows</span>(no_pre_proc, normalized) <span class="sc">%&gt;%</span> </span>
+<span id="cb554-3"><a href="case-study---patient-risk-profiles.html#cb554-3" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Make the workflow ID&#39;s a little more simple: </span></span>
+<span id="cb554-4"><a href="case-study---patient-risk-profiles.html#cb554-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">wflow_id =</span> <span class="fu">gsub</span>(<span class="st">&quot;(simple_)|(normalized_)&quot;</span>, <span class="st">&quot;&quot;</span>, wflow_id))</span>
+<span id="cb554-5"><a href="case-study---patient-risk-profiles.html#cb554-5" aria-hidden="true" tabindex="-1"></a>all_workflows</span></code></pre></div>
+<pre><code>## # A workflow set/tibble: 10 × 4
+##    wflow_id       info             option    result    
+##    &lt;chr&gt;          &lt;list&gt;           &lt;list&gt;    &lt;list&gt;    
+##  1 MARS           &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+##  2 CART           &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+##  3 CART_bagged    &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+##  4 RF             &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+##  5 boosting       &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+##  6 Cubist         &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+##  7 SVM_radial     &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+##  8 SVM_poly       &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+##  9 KNN            &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;list [0]&gt;
+## 10 neural_network &lt;tibble [1 × 4]&gt; &lt;opts[1]&gt; &lt;list [0]&gt;</code></pre>
+</div>
+</div>
+<div id="tuning-grid-and-race" class="section level3 hasAnchor" number="20.6.10">
+<h3><span class="header-section-number">20.6.10</span> Tuning: Grid and Race<a href="case-study---patient-risk-profiles.html#tuning-grid-and-race" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Set up a parallel processing set to use all cores in your computer and faster the computation.</p>
+<div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb556-1"><a href="case-study---patient-risk-profiles.html#cb556-1" aria-hidden="true" tabindex="-1"></a>doParallel<span class="sc">::</span><span class="fu">registerDoParallel</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="case-study---patient-risk-profiles.html#cb557-1" aria-hidden="true" tabindex="-1"></a>grid_ctrl <span class="ot">&lt;-</span></span>
+<span id="cb557-2"><a href="case-study---patient-risk-profiles.html#cb557-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">control_grid</span>(</span>
+<span id="cb557-3"><a href="case-study---patient-risk-profiles.html#cb557-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">save_pred =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb557-4"><a href="case-study---patient-risk-profiles.html#cb557-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">parallel_over =</span> <span class="st">&quot;everything&quot;</span>,</span>
+<span id="cb557-5"><a href="case-study---patient-risk-profiles.html#cb557-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">save_workflow =</span> <span class="cn">TRUE</span></span>
+<span id="cb557-6"><a href="case-study---patient-risk-profiles.html#cb557-6" aria-hidden="true" tabindex="-1"></a>   )</span>
+<span id="cb557-7"><a href="case-study---patient-risk-profiles.html#cb557-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb557-8"><a href="case-study---patient-risk-profiles.html#cb557-8" aria-hidden="true" tabindex="-1"></a>grid_results <span class="ot">&lt;-</span></span>
+<span id="cb557-9"><a href="case-study---patient-risk-profiles.html#cb557-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb557-10"><a href="case-study---patient-risk-profiles.html#cb557-10" aria-hidden="true" tabindex="-1"></a>   all_workflows <span class="sc">%&gt;%</span> </span>
+<span id="cb557-11"><a href="case-study---patient-risk-profiles.html#cb557-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb557-12"><a href="case-study---patient-risk-profiles.html#cb557-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow_map</span>(</span>
+<span id="cb557-13"><a href="case-study---patient-risk-profiles.html#cb557-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">seed =</span> <span class="dv">24102023</span>,</span>
+<span id="cb557-14"><a href="case-study---patient-risk-profiles.html#cb557-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">resamples =</span> folds,</span>
+<span id="cb557-15"><a href="case-study---patient-risk-profiles.html#cb557-15" aria-hidden="true" tabindex="-1"></a>      <span class="co"># warning this is for educational purposes</span></span>
+<span id="cb557-16"><a href="case-study---patient-risk-profiles.html#cb557-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">grid =</span> <span class="dv">5</span>, <span class="co"># grid should be higher</span></span>
+<span id="cb557-17"><a href="case-study---patient-risk-profiles.html#cb557-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">control =</span> grid_ctrl</span>
+<span id="cb557-18"><a href="case-study---patient-risk-profiles.html#cb557-18" aria-hidden="true" tabindex="-1"></a>   )</span>
+<span id="cb557-19"><a href="case-study---patient-risk-profiles.html#cb557-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb557-20"><a href="case-study---patient-risk-profiles.html#cb557-20" aria-hidden="true" tabindex="-1"></a><span class="co"># saveRDS(grid_results,file=&quot;data/grid_results.rds&quot;)</span></span>
+<span id="cb557-21"><a href="case-study---patient-risk-profiles.html#cb557-21" aria-hidden="true" tabindex="-1"></a><span class="co"># grid_results &lt;- readRDS(&quot;data/grid_results.rds&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb558-1"><a href="case-study---patient-risk-profiles.html#cb558-1" aria-hidden="true" tabindex="-1"></a>grid_results <span class="sc">%&gt;%</span> </span>
+<span id="cb558-2"><a href="case-study---patient-risk-profiles.html#cb558-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">rank_results</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb558-3"><a href="case-study---patient-risk-profiles.html#cb558-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">&quot;rmse&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb558-4"><a href="case-study---patient-risk-profiles.html#cb558-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">select</span>(model, .config, <span class="at">rmse =</span> mean, rank)</span></code></pre></div>
+<center>
+<img src="images/20_1-model-rank.png" />
+</center>
+<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="case-study---patient-risk-profiles.html#cb559-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(</span>
+<span id="cb559-2"><a href="case-study---patient-risk-profiles.html#cb559-2" aria-hidden="true" tabindex="-1"></a>   grid_results,</span>
+<span id="cb559-3"><a href="case-study---patient-risk-profiles.html#cb559-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">rank_metric =</span> <span class="st">&quot;rmse&quot;</span>,  <span class="co"># &lt;- how to order models</span></span>
+<span id="cb559-4"><a href="case-study---patient-risk-profiles.html#cb559-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">metric =</span> <span class="st">&quot;rmse&quot;</span>,       <span class="co"># &lt;- which metric to visualize</span></span>
+<span id="cb559-5"><a href="case-study---patient-risk-profiles.html#cb559-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">select_best =</span> <span class="cn">TRUE</span>     <span class="co"># &lt;- one point per workflow</span></span>
+<span id="cb559-6"><a href="case-study---patient-risk-profiles.html#cb559-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb559-7"><a href="case-study---patient-risk-profiles.html#cb559-7" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">y =</span> mean<span class="fl">-0.02</span>, </span>
+<span id="cb559-8"><a href="case-study---patient-risk-profiles.html#cb559-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">label =</span> wflow_id), </span>
+<span id="cb559-9"><a href="case-study---patient-risk-profiles.html#cb559-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">angle =</span> <span class="dv">90</span>, </span>
+<span id="cb559-10"><a href="case-study---patient-risk-profiles.html#cb559-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">hjust =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb559-11"><a href="case-study---patient-risk-profiles.html#cb559-11" aria-hidden="true" tabindex="-1"></a>   <span class="fu">lims</span>(<span class="at">y =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.05</span>, <span class="fl">0.1</span>)) <span class="sc">+</span></span>
+<span id="cb559-12"><a href="case-study---patient-risk-profiles.html#cb559-12" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<center>
+<img src="images/20_2-workflowrank1.png" />
+</center>
+<div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb560-1"><a href="case-study---patient-risk-profiles.html#cb560-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(grid_results, <span class="at">id =</span> <span class="st">&quot;Cubist&quot;</span>, <span class="at">metric =</span> <span class="st">&quot;rmse&quot;</span>)</span></code></pre></div>
+<center>
+<img src="images/20_3-rmse1.png" />
+</center>
+<div id="racing" class="section level4 hasAnchor" number="20.6.10.1">
+<h4><span class="header-section-number">20.6.10.1</span> Racing<a href="case-study---patient-risk-profiles.html#racing" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="case-study---patient-risk-profiles.html#cb561-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(finetune)</span>
+<span id="cb561-2"><a href="case-study---patient-risk-profiles.html#cb561-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb561-3"><a href="case-study---patient-risk-profiles.html#cb561-3" aria-hidden="true" tabindex="-1"></a>race_ctrl <span class="ot">&lt;-</span></span>
+<span id="cb561-4"><a href="case-study---patient-risk-profiles.html#cb561-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">control_race</span>(</span>
+<span id="cb561-5"><a href="case-study---patient-risk-profiles.html#cb561-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">save_pred =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb561-6"><a href="case-study---patient-risk-profiles.html#cb561-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">parallel_over =</span> <span class="st">&quot;everything&quot;</span>,</span>
+<span id="cb561-7"><a href="case-study---patient-risk-profiles.html#cb561-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">save_workflow =</span> <span class="cn">TRUE</span></span>
+<span id="cb561-8"><a href="case-study---patient-risk-profiles.html#cb561-8" aria-hidden="true" tabindex="-1"></a>   )</span>
+<span id="cb561-9"><a href="case-study---patient-risk-profiles.html#cb561-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb561-10"><a href="case-study---patient-risk-profiles.html#cb561-10" aria-hidden="true" tabindex="-1"></a>race_results <span class="ot">&lt;-</span></span>
+<span id="cb561-11"><a href="case-study---patient-risk-profiles.html#cb561-11" aria-hidden="true" tabindex="-1"></a>   all_workflows <span class="sc">%&gt;%</span></span>
+<span id="cb561-12"><a href="case-study---patient-risk-profiles.html#cb561-12" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb561-13"><a href="case-study---patient-risk-profiles.html#cb561-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow_map</span>(</span>
+<span id="cb561-14"><a href="case-study---patient-risk-profiles.html#cb561-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;tune_race_anova&quot;</span>,</span>
+<span id="cb561-15"><a href="case-study---patient-risk-profiles.html#cb561-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">seed =</span> <span class="dv">1503</span>,</span>
+<span id="cb561-16"><a href="case-study---patient-risk-profiles.html#cb561-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">resamples =</span> folds,</span>
+<span id="cb561-17"><a href="case-study---patient-risk-profiles.html#cb561-17" aria-hidden="true" tabindex="-1"></a>      <span class="co"># warning this is for educational purposes</span></span>
+<span id="cb561-18"><a href="case-study---patient-risk-profiles.html#cb561-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">grid =</span> <span class="dv">5</span>, <span class="co"># grid should be higher</span></span>
+<span id="cb561-19"><a href="case-study---patient-risk-profiles.html#cb561-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">control =</span> race_ctrl</span>
+<span id="cb561-20"><a href="case-study---patient-risk-profiles.html#cb561-20" aria-hidden="true" tabindex="-1"></a>   )</span>
+<span id="cb561-21"><a href="case-study---patient-risk-profiles.html#cb561-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb561-22"><a href="case-study---patient-risk-profiles.html#cb561-22" aria-hidden="true" tabindex="-1"></a><span class="co"># saveRDS(race_results,file=&quot;data/race_results.rds&quot;)</span></span>
+<span id="cb561-23"><a href="case-study---patient-risk-profiles.html#cb561-23" aria-hidden="true" tabindex="-1"></a><span class="co"># race_results &lt;- readRDS(&quot;data/race_results.rds&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb562-1"><a href="case-study---patient-risk-profiles.html#cb562-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(</span>
+<span id="cb562-2"><a href="case-study---patient-risk-profiles.html#cb562-2" aria-hidden="true" tabindex="-1"></a>   race_results,</span>
+<span id="cb562-3"><a href="case-study---patient-risk-profiles.html#cb562-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">rank_metric =</span> <span class="st">&quot;rmse&quot;</span>,  </span>
+<span id="cb562-4"><a href="case-study---patient-risk-profiles.html#cb562-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">metric =</span> <span class="st">&quot;rmse&quot;</span>,       </span>
+<span id="cb562-5"><a href="case-study---patient-risk-profiles.html#cb562-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">select_best =</span> <span class="cn">TRUE</span>    </span>
+<span id="cb562-6"><a href="case-study---patient-risk-profiles.html#cb562-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb562-7"><a href="case-study---patient-risk-profiles.html#cb562-7" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">y =</span> mean <span class="sc">-</span> <span class="fl">0.02</span>, </span>
+<span id="cb562-8"><a href="case-study---patient-risk-profiles.html#cb562-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">label =</span> wflow_id), </span>
+<span id="cb562-9"><a href="case-study---patient-risk-profiles.html#cb562-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">angle =</span> <span class="dv">90</span>, </span>
+<span id="cb562-10"><a href="case-study---patient-risk-profiles.html#cb562-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">hjust =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb562-11"><a href="case-study---patient-risk-profiles.html#cb562-11" aria-hidden="true" tabindex="-1"></a>   <span class="fu">lims</span>(<span class="at">y =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.05</span>, <span class="fl">0.1</span>)) <span class="sc">+</span></span>
+<span id="cb562-12"><a href="case-study---patient-risk-profiles.html#cb562-12" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<center>
+<img src="images/20_4-workflowrank2.png" />
+</center>
+</div>
+</div>
+<div id="stacking-ensembles-of-models" class="section level3 hasAnchor" number="20.6.11">
+<h3><span class="header-section-number">20.6.11</span> Stacking (Ensembles of models)<a href="case-study---patient-risk-profiles.html#stacking-ensembles-of-models" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="case-study---patient-risk-profiles.html#cb563-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stacks)</span>
+<span id="cb563-2"><a href="case-study---patient-risk-profiles.html#cb563-2" aria-hidden="true" tabindex="-1"></a><span class="co">#?stacks</span></span>
+<span id="cb563-3"><a href="case-study---patient-risk-profiles.html#cb563-3" aria-hidden="true" tabindex="-1"></a>dementia_stack <span class="ot">&lt;-</span> </span>
+<span id="cb563-4"><a href="case-study---patient-risk-profiles.html#cb563-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stacks</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb563-5"><a href="case-study---patient-risk-profiles.html#cb563-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_candidates</span>(race_results)</span></code></pre></div>
+<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="case-study---patient-risk-profiles.html#cb564-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">25102023</span>)</span>
+<span id="cb564-2"><a href="case-study---patient-risk-profiles.html#cb564-2" aria-hidden="true" tabindex="-1"></a>ens <span class="ot">&lt;-</span> <span class="fu">blend_predictions</span>(dementia_stack)</span>
+<span id="cb564-3"><a href="case-study---patient-risk-profiles.html#cb564-3" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(ens)</span></code></pre></div>
+<center>
+<img src="images/20_5-peanlty1.png" />
+</center>
+<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="case-study---patient-risk-profiles.html#cb565-1" aria-hidden="true" tabindex="-1"></a>ens</span></code></pre></div>
+<center>
+<img src="images/20_6-stack-selection.png" />
+</center>
+<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="case-study---patient-risk-profiles.html#cb566-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">25102023</span>)</span>
+<span id="cb566-2"><a href="case-study---patient-risk-profiles.html#cb566-2" aria-hidden="true" tabindex="-1"></a>ens2 <span class="ot">&lt;-</span> <span class="fu">blend_predictions</span>(dementia_stack, </span>
+<span id="cb566-3"><a href="case-study---patient-risk-profiles.html#cb566-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">penalty =</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">length =</span> <span class="dv">20</span>))</span>
+<span id="cb566-4"><a href="case-study---patient-risk-profiles.html#cb566-4" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(ens2)</span></code></pre></div>
+<center>
+<img src="images/20_7-penalty2.png" />
+</center>
+<p>Let’s check which model provide the largest contributions to the ensemble.</p>
+<div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb567-1"><a href="case-study---patient-risk-profiles.html#cb567-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(ens2, <span class="st">&quot;weights&quot;</span>) <span class="sc">+</span></span>
+<span id="cb567-2"><a href="case-study---patient-risk-profiles.html#cb567-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> weight <span class="sc">+</span> <span class="fl">0.01</span>, </span>
+<span id="cb567-3"><a href="case-study---patient-risk-profiles.html#cb567-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">label =</span> model), <span class="at">hjust =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb567-4"><a href="case-study---patient-risk-profiles.html#cb567-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb567-5"><a href="case-study---patient-risk-profiles.html#cb567-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lims</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.01</span>, <span class="dv">1</span>))</span></code></pre></div>
+<center>
+<img src="images/20_8-stackingcoeff.png" />
+</center>
+<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="case-study---patient-risk-profiles.html#cb568-1" aria-hidden="true" tabindex="-1"></a>ens_fit <span class="ot">&lt;-</span> <span class="fu">fit_members</span>(ens2)</span></code></pre></div>
+<div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="case-study---patient-risk-profiles.html#cb569-1" aria-hidden="true" tabindex="-1"></a>reg_metrics <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(rmse, rsq)</span>
+<span id="cb569-2"><a href="case-study---patient-risk-profiles.html#cb569-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb569-3"><a href="case-study---patient-risk-profiles.html#cb569-3" aria-hidden="true" tabindex="-1"></a>ens_test_pred <span class="ot">&lt;-</span> </span>
+<span id="cb569-4"><a href="case-study---patient-risk-profiles.html#cb569-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(ens_fit, test) <span class="sc">%&gt;%</span> </span>
+<span id="cb569-5"><a href="case-study---patient-risk-profiles.html#cb569-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(test)</span>
+<span id="cb569-6"><a href="case-study---patient-risk-profiles.html#cb569-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb569-7"><a href="case-study---patient-risk-profiles.html#cb569-7" aria-hidden="true" tabindex="-1"></a>ens_test_pred <span class="sc">%&gt;%</span> </span>
+<span id="cb569-8"><a href="case-study---patient-risk-profiles.html#cb569-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">reg_metrics</span>(predicted_risk_of_dementia, .pred)</span></code></pre></div>
+<center>
+<img src="images/20_9-stacking-res.png" />
+</center>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="blend-fit-predict.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="meeting-videos-21.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/r4ds/bookclub-tmwr/edit/main/20-ensemble_models.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

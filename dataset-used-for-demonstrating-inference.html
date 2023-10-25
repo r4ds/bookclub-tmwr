@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>21.1 Dataset used for demonstrating inference | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
   <meta property="og:title" content="21.1 Dataset used for demonstrating inference | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2023-09-05" />
+<meta name="date" content="2023-10-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -543,11 +543,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="20.3" data-path="define-some-models.html"><a href="define-some-models.html"><i class="fa fa-check"></i><b>20.3</b> Define some models</a></li>
 <li class="chapter" data-level="20.4" data-path="initialize-and-add-members-to-stack..html"><a href="initialize-and-add-members-to-stack..html"><i class="fa fa-check"></i><b>20.4</b> Initialize and add members to stack.</a></li>
 <li class="chapter" data-level="20.5" data-path="blend-fit-predict.html"><a href="blend-fit-predict.html"><i class="fa fa-check"></i><b>20.5</b> Blend, fit, predict</a></li>
-<li class="chapter" data-level="20.6" data-path="meeting-videos-21.html"><a href="meeting-videos-21.html"><i class="fa fa-check"></i><b>20.6</b> Meeting Videos</a>
+<li class="chapter" data-level="20.6" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html"><i class="fa fa-check"></i><b>20.6</b> Case Study - Patient Risk Profiles</a>
 <ul>
-<li class="chapter" data-level="20.6.1" data-path="meeting-videos-21.html"><a href="meeting-videos-21.html#cohort-1-20"><i class="fa fa-check"></i><b>20.6.1</b> Cohort 1</a></li>
-<li class="chapter" data-level="20.6.2" data-path="meeting-videos-21.html"><a href="meeting-videos-21.html#cohort-3-18"><i class="fa fa-check"></i><b>20.6.2</b> Cohort 3</a></li>
-<li class="chapter" data-level="20.6.3" data-path="meeting-videos-21.html"><a href="meeting-videos-21.html#cohort-4-19"><i class="fa fa-check"></i><b>20.6.3</b> Cohort 4</a></li>
+<li class="chapter" data-level="20.6.1" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#loading-necessary-libraries"><i class="fa fa-check"></i><b>20.6.1</b> Loading necessary libraries</a></li>
+<li class="chapter" data-level="20.6.2" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#loading-data"><i class="fa fa-check"></i><b>20.6.2</b> Loading data</a></li>
+<li class="chapter" data-level="20.6.3" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#have-a-look-at-the-data"><i class="fa fa-check"></i><b>20.6.3</b> Have a look at the data</a></li>
+<li class="chapter" data-level="20.6.4" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#data-wrangling"><i class="fa fa-check"></i><b>20.6.4</b> Data wrangling</a></li>
+<li class="chapter" data-level="20.6.5" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#data-to-use-in-the-model"><i class="fa fa-check"></i><b>20.6.5</b> Data to use in the Model</a></li>
+<li class="chapter" data-level="20.6.6" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#spending-data"><i class="fa fa-check"></i><b>20.6.6</b> Spending Data</a></li>
+<li class="chapter" data-level="20.6.7" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#preprocessing-and-recipes"><i class="fa fa-check"></i><b>20.6.7</b> Preprocessing and Recipes</a></li>
+<li class="chapter" data-level="20.6.8" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#make-many-models"><i class="fa fa-check"></i><b>20.6.8</b> Make many models</a></li>
+<li class="chapter" data-level="20.6.9" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#build-the-workflow"><i class="fa fa-check"></i><b>20.6.9</b> Build the Workflow</a></li>
+<li class="chapter" data-level="20.6.10" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#tuning-grid-and-race"><i class="fa fa-check"></i><b>20.6.10</b> Tuning: Grid and Race</a></li>
+<li class="chapter" data-level="20.6.11" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#stacking-ensembles-of-models"><i class="fa fa-check"></i><b>20.6.11</b> Stacking (Ensembles of models)</a></li>
+</ul></li>
+<li class="chapter" data-level="20.7" data-path="meeting-videos-21.html"><a href="meeting-videos-21.html"><i class="fa fa-check"></i><b>20.7</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="20.7.1" data-path="meeting-videos-21.html"><a href="meeting-videos-21.html#cohort-1-20"><i class="fa fa-check"></i><b>20.7.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="20.7.2" data-path="meeting-videos-21.html"><a href="meeting-videos-21.html#cohort-3-18"><i class="fa fa-check"></i><b>20.7.2</b> Cohort 3</a></li>
+<li class="chapter" data-level="20.7.3" data-path="meeting-videos-21.html"><a href="meeting-videos-21.html#cohort-4-19"><i class="fa fa-check"></i><b>20.7.3</b> Cohort 4</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="21" data-path="inferential-analysis.html"><a href="inferential-analysis.html"><i class="fa fa-check"></i><b>21</b> Inferential analysis</a>
@@ -593,23 +607,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">21.1</span> Dataset used for demonstrating inference<a href="dataset-used-for-demonstrating-inference.html#dataset-used-for-demonstrating-inference" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>I will use TidyTuesday dataset on ultra trail running races.</p>
 <p>The data comes from <a href="https://twitter.com/BjnNowak">Benjamin Nowak</a> by way of <a href="https://itra.run/Races/FindRaceResults">International Trail Running Association (ITRA)</a>. Their original repo is available on <a href="https://github.com/BjnNowak/UltraTrailRunning">GitHub</a>.</p>
-<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="dataset-used-for-demonstrating-inference.html#cb532-1" aria-hidden="true" tabindex="-1"></a>race <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/21_race.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb532-2"><a href="dataset-used-for-demonstrating-inference.html#cb532-2" aria-hidden="true" tabindex="-1"></a>ranking <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/21_ultra_rankings.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb532-3"><a href="dataset-used-for-demonstrating-inference.html#cb532-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb532-4"><a href="dataset-used-for-demonstrating-inference.html#cb532-4" aria-hidden="true" tabindex="-1"></a>best_results <span class="ot">&lt;-</span> ranking <span class="sc">%&gt;%</span></span>
-<span id="cb532-5"><a href="dataset-used-for-demonstrating-inference.html#cb532-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rank <span class="sc">&lt;=</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb532-6"><a href="dataset-used-for-demonstrating-inference.html#cb532-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(race_year_id) <span class="sc">%&gt;%</span></span>
-<span id="cb532-7"><a href="dataset-used-for-demonstrating-inference.html#cb532-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">time_in_seconds =</span> <span class="fu">mean</span>(time_in_seconds), <span class="at">top_10 =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb532-8"><a href="dataset-used-for-demonstrating-inference.html#cb532-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(top_10 <span class="sc">==</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb532-9"><a href="dataset-used-for-demonstrating-inference.html#cb532-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>top_10)</span>
-<span id="cb532-10"><a href="dataset-used-for-demonstrating-inference.html#cb532-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb532-11"><a href="dataset-used-for-demonstrating-inference.html#cb532-11" aria-hidden="true" tabindex="-1"></a>race_top_results <span class="ot">&lt;-</span> race <span class="sc">%&gt;%</span></span>
-<span id="cb532-12"><a href="dataset-used-for-demonstrating-inference.html#cb532-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(participation <span class="sc">==</span> <span class="st">&quot;solo&quot;</span> <span class="sc">||</span> participation <span class="sc">==</span> <span class="st">&quot;Solo&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb532-13"><a href="dataset-used-for-demonstrating-inference.html#cb532-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(best_results, <span class="at">by =</span> <span class="st">&quot;race_year_id&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb532-14"><a href="dataset-used-for-demonstrating-inference.html#cb532-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">avg_elevation_gain =</span> elevation_gain <span class="sc">/</span> distance, <span class="at">avg_velocity =</span> distance <span class="sc">/</span> time_in_seconds <span class="sc">*</span> <span class="dv">3600</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb532-15"><a href="dataset-used-for-demonstrating-inference.html#cb532-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(distance <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
-<span id="cb532-16"><a href="dataset-used-for-demonstrating-inference.html#cb532-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb532-17"><a href="dataset-used-for-demonstrating-inference.html#cb532-17" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(race_top_results)</span></code></pre></div>
+<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="dataset-used-for-demonstrating-inference.html#cb574-1" aria-hidden="true" tabindex="-1"></a>race <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/21_race.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb574-2"><a href="dataset-used-for-demonstrating-inference.html#cb574-2" aria-hidden="true" tabindex="-1"></a>ranking <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/21_ultra_rankings.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb574-3"><a href="dataset-used-for-demonstrating-inference.html#cb574-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb574-4"><a href="dataset-used-for-demonstrating-inference.html#cb574-4" aria-hidden="true" tabindex="-1"></a>best_results <span class="ot">&lt;-</span> ranking <span class="sc">%&gt;%</span></span>
+<span id="cb574-5"><a href="dataset-used-for-demonstrating-inference.html#cb574-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rank <span class="sc">&lt;=</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb574-6"><a href="dataset-used-for-demonstrating-inference.html#cb574-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(race_year_id) <span class="sc">%&gt;%</span></span>
+<span id="cb574-7"><a href="dataset-used-for-demonstrating-inference.html#cb574-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">time_in_seconds =</span> <span class="fu">mean</span>(time_in_seconds), <span class="at">top_10 =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb574-8"><a href="dataset-used-for-demonstrating-inference.html#cb574-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(top_10 <span class="sc">==</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb574-9"><a href="dataset-used-for-demonstrating-inference.html#cb574-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>top_10)</span>
+<span id="cb574-10"><a href="dataset-used-for-demonstrating-inference.html#cb574-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb574-11"><a href="dataset-used-for-demonstrating-inference.html#cb574-11" aria-hidden="true" tabindex="-1"></a>race_top_results <span class="ot">&lt;-</span> race <span class="sc">%&gt;%</span></span>
+<span id="cb574-12"><a href="dataset-used-for-demonstrating-inference.html#cb574-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(participation <span class="sc">==</span> <span class="st">&quot;solo&quot;</span> <span class="sc">||</span> participation <span class="sc">==</span> <span class="st">&quot;Solo&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb574-13"><a href="dataset-used-for-demonstrating-inference.html#cb574-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(best_results, <span class="at">by =</span> <span class="st">&quot;race_year_id&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb574-14"><a href="dataset-used-for-demonstrating-inference.html#cb574-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">avg_elevation_gain =</span> elevation_gain <span class="sc">/</span> distance, <span class="at">avg_velocity =</span> distance <span class="sc">/</span> time_in_seconds <span class="sc">*</span> <span class="dv">3600</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb574-15"><a href="dataset-used-for-demonstrating-inference.html#cb574-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(distance <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb574-16"><a href="dataset-used-for-demonstrating-inference.html#cb574-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb574-17"><a href="dataset-used-for-demonstrating-inference.html#cb574-17" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(race_top_results)</span></code></pre></div>
 <pre><code>## Rows: 976
 ## Columns: 16
 ## $ race_year_id       &lt;dbl&gt; 68140, 72496, 69855, 67856, 70469, 66887, 67851, 68…
@@ -629,7 +643,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## $ avg_elevation_gain &lt;dbl&gt; 27.0820851, 58.1722320, 59.7604790, 45.6707317, 0.6…
 ## $ avg_velocity       &lt;dbl&gt; 5.284721, 7.741409, 5.835018, 6.501014, 7.206120, 5…</code></pre>
 <p>We will work with races with non-0 distance, solo participation and at least 10 participants. For each race, the avg velocity is calculated from the velocity of the top 10 racers.</p>
-<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="dataset-used-for-demonstrating-inference.html#cb534-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">345129</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb576-1"><a href="dataset-used-for-demonstrating-inference.html#cb576-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">345129</span>)</span></code></pre></div>
 </div>
             </section>
 

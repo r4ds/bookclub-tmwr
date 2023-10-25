@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>16.4 Prepare the beans data using recipes | Tidy Modeling with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Tidy Modeling with R Book Club." />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
   <meta property="og:title" content="16.4 Prepare the beans data using recipes | Tidy Modeling with R Book Club" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2023-09-05" />
+<meta name="date" content="2023-10-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -543,11 +543,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="20.3" data-path="define-some-models.html"><a href="define-some-models.html"><i class="fa fa-check"></i><b>20.3</b> Define some models</a></li>
 <li class="chapter" data-level="20.4" data-path="initialize-and-add-members-to-stack..html"><a href="initialize-and-add-members-to-stack..html"><i class="fa fa-check"></i><b>20.4</b> Initialize and add members to stack.</a></li>
 <li class="chapter" data-level="20.5" data-path="blend-fit-predict.html"><a href="blend-fit-predict.html"><i class="fa fa-check"></i><b>20.5</b> Blend, fit, predict</a></li>
-<li class="chapter" data-level="20.6" data-path="meeting-videos-21.html"><a href="meeting-videos-21.html"><i class="fa fa-check"></i><b>20.6</b> Meeting Videos</a>
+<li class="chapter" data-level="20.6" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html"><i class="fa fa-check"></i><b>20.6</b> Case Study - Patient Risk Profiles</a>
 <ul>
-<li class="chapter" data-level="20.6.1" data-path="meeting-videos-21.html"><a href="meeting-videos-21.html#cohort-1-20"><i class="fa fa-check"></i><b>20.6.1</b> Cohort 1</a></li>
-<li class="chapter" data-level="20.6.2" data-path="meeting-videos-21.html"><a href="meeting-videos-21.html#cohort-3-18"><i class="fa fa-check"></i><b>20.6.2</b> Cohort 3</a></li>
-<li class="chapter" data-level="20.6.3" data-path="meeting-videos-21.html"><a href="meeting-videos-21.html#cohort-4-19"><i class="fa fa-check"></i><b>20.6.3</b> Cohort 4</a></li>
+<li class="chapter" data-level="20.6.1" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#loading-necessary-libraries"><i class="fa fa-check"></i><b>20.6.1</b> Loading necessary libraries</a></li>
+<li class="chapter" data-level="20.6.2" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#loading-data"><i class="fa fa-check"></i><b>20.6.2</b> Loading data</a></li>
+<li class="chapter" data-level="20.6.3" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#have-a-look-at-the-data"><i class="fa fa-check"></i><b>20.6.3</b> Have a look at the data</a></li>
+<li class="chapter" data-level="20.6.4" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#data-wrangling"><i class="fa fa-check"></i><b>20.6.4</b> Data wrangling</a></li>
+<li class="chapter" data-level="20.6.5" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#data-to-use-in-the-model"><i class="fa fa-check"></i><b>20.6.5</b> Data to use in the Model</a></li>
+<li class="chapter" data-level="20.6.6" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#spending-data"><i class="fa fa-check"></i><b>20.6.6</b> Spending Data</a></li>
+<li class="chapter" data-level="20.6.7" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#preprocessing-and-recipes"><i class="fa fa-check"></i><b>20.6.7</b> Preprocessing and Recipes</a></li>
+<li class="chapter" data-level="20.6.8" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#make-many-models"><i class="fa fa-check"></i><b>20.6.8</b> Make many models</a></li>
+<li class="chapter" data-level="20.6.9" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#build-the-workflow"><i class="fa fa-check"></i><b>20.6.9</b> Build the Workflow</a></li>
+<li class="chapter" data-level="20.6.10" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#tuning-grid-and-race"><i class="fa fa-check"></i><b>20.6.10</b> Tuning: Grid and Race</a></li>
+<li class="chapter" data-level="20.6.11" data-path="case-study---patient-risk-profiles.html"><a href="case-study---patient-risk-profiles.html#stacking-ensembles-of-models"><i class="fa fa-check"></i><b>20.6.11</b> Stacking (Ensembles of models)</a></li>
+</ul></li>
+<li class="chapter" data-level="20.7" data-path="meeting-videos-21.html"><a href="meeting-videos-21.html"><i class="fa fa-check"></i><b>20.7</b> Meeting Videos</a>
+<ul>
+<li class="chapter" data-level="20.7.1" data-path="meeting-videos-21.html"><a href="meeting-videos-21.html#cohort-1-20"><i class="fa fa-check"></i><b>20.7.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="20.7.2" data-path="meeting-videos-21.html"><a href="meeting-videos-21.html#cohort-3-18"><i class="fa fa-check"></i><b>20.7.2</b> Cohort 3</a></li>
+<li class="chapter" data-level="20.7.3" data-path="meeting-videos-21.html"><a href="meeting-videos-21.html#cohort-4-19"><i class="fa fa-check"></i><b>20.7.3</b> Cohort 4</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="21" data-path="inferential-analysis.html"><a href="inferential-analysis.html"><i class="fa fa-check"></i><b>21</b> Inferential analysis</a>
