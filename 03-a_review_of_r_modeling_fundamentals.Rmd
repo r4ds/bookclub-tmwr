@@ -457,7 +457,7 @@ df
 00:33:15	Maya Gans:	I love using single letters and t always gets me too
 00:33:18	Scott Nestler:	Many years ago, a common way to estimate a standard normal distribution was to sum 12 Uniform(0,1) distributions and then subtract 6.
 00:33:19	luifrancgom:	interesting from utils (data)
-00:33:23	Jon Harmon (jonthegeek):	For following along: r4ds.io/tmwr is this study guide... thing... that we're making
+00:33:23	Jon Harmon (jonthegeek):	For following along: dslc.io/tmwr is this study guide... thing... that we're making
 00:34:09	Jon Harmon (jonthegeek):	And I use extremely specific variable names. RStudio autocomplete means you only have to type the full thing once, and then people know what you mean.
 00:34:48	Tan Ho:	trying to grok joe's comments for my non-statsy self: fitting one model with a categorical variable means you have one coefficient for each feature and the difference between categories is explained by the coefficient for the category. Fitting one model for each level of the categorical variable means you get different coefficients for a feature based on the subgroup of data
 00:35:31	Yoni Sidi:	It also depends if you incl the intercept
