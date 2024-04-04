@@ -70,7 +70,7 @@ Shiny app: https://conorotompkins.shinyapps.io/house_sale_estimator/
 00:44:39    Tyler Grant Smith:  wouldnt neighborhod effect vary qith year of sale....gentrification etc
 00:44:42    Jonathan Trattner:  It is on CRAN for whatever that’s worth
 00:44:49    Yoni Sidi:  that's not worth much
-00:44:54    Tan Ho: He's also in the R4DS slack channel
+00:44:54    Tan Ho: He's also in the DSLC slack channel
 00:44:58    Yoni Sidi:  on CRAN means they passed cmd check 
 00:45:05    Jonathan Trattner:  Well yeah
 00:45:09    Jonathan Trattner:  But it also has some nice tests

@@ -1,14 +1,14 @@
-# R4DS Tidy Modeling with R Book Club
+# DSLC Tidy Modeling with R Book Club
 
-Welcome to the R4DS Tidy Modeling with R Book Club!
+Welcome to the DSLC Tidy Modeling with R Book Club!
 
 We are working together to read [Tidy Modeling with R](https://www.tmwr.org/) by Max Kuhn and Julia Silge.
-Join the #book_club-tidy_modeling_with_r channel on the [R4DS Slack](https://r4ds.io/join) to participate.
+Join the #book_club-tidy_modeling_with_r channel on the [DSLC Slack](https://dslc.io/join) to participate.
 As we read, we are producing [notes about the book](https://r4ds.github.io/bookclub-tmwr/).
 
 ## Meeting Schedule
 
-If you would like to present, please see the sign-up sheet for your cohort (linked below, and pinned in the [#book_club-tmwr](https://rfordatascience.slack.com/archives/C01H9SLA48M) channel on Slack)!
+If you would like to present, please see the sign-up sheet for your cohort (linked below, and pinned in the [#book_club-tmwr](https://dslcio.slack.com/archives/C01H9SLA48M) channel on Slack)!
 
 - Cohort 1 (started 2021-01-05, ended 2021-10-19): [meeting videos](https://www.youtube.com/playlist?list=PL3x6DOfs2NGgP7y2sOGcYNGFd_9pORpYG)
 - Cohort 2 (started 2021-02-07, ended 2021-06-06): [meeting videos](https://www.youtube.com/playlist?list=PL3x6DOfs2NGggq4ssmi3KnOMwODhGz33W)
