@@ -19,7 +19,7 @@ library(details)
 
 What the heck is this? Loosely, equivacol results are a range of results indicating that the prediction should not be reported.
 
-Let's take a soccer example. (Data courtesy of 538.)
+Let's take a soccer example. (Data courtesy of 538's [archived Soccer SPI dataset](https://github.com/fivethirtyeight/data/tree/master/soccer-spi); FiveThirtyEight's live soccer predictions page now redirects to ABC News, while current club ratings and calibrated match probabilities are available via [Football Charts](https://www.football-charts.com/developers).)
 
 ```{r trust-setup, echo=F}
 library(tidyverse)
